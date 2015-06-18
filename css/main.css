@@ -318,7 +318,8 @@ pre {
     vertical-align: middle; }
   .social span {
     display: inline-block;
-    margin-right: 20px; }
+    margin-right: 20px;
+    width: 110px; }
   .social .google {
     width: 75px; }
 
