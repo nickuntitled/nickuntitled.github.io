@@ -312,6 +312,16 @@ pre {
 .pagination {
   margin-bottom: 30px; }
 
+.social {
+  font-size: 1px; }
+  .social iframe, .social div {
+    vertical-align: middle; }
+  .social span {
+    display: inline-block;
+    margin-right: 20px; }
+  .social .google {
+    width: 75px; }
+
 /**
  * Syntax highlighting styles
  */
