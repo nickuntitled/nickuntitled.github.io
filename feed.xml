@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Nick Untitled</title>
-    <description>A Thai student living in Thailand is interested in IT/Science/Photography.</description>
-    <link>http://www.nickuntitled.com/</link>
-    <atom:link href="http://www.nickuntitled.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 15 Aug 2015 01:14:03 +0700</pubDate>
-    <lastBuildDate>Sat, 15 Aug 2015 01:14:03 +0700</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
-    
-      <item>
-        <title>Thoughts on illegal streaming sites</title>
-        <description>&lt;p&gt;&amp;quot;Watch online movies?&amp;quot;, I said when I saw my sister watch Korean TV shows called &amp;quot;Running Man&amp;quot; a year ago.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Nick Untitled</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="//www.nickuntitled.com/feed.xml" />
+<link rel="alternate" type="text/html" href="//www.nickuntitled.com" />
+<updated>2015-08-27T23:01:38+07:00</updated>
+<id>//www.nickuntitled.com/</id>
+<author>
+  <name>Nick Untitled</name>
+  <uri>//www.nickuntitled.com/</uri>
+  <email>nuntitled@outlook.com</email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Thoughts on illegal streaming sites]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html" />
+  <id>//www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites</id>
+  <published>2015-08-15T00:00:00+07:00</published>
+  <updated>2015-08-15T00:00:00+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;“Watch online movies?”, I said when I saw my sister watch Korean TV shows called “Running Man” a year ago.&lt;/p&gt;
 
 &lt;p&gt;In this article, I tell what a Thai streaming site is, how it is popular in Thailand and why I do not watch online movies from that website.&lt;/p&gt;
 
-&lt;p&gt;A Streaming site is a kind of websites used for watching online movies. There are many movies you can choose to watch. For example, if I want to watch movies, which is called &lt;strong&gt;&amp;quot;The Avengers&amp;quot;&lt;/strong&gt;, I can watch by googling, clicking and waiting the computer to download a part of the movie for less than minutes. &lt;/p&gt;
+&lt;p&gt;A Streaming site is a kind of websites used for watching online movies. There are many movies you can choose to watch. For example, if I want to watch movies, which is called &lt;strong&gt;“The Avengers”&lt;/strong&gt;, I can watch by googling, clicking and waiting the computer to download a part of the movie for less than minutes.&lt;/p&gt;
 
-&lt;p&gt;In Thailand, approximately ten years ago, many people buy movies from the shop in Pantip Plaza or Fortune Town because of low-speed internet. About six years ago, internet is faster and people tend not to go outside. They watch movies by using BitTorent. However, there are many factors impacting download speed such as seeding and leeching. The more people seed, the faster you get. &lt;/p&gt;
+&lt;p&gt;In Thailand, approximately ten years ago, many people buy movies from the shop in Pantip Plaza or Fortune Town because of low-speed internet. About six years ago, internet is faster and people tend not to go outside. They watch movies by using BitTorent. However, there are many factors impacting download speed such as seeding and leeching. The more people seed, the faster you get.&lt;/p&gt;
 
 &lt;p&gt;Nowadays, people do not want to wait for many hours to watch movies and do not want to know how many people are seeding at the moment. They change from using BitTorrent to download movies to watch movies from streaming sites. Sometimes, you do not need to watch from those websites. You can watch from YouTube instead.&lt;/p&gt;
 
@@ -32,55 +46,49 @@
 &lt;p&gt;Three above reasons are enough for me not to open illegal streaming sites to watch.&lt;/p&gt;
 
 &lt;p&gt;In my opinion, I recommend the better way to watch online movies by using services such as &lt;a href=&quot;https://www.goprimetime.tv&quot;&gt;Prime Time&lt;/a&gt;, &lt;a href=&quot;www.hollywood-hdtv.com/&quot;&gt;Hollywood HD&lt;/a&gt; and &lt;a href=&quot;http://www.doonung.com&quot;&gt;Doonang&lt;/a&gt;, which you can watch unlimited movies by paying few Baht each month.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 15 Aug 2015 00:00:00 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html</guid>
-        
-        <category>streaming</category>
-        
-        <category>sites</category>
-        
-        <category>websites</category>
-        
-        <category>illegal</category>
-        
-        <category>movies</category>
-        
-        <category>online</category>
-        
-        
-        <category>thought</category>
-        
-      </item>
-    
-      <item>
-        <title>Talk Less - เมื่อฉันพูดน้อย</title>
-        <description>&lt;p&gt;เคยคิดเรื่องนี้ไว้นานตั้งแต่ที่เริ่มขึ้นชั้นคลินิก (ปี 4) เลยเริ่มเขียนดีกว่า&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html&quot;&gt;Thoughts on illegal streaming sites&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on August 15, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Talk Less - เมื่อฉันพูดน้อย]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/talk-less.html" />
+  <id>//www.nickuntitled.com/blog/talk-less</id>
+  <published>2015-08-12T00:00:00+07:00</published>
+  <updated>2015-08-12T00:00:00+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;เคยคิดเรื่องนี้ไว้นานตั้งแต่ที่เริ่มขึ้นชั้นคลินิก (ปี 4) เลยเริ่มเขียนดีกว่า&lt;/p&gt;
 
 &lt;p&gt;ปกติตัวเองจะเป็นบุคลิกแบบที่ชอบอยู่คนเดียว ทำอะไรคนเดียวมากกว่า และเป็นคนที่ปรับตัวกับเพื่อนหรือบุคคลแปลกหน้าได้ช้ากว่าคนอื่นอยู่แล้ว ทำให้เวลาทำงานหรือเรียนและเที่ยวด้วยกันถึงรู้สึกเกร็งทำให้พูดน้อยหรือบางทีหนักกว่านั้น นั่นคือไม่พูดเลย! ทำให้คนอื่นมองว่าคนนี้เป็นใบ้หรือเปล่า และแล้วข้อความด้านล่างนี้จะบอกเองว่าทำไมเราถึงพูดน้อยลง&lt;/p&gt;
 
-&lt;p&gt;จริงๆ แล้วก่อนหน้านั้นเราไม่ได้เป็นอย่างนี้ เรากลับพูดคุยกับผู้คนได้โดยที่เราไม่รู้สึกอึดอัดใจเลย จนกระท่ังเริ่มเข้ามาเรียนที่นี่ได้เจอเพื่อนใหม่ที่เราพอพูดคุยได้นะ ส่วนมากมักจะเป็นเรื่องทั่วๆ ไป และอีกอย่างกลุ่มที่เรียนตอนนันยังเป็นกลุ่มใหญ่อยู่ &lt;/p&gt;
+&lt;p&gt;จริงๆ แล้วก่อนหน้านั้นเราไม่ได้เป็นอย่างนี้ เรากลับพูดคุยกับผู้คนได้โดยที่เราไม่รู้สึกอึดอัดใจเลย จนกระท่ังเริ่มเข้ามาเรียนที่นี่ได้เจอเพื่อนใหม่ที่เราพอพูดคุยได้นะ ส่วนมากมักจะเป็นเรื่องทั่วๆ ไป และอีกอย่างกลุ่มที่เรียนตอนนันยังเป็นกลุ่มใหญ่อยู่&lt;/p&gt;
 
-&lt;p&gt;ต่อมาพอเริ่มขึ้นไปชั้นคลินิก กลุ่มที่เรียนจะเล็กลงมากจากเดิมที่เรียนประมาณ 3 ร้อยคนลดลงมาเหลือกลุ่มละสิบกว่าคน และเพื่อนในกลุ่มที่เรียนไม่มีใครสนิทกับเราเลยสักคน เรื่องนี้อาจารย์ท่านหนึ่งเคยกล่าวไว้แล้วประมาณว่า &lt;strong&gt;&amp;quot;เวลาทำงานจริงเราเลือกคนที่ทำงานด้วยไม่ได้นะ&amp;quot;&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;ต่อมาพอเริ่มขึ้นไปชั้นคลินิก กลุ่มที่เรียนจะเล็กลงมากจากเดิมที่เรียนประมาณ 3 ร้อยคนลดลงมาเหลือกลุ่มละสิบกว่าคน และเพื่อนในกลุ่มที่เรียนไม่มีใครสนิทกับเราเลยสักคน เรื่องนี้อาจารย์ท่านหนึ่งเคยกล่าวไว้แล้วประมาณว่า &lt;strong&gt;“เวลาทำงานจริงเราเลือกคนที่ทำงานด้วยไม่ได้นะ”&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;จริงๆ อยากจะตอบกลับไปว่าเลือกได้ แต่มันคงเป็นไปไม่ได้&lt;/p&gt;
+  &lt;p&gt;จริงๆ อยากจะตอบกลับไปว่าเลือกได้ แต่มันคงเป็นไปไม่ได้&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;ทีนี้เริ่มเป็นปัญหาแล้วเนื่องจากเวลาที่เราพยายามพูดคุยด้วยกลับไม่พูดกับเรา หรือบางคนพูดจาน้ำเสียง หรือทำท่าไม่พอใจ ทำให้เราได้รับประสบการณ์ที่ไม่ดีจากการพูดคุยกับเพื่อนมากขึ้นไปเรื่อยๆ แล้วเราเรียนรู้ได้อย่างหนึ่งว่าเราควรจะเงียบๆ ไปซะดีกว่า&lt;/p&gt;
 
 &lt;p&gt;เรื่องประสบการณ์การพูดเป็นสาเหตุหนึ่งที่ทำให้เราพูดน้อยลง แต่ไม่เพียงแค่นั้น มีสาเหตุอื่นที่ทำให้เราพูดน้อยลงอีกคือปัญหาในการสื่อสารกับคนอื่น&lt;/p&gt;
 
-&lt;p&gt;ปัญหาการสื่อสารกับคนอื่นที่เรามีอยู่เป็นเรื่องการสนทนาแล้วอีกฝ่ายแล้วพูดกันไม่รู้เรื่อง กับเราเริ่มบทสนทนากับคนอื่นไม่เป็น และไม่รู้ว่าจะพูดคุยเรื่องอะไรดี สามอย่างนี้เป็นปัญหาที่เรามีอยู่แล้วมาตั้งแต่เด็กๆ เนื่องจากเราเป็นคนที่เริ่มพูดได้ช้าเมื่อเทียบกับผู้อื่น และเรามีปัญหาเรื่องการเข้าสังคมที่รู้สึกโดดเดี่ยวตั้งแต่เด็กแล้วทำให้เราอยู่กับคอมพิวเตอร์มากขึ้น ทำให้ทักษะการพูดคุยไม่ได้พัฒนาขึ้น &lt;/p&gt;
+&lt;p&gt;ปัญหาการสื่อสารกับคนอื่นที่เรามีอยู่เป็นเรื่องการสนทนาแล้วอีกฝ่ายแล้วพูดกันไม่รู้เรื่อง กับเราเริ่มบทสนทนากับคนอื่นไม่เป็น และไม่รู้ว่าจะพูดคุยเรื่องอะไรดี สามอย่างนี้เป็นปัญหาที่เรามีอยู่แล้วมาตั้งแต่เด็กๆ เนื่องจากเราเป็นคนที่เริ่มพูดได้ช้าเมื่อเทียบกับผู้อื่น และเรามีปัญหาเรื่องการเข้าสังคมที่รู้สึกโดดเดี่ยวตั้งแต่เด็กแล้วทำให้เราอยู่กับคอมพิวเตอร์มากขึ้น ทำให้ทักษะการพูดคุยไม่ได้พัฒนาขึ้น&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;จุดนี้เป็นสิ่งที่น่าเสียดายแต่เรากลับไปแก้ไขไม่ได้แล้วมั้ง (ถึงแก้ได้ก็ไม่ส่งผลต่อปัจจุบันอยู่ดี)&lt;/p&gt;
+  &lt;p&gt;จุดนี้เป็นสิ่งที่น่าเสียดายแต่เรากลับไปแก้ไขไม่ได้แล้วมั้ง (ถึงแก้ได้ก็ไม่ส่งผลต่อปัจจุบันอยู่ดี)&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;ถึงแม้ว่าจะพัฒนาขึ้นตอนที่เรียนอยู่ระดับชั้นมัธยมฯ ปลาย แต่พอขึ้นระดับมหาวิทยาลัยแล้วปัญหาเหล่านั้นกลับรุนแรงขึ้นเนื่องจากปัญหาประสบการณ์การพูดคุยที่ไม่ดีกระมัง&lt;/p&gt;
 
-&lt;p&gt;อย่างไรก็ดีปัญหานี้ไม่ได้เป็นแค่การพูดภาษาไทย ภาษาอื่นก็ยังเป็นเลย กำลังคิดอยู่ว่าสาเหตุของปัญหาเหล่านั้นมาจากอะไร เรื่องไวยากรณ์เหรอ อันนี้ก็เป็นปัญหาหนึ่งนะ วิธีแก้ของภาษาอังกฤษหรืออื่นๆ ก็สามารถเปิดหนังสือ หรือลงคอร์สเรียนได้ &lt;/p&gt;
+&lt;p&gt;อย่างไรก็ดีปัญหานี้ไม่ได้เป็นแค่การพูดภาษาไทย ภาษาอื่นก็ยังเป็นเลย กำลังคิดอยู่ว่าสาเหตุของปัญหาเหล่านั้นมาจากอะไร เรื่องไวยากรณ์เหรอ อันนี้ก็เป็นปัญหาหนึ่งนะ วิธีแก้ของภาษาอังกฤษหรืออื่นๆ ก็สามารถเปิดหนังสือ หรือลงคอร์สเรียนได้&lt;/p&gt;
 
 &lt;p&gt;แต่ภาษาไทยล่ะ ภาษานี้ถือว่าเป็นภาษาที่ยากสำหรับคนต่างชาติ แต่คนไทยต้องทำได้สิ เพราะเป็นภาษาประจำชาติ แต่ปัญหานั่นคือจะไปเรียนที่ไหนดี? อันนี้เราคงไม่ได้ไปเรียนที่เรียนพิเศษแบบที่เด็กมัธยมฯ ปลายเรียนแน่ๆ แต่ว่าจะไปเรียนกับคนต่างชาติก็รู้สึกแปลกๆ จุดนี้คงต้องหาหลักภาษามาอ่านเองกระมัง&lt;/p&gt;
 
@@ -88,36 +96,32 @@
 
 &lt;p&gt;ส่วนเรื่องการสนทนา หรือภาษาอังกฤษเรียกว่า conversation อันนี้ภาษาอื่นมีคอร์สเรียน แต่ภาษาไทยไม่มี หรือมีก็ต้องไปเรียนกับคนต่างชาติก็รู้สึกแปลกๆ เช่นเดียวกัน อันนี้นี่เราไม่รู้ว่าจะไปเรียนจากที่ไหนดี ความรู้สึกประมาณว่าเราจนปัญญานะ&lt;/p&gt;
 
-&lt;p&gt;วิธีการแก้ไขปัญหาเรื่องการพูดที่น้อยเราจะแก้ไขปัญหาอย่างไรดีล่ะ &lt;/p&gt;
+&lt;p&gt;วิธีการแก้ไขปัญหาเรื่องการพูดที่น้อยเราจะแก้ไขปัญหาอย่างไรดีล่ะ&lt;/p&gt;
 
 &lt;p&gt;อันนี้คงต้องเริ่มสนทนาเรื่องทั่วๆ ไปก่อน อาจจะเป็นเรื่องลมฟ้าอากาศ หรือเป็นเรื่องที่มีข่าวในช่วงนี้ก็ได้ แล้วค่อยพูดไปเรื่อยๆ โดยที่เราไม่ต้องกลัวว่าจะพูดผิด หรือพูดอย่างไม่ฉลาดออกไป หลังจากนั้นเริ่มพูดมากขึ้นหน่อย แต่ไม่ต้องพูดมากจนคนอื่นไม่มีโอกาสพูด แล้วเน้นฟังให้มากขึ้น เพราะเราคิดว่าคนที่อยากฟังจริงๆ มีไม่เยอะเมื่อเปรียบเทียบกับคนอื่นพูด&lt;/p&gt;
 
 &lt;p&gt;ต่อมาเป็นเรื่องการพูดคุยที่ไม่รู้เรื่องนักกับประสบการณ์การพูดที่ไม่ดีนัก อันนี้แก้ไขได้โดยพยายามเข้าสังคมให้มากขึ้นแทนที่จะขลุกอยู่แต่คอมพิวเตอร์ หรือสมาร์ทโฟน แล้วค่อยๆ พูดตามข้างบนได้เลย แต่ให้พูดแบบช้าๆ นั่นคือ คิดก่อนพูดนั่นเอง&lt;/p&gt;
 
 &lt;p&gt;วิธีแก้ปัญหาสองย่อหน้าข้างบนนี้คิดว่าน่าจะช่วยเรื่องการพูดได้ระดับหนึ่ง ถึงแม้ว่าช่วยไม่ได้มาก ก็ถือว่าช่วยได้บ้างล่ะกัน&lt;/p&gt;
-</description>
-        <pubDate>Wed, 12 Aug 2015 00:00:00 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/talk-less.html</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/talk-less.html</guid>
-        
-        <category>talk</category>
-        
-        <category>conversation</category>
-        
-        <category>less</category>
-        
-        <category>สนทนา</category>
-        
-        <category>พูด</category>
-        
-        
-        <category>diary</category>
-        
-      </item>
-    
-      <item>
-        <title>Slow Computing - เมื่อคอมพิวเตอร์ช้าลง</title>
-        <description>&lt;p&gt;&amp;quot;คอม/มือถือค้างอีกแล้ว&amp;quot; - เรากล่าว&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/talk-less.html&quot;&gt;Talk Less - เมื่อฉันพูดน้อย&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on August 12, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Slow Computing - เมื่อคอมพิวเตอร์ช้าลง]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/slow-computing.html" />
+  <id>//www.nickuntitled.com/blog/slow-computing</id>
+  <published>2015-07-09T00:00:00+07:00</published>
+  <updated>2015-07-09T00:00:00+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;“คอม/มือถือค้างอีกแล้ว” - เรากล่าว&lt;/p&gt;
 
 &lt;p&gt;คำพูดนี้เป็นคำพูดที่พูดขึ้นมาเมื่อที่เราเปิดใช้งานโปรแกรมบางโปรแกรมแล้วไม่มีการตอบสนองไปซักระยะหนึ่ง แล้วหลังจากนั้นอีกหลายนาทีพบว่าโปรแกรมยังไม่ตอบสนอง หรือว่าบางครั้งโปรแกรมทำงานเสร็จเรียบร้อยไปนานแล้ ทีนี้โปรแกรมส่วนใหญ่ที่มีปัญหามักจะเป็นไม่กี่โปรแกรมหรอก แต่โปรแกรมเหล่านั้นสำคัญต่อการใช้งานด้วยสิ แล้วเราจะทำอย่างไรดีล่ะ?&lt;/p&gt;
 
@@ -131,39 +135,37 @@
 
 &lt;p&gt;วิธีนี้พบว่าทำงาน หรือเล่นเกมได้ตามความต้องการเลยโดยที่ไม่ต้องพะวงว่าจะเล่นเกมนี้ได้หรือไม่ หรือทำงานได้ตามความต้องการของเราหรือไม่เลยล่ะ อย่างไรก็ตามเราจำเป็นต้องอยู่ที่บ้าน ไม่อยู่ที่หอ ทำให้บางครั้งที่เราค้างที่หอ เราเล่นเกมบนคอมพิวเตอร์ตั้งโต๊ะไม่ได้&lt;/p&gt;
 
-&lt;p&gt;&amp;quot;สรุปแล้วเราจะใช้วิธีไหนกันแน่?&amp;quot; - เรากล่าว&lt;/p&gt;
+&lt;p&gt;“สรุปแล้วเราจะใช้วิธีไหนกันแน่?” - เรากล่าว&lt;/p&gt;
 
 &lt;p&gt;คำตอบนี้เรานึกในใจไว้แล้วล่ะ นั่นก็คือใช้ทั้งสามวิธีที่เราเคยกล่าวไว้แล้วนะแหละ&lt;/p&gt;
 
 &lt;p&gt;ถ้าทำแล้วมันไม่ได้จริงๆ ล่ะ เราก็ใช้ชีวิตแบบ slow life ตามที่มีดราม่าที่มิตรสหายท่านหนึ่งแสดงความคิดเห็นแล้วทำให้เราเอาไปประยุกต์ได้เป็น slow computing แทนแล้วล่ะกัน&lt;/p&gt;
-</description>
-        <pubDate>Thu, 09 Jul 2015 00:00:00 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/slow-computing.html</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/slow-computing.html</guid>
-        
-        <category>computing</category>
-        
-        <category>Apple</category>
-        
-        <category>Mac</category>
-        
-        <category>Slow</category>
-        
-        
-        <category>computer</category>
-        
-      </item>
-    
-      <item>
-        <title>Chromecast - เมื่อเรานำมาใช้กับทีวีที่บ้าน</title>
-        <description>&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/18831522875&quot; title=&quot;Chromecast by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c2.staticflickr.com/4/3701/18831522875_5ea3d966f8_c.jpg&quot; alt=&quot;Chromecast&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/slow-computing.html&quot;&gt;Slow Computing - เมื่อคอมพิวเตอร์ช้าลง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on July 09, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Chromecast - เมื่อเรานำมาใช้กับทีวีที่บ้าน]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/chromecast.html" />
+  <id>//www.nickuntitled.com/blog/chromecast</id>
+  <published>2015-06-15T00:00:00+07:00</published>
+  <updated>2015-06-15T00:00:00+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/18831522875&quot; title=&quot;Chromecast by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c2.staticflickr.com/4/3701/18831522875_5ea3d966f8_c.jpg&quot; alt=&quot;Chromecast&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Chromecast&lt;/strong&gt; เป็นอุปกรณ์เล็กๆ ชิ้นหนึ่งของ Google ที่อนุญาตให้เรานำวิดีโอหรืออื่นๆ มาขึ้นบนหน้าจอทีวี อุปกรณ์ชิ้นนี้รองรับระบบปฏิบัติการที่หลากหลาย ตัวอย่างเช่น Windows, Mac, Android และ iOS ราคาของอุปกรณ์ชิ้นนี้ไม่แพงนักอยู่ประมาณหนึ่งพันต้นๆ บาท ถือว่ามีราคาพอๆ กับกล่องทีวีดิจิทัล 1 กล่อง&lt;/p&gt;
 
 &lt;p&gt;อุปกรณ์ชิ้นนี้ซื้อมาจากที่ญี่ปุ่นตอนที่ไปเที่ยวอยู่พอดี โดยเราซื้อที่ร้าน Yodobashi Camera ที่เมืองฟุกุโอกะ เมื่อเราเห็นสภาพกล่องแล้วเชื่อเลยว่าขายในญี่ปุ่นจริงๆ หลังจากนั้นเราแกะกล่องแล้วเสียบเข้ากับช่อง HDMI ที่ทีวีในห้องที่ไม่มีกล่องทีวีดิจิทัลใช้ พร้อมกับตั้งค่าให้เรียบร้อยแค่นี้ก็ใช้ได้แล้ว&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;เรื่องการแกะกล่อง อันนี้มีหลายเว็บ หลายวิดีโอบน YouTube โชว์ให้ดูอยู่แล้วเลยไม่ได้กล่าวถึง&lt;/p&gt;
+  &lt;p&gt;เรื่องการแกะกล่อง อันนี้มีหลายเว็บ หลายวิดีโอบน YouTube โชว์ให้ดูอยู่แล้วเลยไม่ได้กล่าวถึง&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;หลังจากที่ใช้งานไปซักระยะหนึ่งพบว่าเราควบคุมการทำงานจากเครื่องโทรศัพท์ หรือคอมพิวเตอร์ได้เลยโดยเอาวิดีโอในโปรแกรม YouTube ส่วนใหญ่จะเป็นคลิปวิดีโอ ละครซิทคอม ตัวอย่างหนัง ข่าว เป็นต้น กับ Udemy ที่เราซื้อคอรส์เรียนที่ลดราคา 90 กว่าเปอร์เซ็นต์ออกหน้าจอทีวี พบว่าวิดีโอที่ชมมีความละเอียดสูง ภาพคมชัดดีจากการนั่งห่างจากทีวีพอสมควร และไม่ได้คาดหวังอะไรมากนัก&lt;/p&gt;
@@ -171,25 +173,25 @@
 &lt;p&gt;ผลที่ได้ทำให้เราสะดวกต่อการใช้งานมาก และรองรับโปรแกรมครบตามที่เราใช้งานในชีวิตประจำวันได้ ถือว่าอุปกรณ์ชิ้นนี้ทำงานตอบสนองความต้องการได้ดีเลยทีเดียว โดยที่เราไม่จำเป็นต้องไปซื้อกล่องรับทีวีดิจิทัลอีก เพราะเราไม่ได้ดูฟรีทีวีอยู่แล้ว เลยไม่มีปัญหาอะไรมากนัก นอกจากนี้สิ่งหนึ่งที่เราชอบคืออุปกรณ์ที่มีขนาดที่เล็ก พกพาได้สะดวก ทำให้เรานำไปเสียบกับทีวีอีกเครื่องได้เลยโดยไม่ต้องแบกสายหลายสายเมื่อเทียบกับกล่องรับทีวีดิจิทัล&lt;/p&gt;
 
 &lt;p&gt;อย่างไรก็ดี การดูวิดีโอผ่านอุปกรณ์ชิ้นนี้ต้องมีอินเตอร์เน็ตความเร็วสูงหน่อยเพื่อทีจะดูวิดีโอที่มีความละเอียดสูงอย่างไม่เสียอรรทรสไป กับอุปกรณ์ชิ้นนี้มีข้อจำกัดที่ต้องใช้ร่วมกันกับโปรแกรมที่กำหนดมาให้ใช้งานกับ Chromecast เท่านั้น ดูได้จากใน Google Play ครับ&lt;/p&gt;
-</description>
-        <pubDate>Mon, 15 Jun 2015 00:00:00 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/chromecast.html</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/chromecast.html</guid>
-        
-        <category>chromecast</category>
-        
-        <category>television</category>
-        
-        <category>Google</category>
-        
-        
-        <category>diary</category>
-        
-      </item>
-    
-      <item>
-        <title>Travel Planning - เครื่องมือวางแผนการท่องเที่ยว</title>
-        <description>&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/18689311206&quot; title=&quot;Travel Planning Screenshot by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c1.staticflickr.com/1/556/18689311206_abb53b584b_c.jpg&quot; width=&quot;800&quot; height=&quot;450&quot; alt=&quot;Travel Planning Screenshot&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/chromecast.html&quot;&gt;Chromecast - เมื่อเรานำมาใช้กับทีวีที่บ้าน&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on June 15, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Travel Planning - เครื่องมือวางแผนการท่องเที่ยว]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/tools-for-travel-planning.html" />
+  <id>//www.nickuntitled.com/blog/tools-for-travel-planning</id>
+  <published>2015-06-10T00:00:00+07:00</published>
+  <updated>2015-06-10T00:00:00+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/18689311206&quot; title=&quot;Travel Planning Screenshot by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c1.staticflickr.com/1/556/18689311206_abb53b584b_c.jpg&quot; width=&quot;800&quot; height=&quot;450&quot; alt=&quot;Travel Planning Screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;ปกติก่อนที่เราจะไปเทียวกันเองสิ่งหนึ่งที่เราจำเป็นจะต้องทำก่อนนั่นก็คือการวางแผนการท่องเที่ยว แล้วการวางแผนการท่องเที่ยวสำคัญอย่างไรล่ะ การวางแผนการท่องเที่ยวก่อนทำให้เราใช้งบประมาณ เวลาอย่างจำกัดโดยที่ไม่บานปลายจนเกินไป&lt;/p&gt;
 
@@ -214,25 +216,25 @@
 &lt;p&gt;&lt;strong&gt;นอกจากนี้&lt;/strong&gt; ยังมีโปรแกรมอื่นๆ เท่าที่รู้ก็นำไปใช้วางแผนการท่องเที่ยวได้อีกเช่นกัน เพียงแต่ความสามารถที่ได้รับอาจจะไม่เท่ากันกับสองตัวตามที่กล่าวไว้แล้วข้างต้น เช่น Google Keep ที่ไว้จดข้อมูลสั้นๆ แบบกระดาษ Post-it หรือใส่เป็นรูปภาพหลายๆ ภาพลงไปได้เลย เป็นต้น&lt;/p&gt;
 
 &lt;p&gt;ทั้งหมดนี้เป็นการแนะนำโปรแกรมที่เราเอามาใช้เพื่อวางแผนการท่องเที่ยวผู้อ่านสามารถลองนำโปรแกรมตามที่กล่าวไว้ในบทความมาใช้ได้นะครับ&lt;/p&gt;
-</description>
-        <pubDate>Wed, 10 Jun 2015 00:00:00 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/tools-for-travel-planning.html</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/tools-for-travel-planning.html</guid>
-        
-        <category>planning</category>
-        
-        <category>notetaking</category>
-        
-        <category>travel</category>
-        
-        
-        <category>computer</category>
-        
-      </item>
-    
-      <item>
-        <title>Newspaper - When I read less</title>
-        <description>&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/62693815@N03/6277209256&quot; title=&quot;Newspapers B&amp;amp;W (5) by Jon S, on Flickr&quot;&gt;&lt;img src=&quot;https://c1.staticflickr.com/7/6033/6277209256_934f20da10_b.jpg&quot; alt=&quot;Newspapers B&amp;amp;W (5)&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/tools-for-travel-planning.html&quot;&gt;Travel Planning - เครื่องมือวางแผนการท่องเที่ยว&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on June 10, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Newspaper - When I read less]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/newspaper-when-i-read-less.html" />
+  <id>//www.nickuntitled.com/blog/newspaper-when-i-read-less</id>
+  <published>2015-05-29T00:00:00+07:00</published>
+  <updated>2015-05-29T00:00:00+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/62693815@N03/6277209256&quot; title=&quot;Newspapers B&amp;amp;W (5) by Jon S, on Flickr&quot;&gt;&lt;img src=&quot;https://c1.staticflickr.com/7/6033/6277209256_934f20da10_b.jpg&quot; alt=&quot;Newspapers B&amp;amp;W (5)&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Newspaper, one of mass media printed on low-grade paper, consists of news, informative articles and advertising. The news includes crimes, politics, economics, health, technology, sports, entertainment etc.&lt;/p&gt;
 
@@ -247,25 +249,25 @@
 &lt;p&gt;However, many news posted on the internet are fake. When I read, I try to search from Google to prove whether it is true or not. I think this is my best method to prevent spreading fake news to friends.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Credit:&lt;/strong&gt; Newspapers B&amp;amp;W (5) by Jon S&lt;/p&gt;
-</description>
-        <pubDate>Fri, 29 May 2015 00:00:00 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/newspaper-when-i-read-less.html</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/newspaper-when-i-read-less.html</guid>
-        
-        <category>Newspaper</category>
-        
-        <category>News</category>
-        
-        <category>Media</category>
-        
-        
-        <category>thought</category>
-        
-      </item>
-    
-      <item>
-        <title>Watching Video via 3G : ดูวิดีโอผ่าน 3G เปลืองดาต้าอย่างยิ่ง</title>
-        <description>&lt;p&gt;ที่เขียนบทความนี้เนื่องมาจากมีคนที่เป็นผู้ใหญ่เพิ่งใช้ LINE ที่เอาเข้าจริงใช้มาได้เกือบสองสามปีแล้วมีกรุ๊ป LINE ที่มีเป็นเพื่อนรุ่นเดียวกันเป็นสมาชิกในกลุ่มนั้นอัพโหลดแล้วส่งวิดีโอมาให้ จากนั้นผู้ใหญ่เปิดวิดีโอเหล่านั้น เนื้อหาในวิดีโอเหล่านั้นเป็นเรื่องตั้งแต่สากกะเบือยันเรือรบ ตั้งแต่เรื่องทั่วๆ ไป สุขภาพ บางครั้งอาจเป็นเรื่องเกี่ยวกับในหลวงซึ่งมีความเสี่ยงต่อการโดนมาตรา 112&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/newspaper-when-i-read-less.html&quot;&gt;Newspaper - When I read less&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 29, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Watching Video via 3G : ดูวิดีโอผ่าน 3G เปลืองดาต้าอย่างยิ่ง]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1367" />
+  <id>//www.nickuntitled.com/blog/watching-video-via-3g</id>
+  <published>2015-05-12T23:47:54+07:00</published>
+  <updated>2015-05-12T23:47:54+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;ที่เขียนบทความนี้เนื่องมาจากมีคนที่เป็นผู้ใหญ่เพิ่งใช้ LINE ที่เอาเข้าจริงใช้มาได้เกือบสองสามปีแล้วมีกรุ๊ป LINE ที่มีเป็นเพื่อนรุ่นเดียวกันเป็นสมาชิกในกลุ่มนั้นอัพโหลดแล้วส่งวิดีโอมาให้ จากนั้นผู้ใหญ่เปิดวิดีโอเหล่านั้น เนื้อหาในวิดีโอเหล่านั้นเป็นเรื่องตั้งแต่สากกะเบือยันเรือรบ ตั้งแต่เรื่องทั่วๆ ไป สุขภาพ บางครั้งอาจเป็นเรื่องเกี่ยวกับในหลวงซึ่งมีความเสี่ยงต่อการโดนมาตรา 112&lt;/p&gt;
 &lt;p&gt;ทีนี้การอัพโหลดกับการเปิดวิดีโอที่ส่งมาผ่านทาง LINE (หรือ YouTube) โดยใช้อินเตอร์เน็ต 3G (หรือ 4G ขึ้นกับคน) มีปัญหาอย่างหนึ่งคือไฟล์วิดีโอหนึ่งไฟล์ที่อัพโหลดหรือเปิดดูนั้นมีหลายขนาดมาก ขนาดใหญ่ตั้งแต่หลาย MB ไปจนถึงระดับ GB ขึ้นไป&lt;/p&gt;
 &lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
 &lt;p&gt;แล้วอินเตอร์เน็ตที่เราใช้กันอยู่ในปัจจุบันนั้นมีขนาดที่จำกัด เมื่อเราใช้งานดาต้าถึงตามที่ทางผู้ให้บริการกำหนดแล้วจะเกิดเหตุการณ์อย่างใดอย่างหนึ่งจากสองอย่างนี้&lt;/p&gt;
@@ -278,31 +280,25 @@
 &lt;p&gt;วิธีแรกคือ&lt;strong&gt;จ่ายเงินเพื่อซื้อแพคเกจ&lt;/strong&gt; แพคเกจที่มีความจุขนาดที่ใหญ่ระดับหลาย GB ราคามักจะอยู่ที่ 4-5 ร้อยไปยังเป็นพันบาท แต่แพคเกจเหล่านั้นก็ยังมีความจุที่จำกัดอยู่ดีนะแหละ เมื่อถึงที่ทางผู้ให้บริการกำหนดแล้ว เราก็ติด FUP เหมือนเดิม ความเร็วอินเตอร์เน็ตก็ช้าลงเหมือนเดิม&lt;/p&gt;
 &lt;p&gt;วิธีที่สองคือซื้อแพคเกจ &lt;strong&gt;Unlimited ที่จำกัดความเร็ว&lt;/strong&gt; อันนี้ขึ้นอยู่กับผู้ให้บริการแล้วว่าจำกัดความเร็วไว้แค่ไหน เท่าที่เคยเห็นมีผู้ให้บริการเจ้าหนึ่งให้บริการแบบนี้ โดยจำกัดความเร็วอยู่ในระดับ 384 Kbps หรือ 1-2 Mbps และราคาที่ทางผู้ให้บริการกำหนดมีตั้งแต่ไม่แพงไปจนถึงเกือบพันกว่าบาท และถ้าความเร็วไม่มากพอทำให้เปิดวิดีโอกระตุก หรือต้องรอให้ดาวน์โหลดมาบางส่วนก่อนเลยทีเดียว&lt;/p&gt;
 &lt;p&gt;ทีนี้ถ้าจะให้เราแนะนำวิธีการแก้ไขปัญหาล่ะ เราแนะนำให้อัพโหลดหรือดูวิดีโอผ่านทาง Wi-Fi แทนที่จะใช้งานผ่านอินเตอร์เน็ต 3G แทน แค่นี้แหละเราจะไม่ต้องโดน FUP หรือต้องจ่ายเงินเพิ่มแล้วครับ&lt;/p&gt;
-</description>
-        <pubDate>Tue, 12 May 2015 23:47:54 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/1367</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/1367</guid>
-        
-        <category>3G</category>
-        
-        <category>4G</category>
-        
-        <category>LINE</category>
-        
-        <category>LTE</category>
-        
-        <category>video</category>
-        
-        <category>youtube</category>
-        
-        
-        <category>computer</category>
-        
-      </item>
-    
-      <item>
-        <title>Continuum for Phones : เมื่อไมโครซอฟท์ไม่ได้เป็นเจ้าแรก</title>
-        <description>&lt;p&gt;&lt;strong&gt;Continuum for Phones&lt;/strong&gt; เป็นความสามารถหนึ่งของระบบปฏิบัติการ Windows บนสมาร์ทโฟนที่ทำขึ้นมาโดยบริษัทไมโครซอฟท์ ที่เปิดตัวในงาน BUILD 2015 เมื่อวันก่อน&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1367&quot;&gt;Watching Video via 3G : ดูวิดีโอผ่าน 3G เปลืองดาต้าอย่างยิ่ง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 12, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Continuum for Phones : เมื่อไมโครซอฟท์ไม่ได้เป็นเจ้าแรก]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1352" />
+  <id>//www.nickuntitled.com/blog/continuum-for-phones</id>
+  <published>2015-05-04T11:51:48+07:00</published>
+  <updated>2015-05-04T11:51:48+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;strong&gt;Continuum for Phones&lt;/strong&gt; เป็นความสามารถหนึ่งของระบบปฏิบัติการ Windows บนสมาร์ทโฟนที่ทำขึ้นมาโดยบริษัทไมโครซอฟท์ ที่เปิดตัวในงาน BUILD 2015 เมื่อวันก่อน&lt;/p&gt;
 &lt;p&gt;ความสามารถนี้อนุญาตให้เรานำโทรศัพท์ต่อออกจอคอมพิวเตอร์กับเชื่อมต่อเมาส์กับคีย์บอร์ดผ่านทางบลูทูธแล้วหน้าจอที่ออกมาจะเป็นหน้าจอเดสก์ท็อปที่ดูคล้ายกันกับบน Windows 10 บน Desktop แต่มีความสามารถที่น้อยกว่า กับโปรแกรมที่เปิดบนนั้นจะเป็นโปรแกรมที่มีอยู่ในสโตร์ที่รองรับการทำงานหลายขนาดหน้าจอได้ (universal apps)&lt;/p&gt;
 &lt;p&gt;อย่างไรก็ดีไมโครซอฟท์ไม่ได้เป็นเจ้าแรกที่ทำความสามารถนี้ออกมา ก่อนหน้านี้มีหลายเจ้าที่ทำออกมาแล้ว แต่กลับไม่ประสบความสำเร็จ หรือไม่ได้ทำต่อนั่นเอง&lt;/p&gt;
 &lt;p&gt;ตัวอย่างบริษัทที่เคยทำความสามารถแบบนี้ออกมาที่คิดว่าน่าจะรู้จักกันได้แก่บริษัทโมโตโรลาที่ทำโทรศัพท์ Atrix 4G กับ Atrix 2 กับบริษัท Cannonial ที่ทำ Ubuntu for Android&lt;/p&gt;
@@ -325,29 +321,25 @@
 &lt;li&gt;มีโปรแกรมที่จำเป็นต่อการใช้งานได้แก่ Microsoft Edge (เดิมเรียกว่า Project Spartan) และ Office ที่ออกแบบมาเพื่อหน้าจอสัมผัส&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;ความแตกต่างสามข้อที่กล่าวไปข้างบนทำให้เราคิดว่าน่าจะเป็นไปได้สวย อย่างไรก็ตามเราจำเป็นต้องซื้อโทรศัพท์รุ่นใหม่เนื่องจากความสามารถการใช้างนได้หลายหน้าจอจำเป็นต้องใช้ชีพียูรุ่นใหม่กว่าเดิม และถ้าจะใช้ความสามารถนี้ในเต็มนี้จำเป็นต้องมีโปรแกรมให้ใช้มากขึ้น ทีนี้ขึ้นอยู่กับว่าจะมีผู้ทำโปรแกรมลงระบบปฏิบัติการนี้นอกเหนือจาก Android กับ iOS หรือไม่นั่นเอง&lt;/p&gt;
-</description>
-        <pubDate>Mon, 04 May 2015 11:51:48 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/1352</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/1352</guid>
-        
-        <category>Continuum</category>
-        
-        <category>Desktop</category>
-        
-        <category>phones</category>
-        
-        <category>smartphone</category>
-        
-        <category>Ubuntu</category>
-        
-        
-        <category>computer</category>
-        
-      </item>
-    
-      <item>
-        <title>Paperless World : ที่มา ปัญหา และหนทาง</title>
-        <description>&lt;p&gt;กระดาษเป็นอุปกรณ์จดบันทึกชิ้นหนึ่งที่มนุษยชาติไว้เขียนข้อความลงไปในนั้น โดยข้อความที่จดบันทึกลงไปจะเป็นข้อความธรรมดา วาดรูป ประทับตรา พิมพ์งานลงไป เป็นต้น อุปกรณ์ชิ้นนี้เป็นอุปกรณ์ที่มีการพัฒนามายาวนานมากตั้งแต่เป็นพันกว่าปีที่แล้ว&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1352&quot;&gt;Continuum for Phones : เมื่อไมโครซอฟท์ไม่ได้เป็นเจ้าแรก&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 04, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Paperless World : ที่มา ปัญหา และหนทาง]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1302" />
+  <id>//www.nickuntitled.com/blog/paperless-world</id>
+  <published>2015-04-18T17:13:27+07:00</published>
+  <updated>2015-04-18T17:13:27+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;กระดาษเป็นอุปกรณ์จดบันทึกชิ้นหนึ่งที่มนุษยชาติไว้เขียนข้อความลงไปในนั้น โดยข้อความที่จดบันทึกลงไปจะเป็นข้อความธรรมดา วาดรูป ประทับตรา พิมพ์งานลงไป เป็นต้น อุปกรณ์ชิ้นนี้เป็นอุปกรณ์ที่มีการพัฒนามายาวนานมากตั้งแต่เป็นพันกว่าปีที่แล้ว&lt;/p&gt;
 &lt;p&gt;จนกระทั่งมาถึงสิบกว่าปีก่อนนี้ที่เทคโนโลยีการจดบันทึกหลักๆ ยังเป็นกระดาษอยู่ เพียงแต่ว่ามีโน้ตบุ๊คไว้สำหรับจดบันทึกได้บ้างแล้ว ส่วนแท็บเล็ตในตอนนั้นยังใช้ระบบปฏิบัติการ Windows XP ที่ยังมีราคาขั้นต่ำอยู่ที่ 6 หมื่นบาทขึ้นไป ทำงานแท็บเล็ตไม่ได้รับความนิยมมากนัก&lt;/p&gt;
 &lt;p&gt;เวลาผ่านไปไม่นานนักประมาณ 7 ปีให้หลังบริษัท Apple เปิดตัวผลิตภัณฑ์ที่อยู่ระหว่างโน้ตบุ๊คกับโทรศัพท์มือถือ อุปกรณ์ชิ้นนั้นเรียกว่า iPad&lt;/p&gt;
 &lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
@@ -366,31 +358,25 @@
 &lt;p&gt;ต่อมาเป็นการจดบันทึก เพื่อนจะจดบันทึกลงไปในโปรแกรมจดบันทึกที่ติดมากับระบบปฏิบัติการอยู่แล้ว หรืออาจจะบันทึกโดยการเขียน ปากกาที่เขาใช้จะเป็นปากกาแบบที่วางมือลงบนหน้าจอไม่ได้ ราคาของปากกาเหล่านี้มีตั้งแต่ไม่ถึงร้อยบาท จนกระทั่งพันกว่าบาท หรืออาจจะเป็นอีกแบบหนึ่งคือปากกาที่มีสัญญาณไร้สายที่เรียกว่าบลูทูธ ราคาของปากกาเหล่านี้อยู่ตั้งแต่สองพันกว่าบาทไปจนถึงสามสี่พันบาท โปรแกรมที่ใช้ส่วนใหญ่จะใช้ Notability กัน อย่างไรก็ตามถ้าต้องการจะใช้โปรแกรมอื่น เท่าที่เคยใช้ก็เป็น Evernote, Bamboo Paper ส่วนโปรแกรมอื่นเราไม่เคยใช้เลยบอกไม่ได้ครับ&lt;/p&gt;
 &lt;p&gt;นอกจากนี้แล้วการค้นคว้าข้อมูลที่เพื่อนใช้กันจะเป็นการค้นหาผ่านเว็บ Google เพื่อนใส่ข้อมูลที่ต้องการแล้วกด Enter จากนั้นโปรแกรมจะค้นหาข้อมูลให้ แล้วเพื่อนจะกดลิ้งค์ที่คิดว่าเกี่ยวข้องแล้วอ่านในนั้น อย่างไรก็ตามการค้นคว้าข้อมูลจากเว็บอาจมีปัญหาเรื่องความน่าเชื่อถือได้&lt;/p&gt;
 &lt;p&gt;สุดท้ายนี้เวลาผ่านไปผู้คนจะใช้งานอุปกรณ์อย่างแท็บเล็ตมากขึ้นจนกระทั่งบางคนอาจจะเอาแท็บเล็ตมาแทนกระดาษที่เราใช้กันอยู่เดิมได้ อย่างไรก็ตามขึ้นกับผู้อ่านเองว่าจะเปลี่ยนจากการทำงานผ่านกระดาษอยู่เดิม มาเป็นการทำงานผ่านอุปกรณ์เหล่านี้ได้อย่างไรครับ&lt;/p&gt;
-</description>
-        <pubDate>Sat, 18 Apr 2015 17:13:27 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/1302</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/1302</guid>
-        
-        <category>mobile</category>
-        
-        <category>paperless</category>
-        
-        <category>tablet</category>
-        
-        <category>กระดาษ</category>
-        
-        <category>มือถือ</category>
-        
-        <category>แท็บเล็ต</category>
-        
-        
-        <category>thought</category>
-        
-      </item>
-    
-      <item>
-        <title>สรุปสิ่งที่ได้ฟังในงาน Pediatric Research Day ตอนเช้า</title>
-        <description>&lt;p&gt;วันนี้ปกติจะเป็นวันที่เรียนเสร็จแล้วจะต้องไปออกตรวจตามปกติ เพียงแต่ว่าวันนี้มีงานที่เกี่ยวข้องกับงานวิจัยของแผนกกุมารเวชศาสตร์ ทางภาควิชาเลยไม่ต้องให้ออกไปปฏิบัติงานในวันนี้ เพียงแต่ให้เข้าไปร่วมงานแทนครับ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1302&quot;&gt;Paperless World : ที่มา ปัญหา และหนทาง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on April 18, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[สรุปสิ่งที่ได้ฟังในงาน Pediatric Research Day ตอนเช้า]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1285" />
+  <id>//www.nickuntitled.com/blog/Pediatric-research-day</id>
+  <published>2015-03-27T16:47:26+07:00</published>
+  <updated>2015-03-27T16:47:26+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;วันนี้ปกติจะเป็นวันที่เรียนเสร็จแล้วจะต้องไปออกตรวจตามปกติ เพียงแต่ว่าวันนี้มีงานที่เกี่ยวข้องกับงานวิจัยของแผนกกุมารเวชศาสตร์ ทางภาควิชาเลยไม่ต้องให้ออกไปปฏิบัติงานในวันนี้ เพียงแต่ให้เข้าไปร่วมงานแทนครับ&lt;/p&gt;
 &lt;p&gt;หลังจากที่เรียนเลคเชอร์เสร็จเรียบร้อยแล้ว เราก็ลงทะเบียนเข้างานแล้วหยิบขนมมารับประทานก่อนที่จะเข้าไปในงาน พอรับประทานไปได้ซักระยะหนึ่งจนขนมหมดแล้ว เราเดินเข้าไปในงาน&lt;/p&gt;
 &lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
 &lt;p&gt;ช่วงแรกเวลา 9 โมงนิดๆ จะเป็นการนำเสนอโปสเตอร์งานวิจัยที่ทำโดยพี่ที่เรียนต่อแพทย์เฉพาะทางปีสาม กับพี่ที่เรียนอยู่ระดับปริญญาโท กับปริญญาเอก ก็มีงานวิจัยมาแสดงหลายชิ้น แล้วมีอาจารย์กับคนอื่นๆ มาดูงานแล้วให้เจ้าของงานวิจัยมานำเสนองานแต่ละชิ้น&lt;/p&gt;
@@ -408,25 +394,343 @@
 &lt;p&gt;นอกจากนี้อาจารย์ได้แสดงอุปกรณ์ที่วัดสัญญาณชีพโดยแสกนที่หน้าผากพร้อมกับแสดงผลข้อมูลผ่านทางโทรศัพท์มือถือ เมื่อเราได้ทดลองใช้หลังจบงานครึ่งเช้าแล้วพบว่าข้อดีของอุปกรณ์ชิ้นนี้คือความสะดวก และไม่ต้องมาบีบแขน กับนิ้วเพื่อวัดความดันกับวัดปริมาณออกซิเจนในเลือด&lt;/p&gt;
 &lt;p&gt;อย่างไรก็ตามเราคิดว่าจะมีปัญหาที่จะให้ผู้ป่วยนอนอยู่นิ่งเพราะกว่าจะวัดได้ใช้เวลาประมาณหนึ่งนาที หรือสองนาทีซึงคิดว่านานไปหน่อย ถึงตอนนั้นผู้ป่วยคงขยับไปๆ มาๆ แล้วครับ&lt;/p&gt;
 &lt;p&gt;หลังจากนั้นงานครึ่งแรกก็จบไป ส่วนครึ่งหลังไม่ได้เข้าไปต่อ ตอนนั้นไปนั่งฟังในงานการประชุมที่เกี่ยวข้องกับระบบทางเดินอาหารของเด็กระหว่างโรงพยาบาลจุฬาฯ กับโรงพยาบาลอื่นครับ&lt;/p&gt;
-</description>
-        <pubDate>Fri, 27 Mar 2015 16:47:26 +0700</pubDate>
-        <link>http://www.nickuntitled.com/blog/1285</link>
-        <guid isPermaLink="true">http://www.nickuntitled.com/blog/1285</guid>
-        
-        <category>กุมารเวชศาสตร์</category>
-        
-        <category>งานวิจัย</category>
-        
-        <category>สิ่งประดิษฐ์</category>
-        
-        <category>เด็ก</category>
-        
-        <category>ไวรัสตับอักเสบ</category>
-        
-        
-        <category>diary</category>
-        
-      </item>
-    
-  </channel>
-</rss>
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1285&quot;&gt;สรุปสิ่งที่ได้ฟังในงาน Pediatric Research Day ตอนเช้า&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 27, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[ผลที่ได้ 3 ข้อจากการเลิกติดตามบน Facebook]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1278" />
+  <id>//www.nickuntitled.com/blog/3-consequence-detach-from-social-network</id>
+  <published>2015-03-24T17:02:23+07:00</published>
+  <updated>2015-03-24T17:02:23+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;จากบทความที่กล่าวถึง&lt;a href=&quot;http://www.nickuntitled.com/blog/1204&quot; target=&quot;_blank&quot;&gt;การยกเลิกใช้งานเครือข่ายสังคมออนไลน์&lt;/a&gt;อย่าง Instagram, Pinterest และ Twitter พบว่าเราไม่ได้เข้าไปล๊อคอินใหม่อีกครั้ง เท่าที่นับจากตอนนั้นมาถึงวันนี้น่าจะเกิน 1 เดือนไปเรียบร้อยแล้ว&lt;/p&gt;
+&lt;p&gt;ณ จุดนี้พบว่าเราไม่ได้รู้สึกทรมานอะไรนักจาการที่ไม่ได้รับข่าวสารจากเครือข่ายสังคมออนไลน์เหล่านั้น และพบว่าไม่ได้ทำให้ชีวิตขาดอะไรไปด้วย&lt;/p&gt;
+&lt;p&gt;นอกจากการเลิกการใช้งานเครือข่ายสังคมออนไลน์ตามด้านบนยกเลิกการติดตามเพื่อนบนเครือข่ายสังคมออนไลน์อย่าง Facebook ไปแล้ว เรามาบอกผลที่ได้ดีกว่า&lt;/p&gt;
+&lt;p&gt;เอาเท่าที่นับได้มีอยู่สามข้อนะครับ ได้แก่&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;อย่างแรกก็พบว่าไม่สั่นแบบ resting tremor (สั่นอยู่กับที่) ตามที่บอกไปในบทความที่แล้ว&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;หลังจากที่เรายกเลิกการติดตามเครือข่ายสังคมออนไลน์ช่วงแรกๆ ก็พบว่ารู้สึกอยากที่จะเปิดอยู่หรอกนะ แต่ก็ไม่ได้ทรมานตามบทความที่แล้วซึ่งเขียนเว่อร์ไปหน่อยนะ เอาเข้าจริงแล้วเราไม่รู้สึกอย่างนั้นเลย รู้สึกแต่อยากจะเอามือขวามาหยิบมือถือในกางเกงมาเปิดแบบไม่มีจุดหมายมาเลื่อนทามไลน์บนเฟสบุ๊ค หรือมาเปิด LINE บ้างเป็นบางครั้ง&lt;/p&gt;
+&lt;p&gt;จุดนี้เองเราเลยคิดจะแก้โดยให้ยกมือถือมาเปิดให้น้อยลง เปิดเป็นระยะเวลาสั้นๆ ก็พอ จะได้ไม่ต้องปวดคอจากการใช้โทรศัพท์เป็นระยะเวลานานนัก&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;อย่างที่สองผลที่ได้จากการยกเลิกการติดตามเพื่อน (ที่ไม่ใช่กด Unfriend) บน Facebook พบว่าเราไม่ค่อยรู้เรื่องเพื่อนเท่าไรนัก &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;หลังจากที่เลิกติดตามเพื่อนบนเฟสบุ๊คพบว่าเราไม่รู้เรื่องเพื่อนที่อยู่บนเฟสบุ๊คเท่าไร เลยไม่ค่อยมีเรื่องไปพูดกับเพื่อน อย่างไรก็ตามข้อเสียข้อนี้กลับมาเป็นข้อดีอยู่นะ เพราะว่าเราลดการใช้เวลารู้เรื่องของชาวบ้านลง ทำให้มีเวลาอยู่กับตัวเองมากขึ้นซึ่งไม่เท่าไรหรอกเพราะเราก็เปิด Facebook บนโทรศัพท์อยู่บ้าง&lt;/p&gt;
+&lt;p&gt;จุดนี้เองเราคงต้องพยายามมากขึ้นที่จะเปิดน้อยลง เปิดแต่โปรแกรม Facebook Messenger กับโปรแกรม LINE ครับ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;อย่างที่สาม เราไม่ได้ร่วมกิจกรรมที่ต้องใช้เครือข่ายสังคมออนไลน์อย่าง Facebook &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;หลังจากที่เราเลิกติดตามไปพบว่า เราไม่ค่อยร่วมกิจกรรมที่ต้องกดปุ่มไลค์เพื่อรับส่วนลด หรือเพื่อได้โปรโมชั่นตามที่กำหนดไว้ ทำให้เราไม่ได้รับส่วนลด หรือไม่ได้รับโปรโมชั่น&lt;/p&gt;
+&lt;p&gt;จุดนี้ไม่น่าจะเป็นข้อเสียเท่าไรนักนะ เพราะว่ามีโปรแกรมอย่าง Galaxy Gift หรือโปรแกรมดีลอื่นๆ ที่ทำให้เราได้ใช้โปรโมชั่นที่ไม่ต่างกันมากนัก&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;สุดท้ายนี้&lt;/strong&gt; ผลที่ได้เราคิดว่ายังไม่พอใจนัก วิธีที่จะช่วยให้ใช้เครือข่ายสังคมออนไลน์น้อยลงคือลดการหยิบมือถือมาเปิดลง กับใช้แค่โปรแกรม Facebook Messenger กับ LINE โดยแค่ดูว่ามีการแจ้งเตือนหรือเปล่า ถ้ามีเดี๋ยวเครื่องก็สั่นเอง และใช้โปรแกรมที่ทำให้ได้โปรโมชั่นอย่างอื่นเช่น Galaxy Gift หรืออื่นๆ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;สำหรับผู้อ่าน&lt;/strong&gt; ถ้าอยากจะทดลองก็ทำตามได้ โดยการอ่านบทความที่แล้วตามลิ้งค์ด้านบนเลยครับ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1278&quot;&gt;ผลที่ได้ 3 ข้อจากการเลิกติดตามบน Facebook&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 24, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[จุดหนึ่งที่ไม่ชอบ Google Keyboard]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1265" />
+  <id>//www.nickuntitled.com/blog/a-thing-dont-like-google-keyboard</id>
+  <published>2015-03-17T19:59:22+07:00</published>
+  <updated>2015-03-17T19:59:22+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;Google Keyboard เป็นคีย์บอร์ดที่ทำโดยบริษัทอย่าง Google ที่เดิมทีจะอยู่ในมือถือหรือแท็บเล็ตในรุ่นอย่าง Nexus ตามข่าวในเว็บ &lt;a href=&quot;https://www.blognone.com/node/45054&quot; target=&quot;_blank&quot;&gt;Blognone&lt;/a&gt; เว็บนี้&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;กูเกิลเดินหน้า &quot;แยกส่วน&quot; ฟีเจอร์ของ Android ให้ดาวน์โหลดแยกได้จาก Play Store ต่อไป ล่าสุดเป็นคิวของ AOSP Keyboard ของ Android 4.2 (ที่ลากนิ้วได้แบบ swype) ปล่อยให้ดาวน์โหลดบน Play Store ในชื่อ &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin&quot;&gt;Google Keyboard&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;จุดที่ดีของคีย์บอร์ดรุ่นนี้เท่าที่เคยใช้งานคือความรู้สึกในการใช้งานที่เหมือนกันกับในเครื่องรุ่นนั้น กับมีความสามารถอย่างการลากนิ้วเพื่อพิมพ์ข้อความ (Swype) ซึ่งใช้ไม่ได้กับภาษาไทย&lt;/p&gt;
+&lt;p&gt;อย่างไรก็ตาม Google Keyboard มีปัญหาหนึ่งที่เรารู้สึกไม่ชอบคีย์บอร์ดอันนี้คือเวลาที่เราพิมพ์ผิดไปแล้ว เราต้องการมาแก้ตัวอักษรตัวนั้น พบว่าทำได้ลำบากกว่าคีย์บอร์ดอันอื่น เนื่องมาจากเวลาที่ลากเคอเซอร์มาแก้ไขตัวอักษรตัวนั้นแล้วพบว่าข้อความทั้งหมดหายไป&lt;/p&gt;
+&lt;p&gt;จุดนี้เองเป็นสิ่งที่เราไม่เข้าใจว่าทำไมคีย์บอร์ดอันอื่นไม่พบปัญหานี้นะ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; จุดที่ไม่ชอบที่กล่าวถึงไปแล้วนั่นก็เป็นผลมาจากตัวแก้ไขคำผิดครับ วิธีแก้คือให้สั่งปิดได้ที่หน้า Settings แล้วเลือกคีย์บอร์ดตัวนี้แล้วเข้าไปตรงหน้าที่น่าจะเป็นหน้า Suggestions แล้วกดปิดเอา แค่นี้ก็ไม่เจออย่างที่เขียนไว้บ้างบนแล้วครับ :)&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1265&quot;&gt;จุดหนึ่งที่ไม่ชอบ Google Keyboard&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 17, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[เมื่อ MacBook ใหม่เปิดตัวแล้วคิดว่าไม่เอาดีกว่า]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1247" />
+  <id>//www.nickuntitled.com/blog/do-not-need-MacBook</id>
+  <published>2015-03-11T19:35:50+07:00</published>
+  <updated>2015-03-11T19:35:50+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;หลังจากที่มีงานเปิดตัว Apple Watch ในวันนี้ก็มีการเปิดตัวโน้ตบุ๊คอย่าง &lt;a href=&quot;http://www.apple.com/th/macbook/&quot; target=&quot;_blank&quot;&gt;MacBook&lt;/a&gt; ที่มีหน้าจอ 12 นิ้วที่มีความละเอียดสูง 2304x1440 แล้วเรานั่งพิจารณาระหว่างที่นั่งดู liveblog งานเปิดตัวสินค้าว่ากรณีที่มีคนถามเราว่าถ้าจะเอาโน้ตบุ๊คใหม่จะ&lt;strong&gt;ซื้อรุ่นนี้หรือไม่&lt;/strong&gt;?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;คำตอบที่เราอยากจะตอบก็คือ &lt;/strong&gt;ถ้าเราต้องการจริงๆ เราคงไม่ซื้อโน้ตบุ๊ครุ่นนี้ โดยเราสรุปเหตุผลเป็นข้อๆ มาสามข้อตามด้านล่างนี้ได้แก่&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;เหตุผลข้อแรกคือโน้ตบุ๊คที่ใช้การ์ดจอที่ไม่เหมาะแก่การเล่นเกมบนหน้าจอความละเอียดสูง&lt;/strong&gt; เนื่องมาจากเราพิจารณาดูความละเอียดหน้าจอของโน้ตบุ๊ครุ่นนี้ที่มีความละเอียดอยู่ที่ 2304x1440 pixel แล้วเทียบกับการ์ดจอที่ใช้ Intel HD Graphics และซีพียูที่เป็น Core M ก็พบว่าอย่าเอาไปเล่นเกมบน Steam เลยจะดีกว่า&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;เหตุผลข้อต่อมา ช่องเสียบเหลือช่องเดียวคือพอร์ต USB Type-C&lt;/strong&gt; เหตุผลนี้เป็นเหตุผลที่ทำให้เราไม่อยากจะซื้อรุ่นนี้เพราะว่าเรามีโน้ตบุ๊คอย่าง MacBook Air ที่มีช่องเสียบ USB 3.0 มาให้ 2 ช่องกับ Thunderbolt หนึ่งช่องก็ยังคิดว่าไม่เพียงพอต่อการนำไปเชื่อมต่ออุปกรณ์ภายนอกอยู่แล้ว ถึงแม้ว่าจะให้ใช้ระบบไร้สายก็ยังคิดว่าอุปกรณ์ไร้สายแต่ละชิ้นยังมีราคาแพงและถ้าใช้รุ่นนี้จำเป็นต้องซื้อตัวแปลง &lt;a href=&quot;http://store.apple.com/th/product/MJ1L2ZA/A/usb-c-vga-multiport-adapter&quot; target=&quot;_blank&quot;&gt;Multiport&lt;/a&gt; ของ Apple เองที่มีราคาประมาณ 3,000 บาทซึ่งแพงเกินไป&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;เหตุผลข้อสุดท้ายที่สำคัญที่สุดคือราคากับประสิทธิภาพที่เพิ่มมาไม่คุ้มค่าต่อการใช้งาน&lt;/strong&gt; เมื่อวานนั่งดู liveblog แล้วเห็นราคาเปิดตัว MacBook รุ่นใหม่ทำให้ราคา MacBook Air ที่เราซื้อมาในราคานักศึกษาดูคุ้มค่ายิ่งกว่ารุ่นนั้นทันที เนื่องมาจากโน้ตบุ๊คที่เราใช้อยู่มีประสิทธิภาพที่ดีกว่ากับหน้าจอที่ละเอียดน้อยกว่าแต่เอาไปเล่นเกมได้ดีกว่า และพอร์ตที่ให้เสียบมีเยอะกว่า&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ดังนั้น&lt;/strong&gt; ถ้าจะให้ซื้อรุ่นนี้แล้วคุณคิดว่าอย่างไร เราก็จะตอบตรงๆ ไปว่าเราคงไม่ซื้อนะ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1247&quot;&gt;เมื่อ MacBook ใหม่เปิดตัวแล้วคิดว่าไม่เอาดีกว่า&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 11, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Detach from Social Network]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1204" />
+  <id>//www.nickuntitled.com/blog/detach-from-social-network</id>
+  <published>2015-03-03T23:35:22+07:00</published>
+  <updated>2015-03-03T23:35:22+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;เดือนก่อนเป็นเดือนที่แทบจะไม่มีสมาธิในการทำกิจกรรมเลย&lt;/p&gt;
+&lt;p&gt;จนกระทั่งอ่านบทความจากเว็บ Zenhabit เรื่อง &lt;a href=&quot;http://zenhabits.net/fb/&quot; target=&quot;_blank&quot;&gt;Walled-in: Life Without Facebook&lt;/a&gt; ที่กล่าวถึงการเลิกใช้งานเครือข่ายสังคมออนไลน์อย่างเฟสบุ๊คแล้วก็เริ่มพิจารณาได้อย่างหนึ่งว่าเดิมทีเราเคยอยู่ได้โดยที่ไม่ต้องมีเฟสบุ๊คก็ไม่ได้รู้สึกว่าขาดอะไรไปมากนัก แต่ช่วงนั้นอ่านแล้วรู้สึกดี แต่ยังไม่ได้เริ่มทำตามที่อ่านในบทความนั้นเพราะยังติดงอมแงมอยู่&lt;/p&gt;
+&lt;p&gt;พอมาช่วงกลางเดือนที่แล้วเริ่มรู้สึกว่าอารมณ์แปรปรวนอย่างหนักจนต้องหนีออกจากโลกแห่งความเป็นจริงมาพึ่งโลกออนไลน์มากขึ้นโดยทุกครั้งที่รู้สึกแย่ลงไปครั้งหนึ่งจะเดินออกไปอย่างเงียบๆ แล้วนั่งเลื่อนทามไลน์บนเครือข่ายสังคมออนไลน์อย่างทวิตเตอร์ หรือเฟสบุ๊ค อยู่มาวันหนึ่งเริ่มรู้สึกว่าทนไม่ไหวแล้ว เลยเริ่มดำเนินการแนวทางเดียวกันกับบทความที่บอกไว้ในย่อหน้าแรกโดยปิดบัญชีในเครือข่ายสังคมออนไลน์ต่างๆ ที่เคยสมัครไว้แล้ว&lt;/p&gt;
+&lt;p&gt;เครือข่ายสังคมออนไลน์ที่จะปิดได้แก่ทวิตเตอร์ อินสตาแกรม และPpinterest&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;ก่อนอื่นก็เริ่มปิดบัญชีอินสตาแกรมก่อนเลย เพราะเราไม่ได้เปิดใช้งานบ่อยนัก และกว่าจะอัพโหลดรูปภาพหนึ่งรูปได้จำเป็นต้องเปิดหน้าจอมือถือที่มีขนาดเล็ก (สำหรับ 5 นิ้วของเราถือว่าเล็ก) กับกว่าจะเลื่อนฟีตไปยังหน้าที่เราต้องการก็ต้องเลื่อนไปเรื่อยๆ จนรู้สึกว่าปวดมือ วิธีการปิดบัญชีอินสตาแกรมทำได้ไม่ยากนัก ทำตามใน&lt;a href=&quot;https://help.instagram.com/139886812848894&quot; target=&quot;_blank&quot;&gt;บทความ How do I delete my account? ของเว็บอินสตาแกรม&lt;/a&gt;เองก็ทำได้แล้ว&lt;/p&gt;
+&lt;p&gt;ต่อมาอย่างที่สองคือทวิตเตอร์ ทวิตเตอร์เป็นเครือข่ายสังคมออนไลน์แห่งหนึ่งที่เราเข้าบ่อยมาก เผลอๆ อาจจะมากกว่าเฟสบุ๊ค อย่างไรก็ตามเครือข่ายสังคมนี้ดูไม่ค่อยมีอิทธิพล หรือไม่ค่อยมีความสำคัญอะไรมากนักเพราะไม่เคยเอาไปใช้เรื่องงานเลยสักครั้ง เอาไปใช้แต่รีทวิตชาวบ้านเพียงอย่างเดียว เราเลยตัดสินใจปิดบัญชีทวิตเตอร์ไปเรียบร้อย สำหรับคนที่อยากจะปิดบัญชีในทวิตเตอร์ทำได้โดยกด Deactivate My Account ในหน้าการตั้งค่าของเราเอง เมื่อปิดแล้วก็อย่าล๊อคอินอีก 30 วัน แค่นี้ก็ลบไปเรียบร้อยแล้ว&lt;/p&gt;
+&lt;p&gt;อย่างสุดท้ายที่ปิดไปคือ Pinterest สาเหตุที่ปิดไปเพราะเราไม่ได้ใช้เลย เหมือนว่าเปิดทิ้งไว้เปล่าๆ เลยตัดสินใจลบทันทีอย่างไม่ลังเล&lt;/p&gt;
+&lt;p&gt;หลังจากที่ปิดไปทั้งหมดแล้วช่วงแรกรู้สึกโหยหากับทวิตเตอร์อยู่บ้าง แต่ใช้วิธีใจแข็งเอาไว้ซึ่งทำได้ไม่ยากนักเพราะมันไม่ได้สำคัญตามที่บอกไปแล้ว จนกระทั่งเวลาผ่านไปประมาณสิบกว่าวัน เราก็ไม่ได้รู้สึกว่าอยากจะเล่นอีกแต่อย่างใดเลย ความรู้สึกหลังจากนี้รู้สึกว่าสบายขึ้น เพราะไม่ค่อยมาคอยเช็คว่ามีใครมากล่าวถึง (Mention) เราหรือว่ามีใครมารีทวิตหรือกดปุ่มดาว หรือกดปุ่มหัวใจให้แต่อย่างใด&lt;/p&gt;
+&lt;p&gt;สิ่งต่อไปที่อยากจะปิดคือเฟสบุ๊ค คงไว้แต่ LINE เพียงอย่างเดียวเนื่องมาจาก&lt;/p&gt;
+&lt;p&gt;เราเริ่มรู้สึกว่าความเป็นส่วนตัวของเราเริ่มหายไปเรื่อยๆ เริ่มมาจากการโฆษณา (แน่นอนว่ามีไว้เพื่อหารายได้) กับเรื่องการใช้ชื่อจริง กรณีที่ไม่ใช้ชื่อจริงจะโดนเตือนให้เปลี่ยนชื่อ และโดนแบนให้ส่งหลักฐานเป็นบัตรประชาชนหรือบัตรเครดิต จุดนี้เองเราไม่อยากจะให้ข้อมูลส่วนตัวเหล่านี้ไปให้กับคนอื่น&lt;/p&gt;
+&lt;p&gt;จุดต่อมาคือเรารู้สึกว่าต้องเปิดหน้าเฟสบุ๊คตลอดเวลาทำให้มีปัญหาเรื่องการทำสมาธิต่อกิจกรรมอะไรต่างๆ และการใช้เฟสบุ๊คของเราครั้งหนึ่งใช้เวลาเป็นชั่วโมงซึ่งรบกวนกิจกรรมอย่างอื่นในชีวิต&lt;/p&gt;
+&lt;p&gt;นอกจากนี้เหตุผลที่สำคัญที่สุดคือมีข่าวว่ามีมิตรสหายท่านหนึ่งใช้เฟสบุ๊คปลอมตัวเป็นคนอื่นมาหลอกคุยเพื่อให้จับตัวไปปรับทัศนคติ&lt;/p&gt;
+&lt;p&gt;เหตุผลสามข้อข้างบนเหล่านี้ทำให้เราเริ่มอยากจะปิดบัญชีนี้มาขึ้นเรื่อยๆ อย่างไรก็ตามยังต้องติดตามข่าวสารอยู่เลยลบข้อมูลส่วนตัวออกเกือบทั้งหมด เลิกติดตามการอัพเดตสเตตัสกับการโดนแท็กของ Friend หรือกิจกรรมที่ Friend ทำในเฟสบุ๊คทุกคนและไม่อัพสเตตัส ไม่กดไลค์ ไม่ทำอะไรเลยในเฟสบุ๊คยกเว้นแต่เปิดดูโนติเป็นเวลาเช้า กลางวัน และเย็นเท่านั้น&lt;/p&gt;
+&lt;p&gt;หลังจากที่ทำไปแล้วเราเริ่มรู้สึกเหมือนมีสั่นแบบอยู่กับที่ (Resting tremor) ซึ่งเวอร์ไป เอาเป็นเวลารู้สึกเหมือนขาดอะไรไปบางอย่างในชีวิต พอเวลาผ่านไปเราเริ่มรู้สึกสบายขึ้นนะ อย่างไรก็ตามเราก็กลับมาเปิดเฟสบุ๊คบ่อยเหมือนเดิม จุดนี้เองเราคงต้องพยายามต่อไป ผลจะเป็นอย่างไร อันนี้ก็ไม่ทราบแล้วขึ้นกับตัวเราเองแล้วล่ะ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1204&quot;&gt;Detach from Social Network&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 03, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[หนึ่งวิธีง่ายๆ ที่จะบล็อกเกมหรือแอปในเฟสบุ๊คไม่ให้คนส่ง invite ได้]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1159" />
+  <id>//www.nickuntitled.com/blog/block-facebook-game-invite</id>
+  <published>2015-01-31T11:41:57+07:00</published>
+  <updated>2015-01-31T11:41:57+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;ปกติเวลาที่เราเปิดหน้าเว็บเฟสบุ๊คเข้าไปอ่านสเตตัส หรืออ่าน timeline แล้วเรามักจะเจอสิ่งหนึ่งที่จะพบได้เด่นชัดนั่นก็คือการแจ้งเตือน (notification)&lt;/p&gt;
+&lt;p&gt;การแจ้งเตือนในที่นี้มีหลายแบบอาจจะเป็นคนโพสลง wall ของเราหรืออาจจะมีคนกด Like หรืออื่นๆ ตามแต่ที่เราจะทำได้ ทีนี้สิ่งหนึ่งที่เรามักจะเจอเวลาที่คนเล่นเกมบนเฟสบุ๊ค หรือเล่นแอปบนเฟสบุ๊คนั่นก็คือ&lt;strong&gt;การส่ง invite&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;สาเหตุที่เกมบนนั้นให้คนที่เล่นเกมส่ง invite ไปหาคนที่ไม่ได้เล่นให้เข้ามาเล่นเกม น่าจะมาจากเกมจะให้เราทำภารกิจ (mission) แนวๆ ที่จำเป็นต้องใช้ผู้เล่นคนอื่นบนนั้นเพื่อให้ทำภาคกิจได้เสร็จสมบูรณ์ ฟังแล้วดูดีใช่ไหมล่ะ? เอาเข้าจริงมีปัญหาหนึ่งที่อยากจะพิมพ์ในนี้เลยดีกว่านั่นก็คือ&lt;strong&gt;การส่ง invite เป็นหนึ่งในรูปแบบการรบกวนคนอื่นครับ&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;ทีนี้เราจะแก้ปัญหาอย่างไรดีล่ะ? เรามีวิธีแก้ตามด้านล่างนี้นั่นก็คือ&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/17509212903&quot; title=&quot;Facebook Settings Menu by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c4.staticflickr.com/8/7707/17509212903_d5181d96d6_o.png&quot; alt=&quot;Facebook Settings Menu&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;หนึ่ง เข้าหน้า settings (การตั้งค่า)&lt;/strong&gt; โดยเมื่ออยู่ในหน้า News Feed หรือหน้าอื่นๆ อะไรก็ได้ ให้เรากดปุ่มเมนูที่เป็นลูกศรที่อยู่มุมบนขวาสุดบนแถบสีน้ำเงิน กดเข้าไปแล้วเลือกที่ Settings&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/18129771105&quot; title=&quot;Facebook App Choose by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c4.staticflickr.com/8/7706/18129771105_3c6cd63b1c_o.jpg&quot; alt=&quot;Facebook App Choose&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;สอง เข้าไปที่หน้า blockings&lt;/strong&gt; เมื่อเราจะอยู่ในหน้า settings เรียบร้อยแล้ว เราก็จะเข้าไปที่ &lt;strong&gt;Blockings &lt;/strong&gt;โดยตัวเลือกนีจะอยู่ตรงเมนูทางด้านซ้ายของหน้าจอ&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/17942054100&quot; title=&quot;Facebook Block Apps by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c1.staticflickr.com/9/8876/17942054100_f6f5145658_o.jpg&quot; alt=&quot;Facebook Block Apps&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;สาม บล็อกแอปนั้น&lt;/strong&gt; ทำได้โดยเลือกใส่ชื่อแอปหรือเกมที่เราต้องการบล็อกใน Block apps ในภาพด้านบนเราจะบล็อกเกมที่หลายคนส่ง invite ในช่วงนี้คือเกม Pirate Kings&lt;/p&gt;
+&lt;p&gt;แค่นี้เราสามารถบล็อกได้ง่ายๆ เพียงแค่ทำตามด้านบนนี้ จากนี้เราไม่ต้องไปเจอการแจ้งเตือนที่เกี่ยวกับ invite เกมได้อีก อย่างไรก็ตามสำหรับคนที่อยากจะเล่นเกมนี้อีกเราก็ทำวิธีเดิมเพียงแต่เลือกกด Unblock เกมที่เราต้องการเล่นอีกครับ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1159&quot;&gt;หนึ่งวิธีง่ายๆ ที่จะบล็อกเกมหรือแอปในเฟสบุ๊คไม่ให้คนส่ง invite ได้&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 31, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[ว่าด้วยเรื่องของคีย์บอร์ด QWERTY บนหน้าจอสัมผัส]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1147" />
+  <id>//www.nickuntitled.com/blog/QWERTY</id>
+  <published>2015-01-18T13:46:16+07:00</published>
+  <updated>2015-01-18T13:46:16+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;สมัยก่อนที่จะมีโทรศัพท์มือถือจอสัมผัสแบบที่มีในปัจจุบันนี้ เราต่างใช้ปุ่มกดที่เป็นเลข 1-9 ที่เวลาจะพิมพ์ตัวอักษรหนึ่งครั้งต้องกดปุ่มเดิมหลายๆ ที ช่วงนั้นเองก็มีบางรุ่น (ที่เราเคยใช้อย่างเช่น Sony Ericsson M600i หรือ M600 หรือรุ่นอื่นก็เป็น Nokia E90 หรือใหม่กว่านั้นก็เป็น Nokia E7) ก็เป็นรุ่นที่มีคีย์บอร์ดแบบ QWERTY ด้วยซึ่งถือว่าสะดวกดีนะ จนกระทั่งมี iPhone หรือ Android การพิมพ์ข้อความก็เปลี่ยนไปเป็นการพิมพ์บนหน้าจอแทน&lt;/p&gt;
+&lt;p&gt;การเปลี่ยนแปลงแบบนี้สำหรับหลายคนถือว่าดีนะ เพราะทางผู้ผลิตและผู้พัฒนาสามารถใส่ลูกเล่นลงไปได้อีกเยอะ ตัวอย่างเช่น&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Swype ที่ลากนิ้วไปๆ มาๆ เพื่อพิมพ์ข้อความได้ตามที่ใจเราต้องการ&lt;/li&gt;
+&lt;li&gt;Minuum Keyboard ที่ออกแบบมาเพื่อหน้าจอที่มีขนาดเล็ก ซึ่งเรามีคีย์บอร์ดนี้พบว่าพิมพ์ได้สะดวก และประหยัดพื้นที่ได้อีกเพียบ อย่างไรก็ตามมันไม่มีภาษาไทย อันนี้เราไปเสนอให้เพิ่มภาษาไทยแล้วแต่คิดว่าอีกนาน&lt;/li&gt;
+&lt;li&gt;หรืออาจจะเป็นคีย์บอร์ดแบบแปลกๆ ไปเลยแบบ 8Pen ซึ่งยังไม่มีการปล่อยออกมาให้ดาวน์โหลดใน Google Play Store&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;แต่สำหรับเราเองแล้วกลับชอบคีย์บอร์ดแบบ QWERTY  ที่เป็นปุ่มจริงๆ มากกว่าแบบที่กล่าวมานะ เพราะอะไรหรือ? ลองอ่านตามบทความนี้เรื่อยๆ เดี๋ยวก็จะรู้เองครับ&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;สาเหตุที่เรากลับชอบคีย์บอร์ดแบบ QWERTY จริงๆ มากกว่าการพิมพ์คีย์บอร์ดคนหน้าจอสัมผัสอย่างสมาร์ทโฟน หรือแท็บเล็ต เพราะ&lt;strong&gt;ความรู้สึกในการพิมพ์ซึ่งการพิมพ์บนหน้าจอสัมผัสให้ไม่ได้&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ความรู้สึกในการพิมพ์เป็นสิ่งที่เวลาเรากดปุ่มบนคีย์บอร์ดปุ่มหนึ่งแล้วปุ่มนั้นจะยุบลงไป แล้วเด้งกลับมา พร้อมทั้งมีช่องไฟไว้เว้นระหว่างปุ่มบนคีย์บอร์ดแต่ละปุ่ม ลองนึกถึงคีย์บอร์ดบนคอมพิวเตอร์ที่มีคีย์บอร์ด QWERTY ที่มาพร้อมกับความรู้สึกที่กดปุ่มแล้วเด้งกลับมาตามที่บอกไป ความรู้สึกแบบนี้เลย&lt;/p&gt;
+&lt;p&gt;เมื่อลองกลับมาดูคีย์บอร์ดที่หน้าจอสัมผัส คีย์บอร์ดบนหน้าจอสัมผัสอาจจะมีช่องไฟ หรือไม่มีช่องไฟก็ได้ คิดว่าน่าจะเป็นลวดลายซะมากกว่า พอเรากดปุ่มแต่ละปุ่มบนคีย์บอร์ดก็พบว่าไม่มีความรู้สึกแบบนั้นอีก กลบายเป็นความรู้สึกเมื่อเราจิ้มลงบนหน้าจอที่เป็นกระจกแทนซึ่งแข็ง ไม่นิ่มและไม่สบายนิ้วมือเท่าคีย์บอร์ดจริงๆ เอาเสียเลย&lt;/p&gt;
+&lt;p&gt;อย่างไรก็ตามเมื่อเวลาเปลี่ยนไป ความต้องการของคนเปลี่ยนไปตามแต่ละสมัย คีย์บอร์ดที่ใช้งานก็เปลี่ยนไปพิมพ์บนหน้าจอแทน&lt;/p&gt;
+&lt;p&gt;สำหรับเราอาจทำได้เพียงแค่ปรับตัว จนกระทั่งมาเจอมือถือแบรนด์ BlackBerry ที่นึกว่าจะหายไปเสียแล้วก็ยังมีขายสองรุ่นได้แก่ Blackberry Classic กับ Passport ยังคงไว้ซึ่งคีย์บอร์ดอยู่ เพียงแต่ว่ายังคงมีปัญหาเรื่องแอปที่มีจำนวนน้อยเมื่อเทียบกับ Android หรือ iOS, ยังไม่มีขายในประเทศไทย ถ้าซื้อแบบหิ้วมาราคาของ BB Passport ใกล้ๆ กับ iPhone 6 แล้ว กับสุขภาพทางการเงินไม่ดีพอ และขี้เกียจเปลี่ยนเครื่อง สี่เหตุผลนี้แหละที่เรายังไม่ตัดสินใจที่จะซื้อนะ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1147&quot;&gt;ว่าด้วยเรื่องของคีย์บอร์ด QWERTY บนหน้าจอสัมผัส&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 18, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[สิ่งหนึ่งที่ Facebook ดำเนินรอยตาม Google+ (ช่วงแรก) คือการใช้ชื่อจริง]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1126" />
+  <id>//www.nickuntitled.com/blog/Facebook-follow-GooglePlus</id>
+  <published>2015-01-08T00:26:18+07:00</published>
+  <updated>2015-01-08T00:26:18+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;ช่วงเดือนก่อนขณะที่กำลังนั่งเปิดเว็บเครือข่ายสังคมออนไลน์อย่างเฟสบุ๊คแล้วเลื่อนลงไปใน News Feed ไปเรื่อยๆ ก็พบว่ามี Friend (หรือสินค้าของเฟสบุ๊ค) บางคนในนั้นที่เราเคยอ่านอยู่บ่อยๆ ไม่ได้อัพสเตตัส หรือทำกิจกรรมในเฟสบุ๊คอะไรเพิ่มเติมเลย&lt;/p&gt;
+&lt;p&gt;จนกระทั่งวันต่อมาเราก็คุยกับเพื่อนตามปกติจนกระทั่งมีเพื่อนบางคนพูดประมาณว่าเข้าเฟสบุ๊คไม่ได้เลยเพราะ&lt;strong&gt;ไม่ได้ใช้ชื่อจริง&lt;/strong&gt; วิธีแก้ก็ให้ส่งบัตรประชาชนสแกนไปให้ทางเฟสบุ๊ค เอาเข้าจริงแล้วเฟสบุ๊คมีหน้าที่พูดถึงชื่อที่สามารถใช้ได้แบบนี้มานานแล้วล่ะ หน้าที่ว่ามาก็อ่านที่สรุปไว้แล้ว (เป็นภาษาไทย) ได้ตามด้านล่างนี้ หรือถ้าอยากจะอ่านเต็มๆ ก็&lt;a href=&quot;https://www.facebook.com/help/112146705538576&quot; target=&quot;_blank&quot;&gt;อ่านได้ตามลิ้งค์นี้ได้&lt;/a&gt;เลย (ซึ่งเป็นภาษาอังกฤษ)&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;กรุณาหลีกเลี่ยงการใส่สิ่งเหล่านี้ลงไปในชื่อที่ใช้ในเฟสบุ๊ค สิ่งที่ควรหลีกเลี่ยงได้แก่&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;สัญลักษณ์ หมายเลข การใช้ตัวอักษรตัวใหญ่แบบที่คนไม่ใช้กัน ตัวอักษรซ้ำๆ หรือเครื่องหมายวรรคตอน&lt;/li&gt;
+&lt;li&gt;ตัวอักษรจากหลากภาษา&lt;/li&gt;
+&lt;li&gt;ตำแหน่ง (แปลจาก title คิดว่าน่าจะเป็นแบบนี้นะ)&lt;/li&gt;
+&lt;li&gt;หลีกเลี่ยงการใส่คำ ข้อความหรือชื่อเล่นลงไปในชื่อกลาง&lt;/li&gt;
+&lt;li&gt;คำหยาบคาย&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;เอาเข้าจริงถึงแม้ทางเฟสบุ๊คจะกำหนดไว้แล้วหลายคนก็ไม่ได้ใช้ชื่อจริง หรือใช้บางข้อที่ทางเว็บเขาห้ามๆ กันไว้ทางเฟสบุ๊คก็ไม่ได้แบนผู้ใช้คนนั้นเลยนะ จนกระทั่งมาช่วงเดือนที่ผ่านทางเพิ่งมาเข้มงวด&lt;/p&gt;
+&lt;p&gt;เอาเข้าจริงทางเฟสบุ๊คก็ไม่ได้เข้มงวดเรื่องนี้มานานแล้ว คิดว่าถ้าอยากจะทำจริงๆ ทำไมถึงไม่ทำตั้งแต่แรกเลยล่ะ หรือว่าทางเฟสบุ๊คกลัวจะไม่มีคนใช้เนื่องจากไม่มีใครที่อยากจะเปิดเผยชื่อจริง นามสกุลจริงให้ใครเห็นหรอกนะ&lt;/p&gt;
+&lt;p&gt;อีกอย่างความรู้สึกของเราตอนนั้นเราก็เอ่อ ทำแบบนี้ทำให้เราเริ่มรู้สึกว่าทางเฟสบุ๊คทำตัวคล้ายๆ กับเครือข่ายสังคมออนไลน์ของกูเกิ้ลอย่าง Google+ ในช่วงแรกๆ เลย แต่มีจุดที่แตกต่างอยู่นะ&lt;/p&gt;
+&lt;p&gt;สิ่งที่แตกต่างคือของกูเกิ้ลเขาเลิกบังคับใช้ชื่อจริงแล้ว (แต่กฏตามด้านบนน่าจะมีอยู่บ้าง) ในทางกลับกันเฟสบุ๊คกลับกระทำตรงกันข้ามกับทางกูเกิ้ลเลย อันนี้เราพยายามทำความเข้าใจกับมันแล้ว เราไม่เข้าใจอยู่ดี&lt;/p&gt;
+&lt;p&gt;สำหรับเราเองก็โชคดีที่ไม่ถูกทางเฟสบุ๊คแบน (แต่กูเกิ้ลพลัสช่วงแรกๆ แบนเราไปแต่ยกเลิกไปแล้ว) เพราะเราเปลี่ยนไปใช้ชื่อจริงเรียบร้อยแล้ว แต่ถ้าจะให้เลือกระหว่างที่ใช้ชื่อจริง หรือใช้ชื่อบนอินเตอร์เน็ต เราเลือกที่จะใช้ชื่อบนอินเตอร์เน็ตมากกว่าเพราะเป็นการปิดบังตัวตนไปได้ระดับหนึ่ง ซึ่งปิดบังไม่ได้ไปตลอดเพราะผู้ใช้งานอินเตอร์เน็ตสามารถเดาได้แล้วว่าคนนั้นเป็นใครจากรูปดิสเพลย์ หรือรูปที่เพื่อนแท็กหาเราได้นั่นเอง = =&quot;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1126&quot;&gt;สิ่งหนึ่งที่ Facebook ดำเนินรอยตาม Google+ (ช่วงแรก) คือการใช้ชื่อจริง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 08, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[ทบทวนสิ่งที่ผ่านมาก่อนจบปี 2014]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1128" />
+  <id>//www.nickuntitled.com/blog/things-learn-before-pass-2014</id>
+  <published>2015-01-01T17:46:33+07:00</published>
+  <updated>2015-01-01T17:46:33+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;ก่อนที่เราจะเริ่มต้นกับปีใหม่ปี 2015 เราก็มาทบทวนเรื่องราวที่เกิดในปีที่แล้วนั่นก็คือปี 2014 นั่นเอง&lt;/p&gt;
+&lt;p&gt;ปี 2014 ปีนี้เป็นปีหนึ่งที่ยอมรับว่าไม่เหมือนกับเมื่อก่อนตรงที่การเรียนเปลี่ยนไปจากที่เราเรียนแต่ในห้องกลายมาเห็นเรื่องบนอาคารผู้ป่วย กับได้ทดลองทำสิ่งใหม่ๆ มาพอสมควรเพราะอยากรู้ว่าเราทำอะไรได้บ้าง พอทำไปๆ มาๆ ก็พบว่าเราทำได้ด้วยแฮะ นึกว่าจะทำไม่ได้ซะอีก อย่างไรก็ตามเรา balance ชีวิตได้ไม่ดีนักทำให้เกิดปัญหาในชีวิตหลายอย่างแต่จะเปลี่ยนแค่ปัญหาที่เราคิดว่าน่าจะเกิดมากที่สุด 3 อย่างลงในบทความนี้&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ปัญหาแรกคือการเรียน&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ยอมรับว่าปี 2014 ก่อนหน้านี้เป็นปีที่เราก้าวผ่านจากการเรียนชั้นพรีคลินิกเป็นชั้นคลินิก การเรียนต่างๆ ก็เปลี่ยนไปจากที่เป็นเรียนเป็นเลคเชอร์อย่างเดียวก็เปลี่ยนเป็นการเรียนบนวอร์ดเป็นส่วนใหญ่ ส่วนเลคเชอร์ยังมีอยู่บ้างเพียงแต่มีน้อยลงกว่าเดิมมากทำให้ต้องจากเดิมที่เรียน เรียน เรียนอย่างเดียวก็กลายมาเป็นต้องมีผู้ป่วยอยู่ในการดูแลของเราด้วย จากที่เราเรียนแต่เลคเชอร์อย่างเดียวก็เริ่มเปลี่ยนมาเรียนจากผู้ป่วยมากขึ้น (แต่ยังมีเลคเชอร์อยู่นะ) ตอนแรกเราก็ยังไม่คุ้นต้องปรับตัวอยู่พอสมควรก็อันนี้ก็ทำได้ตามที่เราต้องการเพียงแต่ผลที่ได้ยังไม่ดีมากนัก เนื่องจาก&lt;/p&gt;
+&lt;p&gt;ตอนนั้นเองเราสับสนอยู่พอสมควรว่าเราจะไปเป็นหมอหรือจะไปทำงานในสายคอมพิวเตอร์ไปเลยเนื่องจากเราไม่ได้อยากจะเข้าตั้งแต่แรกอยู่แล้ว และอีกอย่างคือเห็นเพื่อนทำได้ดีกว่าเรามาก เราพยายามเท่าไรก็ตามก็ไม่ดีเท่า อ่านหนังสือได้ไม่เยอะขนาดนั้น ทำให้เราไม่มีใจอยากจะอ่าน การอ่านหนังสือที่เกี่ยวข้องกับการเรียนเป็นเรื่องที่ทรมานมากในตอนนั้น ทำให้ผลสอบที่ได้ดิ่งลงไปเยอะเกรดเฉลี่ยเทอมนี้อาจจะไม่เกิน 2.00&lt;/p&gt;
+&lt;p&gt;ตอนนี้ก็อาจจะคิดว่าให้ทนๆ ไปก่อน แล้วค่อยเอามาเป็นงานอดิเรกซึ่งแมร่งก็เวิร์คเหมือนกันนะ แต่เราก็ไม่แน่ใจอยู่ดีแหละว่าจะยอมเสียเวลาไปทำในสิ่งที่เราไม่ได้อยากเป็นเหรอ เพราะเราเสียเวลาขนาดนั้น เราจะกลับไปทำอย่างอื่นซึ่งต้องอาศัยประสบการณ์ในการทำงานแล้วเราจะยอมทิ้งชีวิตไปขนาดนั้นเหรอ คือเข้าใจนะว่าบางครั้งแมร่งเลือกไม่ได้อ่านะ เรารู้สึกว่า&lt;span style=&quot;color: #ff0000;&quot;&gt;&lt;strong&gt;เราแมร่งเป็นคนไม่รับผิดชอบต่อความฝันของตัวเองเอาเสียเลย&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;บางคนก็อาจจะบอกว่าย้อนกลับไปก็ไม่ทันแล้ว เอาเข้าจริงเคยมีความคิดว่าอยากจะตายแล้วเกิดมาใหม่อีกครั้งหนึ่งเพื่อจะกลับไปทำในสิ่งที่ต้องการ อย่างไรก็ตามถึงตายไปสิ่งนั้นอาจจะลืมไปเสียแล้วก็ได้และพอคิดไปคิดมาแมร่งกลัวตายซะงั้น (ฮา)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ปัญหาต่อมาก็เป็นเรื่องเพื่อน&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ต่อมาก็เป็นเรื่องของคนที่เรียน จากเดิมในห้องเลคเชอร์ที่มีคนเรียนประมาณ 300 กว่าคนมาเป็นกลุ่มย่อยที่เล็กลงไปจนกลุ่มหนึ่งมีคนเรียนประมาณ 10 กว่าคน อาจจะน้อยหรือมากกว่านั้นขึ้นกับวอร์ดแต่ละวอร์ดซึ่งทางภาควิชาจัดมาให้แล้ว&lt;/p&gt;
+&lt;p&gt;ตรงนี้เองที่ยอมรับว่าเราต้อง&lt;strong&gt;ต้องปรับตัวโคตรเยอะแบบฝืนตัวเองมากสุดๆ &lt;/strong&gt;เพราะเพื่อนในกลุ่มแต่ละคนเราไม่ค่อยสนิทมากนัก (เมื่อเทียบกับเพื่อนที่สนิทจริงๆ) บางคนนี่เราแทบจะไม่รู้จักเลยว่ามีคนอยู่ในคณะนี้ด้วยเหรอ? ทำให้เราเองก็ไม่ค่อยอยากจะพูดคุย หรือไม่อยากจะสุงสิงกับใครมากนักเพราะเราไม่รู้ว่าเขาจะคิดอะไรกับเราหรือเปล่า หรือเราพูดด้วยแล้วบางคนเหมือนไม่เต็มใจจะคุยด้วย พอเราทำอะไรไม่ดีก็ติ ไม่พอใจ หรือพูดด้วยน้ำเสียงที่ดูเหมือนอารมณ์ไม่ดีนัก หรือพูดแบบสองมาตรฐานคือเวลาคุยกับคนอื่นคุยโอเคกว่าคุยกับเรา เราไม่เข้าใจจุดนี้ เราไม่รู้ว่าเราไปทำอะไรให้เขาไม่พอใจหรือ เขาถึงได้ไม่พอใจเราขนาดนี้&lt;/p&gt;
+&lt;p&gt;ความรู้สึกตอนนั้นรวมถึงตอนนี้เองแมร่ง (โคตรจะ) ทรมานอยากจะย้ายออกไปก็ทำไม่ได้ เหมือนคนที่ต้องจำทนอยู่กับกลุ่มนั้นจนกระทั่งจบปี 4 ความรู้สึกตอนนั้น (ถึงตอนนี้) ก็ยังเป็นลบอยู่ บางครั้งเราก็รู้สึกเศร้าอยากจะระบายให้ใครฟังแต่เขาคนนั้นก็ไม่สนิทนัก เราไม่รู้ว่าเขาจะคิดอะไรไม่ดีกับเราหรือเปล่า เราก็เลยเก็บเอาไว้ไม่ได้ระบายให้ใครฟังเลย แม้กระทั่งคนที่สนิทที่สุด หรือเป็นพ่อแม่ก็ไม่อยากจะบอกเพราะถึงบอกไป พวกเขาก็จะทำเหมือนฟังๆ แล้วก็พูดส่งๆ ไปเหมือนไม่เข้าใจเรา&lt;/p&gt;
+&lt;p&gt;นอกจากนี้ก็เป็นการทำกิจกรรมร่วมกัน เราแมร่งโคตรจะไม่อยากทำ แต่มันจำเป็นต้องทำ เพราะถ้าทำคนเดียวแล้วงานมันจะเสร็จได้หรือเปล่าล่ะ &lt;strong&gt;คำตอบคือไม่น่าได้ หรือได้แต่เป็นไปได้ยาก &lt;/strong&gt;แล้วจะแก้ปัญหาอย่างไรดีล่ะก็เอาเป็นว่าปรับตัวให้ได้ละนะ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ปัญหาสุดท้ายน่าจะเป็นเรื่องสุขภาพ&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;เอาเข้าจริงปีนี้เป็นปีที่แมร่งมีปัญหาสุขภาพอยู่พอสมควรนะ ปัญหาหลักๆ ก็เป็นเรื่องปวดกล้ามเนื้อแบบเรื้อรังไปแล้ว (จริงๆ เป็นมาก่อนหน้านานแล้ว) รวมถึงเรามีอาการปวดหัวอยู่บ่อยๆ แต่เราก็แก้ไขโดยพยายามยืดกล้ามเนื้อ ไปนวดแผนไทยเพื่อบรรเทาอาการที่เกิดซึ่งได้ผลนะ แต่เวลาผ่านไปไม่นานก็เกิดขึ้นมาใหม่ อันนี้เราคิดว่าเราอาจจะทำผิดท่าก็น่าจะเป็นได้ วิธีแก้ก็คือเปลี่ยน lifestyle&lt;/p&gt;
+&lt;p&gt;ส่วนปัญหาเรื่องอื่นก็มีเรื่องความเครียด เอาเข้าจริงคนที่เรียนหมอก็เครียดกันทุกคนซึ่งไม่แปลก แต่จะต่างกันที่แต่ละคนจัดการกับความเครียดอย่างไร เราเป็นคนหนึ่งที่จัดการกับความเครียดไม่เป็นนะ คือเราจะพยายามเก็บกด (repression) มันไว้ให้เราลืมๆ มันไป ตรงนี้เองเราก็เลยไม่แน่ใจว่าจะทนไปได้อีกเท่าไรก็ไม่ทราบ เคยคิดจะไปหาจิตแพทย์แต่เปลี่ยนใจเสียก่อน แต่เอาเข้าจริงแล้วปัญหาบางอย่างไม่จำเป็นต้องไปหาจิตแพทย์ เราคิดว่าน่าจะมาจากความคิดของเราที่มีต่อเหตุการณ์นั้นมากกว่า วิธีที่ดีคือเปลี่ยนมุมมองซะ!&lt;/p&gt;
+&lt;p&gt;นอกจากปัญหาแล้วยังมีสิ่งที่ดีๆ มาในปีนั้นด้วยเป็นเรื่องธรรมดา แต่ละเรื่องที่ดีนั่นก็คือ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;อย่างแรกก็เป็นการเขียนบล็อก&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ยอมรับว่าตอนแรกเห็นบล็อกเว็บอื่นแล้วอยากจะมีบ้าง เราเลยลงทุนจดโดเมนเนมไว้ที่ Godaddy แล้วเราก็หา hosting ไปเขียน เราเขียนไปได้ระยะหนึ่งซึ่งส่วนใหญ่จะออกแนวพร่ำเพ้อไปวันๆ เขียนไปได้ซักระยะหนึ่งเราหมดไฟไปก่อน เราก็เลยเลิกเขียนไปหรือเราเขียนบทความเดือนละครั้งซึ่งก็ไม่ดีต่อเว็บเราแน่&lt;/p&gt;
+&lt;p&gt;จนกระทั่งมาถึงเดือนกรกฏาคมปี 2014 เราก็เลยเริ่มเขียนใหม่อีกครั้ง เราเปลี่ยนทัศนคติจากที่จำใจต้องทำ กลายมาเป็นอยากจะทำ และอยากจะแบ่งปันในสิ่งที่เรารู้ให้คนอื่นรู้ แบ่งปันประสบการณ์ให้คนอื่น ทั้งสองอย่างทำให้การเขียนบล็อกกลายเป็นเรื่องที่ไม่น่าเบื่อได้เลยเชียวนะ! เพราะถ้าเราหวงความรู้เอาไว้ ตายไปความรู้นั้นก็อาจสูญหายไปตลอดกาล และการแบ่งปันทำให้เราต้องค้นหาข้อมูล แล้วทำให้เราจำสิ่งที่เรามีอยู่ได้มากขึ้นกว่าเดิม&lt;/p&gt;
+&lt;p&gt;ส่วนเรื่องรายได้ หนังสือหรือเรื่องที่ว่าจะให้มีโฆษณาเป็นสิ่งที่เราไม่ได้นึกถึงเอาไว้ในหัวเลยนะ เพราะเอาเข้าจริงเราเขียนบล็อกไม่ได้นึกถึงพวกนี้เลย เราเน้นไปออกแนวเป็นเว็บส่วนตัวที่มีการถ่ายทอดประสบการณ์ ความรู้ซะมากกว่านะ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ต่อมาก็เป็นการถ่ายรูป&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;เอาเข้าจริงเราไม่ได้อยากจะถ่ายรูปให้ดูดีขนาดนั้นหรอก จนกระทั่งเห็นภาพแต่ละคนแล้วรู้สึกว่าสวยเลยอยากถ่ายบ้าง เราก็เลยถ่ายรูปก็พบว่าสวยไม่เท่า เราก็เลยลองหาข้อมูลดูระยะหนึ่งเราก็เลยทดลองถ่ายรูปอีกครั้ง อุปกรณ์ที่เราใช้ถ่ายรูปก็มีหลากหลายตั้งแต่กล้องมือถือไปจนถึงกล้องคอมแพค กล้องที่เราเอาไปใช้ก็เป็นกล้อง Samsung EX1 (ยี่ห้อ Samsung ก็มีกล้องนะเออ) ส่วน DSLR กับกล้อง mirrorless นี่ญาติพี่น้องเอาไปใช้หมดเลยไม่ได้เอาไปถ่ายเลย&lt;/p&gt;
+&lt;p&gt;ส่วนภาพที่เราถ่ายก็พบว่าบางรูปดีบ้าง ไม่ดีบ้างสลับกันไป ซึ่งเป็นสิ่งที่ดีเพราะบางครั้งเองเราก็ไม่สามารถทำให้ภาพนั้นสมบูรณ์ไร้ที่ติได้เสียหมด (บางครั้งก็ถ่ายแย่ไปหน่อยซึ่งเป็นเรื่องที่ไม่ดีนะ) นอกจากนี้การถ่ายภาพทำให้เราเห็นเรื่องราวภายในภาพว่าเขาทำอะไรอยู่นะ ต่อมาการถ่ายภาพก็ทำให้เราเก็บความทรงจำ เก็บเหตุการณ์บางอย่างเอาไว้เพื่อเวลาผ่านไปปีหนึ่ง หรืออาจจะนานกว่านั้นแล้วกลับมาดูอีกครั้งก็ทำให้เราระลึกถึงเหตุการณ์นั้นได้อีก ดังนั้นแล้วการถ่ายภาพก็เป็นสิ่งที่ดีอีกสิ่งหนึ่งเลยทีเดียว&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;สุดท้ายก็เป็นเรื่องการออกกำลังกาย&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;การออกกำลังกายเป็นสิ่งหนึ่งที่เราไม่เคยนึกถึงเลยนะ&lt;/p&gt;
+&lt;p&gt;จนกระทั่งอ่านกระทู้พันทิพย์หรืออ่านบทความจากเว็บบล็อกของคนอื่นที่กล่าวถึงการเดิน กับการวิ่งทำให้เราอยากจะทำตามบ้าง ตอนแรกเราก็วิ่งลู่วิ่งในฟิตเนสที่คณะ (ซึ่งถูกมาก) ไปก่อนระยะเวลาหนึ่งก็พบว่าทำได้ดี สาเหตุที่ทำได้ดีเพราะลู่วิ่งเร็วไม่มากนัก อากาศเย็น มีเพลงประกอบนั่นเอง เราก็เลยทดลองเปลี่ยนบรรยากาศมาเป็นวิ่งที่สวนลุม&lt;/p&gt;
+&lt;p&gt;การเปลี่ยนบรรยากาศจากการวิ่งที่ลู่วิ่งมาวิ่งที่สวนลุมเป็นไปอย่างล่าช้าเพราะช่วงแรกๆ เราวิ่งไปไม่ถึงรอบเราก็เหนื่อยแล้วต้องเดินต่อไปจนครบรอบ ต่อมาเวลาผ่านไปเรื่อยๆ ก็พบว่าเราวิ่งแล้วเหนื่อยน้อยลง วิ่งได้มากขึ้นจากรอบเดียวเป็นสองรอบ เราก็พบว่าเราโอเคมากขึ้นนะ เพียงแต่เหลือเรื่องการรับประทานอาหารซึ่งเรารับประทานอาหารเยอะไปหน่อยทำให้บางทีเราอาจจะดูอ้วนขึ้น ซึ่งจุดนี้เองเราอาจจะลองกินน้อยลงหน่อยก็น่าจะเป็นสิ่งที่ดี&lt;/p&gt;
+&lt;p&gt;ส่วนเรื่องเวลาที่เราเอาไปใช้ออกกำลังกาย เราก็เอาเวลาที่ว่างอยู่บางส่วนมาวิ่งซึ่งเป็นเวลาที่เราทดลองเทียบแล้วพบว่าพอๆ กับการเล่นเฟสบุ๊คหรือน้อยกว่าเสียด้วยนำ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ส่วนเรื่อง New Year Resolution ที่เคยเขียนไว้&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ผลก็คือทำแทบไม่สำเร็จเลย (ฮา) เพราะเราเขียนเป็นแนวเชิงคุณภาพมากกว่าปริมาณทำให้เห็นผลได้ยาก และมาจากเราเองที่ดันลืม resolution เหล่านั้นไปเสียแล้วนั่นเอง&lt;/p&gt;
+&lt;p&gt;เอาเป็นว่าปี 2014 ผ่านไปแล้วก็ผ่านไปไม่ต้องมานึกถึงให้เสียดายกันอีก พอมาถึงปีนี้เป็นปี 2015 ที่จะเปิด AEC (หรือว่าเลื่อนไปแล้ว?) เราก็เริ่มต้นกันใหม่จะดีกว่า ไม่ว่าอะไรจะเกิดขึ้นในชีวิตมันก็ปล่อยให้มันเกิดไป&lt;strong&gt;เพราะชีวิตยังคงสวยงาม &lt;/strong&gt;(มาซะชื่อเพลงของวงดนตรี Bodyslam เลยทีเดียว)&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1128&quot;&gt;ทบทวนสิ่งที่ผ่านมาก่อนจบปี 2014&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 01, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[เรามาลองชุบชีวิตคอมพิวเตอร์เครื่องเก่ามาใช้กันเถอะ!]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1107" />
+  <id>//www.nickuntitled.com/blog/try-to-reuse-old-computer</id>
+  <published>2014-12-20T22:10:27+07:00</published>
+  <updated>2014-12-20T22:10:27+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;ท่านเคยมีคอมพิวเตอร์ใช้เมื่อไร?&lt;/p&gt;
+&lt;p&gt;หลายคนอาจจะตอบว่ามีคอมพิวเตอร์ตั้งแต่ 2-3 ปีที่แล้ว จนถึง 10 กว่าปีขึ้นไป คอมพิวเตอร์เครื่องนั้นอาจจะมีสเปคที่ธรรมดา หรือสเปคที่สูงกว่ามาตรฐานทั่วไปเมื่อเทียบกับคอมพิวเตอร์ในยุคนั้น แต่เวลาผ่านไปคอมพิวเตอร์แบบนี้อาจจะไม่แรงเท่าเดิมแล้วเนื่องจากโปรแกรมที่ใช้งานต้องการสเปคที่สูงขึ้นไปอีก&lt;/p&gt;
+&lt;p&gt;การแก้ปัญหานี้หลายคนอาจจะแก้ไขโดยการจ่ายเงินเพื่อซื้อคอมพิวเตอร์เครื่องใหม่ไปเลย แต่สำหรับเราเองคิดว่าไม่คุ้มค่ามากนัก ถ้าจะเปลี่ยนคอมพิวเตอร์เครื่องใหม่เพื่อใช้งานเพียงแค่เปิดเว็บ กับทำงานออฟฟิสทั่วๆ ไป อย่างไรก็ตามการจ่ายเงินเพื่อซื้อคอมพิวเตอร์เครื่องใหม่เพื่อเอาไปเล่นเกม หรือทำกราฟฟิกน่าจะเป็นเรื่องที่คุ้มค่ามากกว่า&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;ในบทความนี้เราจะไม่กล่าวถึงการจ่ายเงิน เราจะกล่าวถึงการนำคอมพิวเตอร์เครื่องเก่ามาใช้งานอินเตอร์เน็ตหรือออฟฟิสทั่วๆ ไป หรือมากกว่านั้น ถ้าเครื่องเหล่านั้นทำงานไหว การนำคอมพิวเตอร์เหล่านี้มาใช้งานต้องพิจารณาหลายปัจจัยประกอบกัน ได้แก่&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;อย่างแรกคือสเปค&lt;/strong&gt; การนำคอมพิวเตอร์เครื่องเก่ามาใช้งานต้องคำนึงถึงความต้องการของระบบของโปรแกรม กับระบบปฏิบัติการที่เราต้องการจะใช้ ความต้องการของระบบจะแตกต่างกัน ตัวอย่างเช่น ระบบปฏิบัติการ Windows 8 ใช้สเปคเท่านี้แต่ Linux อาจจะใช้ต่ำกว่าหน่อยถ้าใช้งาน desktop ที่ไม่กินแรมมากนักอย่าง XFCE หรือ LXDE นอกจากนี้ถ้าต้องการใช้งาน text mode สเปคทีต้องการจะต่ำเรียดดินเลยทีเดียว&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;อย่างที่สองคือความต้องการ&lt;/strong&gt; ความต้องการของแต่ละคนจะแตกต่างกันมากนัก บางคนอาจจะไม่ต้องการใช้งานคอมพิวเตอร์เครื่องเก่าแล้ว คอมพิวเตอร์เครื่องเก่าเหล่านั้นอาจจะนำไปให้ญาติ หรือนำไปขายเป็นมือสองต่อไป แต่บางคนไม่ต้องการเปลี่ยนเครื่องใหม่ เขาจำเป็นต้องใช้งานคอมพิวเตอร์เครื่องเก่าอยู่จึงนำมาอัพเกรตแล้วนำมาใช้งานได้อยู่นะ&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;อย่างที่สามคือเงิน&lt;/strong&gt; บางครั้งคอมพิวเตอร์ที่ใช้อยู่มีสเปคไม่เพียงพอต่อความต้องการของระบบในโปรแกรมที่ใช้งานในชีวิตประจำวัน เราจำเป็นที่จะต้องอัพเกรต ค่าใช้จ่ายที่จะต้องอัพเกรตไม่เท่ากันขึ้นกับสิ่งที่อยากจะอัพเกรต ตัวอย่างเช่น Linux ที่ใช้ Desktop อย่าง Unity หรือ GNOME หรือ KDE ต้องการหน่วยความจำประมาณ 1 GB ขึ้นไป ถ้าเครื่องนั้นมีหน่วยความจำแค่ 512MB เราต้องจ่ายเงินเพื่อซื้อแรมมาเพิ่มอีก 512MB ราคาก็น่าจะประมาณไม่ถึงหนึ่งพันบาท&lt;/p&gt;
+&lt;p&gt;เมื่อพิจารณาแล้ว เรามาเริ่มกันเลยดีกว่าโน้ตบุ๊คที่เราจะนำมาใช้อีกครั้งเป็นรุ่น ASUS A8JN ที่น่าจะซื้อมาแล้วประมาณ 7 - 8 ปีก่อน CPU ก็เป็นรุ่น Core 2 Duo T5500 การอัพเกรตเราจะอัพเกรตแค่หน่วยความจำและ hard disk กับเปลี่ยนคีย์บอร์ด&lt;/p&gt;
+&lt;p&gt;การอัพเกรตหน่วยความจำ เราจะเพิ่มหน่วยความจำจากเดิมที่มี 1.5GB เป็น 2GB โดยนำหน่วยความจำจากคอมพิวเตอร์เครื่องเก่าที่ไม่ใช้แล้วมาใช้ กับอัพเกรต hard disk เราจะเปลี่ยน hard disk จากเดิมที่เป็นจากหมุนความจุ 100GB ที่หมุนด้วยความเร็ว 5400 รอบต่อนาทีเป็น SSD ยี่ห้อ Plextor M5P ความจุ 128GB แทน ความเร็วที่ได้พบว่าเร็วขึ้น แต่เร็วน้อยกว่าสเปคที่เขียนไว้เพราะเป็นข้อจำกัดของ SATA เองที่ยังเป็นรุ่นแรก&lt;/p&gt;
+&lt;p&gt;นอกจากการอัพเกรตแล้วยังมีการเปลี่ยนตัวคีย์บอร์ดที่เดิมกดบางปุ่มไม่ติด เรานำไปเปลี่ยนคีย์บอร์ดที่ร้านซ่อมโน้ตบุ๊คที่ฟอร์จูนชั้น 4 ตรงข้ามร้านอมร ราคาเปลี่ยนคีย์บอร์ดอยู่ที่ 1,000 บาท&lt;/p&gt;
+&lt;p&gt;เมื่ออัพเกรตและเปลี่ยนคีย์บอร์ดแล้ว เราจะลงระบบปฏิบัติการที่ต้องการ เราจะลงระบบปฏิบัติการ Windows 10 Technical Review ซึ่งให้ทดลองใช้ได้ฟรีจนถึงประมาณเมษายนที่จะถึงนี้ ก่อนอื่นเราก็จะดาวน์โหลดจากเว็บไซต์ของไมโครซอฟต์โดยตรงเสียก่อน เมื่อดาวน์โหลดเสร็จแล้ว เราก็จะเขียนลงแผ่นซีดี สั่งรีสตาร์ทใหม่แล้วเลือกให้บูตจากซีดี หรืออาจจะสั่งให้โปรแกรม Windows USB/DVD Download Tool สร้างตัวติดตั้ง USB สั่งให้เครื่องรีสตาร์ทใหม่แล้วค่อยเลือกให้บูตจาก USB ก็ได้อีกทางหนึ่ง&lt;/p&gt;
+&lt;p&gt;พอเข้าหน้าตัวติดตั้งเสร็จ เราก็ทำตามหน้าจอติดตั้งให้เสร็จเรียบร้อย เมื่อทำเสร็จแล้วเราก็จะนำคอมพิวเตอร์เครื่องเก่ามาใช้งานได้โดยที่ไม่จำเป็นต้องซื้อคอมพิวเตอร์เครื่องใหม่เลย&lt;/p&gt;
+&lt;p&gt;สำหรับผู้อ่านคิดว่าแนวทางนี้น่าสนใจไหม? ถ้าใช่ก็ลองนำบทความนี้เป็นแนวทางนะครับ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1107&quot;&gt;เรามาลองชุบชีวิตคอมพิวเตอร์เครื่องเก่ามาใช้กันเถอะ!&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on December 20, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[นำ Android 5.0 Lollipop ลงแท็บเล็ต ASUS TF300T]]></title>
+ <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1082" />
+  <id>//www.nickuntitled.com/blog/install-android-5-0-lollipop-asus-tf300t</id>
+  <published>2014-12-13T22:06:22+07:00</published>
+  <updated>2014-12-13T22:06:22+07:00</updated>
+  <author>
+    <name>Nick Untitled</name>
+    <uri>//www.nickuntitled.com</uri>
+    <email>nuntitled@outlook.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;ช่วงก่อนหน้านั้นทางบริษัทกูเกิ้ลประกาศปล่อยแอนดรอยด์รุ่น 5.0 ที่ใช้ชื่อว่า Lolipop ให้คนทั่วไปรวมถึง developer นำไปใช้ ทีนี้เราก็เลยอยากจะทดลองลงบนแท็บเล็ตที่มีอยู่แล้วคือ ASUS Transformer Pad TF300T ซึ่งเคยลงแอนดรอยด์ Kit Kat แล้วทำงานได้ช้าอยู่ เพราะว่าเห็นการทำงานของแอนดรอยด์รุ่นนี้เร็วขึ้นมาพอสมควร&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;ส่วน ASUS TF300TG หรือ TL เราจะไม่กล่าวถึงในนี้คิดว่าน่าจะใช้รอมอันเดียวกันได้ แต่ก่อนจะทำลองอ่านในลิ้งค์ชื่อรอมด้านล่างเลยนะครับ&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;เราก็เลยทดลองเปิดเว็บ XDA Developers แล้วเปิดหน้าที่เป็นของแท็บเล็ตรุ่นนี้จากนั้นเปิดหน้า Android Development พบกระทู้หนึ่งที่เขียนไว้ว่าเป็น Custom ROM ที่ใช้แอนดรอยด์ 5.0 ที่เขียนไว้ว่า &lt;strong&gt;&lt;a href=&quot;http://forum.xda-developers.com/transformer-tf300t/development/rom-t2932783&quot; target=&quot;_blank&quot;&gt;[ROM][LP 5.0.1_r1] [ KatKiss - Lollipop #012 ] [F2FS] [ Stable ]&lt;/a&gt; &lt;/strong&gt;แต่ตอนนั้นเข้าไปอ่านแล้วพบว่ายังทำงานได้ไม่ดีนัก ที่ทำงานได้ไม่ดีนักตามที่เขียนไว้คือยังขาดความสามารถที่แท็บเล็ตนี้ทำได้ตอนที่ยังเป็นแอนดรอยด์รุ่นเก่าๆ พร้อมกับมีปัญหาพอสมควรจึงไม่ดาวน์โหลดมาใช้&lt;/p&gt;
+&lt;p&gt;หลายวันต่อมาเราก็เลยเปิดหน้าเดิมอีกครั้งพบว่าทำงานได้เยอะแล้วจึงดาวน์โหลดมา เราดาวน์โหลดตัว ROM, gapps (ไฟล์โปรแกรม Google Play, Hangouts และอื่นๆ ที่เป็นโปรแกรมของกูเกิ้ล) และ recovery ของ TWRP รุ่นใหม่ล่าสุดคือ 2.8.1.0 จากลิ้งค์ชื่อ ROM ที่กล่าวถึงด้านบน เมื่อกดดาวน์โหลดแล้วให้รอเวลาซักระยะหนึ่งขึ้นกับความเร็วอินเตอร์เน็ต&lt;/p&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;ก่อนที่จะลง Custom ROM รุ่นนี้ต้อง &lt;strong&gt;unlock bootloader&lt;/strong&gt; ก่อน สำหรับโปรแกรมที่ใช้ให้โหลดจาก&lt;a href=&quot;http://support.asus.com/download.aspx?SLanguage=en&amp;amp;p=28&amp;amp;m=ASUS+Transformer+Pad+TF300T&amp;amp;hashedid=8BmzkQ4yoz5WzBrW&quot; target=&quot;_blank&quot;&gt;หน้าเว็บ ASUS&lt;/a&gt; ได้เลย&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;เมื่อดาวน์โหลดเสร็จ พร้อมกับชาร์ตแบตเต็มร้อยเปอร์เซ็นต์เรียบร้อยแล้ว ให้เราก๊อปปี้ไฟล์ ROM, gapps ลงไปในเครื่องแล้วเราก็เปิดเข้าหน้า bootloader สั่ง fastboot ให้ flash ตัว recovery ก่อนโดยพิมพ์คำสั่งดังนี้&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fastboot -i 0x0B05 flash recovery [ชื่อไฟล์ recovery ที่ดาวน์โหลดมา]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;เมื่อพิมพ์เสร็จแล้วกด Enter โปรแกรมจะ flash ตัว recovery ตัวใหม่ลงไปให้&lt;/p&gt;
+&lt;p&gt;อย่างไรก็ตามเราทำอีกวิธีหนึ่งได้นั่นก็คือเราจะก๊อปปี้ตัว recovery ลงไปในเครื่องพร้อมกับตัว ROM และ gapps จากนั้นเข้าหน้า recovery ของ twrp แล้วเข้าไปใน terminal พิมพ์คำสั่ง&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dd if=/sdcard/[ชื่อไฟล์ recovery ที่ดาวน์โหลดมา] of=/dev/block/mmcblk0p4&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;หรือก๊อปปี้ตัว recovery ลงไปในเครื่องจากนั้นพิมพ์คำสั่งผ่าน adb (ถ้าเครื่องนั้น root เรียบร้อย) โดยพิมพ์&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;su&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;เพื่อให้เราเป็น root ก่อนจากนั้นพิมพ์คำสั่ง&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dd if=/sdcard/[ชื่อไฟล์ recovery ที่ดาวน์โหลดมา] of=/dev/block/mmcblk0p4&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;แล้วผลที่ได้นั่นก็คือเรา flash recovery ตัวใหม่เสร็จแล้ว เราก็จะ restart เข้าหน้า recovery อีกครั้ง&lt;/p&gt;
+&lt;p&gt;เมื่อเรา flash recovery เสร็จแล้วจากนั้นเราก็จะ flash ROM ตัวใหม่โดยนำไฟล์ ROM ที่ดาวน์โหลดมาแล้วก๊อปใส่เครื่องจากนั้นก็สั่งให้ recovery wipe ข้อมูลให้หมดก่อน (อาจจะไม่ต้องลบข้อมูลใน Internal Storage) เพื่อที่จะให้ไม่มีข้อมูลเก่าค้างอยู่ แล้วก็สั่งให้ recovery flash ROM แล้วเราก็รอระยะเวลาหนึ่งเช่นเดียวขึ้น ช่วงที่ทำอยู่เราอาจจะไปทำกิจกรรมอย่างอื่นก่อนก็ได้&lt;/p&gt;
+&lt;p&gt;เมื่อ flash ROM เสร็จเรียบร้อยเราอาจจะ wipe อีกรอบก็ได้ แต่ตอนนี้ wipe data, cache เท่านั้นก็พอ จากนั้นเราก็ flash ตัว gapps ลงบนเครื่องนั้นอีกครั้งหนึ่งเพื่อให้ลงโปรแกรม Google Play Store หรือตัวอื่นๆ ที่เกี่ยวข้อง&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/112299906@N05/17942092038&quot; title=&quot;Android Lollipop on TF300T by Kittisak Chotikkakamthorn, on Flickr&quot;&gt;&lt;img src=&quot;https://c4.staticflickr.com/8/7758/17942092038_d4ab3e3250_o.png&quot; alt=&quot;Android Lollipop on TF300T&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;เมื่อลงเสร็จเรียบร้อยแล้ว เราก็สั่งเครื่องให้ restart ก่อนที่เราจะเข้าหน้าโฮมสกรีน ตัวเครื่องจะขึ้นให้ตั้งค่าเริ่มต้นก่อน วิธีการตั้งค่าเราทำตามหน้าจอได้เลย สุดท้ายเราก็จะได้หน้าโฮมสกรีนของแอนดรอยด์รุ่นใหม่เรียบร้อยแล้วครับ&lt;/p&gt;
+&lt;p&gt;หลังจากที่เราใช้งานระยะหนึ่งก็พบว่าทำงานได้ลื่นกว่าตอนที่เราเคยลง Kit Kat เราก็ลงโปรแกรมเท่าที่จำเป็นใช้งานมาวันหนึ่งแล้วก็พบว่าการใช้งานก็ทำได้ดีกว่าที่เคยใช้ตอนรุ่น Kit Kat อย่างไรก็ตาม แอนดรอยด์ 5.0 ที่ลงบนแท็บเล็ตยังมีปัญหากับโปรแกรมใน Google Play Store บางตัวอยู่บ้างเช่น Tumblr ที่มักจะขึ้นหน้าให้ Force Close อยู่บ้างซึ่งอาจจะทำให้ผู้ใช้บางคนหงุดหงิดได้ แต่สำหรับเราไม่หงุดหงิด สงสัยเพราะเคยชินกับมันเรียบร้อยแล้ว&lt;/p&gt;
+&lt;p&gt;สรุปแล้วเราแนะนำให้ลง ROM นี้นะ&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1082&quot;&gt;นำ Android 5.0 Lollipop ลงแท็บเล็ต ASUS TF300T&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on December 13, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>
