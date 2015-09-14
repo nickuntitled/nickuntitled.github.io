@@ -2,26 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">Nick Untitled</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="//www.nickuntitled.com/feed.xml" />
-<link rel="alternate" type="text/html" href="//www.nickuntitled.com" />
-<updated>2015-09-14T17:23:50+07:00</updated>
-<id>//www.nickuntitled.com/</id>
+<link rel="self" type="application/atom+xml" href="http://www.nickuntitled.com/feed.xml" />
+<link rel="alternate" type="text/html" href="http://www.nickuntitled.com" />
+<updated>2015-09-14T17:26:43+07:00</updated>
+<id>http://www.nickuntitled.com/</id>
 <author>
   <name>Nick Untitled</name>
-  <uri>//www.nickuntitled.com/</uri>
+  <uri>http://www.nickuntitled.com/</uri>
   <email>nuntitled@outlook.com</email>
 </author>
 
 
 <entry>
   <title type="html"><![CDATA[Japan Alone 1st time [Beppu - Oita - Yufuin]]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/japan-i-rome-alone-beppu-oita-yufuin.html" />
-  <id>//www.nickuntitled.com/blog/japan-i-rome-alone-beppu-oita-yufuin</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/japan-i-rome-alone-beppu-oita-yufuin.html" />
+  <id>http://www.nickuntitled.com/blog/japan-i-rome-alone-beppu-oita-yufuin</id>
   <published>2015-09-14T00:00:00+07:00</published>
   <updated>2015-09-14T00:00:00+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -97,20 +97,20 @@
 
 &lt;p&gt;จากนั้นนั่งรถบัสกลับ ทีนี้นั่งรถบัสผิดสาย ใช้ Bus Pass ไม่ได้ เงิบเลยทีนี้ เพราะ Bus Pass ใช้ได้แค่รถบัสของ Kannawa เท่านั้นแต่ที่ขึ้นเป็น Oita อะไรซักอย่าง พร้อมกับจ่ายตังแถมจ่ายเกินไปร้อยเยนด้วย พอลงจากรถแล้วก็ไปกินร้านอาหารที่มีเมนูเขียนเป็นภาษาอังกฤษซึ่งแทบไม่มีร้านไหนเปิดเพราะเย็นเกินไป ร้านปิดกันจะหมดแล้วแล้วก็กลับที่พักไปนอนครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/japan-i-rome-alone-beppu-oita-yufuin.html&quot;&gt;Japan Alone 1st time [Beppu - Oita - Yufuin]&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on September 14, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/japan-i-rome-alone-beppu-oita-yufuin.html&quot;&gt;Japan Alone 1st time [Beppu - Oita - Yufuin]&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on September 14, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Thoughts on illegal streaming sites]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html" />
-  <id>//www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html" />
+  <id>http://www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites</id>
   <published>2015-08-15T00:00:00+07:00</published>
   <updated>2015-08-15T00:00:00+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -136,20 +136,20 @@
 
 &lt;p&gt;In my opinion, I recommend the better way to watch online movies by using services such as &lt;a href=&quot;https://www.goprimetime.tv&quot;&gt;Prime Time&lt;/a&gt;, &lt;a href=&quot;www.hollywood-hdtv.com/&quot;&gt;Hollywood HD&lt;/a&gt; and &lt;a href=&quot;http://www.doonung.com&quot;&gt;Doonang&lt;/a&gt;, which you can watch unlimited movies by paying few Baht each month.&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html&quot;&gt;Thoughts on illegal streaming sites&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on August 15, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html&quot;&gt;Thoughts on illegal streaming sites&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on August 15, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Talk Less - เมื่อฉันพูดน้อย]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/talk-less.html" />
-  <id>//www.nickuntitled.com/blog/talk-less</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/talk-less.html" />
+  <id>http://www.nickuntitled.com/blog/talk-less</id>
   <published>2015-08-12T00:00:00+07:00</published>
   <updated>2015-08-12T00:00:00+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -193,20 +193,20 @@
 
 &lt;p&gt;วิธีแก้ปัญหาสองย่อหน้าข้างบนนี้คิดว่าน่าจะช่วยเรื่องการพูดได้ระดับหนึ่ง ถึงแม้ว่าช่วยไม่ได้มาก ก็ถือว่าช่วยได้บ้างล่ะกัน&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/talk-less.html&quot;&gt;Talk Less - เมื่อฉันพูดน้อย&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on August 12, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/talk-less.html&quot;&gt;Talk Less - เมื่อฉันพูดน้อย&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on August 12, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Slow Computing - เมื่อคอมพิวเตอร์ช้าลง]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/slow-computing.html" />
-  <id>//www.nickuntitled.com/blog/slow-computing</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/slow-computing.html" />
+  <id>http://www.nickuntitled.com/blog/slow-computing</id>
   <published>2015-07-09T00:00:00+07:00</published>
   <updated>2015-07-09T00:00:00+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -230,20 +230,20 @@
 
 &lt;p&gt;ถ้าทำแล้วมันไม่ได้จริงๆ ล่ะ เราก็ใช้ชีวิตแบบ slow life ตามที่มีดราม่าที่มิตรสหายท่านหนึ่งแสดงความคิดเห็นแล้วทำให้เราเอาไปประยุกต์ได้เป็น slow computing แทนแล้วล่ะกัน&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/slow-computing.html&quot;&gt;Slow Computing - เมื่อคอมพิวเตอร์ช้าลง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on July 09, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/slow-computing.html&quot;&gt;Slow Computing - เมื่อคอมพิวเตอร์ช้าลง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on July 09, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Chromecast - เมื่อเรานำมาใช้กับทีวีที่บ้าน]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/chromecast.html" />
-  <id>//www.nickuntitled.com/blog/chromecast</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/chromecast.html" />
+  <id>http://www.nickuntitled.com/blog/chromecast</id>
   <published>2015-06-15T00:00:00+07:00</published>
   <updated>2015-06-15T00:00:00+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -263,20 +263,20 @@
 
 &lt;p&gt;อย่างไรก็ดี การดูวิดีโอผ่านอุปกรณ์ชิ้นนี้ต้องมีอินเตอร์เน็ตความเร็วสูงหน่อยเพื่อทีจะดูวิดีโอที่มีความละเอียดสูงอย่างไม่เสียอรรทรสไป กับอุปกรณ์ชิ้นนี้มีข้อจำกัดที่ต้องใช้ร่วมกันกับโปรแกรมที่กำหนดมาให้ใช้งานกับ Chromecast เท่านั้น ดูได้จากใน Google Play ครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/chromecast.html&quot;&gt;Chromecast - เมื่อเรานำมาใช้กับทีวีที่บ้าน&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on June 15, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/chromecast.html&quot;&gt;Chromecast - เมื่อเรานำมาใช้กับทีวีที่บ้าน&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on June 15, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Travel Planning - เครื่องมือวางแผนการท่องเที่ยว]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/tools-for-travel-planning.html" />
-  <id>//www.nickuntitled.com/blog/tools-for-travel-planning</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/tools-for-travel-planning.html" />
+  <id>http://www.nickuntitled.com/blog/tools-for-travel-planning</id>
   <published>2015-06-10T00:00:00+07:00</published>
   <updated>2015-06-10T00:00:00+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -306,20 +306,20 @@
 
 &lt;p&gt;ทั้งหมดนี้เป็นการแนะนำโปรแกรมที่เราเอามาใช้เพื่อวางแผนการท่องเที่ยวผู้อ่านสามารถลองนำโปรแกรมตามที่กล่าวไว้ในบทความมาใช้ได้นะครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/tools-for-travel-planning.html&quot;&gt;Travel Planning - เครื่องมือวางแผนการท่องเที่ยว&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on June 10, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/tools-for-travel-planning.html&quot;&gt;Travel Planning - เครื่องมือวางแผนการท่องเที่ยว&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on June 10, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Newspaper - When I read less]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/newspaper-when-i-read-less.html" />
-  <id>//www.nickuntitled.com/blog/newspaper-when-i-read-less</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/newspaper-when-i-read-less.html" />
+  <id>http://www.nickuntitled.com/blog/newspaper-when-i-read-less</id>
   <published>2015-05-29T00:00:00+07:00</published>
   <updated>2015-05-29T00:00:00+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -339,20 +339,20 @@
 
 &lt;p&gt;&lt;strong&gt;Credit:&lt;/strong&gt; Newspapers B&amp;amp;W (5) by Jon S&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/newspaper-when-i-read-less.html&quot;&gt;Newspaper - When I read less&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 29, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/newspaper-when-i-read-less.html&quot;&gt;Newspaper - When I read less&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 29, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Watching Video via 3G : ดูวิดีโอผ่าน 3G เปลืองดาต้าอย่างยิ่ง]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1367" />
-  <id>//www.nickuntitled.com/blog/watching-video-via-3g</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1367" />
+  <id>http://www.nickuntitled.com/blog/watching-video-via-3g</id>
   <published>2015-05-12T23:47:54+07:00</published>
   <updated>2015-05-12T23:47:54+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -370,20 +370,20 @@
 &lt;p&gt;วิธีที่สองคือซื้อแพคเกจ &lt;strong&gt;Unlimited ที่จำกัดความเร็ว&lt;/strong&gt; อันนี้ขึ้นอยู่กับผู้ให้บริการแล้วว่าจำกัดความเร็วไว้แค่ไหน เท่าที่เคยเห็นมีผู้ให้บริการเจ้าหนึ่งให้บริการแบบนี้ โดยจำกัดความเร็วอยู่ในระดับ 384 Kbps หรือ 1-2 Mbps และราคาที่ทางผู้ให้บริการกำหนดมีตั้งแต่ไม่แพงไปจนถึงเกือบพันกว่าบาท และถ้าความเร็วไม่มากพอทำให้เปิดวิดีโอกระตุก หรือต้องรอให้ดาวน์โหลดมาบางส่วนก่อนเลยทีเดียว&lt;/p&gt;
 &lt;p&gt;ทีนี้ถ้าจะให้เราแนะนำวิธีการแก้ไขปัญหาล่ะ เราแนะนำให้อัพโหลดหรือดูวิดีโอผ่านทาง Wi-Fi แทนที่จะใช้งานผ่านอินเตอร์เน็ต 3G แทน แค่นี้แหละเราจะไม่ต้องโดน FUP หรือต้องจ่ายเงินเพิ่มแล้วครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1367&quot;&gt;Watching Video via 3G : ดูวิดีโอผ่าน 3G เปลืองดาต้าอย่างยิ่ง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 12, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1367&quot;&gt;Watching Video via 3G : ดูวิดีโอผ่าน 3G เปลืองดาต้าอย่างยิ่ง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 12, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Continuum for Phones : เมื่อไมโครซอฟท์ไม่ได้เป็นเจ้าแรก]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1352" />
-  <id>//www.nickuntitled.com/blog/continuum-for-phones</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1352" />
+  <id>http://www.nickuntitled.com/blog/continuum-for-phones</id>
   <published>2015-05-04T11:51:48+07:00</published>
   <updated>2015-05-04T11:51:48+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -411,20 +411,20 @@
 &lt;/ul&gt;
 &lt;p&gt;ความแตกต่างสามข้อที่กล่าวไปข้างบนทำให้เราคิดว่าน่าจะเป็นไปได้สวย อย่างไรก็ตามเราจำเป็นต้องซื้อโทรศัพท์รุ่นใหม่เนื่องจากความสามารถการใช้างนได้หลายหน้าจอจำเป็นต้องใช้ชีพียูรุ่นใหม่กว่าเดิม และถ้าจะใช้ความสามารถนี้ในเต็มนี้จำเป็นต้องมีโปรแกรมให้ใช้มากขึ้น ทีนี้ขึ้นอยู่กับว่าจะมีผู้ทำโปรแกรมลงระบบปฏิบัติการนี้นอกเหนือจาก Android กับ iOS หรือไม่นั่นเอง&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1352&quot;&gt;Continuum for Phones : เมื่อไมโครซอฟท์ไม่ได้เป็นเจ้าแรก&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 04, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1352&quot;&gt;Continuum for Phones : เมื่อไมโครซอฟท์ไม่ได้เป็นเจ้าแรก&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on May 04, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Paperless World : ที่มา ปัญหา และหนทาง]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1302" />
-  <id>//www.nickuntitled.com/blog/paperless-world</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1302" />
+  <id>http://www.nickuntitled.com/blog/paperless-world</id>
   <published>2015-04-18T17:13:27+07:00</published>
   <updated>2015-04-18T17:13:27+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -448,20 +448,20 @@
 &lt;p&gt;นอกจากนี้แล้วการค้นคว้าข้อมูลที่เพื่อนใช้กันจะเป็นการค้นหาผ่านเว็บ Google เพื่อนใส่ข้อมูลที่ต้องการแล้วกด Enter จากนั้นโปรแกรมจะค้นหาข้อมูลให้ แล้วเพื่อนจะกดลิ้งค์ที่คิดว่าเกี่ยวข้องแล้วอ่านในนั้น อย่างไรก็ตามการค้นคว้าข้อมูลจากเว็บอาจมีปัญหาเรื่องความน่าเชื่อถือได้&lt;/p&gt;
 &lt;p&gt;สุดท้ายนี้เวลาผ่านไปผู้คนจะใช้งานอุปกรณ์อย่างแท็บเล็ตมากขึ้นจนกระทั่งบางคนอาจจะเอาแท็บเล็ตมาแทนกระดาษที่เราใช้กันอยู่เดิมได้ อย่างไรก็ตามขึ้นกับผู้อ่านเองว่าจะเปลี่ยนจากการทำงานผ่านกระดาษอยู่เดิม มาเป็นการทำงานผ่านอุปกรณ์เหล่านี้ได้อย่างไรครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1302&quot;&gt;Paperless World : ที่มา ปัญหา และหนทาง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on April 18, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1302&quot;&gt;Paperless World : ที่มา ปัญหา และหนทาง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on April 18, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[สรุปสิ่งที่ได้ฟังในงาน Pediatric Research Day ตอนเช้า]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1285" />
-  <id>//www.nickuntitled.com/blog/Pediatric-research-day</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1285" />
+  <id>http://www.nickuntitled.com/blog/Pediatric-research-day</id>
   <published>2015-03-27T16:47:26+07:00</published>
   <updated>2015-03-27T16:47:26+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -484,20 +484,20 @@
 &lt;p&gt;อย่างไรก็ตามเราคิดว่าจะมีปัญหาที่จะให้ผู้ป่วยนอนอยู่นิ่งเพราะกว่าจะวัดได้ใช้เวลาประมาณหนึ่งนาที หรือสองนาทีซึงคิดว่านานไปหน่อย ถึงตอนนั้นผู้ป่วยคงขยับไปๆ มาๆ แล้วครับ&lt;/p&gt;
 &lt;p&gt;หลังจากนั้นงานครึ่งแรกก็จบไป ส่วนครึ่งหลังไม่ได้เข้าไปต่อ ตอนนั้นไปนั่งฟังในงานการประชุมที่เกี่ยวข้องกับระบบทางเดินอาหารของเด็กระหว่างโรงพยาบาลจุฬาฯ กับโรงพยาบาลอื่นครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1285&quot;&gt;สรุปสิ่งที่ได้ฟังในงาน Pediatric Research Day ตอนเช้า&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 27, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1285&quot;&gt;สรุปสิ่งที่ได้ฟังในงาน Pediatric Research Day ตอนเช้า&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 27, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[ผลที่ได้ 3 ข้อจากการเลิกติดตามบน Facebook]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1278" />
-  <id>//www.nickuntitled.com/blog/3-consequence-detach-from-social-network</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1278" />
+  <id>http://www.nickuntitled.com/blog/3-consequence-detach-from-social-network</id>
   <published>2015-03-24T17:02:23+07:00</published>
   <updated>2015-03-24T17:02:23+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -518,20 +518,20 @@
 &lt;p&gt;&lt;strong&gt;สุดท้ายนี้&lt;/strong&gt; ผลที่ได้เราคิดว่ายังไม่พอใจนัก วิธีที่จะช่วยให้ใช้เครือข่ายสังคมออนไลน์น้อยลงคือลดการหยิบมือถือมาเปิดลง กับใช้แค่โปรแกรม Facebook Messenger กับ LINE โดยแค่ดูว่ามีการแจ้งเตือนหรือเปล่า ถ้ามีเดี๋ยวเครื่องก็สั่นเอง และใช้โปรแกรมที่ทำให้ได้โปรโมชั่นอย่างอื่นเช่น Galaxy Gift หรืออื่นๆ&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;สำหรับผู้อ่าน&lt;/strong&gt; ถ้าอยากจะทดลองก็ทำตามได้ โดยการอ่านบทความที่แล้วตามลิ้งค์ด้านบนเลยครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1278&quot;&gt;ผลที่ได้ 3 ข้อจากการเลิกติดตามบน Facebook&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 24, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1278&quot;&gt;ผลที่ได้ 3 ข้อจากการเลิกติดตามบน Facebook&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 24, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[จุดหนึ่งที่ไม่ชอบ Google Keyboard]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1265" />
-  <id>//www.nickuntitled.com/blog/a-thing-dont-like-google-keyboard</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1265" />
+  <id>http://www.nickuntitled.com/blog/a-thing-dont-like-google-keyboard</id>
   <published>2015-03-17T19:59:22+07:00</published>
   <updated>2015-03-17T19:59:22+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -542,20 +542,20 @@
 &lt;p&gt;จุดนี้เองเป็นสิ่งที่เราไม่เข้าใจว่าทำไมคีย์บอร์ดอันอื่นไม่พบปัญหานี้นะ&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; จุดที่ไม่ชอบที่กล่าวถึงไปแล้วนั่นก็เป็นผลมาจากตัวแก้ไขคำผิดครับ วิธีแก้คือให้สั่งปิดได้ที่หน้า Settings แล้วเลือกคีย์บอร์ดตัวนี้แล้วเข้าไปตรงหน้าที่น่าจะเป็นหน้า Suggestions แล้วกดปิดเอา แค่นี้ก็ไม่เจออย่างที่เขียนไว้บ้างบนแล้วครับ :)&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1265&quot;&gt;จุดหนึ่งที่ไม่ชอบ Google Keyboard&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 17, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1265&quot;&gt;จุดหนึ่งที่ไม่ชอบ Google Keyboard&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 17, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[เมื่อ MacBook ใหม่เปิดตัวแล้วคิดว่าไม่เอาดีกว่า]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1247" />
-  <id>//www.nickuntitled.com/blog/do-not-need-MacBook</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1247" />
+  <id>http://www.nickuntitled.com/blog/do-not-need-MacBook</id>
   <published>2015-03-11T19:35:50+07:00</published>
   <updated>2015-03-11T19:35:50+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -567,20 +567,20 @@
 &lt;p&gt;&lt;strong&gt;เหตุผลข้อสุดท้ายที่สำคัญที่สุดคือราคากับประสิทธิภาพที่เพิ่มมาไม่คุ้มค่าต่อการใช้งาน&lt;/strong&gt; เมื่อวานนั่งดู liveblog แล้วเห็นราคาเปิดตัว MacBook รุ่นใหม่ทำให้ราคา MacBook Air ที่เราซื้อมาในราคานักศึกษาดูคุ้มค่ายิ่งกว่ารุ่นนั้นทันที เนื่องมาจากโน้ตบุ๊คที่เราใช้อยู่มีประสิทธิภาพที่ดีกว่ากับหน้าจอที่ละเอียดน้อยกว่าแต่เอาไปเล่นเกมได้ดีกว่า และพอร์ตที่ให้เสียบมีเยอะกว่า&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ดังนั้น&lt;/strong&gt; ถ้าจะให้ซื้อรุ่นนี้แล้วคุณคิดว่าอย่างไร เราก็จะตอบตรงๆ ไปว่าเราคงไม่ซื้อนะ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1247&quot;&gt;เมื่อ MacBook ใหม่เปิดตัวแล้วคิดว่าไม่เอาดีกว่า&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 11, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1247&quot;&gt;เมื่อ MacBook ใหม่เปิดตัวแล้วคิดว่าไม่เอาดีกว่า&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 11, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Detach from Social Network]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1204" />
-  <id>//www.nickuntitled.com/blog/detach-from-social-network</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1204" />
+  <id>http://www.nickuntitled.com/blog/detach-from-social-network</id>
   <published>2015-03-03T23:35:22+07:00</published>
   <updated>2015-03-03T23:35:22+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -600,20 +600,20 @@
 &lt;p&gt;เหตุผลสามข้อข้างบนเหล่านี้ทำให้เราเริ่มอยากจะปิดบัญชีนี้มาขึ้นเรื่อยๆ อย่างไรก็ตามยังต้องติดตามข่าวสารอยู่เลยลบข้อมูลส่วนตัวออกเกือบทั้งหมด เลิกติดตามการอัพเดตสเตตัสกับการโดนแท็กของ Friend หรือกิจกรรมที่ Friend ทำในเฟสบุ๊คทุกคนและไม่อัพสเตตัส ไม่กดไลค์ ไม่ทำอะไรเลยในเฟสบุ๊คยกเว้นแต่เปิดดูโนติเป็นเวลาเช้า กลางวัน และเย็นเท่านั้น&lt;/p&gt;
 &lt;p&gt;หลังจากที่ทำไปแล้วเราเริ่มรู้สึกเหมือนมีสั่นแบบอยู่กับที่ (Resting tremor) ซึ่งเวอร์ไป เอาเป็นเวลารู้สึกเหมือนขาดอะไรไปบางอย่างในชีวิต พอเวลาผ่านไปเราเริ่มรู้สึกสบายขึ้นนะ อย่างไรก็ตามเราก็กลับมาเปิดเฟสบุ๊คบ่อยเหมือนเดิม จุดนี้เองเราคงต้องพยายามต่อไป ผลจะเป็นอย่างไร อันนี้ก็ไม่ทราบแล้วขึ้นกับตัวเราเองแล้วล่ะ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1204&quot;&gt;Detach from Social Network&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 03, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1204&quot;&gt;Detach from Social Network&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on March 03, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[หนึ่งวิธีง่ายๆ ที่จะบล็อกเกมหรือแอปในเฟสบุ๊คไม่ให้คนส่ง invite ได้]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1159" />
-  <id>//www.nickuntitled.com/blog/block-facebook-game-invite</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1159" />
+  <id>http://www.nickuntitled.com/blog/block-facebook-game-invite</id>
   <published>2015-01-31T11:41:57+07:00</published>
   <updated>2015-01-31T11:41:57+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -630,20 +630,20 @@
 &lt;p&gt;&lt;strong&gt;สาม บล็อกแอปนั้น&lt;/strong&gt; ทำได้โดยเลือกใส่ชื่อแอปหรือเกมที่เราต้องการบล็อกใน Block apps ในภาพด้านบนเราจะบล็อกเกมที่หลายคนส่ง invite ในช่วงนี้คือเกม Pirate Kings&lt;/p&gt;
 &lt;p&gt;แค่นี้เราสามารถบล็อกได้ง่ายๆ เพียงแค่ทำตามด้านบนนี้ จากนี้เราไม่ต้องไปเจอการแจ้งเตือนที่เกี่ยวกับ invite เกมได้อีก อย่างไรก็ตามสำหรับคนที่อยากจะเล่นเกมนี้อีกเราก็ทำวิธีเดิมเพียงแต่เลือกกด Unblock เกมที่เราต้องการเล่นอีกครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1159&quot;&gt;หนึ่งวิธีง่ายๆ ที่จะบล็อกเกมหรือแอปในเฟสบุ๊คไม่ให้คนส่ง invite ได้&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 31, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1159&quot;&gt;หนึ่งวิธีง่ายๆ ที่จะบล็อกเกมหรือแอปในเฟสบุ๊คไม่ให้คนส่ง invite ได้&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 31, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[ว่าด้วยเรื่องของคีย์บอร์ด QWERTY บนหน้าจอสัมผัส]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1147" />
-  <id>//www.nickuntitled.com/blog/QWERTY</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1147" />
+  <id>http://www.nickuntitled.com/blog/QWERTY</id>
   <published>2015-01-18T13:46:16+07:00</published>
   <updated>2015-01-18T13:46:16+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -662,20 +662,20 @@
 &lt;p&gt;อย่างไรก็ตามเมื่อเวลาเปลี่ยนไป ความต้องการของคนเปลี่ยนไปตามแต่ละสมัย คีย์บอร์ดที่ใช้งานก็เปลี่ยนไปพิมพ์บนหน้าจอแทน&lt;/p&gt;
 &lt;p&gt;สำหรับเราอาจทำได้เพียงแค่ปรับตัว จนกระทั่งมาเจอมือถือแบรนด์ BlackBerry ที่นึกว่าจะหายไปเสียแล้วก็ยังมีขายสองรุ่นได้แก่ Blackberry Classic กับ Passport ยังคงไว้ซึ่งคีย์บอร์ดอยู่ เพียงแต่ว่ายังคงมีปัญหาเรื่องแอปที่มีจำนวนน้อยเมื่อเทียบกับ Android หรือ iOS, ยังไม่มีขายในประเทศไทย ถ้าซื้อแบบหิ้วมาราคาของ BB Passport ใกล้ๆ กับ iPhone 6 แล้ว กับสุขภาพทางการเงินไม่ดีพอ และขี้เกียจเปลี่ยนเครื่อง สี่เหตุผลนี้แหละที่เรายังไม่ตัดสินใจที่จะซื้อนะ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1147&quot;&gt;ว่าด้วยเรื่องของคีย์บอร์ด QWERTY บนหน้าจอสัมผัส&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 18, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1147&quot;&gt;ว่าด้วยเรื่องของคีย์บอร์ด QWERTY บนหน้าจอสัมผัส&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 18, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[สิ่งหนึ่งที่ Facebook ดำเนินรอยตาม Google+ (ช่วงแรก) คือการใช้ชื่อจริง]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1126" />
-  <id>//www.nickuntitled.com/blog/Facebook-follow-GooglePlus</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1126" />
+  <id>http://www.nickuntitled.com/blog/Facebook-follow-GooglePlus</id>
   <published>2015-01-08T00:26:18+07:00</published>
   <updated>2015-01-08T00:26:18+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -696,20 +696,20 @@
 &lt;p&gt;สิ่งที่แตกต่างคือของกูเกิ้ลเขาเลิกบังคับใช้ชื่อจริงแล้ว (แต่กฏตามด้านบนน่าจะมีอยู่บ้าง) ในทางกลับกันเฟสบุ๊คกลับกระทำตรงกันข้ามกับทางกูเกิ้ลเลย อันนี้เราพยายามทำความเข้าใจกับมันแล้ว เราไม่เข้าใจอยู่ดี&lt;/p&gt;
 &lt;p&gt;สำหรับเราเองก็โชคดีที่ไม่ถูกทางเฟสบุ๊คแบน (แต่กูเกิ้ลพลัสช่วงแรกๆ แบนเราไปแต่ยกเลิกไปแล้ว) เพราะเราเปลี่ยนไปใช้ชื่อจริงเรียบร้อยแล้ว แต่ถ้าจะให้เลือกระหว่างที่ใช้ชื่อจริง หรือใช้ชื่อบนอินเตอร์เน็ต เราเลือกที่จะใช้ชื่อบนอินเตอร์เน็ตมากกว่าเพราะเป็นการปิดบังตัวตนไปได้ระดับหนึ่ง ซึ่งปิดบังไม่ได้ไปตลอดเพราะผู้ใช้งานอินเตอร์เน็ตสามารถเดาได้แล้วว่าคนนั้นเป็นใครจากรูปดิสเพลย์ หรือรูปที่เพื่อนแท็กหาเราได้นั่นเอง = =&quot;&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1126&quot;&gt;สิ่งหนึ่งที่ Facebook ดำเนินรอยตาม Google+ (ช่วงแรก) คือการใช้ชื่อจริง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 08, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1126&quot;&gt;สิ่งหนึ่งที่ Facebook ดำเนินรอยตาม Google+ (ช่วงแรก) คือการใช้ชื่อจริง&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 08, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[ทบทวนสิ่งที่ผ่านมาก่อนจบปี 2014]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1128" />
-  <id>//www.nickuntitled.com/blog/things-learn-before-pass-2014</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1128" />
+  <id>http://www.nickuntitled.com/blog/things-learn-before-pass-2014</id>
   <published>2015-01-01T17:46:33+07:00</published>
   <updated>2015-01-01T17:46:33+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -746,20 +746,20 @@
 &lt;p&gt;ผลก็คือทำแทบไม่สำเร็จเลย (ฮา) เพราะเราเขียนเป็นแนวเชิงคุณภาพมากกว่าปริมาณทำให้เห็นผลได้ยาก และมาจากเราเองที่ดันลืม resolution เหล่านั้นไปเสียแล้วนั่นเอง&lt;/p&gt;
 &lt;p&gt;เอาเป็นว่าปี 2014 ผ่านไปแล้วก็ผ่านไปไม่ต้องมานึกถึงให้เสียดายกันอีก พอมาถึงปีนี้เป็นปี 2015 ที่จะเปิด AEC (หรือว่าเลื่อนไปแล้ว?) เราก็เริ่มต้นกันใหม่จะดีกว่า ไม่ว่าอะไรจะเกิดขึ้นในชีวิตมันก็ปล่อยให้มันเกิดไป&lt;strong&gt;เพราะชีวิตยังคงสวยงาม &lt;/strong&gt;(มาซะชื่อเพลงของวงดนตรี Bodyslam เลยทีเดียว)&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1128&quot;&gt;ทบทวนสิ่งที่ผ่านมาก่อนจบปี 2014&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 01, 2015.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1128&quot;&gt;ทบทวนสิ่งที่ผ่านมาก่อนจบปี 2014&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on January 01, 2015.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[เรามาลองชุบชีวิตคอมพิวเตอร์เครื่องเก่ามาใช้กันเถอะ!]]></title>
- <link rel="alternate" type="text/html" href="//www.nickuntitled.com/blog/1107" />
-  <id>//www.nickuntitled.com/blog/try-to-reuse-old-computer</id>
+ <link rel="alternate" type="text/html" href="http://www.nickuntitled.com/blog/1107" />
+  <id>http://www.nickuntitled.com/blog/try-to-reuse-old-computer</id>
   <published>2014-12-20T22:10:27+07:00</published>
   <updated>2014-12-20T22:10:27+07:00</updated>
   <author>
     <name>Nick Untitled</name>
-    <uri>//www.nickuntitled.com</uri>
+    <uri>http://www.nickuntitled.com</uri>
     <email>nuntitled@outlook.com</email>
   </author>
   <content type="html">
@@ -778,7 +778,7 @@
 &lt;p&gt;พอเข้าหน้าตัวติดตั้งเสร็จ เราก็ทำตามหน้าจอติดตั้งให้เสร็จเรียบร้อย เมื่อทำเสร็จแล้วเราก็จะนำคอมพิวเตอร์เครื่องเก่ามาใช้งานได้โดยที่ไม่จำเป็นต้องซื้อคอมพิวเตอร์เครื่องใหม่เลย&lt;/p&gt;
 &lt;p&gt;สำหรับผู้อ่านคิดว่าแนวทางนี้น่าสนใจไหม? ถ้าใช่ก็ลองนำบทความนี้เป็นแนวทางนะครับ&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;//www.nickuntitled.com/blog/1107&quot;&gt;เรามาลองชุบชีวิตคอมพิวเตอร์เครื่องเก่ามาใช้กันเถอะ!&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;//www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on December 20, 2014.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.nickuntitled.com/blog/1107&quot;&gt;เรามาลองชุบชีวิตคอมพิวเตอร์เครื่องเก่ามาใช้กันเถอะ!&lt;/a&gt; was originally published by Nick Untitled at &lt;a href=&quot;http://www.nickuntitled.com&quot;&gt;Nick Untitled&lt;/a&gt; on December 20, 2014.&lt;/p&gt;
   </content>
 </entry>
 
