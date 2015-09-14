@@ -134,6 +134,57 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-08-02T22:41:28+07:00"><a href="//www.nickuntitled.com/blog/360">August 02, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="//www.nickuntitled.com/about/" title="About Nick Untitled">Nick Untitled</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="//www.nickuntitled.com/blog/360" rel="bookmark" title="ย้ายไฟล์ และโฟลเดอร์จำนวนมากไป server เครื่องหนึ่งไปอีกเครื่องหนึ่ง" itemprop="url">ย้ายไฟล์ และโฟลเดอร์จำนวนมากไป server เครื่องหนึ่งไปอีกเครื่องหนึ่ง</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <p>วันนี้ได้ทำภาระกิจที่ (โคตรจะ) ยิ่งใหญ่เลยก็คือย้ายข้อมูลจากเครื่อง server เครื่องเก่าไปยังเครื่องใหม่ ฟังดูแล้วน่าจะเป็นงานที่ไม่ยากซักเท่าไรนัก ก็แค่ย้ายไม่กี่ไฟล์ก็น่าจะเพียงพอแล้ว</p>
+<p>ใช่ครับ งานอาจจะฟังดูไม่ยากนักกรณีที่ถ่ายโอนไฟล์แค่ไม่กี่ไฟล์ที่มีขนาดไม่ใหญ่มาก แต่ในกรณีนี้เราย้ายข้อมูลทั้งหมดประมาณ 2 ล้านกว่าๆ ไฟล์ แต่ละไฟล์ก็มีขนาดที่แตกต่างกันไปขึ้นกับคนที่อัพโหลด รวมๆ แล้วไฟล์ทุกไฟล์ใช้พื้นที่ไปประมาณ 200 - 300 GB ความรู้สึกตอนนั้นก็ประมาณว่า</p>
+<blockquote><p>ม่ายยยยยยยยยยยยยยยยยย</p></blockquote>
+<p>แล้วจะยังไงดีล่ะ เราลองทำหลายวิธีมาก่อนแล้ว ได้แก่</p>
+<h3>ทำผ่าน FTP</h3>
+<p>ทำได้โดยให้ก๊อปไฟล์ผ่านทาง FTP นี่แหละ ตอนนั้นเราใช้ mc (Midnight Commander) เข้าไปในโฟลเดอร์ที่ต้องการอัพโหลดโดยใช้</p>
+<blockquote><p>cd ftp://username@domainname.com - เปลี่ยน username และ domainame.com เป็นอย่างอื่นก็ได้ตามต้องการ</p></blockquote>
+<p>ทีนี้เมื่อเข้ามาแล้วเราก็จะก๊อปปี้ไฟล์ลงไปใน server อีกเครื่องหนึ่งทำได้โดยเลือดไฟล์หรือโฟลเดอร์ที่ต้องการแล้วกดปุ่ม F5 หลังจากนี้เราก็จะปล่อยให้โปรแกรมก๊อปไฟล์นะครับ แต่ในกรณีของเราที่กีอปไฟล์จำนวนมากทีนี้เวลาก๊อปไฟล์เป็นจำนวนมากอาจจะไม่สะดวก หรืออาจจะทำให้เห็นว่าโปรแกรมแม่งค้างไปแล้ววววนั่นแหละ จริงๆ ก็สามารถเช็คได้ว่าโปรแกรมทำอะไรอยู่ โดยเราจะใช้</p>
+<blockquote><p>strace -p PID</p></blockquote>
+<p>PID คือ Process ID ของโปรแกรมนั้นทำได้โดยเช็คใน ps [ชื่อโปรแกรม])</p>
+<h3>ทำผ่าน rsync</h3>
+<p>ทีนี้เราก็จะใช้อีกวิธีหนึ่งก็คือการก๊อปไฟล์จำนวนมากผ่านโปรแกรมที่ชื่อ rsync วิธีนี้ก็ทำได้โดย</p>
+<blockquote><p>rsync -av [path ของโฟลเดอร์ต้นทาง] [path ของโฟลเดอร์ปลายทาง]</p></blockquote>
+<p>ส่วน -av จะอธิบายในด้านล่างนี้นะครับ</p>
+<ul>
+<li>a (achive) ให้ก๊อปไฟล์และ directories ทั้งหมด</li>
+<li>v (verbose) ให้แสดงรายละเอียดของไฟล์และ directories</li>
+</ul>
+<p>ข้อดีของโปรแกรมนี้นอกจากจะก๊อปไฟล์ได้ทีละเป็นจำนวนมากแล้ว ยังทำผ่าน ssh กับ backup ข้อมูลได้ด้วยนั่นเอง ซึ่งเราทำผ่าน ssh โดยพิมพ์ดังนี้</p>
+<blockquote><p>rsync -av [path ของโฟลเดอร์ต้นทาง] username@host:[path ของไฟล์ปลายทาง]</p></blockquote>
+<p>ทีนี้เราก็จะก๊อปปี้ไฟล์จำนวนมากผ่านทาง ssh ได้เรียบร้อยแล้ว แต่ในกรณีของเราก๊อปไฟล์เป็นจำนวนมาก และความเร็วของสายแลนที่ช้า (100 MBps) เลยต้องใช้เวลานานหลายชั่วโมงกว่าจะก๊อปปี้ให้เสร็จเรียบร้อย</p>
+<h3>วิธีเช็คว่าก๊อปเสร็จหรือยัง</h3>
+<p>ระหว่างที่ทำการก๊อปปี้ไฟล์อยู่ก็เช็คได้ว่าก๊อปเสร็จหรือยัง ของเราก็จะเช็คว่าไฟล์ระหว่างเครื่องต้นทางกับปลายทางมีจำนวนที่เท่ากันหรือเปล่าโดยใช้</p>
+<blockquote><p> ls -1 [path ของโฟลเดอร์ที่เราต้องการ] | wc -l</p></blockquote>
+<p>เมื่อพิมพ์เสร็จแล้วกด Enter จะขึ้นจำนวนไฟล์ที่มีในโฟลเดอร์ตาม path นั้นเอง</p>
+<h3>สำหรับ Windows</h3>
+<p>จริงๆ โปรแกรม FTP กับ rsync ก็มีบน Windows เช่นกัน แต่ตัว FTP อาจจะไม่ต้องทำผ่าน Command Line แต่ทำผ่านโปรแกรมบน Windows เลยเช่น FileZilla, Cyberduck และอื่นๆ ครับ</p>
+<h3>หมายเหตุ</h3>
+<p>วิธีที่พูดถึงอันนี้พูดจากที่เคยทำนะครับ อาจจะไม่ถูกต้องซะทีเดียว ลองเช็คข้อมูลเพิ่มเติมจากเว็บอื่นอีกทีนะ</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2014-07-29T23:26:44+07:00"><a href="//www.nickuntitled.com/blog/350">July 29, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="//www.nickuntitled.com/about/" title="About Nick Untitled">Nick Untitled</a></span></span>
       
       <span class="entry-reading-time">

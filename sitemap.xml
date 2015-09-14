@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>//www.nickuntitled.com/blog/japan-i-rome-alone-beppu-oita-yufuin.html</loc>
+    <lastmod>2015-09-14T00:00:00+07:00</lastmod>
+  </url>
+  <url>
     <loc>//www.nickuntitled.com/blog/thoughts-on-illegal-streaming-sites.html</loc>
     <lastmod>2015-08-15T00:00:00+07:00</lastmod>
   </url>
@@ -178,26 +182,20 @@
   </url>
   <url>
     <loc>//www.nickuntitled.com/404.html</loc>
-    <lastmod>2015-08-27T23:01:38+07:00</lastmod>
   </url>
   <url>
     <loc>//www.nickuntitled.com/posts/</loc>
-    <lastmod>2015-08-27T23:01:38+07:00</lastmod>
   </url>
   <url>
     <loc>//www.nickuntitled.com/</loc>
-    <lastmod>2015-08-27T23:01:38+07:00</lastmod>
   </url>
   <url>
     <loc>//www.nickuntitled.com/tags/</loc>
-    <lastmod>2015-08-27T23:01:38+07:00</lastmod>
   </url>
   <url>
     <loc>//www.nickuntitled.com/about/</loc>
-    <lastmod>2015-08-27T23:01:38+07:00</lastmod>
   </url>
   <url>
     <loc>//www.nickuntitled.com/theme-setup/</loc>
-    <lastmod>2015-08-27T23:01:38+07:00</lastmod>
   </url>
 </urlset>
