@@ -1,29 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700&subset=latin-ext'); */
 @import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
-
-@font-face {
-  font-family: 'Anakotmai';
-  src: url('/assets/css/webfont/anakotmai-medium.eot'); /* IE9 Compat Modes */
-  src: url('/assets/css/webfont/anakotmai-medium.eot') format('embedded-opentype'), /* IE6-IE8 */
-       url('/assets/css/webfont/anakotmai-medium.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/assets/css/webfont/anakotmai-medium.woff') format('woff'), /* Pretty Modern Browsers */
-}
-
-@font-face {
-  font-family: 'Anakotmai_Light';
-  src: url('/assets/css/webfont/anakotmai-light.eot'); /* IE9 Compat Modes */
-  src: url('/assets/css/webfont/anakotmai-light.eot') format('embedded-opentype'), /* IE6-IE8 */
-       url('/assets/css/webfont/anakotmai-light.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/assets/css/webfont/anakotmai-light.woff') format('woff'), /* Pretty Modern Browsers */
-}
-
-@font-face {
-  font-family: 'Anakotmai_Bold';
-  src: url('/assets/css/webfont/anakotmai-bold.eot'); /* IE9 Compat Modes */
-  src: url('/assets/css/webfont/anakotmai-bold.eot') format('embedded-opentype'), /* IE6-IE8 */
-       url('/assets/css/webfont/anakotmai-bold.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/assets/css/webfont/anakotmai-bold.woff') format('woff'), /* Pretty Modern Browsers */
-}
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap');
 
 :root {
     --bg-color: #fafafa;
@@ -53,7 +30,7 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6, strong, b {
-  font-family: 'Anakotmai', sans-serif;
+  font-family: 'Prompt', sans-serif;
 }
 
 p {
@@ -142,7 +119,7 @@ p {
 
 .post-list .post-title{
   width: 100%; 
-  font-family: "Anakotmai", sans-serif;
+  font-family: "Prompt", sans-serif;
   font-weight: 500;
   color: var(--link-color);
   margin-bottom: 0.25em;
