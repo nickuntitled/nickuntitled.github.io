@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="canonical" href="https://nickuntitled.com/2021/02/09/coding-in-react-and-others/">
+		<title>Coding in React + Others - Nick Untitled</title>
+		<meta name="description" content="A Nick's Journal on my Life">
+		<meta name="keywords" content="ajaxbootstrapcodingjquerylearninglibraryprogrammingwebsitexmlhttprequestจาวาสคริปเขียนโปรแกรม">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-02-09T23:22:03+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/02/09/coding-in-react-and-others/amp/"/>
+		<meta property="og:title" content="Coding in React + Others - Nick Untitled" />
+		<meta property="og:description" content="A Nick's Journal on my Life" />
+		<meta property="og:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04.png"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="Coding in React + Others - Nick Untitled" />
+		<meta property="twitter:description" content="A Nick's Journal on my Life" />
+		<meta property="twitter:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+
+    
+    <style amp-custom> 
+      @charset "UTF-8";
+/* @import url('https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700&subset=latin-ext'); */
+@import url("https://fonts.googleapis.com/css2?family=Sarabun&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap");
+:root { --bg-color: #fafafa; --bg-hover-color: #ececec; --body-bg: #fff; --primary-font-color: #000; --border-color: #dadada; --link-color: #2980b9; }
+
+[data-theme="dark"] { --bg-color: #161f29; --bg-hover-color:#36404c; --body-bg: #10171e; --primary-font-color: #bfbfbf; --border-color: #6a6a6a; --link-color: #2980b9; }
+
+body { font-family: 'Sarabun', sans-serif; font-weight: 300; background: var(--body-bg); color: var(--primary-font-color); margin: 0; padding: 0; }
+
+h1, h2, h3, h4, h5, h6, strong, b { font-family: 'Prompt', sans-serif; }
+
+p { line-height: 1.75em; }
+
+.clear-nav { clear: both; }
+
+.nav-left { float: left; }
+
+.nav-right { float: right; }
+
+.container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 50%; margin-left: auto; margin-right: auto; }
+
+.profile li { display: inline; margin-right: 0.5em; }
+
+.profile li:last-child { margin-right: 0.5em; }
+
+.link-header { width: 100%; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.link-header ul { margin: 0; padding: 0; }
+
+.link-header li { display: inline; margin-right: 1em; }
+
+.post-container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 100%; margin-top: 1em; }
+
+.footer { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; padding: 5px 10px; background: var(--bg-color); border: 1px dashed var(--border-color); font-size: 12px; margin-bottom: 1em; }
+
+.post-list { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 5px 0; margin-bottom: 5px; }
+
+.post-list:last-child { margin-bottom: 1em; }
+
+.post-list .post-title { width: 100%; font-family: "Prompt", sans-serif; font-weight: 500; color: var(--link-color); margin-bottom: 0.25em; }
+
+.post-list .post-title:hover { text-decoration: underline; }
+
+.post-list .post-date { width: 20%; text-align: left; font-size: 0.75em; }
+
+.post-header { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.post-header .post-share { font-weight: 600; color: var(--primary-font-color); display: flex; justify-content: flex-end; align-items: center; }
+
+.post-header .post-date { font-weight: 600; }
+
+.post-header .post-share a { display: flex; }
+
+.aligncenter { text-align: center; }
+
+.tags-container { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 20px; margin-bottom: 20px; }
+
+.post-tag { margin-bottom: 5px; }
+
+.tags { display: flex; flex-wrap: wrap; justify-content: space-between; }
+
+.tag { background: var(--bg-color); padding: 5px 10px; margin-right: 10px; margin-bottom: 10px; display: flex; align-items: center; }
+
+.navigation { width: 100%; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.navigation .prev { width: 45%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--link-color); font-weight: 600; padding: 5px 10px; }
+
+.navigation .next { width: 45%; color: var(--link-color); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; text-align: right; padding: 5px 10px; }
+
+.pagination { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.pagination .prev { color: var(--link-color); font-weight: 600; }
+
+.pagination .next { color: var(--link-color); font-weight: 600; text-align: right; }
+
+.blog-post-header { width: 100%; font-size: 18px; margin-bottom: 0; padding: 0px; }
+
+.blog-post-header h1 { margin-bottom: 0.5em; }
+
+.blog-post-header img { margin-bottom: 1em; }
+
+.blog-post-content { width: 100%; font-size: 18px; margin-top: 0px; }
+
+.post-tag { background: var(--bg-color); color: var(--primary-font-color); padding: 5px 10px; }
+
+.profile { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 1em 0; margin-top: 20px; margin-bottom: 0; border-bottom: 1px solid var(--border-color); }
+
+.profile div { margin: 0 0 0.5em 0; }
+
+.profile div:last-child { margin: 1em 0 0 0; }
+
+.profile ul { margin: 0; padding: 0; }
+
+.profile-image-container { width: 40%; }
+
+.profile-image { width: 128px; height: 128px; border-radius: 50%; transition: transform .2s; }
+
+.profile-image:hover { transform: scale(1.05); }
+
+.profile-about { width: 100%; text-align: left; }
+
+.profile a { color: #000000; }
+
+.profile a:hover { text-decoration: none; }
+
+.font-2 { font-size: 2rem; }
+
+.font-1-5 { font-size: 1.5rem; }
+
+.font-1-2 { font-size: 1.2rem; }
+
+.font-0-8 { font-size: .8rem; }
+
+.text-right { text-align: right; }
+
+.w-100 { width: 100% !important; }
+
+a:hover { text-decoration: underline; }
+
+a { color: var(--link-color); text-decoration: none; }
+
+img { max-width: 100%; }
+
+figure { margin: 0; padding: 15px 0 15px 0; }
+
+figure iframe { width: 100%; }
+
+figcaption { margin: 0.5em 0 0 0; font-size: 1em; }
+
+blockquote { font-style: italic; padding: 5px 1em; margin: 0; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+blockquote cite { font-weight: 500; font-size: 1em; padding: 0 0 1em 0; margin: 0; }
+
+pre { font-size: 14px; max-width: 90vw; overflow: auto; }
+
+.social-icon { height: 24px; }
+
+@media (min-width: 769px) { .container { width: 70%; } }
+
+@media (min-width: 1200px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media (min-width: 1440px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media only screen and (max-width: 768px) { .container { width: 90%; } .mode:after { line-height: 22px; left: 1px; } h1 { font-size: 1.5rem; } .profile-image { width: 96px; height: 96px; } }
+
+[data-theme="dark"] .social-icon { filter: invert(100%) sepia(50%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%); }
+
+.mode { float: right; position: relative; margin: auto; width: 42px; height: 22px; background: #F1F2F4; border-radius: 20px; cursor: pointer; }
+
+.mode:after { content: "☀️"; position: absolute; top: 0; left: 4px; font-size: 14px; height: 22px; line-height: 23px; text-align: center; transition: all 0.3s ease; }
+
+.mode.active { background: #0771ca; }
+
+.mode.active:after { content: "🌛"; transform: translateX(20px); }
+
+.mode.active span { transform: translateX(0); }
+
+.mode span { position: absolute; z-index: 1; margin: 2px; display: block; width: 18px; height: 18px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transform: translateX(20px); transition: all 0.4s ease; }
+
+    </style>
+
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <link rel="alternate" type="application/rss+xml" title=" - A Nick's Journal on my Life" href="/feed.xml" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <div class="profile">
+            <div class="profile-about">
+                <div>
+                    <h2 style="margin-bottom: 0; font-weight: 700;">
+                        <a href = '/'>Nick Untitled</a>
+                    </h2>
+                </div>
+                <div>
+                    Writing as my personal diary
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-post-header">
+            <h1>Coding in React + Others</h1>
+        </div>
+        
+        <div class="post-header">
+            <div class="post-date">09.02.2021</div>
+            <div class="post-share">
+                Share:&nbsp; 
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/coding-in-react-and-others" target="_blank"><amp-img src="assets/images/icon/facebook.svg" class="social-icon" layout="responsive" width = "32" height = "32"></amp-img></a>
+                <a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/coding-in-react-and-others&amp;text=Coding in React + Others - https://nickuntitled.com/coding-in-react-and-others" target="_blank"><amp-img src="assets/images/icon/twitter.svg" class="social-icon" layout="responsive" width = "32" height = "32"></amp-img></a>
+            </div>
+        </div>
+        
+            <figure>
+                <img src = 'https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04.png' />
+            </figure>
+        	
+        <div class="blog-post-content">
+            <!-- wp:paragraph -->
+<p>ตอนทำธิสิสทางอาจารย์จะให้ทำเป็นตัวโปรแกรมเพื่อให้ใช้งานกับคอมพิวเตอร์แทนที่จะใช้อุปกรณ์ไม้บรรทัดวัดมุมการเคลื่อนไหวของศีรษะและลำคอ หรือเรียกอีกอย่างว่า <a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Goniometer" target="_blank">Goniometer</a> เพราะเครื่องมือนั้นขึ้นกับผู้วัดแต่ละคน ทำให้เกิดความคลาดเคลื่อนระหว่างการวัดได้ เลยเป็นสาเหตุที่เราจะพัฒนาตัวโปรแกรมกัน</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+<!--more-->
+<!-- /wp:more -->
+
+<!-- wp:paragraph -->
+<p>ตอนพัฒนาตัวเว็บที่จะใช้ในงานวิจัย (ธีสิสนะแหละ) เดิมใช้ภาษา HTML, CSS และ JS ที่ใช้เครื่องมือ <a rel="noreferrer noopener" href="https://getbootstrap.com" target="_blank">Bootstrap</a> ร่วมกันกับ <a rel="noreferrer noopener" href="http://jquery.com" target="_blank">jQuery</a> ในตอนนั้นเขียนเสร็จแล้ว ตัวเว็บทำงานได้ตามปกติเพียงแต่เกิดปัญหาเมื่อโปรแกรมที่มีขนาดใหญ่มากขึ้นเนื่องจาก</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>โค้ดที่มีความซับซ้อนส่งผลต่อประสิทธิภาพในการทำงาน</li><li>การแก้ไขตัวโต้ดเวลาเกิดบั้กทำได้ยาก เกิดปัญหาเวลาติดบั้กแล้วต้องไล่อ่านโค้ดที่เอ่อ งงไปหน่อย</li><li>เพิ่มเครื่องมือ (Library) ได้ลำบาก </li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>โดยจาก<a href="https://nickuntitled.com/2021/02/06/face-detection-in-my-thesis/" target="_blank" rel="noreferrer noopener">บทความที่แล้ว</a>ที่พูดถึงการใช้เทคนิคการจับภาพใบหน้าที่เขียนโดย Tensorflow.js กับ ONNX.js ที่ใช้ตัวจาวาสคริปธรรมดาแล้วเวลาเขียนไปเรื่อย ๆ ก็เริ่มงงและ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>React</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":1592,"sizeSlug":"large","linkDestination":"media"} -->
+<figure class="wp-block-image size-large"><a href="http://nickuntitled.com/wp-content/uploads/2021/02/screen-shot-2564-02-09-at-22.06.04-1.png"><img src="http://nickuntitled.com/wp-content/uploads/2021/02/screen-shot-2564-02-09-at-22.06.04-1.png?w=1024" alt="" class="wp-image-1592" /></a><figcaption>React</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>หลังจากความงงของตัวโค้ดมานานมากจนกระทั่งมาทำงานโปรเจ็คหนึ่งในแล็ปที่ต้องมาใช้ <a rel="noreferrer noopener" href="https://reactjs.org" target="_blank">React</a> พอดี เดิมทีเห็นคู่มือแล้วพบว่ายากไปหน่อยเลยไม่ใช้ พอกลับมาเรียนรู้อีกรอบ เริ่มจากการอ่าน ค่อย ๆ อ่าน พร้อมกับลงมือเขียนโค้ดไปทีละบท แล้วฝึกการเขียนโค้ด หรือเรียกการเรียนรู้แบบนี้อีกอย่างว่า Learn by doing ทำแบบนี้ไปตลอด หลังจากการฝึกด้วยวิธีนี้แล้วนำมาพัฒนาตัวเว็บใช้ในงานนั้นก็พบว่าทำงานได้ดี เขียนแล้วเข้าใจง่าย มีประสิทธิภาพที่สูงมาก (แต่ไม่ได้รับประกันความพึงพอใจแบบบริษัทนึง) เลยลองพัฒนาตัวโปรแกรมขึ้นมาพบว่าเวิร์คดีนะ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>หลังจากที่พัฒนาตัวโปรแกรมนั้นแล้ว รวมกับพบปัญหาระหว่างการเขียนโค้ดในเว็บที่ทำงานในงานวิจัย เลยปรับโค้ดใหมให้เป็น React เลยดีกว่า จับเอาแต่ละส่วนในหน้าเว็บเป็น Component แทน เขียนตัวแปรแต่ละตัวให้เป็น props, state ตามที่คู่มือในเว็บได้เขียนไว้ รวมถึง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>เดิมหน้าเว็บที่เป็น Bootstrap รวมกับ jQuery เลยลงเครื่องมือที่เรียกว่า <a rel="noreferrer noopener" href="https://react-bootstrap.github.io" target="_blank">react-bootstrap</a> ปรับตัวโค้ดให้เป็น component แต่ละชิ้นแทน ทำแล้วโค้ดจากเดิมที่ใช้ class กลายมาเป็นตัวนี้แทน</li><li>ตัวเว็บใช้ AJAX เดิมทีใช้ <a rel="noreferrer noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttprequest</a> แล้วเอามาเขียน พบว่าตัวโค้ดดูซับซ้อนไปหน่อย เลยเปลี่ยนมาใช้ axios แทน นอกเหนือจากนี้ตัวโค้ดที่โหลดหน้าที่เก็บข้อมูลหลาย ๆ อันที่ทำมาเป็นตารางใช้ axios-hook แทน </li><li>จากการใช้ getUsermedia เพื่อให้เปิดกล้องเว็บแคม เลยลง <a rel="noreferrer noopener" href="https://github.com/mozmorris/react-webcam" target="_blank">react-webcam</a> แล้วใส่ component Webcam แทนเพื่อเปิดกล้อง</li><li>และอื่น ๆ</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:image {"id":1593,"sizeSlug":"large","linkDestination":"media"} -->
+<figure class="wp-block-image size-large"><a href="http://nickuntitled.com/wp-content/uploads/2021/02/b4c7345e-fc90-4e7d-a085-3e635fdc62c1.png"><img src="http://nickuntitled.com/wp-content/uploads/2021/02/b4c7345e-fc90-4e7d-a085-3e635fdc62c1.png?w=1024" alt="" class="wp-image-1593" /></a><figcaption>ก่อนแล้วหลังการเปลี่ยนมาใช้ React</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>หลังจากการปรับเปลี่ยนโค้ดแล้วโดยสรุปคือตัวโค้ดเรียบง่ายขึ้นกว่าเดิมมาก แก้ปัญหาที่เกิดจากการทำงานตัวโค้ดได้ง่ายขึ้น รวมถึงประสิทธิภาพของตัวโค้ดที่ดีขึ้น เลยคิดว่าจะเอาตัวโค้ดนี้นี่แหละมาใช้ </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>นอกเหนือจากนี้การเขียนโค้ดโดยใช้ React ทำให้เราสามารถทำหน้าเว็บได้เร็วขึ้นกว่าเดิมมากด้วย สบายเราล่ะ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>โดยสรุป</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>เราควรจะเลือกเครื่องมือให้ถูกต้อง เพื่อให้ทำงานได้จนถึงเป้าหมายที่ต้องการ ในที่นี้คือเปลี่ยนการเขียนโค้ดเดิมที่ใช้ jQuery มาใช้ React แทน พบว่าเขียนโค้ดได้ง่าย มีประสิทธิภาพที่ดี และสามารถเพิ่มเครื่องมือ (Library) ไปได้ตามที่ต้องการ ในที่นี้คือ react-bootstrap, axios, react-webcam เป็นต้น </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>นอกเหนือจากนี้สิ่งที่สำคัญที่สุดของการใช้เครื่องมือไหนก็ตามการเรียนรู้สำคัญที่สุด โดย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>คนที่ยึดการเรียนรู้ไว้เป็นลำดับหนึ่งเป็นบุคคลชั้นหนึ่ง </p><cite>อ.เฉิน</cite></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>และอีกอย่างนึง งานวิจัย (ธีสิส) นี้ จะเอาเครื่องมือนี้แหละไปพัฒนาหน้าเว็บให้เสร็จ แล้วทดสอบเครื่องมือให้เรียบร้อย ก็จบงานได้ครับ</p>
+<!-- /wp:paragraph -->
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
