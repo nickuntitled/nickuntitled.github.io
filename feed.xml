@@ -1,4 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-10-17T22:00:58+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้</title><link href="https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan/" rel="alternate" type="text/html" title="จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้" /><published>2021-10-10T01:29:57+07:00</published><updated>2021-10-10T01:29:57+07:00</updated><id>https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan</id><content type="html" xml:base="https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan/">&lt;!-- wp:paragraph --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-10-18T02:27:01+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Coding anywhere by code-server and VPS</title><link href="https://nickuntitled.com/2021/10/18/coding-anywhere/" rel="alternate" type="text/html" title="Coding anywhere by code-server and VPS" /><published>2021-10-18T02:00:00+07:00</published><updated>2021-10-18T02:00:00+07:00</updated><id>https://nickuntitled.com/2021/10/18/coding-anywhere</id><content type="html" xml:base="https://nickuntitled.com/2021/10/18/coding-anywhere/">&lt;p&gt;Some parts of this article is already written in Thai language in this article to &lt;a href=&quot;https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/&quot;&gt;bring iPad as the development machine&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nowadays, you can create the remote development machine to replace the laptop and the tablet to develop anymore without hassles by the advances in cloud computing like &lt;a href=&quot;https://aws.amazon.com&quot;&gt;Amazon Web Services&lt;/a&gt;, or &lt;a href=&quot;https://azure.microsoft.com&quot;&gt;Microsoft Azure&lt;/a&gt;, and the cloud-based IDE such as Cloud9, code-server, etc. However, on that day, the cost of the creation of the server was expensive. It counted many bucks per hour. For me, I considered not to create until this year.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-can-i-find-out-this-way&quot;&gt;How can I find out this way?&lt;/h2&gt;
+
+&lt;p&gt;I see the old article about &lt;a href=&quot;https://yieldthought.com/post/12239282034/swapped-my-macbook-for-an-ipad&quot;&gt;bringing the iPad for remote web development&lt;/a&gt; by renting Linode as the development server. I found that it is more convenient. You don’t need to buy a newer and faster computer. You can just scale up or scale down for your needs.&lt;/p&gt;
+
+&lt;p&gt;I found a cheaper way to create the development server. I find the cheaper virtual private server (VPS) in my country like ReadyIDC, and I find the free self-hosted cloud IDE like code-server. You may feel a little confused about what code-server is.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/cdr/code-server&quot;&gt;code-server&lt;/a&gt; (or VS code in the browser) is the self-hosted cloud IDE invented by &lt;a href=&quot;https://coder.com/&quot;&gt;Coder&lt;/a&gt;. It has three advantages (from that Github page):&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Code on any device with a consistent development environment.&lt;/li&gt;
+  &lt;li&gt;Use cloud servers to speed up tests, compilations, downloads, and more.&lt;/li&gt;
+  &lt;li&gt;Preserve battery life when you’re on the go; all intensive tasks run on your server.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I find that it fits with my lifestyle. I bring the laptop or the tablet between home and the campus. I find that it is inconvenient to transfer files between these devices. I consider installation on the remote server.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-can-i-install-code-server&quot;&gt;How can I install code-server?&lt;/h2&gt;
+
+&lt;p&gt;I install code-server by running the Docker container. You can easily run the container by using this command below provided on &lt;a href=&quot;https://hub.docker.com/r/codercom/code-server&quot;&gt;the Docker hub page&lt;/a&gt; as an example.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# This will start a code-server container and expose it at http://127.0.0.1:8080.
+# It will also mount your current directory into the container as `/home/coder/project`
+# and forward your UID/GID so that all file system operations occur as your user outside
+# the container.
+#
+# Your $HOME/.config is mounted at $HOME/.config within the container to ensure you can
+# easily access/modify your code-server config in $HOME/.config/code-server/config.json
+# outside the container.
+mkdir -p ~/.config
+docker run -it --name code-server -p 127.0.0.1:8080:8080 \
+  -v &quot;$HOME/.config:/home/coder/.config&quot; \
+  -v &quot;$PWD:/home/coder/project&quot; \
+  -u &quot;$(id -u):$(id -g)&quot; \
+  -e &quot;DOCKER_USER=$USER&quot; \
+  codercom/code-server:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, you save this file and run this script. It will show that the code-server is running. You can run the code-server by typing localhost:8080 to access it. However, it is not secure. It is better to use HTTPS..&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-use-https&quot;&gt;How to use HTTPS?&lt;/h2&gt;
+
+&lt;p&gt;For me, I install Nginx and Certbot to reverse proxy to the code-server, and to get the SSL certificate from Let’s encrypt. Both are available as Docker containers. You can install, and configure it as a Docker-compose configuration file.&lt;/p&gt;
+
+&lt;p&gt;I wrote the Nginx configuration shown below as an example. Many parts are generated by Certbot.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
+    server_name &amp;lt;Your Domain Name&amp;gt;;
+
+    location / {
+      proxy_pass http://127.0.0.1:8080/;
+      proxy_set_header Host $host;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection upgrade;
+      proxy_set_header Accept-Encoding gzip;
+    }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/&amp;lt;Your Domain Name&amp;gt;/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/&amp;lt;Your Domain Name&amp;gt;/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = &amp;lt;Your Domain Name&amp;gt;) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    listen [::]:80;
+    server_name &amp;lt;Your Domain Name&amp;gt;;
+    return 404; # managed by Certbot
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After writing this configuration, restart Nginx. You will find that you can access this website as HTTPS.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;To make it easy, you can use &lt;a href=&quot;https://docs.linuxserver.io/general/swag&quot;&gt;LinuxServer SWAG Docker image&lt;/a&gt; to use Nginx and Certbot.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;I needed to have a remote development server, and I found a cheaper way to apply. I considered registering the VPS and installing code-server, Nginx, and Certbot to allow accessing code-server with HTTPS. I found it more convenient to develop from the laptop or the tablet. I do not need to install to take more spaces anymore. I can save many hours running on the laptop’s battery.&lt;/p&gt;
+
+&lt;p&gt;For anyone reading this, I recommend this way.&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Coding" /><category term="Programming" /><category term="Remote" /><category term="WFH" /><category term="Work from home" /><category term="Development" /><category term="Server" /><category term="code-server" /><category term="IDE" /><category term="Cloud" /><category term="Cloud computing" /><category term="VPS" /><summary type="html">With the development of cloud computing and the cloud-based IDE, you can use to create a remote development server. In this article, I describe how to do.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้</title><link href="https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan/" rel="alternate" type="text/html" title="จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้" /><published>2021-10-10T01:29:57+07:00</published><updated>2021-10-10T01:29:57+07:00</updated><id>https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan</id><content type="html" xml:base="https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan/">&lt;!-- wp:paragraph --&gt;
 &lt;p&gt;ช่วงที่ผ่านมา 1-2 ปีจะมีสิ่งหนึ่งที่ระบาดอยู่ในขณะนี้ และมีคนพูดถึงเรื่องนี้ในโซเชียลเป็นประจำก็คือมีสายโทรศัพท์ และ SMS เงินกู้ (รวมถึงการพนัน และอื่น ๆ แต่เราเอาเงินกู้ก่อน) เข้ามาในที่เบอร์มือถือที่เราใช้งานอยู่ในปัจจุบัน &lt;/p&gt;
 &lt;!-- /wp:paragraph --&gt;
 
@@ -1429,114 +1519,4 @@ y = -np.degrees(np.arcsin(np.sin(y)))
 
 &lt;!-- wp:paragraph --&gt;
 &lt;p&gt;สำหรับผู้อ่านที่สนใจ หรือผู้อ่านที่ต้องการทำ Social Detox และคนที่ติดโซเชียล อันนี้เราแนะนำนะ ผู้อ่านลองทำ Social Detox ได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="bias" /><category term="Confirmation bias" /><category term="detox" /><category term="Echo chamber" /><category term="Facebook" /><category term="Filter bubble" /><category term="Instagram" /><category term="Internet" /><category term="mindfulness" /><category term="MSN Messenger" /><category term="news" /><category term="social" /><category term="social media" /><category term="socialism" /><category term="twitter" /><category term="ดีท็อกซ์" /><category term="ติดโซเชียล" /><category term="ทวิตเตอร์" /><category term="อินสตาแกรม" /><category term="เฟสบุ๊ค" /><category term="โซเชียล" /><category term="ไอจี" /><summary type="html">หลังจากมีโซเชียลเข้ามาในชีวิตประจำวัน พอใช้งานไปซักพัก เราเกิดปัญหาเรื่องการติดโซเชียล ในบทความนี้จะแนะนำถึงสาเหตุ วิธีการ และผลที่ได้จากการทำ Social Detox</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/07/Social-Detox.png" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/07/Social-Detox.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เทคนิคการนำรูปออกจาก iCloud</title><link href="https://nickuntitled.com/2021/08/17/guideline-retrieving-photos-from-icloud/" rel="alternate" type="text/html" title="เทคนิคการนำรูปออกจาก iCloud" /><published>2021-08-17T23:15:43+07:00</published><updated>2021-08-17T23:15:43+07:00</updated><id>https://nickuntitled.com/2021/08/17/guideline-retrieving-photos-from-icloud</id><content type="html" xml:base="https://nickuntitled.com/2021/08/17/guideline-retrieving-photos-from-icloud/">&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ปกติเวลาใช้งานไอโฟน ไอแพด หรือแมค เราจะอัพโหลดรูปลงบนระบบ iCloud ที่เป็นบริการคลาวด์ของแอปเปิล เราก็ใช้บริการนี้มาตลอด จนกระทั่งขยายความจุเป็น 2TB ซึ่งเป็นขนาดสูงสุดที่ทางแอปเปิลอนุญาตให้เช่าเพื่อใช้บริการ (ในขณะนั้น) แต่ทีนี้พอผ่านไปซักระยะหนึ่ง เรา&lt;a href=&quot;https://nickuntitled.com/2021/05/08/upgrade-ssd-macbookair-2013/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;อัพเกรต SSD MacBook Air 11 นิ้ว รุ่นปี 2013&quot;&gt;เพิ่มพื้นที่แมคให้มีขนาด 1TB&lt;/a&gt; รวมถึงมีฮาร์ดดิกส์ภายนอกที่มีขนาด 2TB อยู่แล้ว ดังนั้นเอง เราเลยคิดว่าจะนำรูปอกจาก iCloud&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:more --&gt;
-&lt;!--more--&gt;
-&lt;!-- /wp:more --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;การนำรูปออกมาจาก iCloud ทำอย่างไรดีล่ะ? จุดนี้ทำได้ไม่ยาก มีหลายเทคนิคที่โพสในอินเตอร์เน็ต คราวนี้เอาเทคนิคที่เราใช้กันดีกว่ามีสองวิธี&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;ส่งออกรูปผ่านหน้าเว็บของแอปเปิล&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;วิธีนี้เป็นวิธีที่เราแนะนำที่สุด เพราะทำได้ง่าย ไม่ต้องทำอะไรให้ยุ่งยากแบบวิธีหลัง เทคนิคนี้ทำได้โดยไม่กี่ขั้นตอน ทำตามด้านล่างนี้ได้เลยครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราเข้าไปยังหน้า&lt;a href=&quot;https://appleid.apple.com/account/manage&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://appleid.apple.com/account/manage&quot;&gt;จัดการ Apple ID&lt;/a&gt; กรอกชื่อผู้ใช้และรหัสผ่าน เมื่อเข้าสู่ระบบเรียบร้อยแล้ว ให้เราเลื่อนหน้าจอลงไปบริเวณ Data&amp;amp;Privacy แล้วเลือกที่ Manage Your Data and Privacy&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:2953,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/08/Screen-Shot-2564-08-17-at-22.29.42-1024x493.png&quot; alt=&quot;&quot; class=&quot;wp-image-2953&quot; /&gt;&lt;figcaption&gt;หน้าการจัดการ Apple ID ให้เราเลื่อนลงมาด้านล่างจะพบหน้าจอนี้&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราจะพบหน้าให้กรอก Apple ID อีกครั้ง ให้เรากรอกชื่อผู้ใช้และรหัสผ่าน หลังจากนั้นเราจะพบหน้าจอจัดการข้อมูล (Manage Your Data) ให้เลือกบริเวณ Request a copy of your data &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:2954,&quot;width&quot;:499,&quot;height&quot;:423,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/08/Screen-Shot-2564-08-17-at-22.31.17.png&quot; alt=&quot;&quot; class=&quot;wp-image-2954&quot; /&gt;&lt;figcaption&gt;หน้าจอ Manage Your Data ให้เราเลือกที่ Request a copy of your data เพื่อส่งออกรูปจาก iCloud&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;กดแล้วเลือกข้อมูลที่เราต้องการให้เอาออกมา กรณีนี้เราเลือกให้เอารูปออกมาใช่ไหมครับ? เราเลือกที่ iCloud Photos ซึ่งทางระบบจะแจ้งว่าข้อมูลเหล่านี้ใช้ระยะเวลานานกว่าปกติ เลือกแล้วกด Continue&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:2955,&quot;width&quot;:512,&quot;height&quot;:206,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/08/Screen-Shot-2564-08-17-at-22.32.12-1024x411.png&quot; alt=&quot;&quot; class=&quot;wp-image-2955&quot; /&gt;&lt;figcaption&gt;เข้ามาหน้าจอเลือกข้อมูลที่ต้องการส่งออก เลื่อนลงมาด้านล่างจะเจอหน้าจอนี้&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;กดแล้ว เราจะตัวเลือกให้เลือกขนาดไฟล์ที่เราต้องการให้ระบบแบ่งไฟล์ตามที่กำหนดไว้ มีตั้งแต่ 1, 2, 5, 10 และ 25GB ตามลำดับ ขึ้นกับความเร็วอินเตอร์เน็ต และความสะดวกของผู้ใช้ เลือกแล้วกดที่ปุ่ม Complete Request ทางระบบจะนำรูปภาพบน iCloud เพื่อบีบอัดไฟล์ให้อยู่ในรูปแบบ zip ขั้นตอนนี้ใช้ระยะเวลาเป็นวัน ขึ้นกับขนาดของข้อมูลที่มีอยู่&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:2956,&quot;width&quot;:534,&quot;height&quot;:364,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/08/Screen-Shot-2564-08-17-at-22.33.32.png&quot; alt=&quot;&quot; class=&quot;wp-image-2956&quot; /&gt;&lt;figcaption&gt;เลือกขนาดข้อมูลที่ต้องการให้แอปเปิลแบ่งไฟล์ zip เป็นส่วน ๆ ตามขนาดทีก่ำหนดไว้&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อแอปเปิลบีบอัดไฟล์เสร็จเรียบร้อย จะแจ้งเตือนทางอีเมล เราสามารถเข้าไปดาวน์โหลดไฟล์ให้ครบได้ตามสบาย&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;ส่งออกไฟล์ผ่านโปรแกรม Photos&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนอีกวิธี เป็นวิธีที่เราทำ เนื่องจากเราเพิ่มพื้นที่ฮาร์ดดิกส์แล้ว เราเข้าไปในโปรแกรม Photos บนระบบปฏิบัติการแมคโอเอส เข้าไปที่ Perferences เราจะพบว่ามีสองแท็บในหน้าการตั้งค่า ให้เราเลือกไปยัง iCloud จากนั้นเลือกให้ดาวน์โหลดรูป Original ทั้งหมดลงเครื่องเลย (สำหรับคนที่ใช้ภาษาอังกฤษจะเขียนไว้ว่า Download Originals to this Mac)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:2958,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/08/Screen-Shot-2564-08-17-at-22.20.35.png&quot; alt=&quot;&quot; class=&quot;wp-image-2958&quot; /&gt;&lt;figcaption&gt;เลือกข้อนี้เพื่อดาวน์โหลดรูปทั้งหมดลงเครื่องแมค (ในตัวอย่างไม่ได้ใช้ iCloud)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;กดไปเรียบร้อย จากนั้นรอให้ทางโปรแกรม Photos จะดาวน์โหลดลงไปในคอมพิวเตอร์ทุกรูป แต่เราใจร้อนหน่อยนึง เลือกรูปทุกรูป จากนั้นกดส่งออกให้เป็นภาพที่ยังไม่ได้แต่งภาพออกไปยังโฟลเดอร์ที่ต้องการที่ Export -&amp;gt; Export Unmodified Original &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ขั้นตอนหลังจากนั้นจะเป็นขั้นตอนที่ใช้ระยะเวลาเยอะมาก เพราะรูปรวมกันทั้งหมด 3-4 หมื่นรูป ใช้ความจุประมาณ 140-150GB ของเราใช้อินเตอร์เน็ตผ่านทางไฟเบอร์ของ AIS ใช้ระยะเลาประมาณ​ 3-4 วันจนเสร็จ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:2959,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/08/Screen-Shot-2564-08-17-at-22.39.49.png&quot; alt=&quot;&quot; class=&quot;wp-image-2959&quot; /&gt;&lt;figcaption&gt;เลือกที่ Export Unmodified Original (ในตัวอย่างไม่มีรูปใน iCloud)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อเราส่งออกรูปทั้งหมดแล้ว เราบีบอัดไฟล์ให้อยู่ในรูปแบบ tar.gz ที่มีไฟล์แยกเป็นไฟล์ย่อยจำนวนหนึ่งที่มีขนาดประมาณ​ 5GB เราสามารถบีบอัดไฟล์แบบนี้ได้โดยพิมพ์คำสั่งในโปรแกรม Terminal โดย&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:code --&gt;
-&lt;pre class=&quot;wp-block-code&quot;&gt;&lt;code&gt;tar cvzf - &amp;lt;ตำแหน่งโฟลเดอร์ที่เราต้องการบีบอัด&amp;gt; | split -b &amp;lt;ขนาดไฟล์ที่เราต้องการให้ไฟล์บีบอัดที่แยกออกมาแต่ละไฟล์มีขนาดตามที่ต้องการ เช่น 10GB พิมพ์เป็น 1024m&amp;gt; - &amp;lt;ชื่อไฟล์บีบอัดที่เราต้องการลงท้ายด้วย .tar.gz&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- /wp:code --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ของเราต้องการบีบอัดไฟล์ที่มีชื่อโฟลเดอร์ว่า iCloud Photos ที่เราต้องการให้โปรแกรมแบ่งไฟล์บีบอัดให้แต่ละไฟล์มีขนาด 10GB ที่มีชื่อไฟล์บีบอัดที่เราต้องการว่า photos.backup.tar.gz เราพิมพ์ได้เป็นดังนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:code --&gt;
-&lt;pre class=&quot;wp-block-code&quot;&gt;&lt;code&gt;tar cvzf - iCloud\ Photos/ | split -b 1024m - photos.backup.tar.gz&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- /wp:code --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;โปรแกรมจะบีบอัดไฟล์ พร้อมกับแยกไฟล์ที่มีขนาดในแต่ละไฟล์ประมาณ​ 10GB ส่วนสัญลักษณะ \ ตามด้านช่องว่าง อันนี้เป็น Escape Character เพื่อให้ใช้งานกับชื่อโฟลเดอร์ที่มีช่องว่างครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราคัดลอกไฟล์เหล่านั้นลงไปในฮาร์ดดิกส์ภายนอก ทีนี้ เราสามารถใช้งานได้สะดวกแล้วครับ อย่างไรก็ดี เทคนิคนี้มีข้อเสียอยู่บ้างได้แก่&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:list --&gt;
-&lt;ul&gt;&lt;li&gt;ไฟล์เรียงลำดับตามตัวอักษรที่เราถ่ายรูปก็จริง แต่ไฟล์ไม่ได้อยู่ในหมวดหมู่ ทำให้ยากต่อการค้นหาไฟล์ จุดนี้เราสามารถก็อปปี้ไฟล์ให้อยู่ในโฟลเดอร์ี่ต้องการได้ แต่เรายังไม่ได้ทำไว้ ถ้ามีเวลาค่อยมาจัดการไฟล์เหล่านี้อีกทีครับ&lt;/li&gt;&lt;li&gt;เราจำเป็นต้องพิมพ์คำสั่งผ่านคอมมานไลน์ ทำให้คนที่ไม่เคยใช้คอมมานไลน์อาจจะใช้งานได้ลำบากครับ&lt;/li&gt;&lt;/ul&gt;
-&lt;!-- /wp:list --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;โดยสรุปแล้ว สองเทคนิคสามารถส่งออกรูปภาพออกมาจาก iCloud ได้เช่นกัน เพียงแต่เทคนิคแรกทำได้ง่ายกว่า และเป็นเทคนิคที่เราแนะนำครับผม ผู้อ่านสามารถนำไปทำตามได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="apple" /><category term="cloud" /><category term="Compression" /><category term="data" /><category term="download" /><category term="Export" /><category term="gzip" /><category term="harddisk" /><category term="iCloud" /><category term="iPad" /><category term="iphone" /><category term="MacBook" /><category term="macOS" /><category term="photos" /><category term="Pictures" /><category term="privacy" /><category term="storage" /><category term="tar.gz" /><category term="zip" /><category term="คลาวด์" /><category term="ดาวน์โหลด" /><category term="รูปถ่าย" /><category term="รูปภาพ" /><category term="ฮาร์ดดิสก์" /><category term="ไอคลาวด์" /><summary type="html">ปกติเราใช้อุปกรณ์แอปเปิลเราใช้งานบน iCloud แต่ทีนี้เราเพิ่มฮาร์ดดิสก์เป็น 1 TB และมีฮาร์ดดิสก์ภายนอกแล้ว ในบทความนี้ เราจะแนะนำวิธีการนำรูปออกจากบริการ iCloud</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/08/Export-iCloud-Photos.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/08/Export-iCloud-Photos.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="bias" /><category term="Confirmation bias" /><category term="detox" /><category term="Echo chamber" /><category term="Facebook" /><category term="Filter bubble" /><category term="Instagram" /><category term="Internet" /><category term="mindfulness" /><category term="MSN Messenger" /><category term="news" /><category term="social" /><category term="social media" /><category term="socialism" /><category term="twitter" /><category term="ดีท็อกซ์" /><category term="ติดโซเชียล" /><category term="ทวิตเตอร์" /><category term="อินสตาแกรม" /><category term="เฟสบุ๊ค" /><category term="โซเชียล" /><category term="ไอจี" /><summary type="html">หลังจากมีโซเชียลเข้ามาในชีวิตประจำวัน พอใช้งานไปซักพัก เราเกิดปัญหาเรื่องการติดโซเชียล ในบทความนี้จะแนะนำถึงสาเหตุ วิธีการ และผลที่ได้จากการทำ Social Detox</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/07/Social-Detox.png" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/07/Social-Detox.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
