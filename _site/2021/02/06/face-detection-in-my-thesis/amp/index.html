@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="canonical" href="https://nickuntitled.com/2021/02/06/face-detection-in-my-thesis/">
+		<title>Face Detection in my thesis - Nick Untitled</title>
+		<meta name="description" content="A Nick's Journal on my Life">
+		<meta name="keywords" content="AIartifical intelligencecervicalCROMdeep learningface detectionjavascriptprogrammingpythonrange of motionการจับภาพใบหน้าการเคลื่อนไหวงานวิจัยจาวาสคริปปัญญาประดิษฐ์ศีรษะและลำคอเขียนโปรแกรมไพทอน">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-02-06T23:28:10+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/02/06/face-detection-in-my-thesis/amp/"/>
+		<meta property="og:title" content="Face Detection in my thesis - Nick Untitled" />
+		<meta property="og:description" content="A Nick's Journal on my Life" />
+		<meta property="og:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/02/img_3418.jpg"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="Face Detection in my thesis - Nick Untitled" />
+		<meta property="twitter:description" content="A Nick's Journal on my Life" />
+		<meta property="twitter:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/02/img_3418.jpg" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+
+    
+    <style amp-custom> 
+      @charset "UTF-8";
+/* @import url('https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700&subset=latin-ext'); */
+@import url("https://fonts.googleapis.com/css2?family=Sarabun&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap");
+:root { --bg-color: #fafafa; --bg-hover-color: #ececec; --body-bg: #fff; --primary-font-color: #000; --border-color: #dadada; --link-color: #2980b9; }
+
+[data-theme="dark"] { --bg-color: #161f29; --bg-hover-color:#36404c; --body-bg: #10171e; --primary-font-color: #bfbfbf; --border-color: #6a6a6a; --link-color: #2980b9; }
+
+body { font-family: 'Sarabun', sans-serif; font-weight: 300; background: var(--body-bg); color: var(--primary-font-color); margin: 0; padding: 0; }
+
+h1, h2, h3, h4, h5, h6, strong, b { font-family: 'Prompt', sans-serif; }
+
+p { line-height: 1.75em; }
+
+.clear-nav { clear: both; }
+
+.nav-left { float: left; }
+
+.nav-right { float: right; }
+
+.container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 50%; margin-left: auto; margin-right: auto; }
+
+.profile li { display: inline; margin-right: 0.5em; }
+
+.profile li:last-child { margin-right: 0.5em; }
+
+.link-header { width: 100%; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.link-header ul { margin: 0; padding: 0; }
+
+.link-header li { display: inline; margin-right: 1em; }
+
+.post-container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 100%; margin-top: 1em; }
+
+.footer { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; padding: 5px 10px; background: var(--bg-color); border: 1px dashed var(--border-color); font-size: 12px; margin-bottom: 1em; }
+
+.post-list { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 5px 0; margin-bottom: 5px; }
+
+.post-list:last-child { margin-bottom: 1em; }
+
+.post-list .post-title { width: 100%; font-family: "Prompt", sans-serif; font-weight: 500; color: var(--link-color); margin-bottom: 0.25em; }
+
+.post-list .post-title:hover { text-decoration: underline; }
+
+.post-list .post-date { width: 20%; text-align: left; font-size: 0.75em; }
+
+.post-header { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.post-header .post-share { font-weight: 600; color: var(--primary-font-color); display: flex; justify-content: flex-end; align-items: center; }
+
+.post-header .post-date { font-weight: 600; }
+
+.post-header .post-share a { display: flex; }
+
+.aligncenter { text-align: center; }
+
+.tags-container { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 20px; margin-bottom: 20px; }
+
+.post-tag { margin-bottom: 5px; }
+
+.tags { display: flex; flex-wrap: wrap; justify-content: space-between; }
+
+.tag { background: var(--bg-color); padding: 5px 10px; margin-right: 10px; margin-bottom: 10px; display: flex; align-items: center; }
+
+.navigation { width: 100%; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.navigation .prev { width: 45%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--link-color); font-weight: 600; padding: 5px 10px; }
+
+.navigation .next { width: 45%; color: var(--link-color); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; text-align: right; padding: 5px 10px; }
+
+.pagination { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.pagination .prev { color: var(--link-color); font-weight: 600; }
+
+.pagination .next { color: var(--link-color); font-weight: 600; text-align: right; }
+
+.blog-post-header { width: 100%; font-size: 18px; margin-bottom: 0; padding: 0px; }
+
+.blog-post-header h1 { margin-bottom: 0.5em; }
+
+.blog-post-header img { margin-bottom: 1em; }
+
+.blog-post-content { width: 100%; font-size: 18px; margin-top: 0px; }
+
+.post-tag { background: var(--bg-color); color: var(--primary-font-color); padding: 5px 10px; }
+
+.profile { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 1em 0; margin-top: 20px; margin-bottom: 0; border-bottom: 1px solid var(--border-color); }
+
+.profile div { margin: 0 0 0.5em 0; }
+
+.profile div:last-child { margin: 1em 0 0 0; }
+
+.profile ul { margin: 0; padding: 0; }
+
+.profile-image-container { width: 40%; }
+
+.profile-image { width: 128px; height: 128px; border-radius: 50%; transition: transform .2s; }
+
+.profile-image:hover { transform: scale(1.05); }
+
+.profile-about { width: 100%; text-align: left; }
+
+.profile a { color: #000000; }
+
+.profile a:hover { text-decoration: none; }
+
+.font-2 { font-size: 2rem; }
+
+.font-1-5 { font-size: 1.5rem; }
+
+.font-1-2 { font-size: 1.2rem; }
+
+.font-0-8 { font-size: .8rem; }
+
+.text-right { text-align: right; }
+
+.w-100 { width: 100% !important; }
+
+a:hover { text-decoration: underline; }
+
+a { color: var(--link-color); text-decoration: none; }
+
+img { max-width: 100%; }
+
+figure { margin: 0; padding: 15px 0 15px 0; }
+
+figure iframe { width: 100%; }
+
+figcaption { margin: 0.5em 0 0 0; font-size: 1em; }
+
+blockquote { font-style: italic; padding: 5px 1em; margin: 0; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+blockquote cite { font-weight: 500; font-size: 1em; padding: 0 0 1em 0; margin: 0; }
+
+pre { font-size: 14px; max-width: 90vw; overflow: auto; }
+
+.social-icon { height: 24px; }
+
+@media (min-width: 769px) { .container { width: 70%; } }
+
+@media (min-width: 1200px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media (min-width: 1440px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media only screen and (max-width: 768px) { .container { width: 90%; } .mode:after { line-height: 22px; left: 1px; } h1 { font-size: 1.5rem; } .profile-image { width: 96px; height: 96px; } }
+
+[data-theme="dark"] .social-icon { filter: invert(100%) sepia(50%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%); }
+
+.mode { float: right; position: relative; margin: auto; width: 42px; height: 22px; background: #F1F2F4; border-radius: 20px; cursor: pointer; }
+
+.mode:after { content: "☀️"; position: absolute; top: 0; left: 4px; font-size: 14px; height: 22px; line-height: 23px; text-align: center; transition: all 0.3s ease; }
+
+.mode.active { background: #0771ca; }
+
+.mode.active:after { content: "🌛"; transform: translateX(20px); }
+
+.mode.active span { transform: translateX(0); }
+
+.mode span { position: absolute; z-index: 1; margin: 2px; display: block; width: 18px; height: 18px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transform: translateX(20px); transition: all 0.4s ease; }
+
+    </style>
+
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <link rel="alternate" type="application/rss+xml" title=" - A Nick's Journal on my Life" href="/feed.xml" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <div class="profile">
+            <div class="profile-about">
+                <div>
+                    <h2 style="margin-bottom: 0; font-weight: 700;">
+                        <a href = '/'>Nick Untitled</a>
+                    </h2>
+                </div>
+                <div>
+                    Writing as my personal diary
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-post-header">
+            <h1>Face Detection in my thesis</h1>
+        </div>
+        
+        <div class="post-header">
+            <div class="post-date">06.02.2021</div>
+            <div class="post-share">
+                Share:&nbsp; 
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/face-detection-in-my-thesis" target="_blank"><amp-img src="assets/images/icon/facebook.svg" class="social-icon" layout="responsive" width = "32" height = "32"></amp-img></a>
+                <a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/face-detection-in-my-thesis&amp;text=Face Detection in my thesis - https://nickuntitled.com/face-detection-in-my-thesis" target="_blank"><amp-img src="assets/images/icon/twitter.svg" class="social-icon" layout="responsive" width = "32" height = "32"></amp-img></a>
+            </div>
+        </div>
+        
+            <figure>
+                <img src = 'https://asset.nickuntitled.com/2021/02/img_3418.jpg' />
+            </figure>
+        	
+        <div class="blog-post-content">
+            <!-- wp:paragraph -->
+<p>ตอนนี้ธีสิสที่ทำอยู่เกี่ยวกับการวัดการเคลื่อนไหวของศีรษะและลำคอในผู้ป่วยที่เป็นมะเร็งศีรษะและลำคอที่ผ่านการทำกายภาพบำบัดที่เดิมจะให้หมอวัดองศาการเคลื่อนไหวของศีรษะและลำคอ (Cervical range of motion) แต่ทีนี้ติดปัญหาเรื่องความแม่นยำ และความน่าเชื้อถือของการวัด (reliability &amp; validity) เราจะทำเป็นตัวโปรแกรมเพื่อให้ประเมินการเคลื่อนไหวจาก webcam แทน แล้วทีนี้ขั้นแรกของเราจะต้องทำคือการใช้เทคนิคการจับภาพใบหน้า (Face detection)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+<!--more-->
+<!-- /wp:more -->
+
+<!-- wp:heading -->
+<h2>Face Detection</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":1544,"sizeSlug":"large","className":"is-style-default"} -->
+<figure class="wp-block-image size-large is-style-default"><img src="https://asset.nickuntitled.com/2021/02/img_3179-1-2.jpg?w=1024" alt="" class="wp-image-1544" /><figcaption>เทคนิคการจับภาพใบหน้า (Face Detection)</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Face detection คือเทคนิคการจับภาพใบหน้าจากภาพที่เราต้องการให้จับ โดยเทคนิคนี้มีการพัฒนามาตั้งแต่ 20-30 ปีมาก่อนแล้ว แต่ยังติดปัญหาเรื่องความแม่นยำ ประสิทธิภาพในการทำงานเวลาที่เจอสภาพแสง กล้อง ภาพใบหน้าที่มีแว่นตา แมสบัง และประสิทธิภาพของคอมพิวเตอร์ที่ยังไม่ดีพอ </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เทคนิคที่สามารถใช้งานได้จริงในยุคแรก ๆ ก็ได้รับการพัฒนาใน Paul Viola กับ Michael Jones ในบทความงานวิจัยที่มีชื่อว่า <a rel="noreferrer noopener" href="https://ieeexplore.ieee.org/document/937709" target="_blank">Robust Real-time Face Detection</a>  หลังจากนั้นมีการพัฒนาเทคนิคการจับภาพให้ดีขึ้นมาเรื่อย ๆ ได้แก่ <a rel="noreferrer noopener" href="https://ieeexplore.ieee.org/document/1467360" target="_blank">Histogram of Oriented Graidents</a>, <a rel="noreferrer noopener" href="https://ieeexplore.ieee.org/document/5255236" target="_blank">Deformable Part Model</a> และ <a rel="noreferrer noopener" href="https://vision.ics.uci.edu/papers/ZhuR_CVPR_2012/ZhuR_CVPR_2012.pdf" target="_blank">Tree-based structure model</a> เป็นต้น </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ต่อมาหลังจากช่วงทศวรรษ 2010s เป็นต้นไป หลังจากการพัฒนาเทคนิคการเรียนรู้ Deep learning ของ <a rel="noreferrer noopener" href="https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html" target="_blank">AlexNet</a> ที่ทดสอบภาพจากฐานข้อมูล ImageNet ให้ประสิทธิภาพที่ดี ร่วมกับประสิทธิภาพของคอมพิวเตอร์ที่ดีขึ้น Deep learning จึงเป็นเทคนิคที่นำมาใช้พัฒนาเทคนิคการจับภาพใบหน้าที่แม่นยำมากขึ้นเรื่อย ๆ เมื่อเทียบกับเทคนิคในสมัยก่อน จนล่าสุดงานที่เราทำก็เอาเทคนิคนี้มาใช้ซึ่งเทคนิคนี้เรียกว่า RetinaFace</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>RetinaFace</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":1536,"sizeSlug":"large"} -->
+<figure class="wp-block-image size-large"><img src="https://nicknuntitled.files.wordpress.com/2021/02/img_0997.jpg?w=1024" alt="" class="wp-image-1536" /><figcaption>RetinaFace จากบทความ RetinaFace: Single-stage Dense Face Localisation in the Wild</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>RetinaFace เป็นเทคนิคการจับภาพใบหน้าเทคนิคหนึ่งที่ได้รับการตีพิมพ์ในงาน CVPR ปี 2020 ซึ่งเป็นเทคนิคที่ได้รับการยอมรับว่ามีความแม่นยำที่สูง ทำงานได้ดีกับสภาวะแสง กล้อง ภาพใบหน้าที่มีแว่นตา แมสบัง สำหรับคนที่ต้องการอ่านบทความงานวิจัยเพิ่มเติมค้นหาได้จากกูเกิ้ลได้เลยครับ โดยชื่อผลงานวิจัยชิ้นนี้มีชื่อว่า <a rel="noreferrer noopener" href="https://arxiv.org/abs/1905.00641" target="_blank">RetinaFace: Single-stage Dense Face Localisation in the Wild</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เราเลยเอาเทคนิคนี้มาใช้ทดสอบเบื้องต้นก่อน (Preliminary Study) ว่าแม่นยำตามที่บทความพิมพ์จริงไหม โดยเอาตัวโค้ดที่ทางผู้วิจัยมาทดลองเรียนรู้ผ่านคอมพิวเตอร์ (training) แล้วเอามาทดสอบผ่านข้อมูล (dataset) ที่เผยแพร่บนอินเตอร์เน็ตได้แก่ WIDERFACE, 300W_LP และ BIWI kinect dataset พบว่ามีความแม่นยำที่สูง (ประมาณ 94-95% ส่วน 300W_LP ทดสอบแล้วได้ความแม่นยำประมาณ 98-99%)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Development of Application</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":1542,"sizeSlug":"large"} -->
+<figure class="wp-block-image size-large"><a href="https://github.com/scijs/ndarray"><img src="https://asset.nickuntitled.com/2021/02/img_0979-1.png?w=1024" alt="" class="wp-image-1542" /></a><figcaption>เขียนโค้ดภาษา JavaScript</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>จากผลที่ได้เลยเอาเทคนิคนี้ที่เดิมพัฒนาอยู่ในภาษาไพทอนซึ่งเป็นภาษาที่นิยมในด้าน Data Science, AI และมีเครื่องมือช่วยเยอะมาก ได้แก่ PyTorch, Tensorflow, Caffe, ONNZ, numpy เป็นต้น มาพัฒนาในรูปแบบภาษา JavaScript ซึ่งมีข้อแตกต่างจากไพทอนอยู่พอสมควรเนื่องจากมันไม่มีเครื่องมือแบบเดียวกันที่มีในไพทอน เลยลองหาในเน็ตก็เจอว่ามันมีเครื่องมือที่เอาใช้ได้เช่น <a rel="noreferrer noopener" href="https://www.tensorflow.org/js" target="_blank">Tensorflow.js</a>, <a rel="noreferrer noopener" href="https://microsoft.github.io/onnxjs-demo" target="_blank">ONNX.js</a>, <a rel="noreferrer noopener" href="https://github.com/scijs/ndarray" target="_blank">ndarray</a> โดยลักษณะตัวเครื่องมือที่ใช้คล้ายกันกับไพทอน แต่ลักษณะการเขียนโค้ดที่แตกต่างกันออกไป ตัวอย่างเช่น</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>คำสั่งใน Numpy ทั้งหลายแหล่กับตัวเครื่องมือ Ndarray.js ก็ไม่เหมือนกัน ใช้ +,-,*,/ กับตัวแปร ndarray โดยตรงไม่ได้ ต้องทำผ่าน Ndarray ops</li><li>คำสั่งใน Tensorflow.js คล้ายกันกับ Tensorflow ในไพทอน แต่ไม่มีเครื่องมือ Keras ให้ในตัว Tensorflow.js </li><li>เทคนิค deep learning ที่เอามาแปลงให้ใช้กับตัว Tensorflow.js บางเทคนิคที่ซับซ้อนมาก ๆ อาจจะใช้งานตรง ๆ ไม่ค่อยได้เท่าไร พอแปลงมาแล้วทดลองให้จับภาพใบหน้าดูพบว่าตัวเครื่องมือไม่รู้จัก layer ที่ได้เขียนขึ้นมาใหม่ในไพทอน ได้แก่ Feature Pyramids Network</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>เมื่อเลือกเครื่องมือตามที่กล่าวไว้ข้างต้นแล้วเอามาเขียนดู ก็พบว่าทำงานได้อยู่ ส่วนผลที่ได้ก็ตามภาพ แต่ยังติดเรื่องประสิทธิภาพในการทำงานที่ยังทำงานช้าไปหน่อย เนื่องจากตัวโค้ดให้ซีพียูประมวลผล ถ้าปรับแต่งให้ใช้งานการ์ดจอแทนจะทำให้ตัวโปรแกรมจับภาพใบหน้าได้เร็วขึ้นกว่าเดิม เมื่อทำงานได้เร็วขึ้นกว่าเดิม เราก็จะเอามาใช้กับตัวเว็บแคมเพื่อให้ทำงานแบบเรียลไทม์ได้เลย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":1543,"sizeSlug":"large"} -->
+<figure class="wp-block-image size-large"><img src="https://nickuntitled.com/2021/02/2021-02-06.png?w=1024" alt="" class="wp-image-1543" /><figcaption>ผลที่ได้ตามภาพ</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>ปล. ภาพหน้าปกเอามาจาก<a href="https://en.m.wikipedia.org/wiki/Face_detection">หน้านี้ในวิกิพีเดีย</a></p>
+<!-- /wp:paragraph -->
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

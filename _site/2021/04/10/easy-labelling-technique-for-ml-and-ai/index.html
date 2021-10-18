@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>วิธีการ Label ภาพเพื่อสร้างฐานข้อมูลใช้ในงาน ML/AI ขึ้นมาเองอย่างง่าย - Nick Untitled</title>
+		<meta name="description" content="<!-- wp:paragraph -->
+<p>ปกติเวลาเราเรียนวิชาที่เกี่ยวกับปัญญาประดิษฐ์อย่างเช่น Machine Learning หรือ Deep Learning เราจะได้ยินคำว่า Dataset (หรือเรียกประมาณว่าเป็นฐานข้อมูล) กันบ่อย ๆ ในเปเปอร์งานวิจัย ในหนังสือ อินเตอร์เน็ต หรืออื่น ๆ แต่ฐานข้อมูลที่มีให้ก็มีรูปเยอะหรือน้อยก็ขึ้นกับผู้จัดทำฐานข้อมูลขึ้นมาเอง</p>
+<!-- /wp:paragraph -->
+">
+		<meta name="keywords" content="artifical intelligence,face detection,label,machine learning,object detection,photos,technique,จับวัตถุในภาพ,จับใบหน้า,เครื่องมือ,เทคนิค,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-04-10T17:54:53+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/04/10/easy-labelling-technique-for-ml-and-ai/"/>
+		<meta property="og:title" content="วิธีการ Label ภาพเพื่อสร้างฐานข้อมูลใช้ในงาน ML/AI ขึ้นมาเองอย่างง่าย - Nick Untitled" />
+		<meta property="og:description" content="<!-- wp:paragraph -->
+<p>ปกติเวลาเราเรียนวิชาที่เกี่ยวกับปัญญาประดิษฐ์อย่างเช่น Machine Learning หรือ Deep Learning เราจะได้ยินคำว่า Dataset (หรือเรียกประมาณว่าเป็นฐานข้อมูล) กันบ่อย ๆ ในเปเปอร์งานวิจัย ในหนังสือ อินเตอร์เน็ต หรืออื่น ๆ แต่ฐานข้อมูลที่มีให้ก็มีรูปเยอะหรือน้อยก็ขึ้นกับผู้จัดทำฐานข้อมูลขึ้นมาเอง</p>
+<!-- /wp:paragraph -->
+ " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2021/04/Adobe_Post_20210410_1754300.8566446092098375.png"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="วิธีการ Label ภาพเพื่อสร้างฐานข้อมูลใช้ในงาน ML/AI ขึ้นมาเองอย่างง่าย - Nick Untitled" />
+		<meta property="twitter:description" content="<!-- wp:paragraph -->
+<p>ปกติเวลาเราเรียนวิชาที่เกี่ยวกับปัญญาประดิษฐ์อย่างเช่น Machine Learning หรือ Deep Learning เราจะได้ยินคำว่า Dataset (หรือเรียกประมาณว่าเป็นฐานข้อมูล) กันบ่อย ๆ ในเปเปอร์งานวิจัย ในหนังสือ อินเตอร์เน็ต หรืออื่น ๆ แต่ฐานข้อมูลที่มีให้ก็มีรูปเยอะหรือน้อยก็ขึ้นกับผู้จัดทำฐานข้อมูลขึ้นมาเอง</p>
+<!-- /wp:paragraph -->
+ " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/04/Adobe_Post_20210410_1754300.8566446092098375.png" />
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+<div class="container">
+	<div class="profile">
+		<div class="profile-about">
+			<div>
+				<h2 style="margin-bottom: 0; font-weight: 700;">Nick Untitled</h2>
+			</div>
+			<div>
+				Writing as my personal diary
+			</div>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+			<div>
+				<ul>
+				<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+				
+				<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://instagram.com/nicknznick' target="_blank"><img src="assets/images/icon/instagram.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a>
+				<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+<div class="blog-post-header">
+	<h1>วิธีการ Label ภาพเพื่อสร้างฐานข้อมูลใช้ในงาน ML/AI ขึ้นมาเองอย่างง่าย</h1>
+</div>
+
+<div class="post-header">
+	<div class="post-date">10.04.2021</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/easy-labelling-technique-for-ml-and-ai" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/easy-labelling-technique-for-ml-and-ai&amp;text=วิธีการ Label ภาพเพื่อสร้างฐานข้อมูลใช้ในงาน ML/AI ขึ้นมาเองอย่างง่าย - https://nickuntitled.com/easy-labelling-technique-for-ml-and-ai" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+	<figure>
+		<img src = 'https://asset.nickuntitled.com/2021/04/Adobe_Post_20210410_1754300.8566446092098375.png' />
+	</figure>
+	
+<div class="blog-post-content">
+	<!-- wp:paragraph -->
+<p>ปกติเวลาเราเรียนวิชาที่เกี่ยวกับปัญญาประดิษฐ์อย่างเช่น Machine Learning หรือ Deep Learning เราจะได้ยินคำว่า Dataset (หรือเรียกประมาณว่าเป็นฐานข้อมูล) กันบ่อย ๆ ในเปเปอร์งานวิจัย ในหนังสือ อินเตอร์เน็ต หรืออื่น ๆ แต่ฐานข้อมูลที่มีให้ก็มีรูปเยอะหรือน้อยก็ขึ้นกับผู้จัดทำฐานข้อมูลขึ้นมาเอง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ส่วนของเราเป็นงานเกี่ยวกับการจับภาพใบหน้า และการจับภาพการเคลื่อนไหวของศีรษะและลำคอ ซึ่งใช้ฐานข้อมูลของภาพที่เผยแพร่เยอะมากเลย ตั้งแต่ WIDERFACE, 300W_LP หรืออื่น ๆ แต่อย่างไรก็ดี มีอีกงานที่รุ่นน้องที่แล็ปทำอยู่ก็เป็นงานเกี่ยวกับการวินิจฉัยโรคผิวหนังซึ่งมีฐานข้อมูลสาธารณะไม่เยอะเท่าไรนัก แต่เรามีรูปภาพอยู่ในมือเยอะมากแล้วจะทำอย่างไรดี</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+<!--more-->
+<!-- /wp:more -->
+
+<!-- wp:paragraph -->
+<p>เทคนิคการสร้างฐานข้อมูลเรียกว่าการ Labeling ภาพ ซึ่งเป็นการกำหนดภาพรูปนั้นว่ามีตำแหน่งวัตถุในภาพอยู่ที่ไหน ในภาพบริเวณที่กำหนดไว้เป็นอะไร หรือบอกตรง ๆ ว่าภาพนั้นเป็นภาพอะไร หรืออื่น ๆ ซึ่งมีหลายเทคนิค อาจจะเป็นการเขียนลงในไฟล์ข้อความผ่าน Notepad, VIM หรืออื่น ๆ ฟังแล้วดูยุ่งยากไปหน่อย แต่สิ่งที่ดีกว่านั้นก็คือใช้โปรแกรมช่วย Labeling ภาพ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>โปรแกรมที่เราเคยใช้ก็เป็น <strong>Universal Data Tool</strong> โปรแกรมนี้เป็นโปแกรมฟรีที่สามารถ Labeling ภาพตามที่เราต้องการได้ แต่ตัวโปรแกรมนี้ทำได้มากกว่านั้นก็คือสามารถ Labeling ข้อความ เสียง วิดีโอได้อีกด้วย แถมใช้ง่ายอีก ว่าแต่เราจะเริ่มต้นอย่างไรดีล่ะ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เริ่มได้ง่าย อย่างแรกคือดาวน์โหลดโปรแกรมก่อน เราสามารถดาวน์โหลดได้ใน<a href="https://universaldatatool.com/" target="_blank" rel="noreferrer noopener" title="https://universaldatatool.com/">เว็บของตัวโปรแกรมเอง</a>ได้เลย จากนั้นติดตั้งเสร็จเรียบร้อย หลังจากนั้นเริ่มใช้งานโปรแกรมก่อน</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ก่อนอื่น เปิดโปรแกรมก่อน จากนั้นเลือก New File </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2016,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/2021-04-08.png" alt="" class="wp-image-2016" /><figcaption>หน้าแรกของโปรแกรม</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เข้ามาหน้าจอนี้แล้วเลือกชนิดของข้อมูลที่เราต้องการใช้งาน ถ้าต้องการทำแนวจับภาพใบหน้า หรือจับภาพวัตถุ ก็เลือก Object Segmentation แต่ถ้าต้องการแยกว่าภาพนี้เป็นภาพอะไรก็เลือก Image Classification ส่วนรายละเอียดอื่น ๆ ศึกษาจากเว็บได้ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2017,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/2021-04-08-2.png" alt="" class="wp-image-2017" /><figcaption>เลือกชนิดข้อมูลที่เราต้องการ Labeling</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เมื่อเลือกชนิดข้อมูลแล้ว จากนั้นตั้งค่าก่อนว่าจะ Label ข้อมุลอย่างไร ในภาพ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>บรรทัดแรกเราต้องการ Label ข้อมูลที่ใช้ในการจับภาพวัตถุแบบทั่ว ๆ ไปที่จับภาพเป็นสี่เหลี่ยม ก็เลือกที่ Bounding box </li><li>บรรทัดต่อมาที่บอกว่าต้องการให้ Label หลายจุดในรูปหรือไม่ เลือก Yes </li><li>บรรทัดที่สามจะถามว่า เราสามารถ Label ให้พื้นที่ที่เราวาดมี label หลายชนิดในพื้นที่เดียวกันหรือไม่ ตอบไม่ </li><li>บรรทัดล่างสุดกำหนด Label ว่าจะให้บริเวณที่เรากำหนดเป็นอะไร อย่างเช่นข้อมูลจับภาพใบหน้าก็เป็น face/non-face เป็นต้น</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:image {"align":"center","id":2018,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/2021-04-08-5.png" alt="" class="wp-image-2018" /><figcaption>ตั้งค่าการ Labeling</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เลือกเสร็จแล้ว จากนั้นก็กดบริเวณแถวที่สองจากด้านซ้าย พร้อมกับเลือกแท็บ import จากนั้นเลือกว่าเราจะนำเข้าภาพจากไหน เช่นเอาภาพจากอินเตอร์เน็ต จากโฟลเดอร์ทั่ว ๆ ไป จากไฟล์วิดีโอในยูทูป ในที่นี้เลือกจากโฟลเดอร์ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2020,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/2021-04-08-4.png" alt="" class="wp-image-2020" /><figcaption>ตั้งค่าการนำเข้าภาพว่านำเข้าจากไหน</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>ต่อมาเราเลือกไอคอนแถวที่สามบริเวณด้านซ้าย จากนั้นเลือกรูปที่เราต้องการ Label ของเราเลือกรูปแรกก่อน</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2021,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/2021-04-08-8.png" alt="" class="wp-image-2021" /><figcaption>เลือกรูปที่ต้องการ Label</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เลือกปุ๊บ เรากำหนดพื้นที่ที่เราต้องการเลือกบริเวณที่เป็นรูปสี่เหลี่ยมด้านซ้าย จากนั้นวาดกรอบรูปตามที่เราต้องการ และเลือกว่าพื้นที่ในภาพเป็นอะไร ตัวอย่างเช่นในภาพเป็น face</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":2030,"sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://asset.nickuntitled.com/2021/04/2021-04-12.png" alt="" class="wp-image-2030" /><figcaption>ตัวอย่างการ Label ภาพครับ</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เมื่อ Label เสร็จเรียบร้อย เรากดไปที่ไอคอนแถวที่ห้าทางฝั่งซ้าย จากนั้นเลือกว่าจะดาวน์โหลดฐานข้อมูลเป็นแบบไหน เราเลบือกว่าเป็นแบบ CSV ที่เปิดบน Excel ได้ หรือเลือกเป็นไฟล์ JSON ก็ได้เช่นกัน แต่ถ้ายังไม่ต้องการส่งออกภาพ เราเลือก Save As ที่เมนูไฟล์ได้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":2031,"sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://asset.nickuntitled.com/2021/04/2021-04-12-1.png" alt="" class="wp-image-2031" /><figcaption>การส่งออกฐานข้อมูลภาพว่าจะส่งแบบไหน</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>โดยสรุปแล้ว เครื่องมือ Universal Data Tool เป็นเครื่องมือที่ใช้ในการ Labeling ภาพที่ทำได้ง่าย ไม่ยุ่งยากแบบโปรแกรมอื่น แถมฟรีอีก สำหรับคนที่สนใจสามารถดาวน์โหลดมาใช้ได้นะครับ</p>
+<!-- /wp:paragraph -->
+
+</div>
+<div class="tags-container">
+	
+		<a href="https://nickuntitled.com/tags/#artifical+intelligence" class="post-tag">artifical intelligence</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#face+detection" class="post-tag">face detection</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#label" class="post-tag">label</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#machine+learning" class="post-tag">machine learning</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#object+detection" class="post-tag">object detection</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#photos" class="post-tag">photos</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#technique" class="post-tag">technique</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%88%E0%B8%B1%E0%B8%9A%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%96%E0%B8%B8%E0%B9%83%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%9E" class="post-tag">จับวัตถุในภาพ</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%88%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2" class="post-tag">จับใบหน้า</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%A1%E0%B8%B7%E0%B8%AD" class="post-tag">เครื่องมือ</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%80%E0%B8%97%E0%B8%84%E0%B8%99%E0%B8%B4%E0%B8%84" class="post-tag">เทคนิค</a>
+	
+</div>
+<div class="navigation">
+	
+		<a class="prev" href="/2021/04/02/power-supply-wattage-calculation/">< Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ</a>
+	 
+	<a class="next" href="/2021/04/20/virtual-run-1st-time/">ลงงานวิ่ง Virtual Run ครั้งแรก ></a>
+
+</div>
+	<div class="footer">
+		<span>Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'><b>Privacy Policy</b></a></span>
+	</div>
+</div>
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>

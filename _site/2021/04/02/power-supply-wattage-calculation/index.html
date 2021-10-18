@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ - Nick Untitled</title>
+		<meta name="description" content="<!-- wp:paragraph -->
+<p>เกือบทุก ๆ วันเราจะเจอโพสในกรุ๊ปไอทีแห่งหนึ่งจะมีคนถามเรื่องสเปคคอมพิวเตอร์เท่านี้ ใช้วัตต์เท่าไรดีครับ ซึ่งถามแบบนี้ก็บอกยากนะ เพราะบอกมาโต้ง ๆ ซะขนาดนี้ถ้าคิดคำนวณในใจคงคำนวณกันไม่ไหวแน่นอน แถมมีคนถามเป็นนี้เป็นสิบ ๆ โพสในกรุ๊ปนั้นอีก ถ้ามีเว็บคำนวณวัตต์ที่จำเป็นก็ดีสินะ ซึ่งมันมีจริง</p>
+<!-- /wp:paragraph -->
+">
+		<meta name="keywords" content="calculation,calculator,computer,electricity,power supply,PSU,watt,การคำนวณ,วัตต์,แหล่งจ่ายไฟ,ไฟฟ้า,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-04-02T11:56:56+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/04/02/power-supply-wattage-calculation/"/>
+		<meta property="og:title" content="Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ - Nick Untitled" />
+		<meta property="og:description" content="<!-- wp:paragraph -->
+<p>เกือบทุก ๆ วันเราจะเจอโพสในกรุ๊ปไอทีแห่งหนึ่งจะมีคนถามเรื่องสเปคคอมพิวเตอร์เท่านี้ ใช้วัตต์เท่าไรดีครับ ซึ่งถามแบบนี้ก็บอกยากนะ เพราะบอกมาโต้ง ๆ ซะขนาดนี้ถ้าคิดคำนวณในใจคงคำนวณกันไม่ไหวแน่นอน แถมมีคนถามเป็นนี้เป็นสิบ ๆ โพสในกรุ๊ปนั้นอีก ถ้ามีเว็บคำนวณวัตต์ที่จำเป็นก็ดีสินะ ซึ่งมันมีจริง</p>
+<!-- /wp:paragraph -->
+ " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2021/04/Adobe_Post_20210402_1119490.8829396410518997.png"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ - Nick Untitled" />
+		<meta property="twitter:description" content="<!-- wp:paragraph -->
+<p>เกือบทุก ๆ วันเราจะเจอโพสในกรุ๊ปไอทีแห่งหนึ่งจะมีคนถามเรื่องสเปคคอมพิวเตอร์เท่านี้ ใช้วัตต์เท่าไรดีครับ ซึ่งถามแบบนี้ก็บอกยากนะ เพราะบอกมาโต้ง ๆ ซะขนาดนี้ถ้าคิดคำนวณในใจคงคำนวณกันไม่ไหวแน่นอน แถมมีคนถามเป็นนี้เป็นสิบ ๆ โพสในกรุ๊ปนั้นอีก ถ้ามีเว็บคำนวณวัตต์ที่จำเป็นก็ดีสินะ ซึ่งมันมีจริง</p>
+<!-- /wp:paragraph -->
+ " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/04/Adobe_Post_20210402_1119490.8829396410518997.png" />
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+<div class="container">
+	<div class="profile">
+		<div class="profile-about">
+			<div>
+				<h2 style="margin-bottom: 0; font-weight: 700;">Nick Untitled</h2>
+			</div>
+			<div>
+				Writing as my personal diary
+			</div>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+			<div>
+				<ul>
+				<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+				
+				<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://instagram.com/nicknznick' target="_blank"><img src="assets/images/icon/instagram.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a>
+				<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+<div class="blog-post-header">
+	<h1>Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ</h1>
+</div>
+
+<div class="post-header">
+	<div class="post-date">02.04.2021</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/power-supply-wattage-calculation" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/power-supply-wattage-calculation&amp;text=Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ - https://nickuntitled.com/power-supply-wattage-calculation" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+	<figure>
+		<img src = 'https://asset.nickuntitled.com/2021/04/Adobe_Post_20210402_1119490.8829396410518997.png' />
+	</figure>
+	
+<div class="blog-post-content">
+	<!-- wp:paragraph -->
+<p>เกือบทุก ๆ วันเราจะเจอโพสในกรุ๊ปไอทีแห่งหนึ่งจะมีคนถามเรื่องสเปคคอมพิวเตอร์เท่านี้ ใช้วัตต์เท่าไรดีครับ ซึ่งถามแบบนี้ก็บอกยากนะ เพราะบอกมาโต้ง ๆ ซะขนาดนี้ถ้าคิดคำนวณในใจคงคำนวณกันไม่ไหวแน่นอน แถมมีคนถามเป็นนี้เป็นสิบ ๆ โพสในกรุ๊ปนั้นอีก ถ้ามีเว็บคำนวณวัตต์ที่จำเป็นก็ดีสินะ ซึ่งมันมีจริง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+<!--more-->
+<!-- /wp:more -->
+
+<!-- wp:paragraph -->
+<p>แต่ก่อนที่จะเข้าไปถึงการคำนวณวัตต์ เรามาพูดถึงตัว Power supply ก่อน ตัว Power supply หรือเรียกประมาณว่าตัวจ่ายไฟเป็นอุปกรณ์ชิ้นหนึ่งที่อยู่ในคอมพิวเตอร์ (ไม่จำกัดว่าต้องเป็นคอมพิวเตอร์ส่วนบุคคล เซิร์ฟเวอร์ก็มี หรืออุปกรณ์ฝังตัวต่าง ๆ ก็มีเช่นกัน) ทำหน้าที่จ่ายพลังงานไฟฟ้าให้กับอุปกรณ์ภายในคอมพิวเตอร์นั้น ๆ โดยแปลงจากกระแสสลับ (AC) ไฟฟ้าที่ 220V (หรือน้อยกว่า) เป็นกระแสตรง อุปกรณ์ชิ้นนี้สำคัญมาก แต่ก็มีคนที่ไม่ได้ใส่ใจจุดนี้มากนัก เราจะพบปัญหาอย่างเช่นไฟไม่พอ คอมดับไปเอง หรือทำงานได้ไม่เต็มที่</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>แล้วจะทราบได้อย่างไรว่าต้องใช้ไฟเท่าไรดี?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ทำได้ง่ายมาก สมัยนี้มีเว็บที่ช่วยคำนวณกระแสไฟที่จำเป็นต่อการใช้งานอุปกรณ์ในคอมพิวเตอร์แล้ว แต่คงไม่ถึงขั้น 100% อย่างไรก็ดีเราสามารถเอามาเป็นแนวทางได้ว่าเราควรจะซื้อตัวจ่ายไฟขั้นต่ำเท่าไร เว็บพวกนี้หาง่ายมาก แค่พิมพ์ Power supply calculator ในเว็บค้นหา อย่างเช่นกูเกิล เราจะพบเว็บพวกนี้ขึ้นเต็มไปหมดเลย แต่เท่าที่หาดูก็มีที่แนะนำได้แก่ เว็บ <a rel="noreferrer noopener" title="https://outervision.com/power-supply-calculator" href="https://outervision.com/power-supply-calculator" target="_blank">Outervision</a> เว็บนี้มีหลายเว็บแนะนำ รวมถึง <a rel="noreferrer noopener" title="https://www.extremeit.com/psu-outervision-pc/" href="https://www.extremeit.com/psu-outervision-pc/" target="_blank">Extreme IT</a> ต่อมาเว็บของผู้ผลิตเองได้แก่เว็บ <a rel="noreferrer noopener" title="https://www.coolermaster.com/power-supply-calculator/" href="https://www.coolermaster.com/power-supply-calculator/" target="_blank">Coolermaster</a> หรือ <a rel="noreferrer noopener" title="https://seasonic.com/wattage-calculator" href="https://seasonic.com/wattage-calculator" target="_blank">Seasonic</a> ซึ่งทั้งสองจะแนะนำรุ่นของตัวจ่ายไฟได้เลย ทำให้ง่ายต่อผู้บริโภคที่จะซื้อเอาไปประกอบคอม รวมถึงเปลี่ยนตัวจ่ายไฟได้ในกรณีที่อันเก่ามีปัญหา หรือระเบิดไปนะแหละฮะ </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2009,"width":600,"height":373,"sizeSlug":"large"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/04/image_editor_output_image81673946-1617339363438.jpg" alt="" class="wp-image-2009" /><figcaption>ตัวอย่างเว็บครับ</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>แต่อย่างไรก็ดี เวลาซื้อตัวจ่ายไฟ เราควรจะดูว่าอุปกรณ์ชิ้นนี้มีคุณภาพแค่ไหน ทำงานได้ดีไหม อันนี้เราเอาชื่อรุ่นที่แนะนำ ไปค้นหาในเน็ตจะพบรีวิวการใช้งานอยู่พอสมควร ไม่ว่าจะเป็นภาษาไทย หรือภาษาต่างประเทศ (ส่วนใหญ่ก็เป็นอังกฤษ) จะบอกหมดเลย แค่เราตัดสินใจตามงบประมาณ และตามงานที่เราใช้ว่าต้องใช้เท่าไรล่ะฮะ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ขอให้ผู้อ่านสนุกกับการเลือกอุปกรณ์เอาไปประกอบคอมให้ใช้ได้ดี และไม่มีปัญหานะครับผม ^^</p>
+<!-- /wp:paragraph -->
+
+</div>
+<div class="tags-container">
+	
+		<a href="https://nickuntitled.com/tags/#calculation" class="post-tag">calculation</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#calculator" class="post-tag">calculator</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#computer" class="post-tag">computer</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#electricity" class="post-tag">electricity</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#power+supply" class="post-tag">power supply</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#PSU" class="post-tag">PSU</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#watt" class="post-tag">watt</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%93" class="post-tag">การคำนวณ</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%95%E0%B9%8C" class="post-tag">วัตต์</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B9%88%E0%B8%87%E0%B8%88%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%84%E0%B8%9F" class="post-tag">แหล่งจ่ายไฟ</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2" class="post-tag">ไฟฟ้า</a>
+	
+</div>
+<div class="navigation">
+	
+		<a class="prev" href="/2021/03/27/customize-node-red-module-for-yourself/">< เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ</a>
+	 
+	<a class="next" href="/2021/04/10/easy-labelling-technique-for-ml-and-ai/">วิธีการ Label ภาพเพื่อสร้างฐานข้อมูลใช้ในงาน ML/AI ขึ้นมาเองอย่างง่าย ></a>
+
+</div>
+	<div class="footer">
+		<span>Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'><b>Privacy Policy</b></a></span>
+	</div>
+</div>
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>
