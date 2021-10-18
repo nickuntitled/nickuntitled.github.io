@@ -172,6 +172,12 @@ server {
   <p>To make it easy, you can use <a href="https://docs.linuxserver.io/general/swag">LinuxServer SWAG Docker image</a> to use Nginx and Certbot.</p>
 </blockquote>
 
+<h2 id="update">Update</h2>
+
+<p>After posting this post on Twitter, there is a Twitter account suggest me to install <a href="https://www.gitpod.io/blog/openvscode-server-launch">OepnVSCode Server on the Gitpod’s repo</a>. I install, and use in my own VPS server. I found that it is better than code-server. I don’t need to use the apt-get command to install, and I don’t need to config in the config.yml file like code-server anymore.</p>
+
+<p>However, one thing you should consider is security. I do three ways. First, I choose to apply Nginx for reverse proxy as shown above, but you have to change the port from 8080 to 3000. Second, I apply authentication on the Nginx side. Third, I use HTTPS instead of HTTP to make my code environment more secure.</p>
+
 <h2 id="summary">Summary</h2>
 
 <p>I needed to have a remote development server, and I found a cheaper way to apply. I considered registering the VPS and installing code-server, Nginx, and Certbot to allow accessing code-server with HTTPS. I found it more convenient to develop from the laptop or the tablet. I do not need to install to take more spaces anymore. I can save many hours running on the laptop’s battery.</p>
