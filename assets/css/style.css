@@ -127,15 +127,6 @@ strong, b {
   margin-right: auto;
 }
 
-.profile li {
-  display: inline;
-  margin-right: 0.5em;
-}
-
-.profile li:last-child {
-  margin-right: 0.5em;
-}
-
 .link-header{
   width: 100%; 
   justify-content: space-between; 
@@ -224,7 +215,7 @@ strong, b {
 .post-list .post-title{
   width: 100%; 
   font-family: "Anakotmai", sans-serif;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 14px;
   color: var(--link-color);
   margin-bottom: 0.5em;
@@ -315,7 +306,7 @@ strong, b {
 .blog-post-header {
   width: 100%;
   font-size: 18px;
-  margin: 1em 0 0em 0;
+  margin: 1.5em 0 0em 0;
   padding: 0px;
   font-weight: 500;
 }
@@ -339,6 +330,13 @@ strong, b {
 
 .blog-post-content p {
   margin: 0.5em 0 0.5em 0;
+  line-height: 1.75em;
+  padding: 0;
+}
+
+
+.blog-post-content p:last-child {
+  margin: 0.5em 0 2em 0;
   line-height: 1.75em;
   padding: 0;
 }
@@ -414,6 +412,12 @@ strong, b {
 
 .post-tag{background: var(--body-bg); border: 1px solid var(--border-color); color:var(--primary-font-color); padding: 5px 10px; margin: 0.25em; }
 .post-tag:hover { background: var(--bg-hover-color); }
+
+.page-header {
+  padding: 1em;
+  border-bottom: 1px solid var(--border-color);  
+}
+
 .profile{
   width: 100%; 
   display: flex; 
@@ -438,6 +442,11 @@ strong, b {
 .profile ul {
   margin: 0;
   padding: 0;
+}
+
+.profile li {
+  display: inline;
+  margin: 0 0.25em;
 }
 
 .profile-image-container{width: 40%;}
@@ -521,7 +530,7 @@ tbody td:last-child {
 
   .footer span .go_left {
     justify-content: flex-start;
-    padding: 0 2em 0 2em;
+    padding: 0 0 0 2em;
     width: 50%;
   }
   
