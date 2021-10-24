@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="canonical" href="https://nickuntitled.com/2021/06/16/technique-software-development-on-surface-pro-x/">
+		<title>วิธีพัฒนาแอพลิเคชันบน Surface Pro X - Nick Untitled</title>
+		<meta name="description" content="A Nick's Journal on my Life">
+		<meta name="keywords" content="amazonARMARM64cloudCodecode-servercodinggithubGoogle ColabJupyterKagglemachine learningmicrosoftMLRemoteSurface Pro XtabletUbuntuVisual StudioWindowsWindows Subsystem on LinuxWSLWSL 2การเรียนรู้ของเครื่องคลาวด์พัฒนาโปรแกรมลินุกซ์วินโดว์เขียนโปรแกรมเครื่องมือโค้ดดิ้ง">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-06-16T02:36:10+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/06/16/technique-software-development-on-surface-pro-x/amp/"/>
+		<meta property="og:title" content="วิธีพัฒนาแอพลิเคชันบน Surface Pro X - Nick Untitled" />
+		<meta property="og:description" content="A Nick's Journal on my Life" />
+		<meta property="og:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd.png"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="วิธีพัฒนาแอพลิเคชันบน Surface Pro X - Nick Untitled" />
+		<meta property="twitter:description" content="A Nick's Journal on my Life" />
+		<meta property="twitter:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+
+    
+    <style amp-custom> 
+      @charset "UTF-8";
+/* @import url('https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700&subset=latin-ext'); */
+@import url("https://fonts.googleapis.com/css2?family=Sarabun&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap");
+:root { --bg-color: #fafafa; --bg-hover-color: #ececec; --body-bg: #fff; --primary-font-color: #000; --border-color: #dadada; --link-color: #2980b9; }
+
+[data-theme="dark"] { --bg-color: #161f29; --bg-hover-color:#36404c; --body-bg: #10171e; --primary-font-color: #bfbfbf; --border-color: #6a6a6a; --link-color: #2980b9; }
+
+body { font-family: 'Sarabun', sans-serif; font-weight: 300; background: var(--body-bg); color: var(--primary-font-color); margin: 0; padding: 0; }
+
+h1, h2, h3, h4, h5, h6, strong, b { font-family: 'Prompt', sans-serif; }
+
+p { line-height: 1.75em; }
+
+.clear-nav { clear: both; }
+
+.nav-left { float: left; }
+
+.nav-right { float: right; }
+
+.container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 50%; margin-left: auto; margin-right: auto; }
+
+.profile li { display: inline; margin-right: 0.5em; }
+
+.profile li:last-child { margin-right: 0.5em; }
+
+.link-header { width: 100%; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.link-header ul { margin: 0; padding: 0; }
+
+.link-header li { display: inline; margin-right: 1em; }
+
+.post-container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 100%; margin-top: 1em; }
+
+.footer { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; padding: 5px 10px; background: var(--bg-color); border: 1px dashed var(--border-color); font-size: 12px; margin-bottom: 1em; }
+
+.post-list { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 5px 0; margin-bottom: 5px; }
+
+.post-list:last-child { margin-bottom: 1em; }
+
+.post-list .post-title { width: 100%; font-family: "Prompt", sans-serif; font-weight: 500; color: var(--link-color); margin-bottom: 0.25em; }
+
+.post-list .post-title:hover { text-decoration: underline; }
+
+.post-list .post-date { width: 20%; text-align: left; font-size: 0.75em; }
+
+.post-header { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.post-header .post-share { font-weight: 600; color: var(--primary-font-color); display: flex; justify-content: flex-end; align-items: center; }
+
+.post-header .post-date { font-weight: 600; }
+
+.post-header .post-share a { display: flex; }
+
+.aligncenter { text-align: center; }
+
+.tags-container { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 20px; margin-bottom: 20px; }
+
+.post-tag { margin-bottom: 5px; }
+
+.tags { display: flex; flex-wrap: wrap; justify-content: space-between; }
+
+.tag { background: var(--bg-color); padding: 5px 10px; margin-right: 10px; margin-bottom: 10px; display: flex; align-items: center; }
+
+.navigation { width: 100%; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.navigation .prev { width: 45%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--link-color); font-weight: 600; padding: 5px 10px; }
+
+.navigation .next { width: 45%; color: var(--link-color); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; text-align: right; padding: 5px 10px; }
+
+.pagination { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.pagination .prev { color: var(--link-color); font-weight: 600; }
+
+.pagination .next { color: var(--link-color); font-weight: 600; text-align: right; }
+
+.blog-post-header { width: 100%; font-size: 18px; margin-bottom: 0; padding: 0px; }
+
+.blog-post-header h1 { margin-bottom: 0.5em; }
+
+.blog-post-header img { margin-bottom: 1em; }
+
+.blog-post-content { width: 100%; font-size: 18px; margin-top: 0px; }
+
+.post-tag { background: var(--bg-color); color: var(--primary-font-color); padding: 5px 10px; }
+
+.profile { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 1em 0; margin-top: 20px; margin-bottom: 0; border-bottom: 1px solid var(--border-color); }
+
+.profile div { margin: 0 0 0.5em 0; }
+
+.profile div:last-child { margin: 1em 0 0 0; }
+
+.profile ul { margin: 0; padding: 0; }
+
+.profile-image-container { width: 40%; }
+
+.profile-image { width: 128px; height: 128px; border-radius: 50%; transition: transform .2s; }
+
+.profile-image:hover { transform: scale(1.05); }
+
+.profile-about { width: 100%; text-align: left; }
+
+.profile a { color: #000000; }
+
+.profile a:hover { text-decoration: none; }
+
+.font-2 { font-size: 2rem; }
+
+.font-1-5 { font-size: 1.5rem; }
+
+.font-1-2 { font-size: 1.2rem; }
+
+.font-0-8 { font-size: .8rem; }
+
+.text-right { text-align: right; }
+
+.w-100 { width: 100% !important; }
+
+a:hover { text-decoration: underline; }
+
+a { color: var(--link-color); text-decoration: none; }
+
+img { max-width: 100%; }
+
+figure { margin: 0; padding: 15px 0 15px 0; }
+
+figure iframe { width: 100%; }
+
+figcaption { margin: 0.5em 0 0 0; font-size: 1em; }
+
+blockquote { font-style: italic; padding: 5px 1em; margin: 0; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+blockquote cite { font-weight: 500; font-size: 1em; padding: 0 0 1em 0; margin: 0; }
+
+pre { font-size: 14px; max-width: 90vw; overflow: auto; }
+
+.social-icon { height: 24px; }
+
+@media (min-width: 769px) { .container { width: 70%; } }
+
+@media (min-width: 1200px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media (min-width: 1440px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media only screen and (max-width: 768px) { .container { width: 90%; } .mode:after { line-height: 22px; left: 1px; } h1 { font-size: 1.5rem; } .profile-image { width: 96px; height: 96px; } }
+
+[data-theme="dark"] .social-icon { filter: invert(100%) sepia(50%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%); }
+
+.mode { float: right; position: relative; margin: auto; width: 42px; height: 22px; background: #F1F2F4; border-radius: 20px; cursor: pointer; }
+
+.mode:after { content: "☀️"; position: absolute; top: 0; left: 4px; font-size: 14px; height: 22px; line-height: 23px; text-align: center; transition: all 0.3s ease; }
+
+.mode.active { background: #0771ca; }
+
+.mode.active:after { content: "🌛"; transform: translateX(20px); }
+
+.mode.active span { transform: translateX(0); }
+
+.mode span { position: absolute; z-index: 1; margin: 2px; display: block; width: 18px; height: 18px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transform: translateX(20px); transition: all 0.4s ease; }
+
+    </style>
+
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <link rel="alternate" type="application/rss+xml" title=" - A Nick's Journal on my Life" href="/feed.xml" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <div class="profile">
+            <div class="profile-about">
+                <div>
+                    <h2 style="margin-bottom: 0; font-weight: 700;">
+                        <a href = '/'>Nick Untitled</a>
+                    </h2>
+                </div>
+                <div>
+                    Writing as my personal diary
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-post-header">
+            <h1>วิธีพัฒนาแอพลิเคชันบน Surface Pro X</h1>
+        </div>
+        
+        <div class="post-header">
+            <div class="post-date">16.06.2021</div>
+            <div class="post-share">
+                Share:&nbsp; 
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/technique-software-development-on-surface-pro-x" target="_blank"><amp-img src="assets/images/icon/facebook.svg" class="social-icon" layout="responsive" width = "32" height = "32"></amp-img></a>
+                <a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/technique-software-development-on-surface-pro-x&amp;text=วิธีพัฒนาแอพลิเคชันบน Surface Pro X - https://nickuntitled.com/technique-software-development-on-surface-pro-x" target="_blank"><amp-img src="assets/images/icon/twitter.svg" class="social-icon" layout="responsive" width = "32" height = "32"></amp-img></a>
+            </div>
+        </div>
+        
+            <figure>
+                <img src = 'https://asset.nickuntitled.com/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd.png' />
+            </figure>
+        	
+        <div class="blog-post-content">
+            <!-- wp:paragraph -->
+<p>ต่อจากบทความก่อนหน้าที่พูดถึง<a href="https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/" target="_blank" rel="noreferrer noopener" title="Surface Pro X กับแอพที่ใช้งานอยู่ในขณะนี้">แอพที่ใช้งานบนคอมพิวเตอร์ Surface Pro X</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>การพัฒนาแอพลิเคชันเพื่อใช้งานของเราที่กล่าวถึงจะเป็นการพัฒนาเว็บไซต์ รวมถึงพัฒนาโปรแกรมเพื่อใช้งานทางด้าน AI/ML (Artificial Intelligence/Machine Learning) เพื่อนำไปเทรนข้อมูล และทดสอบข้อมูลบนเครื่องคอมพิวเตอร์แม่ข่ายที่มีการ์ดจอเพื่อช่วยการประมวลผล  </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ในตอนนี้ เราจะพัฒนาบนเครื่อง Surface Pro X (คือมีเครื่องนี้อยู่แล้ว แต่จะเอาไปใช้กับคอมเครื่องอื่นที่ใช้ ARM ก็ได้) เพื่อทดสอบการใช้งานเบื้องต้น (Prototyping) ก่อนจะนำไปทำงานบนคอมพิวเตอร์เครื่องจริง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+<!--more-->
+<!-- /wp:more -->
+
+<!-- wp:paragraph -->
+<p>ก่อนอื่นเรามาพูดถึงปัญหาที่พบจากการใช้งานบนคอมพิวเตอร์ที่ใช้ซีพียู ARM ก่อน</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>ปัญหาจากการใช้งาน</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"align":"center","id":2427,"width":720,"height":480,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/cannot-install.png" alt="" class="wp-image-2427" /><figcaption>ติดตั้งเครื่องมือที่รองรับ x86 ที่ใช้ 64-Bit บน Surface Pro X จะขึ้นแบบนี้</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>การพัฒนาเว็บไซต์ รวมถึงเขียนโค้ดสำหรับเทรนและทดสอบอัลกอริทึม AI/ML ที่พัฒนาขึ้นจะมีเครื่องมือสำหรับการพัฒนาโปรแกรม ตัวอย่างเช่น <a href="https://www.python.org/" target="_blank" rel="noreferrer noopener" title="https://www.python.org/">Python</a>, <a href="https://nodejs.org/" target="_blank" rel="noreferrer noopener" title="https://nodejs.org/">Node.js</a>, <a href="https://visualstudio.microsoft.com/" target="_blank" rel="noreferrer noopener" title="https://visualstudio.microsoft.com/">Visual Studio</a>, <a href="https://notepad-plus-plus.org/" target="_blank" rel="noreferrer noopener" title="https://notepad-plus-plus.org/">Nodepad++</a> เป็นต้น เครื่องมือเหล่านั้นบนระบบปฏิบัติการ Windows ได้รับการพัฒนาขึ้นให้ใช้งานบนซีพียูที่ใช้สถาปัตยกรรมแบบ x86 อย่าง Intel/AMD </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>จุดนี้เลยทำให้เกิดปัญหาขึ้นเมื่อนำโปรแกรมสำหรับการพัฒนาโปรแกรมไปใช้งานบนคอมพิวเตอร์ที่ใช้ซีพียูต่างสถาปัตยกรรมกัน เพราะเมื่อนำเครื่องมือไปเปิดใช้งานคนละสถาปัตยกรรมกัน เราจะใช้งานเครื่องมือนั้นไม่ได้ ตัว Windows จะแจ้งว่าเราไม่สามารถเปิดใช้งานโปรแกรมนี้ได้นะ แล้วเราจะทำอย่างไรดี?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>ปัญหาที่กล่าวถึงนี้จะพบได้เมื่อเรานำเครื่องมือพัฒนาโปรแกรมที่รองรับซีพียูที่ใช้สถาปัตยกรรม x86 ที่รองรับ 64-bit เนื่องจาก Windows 10 สำหรับ ARM ที่ใช้งานอยู่ตอนนี้ยังไม่รองรับโปรแกรมประเภทนี้ ซึ่งไมโครซอฟท์กำลังพัฒนาอยู่ อ่านได้จาก<a href="https://blogs.windows.com/windows-insider/2020/12/10/introducing-x64-emulation-in-preview-for-windows-10-on-arm-pcs-to-the-windows-insider-program/" target="_blank" rel="noreferrer noopener" title="https://blogs.windows.com/windows-insider/2020/12/10/introducing-x64-emulation-in-preview-for-windows-10-on-arm-pcs-to-the-windows-insider-program/">บทความของผู้พัฒนา</a></p><p>สำหรับผู้อ่านที่สนใจ สามารถดาวน์โหลด Windows 10 แบบ Insider มาใช้ก่อนได้ครับ</p></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>จากปัญหาที่กล่าวขึ้นมาตามข้างบนนี้ เราจะพบได้บ่อยเมื่อนำมาใช้งานคนละสถาปัตยกรรมกัน เราแก้ไขได้โดยคอมไพล์เครื่องมือพัฒนาโปรแกรมให้รองรับการทำงานบนซีพียู ARM หรือเปิดใช้งานเครื่องมือพัฒนาบน <a href="https://docs.microsoft.com/en-us/windows/wsl/about" target="_blank" rel="noreferrer noopener" title="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem on Linux</a> หรือว่าจะเปิดใช้งานผ่านเว็บเบราวเซอร์ก็ได้ ตัวอย่างเช่น <a href="https://jupyter.org/" target="_blank" rel="noreferrer noopener" title="https://jupyter.org/">Jupyter Notebook</a>, <a href="https://research.google.com/colaboratory/" target="_blank" rel="noreferrer noopener" title="https://research.google.com/colaboratory/">Google Colab</a>, <a href="https://www.kaggle.com/code" target="_blank" rel="noreferrer noopener" title="https://www.kaggle.com/code">Kaggle Notebooks</a> หรืออื่น ๆ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>วิธีแรกที่เรากล่าวถึง เรานำโค้ดที่ใช้มาใช้งานจริงแล้วจากการคอมไพล์โค้ดด้วยตัวเอง หรือนำตัวติดตั้งที่มีคนคอมไพล์มาติดตั้งแล้ว พบว่ามันใช้งานได้ในระดับหนึ่ง แต่ติดปัญหาตัวไลบรารีที่ติดตั้งผ่าน pip หรือ npm/yarn แล้วคอมไพล์ไลบรารีบางตัวไม่ได้ เพราะเครื่องมืออย่าง cmake, gcc, cygwin ไม่ได้รับการคอมไพล์ให้รองรับ เลยทำให้ใช้งานได้ไม่สะดวกครับ ในบทความนี้เราจะพูดถึงสองเทคนิคหลังที่เราใช้งานอยู่ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>ใช้งานผ่าน Windows Subsystem on Linux</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"align":"center","id":2405,"width":720,"height":480,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/WSL-on-Surface-Pro-X.png" alt="" class="wp-image-2405" /><figcaption>Windows Subsystem for Linux</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>วิธีนี้เป็นวิธีที่ไมโครซอฟท์อนุญาตให้เราเปิดใช้งานลินุกซ์ที่เรารู้จักกันอย่าง Ubuntu, OpenSUSE, Debian หรืออื่น ๆ มาใช้งานบนระบบปฏิบัติการวินโดว์ ซึ่งเป็นวิธีที่สะดวกมาก เนื่องจากระบบปฏิบัติการลินุกซ์ได้พอร์ตเพื่อใช้งานซีพียูสถาปัตยกรรม ARM/ARM64 มานานแล้ว และมีโปรแกรม เครื่องมือการพัฒนาโปรแกรมที่ได้รับการคอลไพล์ พร้อมใช้งานบนซีพียูแบบนี้มานานระดับหนึ่ง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>วิธีทำวิธีนี้สามารถใช้งานกับคอมพิวเตอร์ทั่วไปได้ครับ เพียงแต่ตัวติดตั้งที่ได้ทำลิ้งค์ในบทความนี้รองรับสำหรับ ARM เท่านั้น เราสามารถดาวน์โหลดตัวติดตั้งที่รองรับ x86 ได้ตามเว็บผู้ผลิตได้เลยครับ</p></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p><strong>การติดตั้งเพื่อใช้งาน Windows Subsystem for Linux</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ก่อนที่จะติดตั้ง Windows Subsystem for Linux (WSL) เราจะต้องเช็คก่อนว่าเครื่องเราใช้งานวินโดว์ <strong>Version 2004</strong>&nbsp;หรือใหม่กว่า และ&nbsp;<strong>Build 19041</strong>&nbsp;หรือใหม่กว่านั้นก่อน ถ้ายังไม่ใช่ ให้อัพเดทผ่าน Windows Update ให้เสร็จเรียบร้อย </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เมื่อทำเสร็จแล้ว ขั้นตอนต่อไป เราสามารถติดตั้งได้ง่าย เพียงไม่กี่ขึ้นตอนตาม<a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank" rel="noreferrer noopener" title="https://docs.microsoft.com/en-us/windows/wsl/install-win10">เว็บไซต์ของไมโครซอฟท์</a> ตามนี้เลย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ขั้นตอนแรกคือ เปิดเข้าหน้า Settings จาก Start Menu จากนั้นเลือกไปที่หน้า Apps จะได้ตามภาพ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2408,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/2.Apps_.png" alt="" class="wp-image-2408" /><figcaption>หน้าจอ Apps</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>ให้เราเลือกหัวข้อบนขวาบริเวณ Programs and Feature เราจะพบหน้าจอที่คุ้นเคยตั้งแต่สมัย Windows 7 เป็นต้นมา ให้เลือก Turn Windows features on or off</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2409,"width":564,"height":297,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/3.Features.png" alt="" class="wp-image-2409" /><figcaption>หน้าจอ Programs and Features</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เลือกติดตั้ง Windows Subsystem for Linux กับ Virtual Machine Platform ตามภาพ แล้วรอให้วินโดว์ติดตั้งจนเสร็จเรียบร้อย แล้วสั่งให้รีสตาร์ทคอมพิวเตอร์</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2410,"width":454,"height":395,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/4.Features-Installation.png" alt="" class="wp-image-2410" /><figcaption>หน้าจอ Turn Windows features on or off</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เมื่อคอมพิวเตอร์เปิดเข้ามาหน้าจอหลักแล้ว เราอัพเกรตให้เป็น WSL 2 โดย<a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi" target="_blank" rel="noreferrer noopener" title="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">ดาวน์โหลด WSL 2</a> ก่อน รอให้คอมพิวเตอร์ติดตั้งแพคเกจให้เสร็จเรียบร้อย รีสตาร์ทเครื่อง รอจนคอมพิวเตอร์เข้ามาหน้าหลัก </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เราตั้งค่าให้ระบบใช้งาน WSL 2 โดยพิมพ์คำสั่งลงในหน้าจอ Command Line (cmd.exe) ว่า </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>wsl.exe --set-default-version 2</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>ตัวโปรแกรมจะตั้งค่าเสร็จเรียบร้อย จากนั้นติดตั้งระบบปฏิบัติการลินุกซ์ตามที่ต้องการตามภาพด้านล่าง ซึ่งในบทความนี้ใช้ระบบปฏิบัติการ Ubuntu 20.04 LTS รอให้วินโดว์ดาวน์โหลดและติดตั้งสร็จเรียบร้อย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>จากนั้นผู้อ่านสามารถเปิดใช้งาน Windows Subsystem for Linux ได้เลย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2411,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/5.Ubuntu.png" alt="" class="wp-image-2411" /><figcaption>ติดตั้งลินุกซ์ที่ต้องการผ่าน Microsoft Store ได้เลย</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>การใช้งาน</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>กดที่ Start Menu เลือก Ubuntu 20.04 LTS เพื่อเปิดใช้งาน เราจะพบหน้าจอรับคำสั่งคอมมานไลน์ของลินุกซ์ เราสามารถติดตั้งเครื่องมือพัฒนาโปรแกรมอย่าง Python, Node.js หรืออื่น ๆ ผ่าน APT ได้เลยครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>แต่ถ้าเราต้องการเขียนโค้ดโดยใช้ IDE ในระบบปฏิบัติการนี้มีคำสั่ง vim ให้ใช้งาน แต่ถ้าจะเอาง่ายกว่านี้ ก็มีเครื่องมือที่รองรับวินโดว์บน ARM อยู่ที่มีชื่อว่า <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer noopener" title="https://code.visualstudio.com/">Visual Studio Code</a> เราสามารถดาวน์โหลดมาติดตั้ง ร่วมกันกับติดตั้ง Extensions อย่าง Remote - WSL เพื่อใช้งาน Surface Pro X ได้เลย </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2413,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/6.WSL-Extension.png" alt="" class="wp-image-2413" /><figcaption>ติดตั้ง Extensions เสียก่อน</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เวลาที่เปิดใช้งาน Visual Studio Code บน WSL เราสามารถพิมพ์คำสั่ง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>code .</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>เราจะเปิดใช้งานโปรแกรม Visual Studio Code บน Windows Subsystem for Linux ได้แล้วตามภาพ ส่วนตัวจุดที่พิมพ์ไว้ข้างบนหมายถึงเราเปิดใช้ให้โปรแกรมเปิดโฟลเดอร์ที่เราใช้งานอยู่ในขณะนี้ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2414,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/7.VS-Code.png" alt="" class="wp-image-2414" /><figcaption>ใช้งาน VS Code ผ่าน WSL ได้แล้ว</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>หลังจากการใช้งาน</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เราสามารถพัฒนาได้สะดวกขึ้นมาก เพราะเราสามารถพัฒนาผ่าน Visual Studio Code ที่เราใช้งานกันอยู่บ่อย ๆ ร่วมกันกับเครื่องมือพัฒนาที่เราคุ้นเคยอย่าง Python, Node.js บนลินุกซ์ได้เลย ทำให้เราทดสอบบนคอมพิวเตอร์เครื่องนี้ก่อน จากนั้นนำไปใช้งานจริงบนคอมพิวเตอร์บนคลาวด์ได้เลย ทำให้ใช้งานได้สะดวกขึ้น</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ยิ่งกว่านั้น เมื่อเราใช้งานร่วมกันกับ <a href="https://git-scm.com/" target="_blank" rel="noreferrer noopener" title="https://git-scm.com/">Git</a> เราสามารถแก้ไขโค้ดสั่ง commit และ push เพื่อนำโค้ดขึ้นบน <a href="https://github.com/" target="_blank" rel="noreferrer noopener" title="https://github.com/">Github</a> จากนั้นเราเปิดบนคอมพิวเตอร์บนคลาด์เพื่อ pull โค้ดจากนั้นสั่งเปิดใช้งาน หรือสั่งทำให้เป็นคอนเทนเนอร์อย่าง Docker ได้เลย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>ใช้งานผ่านเว็บเบราวเซอร์</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"align":"center","id":2416,"width":720,"height":444,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/8.Colab_.png" alt="" class="wp-image-2416" /><figcaption>Google Colab</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>นอกเหนือจากการใช้งานผ่าน Windows Subsystem on Linux แล้ว เราสามารถพัฒนาผ่านเว็บเบราวเซอร์ได้เลย โดยไม่จำกัดสถาปัตยกรรมของซีพียู (ก็ทำงานบนเว็บเบราวเซอร์ไงล่ะ) </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>วิธีนี้มีสองวิธีย่อย ได้แก่เปิดเข้าไปใช้งานเครื่องมือบนคลาวด์ที่มีอยู่แล้ว และติดตั้งใช้งานบนคลาวด์ด้วยตัวเอง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>วิธีแรก เข้าไปใช้งานเครื่องมือพัฒนาโปรแกรมบนคลาวด์ที่มีอยู่แล้ว</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2430,"width":720,"height":444,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/kaggle-notebooks-1.png" alt="" class="wp-image-2430" /><figcaption>Kaggle Notebook</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เรามาพูดถึงวิธีแรกก่อน ในตอนนี้ มีผู้พัฒนาโปรแกรมหลายเจ้าพัฒนาให้พิมพ์โค้ด แก้ไขโค้ดบนเว็บเบราวเซอร์นี้ได้สะดวกมากขึ้น ซึ่งเครื่องมือเหล่านี้ได้แก่ Google Colab, Kaggle Notebooks, <a href="https://github.com/features/codespaces" target="_blank" rel="noreferrer noopener" title="https://github.com/features/codespaces">Github Codespaces</a>, <a href="https://aws.amazon.com/th/sagemaker/" target="_blank" rel="noreferrer noopener" title="https://aws.amazon.com/th/sagemaker/">Amazon Sagemaker</a> เป็นต้น </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เครื่องมือเหล่านี้มีข้อดีคือ เราเปิดใช้งานผ่านเว็บเบราวเซอร์ ทำให้เราไม่จำเป็นต้องติดตั้งลงบนคอมพิวเตอร์ให้เสียพื้นที่ฮาร์ดดิสก์ที่มีอย่างจำกัด ไม่ต้องเช่าคลาวด์เพื่อติดตั้งเครื่องมือพัฒนาโปรแรกมอีกทีนึงแบบวิธีหลัง </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>อย่างไรก็ดีเครื่องมือบางอย่างนั้นมีระยะเวลาประมวลผลที่จำกัด ตัวอย่างเช่น </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>Google Colab มีระยะเวลาประมวลผลประมาณ 12 ชั่วโมง (ถ้าสมัครเป็น Colab Pro เราสามารถใช้งานได้ 24 ชั่วโมง) ซึ่งถ้าเราไม่ได้เปิดใช้งานซักระยะหนึ่งตัวโปรแกรมจะปิดการใช้งาน ต้องมาเปิดใช้งานใหม่ </li><li>ส่วน Kaggle Notebooks ทีระยะเวลาประมวลผลที่จำกัดประมาณ 9 ชั่วโมง ถ้าไม่เปิดใช้งานซักพักประมาณ 1 ชั่วโมงก็จะปิดการใช้งาน ต้องมาเปิดใหม่เช่นกัน</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>ส่วน Amazon Sagemaker ก็มีข้อสังเกตคือราคาที่สูงไปหน่อย ถ้าจะนำมาเทรนผ่านการ์ดจอ (อันนี้มุมมองของเราเอง) </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>ต่อไปเป็นวิธีที่สอง ก็คือติดตั้งบนคลาวด์เอง </strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2421,"width":720,"height":410,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/jupyter-notebook.png" alt="" class="wp-image-2421" /><figcaption>Jupyter Notebook</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เราสามารถติดตั้งบนคลาวด์เพื่อเปิดใช้งานการพัฒนาโปรแกรมผ่านทางเว็บเบราวเซอร์ได้ โดยเราติดตั้งเครื่องมือที่ให้ดาวน์โหลดได้ฟรีอย่าง Jupyter Notebook, <a href="https://github.com/cdr/code-server" target="_blank" rel="noreferrer noopener" title="https://github.com/cdr/code-server">code-server</a>, <a href="https://github.com/ml-tooling/ml-workspace" target="_blank" rel="noreferrer noopener" title="https://github.com/ml-tooling/ml-workspace">ml-workspace</a> หรืออื่น ๆ ลงบนคลาวด์เพื่อเปิดใช้งานได้เลย </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ส่วนวิธีติดตั้ง เราสามารถติดตั้งเพื่อใช้งานได้ไม่ยากจนเกินไป เราสามารถติดตั้ง Jupyter Notebook ได้สองวิธี</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>วิธีแรก เราติดตั้งผ่านทาง <a href="https://www.anaconda.com/" target="_blank" rel="noreferrer noopener" title="https://www.anaconda.com/">conda</a> โดยแนะนำวิธีนี้เพราะเราสามารถจำกัดสภาพแวดล้อม รวมถึงเครื่องมือให้เหมาะสมต่อการพัฒนาโปรแกรมได้ เราสามารถติดตั้งได้โดย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>conda install -c conda-forge notebook</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>อีกวิธีคือการใช้งาน <a href="https://pypi.org/project/pip/" target="_blank" rel="noreferrer noopener" title="https://pypi.org/project/pip/">pip</a> เราติดตั้งได้โดย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>pip install notebook หรือ python3 -m pip install notebook</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>เมื่อเราติดตั้งโดยวิธีใดวิธีหนึ่งเสร็จแล้ว เปิดใช้งาน Jupyter ได้โดย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>jupyter notebook</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>จากนั้นเราเข้าหน้าเว็บตามที่ปรากฏบนหน้าจอ เราจะเข้าไปใช้งาน Jupyter Notebook ได้แล้วครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>อีกโปรแกรมหนึ่งคือ code-server เป็นเครื่องมือที่เราใช้งาน Visual Studio Code บนหน้าเว็บไซต์ เราสามารถติดตั้งได้ตาม<a href="https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/" target="_blank" rel="noreferrer noopener" title="เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค">บทความที่เคยเขียนไปแล้วตอนที่นำ iPad ไปเขียนโปรแกรม</a> และตัว ml-workspace ก็ติดตั้งได้ตามลิ้งค์ในประโยคก่อนหน้าได้เช่นกัน </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2432,"width":718,"height":442,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/code-server.png" alt="" class="wp-image-2432" /><figcaption>code-server</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เครื่องมือ ml-workspace นี้ทำให้เราสามารถใช้งาน Jupyter Notebook, code-server และอื่น ๆ ผ่านทางหน้าเว็บเบราวเซอร์ได้เลย และเราไม่ต้องติดตั้งทีละตัวด้วย เนื่องจากมันทำงานผ่าน Docker หน้าจอก็ตามภาพด้านล่างนี้ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":2422,"width":720,"height":443,"sizeSlug":"large","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/ml-workspace-1.png" alt="" class="wp-image-2422" /><figcaption>ml-workspace</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>ข้อดีของเทคนิคนี้คือมันอยู่บนคลาวด์ของตัวเองครับ เราสามารถแก้ไข ปรับแต่งให้เหมาะสมต่อการใช้งานของเราได้ ไม่มีระยะเวลาที่จำกัด และข้อมูลเป็นของเรา ไม่มีหลุดไปไหนแน่นอน แต่ข้อสังเกตคืออาจจะต้องมาติดตั้งด้วยตัวเอง คนที่ไม่ชินกับคำสั่งคอมมานไลน์อาจจะมึน ๆ หน่อยได้ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>สรุป</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>การใช้างน Surface Pro X เดิมมีข้อจำกัดเพราะเราไม่สามารถนำเครื่องมือที่รองรับสถาปัตยกรรม x86 ที่คอมไพล์เป็น 64-bit มาใช้งานบนอุปกรณ์นี้ได้ แต่ตอนนี้เราไม่ได้มีอุปสรรคจากการพัฒนาโปรแกรมผ่านทางหน้าเว็บ หรือนำไปทำงาน AI/ML แต่อย่างใดนัก เพราะเราติดตั้งเครื่องมือผ่าน WSL กับเปิดใช้งานผ่านเว็บเบราวเซอร์ได้เลยครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>อย่างไรก็ดี ยังมีอุปสรรคอยู่บ้างสำหรับผู้พัฒนาโปรแกรมแบบ GUI หรือพัฒนาสำหรับมือถืออย่าง Flutter อันนี้คงต้องรอทางผู้พัฒนาเครื่องมือที่ใช้ให้พอร์ตมายัง ARM/ARM64 เสียก่อนครับ</p>
+<!-- /wp:paragraph -->
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

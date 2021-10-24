@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter - Nick Untitled</title>
+		<meta name="description" content="<!-- wp:paragraph -->
+<p>ปกติเวลาเรามีข้อมูลที่ได้รับการเทรนเรียบร้อยแล้วทดสอบแล้วได้ผลที่แม่นยำตามที่เราต้องการ จากนั้นเรานำโมเดลที่ผ่านการเทรน และทดสอบแล้วมารันในโปรแกรมซึ่งส่วนใหญ่ก็จะเขียนในภาษาไพทอน แต่ทีนี้เราจะต้องดูปลายทางว่าเราจะนำข้อมูลที่เทรนมาทำงานบนเว็บเบราวเซอร์ มาไว้ในอุปกรณ์ IoT (Internet of Things) หรืออื่น ๆ</p>
+<!-- /wp:paragraph -->
+">
+		<meta name="keywords" content="artificial intelligence,deep learning,Google,javascript,machine learning,Node.js,savedmodel,Tensorflow.js,การเรียนรู้ของเครื่อง,จาวาสคริป,ปัญญาประดิษฐ์,เขียนโปรแกรม,เขียนโปรแรกม,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-03-12T07:17:51+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/03/12/running-tensorflow-savedmodel-node-js-without-converter/"/>
+		<meta property="og:title" content="เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter - Nick Untitled" />
+		<meta property="og:description" content="<!-- wp:paragraph -->
+<p>ปกติเวลาเรามีข้อมูลที่ได้รับการเทรนเรียบร้อยแล้วทดสอบแล้วได้ผลที่แม่นยำตามที่เราต้องการ จากนั้นเรานำโมเดลที่ผ่านการเทรน และทดสอบแล้วมารันในโปรแกรมซึ่งส่วนใหญ่ก็จะเขียนในภาษาไพทอน แต่ทีนี้เราจะต้องดูปลายทางว่าเราจะนำข้อมูลที่เทรนมาทำงานบนเว็บเบราวเซอร์ มาไว้ในอุปกรณ์ IoT (Internet of Things) หรืออื่น ๆ</p>
+<!-- /wp:paragraph -->
+ " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2021/03/fd5fbff0-c4af-4c61-995a-127e7fda07d6.png"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter - Nick Untitled" />
+		<meta property="twitter:description" content="<!-- wp:paragraph -->
+<p>ปกติเวลาเรามีข้อมูลที่ได้รับการเทรนเรียบร้อยแล้วทดสอบแล้วได้ผลที่แม่นยำตามที่เราต้องการ จากนั้นเรานำโมเดลที่ผ่านการเทรน และทดสอบแล้วมารันในโปรแกรมซึ่งส่วนใหญ่ก็จะเขียนในภาษาไพทอน แต่ทีนี้เราจะต้องดูปลายทางว่าเราจะนำข้อมูลที่เทรนมาทำงานบนเว็บเบราวเซอร์ มาไว้ในอุปกรณ์ IoT (Internet of Things) หรืออื่น ๆ</p>
+<!-- /wp:paragraph -->
+ " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/03/fd5fbff0-c4af-4c61-995a-127e7fda07d6.png" />
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+<div class="container">
+	<div class="profile">
+		<div class="profile-about">
+			<div>
+				<h2 style="margin-bottom: 0; font-weight: 700;">Nick Untitled</h2>
+			</div>
+			<div>
+				Writing as my personal diary
+			</div>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+			<div>
+				<ul>
+				<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
+				
+				
+				
+				<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a>
+				<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+<div class="blog-post-header">
+	<h1>เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter</h1>
+</div>
+
+<div class="post-header">
+	<div class="post-date">12.03.2021</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter&amp;text=เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter - https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+	<figure>
+		<img src = 'https://asset.nickuntitled.com/2021/03/fd5fbff0-c4af-4c61-995a-127e7fda07d6.png' />
+	</figure>
+	
+<div class="blog-post-content">
+	<!-- wp:paragraph -->
+<p>ปกติเวลาเรามีข้อมูลที่ได้รับการเทรนเรียบร้อยแล้วทดสอบแล้วได้ผลที่แม่นยำตามที่เราต้องการ จากนั้นเรานำโมเดลที่ผ่านการเทรน และทดสอบแล้วมารันในโปรแกรมซึ่งส่วนใหญ่ก็จะเขียนในภาษาไพทอน แต่ทีนี้เราจะต้องดูปลายทางว่าเราจะนำข้อมูลที่เทรนมาทำงานบนเว็บเบราวเซอร์ มาไว้ในอุปกรณ์ IoT (Internet of Things) หรืออื่น ๆ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Tensorflow.js เป็นไลบรารีที่เกี่ยวกับ Machine Learning/Deep Learning ที่จัดทำโดยบริษัทกูเกิ้ลเพื่อให้เราเทรน ทดสอบข้อมูล หรือทำอะไรก็ตามแต่ที่เกี่ยวข้องโดยใช้ภาษาจาวาสคริปได้ ไลบรารีนี้เราสามารถทำงานบนเว็บเบราวเซอร์ หรือทำงานแบบ Native บน Node.js ได้เลย แต่ในบทความนี้เราจะพูดถึงบน Node.js ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+<!--more-->
+<!-- /wp:more -->
+
+<!-- wp:image {"id":1853,"sizeSlug":"large"} -->
+<figure class="wp-block-image size-large"><img src="https://asset.nickuntitled.com/2021/03/ecd96ea3-80f3-4d86-a321-85c4d6fe3aeb.png?w=1024" alt="" class="wp-image-1853" /><figcaption>Tensorflow</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เท่าที่อ่านตามบทความ Tensorflow.js ที่เป็นภาษาไทยตัวอย่างเช่น <a href="https://www.bualabs.com/archives/3466/what-is-tensorflowjs-converter-convdert-pre-trained-model-in-python-to-javascript-json-tensorflow-js-tfjs-ep-9/" target="_blank" rel="noreferrer noopener">บทความนี้</a> เราจะพบว่าเราอินพอร์ตโมเดลที่ผ่านการแปลงโมเดลอยู่ในรูปที่สามารถทำงานบนเว็บเบราวเซอร์ได้ใช่ไหมครับ แต่จากที่อ่านใน Reference ของ Tensorflow.js บน Node.js จะพบความแตกต่างเมื่อเทียบกับการรันบนเว็บเบราวเซอร์ก็คือ บน Node.js จะมีฟังก์ชันที่สามารถนำ Savedmodel ของ Tensorflow มาทำงานได้เลย โดยจะมีฟังก์ชันที่มีชื่อว่า</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>tf.node.loadSavedModel("ที่อยู่ไฟล์ savedmodel", tags?, signature?)</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>คำอธิบายฟังก์ชัน และรายละเอียดเกี่ยวกับ tags, signature เราสามารถอ่านได้ใน <a rel="noreferrer noopener" href="https://js.tensorflow.org/api_node/3.2.0/#node.loadSavedModel" target="_blank">Reference ของ Tensorflow.js</a> ได้เลย </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>การส่งออกโมเดลในรูป savedmodel</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ต่อไปเราจะอธิบายวิธีการนำเข้าโมเดล แต่ก่อนอื่นเราต้องส่งออกโมเดลที่ทำงานบน Tensorflow ในไพทอนก่อน วิธีการส่งออกโมเดล (ในตัวอย่างจะเป็นโมเดลที่ใช้ Keras) ออกมาเป็นไฟล์ในรูปแบบ savedmodel ทำได้โดย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>
+save_path = 'savedmodel/'
+tf.saved_model.save(pretrained_model, save_path)</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>โดยที่ pretrained_model คือโมเดลที่ผ่านการเทรนเรียบร้อยแล้ว ส่วน save_path เป็นตำแหน่งโฟลเดอร์ที่เราต้องกสารจะให้ส่งออกเป็น savedmodel เมื่อเราเข้าไปดูในโฟลเดอร์ที่เราได้ส่งออกแล้วจะอยู่ในรูปแบบตามด้านล่าง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>assets  saved_model.pb  variable</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>ถ้าได้ตามข้างบนนี้แสดงว่าส่งออกเป็น savedmodel เรียบร้อย </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>การติดตั้ง Tensorflow.js บน Node.js</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ขั้นตอนต่อไปจะเป็นการนำเข้าโมเดลเข้ามาใช้ใน Tensorflow.js บน Node.js แต่ถ้าผู้อ่านยังไม่ได้ติดตั้งไลบรารีตัวนี้ก็ติดตั้งเพื่อให้ใช้งานบนซีพียูได้โดย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>yarn add @tensorflow/tfjs-node</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>ประสิทธิภาพขึ้นกับซีพียูว่าแรงแค่ไหน ซึ่งกรณีที่เรามีการ์ดจอ NVIDIA ร่วมกับใช้งานบนลินุกซ์อยู่แล้ว เราสามารถติดตั้งได้โดยคำสั่ง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>yarn add @tensorflow/tfjs-node-gpu</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>ส่วนวิธีการติดตั้งแบบอื่น ผู้อ่านสามารถอ่านได้ใน<a rel="noreferrer noopener" href="https://www.tensorflow.org/js/tutorials/setup" target="_blank">คู่มือการติดตั้งของกูเกิ้ล</a>ตรงหัวข้อ Node.js setup ได้เลยครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>การนำเข้าโมเดลใน Node.js</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>เมื่อเราติดตั้งแล้ว เรานำเข้าโมเดลที่ได้รับการส่งออกในรูป savedmodel ซึ่งทำได้โดย</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>model = await tf.node.loadSavedModel('savedmodel/');</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>ตัวโมเดลจะนำเข้ามาในระบบเรียบร้อย จากนั้นนำข้อมูลที่ผ่านการแปลงในรูปแบบ Tensor เรียบร้อยแล้วมาให้โมเดลทำนายกันโดยพิมพ์คำสั่ง</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>output = model.predict(input ที่อยู่ในรูปแบบ tensor);</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>หลังจากนั้นข้อมูลที่เป็น input ได้รับการทำนายโดยโมเดลที่ผ่านการเทรนเรียบร้อย หลังจากนั้นจะเอาข้อมูลที่ได้ไปทำอะไรก็ขึ้นกับผู้อ่านว่าจะเอาไปทำอะไรดีล่ะ ของเราเป็น Face detection ก็นำตำแหน่งของใบหน้าที่ได้ไปประมวลผลเพื่อหาองศาการหันของศีรษะต่อหรือเรียกว่า Head pose estimation ครับ</p>
+<!-- /wp:paragraph -->
+
+</div>
+<div class="tags-container">
+	
+		<a href="https://nickuntitled.com/tags/#artificial+intelligence" class="post-tag">artificial intelligence</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#deep+learning" class="post-tag">deep learning</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#Google" class="post-tag">Google</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#javascript" class="post-tag">javascript</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#machine+learning" class="post-tag">machine learning</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#Node.js" class="post-tag">Node.js</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#savedmodel" class="post-tag">savedmodel</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#Tensorflow.js" class="post-tag">Tensorflow.js</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87" class="post-tag">การเรียนรู้ของเครื่อง</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%88%E0%B8%B2%E0%B8%A7%E0%B8%B2%E0%B8%AA%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%9B" class="post-tag">จาวาสคริป</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B4%E0%B8%A9%E0%B8%90%E0%B9%8C" class="post-tag">ปัญญาประดิษฐ์</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%81%E0%B8%81%E0%B8%A3%E0%B8%A1" class="post-tag">เขียนโปรแกรม</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%81%E0%B8%A3%E0%B8%81%E0%B8%A1" class="post-tag">เขียนโปรแรกม</a>
+	
+</div>
+<div class="navigation">
+	
+		<a class="prev" href="/2021/03/06/how-to-install-coding-onnx-js-observations/">< การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต</a>
+	 
+	<a class="next" href="/2021/03/14/access-oreilly-student-price-acm/">เทคนิคสมัครสมาชิกเพื่อให้ใช้ Oreilly ในราคานักศึกษาเพียง 19$ ></a>
+
+</div>
+	<div class="footer">
+		<span>Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'><b>Privacy Policy</b></a></span>
+	</div>
+</div>
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>ใช้ 3D Facial Landmarks ให้หาองศาขยับศีรษะ - Nick Untitled</title>
+		<meta name="description" content="เทคนิคหนึ่งเวลาที่เราหาองศาใบหน้าจากคอมพิวเตอร์เราจะใช้จุดบนใบหน้ามาช่วย ในบทความนี้เราแนะนำการแปลงจุดแลนมาร์ค 3 มิติ ให้เป็นองศาของใบหน้าแบบง่าย ๆ ครับ">
+		<meta name="keywords" content="calculation,coding,computer,computer vision,coordinate,facial,head,head pose,Head Pose Estimation,landmark,math,matrix,numpy,programming,python,rotation,การเคลื่อนไหวใบหน้า,คอมพิวเตอร์,จุดแลนมาร์ค,วิทยาการคำนวณ,เขียนโปรแกรม,โค้ดดิ้ง,ใบหน้า,ไพทอน,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-09-30T23:56:33+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/09/30/convert-3d-facial-landmark-coordinate-to-pose/"/>
+		<meta property="og:title" content="ใช้ 3D Facial Landmarks ให้หาองศาขยับศีรษะ - Nick Untitled" />
+		<meta property="og:description" content="เทคนิคหนึ่งเวลาที่เราหาองศาใบหน้าจากคอมพิวเตอร์เราจะใช้จุดบนใบหน้ามาช่วย ในบทความนี้เราแนะนำการแปลงจุดแลนมาร์ค 3 มิติ ให้เป็นองศาของใบหน้าแบบง่าย ๆ ครับ " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2021/09/Convert-Landmark-Coord-to-Pose.jpg"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="ใช้ 3D Facial Landmarks ให้หาองศาขยับศีรษะ - Nick Untitled" />
+		<meta property="twitter:description" content="เทคนิคหนึ่งเวลาที่เราหาองศาใบหน้าจากคอมพิวเตอร์เราจะใช้จุดบนใบหน้ามาช่วย ในบทความนี้เราแนะนำการแปลงจุดแลนมาร์ค 3 มิติ ให้เป็นองศาของใบหน้าแบบง่าย ๆ ครับ " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/09/Convert-Landmark-Coord-to-Pose.jpg" />
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+<div class="container">
+	<div class="profile">
+		<div class="profile-about">
+			<div>
+				<h2 style="margin-bottom: 0; font-weight: 700;">Nick Untitled</h2>
+			</div>
+			<div>
+				Writing as my personal diary
+			</div>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+			<div>
+				<ul>
+				<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
+				
+				
+				
+				<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
+				
+				
+				<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a>
+				<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+<div class="blog-post-header">
+	<h1>ใช้ 3D Facial Landmarks ให้หาองศาขยับศีรษะ</h1>
+</div>
+
+<div class="post-header">
+	<div class="post-date">30.09.2021</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/convert-3d-facial-landmark-coordinate-to-pose" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/convert-3d-facial-landmark-coordinate-to-pose&amp;text=ใช้ 3D Facial Landmarks ให้หาองศาขยับศีรษะ - https://nickuntitled.com/convert-3d-facial-landmark-coordinate-to-pose" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+	<figure>
+		<img src = 'https://asset.nickuntitled.com/2021/09/Convert-Landmark-Coord-to-Pose.jpg' />
+	</figure>
+	
+<div class="blog-post-content">
+	<!-- wp:paragraph -->
+<p>ใบหน้าของคนสำคัญต่อการสื่อสารทางการมองเห็น เนื่องมาจากใบหน้าของคนสามารถบ่งบอกข้อความที่ไม่จำเป็นต้องใช้คำพูด (อวัจนภาษา) ได้แก่ ตัวตนของบุคคล หรืออารมณ์ </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เมื่อนำมาพูดถึงวงการ Computer Vision (คอมพิวเตอร์วิทัศน์) การเอาข้อมูลของใบหน้าออกมาโดยอัตโนมัตินั้น เราจำเป็นต้องกำหนดตำแหน่งอวัยวะบนใบหน้าเสียก่อน ขั้นตอนนี้เป็นขั้นตอนที่สำคัญก่อนที่เราจะนำผลลัพธ์ที่ได้จากการหาตำแหน่งอวัยวะบนใบหน้าไปใช้งาน ได้แก่ การหาองศาการขยับศีรษะ หรือการวิเคราะห์อารมณ์บนใบหน้า</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+<!--more-->
+<!-- /wp:more -->
+
+<!-- wp:paragraph -->
+<p>สิ่งที่กล่าวถึงในย่อหน้าที่แล้ว เราเรียกการค้นหาตำแหน่งอวัยวะบนใบหน้านี้ว่า Facial Landmark Detection ซึ่งจะมีหลายเทคนิคที่สามารถค้นหาตำแหน่งบนใบหน้าได้ ได้แก่ <a href="https://en.wikipedia.org/wiki/Active_appearance_model#:~:text=An%20active%20appearance%20model%20(AAM,built%20during%20a%20training%20phase.&amp;text=The%20algorithm%20uses%20the%20difference,to%20drive%20an%20optimization%20process." target="_blank" rel="noreferrer noopener" title="https://en.wikipedia.org/wiki/Active_appearance_model#:~:text=An%20active%20appearance%20model%20(AAM,built%20during%20a%20training%20phase.&amp;text=The%20algorithm%20uses%20the%20difference,to%20drive%20an%20optimization%20process.">Active Appearance Model</a>, <a href="https://en.wikipedia.org/wiki/Active_shape_model#:~:text=Active%20shape%20models%20(ASMs)%20are,and%20Chris%20Taylor%20in%201995.&amp;text=The%20ASM%20algorithm%20aims%20to%20match%20the%20model%20to%20a%20new%20image." target="_blank" rel="noreferrer noopener" title="https://en.wikipedia.org/wiki/Active_shape_model#:~:text=Active%20shape%20models%20(ASMs)%20are,and%20Chris%20Taylor%20in%201995.&amp;text=The%20ASM%20algorithm%20aims%20to%20match%20the%20model%20to%20a%20new%20image.">Active Shape Model</a>, <a href="https://personalpages.manchester.ac.uk/staff/timothy.f.cootes/Models/clm.html" target="_blank" rel="noreferrer noopener" title="https://personalpages.manchester.ac.uk/staff/timothy.f.cootes/Models/clm.html">Constrained Local Model</a>, <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf" target="_blank" rel="noreferrer noopener" title="https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf">Face Alignment Network</a>, <a href="https://openaccess.thecvf.com/content_cvpr_2016/papers/Zhu_Face_Alignment_Across_CVPR_2016_paper.pdf" target="_blank" rel="noreferrer noopener" title="https://openaccess.thecvf.com/content_cvpr_2016/papers/Zhu_Face_Alignment_Across_CVPR_2016_paper.pdf">3DDFA</a> (3D Dense Face Alignment) และอื่น ๆ ซึ่งเราจะไม่กล่าวถึงในบทความนี้ เพราะเรื่องมันยาวครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>โดยเทคนิคเหล่านี้ จะให้ผลลัพธ์ที่เป็นจุดบนใบหน้า ซึ่งจะให้ผลลัพธ์เป็น 2 มิติ หรือ 3 มิติ ก็ขึ้นกับเทคนิคที่ผู้วิจัยได้พัฒนาขึ้น ในบทความนี้เราจะเน้นที่ 3 มิติ เพราะเราจะนำไปใช้หาทิศทางการหันศีรษะ ส่วนใครที่ใช้เทคนิคที่ให้ผลลัพธ์ออกมาเป็นจุด 2 มิติก็จะมีเทคนิคที่แปลงจุด 2 มิติเป็น 3 มิติอยู่ </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>การแปลงจุด Facial Landmark 2 มิติ เป็น 3 มิติ</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"align":"center","id":3226,"width":441,"height":254,"sizeSlug":"full","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-full is-resized"><img src="https://asset.nickuntitled.com/2021/09/Screenshot-4.png" alt="" class="wp-image-3226" /><figcaption>2D-to-3D-FAN network ที่สามารถแปลงจุด 2 มิติเป็น 3 มิติได้ (ภาพมาจากบทความ How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>การแปลงจุด Facial Landmark 2 มิติ เป็น 3 มิติ เป็นการแปลงจากจุดที่ปรากฏบนภาพในหน้าจอกลายเป็นจุดในระบบพิกัด 3 มิติ โดยเราสามารถทำได้โดยเทคนิคตัวอย่างตามด้านล่างนี้ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เทคนิคแรก ก็เป็นการใช้ 3D Morphable Model เราสามารถนำจุด 2 มิติที่ได้มาสร้างโมเดลใบหน้าเป็น 3 มิติได้ ส่วนรายละเอียดสามารถไปอ่านเพิ่มเติมได้ใน<a href="https://github.com/3d-morphable-models/curated-list-of-awesome-3D-Morphable-Model-software-and-data" target="_blank" rel="noreferrer noopener" title="https://github.com/3d-morphable-models/curated-list-of-awesome-3D-Morphable-Model-software-and-data">เว็บนี้ที่มีคนรวบรวมข้อมูลที่เกี่ยวข้อง</a> และอื่น ๆ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เทคนิคต่อมา เราสามารถใช้ AI ให้แปลงจากจุด 2 มิติให้เป็น 3 มิติก็ได้เช่นกัน ตัวอย่างที่พบได้ก็เป็นเทคนิค Face Alignment Network (FAN) ที่มีบทความที่มีชื่อว่า <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf" target="_blank" rel="noreferrer noopener" title="https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf">How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)</a> ที่เราสามารถนำจุดสองมิติที่ได้ และใช้ภาพที่มีอยู่แล้วนำมาประมวลผลผ่านเครือข่ายประสาทเพื่อให้ผลลัพธ์ที่เป็นจุด 3 มิติผ่าน 2D-to-3D-FAN network ที่ได้รับแรงบันดาลใจมาจาก <a href="https://arxiv.org/abs/1603.06937" target="_blank" rel="noreferrer noopener" title="https://arxiv.org/abs/1603.06937">Stack Hourglass Network</a> ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ส่วนเทคนิคอื่น ๆ ผู้อ่านสามารถอ่านได้ในอินเตอร์เน็ต อย่างไรก็ดี ถ้าจะเอาให้ชีวิตมันง่ายขึ้นมากกว่าเดิม แนะนำให้ใช้เทคนิคที่สามารถให้ผลลัพธ์เป็น Facial Landmark ในรูปแบบ 3 มิติไปเลยจะดีกว่า</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>การแปลงจุด Facial Landmark 3 มิติให้ออกมาเป็นองศาการเคลื่อนไหวของศีรษะ</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>เราสามารถแปลงจุดจากจุด Facial Landmark 3 มิติ ออกมาเป็นองศาการเคลื่อนไหวของศีรษะ (Head Pose) ได้หลายวิธี </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>องศาการเคลื่อนไหวของศีรษะมีสามทิศทาง (ก็เป็นสามมิติ) ได้แก่ก้มเงย (Pitch), เอนซ้ายขวา (Roll) และหันซ้ายขวา (Yaw)</p></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>แต่ก่อนอื่น เรามาพูดถึงจุด Facial Landmark กันก่อน โดยจุดเหล่านี้เป็นจุดที่ปรากฏบนอวัยวะบนใบหน้า ทีนี้จะมีจำนวนจุดที่ใช้งานกันอยู่บ่อยระดับหนึ่งก็คือ 68 จุดตามภาพด้านล่างนี้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":3221,"width":425,"height":343,"sizeSlug":"full","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-full is-resized"><img src="https://asset.nickuntitled.com/2021/09/68-facial-landmarks.jpg" alt="" class="wp-image-3221" /><figcaption>จุด Facial Landmarks ทั้ง 68 จุด</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>นอกจากจุดทั้ง 68 จุดแล้วจุดเหล่านี้จะมีมากกว่า หรือน้อยกว่าก็ได้ ขึ้นกับความต้องการของผู้ใช้ แต่ในบทความนี้เราจะใช้ 68 จุดเป็นหลัก</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เมื่อทราบถึงจุด Facial Landmark ที่ใช้แล้ว เราจะมาแปลงจากจุดที่เป็น 3 มิติ ให้ออกมาเป็นมุมการเคลื่อนไหวของศีรษะได้อย่างไรล่ะ? </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เราทำได้ครับ โดยเทคนิคที่เขียนในบทความนี้มาจาก<a href="https://gist.github.com/zalo/71fbd5dbfe23cb46406d211b84be9f7e" target="_blank" rel="noreferrer noopener" title="https://gist.github.com/zalo/71fbd5dbfe23cb46406d211b84be9f7e">หน้าหนึ่งในเว็บ Github</a> ผู้อ่านสามารถอ่านในหัวข้อถัดไปได้ครับ สำหรับภาษาที่เขียนในที่นี่เราจะใช้<a href="https://www.python.org/" target="_blank" rel="noreferrer noopener" title="https://www.python.org/">ภาษาไพทอน</a>ที่เหมาะกับมือใหม่ที่เพิ่งหัดเขียนโปรแกรม ไปจนถึงงานด้าน AI/ML ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3>แปลงจุด Facial Landmark 3 มิติ ให้เป็น Rotation Matrix</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ขั้นตอนแรก เราต้องแปลงจุด Facial Landmark 3 มิติ ให้อยู่ในรูป Rotation Matrix ทำได้โดยการเขียนโค้ดในลักษณะตามด้านล่างนี้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code># Construct a "rotation" matrix (strong simplification, might have shearing)
+rotationMatrix = np.empty((3,3))
+rotationMatrix&#91;0,:] = (landm&#91;16] - landm&#91;0])/np.linalg.norm(landm&#91;16] - landm&#91;0])
+rotationMatrix&#91;1,:] = (landm&#91;8] - landm&#91;27])/np.linalg.norm(landm&#91;8] - landm&#91;27])
+rotationMatrix&#91;2,:] = np.cross(rotationMatrix&#91;0, :], rotationMatrix&#91;1, :])</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>เมื่อเห็นตัวโค้ดแล้ว ผู้อ่านบางคนอาจจะไม่เข้าใจ เรามาอธิบายโค้ดกันก่อน</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>อธิบายตัวโค้ด</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>จากโค้ดเราจะสร้างอาเรย์ที่มีขนาด 3x3 ขึ้นมาโดยใช้คำสั่งของ numpy ในบรรทัดแรก</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>สำหรับคนที่ไม่ทราบ numpy ตัวไลบรารี numpy เป็นไลบรารีภาษาไพทอนที่ช่วยให้เราทำงานทางด้านคณิตศาสตร์ รวมถึงแมทริกซ์ได้สะดวกสบายมากยิ่งขึ้นครับ</p><p>ใครที่ไม่ทราบ สามารถอ่านเพิ่มเติมได้ในเว็บ <a href="https://numpy.org/" target="_blank" rel="noreferrer noopener" title="https://numpy.org/">numpy</a></p></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>ส่วนบรรทัดต่อมาเราจะใช้เวกเตอร์ (Vector) ตำแหน่งจุดแลนมาร์คจุดที่ 1,17 มาลบกันแล้วทำค่าให้เป็นมาตรฐานโดยการทำ Normalize ข้อมูลด้วยการเอาผลลัพธ์ของการใช้ Matrix หรือ Vector norm มาหาร</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ในที่นี้เราจะใช้ norm ที่มีชื่อว่า Frobenius Norm ที่สามารถหาได้โดยการใช้สมการตามด้านล่างนี้ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":3246,"width":274,"height":119,"sizeSlug":"full","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-full is-resized"><img src="https://asset.nickuntitled.com/2021/09/Frobenius_norm_formula.gif" alt="" class="wp-image-3246" /><figcaption><strong>Frobenius norm</strong> เอามาจาก<a href="https://mathworld.wolfram.com/FrobeniusNorm.html" target="_blank" rel="noreferrer noopener" title="https://mathworld.wolfram.com/FrobeniusNorm.html">หน้าเว็บของ Wolfram Mathworld</a></figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เมื่อ m และ n เป็นขนาดของแมทริกซ์ในแกน y และแกน x ผลลัพธ์ของ Frobenius Norm สามารถหาได้ตามสมการด้านบนนี้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ส่วนแถวต่อมา เราใช้ Vector จุดแลนมาร์คที่ 9,28 มาทำแบบเดียวกันกับในแถวแรก </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ส่วนแถวสุดท้ายเราจะนำ Vector ของสองแถวแรกมาคูณด้วยการใช้ Cross Product ซึ่งผู้อ่านสามารถอ่านได้ในหน้าเว็บนี้เรื่อง<a href="http://www.rmutphysics.com/charud/specialnews/7/vector/vector4.htm" target="_blank" rel="noreferrer noopener" title="http://www.rmutphysics.com/charud/specialnews/7/vector/vector4.htm">เวกเตอร์และการเคลื่อนที่</a>ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ผลลัพธ์ที่ได้ คือ Rotation Matrix เราจะอธิบายสิ่งนี้ในหัวข้อถัดไปครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Rotation Matrix</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Rotation Matrix เป็นแมทริกซ์หนึ่งที่ใช้ในการหมุนของจุดแต่ละจุดในปริภูมิของยูคลิด (Euclidian space) ในบทความนี้เราจะเน้นไปที่ 3 มิติเป็นหลัก ดังนั้นแล้วแมทริกซ์นี้จะประกอบไปด้วยแมทริกซ์การหมุนที่หมุนตามแกน x, y และ z ที่อ้างอิงตามภาพด้านล่างนี้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":3266,"width":390,"height":290,"sizeSlug":"full","linkDestination":"none"} -->
+<div class="wp-block-image"><figure class="aligncenter size-full is-resized"><img src="https://asset.nickuntitled.com/2021/09/openGL_axis.png" alt="" class="wp-image-3266" /><figcaption>ทิศทางการหมุนตามแกน x, y และ z (ภาพซ้าย) (ภาพมาจาก <a href="http://www.songho.ca/opengl/gl_anglestoaxes.html" target="_blank" rel="noreferrer noopener" title="http://www.songho.ca/opengl/gl_anglestoaxes.html">OpenGL Angles to Axis</a>)</figcaption></figure></div>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>เราจะแทนได้ว่าแกน x เป็นองศาการก้มเงย (Pitch), แกน y เป็นองศาการหันซ้ายขวา (Yaw) และแกน z เป็นองศาการเอนซ้ายขวา (Roll) โดยทิศการในแต่ละแกนจะใช้ตามกฏมือขวา (Right-hand rule)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3>แปลง Rotation Matrix ให้อยู่ในรูปองศาการหันใบหน้าที่อยู่ในรูปองศา</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>หลังจากที่เราได้ Rotation Matrix มาเรียบร้อย </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ในขั้นต่อไป เราจะแปลงจากแมทริกซ์นั้น ให้กลายเป็นมุนการหันศีรษะ ในบทความนี้เราจะเอาโค้ดที่เขียนในหน้าเว็บ Github ลิ้งค์เดียวกันกับที่เป็นโค้ดแปลงให้อยู่ในรูปแบบ Rotation Matrix ที่เขียนได้ตามด้านล่างนี้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>sy = math.sqrt(R&#91;0,0] * R&#91;0,0] +  R&#91;1,0] * R&#91;1,0])
+singular = sy &lt; 1e-6
+if not singular :
+    x = math.atan2(R&#91;2,1] , R&#91;2,2])
+    y = math.atan2(-R&#91;2,0], sy)
+    z = math.atan2(R&#91;1,0], R&#91;0,0])
+else:
+    x = math.atan2(-R&#91;1,2], R&#91;1,1])
+    y = math.atan2(-R&#91;2,0], sy)
+    z = 0
+
+# x = pitch, y = yaw, z = roll
+x = np.degrees(np.arcsin(np.sin(x)))
+z = -np.degrees(np.arcsin(np.sin(z)))
+y = -np.degrees(np.arcsin(np.sin(y)))
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>เมื่อเห็นตัวโค้ดแล้ว เราอธิบายได้ตามด้านล่างนี้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>อธิบายโค้ด</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>เรามาพูดถึงบรรทัดแรกก่อนที่เป็นการหารากที่สอง (Square Root) ของผลคูณของสมาชิกใน Rotation Matrix แล้วต่อมาเช็คว่าผลลัพธ์ที่ได้มีค่าน้อยกว่า 10 ยกกำลังลบ 6 หรือไม่ (ประมาณว่าค่ามันน้อยมากจนจะเข้าใกล้ 0 ครับ)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>กรณีที่ค่านั้นมีค่ามากกว่า 10 ยกกำลังลบ 6 เราจะหาองศาการหันศีรษะและลำคอได้ตามโค้ดที่เขียนไว้ในเงื่อนไขนั้นได้เลย ถัดจาก if not singular </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>แต่ถ้าได้น้อยกว่า 10 ยกกำลัง 6 เราจะหาองศาได้ตามโค้ดที่อยู่ในช่องที่ถัดจาก else ครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เมื่อได้แล้ว ผลลัพธ์ที่ได้จะอยู่ในรูปตัวแปร x, y และ z ตามแกนที่เราได้กล่าวไว้ในหัวข้อ Rotation Matrix ผลลัพธ์นี้จะอยู่ในรูปเรเดียน (Radian) แต่เราต้องการให้มันออกมาเป็นองศาใช่ไหมครับ?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>เราทำได้โดยการพิมพ์คำสั่งตามที่เขียนโค้ดด้านบนสามแถวล่างสุด แค่นี้เราจะได้ผลลัพธ์ที่อยู่ในรูปองศาเรียบร้อยครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>สรุป</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>ในบทความนี้ เราแนะนำการแปลงจุด Facial Landmark 3 มิติให้มาเป็นองศาการเคลื่อนไหวของใบหน้าครับ ทำได้โดยการพิมพ์โค้ดตามตัวอย่างที่ระบุมาแล้วครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>อย่างไรก็ดีเทคนิคการแปลงดังกล่าวมีเทคนิคอื่นด้วย ตัวอย่างเช่น Perspective-n-point ที่มีมาให้ในไลบรารี OpenCV ที่เคยลองแล้ว มันไม่ค่อยแม่นยำเท่าไรตามที่<a href="https://openaccess.thecvf.com/content_cvpr_2018_workshops/papers/w41/Ruiz_Fine-Grained_Head_Pose_CVPR_2018_paper.pdf" target="_blank" rel="noreferrer noopener" title="https://openaccess.thecvf.com/content_cvpr_2018_workshops/papers/w41/Ruiz_Fine-Grained_Head_Pose_CVPR_2018_paper.pdf">เปเปอร์ที่เกี่ยวกับเทคนิค Hopenet</a> กล่าวไว้</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ผู้อ่านสามารถนำตัวอย่างไปประยุกต์ใช้กับงานตามที่ต้องการได้เลยครับ เราเอาไปใช้แล้วชีวิตดีขึ้นครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>เพิ่มเติม</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>แล้วถ้าเราถ่ายภาพจากด้านข้างและเราต้องการวัดองศาของศีรษะทำได้ไหม ทำได้ครับ เพียงแต่เวลาที่เราสร้าง Rotation Matrix เดิมที่เราจะส่งอาเรย์ของแต่ละจุดตามแกน x, y และ z ใช่ไหมครับ เราก็สลับเป็น z, y และ x แทนครับ</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ลืมไปอย่างนึง รูปภาพที่เอามาเป็นรูป Cover เอามาจากงา<a href="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm" target="_blank" rel="noreferrer noopener" title="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm">นวิจัยที่มีชื่อว่า Face Alignment Across Large Poses: A 3D Solution</a> ที่ผู้วิจัยพัฒนาเป็นเทคนิคการจับจุดบนใบหน้าที่มีชื่อว่า 3DDFA และทำฐานข้อมูลสาธารณะ AFLW2000-3D, 300W_LP ครับ</p>
+<!-- /wp:paragraph -->
+
+</div>
+<div class="tags-container">
+	
+		<a href="https://nickuntitled.com/tags/#calculation" class="post-tag">calculation</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#coding" class="post-tag">coding</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#computer" class="post-tag">computer</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#computer+vision" class="post-tag">computer vision</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#coordinate" class="post-tag">coordinate</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#facial" class="post-tag">facial</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#head" class="post-tag">head</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#head+pose" class="post-tag">head pose</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#Head+Pose+Estimation" class="post-tag">Head Pose Estimation</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#landmark" class="post-tag">landmark</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#math" class="post-tag">math</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#matrix" class="post-tag">matrix</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#numpy" class="post-tag">numpy</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#programming" class="post-tag">programming</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#python" class="post-tag">python</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#rotation" class="post-tag">rotation</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%84%E0%B8%A5%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%AB%E0%B8%A7%E0%B9%83%E0%B8%9A%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2" class="post-tag">การเคลื่อนไหวใบหน้า</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%84%E0%B8%AD%E0%B8%A1%E0%B8%9E%E0%B8%B4%E0%B8%A7%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C" class="post-tag">คอมพิวเตอร์</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%88%E0%B8%B8%E0%B8%94%E0%B9%81%E0%B8%A5%E0%B8%99%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%84" class="post-tag">จุดแลนมาร์ค</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B8%B3%E0%B8%99%E0%B8%A7%E0%B8%93" class="post-tag">วิทยาการคำนวณ</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%81%E0%B8%81%E0%B8%A3%E0%B8%A1" class="post-tag">เขียนโปรแกรม</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%82%E0%B8%84%E0%B9%89%E0%B8%94%E0%B8%94%E0%B8%B4%E0%B9%89%E0%B8%87" class="post-tag">โค้ดดิ้ง</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%83%E0%B8%9A%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2" class="post-tag">ใบหน้า</a>, 
+	
+		<a href="https://nickuntitled.com/tags/#%E0%B9%84%E0%B8%9E%E0%B8%97%E0%B8%AD%E0%B8%99" class="post-tag">ไพทอน</a>
+	
+</div>
+<div class="navigation">
+	
+		<a class="prev" href="/2021/09/17/using-warp-unlimited-multiple-devices/">< วิธีใช้ WARP+ Unlimited 1 บัญชี หลายเครื่อง</a>
+	 
+	<a class="next" href="/2021/10/03/audax-200-brm-prachuapkirikhan/">Audax 200BRM ประจวบคีรีขันธ์ ></a>
+
+</div>
+	<div class="footer">
+		<span>Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'><b>Privacy Policy</b></a></span>
+	</div>
+</div>
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>
