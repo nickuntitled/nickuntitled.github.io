@@ -1,4 +1,162 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-10-30T13:23:48+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Coding anywhere by code-server and VPS</title><link href="https://nickuntitled.com/2021/10/18/coding-anywhere/" rel="alternate" type="text/html" title="Coding anywhere by code-server and VPS" /><published>2021-10-18T02:00:00+07:00</published><updated>2021-10-18T02:00:00+07:00</updated><id>https://nickuntitled.com/2021/10/18/coding-anywhere</id><content type="html" xml:base="https://nickuntitled.com/2021/10/18/coding-anywhere/">&lt;p&gt;Some parts of this article is already written in Thai language in this article to &lt;a href=&quot;https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/&quot;&gt;bring iPad as the development machine&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-10-30T18:47:52+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">วินโดว์ 11 - การใช้งาน &amp;amp; แอพบน Surface Pro X</title><link href="https://nickuntitled.com/2021/10/30/windows-11-usage-app-surfacepro-x/" rel="alternate" type="text/html" title="วินโดว์ 11 - การใช้งาน &amp;amp; แอพบน Surface Pro X" /><published>2021-10-30T02:18:30+07:00</published><updated>2021-10-30T02:18:30+07:00</updated><id>https://nickuntitled.com/2021/10/30/upgrading-to-windows-11</id><content type="html" xml:base="https://nickuntitled.com/2021/10/30/windows-11-usage-app-surfacepro-x/">&lt;p&gt;หลังจากที่ระบบปฏิบัติการของไมโครซอฟท์อย่าง Windows 11 ได้รับการปล่อยให้อัพเดทไปตั้งแต่ต้นเดือนตุลาคมที่ผ่านมา ซึ่งการปล่อยให้อัพเดทจะปล่อยผ่านทาง Windows Update เป็นระยะ แต่เราอัพเดทก่อนได้ผ่านทาง Windows 11 Installation Assistant แต่ในบทความนี้เราจะกล่าวถึงอุปกรณ์ที่ใช้อยู่ที่ใช้ซีพียู ARM เองนั่นก็คือ Surface Pro X&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ในบทความนี้สามารถเอาไปใช้กับคอมพิวเตอร์ที่ใช้ซีพียู ARM ได้นอกเหนือจาก Surface ครับ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ก่อนที่จะมาพูดถึงการใช้งาน เรามาพูดถึงตัววินโดว์ก่อน&lt;/p&gt;
+
+&lt;h2 id=&quot;windows-11&quot;&gt;Windows 11&lt;/h2&gt;
+
+&lt;p&gt;Windows 11 เป็นระบบปฏิบัติการที่ได้รับการพัฒนาจากบริษัทไมโครซอฟท์ ระบบปฏิบัติการนี้ได้รับการประกาศเปิดตัวไปแล้ววันที่ 24 มิถุนายน 2564 จากนั้นได้รับการปล่อยใน Windows Insider&lt;/p&gt;
+
+&lt;p&gt;ต่อมา Windows 11 ได้รับการปล่อยออกมาเป็นตัวจริงเมื่อวันที่ 5 ตุลาคม 2564 ที่อนุญาตให้เราอัพเกรตจากวินโดว์ 10 ฟรีผ่านทาง Windows Update หรือ Windows 11 Installation Assistant ที่เป็นแอพช่วยให้เราอัพเกรตเป็นวินโดว์ 11 ได้อย่างง่ายดาย เพียงแค่ดาวน์โหลดตัวติดตั้ง แล้วกดปุ่มเข้าไป ตัวแอพจะจัดการให้เราทั้งหมด&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี เราได้ดาวน์โหลด Windows 11 Installation Assistant แล้ว แต่เมื่อเขียนลงไดรฟ์ USB แล้วเสียบกับคอมพิวเตอร์ที่ใช้อยู่ ระบบไม่บูทเข้าสู่หน้าจอการติดตั้งวินโดว์ 11 พอไปเช็คอีกที ตัวแอพดาวน์โหลดเวอร์ชันที่รองรับเฉพาะซีพียูสถาปัตยกรรม x86 64 Bit ครับ เลยเปิดเข้ามาหน้าจอการติดตั้งไม่ได้ครับ&lt;/p&gt;
+
+&lt;p&gt;เหลือทางเลือกหนึ่งคือรอทางไมโครซอฟท์ปล่อยให้อัพเกรตผ่านทาง Windows Update เรารอประมาณเกือบ 1 เดือน ก็ดาวน์โหลดมาอัพเกรตได้ครับ&lt;/p&gt;
+
+&lt;p&gt;ส่วนข่าวที่ปรากฏตั้งแต่การเปิดตัวก็จะมีปัญหาเรื่องของ TPM 2.0 และ Secure Boot ของ UEFI โดย&lt;/p&gt;
+
+&lt;h3 id=&quot;tpm&quot;&gt;TPM&lt;/h3&gt;
+
+&lt;p&gt;TPM (ย่อมาจาก Trusted Platform Module) เป็นชิพที่เกี่ยวข้องกับความปลอดภัยของระบบ ดูแลตั้งแต่เปิดเครื่องจนกระทั่งปิดคอมพิวเตอร์ ชิพตัวนี้เราพบได้ในชิพที่ซื้อมาติดบนเมนบอร์ดเพิ่ม หรือติดมากับ Chipset หรือซีพียูรุ่นใหม่ของ Intel, AMD และ Qualcomm ที่มีคนนำชิพนี้ไปใช้งานด้านการเข้ารหัสข้อมูลบน Disk อย่าง BitLocker, DRM, Anti-cheat ในบางเกม เช่น Valorant ก็ใช้ชิพนี้เช่นกัน&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี Windows 11 ต้องการ TPM 2.0 ส่วนใครใช้รุ่นเก่ากว่า หรือไม่มีตัวนี้ก็อัพเกรตแล้วอาจจะใช้งานได้ไม่เต็มที่ หรือาจจะไม่ได้รับการอัพเดทเพิ่มเติมครับ&lt;/p&gt;
+
+&lt;p&gt;ส่วนสาเหตุที่ต้องการ TPM 2.0 ทาง&lt;a href=&quot;https://www.blognone.com/node/123419&quot;&gt;บริษัท Microsoft ได้ชี้แจงแล้วตามนี้ครับ&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;เราสามารถอ่านข้อมูลเพิ่มเติมได้ใน&lt;a href=&quot;https://en.wikipedia.org/wiki/Trusted_Platform_Module&quot;&gt;หน้านี้ครับ&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;uefi&quot;&gt;UEFI&lt;/h3&gt;
+
+&lt;p&gt;UEFI (ย่อมาจาก Unified Extensible Firmware Interface) เป็นโปรแกรมที่เริ่มทำงานตั้งแต่เปิดคอมพิวเตอร์ที่ทำหน้าที่เชื่อมต่อ ตรวจสอบ และตั้งค่าฮาร์ดแวร์ต่าง ๆ เช่น CPU, RAM, การ์ดจอ และอื่น ๆ เพื่อเริ่มต้นใช้งานในระบบปฏิบัติการต่อไป ตัวนี้มันดีกว่า BIOS เดิมอย่างไร ดีกว่าตรงที่&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;รองรับความจุฮาร์ดดิสก์ที่มีขนาดใหญ่ขึ้นมากกว่าเดิม (9 Zettabytes)&lt;/li&gt;
+  &lt;li&gt;บูตเครื่องได้เร็วขึ้น&lt;/li&gt;
+  &lt;li&gt;มีฟังก์ชันเกี่ยวกับความปลอดภัยอย่าง Secure Boot ที่ป้องกันการบูตเข้าไปในโปรแกรมที่ไม่ได้รับการรับรอง&lt;/li&gt;
+  &lt;li&gt;สามารถทำงานได้ใน 32-bit หรือ 64-bit ในขณะที่ BIOS ยังเป็น 16-bit อยู่เลย&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;สิ่งที่ Windows 11 ต้องการสำหรับการอัพเกรตคือฟังก์ชัน UEFI ที่เปิด Secure Boot เพื่อป้องกันแอพ Malware หรือ Randomware ที่ล็อคไฟล์แล้วต้องจ่ายเงินเพื่อปลดล็อคครับ&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;สำหรับข้อมูลเพิ่มเติม&lt;a href=&quot;https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface&quot;&gt;อ่านที่นี่&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;การใช้งาน&quot;&gt;การใช้งาน&lt;/h2&gt;
+
+&lt;p&gt;หลังจากที่ติดตั้งระบบปฏิบัติการ Windows 11 เรียบร้อยแล้ว เปิดเข้ามาหน้าจอหลักของ Windows แล้วใช้งาน เราจะพบว่าหน้าตา และการใช้งานเปลี่ยนไปพอสมควร ได้แก่&lt;/p&gt;
+
+&lt;h3 id=&quot;1-taskbar&quot;&gt;1. Taskbar&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/taskbar.png&quot; alt=&quot;Windows 11 new taskbar&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Taskbar เป็นแถบที่ปรากฏด้านล่างหน้าจอที่ปรากฏไอคอนแอพที่เปิดไว้อยู่ ทีนี้เปลี่ยนจากมุมล่างซ้ายมาอยู่ตรงกางแทน มันดูไม่ค่อยจะสมมาตรกันเท่าไร แถมมีไอคอนที่อยู่มุมล่างขวามาเบียดอีก เราเลยเปลี่ยนให้ไอคอนแอพที่เปิดไว้อยู่ที่มันอยู่ตรงกลาง มาเป็นด้านล่างซ้ายแทน ดูแล้วคล้ายกันกับที่ใช้บน Windows 10&lt;/p&gt;
+
+&lt;p&gt;ต่อมาเมื่อกดปุ่ม Start Menu ออกมาแล้ว เราจะปรากฏเมนูที่ให้เลือกแอพ จุดนี้หน้าตาเปลี่ยนไป ตัวเมนูตัดส่วนที่เราจัดกรุ๊ปแอพตามการใช้งานออกหมด เหลือเพียงแอพที่ติดตั้งอยู่ในคอมพิวเตอร์ อันนี้สำหรับเราไม่ค่อยสะดวกเท่าไร แก้ปัญหาเวลาที่เราอยากใช้แอพตัวไหน ก็พิมพ์ชื่อแอพบนคีย์บอร์ดเลย แอพนั้นจะปรากฏขึ้นมาให้กดเองครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/control_center.png&quot; alt=&quot;Windows 11 control center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;สุดท้าย แถบ Control Center ที่เปลี่ยนไป เวลาที่กดมุมล่างขวาของ Windows 10 มันจะขึ้นหน้าต่างการตั้งค่าที่ปรากฏเยอะมาก ตั้งแต่การปรับแสงหน้าจอ ปรับแต่งเสียง การหมุนหน้าจอ ไวไฟ บลูทูธ แต่พอใช้งานใน Windows 11 มีฟังก์ชันหนึ่งที่น่าจะตัดไปคือฟังก์ชันล็อคการหมุนของหน้าจอ ที่เราต้องไปปรับให้หน้าจอ Setting เพื่อปรับทิศทางการหมุนหน้าจอเองว่าจะให้อยู่ในแนวตั้ง แนวนอนครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;2-virtual-desktop&quot;&gt;2. Virtual Desktop&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/virtual_desktop.png&quot; alt=&quot;Windows 11 Virtual Desktop&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ปกติเวลาใช้งานบนวินโดว์จะแสดง Desktop ได้หลายหน้าตั้งแต่ Windows 10 แล้ว พออัพเกรตมาใช้งานบน Windows 11 พบว่าใช้งานได้สะดวกขึ้นมากกว่าเดิม เพียงแค่เอาเมาส์เลื่อนมาไว้บนปุ่มที่สามจากด้านซ้ายสุด แล้วกดปุ่ม จะปรากฏรายการหน้าต่างวินโดว์ที่เปิดไว้อยู่ และหน้า Desktop ที่เราใช้อยู่ครับ เราสามารถเพิ่ม-ลด Desktop ได้ตามที่ต้องการ รวมถึงสามารถเลื่อนหน้าต่างแอพที่เราเปิดไว้ ไปวางบน Desktop อื่นได้ เพื่อไม่ให้หน้าจอรกเกินไป&lt;/p&gt;
+
+&lt;p&gt;ฟังก์ชันนี้ทำให้นึกถึงเวลาที่ใช้งานฟังก์ชัน Mission Control บนระบบปฏิบัติการ MacOS หรือ Virtual Desktop บนระบบปฏิบัติการ Linux ครับ&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;การเปิดหน้าจอตามที่กล่าวไว้ เราสามารถทำได้โดยการกดปุ่ม Win + Tab ครับ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;3-แอพ&quot;&gt;3. แอพ&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/app.png&quot; alt=&quot;Apps on Windows 11&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;หลังจากที่อัพเดทเป็นระบบปฏิบัติการ Windows 11 บนคอมพิวเตอร์ที่ใช้ซีพียูสถาปัตยกรรม ARM/ARM64 แล้ว ฟังก์ชันที่เพิ่งเพิ่มมาคือ&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;เราสามารถเปิดใช้งานแอพที่เป็น x86 64-bit&lt;/li&gt;
+  &lt;li&gt;กรณีที่ผู้พัฒนาต้องการพอร์ตแอพจาก x86 64-bit มาใช้บน ARM64 แต่ไลบรารีบางส่วนไม่รองรับก็สามารถคอมไพล์บางส่วนเป็น ARM บางส่วนเป็น 64-bit ก็ใช้งานได้เช่นกัน หรือที่เรียกว่า &lt;a href=&quot;https://blogs.windows.com/windowsdeveloper/2021/06/28/announcing-arm64ec-building-native-and-interoperable-apps-for-windows-11-on-arm/&quot;&gt;ARM64EC (ย่อมาจาก ARM64 Emulation Compatible)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;สาเหตุที่รองรับเนื่องมาจากว่าแอพในปัจจุบันเปลี่ยนมาใช้งานบน 64-bit มากขึ้น และทางบริษัทได้รับ Feedback จากลูกค้าว่าต้องการให้รองรับการใช้งานแอพลักษณะนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี ที่รองรับการใช้งานในลักษณะนี้มีเฉพาะแอพเท่านั้น ไม่รองรับ Driver ที่เป็น x86 32-bit หรือ 64-bit แต่อย่างใด เราลองติดตั้งแอพหนึ่งที่เป็น 64-bit เช่น Cloudflare WARP แล้ว ก็เปิดแอพ เห็นหน้าต่างได้ตามปกติ แต่เปิดใช้งาน VPN ไม่ได้เพราะเครื่องนั้นไม่รองรับ Driver ที่เป็น x86 64-bit ครับ&lt;/p&gt;
+
+&lt;p&gt;ส่วนใครที่จะเอาไปเล่นเกมที่เป็น 64-bit ทั้งเกมออนไลน์ หรือออฟไลน์ อาจจะต้องเช็คตัว Anti-cheat ว่ารองรับหรือเปล่า ถ้าเปิดได้ อาจจะต้องดูรันไหวไหม เพราะเกม AAA ต้องการสเปคที่สูง ส่วนเกมที่แข่ง e-sport อันนี้เราไม่เคยเล่น เลยบอกไม่ได้ครับ&lt;/p&gt;
+
+&lt;p&gt;ส่วนแอพอื่น เรายังไม่ได้ทดลองใช้งาน เพราะว่าแอพที่ใช้งานในปัจจุบันรองรับการทำงานบนซีพียู ARM/ARM64 เกือบหมดแล้ว บางตัวเป็น x86 32-bit ครับ โดยแอพที่ใช้อยู่ได้แก่&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;แอพสำหรับประชุม หรือ Video Conference เช่น Microsoft Teams, Zoom&lt;/li&gt;
+  &lt;li&gt;แอพที่ไว้พัฒนาแอพ เช่น Visual Studio Code&lt;/li&gt;
+  &lt;li&gt;เว็บเบราวเซอร์ เช่น Microsoft Edge, Mozilla Firefox&lt;/li&gt;
+  &lt;li&gt;แอพแต่งภาพ เช่น Adobe Lightroom, Adobe Photoshop&lt;/li&gt;
+  &lt;li&gt;แอพออฟฟิส เช่น Office 365&lt;/li&gt;
+  &lt;li&gt;Linux เช่น Windows Subsystem for Linux 2 อย่าง Ubuntu&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;แอพเกือบทั้งหมดนี้ ได้กล่าวถึงไปแล้วในหน้า &lt;a href=&quot;https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/&quot;&gt;“Surface Pro X กับแอพที่ใช้งานอยู่ในขณะนี้”&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;นอกเหนือจากนี้ บางแอพเปิดแล้วมันไม่ติด เช่นแอพ LINE (ที่มีฟีเจอร์หลายอย่างมาก ยกเว้นเป็นแอพแชทที่ดี) อันนี้ยังไม่ได้ลองติดตั้งใหม่อีกทีว่าใช้ได้ไหม ถ้าไม่ได้ ก็อาจจะเปลี่ยนมาใช้บนมือถืออย่างเดียว แล้วเวลาที่รับไฟล์ เราค่อยอัพผ่าน OneDrive อีกที&lt;/p&gt;
+
+&lt;h3 id=&quot;4-คีย์บอร์ด&quot;&gt;4. คีย์บอร์ด&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/onscreenkeyboard.png&quot; alt=&quot;On Screen Keyboard&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;เวลาที่เราใช้งานบนแท็บเล็ต แล้วเอานิ้วแตะกล่องข้อความที่ปรากฏบนหน้าจอ สิ่งที่เราพบได้บ่อยที่สุดคือ On-screen keyboard&lt;/p&gt;
+
+&lt;p&gt;On-screen keyboard เป็นแป้นพิมพ์เสมือนที่ปรากฏบนหน้าจอ มีหน้าจอที่ให้เรากดปุ่มตัวอักษรที่อยู่บนหน้าจอ แล้วตัวอักษรนั้นจะปรากฏบนกล่องข้อความนั้น ๆ หรืออาจจะกดปุ่มบนหน้าจอเพื่อใช้งาน Shortcut ได้ตามที่ต้องการ&lt;/p&gt;
+
+&lt;p&gt;ฟังก์ชันนี้ในระบบปฏิบัติการ Windows 11 มีมาให้เช่นกัน หน้าตาที่สวยขึ้นมากกว่าเดิม สามารถปรับให้เป็นคีย์บอร์ดขนาดเล็กแบบที่พิมพ์บนมือถือได้ และยังรองรับการเขียนข้อความได้อีก อย่างไรก็ดีฟังก์ชันทั้งสองนี้ไม่รองรับภาษาไทย ผิดกับของซัมซุง (ที่เราใช้อยู่) ที่รองรับความสามารถทั้งสองอย่างเลย และสามารถใช้ปากกา S-Pen เขียนข้อความเป็นภาษาไทยได้อีก&lt;/p&gt;
+
+&lt;p&gt;ส่วนเราสามารถเพิ่ม Layout ที่ไม่ได้ติดมาในวินโดว์ได้ไหม อันนี้ไม่ได้ลอง เดี๋ยวค่อยเอา&lt;a href=&quot;https://manoonchai.com/&quot;&gt;แป้นพิมพ์มนูญชัย&lt;/a&gt;มาเพิ่มแล้วว่ามันใช้ได้ไหม ถ้าได้ก็โอเค&lt;/p&gt;
+
+&lt;h3 id=&quot;5-dark-mode&quot;&gt;5. Dark Mode&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/darkmode.png&quot; alt=&quot;Dark Mode&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ธีมบนระบบปฏิบัติการ Windows 11 รองรับการใช้งานธีมที่เป็น Dark Mode (ธีมสีออกเทา ๆ ดำ ๆ ครับ) ธีมนี้ทำให้เราสามารถใช้งานได้สบายตาขึ้นมากกว่าเดิม และลดปริมาณแสงที่ออกมาจากหน้าจอครับ รวมถึงประหยัดแบตด้วยครับ&lt;/p&gt;
+
+&lt;p&gt;ความสามารถนี้มีมาตั้งแต่ใน Windows 10 แล้ว เพียงแต่บน Windows 11 ทำงานได้ดีขึ้นมากกว่าเดิม&lt;/p&gt;
+
+&lt;p&gt;การเปิดใช้งาน คลิกขวาที่หน้า Desktop -&amp;gt; Personalize -&amp;gt; Colors -&amp;gt; แล้วเลือกตรงช่อง Choose your mode จาก Light ให้เป็น Dark ครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;6-หน้าต่าง-explorer&quot;&gt;6. หน้าต่าง Explorer&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/explorer.png&quot; alt=&quot;Windows 11 explorer&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;หน้าต่าง Explorer บนระบบปฏิบัติการ Windows 11 ที่มันดูไม่ค่อยรกแบบตอนที่ใช้บน Windows 8, 8.1 และ 10 แถมจุดหนึ่งที่เราว่ามันดีกว่าเดิม คือมันสามารถเปิดดูโฟลเดอร์บน Windows Subsystem for Linux ได้เลย สะดวกเวลาขึ้นเวลาที่ถ่ายโอนไฟล์ครับ&lt;/p&gt;
+
+&lt;p&gt;นอกเหนือจากนี้ หน้าตาของหน้าต่างนี้ รวมถึงไอคอนที่ดูทันสมัยกว่ารุ่นก่อน ๆ ครับ&lt;/p&gt;
+
+&lt;p&gt;ส่วนรายละเอียดเพิ่มเติม สามารถ &lt;a href=&quot;https://www.windowscentral.com/whats-new-file-explorer-windows-11&quot;&gt;อ่านได้ที่ลิ้งค์นี้ครับ&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;7-แอพ-android&quot;&gt;7. แอพ Android&lt;/h3&gt;
+
+&lt;p&gt;ความสามารถหนึ่งที่ช่วงเปิดตัว Windows 11 ก็คือรองรับการติดตั้งแอพ Android ที่มีให้โหลดใน Amazon App Store อันนี้มาไม่ทันตอนที่ปล่อย Windows 11&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี ความสามารถนี้ได้ปล่อยออกมาใน Windows Insider แล้ว อีกไม่นานคงได้ปล่อยมาให้อัพเดทต่อ ๆ ไป และตอนที่ปล่อยออกมาแล้ว เรามีแอพที่อยากจะลงอยู่ และมีให้โหลดใน Amazon App Store ทีนี้เราจะได้ใช้งานได้สะดวกขึ้นมากกว่าเดิมครับ&lt;/p&gt;
+
+&lt;p&gt;ส่วน Google Play ตอนนี้มีคนพยายามลงแล้วก็พบว่าลงได้แล้ว &lt;a href=&quot;https://droidsans.com/how-to-install-google-play-store-on-windows-11-pc/&quot;&gt;ส่วนวิธีดูได้ที่ลิ้งค์นี้ครับ&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;บัค&quot;&gt;บัค&lt;/h2&gt;
+
+&lt;p&gt;เวลาที่ใช้งาน Windows 11 บนเครื่องที่ใช้ซีพียู ARM แบบ Surface Pro X มันก็มีบัค เวลาที่ใช้งาน ตัววินโดว์จะค้างไปเองแบบไม่มีปี่ไม่มีขลุ่ย รวมถึงทำงานได้ช้ากว่าตอน Windows 10&lt;/p&gt;
+
+&lt;p&gt;ผิดกับตอนที่เราใช้ macOS เลย อันนี้เวลาที่อัพเดทแล้วไม่ค่อยค้างเท่าไร ยกเว้นแต่ CPU เก่าเกินไป ทำงานได้ช้าครับ :P&lt;/p&gt;
+
+&lt;h2 id=&quot;สรุป&quot;&gt;สรุป&lt;/h2&gt;
+
+&lt;p&gt;Windows 11 เป็นระบบปฏิบัติการของไมโครซอฟท์ที่ปล่อยออกมาแล้วช่วงต้นเดือนตุลาคมที่ผ่านมา เราอัพเกรตลงบน Surface Pro X แล้วพบว่าการใช้งานหลายส่วนใช้งานได้ดีขึ้น แต่มีบางส่วนที่ยังขาด ๆ เกิน ๆ อยู่ อันนี้อาจจะต้องรอทางไมโครซอฟท์แก้ไข แล้วอัพเดทอีกทีนึงครับ&lt;/p&gt;
+
+&lt;p&gt;สำหรับคนที่ใช้ Windows 10 อยู่ แล้วใช้คอมที่เป็นซีพียู ARM อันนี้เราแนะนำให้อัพเดทครับ จะได้ใช้แอพที่มีอยู่ในปัจจุบันที่รองรับ x86 64-bit ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Windows" /><category term="Windows 11" /><category term="Microsoft" /><category term="Surface" /><category term="Surface Pro X" /><category term="Laptop" /><category term="Tablet" /><category term="ARM" /><category term="ARM64" /><category term="Upgrade" /><category term="Installation" /><category term="Apps" /><category term="UEFI" /><category term="TPM" /><category term="Trusted Platform Module" /><category term="BIOS" /><summary type="html">หลังจากที่วินโดว์ 11 ปล่อยออกมาให้อัพเกรตแล้ว ทีนี้รอจนกระทั่งไมโครซอฟท์ปล่อยให้อัพบน Windows Update ในบทความนี้กล่าวถึงการใช้งาน และแอพบนอุปกรณ์ที่ใช้อยู่</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Coding anywhere by code-server and VPS</title><link href="https://nickuntitled.com/2021/10/18/coding-anywhere/" rel="alternate" type="text/html" title="Coding anywhere by code-server and VPS" /><published>2021-10-18T02:00:00+07:00</published><updated>2021-10-18T02:00:00+07:00</updated><id>https://nickuntitled.com/2021/10/18/coding-anywhere</id><content type="html" xml:base="https://nickuntitled.com/2021/10/18/coding-anywhere/">&lt;p&gt;Some parts of this article is already written in Thai language in this article to &lt;a href=&quot;https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/&quot;&gt;bring iPad as the development machine&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Nowadays, you can create the remote development machine to replace the laptop and the tablet to develop anymore without hassles by the advances in cloud computing like &lt;a href=&quot;https://aws.amazon.com&quot;&gt;Amazon Web Services&lt;/a&gt;, or &lt;a href=&quot;https://azure.microsoft.com&quot;&gt;Microsoft Azure&lt;/a&gt;, and the cloud-based IDE such as Cloud9, code-server, etc. However, on that day, the cost of the creation of the server was expensive. It counted many bucks per hour. For me, I considered not to create until this year.&lt;/p&gt;
 
@@ -1431,98 +1589,4 @@ y = -np.degrees(np.arcsin(np.sin(y)))
 
 &lt;!-- wp:paragraph --&gt;
 &lt;p&gt;ส่วนใครอยากจะหาจอคอมพิวเตอร์ไว้เรียนออนไลน์ หรือไว้ทำงาน หน้าจอนี้แนะนำ แต่สำหรับเรียนออนไลน์คงเกินความจำเป็นไปหน่อย ซื้อจอแบบที่เราใช้อยู่ก็ได้ เป็นจอในซีรีส์ Dell E ประมาณ 23.8&quot; ก็เหลือ ๆ แล้ว จอนี้เป็นจอ IPS สีโอเคในระดับหนึ่ง เอาไว้ดูหนัง ทำงานทั่วไปได้สบายครับ อย่างไรก็ดี จอแบบนี้ไม่มีช่องเสียบ USB-C ถ้าเพิ่มงบไปได้ซักหน่อย ก็จะได้จอที่รองรับ USB-C ครับผม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="buy" /><category term="buying" /><category term="computer" /><category term="dell" /><category term="Ergonomic" /><category term="guideline" /><category term="monitor" /><category term="Surface Pro X" /><category term="Ultrasharp" /><category term="USB" /><category term="USB-C" /><category term="การยศาสตร์" /><category term="การเลือกซื้อ" /><category term="คอมพิวเตอร์" /><category term="จอคอมพิวเตอร์" /><category term="เดลล์" /><category term="แนวทาง" /><summary type="html">ปกติเราใช้จอคอมขนาด 24 นิ้วที่เล็กไปเวลานั่งห่างเกือบ 1 เมตร ทีนี้เราเล็งจอที่มีขนาดใหญ่ขึ้น ในบทความนี้เราจะแนะนำแนวทาง รวมถึงจอที่เล็งไว้ และข้อสังเกตครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/08/Monitor-Guideline-1.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/08/Monitor-Guideline-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">คิดจะพักจากโซเชียล คิดถึง Social Detox</title><link href="https://nickuntitled.com/2021/08/21/think-resting-think-social-detox/" rel="alternate" type="text/html" title="คิดจะพักจากโซเชียล คิดถึง Social Detox" /><published>2021-08-21T21:41:33+07:00</published><updated>2021-08-21T21:41:33+07:00</updated><id>https://nickuntitled.com/2021/08/21/think-resting-think-social-detox</id><content type="html" xml:base="https://nickuntitled.com/2021/08/21/think-resting-think-social-detox/">&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;หลังจากที่มีโซเชียลเข้ามาในชีวิตประจำวันอย่างเฟสบุ๊ค ทวิตเตอร์ อินสตราแกรม หรืออื่น ๆ แล้วทำให้เราเข้าเว็บเปลี่ยนไปจากเมื่อก่อนที่จะคุยกับเพื่อน ก็ต้องคุยผ่าน MSN Messenger อย่างไรก็ดี เมื่อเราใช้งานไประยะหนึ่งแล้วทำให้เราติดการใช้งานโซเชียลมากกว่าเดิม หรืออีกอย่างหนึ่งเรียกว่า Socialism หรือภาษาทั่วไปเรียกว่าติดโซเชียลเข้าสายเลือด&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อเป็นแบบนั้น เราเลยตัดสินใจทำ Social Detox&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:more --&gt;
-&lt;!--more--&gt;
-&lt;!-- /wp:more --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;การทำ Social Detox คือ การบำบัดการติดเทคโนโลยี หรือบำบัดการติดโซเชียล เป็นการกำหนดตัวเองให้อยู่ห่างจากโซเชียลในช่วงระยะเวลาที่กำหนด เป็นการพักใจ พักสมอง และเรียกตัวเองกลับคืนมา&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;สาเหตุ&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สาเหตุที่ทำ Social Detox มีอะไรบ้าง จากที่อ่านบนอินเตอร์เน็ตมีหลายปัจจัยที่เข้ามาทำสิ่งนี้ ได้แก่ เล่นแล้วไม่มีความสุข เครียด จิตตกจากการรับข่าวสารที่มากจนเกินไป เปรียบเทียบกับชีวิตคนอื่น ต้องโพสลงโซเชียลตลอด ติดโซเชียลมากจนไม่ทำกิจกรรมอื่นเลย เบื่อดราม่า เป็นต้น&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนสาเหตุของเราก็เป็นไปตามที่เขียนไว้ข้างบนนี้แหละครับ เพียงแต่นอกจากเหตุผลนั้นแล้ว ก็ยังมีเหตุผลว่า ใช้งานไปแล้วจะขึ้นโพสเฉพาะบัญชีของแต่ละคน หรือที่เรียกว่า &lt;a href=&quot;https://en.wikipedia.org/wiki/Filter_bubble&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://en.wikipedia.org/wiki/Filter_bubble&quot;&gt;Filter Bubble&lt;/a&gt; เรามองเห็นข่าวสารในหน้าหลักเยอะจริง แต่เป็นข่าวสารเพียงด้านเดียว เมื่อเรารับข่าวสารด้านเดียวไปตลอดจนผ่านระยะเวลาหนึ่งแล้ว เราจะไม่ทราบข่าวสารอีกด้านเลย &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:embed {&quot;url&quot;:&quot;https://www.youtube.com/watch?v=B8ofWFx525s&quot;,&quot;type&quot;:&quot;video&quot;,&quot;providerNameSlug&quot;:&quot;youtube&quot;,&quot;responsive&quot;:true,&quot;align&quot;:&quot;center&quot;,&quot;className&quot;:&quot;wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;} --&gt;
-&lt;figure class=&quot;wp-block-embed aligncenter is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;
-&lt;iframe width=&quot;750&quot; height=&quot;422&quot; src=&quot;https://www.youtube.com/embed/B8ofWFx525s&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;&lt;/figure&gt;
-&lt;!-- /wp:embed --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ตัวอย่างที่เห็นได้ชัดเจนก็เป็นเรื่องของการเมืองครับ เราเปิดโซเชียลแล้วเราจะพบโพสทางการเมืองที่เป็นไปทางด้านเดียวที่จะสนับสนุนความคิดของเราตลอด จนทำให้เกิดปัญหาที่เรียกว่า Confirmation Bias และเมื่อเราอ่านโพสแบบนี้บ่อย ๆ เข้าก็จะย้ำว่ามีคนหลายคนคิดแบบเดียวกันเลยนะแต่จริง ๆ อาจจะไม่มีคนคิดแบบนั้นก็ได้ อันนี้ที่เราเรียกว่า Echo Chamber&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:quote --&gt;
-&lt;blockquote class=&quot;wp-block-quote&quot;&gt;&lt;p&gt;ตัวอย่างแบบนี้ที่เห็นได้ชัด ก็โพสของกลุ่มการเมืองอีกกลุ่มที่คนเข้าไปอ่านแล้วงงว่าทำไมอยู่คนละโลกเลย หรือเป็นโลกคู่ขนาน&lt;/p&gt;&lt;cite&gt;โพสหนึ่งบนทวิตเตอร์&lt;/cite&gt;&lt;/blockquote&gt;
-&lt;!-- /wp:quote --&gt;
-
-&lt;!-- wp:embed {&quot;url&quot;:&quot;https://www.youtube.com/watch?v=uaaC57tcci0&quot;,&quot;type&quot;:&quot;video&quot;,&quot;providerNameSlug&quot;:&quot;youtube&quot;,&quot;responsive&quot;:true,&quot;className&quot;:&quot;wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;} --&gt;
-&lt;figure class=&quot;wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;
-&lt;iframe width=&quot;750&quot; height=&quot;422&quot; src=&quot;https://www.youtube.com/embed/uaaC57tcci0&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&amp;gt;
-&lt;/div&gt;&lt;/figure&gt;
-&lt;!-- /wp:embed --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับคนที่สนใจ สามารถไปดูได้ที่หนังสารคดี &lt;a href=&quot;https://en.wikipedia.org/wiki/The_Social_Dilemma&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://en.wikipedia.org/wiki/The_Social_Dilemma&quot;&gt;The Social Dilemma&lt;/a&gt; ที่มีฉายบน Netflix หรือคลิปวิดีโออื่นที่พูดถึง Filter Bubble, Echo Chamber และอื่น ๆ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;วิธีการทำ Social Detox&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;วิธีการทำ Social Detox ทำอย่างไรดี? การทำ Social Detox ทำได้ไม่ยาก (แต่ก็ไม่ง่าย) โดยเริ่มจาก&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:list --&gt;
-&lt;ul&gt;&lt;li&gt;กำหนดระยะเวลาใช้โซเชียล ว่าเราจะเข้าใช้โซเชียลตอนช่วงเวลาที่กำหนด ไม่ใช้ตอนขับรถ ระหว่างการเดินทาง ระหว่างการทำงาน &lt;/li&gt;&lt;li&gt;หากิจกรรมอื่นมาทำแทน ตัวอย่างเช่น เล่นโยคะ วิ่ง ปั่นจักรยาน &lt;/li&gt;&lt;li&gt;ปิดการแจ้งเตือนโทรศัพท์ อาจจะกด Do Not Disturb หรือตั้งค่าไว้ในแอพโซเชียลแต่ละแอพไม่ให้ส่งการแจ้งเตือน&lt;/li&gt;&lt;li&gt;ลบแอพในโทรศัพท์ เพื่อให้เราใช้งานโซเชียลผ่านเว็บบนคอมพิวเตอร์แทนที่ไม่สะดวกเท่าไร&lt;/li&gt;&lt;li&gt;ถ้าไม่ต้องการใช้เลย ก็ตั้ง deactivate ในโซเชียลแต่ละบัญชีในระยะเวลาหนึ่งก็ได้ แต่ถ้าไม่อยากใช้เลย ก็ลบบัญชีนั้นไปเลยครับ ตัวอย่างเช่นของเราที่ลบบัญชีคลับเฮ้าส์ไปแล้ว เพราะใช้งานไม่ค่อยถูกจริตเท่าไร&lt;/li&gt;&lt;/ul&gt;
-&lt;!-- /wp:list --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับเราเอง ก็ทำตามข้างบนนี้นี่แหละครับ แต่เพิ่มเติมหน่อยก็คือบางโซเชียลเราก็ปิดไปเลย ไม่ได้เปิดเข้ามาดูเท่าไร เพราะไม่มีเนื้อหาที่น่าสนใจนัก เช่นเฟสบุ๊ค หรืออินสตราแกรม กับอีกวิธีหนึ่งที่เราเคยเขียนในบทความที่&lt;a href=&quot;https://nickuntitled.com/2021/06/17/remove-social-news-feed-by-eradicator/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;ซ่อนฟีตบน Social โดย News Feed Eradicator&quot;&gt;ซ่อนนิวส์ฟีตอย่าง News Feed Eradicator&lt;/a&gt; เพื่อลดการไถหน้าจอโซเชียลครับ ใช้แล้วได้ผลเลย ไม่ต้องมาดูดราม่าอะไรบนอินเตอร์เน็ต&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับคนที่ไม่ทราบว่าจะจัดตารางอย่างไรดี สามารถทำตามใน&lt;a href=&quot;https://www.wongnai.com/beauty-tips/socialism&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.wongnai.com/beauty-tips/socialism&quot;&gt;เว็บ Wongnai&lt;/a&gt; ได้เลย&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;ผลจากการทำโซเชียล&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ทำแล้วชีวิตดีขึ้น ไม่ต้องมาเห็นดราม่าอะไรให้รกหัวสมองเท่าไรนัก เห็นโนติในเฟสบุ๊ค เราก็ปล่อยผ่านได้สบาย&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนเรื่องข่าว เราตกข่าวบ้างก็ไม่เป็นอะไร ไม่ได้ทำให้ชีวิตมีปัญหาะไรนัก ถ้าเป็นเรื่องสำคัญจริงแล้ว ยังไงก็มีคนมาบอกคุณอยู่ดีครับ อีกอย่างเราสามารถติดตามข่าวสารผ่านทางยูทูป หรือติดตามผ่านทางเว็บไซต์ได้อยู่แล้ว ยังไงก็มีคนทำคอนเท้นต์ลงพวกนี้อยู่ดี แถมมี RSS Feed ไว้อ่านได้สะดวกอีก &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อย่างไรก็ดีกรณีที่สำนักข่าว หรือวารสาร หรืออื่น ๆ ทำลงเพจอย่างเดียว จะทำอย่ายงไรดีล่ะ? กรณีที่นี้ เราใช้บริการ RSS.app ได้เลยครับ &lt;a href=&quot;https://nickuntitled.com/2021/06/26/bring-social-post-read-rss-reader-by-rss-dot-app/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;นำโพสโซเชียลมาอ่านบน RSS Reader โดย rss.app&quot;&gt;เคยเขียนไปแล้วในบทความนี้เลย&lt;/a&gt; เพียงแต่เสียเงินประมาณ 300 บาท ก็พอ ๆ กับค่าบริการสมัครสมาชิกหนังสือพิมพ์สอง-สามแหล่งครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนคำถามที่สำคัญอันหนึ่งก็คือเหงาไหม ก็ไม่ได้เหงาอะไรชนาดนั้น เพราะคุยกันในบ้านผ่านทางโทรศัพท์ หรือทางไลน์ หรือผ่านการเจอหน้ากันอยู่แล้ว ไม่ได้เหงาอะไรหรอกครับ ส่วนเพื่อนถ้าสนิทจริงยังไงก็คุยกันผ่านทางไลน์ หรือผ่านทางโทรศัพท์อยู่แล้วครับผม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับผู้อ่านที่สนใจ หรือผู้อ่านที่ต้องการทำ Social Detox และคนที่ติดโซเชียล อันนี้เราแนะนำนะ ผู้อ่านลองทำ Social Detox ได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="bias" /><category term="Confirmation bias" /><category term="detox" /><category term="Echo chamber" /><category term="Facebook" /><category term="Filter bubble" /><category term="Instagram" /><category term="Internet" /><category term="mindfulness" /><category term="MSN Messenger" /><category term="news" /><category term="social" /><category term="social media" /><category term="socialism" /><category term="twitter" /><category term="ดีท็อกซ์" /><category term="ติดโซเชียล" /><category term="ทวิตเตอร์" /><category term="อินสตาแกรม" /><category term="เฟสบุ๊ค" /><category term="โซเชียล" /><category term="ไอจี" /><summary type="html">หลังจากมีโซเชียลเข้ามาในชีวิตประจำวัน พอใช้งานไปซักพัก เราเกิดปัญหาเรื่องการติดโซเชียล ในบทความนี้จะแนะนำถึงสาเหตุ วิธีการ และผลที่ได้จากการทำ Social Detox</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/07/Social-Detox.png" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/07/Social-Detox.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="buy" /><category term="buying" /><category term="computer" /><category term="dell" /><category term="Ergonomic" /><category term="guideline" /><category term="monitor" /><category term="Surface Pro X" /><category term="Ultrasharp" /><category term="USB" /><category term="USB-C" /><category term="การยศาสตร์" /><category term="การเลือกซื้อ" /><category term="คอมพิวเตอร์" /><category term="จอคอมพิวเตอร์" /><category term="เดลล์" /><category term="แนวทาง" /><summary type="html">ปกติเราใช้จอคอมขนาด 24 นิ้วที่เล็กไปเวลานั่งห่างเกือบ 1 เมตร ทีนี้เราเล็งจอที่มีขนาดใหญ่ขึ้น ในบทความนี้เราจะแนะนำแนวทาง รวมถึงจอที่เล็งไว้ และข้อสังเกตครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/08/Monitor-Guideline-1.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/08/Monitor-Guideline-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
