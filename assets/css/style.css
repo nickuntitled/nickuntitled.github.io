@@ -333,13 +333,6 @@ strong, b {
   padding: 0;
 }
 
-
-.blog-post-content p:last-child {
-  margin: 0.5em 0 2em 0;
-  line-height: 1.75em;
-  padding: 0;
-}
-
 .blog-post-content h1, 
 .blog-post-content h2, .blog-post-content h3, 
 .blog-post-content h4, .blog-post-content h5, 
@@ -371,7 +364,7 @@ strong, b {
 
 .blog-post-content blockquote {
   margin: 1em 0 1em 0;
-  padding: 1em 1em 2em 1em;
+  padding: 1em;
   font-size: 14px;
   font-style: italic;
   border: 2px solid var(--border-color);
