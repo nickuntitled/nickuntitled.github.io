@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-11-03T09:06:04+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">นักเรียนเลว - สนับสนุนเพื่อทวงสิทธิเสรีภาพ และอนาคตของนร.</title><link href="https://nickuntitled.com/2021/10/31/support-bad-student/" rel="alternate" type="text/html" title="นักเรียนเลว - สนับสนุนเพื่อทวงสิทธิเสรีภาพ และอนาคตของนร." /><published>2021-10-31T14:10:30+07:00</published><updated>2021-10-31T14:10:30+07:00</updated><id>https://nickuntitled.com/2021/10/31/support-badstudent</id><content type="html" xml:base="https://nickuntitled.com/2021/10/31/support-bad-student/">&lt;p&gt;กลุ่มนักเรียนเลว เป็นกลุ่มที่ได้รับการก่อตั้งเพื่อเคลื่อนไหวประเด็นทางด้านสิทธิ เสรีภาพ และทวงอนาคตสำหรับนักเรียนไทย ที่มาของชื่อกลุ่มนี้มาจากคำกล่าวที่ผู้ใหญ่จะกล่าวว่า “เป็นเด็กจะต้องเชื่อฟังผู้ใหญ่” แล้วทีนี้ผู้ก่อตั้ง และกลุ่มไม่ได้เชื่อฟังไปเสียทั้งหมดซึ่งก็ขัดตามคำที่ผู้ใหญ่บอก ตามที่&lt;a href=&quot;https://www.matichonweekly.com/column/article_345406&quot;&gt;ผู้ก่อตั้งกลุ่ม (มิน) สัมภาษณ์ไว้ในบทความนี้&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-11-05T08:24:55+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Hello World ใน Python, JS และ C++</title><link href="https://nickuntitled.com/2021/11/5/hello_world" rel="alternate" type="text/html" title="Hello World ใน Python, JS และ C++" /><published>2021-11-05T08:00:00+07:00</published><updated>2021-11-05T08:00:00+07:00</updated><id>https://nickuntitled.com/2021/11/5/hello-world</id><content type="html" xml:base="https://nickuntitled.com/2021/11/5/hello_world">&lt;p&gt;Hello World เป็นโปรแกรมที่เขียนขึ้นมาเพื่อแสดงผลหน้าจอว่า “Hello World” ซึ่งเป็นสิ่งที่พบได้ในทุกภาษา และมีไว้แสดงลักษณะการเขียนในภาษาเขียนโปรแกรมนั้น ๆ (Syntax) นอกเหนือจากนี้แล้วการเขียนโปรแกรมนี้ขึ้นมามีหน้าที่ทดสอบว่า เราติดตั้งแล้วสามารถใช้งานตัว Compiler หรือตัว Interpreter ว่าทำงานได้ปกติหรือไม่&lt;/p&gt;
+
+&lt;p&gt;ต่อมา เราเขียนทวิตหนึ่งไป แล้วแมสมาพอดี มีโควทหนึ่งในทวิตว่าสนใจที่จะเขียน Hello World เราเลยแสดงให้เห็นว่า การเขียนในภาษาไพทอน จาวาสคริป และ C++ เป็นอย่างไรครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;ภาษาไพทอน&quot;&gt;ภาษาไพทอน&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_py.png&quot; alt=&quot;Hello World in Python&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;อันนี้เป็น Hello World ในภาษาไพทอน จะพบว่าเขียนได้จบในบรรทัดเดียว สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราแนะนำครับ เรียนแล้วเอาไปต่อยอดทางด้าน Data Science, AI/ML และอื่น ๆ ได้เลย&lt;/p&gt;
+
+&lt;h2 id=&quot;ภาษาจาวาสคริป&quot;&gt;ภาษาจาวาสคริป&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_js.png&quot; alt=&quot;Hello World in JS&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;อันนี้เป็น Hello World ในภาษาจาวาสคริป จะพบว่าเขียนได้จบในบรรทัดเดียวเช่นกัน สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราก็แนะนำครับ เรียนแล้วเอาไปต่อยอดทำเว็บได้ทั้ง Front-end, Back-end รวมถึงทำโปรแกรมบนเดสก์ท็อป มือถือได้ครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;ภาษา-c&quot;&gt;ภาษา C++&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_cpp.png&quot; alt=&quot;Hello World in CPP&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;อันนี้เป็น Hello World ในภาษา C++ จะพบว่าเขียนได้ไม่จบในบรรทัดเดียวเช่นกัน อย่างไรก็ดีภาษานี้ใครเรียนคอมในโรงเรียน หรือในมหาวิทยาลัยก็จะได้เจอกัน ส่วนตัวภาษานี้อาจจะยากไปนิดสำหรับคนที่เพิ่งเขียนโปรแกรม แต่ถ้าเขียนเป็นแล้วนี่เอาไปต่อยอดได้อีกเยอะครับ เช่นพัฒนาเกม, พัฒนาลงอุปกรณ์ IoT (Internet of Things), ฐานข้อมูล เป็นต้น&lt;/p&gt;
+
+&lt;p&gt;ผู้อ่านสามารถอ่านได้ใน&lt;a href=&quot;https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/&quot;&gt;หน้าเว็บของ Codecademy ที่สอนเขียนโปรแกรมได้ครับ&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;สรุป&quot;&gt;สรุป&lt;/h2&gt;
+
+&lt;p&gt;สำหรับคนที่เพิ่งเขียนโปรแกรม โปรแกรมนี้จะเป็นโปรแกรมแรกที่ได้เขียน เราแสดงให้เป็นตัวอย่างใน 3 ภาษาได้แก่ ไพทอน จาวาสคริป และ C++ ที่จะเห็นว่าโค้ดในสองภาษาแรกสามารถเขียนได้ในบรรทัดเดียว ส่วนตัวเราแนะนำให้เริ่มเขียนทั้งสองภาษานี้ก่อนครับ พอเขียนเป็นแล้วจะไปเรียนต่อภาษาอื่นก็ทำได้เช่นกันครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Hello World" /><category term="Programming" /><category term="Newbie" /><category term="เขียนโปรแกรม" /><category term="Python" /><category term="JavaScript" /><category term="JS" /><category term="C++" /><category term="CPP" /><category term="มือใหม่" /><category term="ไพทอน" /><category term="จาวาสคริป" /><summary type="html">Hello World เป็นสิ่งที่ผู้ที่เริ่มต้นเขียนโปรแกรมจะได้สัมผัส และเขียนขึ้นมา ในบทความนี้จะแสดงการเขียนในแต่ละภาษาครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">นักเรียนเลว - สนับสนุนเพื่อทวงสิทธิเสรีภาพ และอนาคตของนร.</title><link href="https://nickuntitled.com/2021/10/31/support-bad-student/" rel="alternate" type="text/html" title="นักเรียนเลว - สนับสนุนเพื่อทวงสิทธิเสรีภาพ และอนาคตของนร." /><published>2021-10-31T14:10:30+07:00</published><updated>2021-10-31T14:10:30+07:00</updated><id>https://nickuntitled.com/2021/10/31/support-badstudent</id><content type="html" xml:base="https://nickuntitled.com/2021/10/31/support-bad-student/">&lt;p&gt;กลุ่มนักเรียนเลว เป็นกลุ่มที่ได้รับการก่อตั้งเพื่อเคลื่อนไหวประเด็นทางด้านสิทธิ เสรีภาพ และทวงอนาคตสำหรับนักเรียนไทย ที่มาของชื่อกลุ่มนี้มาจากคำกล่าวที่ผู้ใหญ่จะกล่าวว่า “เป็นเด็กจะต้องเชื่อฟังผู้ใหญ่” แล้วทีนี้ผู้ก่อตั้ง และกลุ่มไม่ได้เชื่อฟังไปเสียทั้งหมดซึ่งก็ขัดตามคำที่ผู้ใหญ่บอก ตามที่&lt;a href=&quot;https://www.matichonweekly.com/column/article_345406&quot;&gt;ผู้ก่อตั้งกลุ่ม (มิน) สัมภาษณ์ไว้ในบทความนี้&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;สำหรับคนที่ไม่ทราบว่ากลุ่มนี้เคลื่อนไหวอะไรบ้าง กลุ่มนักเรียนเลวเคลื่อนไหวเกี่ยวกับ&lt;/p&gt;
 &lt;ul&gt;
@@ -1418,114 +1444,4 @@ y = -np.degrees(np.arcsin(np.sin(y)))
 
 &lt;!-- wp:paragraph --&gt;
 &lt;p&gt;[4] Working With TimeZones in Python [Internet]. Pynative Python Programming. 2021 [cited 8 September 2021]. Available from: &lt;a href=&quot;https://pynative.com/python-timezone/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;https://pynative.com/python-timezone/&lt;/a&gt;&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="datetime" /><category term="library" /><category term="programming" /><category term="python" /><category term="pytz" /><category term="strfttime" /><category term="time" /><category term="timezone" /><category term="zone" /><category term="ภาษาไพทอน" /><category term="เขตเวลา" /><category term="เขียนโปรแกรม" /><category term="เวลา" /><category term="โปรแกรมมิ่ง" /><category term="ไพทอน" /><category term="ไลบรารี" /><summary type="html">สิ่งที่เราใช้บ่อยคือการแสดงเวลาในปัจจุบัน สำหรับไพทอน การโชว์เวลาในไลบรารี datetime ให้เวลาไม่ตรงเป๊ะ ในบทความ เราจะแนะวิธีตั้งค่าแสดงเวลาตาม Time zone</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/09/Display-nowtime-in-Time-zone.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/09/Display-nowtime-in-Time-zone.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">USB-C docking station ที่ใช้อยู่กับ Surface</title><link href="https://nickuntitled.com/2021/09/04/usb-c-docking-station-with-surface/" rel="alternate" type="text/html" title="USB-C docking station ที่ใช้อยู่กับ Surface" /><published>2021-09-04T01:24:43+07:00</published><updated>2021-09-04T01:24:43+07:00</updated><id>https://nickuntitled.com/2021/09/04/usb-c-docking-station-with-surface</id><content type="html" xml:base="https://nickuntitled.com/2021/09/04/usb-c-docking-station-with-surface/">&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อุปกรณ์ Surface Pro X ที่ใช้จะมีพอร์ต USB-C สองพอร์ตมาให้ในตัว ทีนี้ปัญหาที่เราพบคืออุปกรณ์ทั้งหลายที่เราใช้งานอยู่ในปัจจุบันยังใช้งานพอร์ต USB 3, พอร์ต VGA, HDMI หรือ 3.5mm หรืออุปกรณ์อ่านการ์ด SD Card ที่เรา&lt;a href=&quot;https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;Surface Pro X กับแอพที่ใช้งานอยู่ในขณะนี้&quot;&gt;ใช้งานกับแอพต่าง ๆ&lt;/a&gt; ได้แก่ทำงาน แต่งภาพ ทำงานเอกสารที่ใช้คีย์บอร์ดและเมาส์ภายนอกทำงานได้ดีกว่า &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อย่างไรก็ดีอุปกรณ์ Surface Pro X ไม่มีสิ่งนี้มาให้ ดังนั้น เราต้องหาอุปกรณ์ USB Hub หรือ Docking Station&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:more --&gt;
-&lt;!--more--&gt;
-&lt;!-- /wp:more --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อุปกรณ์แบบนี้อนุญาตให้เราเชื่อมต่อกับอุปกรณ์อื่นได้ ก็มีตั้งแต่ 1-2 พอร์ต ไปจนถึง 10 กว่าพอร์ตเลย ทีนี้ของเราต้องการหลายพอร์ตหน่อย ดังนั้นแล้ว เราจำเป็นต้องซื้อตัว Docking Station มาใช้ครับ อุปกรณ์แบบนี้ในไทยมีตัวเลือกหลากหลายพอสมควร มีราคาที่สูง-ต่ำแตกต่างกันไป&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;อุปกรณ์ Feeltek Mega 16-in-1 USB-C Docking Station และข้อดี&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3035,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6409-1024x727.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3035&quot; /&gt;&lt;figcaption&gt;Feeltek Mega 16-in-1 USB-C Docking Station (ด้านล่างซ้าย)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จนกระทั่งมาเจออุปกรณ์หนึ่งในหน้าเว็บที่มีชื่อว่า &lt;a href=&quot;https://www.feeltekgroup.com/mega-16-in-1-usb-c-docking-station&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.feeltekgroup.com/mega-16-in-1-usb-c-docking-station&quot;&gt;Feeltek Mega 16-in-1 USB-C Docking Station&lt;/a&gt; อุปกรณ์ที่มีช่องเชื่อมต่อทั้งหมด 16 พอร์ต ที่ขายในเว็บใหญ่อย่าง JIB ที่มีคุณสมบัติตามหน้าเว็บดังนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:list --&gt;
-&lt;ul&gt;&lt;li&gt;รองรับการต่อสองหน้าจอเพื่อ Extend หรือ Mirror&lt;/li&gt;&lt;li&gt;รองรับการชาร์ตไฟ 100W ผ่านทางช่องเสีย &lt;a href=&quot;https://www.usb.org/usb-charger-pd&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.usb.org/usb-charger-pd&quot;&gt;USB-PD&lt;/a&gt; ซึงอนุญาตให้อุปกรณ์ที่รองรับใช้ได้&lt;/li&gt;&lt;li&gt;มีตัวเสียบปลั้กไฟเพื่อให้กระแสไฟฟ้าอย่างเสถียร&lt;/li&gt;&lt;li&gt;มีช่องเสียบสายแลน 1000 MBps และช่องเสียบหูฟัง 3.5mm&lt;/li&gt;&lt;li&gt;ตัวเคสเป็นโลหะ และมีขาตั้งทำให้การกระจายความร้อนดีขึ้น และประหยัดพื้นที่&lt;/li&gt;&lt;/ul&gt;
-&lt;!-- /wp:list --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt; เราซื้อผ่านทางเว็บแล้วรอไม่กี่ชั่วโมง ของก็มาถึงบ้าน เปิดกล่องแล้วสภาพข้างในเป็นประมาณนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3036,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6413-1024x683.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3036&quot; /&gt;&lt;figcaption&gt;เปิดกล่อง&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;หยิบของออกมา จะมีตัว Docking Station, สายต่อปลั้กไฟที่มีหลายหัวให้เลือกตามมาตรฐานปลั้กไฟที่ใช้ (ซึ่งไม่ได้โชว์ในนี้) และสาย USB-C to USB-C&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3037,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6415-1024x683.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3037&quot; /&gt;&lt;figcaption&gt;ในภาพมี Docking Station, สาย USB-C และสายต่อปลั้กไฟ&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราเอามาวางบนโต๊ะ นำตัว Docking Station เสียบสายต่อปลั้กไฟให้เรียบร้อย หลังจากนั้นเราเสียบสาย USB-C เพื่อเชื่อมต่อกับคอมพิวเตอร์ ได้โดยนำสายเสียบ USB-C เสียบเข้าด้านหลังช่องที่สองจากบนสุด แล้วเสียบอีกข้างเข้ากับคอมพิวเตอร์&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อเสียบเสร็จเรียบร้อย เราจะพบว่ามีไฟสีน้ำเงินปรากฏบนตัว Docking Station และมีเสียงแจ้งเตือนจากคอมพิวเตอร์ว่าเราเสียบกับอุปกรณ์นี้แล้วนะ หลังจากนั้น เราสามารถใช้งานช่องเสียบทั้งหมด 16 ช่องที่มีอย่างเพียงพอได้เรียบร้อยแล้วครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3038,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6421-1024x683.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3038&quot; /&gt;&lt;figcaption&gt;ติดตั้ง Docking station เสร็จแล้ว (สายไม่เป็นระเบียบเท่าไร)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อเราเสียบกับ Docking Station แล้ว เราเสียบกับสาย VGA และสาย USB ต่าง ๆ พบว่าสามารถต่อออกภาพ รวมถึงต่อกับอุปกรณ์ได้ตามปกติ แถมสะดวกกว่าเดิม เพราะมีช่องเสียบที่เยอะมากกว่า USB-C Hub อันเก่าที่เคยใช้งานอยู่ และสามารถจัดระเบียบสายได้ดีกว่าเดิม เนื่องมาจากอุปกรณ์ต่าง ๆ เชื่อมผ่านตัว Docking Station อันนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3039,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6423-1024x744.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3039&quot; /&gt;&lt;figcaption&gt;ต่อ USB-C Hub เข้ากับหน้าจอ เว็บแคม และไมโครโฟน&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จากข้อดีทั้งหมดที่เราเจออุปกรณ์ชิ้นนี้ทำให้เราใช้งานคอมพิวเตอร์ที่มีพอร์ต USB-C ได้ง่ายขึ้นมากกว่าเดิม &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;ข้อเสีย&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อย่างไรก็ดีเมื่อมีข้อดีแล้ว ก็ต้องมีข้อเสียของอุปกรณ์นี้ ได้แก่&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ข้อแรก เสียบอุปกรณ์นี้เข้ากับคอมพิวเตอร์ผ่านทางช่อง USB-PD ที่ตัว Docking Station แล้วไม่ชาร์จไฟแฮะ อันนี้ประหลาดใจหน่อย ซึ่งปกติเวลาเสียบผ่านทางช่องนี้ไฟควรจะเข้าคอมพิวเตอร์ อ่า อันนี้เราต้องกลับไปอ่านคู่มืออีกครั้ง &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:quote --&gt;
-&lt;blockquote class=&quot;wp-block-quote&quot;&gt;&lt;p&gt;&lt;strong&gt;อัพเดท&lt;/strong&gt;：ช่องนี้ไว้ใช้สำหรับเสียบสาย USB-C เข้ากับ Adapter ต่อปลั้กไฟ เพื่อไว้ใช้สำหรับชาร์จแท็บเล็ต หรือคอมพิวเตอร์ครับ ถ้าไม่ได้เสียบช่องนี้ อุปกรณ์ที่ต่อจะไม่ได้ชาร์จไฟ ซึ่งตอนที่เขียนนั้น ผู้เขียนไม่ได้เสียบช่องนี้ไป ทำให้เวลาเชื่อมต่ออุปกรณ์เข้ากับตัว Docking Station อุปกรณ์จะไม่ได้รับการชาร์จไฟครับ&lt;/p&gt;&lt;/blockquote&gt;
-&lt;!-- /wp:quote --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3060,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6424-1024x683.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3060&quot; /&gt;&lt;figcaption&gt;กรณีที่ต้องการชาร์จอุปกรณ์ไปด้วย เราจำเป็นต้องเสียบสาย USB-C ที่เสียบเข้ากับ Adapter ที่ต่อไฟบ้านมาเสียบเข้าที่ช่อง USB-C บนสุดเพื่อให้เสียบสายแล้วชาร์จไฟได้ด้วย (สายที่ต่อเป็นสายสีดำด้านบน)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ต่อมา อุปกรณ์ชิ้นนี้มีขนาดใหญ่ และหนักระดับหนึ่ง เมื่อเทียบกับอุปกรณ์ USB-C Hub ชิ้นอื่น ทำให้เราไม่สะดวกต่อการพกพา ดังนั้นแล้วอุปกรณ์ Docking Station ชิ้นนี้เหมาะกับการวางไว้กับที่มากกว่า&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;และข้อสุดท้าย ราคาที่สูงไปหน่อยเมื่อเทียบกับ USB-C Hub ชิ้นอื่น ตอนซื้อมาราคาอยู่ที่ 4,500 กว่าบาท (อันนี้ถูกกว่าเราอื่นบน Shopee นะ ที่เราเห็นอยู่ที่ 6-7 พันบาท)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;สรุป&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จากการใช้อุปกรณ์ Docking Station ชิ้นนี้ เรามองว่ามันใช้งานดีมาก มีพอร์ตให้มาอย่างเพียงพอ แต่อุปกรณ์ชิ้นนี้มันไม่ได้เหมาะกับทุกคนครับ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ก่อนซื้อ ผู้อ่านควรมองความจำเป็นต่อการใช้งานก่อนว่าเราจะนำคอมพิวเตอร์/มือถือ/แท็บเล็ตที่มี USB-C ไปใช้งานกับอะไรก่อน ถ้าผู้อ่านมองว่าการมีอุปกรณ์แบบนี้จำเป็นต่อการใช้งานของผู้อ่านแล้ว เราแนะนำ Docking Station ตัวนี้เลยครับผม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Desktop" /><category term="Displayport" /><category term="Docking" /><category term="Feeltek" /><category term="HDMI" /><category term="Hub" /><category term="Port" /><category term="Ports" /><category term="Station" /><category term="Surface" /><category term="Surface Pro X" /><category term="USB 3" /><category term="USB Hub" /><category term="USB-C" /><category term="VGA" /><category term="working" /><category term="คอมพิวเตอร์" /><category term="ช่องเสียบ" /><category term="ยูเอสบี" /><category term="ฮับ" /><summary type="html">เวลาที่เราใช้งานอุปกรณ์ USB-C เราต้องเชื่อมกับพอร์ตต่าง ๆ ทีไม่มีให้ เราต้องหา Hub หรือ Docking Station ในบทความนี้เราจะแนะนำอุปกรณ์หนึ่งที่ใช้กับ Surface</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/09/Docking-Station-Surface-Pro-X.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/09/Docking-Station-Surface-Pro-X.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="datetime" /><category term="library" /><category term="programming" /><category term="python" /><category term="pytz" /><category term="strfttime" /><category term="time" /><category term="timezone" /><category term="zone" /><category term="ภาษาไพทอน" /><category term="เขตเวลา" /><category term="เขียนโปรแกรม" /><category term="เวลา" /><category term="โปรแกรมมิ่ง" /><category term="ไพทอน" /><category term="ไลบรารี" /><summary type="html">สิ่งที่เราใช้บ่อยคือการแสดงเวลาในปัจจุบัน สำหรับไพทอน การโชว์เวลาในไลบรารี datetime ให้เวลาไม่ตรงเป๊ะ ในบทความ เราจะแนะวิธีตั้งค่าแสดงเวลาตาม Time zone</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/09/Display-nowtime-in-Time-zone.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/09/Display-nowtime-in-Time-zone.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

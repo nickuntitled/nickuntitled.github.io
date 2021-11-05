@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Hello World ใน Python, JS และ C++ - Nick Untitled</title>
+		<meta name="description" content="Hello World เป็นสิ่งที่ผู้ที่เริ่มต้นเขียนโปรแกรมจะได้สัมผัส และเขียนขึ้นมา ในบทความนี้จะแสดงการเขียนในแต่ละภาษาครับ">
+		<meta name="keywords" content="Hello World,Programming,Newbie,เขียนโปรแกรม,Python,JavaScript,JS,C++,CPP,มือใหม่,ไพทอน,จาวาสคริป,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-11-05T08:00:00+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/11/5/hello_world"/>
+		<meta property="og:title" content="Hello World ใน Python, JS และ C++ - Nick Untitled" />
+		<meta property="og:description" content="Hello World เป็นสิ่งที่ผู้ที่เริ่มต้นเขียนโปรแกรมจะได้สัมผัส และเขียนขึ้นมา ในบทความนี้จะแสดงการเขียนในแต่ละภาษาครับ " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg"/>
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta property="twitter:title" content="Hello World ใน Python, JS และ C++ - Nick Untitled" />
+		<meta property="twitter:description" content="Hello World เป็นสิ่งที่ผู้ที่เริ่มต้นเขียนโปรแกรมจะได้สัมผัส และเขียนขึ้นมา ในบทความนี้จะแสดงการเขียนในแต่ละภาษาครับ " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg" />
+		<link rel="stylesheet" href="assets/css/reset.css">
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<div class="profile-about">
+			<div>
+				<h2>Nick Untitled</h2>
+			</div>
+			<div>
+				Writing as my personal diary
+			</div>
+			<div>
+				<ul class = 'go_right'>
+					<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+					
+					<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
+					
+					
+					<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
+					
+					
+					
+					<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
+					
+					
+					<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a></li>
+					<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a></li>
+					<li class="mode" id="mode-switcher" onclick="toggleNightMode();">
+						<span></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+<div class="blog-post-header">
+	<h1>Hello World ใน Python, JS และ C++</h1>
+</div>
+
+<div class="post-header">
+	<div class="post-date">05.11.2021</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/hello-world" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/hello-world&amp;text=Hello World ใน Python, JS และ C++ - https://nickuntitled.com/hello-world" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+	<figure>
+		<img src = 'https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg' />
+	</figure>
+	
+<div class="blog-post-content">
+	<p>Hello World เป็นโปรแกรมที่เขียนขึ้นมาเพื่อแสดงผลหน้าจอว่า “Hello World” ซึ่งเป็นสิ่งที่พบได้ในทุกภาษา และมีไว้แสดงลักษณะการเขียนในภาษาเขียนโปรแกรมนั้น ๆ (Syntax) นอกเหนือจากนี้แล้วการเขียนโปรแกรมนี้ขึ้นมามีหน้าที่ทดสอบว่า เราติดตั้งแล้วสามารถใช้งานตัว Compiler หรือตัว Interpreter ว่าทำงานได้ปกติหรือไม่</p>
+
+<p>ต่อมา เราเขียนทวิตหนึ่งไป แล้วแมสมาพอดี มีโควทหนึ่งในทวิตว่าสนใจที่จะเขียน Hello World เราเลยแสดงให้เห็นว่า การเขียนในภาษาไพทอน จาวาสคริป และ C++ เป็นอย่างไรครับ</p>
+
+<h2 id="ภาษาไพทอน">ภาษาไพทอน</h2>
+
+<p><img src="https://asset.nickuntitled.com/2021/11/hello_world_py.png" alt="Hello World in Python" /></p>
+
+<p>อันนี้เป็น Hello World ในภาษาไพทอน จะพบว่าเขียนได้จบในบรรทัดเดียว สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราแนะนำครับ เรียนแล้วเอาไปต่อยอดทางด้าน Data Science, AI/ML และอื่น ๆ ได้เลย</p>
+
+<h2 id="ภาษาจาวาสคริป">ภาษาจาวาสคริป</h2>
+
+<p><img src="https://asset.nickuntitled.com/2021/11/hello_world_js.png" alt="Hello World in JS" /></p>
+
+<p>อันนี้เป็น Hello World ในภาษาจาวาสคริป จะพบว่าเขียนได้จบในบรรทัดเดียวเช่นกัน สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราก็แนะนำครับ เรียนแล้วเอาไปต่อยอดทำเว็บได้ทั้ง Front-end, Back-end รวมถึงทำโปรแกรมบนเดสก์ท็อป มือถือได้ครับ</p>
+
+<h2 id="ภาษา-c">ภาษา C++</h2>
+
+<p><img src="https://asset.nickuntitled.com/2021/11/hello_world_cpp.png" alt="Hello World in CPP" /></p>
+
+<p>อันนี้เป็น Hello World ในภาษา C++ จะพบว่าเขียนได้ไม่จบในบรรทัดเดียวเช่นกัน อย่างไรก็ดีภาษานี้ใครเรียนคอมในโรงเรียน หรือในมหาวิทยาลัยก็จะได้เจอกัน ส่วนตัวภาษานี้อาจจะยากไปนิดสำหรับคนที่เพิ่งเขียนโปรแกรม แต่ถ้าเขียนเป็นแล้วนี่เอาไปต่อยอดได้อีกเยอะครับ เช่นพัฒนาเกม, พัฒนาลงอุปกรณ์ IoT (Internet of Things), ฐานข้อมูล เป็นต้น</p>
+
+<p>ผู้อ่านสามารถอ่านได้ใน<a href="https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/">หน้าเว็บของ Codecademy ที่สอนเขียนโปรแกรมได้ครับ</a></p>
+
+<h2 id="สรุป">สรุป</h2>
+
+<p>สำหรับคนที่เพิ่งเขียนโปรแกรม โปรแกรมนี้จะเป็นโปรแกรมแรกที่ได้เขียน เราแสดงให้เป็นตัวอย่างใน 3 ภาษาได้แก่ ไพทอน จาวาสคริป และ C++ ที่จะเห็นว่าโค้ดในสองภาษาแรกสามารถเขียนได้ในบรรทัดเดียว ส่วนตัวเราแนะนำให้เริ่มเขียนทั้งสองภาษานี้ก่อนครับ พอเขียนเป็นแล้วจะไปเรียนต่อภาษาอื่นก็ทำได้เช่นกันครับผม</p>
+
+</div>
+<div class="tags-container">
+	
+		<span class="post-tag">Hello World</span>, 
+	
+		<span class="post-tag">Programming</span>, 
+	
+		<span class="post-tag">Newbie</span>, 
+	
+		<span class="post-tag">เขียนโปรแกรม</span>, 
+	
+		<span class="post-tag">Python</span>, 
+	
+		<span class="post-tag">JavaScript</span>, 
+	
+		<span class="post-tag">JS</span>, 
+	
+		<span class="post-tag">C++</span>, 
+	
+		<span class="post-tag">CPP</span>, 
+	
+		<span class="post-tag">มือใหม่</span>, 
+	
+		<span class="post-tag">ไพทอน</span>, 
+	
+		<span class="post-tag">จาวาสคริป</span>
+	
+</div>
+<div class="navigation">
+	
+		<a class="prev" href="/2021/10/31/support-bad-student/">< นักเรียนเลว - สนับสนุนเพื่อทวงสิทธิเสรีภาพ และอนาคตของนร.</a>
+	 
+</div>
+	
+</div>
+
+<div class="footer">
+	<span>
+		<div class = 'go_left'>
+			<p>
+				<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+			</p>
+			<p>
+				Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'>Privacy Policy</a>
+			</p>
+		</div>	
+
+		<div class = 'go_right'>
+		</div>
+	</span>
+</div>
+
+	<!-- Messenger Chat plugin Code -->
+	<div id="fb-root"></div>
+
+	<!-- Your Chat plugin code -->
+	<div id="fb-customer-chat" class="fb-customerchat">
+	</div>
+
+	<script>
+	var chatbox = document.getElementById('fb-customer-chat');
+	chatbox.setAttribute("page_id", "104741474999804");
+	chatbox.setAttribute("attribution", "biz_inbox");
+
+	window.fbAsyncInit = function() {
+		FB.init({
+		xfbml            : true,
+		version          : 'v12.0'
+		});
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>
