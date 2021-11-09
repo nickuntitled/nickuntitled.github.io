@@ -1,4 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-11-07T18:54:35+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous</title><link href="https://nickuntitled.com/2021/11/7/redis_queue_for_asynchronous_task_web_server/" rel="alternate" type="text/html" title="Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous" /><published>2021-11-07T17:30:00+07:00</published><updated>2021-11-07T17:30:00+07:00</updated><id>https://nickuntitled.com/2021/11/7/redis-queue-python</id><content type="html" xml:base="https://nickuntitled.com/2021/11/7/redis_queue_for_asynchronous_task_web_server/">&lt;p&gt;ปกติเวลาที่ฝั่ง Client ส่งข้อมูลไปที่ Server แล้ว เราจะรอระยะเวลาไม่นาน จากนั้น Server จะส่งข้อมูลกลับทาง Client ไว้สำหรับการประมวลผลต่อ ทีนี้เวลาที่เราส่งข้อมูลที่ใช้ระยะเวลาประมวลผลนานไปยัง Server แล้วประมวลผลผ่านไปซักพัก จะเกิดปัญหาหนึ่งคือ Request Timeout&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-11-09T20:29:28+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Enter Programming - จากเรียนแพทย์เข้ามาเขียนโปรแกรมได้ยังไง?</title><link href="https://nickuntitled.com/2021/11/9/enter_programming_how_to_move_from_medical_doctor/" rel="alternate" type="text/html" title="Enter Programming - จากเรียนแพทย์เข้ามาเขียนโปรแกรมได้ยังไง?" /><published>2021-11-09T20:00:00+07:00</published><updated>2021-11-09T20:00:00+07:00</updated><id>https://nickuntitled.com/2021/11/9/being-programming-from-doctor</id><content type="html" xml:base="https://nickuntitled.com/2021/11/9/enter_programming_how_to_move_from_medical_doctor/">&lt;p&gt;บทความนี้เราเขียนเสริมจากที่พูดในคาบของอ. advisor ที่สอนให้ในวิชาเลือกของรพ.ริมน้ำที่เกี่ยวกับการเรียน AI สำหรับทางการแพทย์&lt;/p&gt;
+
+&lt;h2 id=&quot;ช่วงแรก-ก่อนเข้าเรียนหมอ&quot;&gt;ช่วงแรก ก่อนเข้าเรียนหมอ&lt;/h2&gt;
+
+&lt;p&gt;ตอนแรกก่อนเข้าเรียนหมอเรียนภาษา C มาก่อน เรียนเองและเรียนจากค่ายสอวน. คอม (ที่เคยไปถึงโอลิมปิกระดับชาติแล้วได้เหรียญทองแดง) ฝึกตั้งแต่พื้นฐาน, Data Structure &amp;amp; Algorithms และแก้โจทย์ปัญหาบ้างผ่านทางเว็บในสมัยนั้นก็มีเว็บ programming.in.th (ที่ตอนนี้มีหลายเว็บแล้ว เช่น &lt;a href=&quot;https://leetcode.com/&quot;&gt;Leetcode&lt;/a&gt;)&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/c_programming.jpg&quot; alt=&quot;C Programming&quot; /&gt;
+&lt;figcaption&gt;ก่อนเรียนหมอ ก็เรียนภาษา C มาก่อนแล้ว&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;ต่อมา เราก็ฝึกเขียน PHP + MySQL เพราะมีพื้นภาษา C อยู่แล้วนี่ แถมได้เขียนเว็บทางฝั่ง Front-end ด้วย HTML, CSS, JavaScript (สมัยนั้นใช้ jQuery เพราะมันฮิตด้วย แถมมันติดมากับ Bootstrap เวอร์ชัน 3-4)&lt;/p&gt;
+
+&lt;p&gt;ช่วงนี้เราเขียนหน้าเว็บให้กับทางคณะฯ มาบ้าง แต่พอขึ้นคลินิกก็ไม่ได้เขียนเลย ก็งานยุ่งนี่ครับ แค่ทบทวนเรื่องที่เรียนบนชั้นคลินิกเวลาก็หมดเสียแล้ว&lt;/p&gt;
+
+&lt;h2 id=&quot;หลังเรียนจบหมอ&quot;&gt;หลังเรียนจบหมอ&lt;/h2&gt;
+
+&lt;p&gt;เมื่อเรียนจบพอมาใช้ทุนสธ. ก็ไม่ได้เขียนเลย เพราะแค่ลงเวรมาก็อยากจะนอน ไม่อยากอ่านอะไรเพิ่ม ก็มันไม่มีเวลาอ่ะคุณ แต่พอคิดไปคิดมา ไม่ได้อยากเป็นหมอแต่แรกแล้ว พอใช้ไปสักพักก็ลาออกมา จ่ายเงินสองแสนกว่าบาท&lt;/p&gt;
+
+&lt;p&gt;แล้วเลือกเรียนต่อวิศวะชีวการแพทย์ ที่เลือกม.มหิดลเพราะเป็นแห่งแรก ๆ และมีอาจารย์ที่ทำเรื่องนี้ เราเลยเลือกสอบและสัมภาษณ์เข้าไป ก็เข้าไปเรียน&lt;/p&gt;
+
+&lt;h2 id=&quot;เข้าเรียนวิศวะชีวการแพทย์&quot;&gt;เข้าเรียนวิศวะชีวการแพทย์&lt;/h2&gt;
+
+&lt;p&gt;ตอนเรียนมีปรับพื้นฐานของวิศวะ ก็มีพวกคณิตศาสตร์ที่ใช้ มีตั้งแต่แคลคูลัส, Differential Equation, Probability เป็นต้น อย่างไรก็ดี ตอนเรียนที่แพทย์จุฬาฯ ไม่มีสอน Calculus 1 เราเลยซื้อหนังสือแคลคูลัส 1 มาอ่านแล้วทำโจทย์เอง แถมค้นหาข้อมูลเพิ่มเติมในอินเตอร์เน็ตที่มีสอนฟรี เราก็ฝึกไปก่อน นอกจากเรียนเลขแล้วยังมีเรียน Signals, Image Processing, Bioimage Informatics และอื่น ๆ&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/face_detection_python.jpg&quot; alt=&quot;Face Detection&quot; /&gt;
+&lt;figcaption&gt;หลังเข้าเรียน ก็ได้ฝึกเขียน Python และศึกษาเรื่อง Computer Vision เช่น Face Detection แบบในภาพ&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;แล้วเข้าไปแล็บที่เป็น AI ครับ ตอนนี้แหละ (Artificial Intelligence in Medicine) ได้ฝึกเขียนโปรแกรม เลยเอาภาษาไพทอนนี่แหละมาฝึก เพราะภาษาไพทอนเป็นภาษาที่ฝึกได้ง่าย ตัวโค้ดเขียนเข้าใจง่าย ฝึกไม่นานก็เขียนได้แล้ว&lt;/p&gt;
+
+&lt;p&gt;ต่อมาเราเลยศึกษาพวกไลบรารีไพทอนที่จำเป็นที่เกี่ยวข้องกับงานด้าน Computer Vision เช่น OpenCV, Numpy, Matplotlib, PyTorch, Tensorflow, ONNX runtime เป็นต้น&lt;/p&gt;
+
+&lt;p&gt;พอศึกษาแล้วเขียนพอได้ระดับหนึ่ง ก็ต้องทำตัวเว็บเซิร์ฟเวอร์ แล้วจะเอาตัวไหนดี ตอนแรกจะเอา Django มันจะดูยากไปไหม เลยเลือก Flask ฝึกและใช้งานไประดับหนึ่ง ก็ฝึก FastAPI มาลองใช้ดู ใช้ง่ายแฮะ แต่อันนี้ไม่ได้เอาไปทำตัวเว็บเซิร์ฟเวอร์ ใช้แต่ Flask&lt;/p&gt;
+
+&lt;p&gt;นอกจากทำตัว back-end แล้วก็ต้องทำ front-end เลยฝึก HTML, JS, CSS ใหม่อีกที ฝึกไม่นานก็ทำหน้าเว็บได้ และช่วงนี้ก็ฝึก Framework ในปัจจุบัน อย่าง ReactJS, GraphQL (Apollo Server &amp;amp; Client) เป็นต้น แถมสมัยนี้ใช้ Container กัน ก็ฝึกใช้ Docker, docker-compose เลย (แต่ตอนนั้นยังไม่ได้ฝึก Kubernetes)&lt;/p&gt;
+
+&lt;h2 id=&quot;หลังจากนี้&quot;&gt;หลังจากนี้&lt;/h2&gt;
+
+&lt;p&gt;ต่อไปหลังจากนี้ เราก็เดี๋ยวฝึกอันที่คนใช้กันเยอะ เช่น Django, FastAPI, Svelte, Tailwind CSS, NoSQL (MongoDB) และอื่น ๆ รวมถึงฝึกพื้นฐานอย่าง Math, Data Structure, Algorithm, Data Science และอื่น ๆ ที่จำเป็นต้องกรทำงานครับ&lt;/p&gt;
+
+&lt;p&gt;เดี๋ยวฝึกแล้วได้อะไร จะเอามาเขียนในนี้ในโพสต่อ ๆ ไปครับ ขอบคุณผู้อ่านที่ติดตามครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Doctor" /><category term="Programming" /><category term="Medicine" /><category term="Programmer" /><category term="Job" /><category term="Python" /><category term="JavaScript" /><category term="JS" /><category term="C" /><category term="HTML" /><category term="CSS" /><category term="Engineering" /><category term="Career" /><category term="Biomedical" /><category term="สายงาน" /><category term="เปลี่ยนสาย" /><category term="เปลี่ยนอาชีพ" /><category term="หมอ" /><category term="แพทย์" /><category term="โปรแกรมเมอร์" /><category term="เขียนโปรแกรม" /><category term="โปรแกรมมิง" /><category term="วิศวกรรมศาสตร์" /><category term="วิศวกร" /><category term="วิศวชีวการแพทย์" /><summary type="html">ก่อนหน้านี้เรียนหมอไม่ค่อยได้ฝึกเขียนโปรแกรมอะไร จนมาที่เรียนวิศวะชีวการแพทย์ ที่เขียนโปรแกรมได้ในระดับหนึ่งแล้ว ในบทความนี้จะพูดว่ามาเขียนโปรแกรมได้อย่างไรครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous</title><link href="https://nickuntitled.com/2021/11/7/redis_queue_for_asynchronous_task_web_server/" rel="alternate" type="text/html" title="Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous" /><published>2021-11-07T17:30:00+07:00</published><updated>2021-11-07T17:30:00+07:00</updated><id>https://nickuntitled.com/2021/11/7/redis-queue-python</id><content type="html" xml:base="https://nickuntitled.com/2021/11/7/redis_queue_for_asynchronous_task_web_server/">&lt;p&gt;ปกติเวลาที่ฝั่ง Client ส่งข้อมูลไปที่ Server แล้ว เราจะรอระยะเวลาไม่นาน จากนั้น Server จะส่งข้อมูลกลับทาง Client ไว้สำหรับการประมวลผลต่อ ทีนี้เวลาที่เราส่งข้อมูลที่ใช้ระยะเวลาประมวลผลนานไปยัง Server แล้วประมวลผลผ่านไปซักพัก จะเกิดปัญหาหนึ่งคือ Request Timeout&lt;/p&gt;
 
 &lt;p&gt;เมื่อเกิดปัญหา Timeout แล้ว เราต้องการแก้ปัญหานี้ จะทำอย่างไร? ปัญหานี้ที่เคยอ่านในอินเตอร์เน็ตก็มีหลายวิธี ตัวอย่างเช่น แก้ที่ตัวเว็บเซิร์ฟเวอร์ว่าตั้งค่าให้มีระยะเวลานานเท่าไรก่อนที่จะขึ้นว่า Timeout หรือว่าไปแก้ที่ตัวโค้ดให้ใช้เวลาประมวลผลที่สั้นลง&lt;/p&gt;
 
@@ -1455,94 +1497,4 @@ y = -np.degrees(np.arcsin(np.sin(y)))
 
 &lt;!-- wp:paragraph --&gt;
 &lt;p&gt;[3] Cloudflare's WARP VPN allows multi-platform license sharing [Internet]. Coywolf. 2020 [cited 16 September 2021]. Available from: &lt;a href=&quot;https://www.coywolf.news/productivity/cloudflare-warp-vpn-multi-platform-license-sharing/#:~:text=1.1%20VPN%20has%20an%20unlimited,on%20up%20to%20five%20devices&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;https://www.coywolf.news/productivity/cloudflare-warp-vpn-multi-platform-license-sharing/#:~:text=1.1%20VPN%20has%20an%20unlimited,on%20up%20to%20five%20devices&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="1.1.1.1" /><category term="android" /><category term="Cloudflare" /><category term="devices" /><category term="dns" /><category term="Internet" /><category term="iOS" /><category term="mac" /><category term="macOS" /><category term="network" /><category term="privacy" /><category term="Private" /><category term="security" /><category term="software" /><category term="Unlimited" /><category term="vpn" /><category term="warp" /><category term="WARP+" /><category term="Windows" /><category term="ความเป็นส่วนตัว" /><category term="ปลอดภัย" /><category term="วินโดว์" /><category term="ส่วนตัว" /><category term="อินเตอร์เน็ต" /><category term="เครือข่าย" /><category term="เสมือน" /><category term="แมค" /><category term="แอนดรอยด์" /><category term="ไอโฟน" /><summary type="html">บริการ WARP+ Unlimited เป็นบริการที่ใช้ VPN ของ Cloudflare ได้โดยที ่Latency ต่ำที่สุดอย่างไม่จำกัด และปลอดภัย ในบทความจะแนะนำวิธีการใช้งาน 1 บัญชี หลายเครื่อง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/09/WARP-Unlimited-Multiple-Devices.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/09/WARP-Unlimited-Multiple-Devices.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">อะแดปเตอร์ชาร์จไฟที่เหมาะกับ Surface Pro X</title><link href="https://nickuntitled.com/2021/09/11/usb-c-adapter-for-surface-pro-x/" rel="alternate" type="text/html" title="อะแดปเตอร์ชาร์จไฟที่เหมาะกับ Surface Pro X" /><published>2021-09-11T10:23:44+07:00</published><updated>2021-09-11T10:23:44+07:00</updated><id>https://nickuntitled.com/2021/09/11/usb-c-adapter-for-surface-pro-x</id><content type="html" xml:base="https://nickuntitled.com/2021/09/11/usb-c-adapter-for-surface-pro-x/">&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ตอนที่ซื้อตัวแท็บเล็ต Surface Pro X ที่เป็นมือสองจะมีตัวแท็บเล็ตแล้ว (อันนี้รวมถึง Surface Pro 7 กับ 7+ ด้วย) ยังมีตัวอะแดปเตอร์ของไมโครซอฟท์เองที่เป็นสายเสียบเข้ากับปลั้กไฟที่หัวอีกฝั่งหนึ่งเป็นแม่เหล็กยึดกับช่องเสียบสายชาร์จไฟด้านขวา &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:more --&gt;
-&lt;!--more--&gt;
-&lt;!-- /wp:more --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อะแดปเตอร์ชาร์จไฟที่ติดมาให้ของไมโครซอฟท์ใช้ชาร์จไฟได้ดีเลยล่ะ เพียงแต่เวลาที่ใช้งานร่วมกันกับสาย USB-C ที่ต่อกับตัว &lt;a href=&quot;https://nickuntitled.com/2021/09/04/usb-c-docking-station-with-surface/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;USB-C docking station ที่ใช้อยู่กับ Surface&quot;&gt;USB Hub หรือ Docking Station ตามที่กล่าวในบทวามก่อนหน้า&lt;/a&gt; ทำให้สายยุ่งยากมากขึ้น เพราะต้องมีอีกสายที่ไว้เสียบเข้ากับอะแดปเตอร์ชาร์จไฟครับ แล้วจะทำอย่างไรดี?&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;USB-C Power Delivery&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3144,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6442-1024x683.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3144&quot; /&gt;&lt;figcaption&gt;USB-C&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ก่อนอื่น เรามาพูดถึงตัว USB-C ก่อนครับ ตัว USB-C ที่ติดมากับตัว Surface Pro X ที่ใช้อยู่มีคุณสมบัติที่ติดมากับ USB-C เอง นั่นก็คือ USB-C Power Delivery (หรือเรียกอีกแบบว่า USB-C PD) ที่เป็นเทคโนโลยีที่มาจากทาง USB Implementers Forum (USB-IF) ที่อนุญาตให้ชาร์จไฟผ่านทางพอร์ต USB-C ได้เลย โดยไม่จำเป็นต้องใช้ชิพพิเศษอะไร และการจ่ายพลังงานผ่านทางช่องเสียบนี้จะให้พลังงานตั้งแต่ 7.5W-100W (20V/5A) และแรงดันไฟฟ้าตั้งแต่ 5V ไปจนถึง 20V [1]&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;USB-C PD เป็นเทคโนโลยีที่ดีเลย เพราะเราสามารถเสียบสายนี้ต่อเข้ากับตัว Docking Station แล้ว ยังสามารถชาร์จไฟไปได้อีก ทำให้เราไม่จำเป็นต้องเสียบสายชาร์จไฟที่ติดมากับของไมโครซอฟท์เลย สะดวกใช่ไหมล่ะ? &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อย่างไรก็ดี เวลาเลือกซื้ออะแดปเตอร์ชาร์จไฟ เราต้องดูว่าสามารถใช้งานกับ Surface Pro X (รวมถึง 7 กับ 7+) ได้ไหม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;อะแดปเตอร์ที่เหมาะกับ Surface Pro X (รวมถึง 7 กับ 7+)&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3145,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6445-1024x683.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3145&quot; /&gt;&lt;figcaption&gt;อะแดปเตอร์ USB-C&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อะแดปเตอร์ที่สามารถชาร์จไฟได้ตามข้อมูลของเว็บไมโครซอฟท์แล้ว เราจำเป็นต้องซื้อตัวชาร์จไฟที่ให้แรงดันไฟฟ้า 15V/4A และให้พลังงาน 60W ขึ้นไป ซึ่งมีหลายอะแดปเตอร์ที่สามารถชาร์จไฟระดับนี้ได้ครับ [2]&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนรุ่นอื่นเช่น Surface Pro 7 กับ 7+ ที่ต้องการพลังงานพอ ๆ กันที่ 60W เราสามารถเลือกใช้ตามบทความนี้ได้เลยครับ [2]&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;วันก่อนเราซื้อตามโปรโมชัน 9.9 ครับ ไปซื้ออะแดปเตอร์ชาร์จไฟรุ่นหนึ่ง ที่สามารถเสียบสาย USB-C เพื่อชาร์จไฟ และให้แรงดันไฟฟ้าสูงสุด 20V/4.5A ที่ให้พลังงานสูงสุด 90W ซึ่งคุณสมบัติดีเพียงพอต่อการชาร์จไฟคอมพิวเตอร์รุ่นนี้แล้วครับ อย่างไรก็ดีอาจจะเช็คว่ายี่ห้อ และรุ่นที่ใช้ได้คุณภาพดีแค่ไหนครับ ถ้าให้คุณภาพดี ก็จะส่งผลดีต่อการชาร์จไฟครับ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ตัวอย่างอันที่เราใช้ก็ของ Aukey ครับ ยี่ห้อมีขายในเว็บ Shopee อย่างเป็นทางการ แต่ของยี่ห้ออื่นก็มีเช่น Belkin, Apple, Anker เป็นต้น อันนี้ก็สามารถหาซื้อผ่านทางออนไลน์ได้เช่นกัน&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;นอกเหนือจากนี้ข้อดีของการชาร์จไฟในลักษณะนี้ก็คือมันสามารถใช้งานร่วมกันกับ Docking Station แล้วเราสามารถเสียบสายเพื่อต่อออกหน้าจอที่สอง ใช้งานคีย์บอร์ด เมาส์ และเว็บแคมได้สบาย แถมยังชาร์จไฟได้อีก คุ้มครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับเรา ถ้ามีงบประมาณเพียงพออยู่แล้ว เราแนะนำครับผม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;ช่วงงานขาย&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3154,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/IMG_6447-min-1024x683.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3154&quot; /&gt;&lt;figcaption&gt;อะแดปเตอร์ Aukey และสายชาร์จ USB-C&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อะแดปเตอร์ Aukey รุ่น Omnia Mix 3 90W 3-Port PD GaN Charger รวมถึงสาย USB-C ของ Aukey ที่รองรับพลังงาน 100W ทำใหเราสามารถชาร์จ Surface Pro X ได้สบาย แถมไม่ต้องมีสายชาร์จของไมโครซอฟท์เองให้ยุ่งยาก ทำให้จัดระเบียบสายได้ดีกว่าเดิมครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนราคา ตอนซื้อมาราคาประมาณ 2200 -2300 บาทครับ ใครสนใจไปซื้อใน &lt;a href=&quot;https://shopee.co.th/aukeythailandofficialstore&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://shopee.co.th/aukeythailandofficialstore&quot;&gt;Shopee&lt;/a&gt; ได้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;แหล่งอ้างอิง&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;[1] 2. เทคโนโลยีชาร์จไว Quick Charge ต่างจาก USB Power Delivery (PD) อย่างไร ? [Internet]. Thaiware. 2021 [cited 10 September 2021]. Available from: h&lt;a href=&quot;//tips.thaiware.com/1434.html&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;ttps://tips.thaiware.com/1434.html&lt;/a&gt;&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;[2] How to charge Surface [Internet]. Microsoft. 2021 [cited 10 September 2021]. Available from: &lt;a href=&quot;https://support.microsoft.com/en-us/surface/how-to-charge-surface-d03cc785-30d5-2263-5eda-1733abd6e3ac&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;https://support.microsoft.com/en-us/surface/how-to-charge-surface-d03cc785-30d5-2263-5eda-1733abd6e3ac&lt;/a&gt; &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="adapter" /><category term="Charger" /><category term="computer" /><category term="electricity" /><category term="microsoft" /><category term="Port" /><category term="Power Delivery" /><category term="Surface" /><category term="Surface Pro X" /><category term="tablet" /><category term="USB" /><category term="USB-C" /><category term="USB-C PD" /><category term="คอมพิวเตอร์" /><category term="ชาร์จไฟ" /><category term="สาย USB-C" /><category term="สายไฟ" /><category term="อะแดปเตอร์" /><category term="แท็บเล็ต" /><category term="ไมโครซอฟท์" /><summary type="html">แท็บเล็ต Surface มีตัวชาร์จของไมโครซอฟท์เองที่ติดกับช่องเสียบด้านขวาแล้วชาร์จได้ แต่ใช้กับ USB-C แล้วสายรกไป ในบทความ เรามาพูดถึงอะตัวชาร์จไฟที่เหมาะกับ Surface</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/09/Adapter-Surface-Pro-X.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/09/Adapter-Surface-Pro-X.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="1.1.1.1" /><category term="android" /><category term="Cloudflare" /><category term="devices" /><category term="dns" /><category term="Internet" /><category term="iOS" /><category term="mac" /><category term="macOS" /><category term="network" /><category term="privacy" /><category term="Private" /><category term="security" /><category term="software" /><category term="Unlimited" /><category term="vpn" /><category term="warp" /><category term="WARP+" /><category term="Windows" /><category term="ความเป็นส่วนตัว" /><category term="ปลอดภัย" /><category term="วินโดว์" /><category term="ส่วนตัว" /><category term="อินเตอร์เน็ต" /><category term="เครือข่าย" /><category term="เสมือน" /><category term="แมค" /><category term="แอนดรอยด์" /><category term="ไอโฟน" /><summary type="html">บริการ WARP+ Unlimited เป็นบริการที่ใช้ VPN ของ Cloudflare ได้โดยที ่Latency ต่ำที่สุดอย่างไม่จำกัด และปลอดภัย ในบทความจะแนะนำวิธีการใช้งาน 1 บัญชี หลายเครื่อง</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/09/WARP-Unlimited-Multiple-Devices.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/09/WARP-Unlimited-Multiple-Devices.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
