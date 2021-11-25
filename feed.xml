@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-11-23T21:37:27+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Black Friday - ช่วงแอพดี ราคาถูก แล้วบอกต่อ</title><link href="https://nickuntitled.com/2021/11/23/black_friday_app/" rel="alternate" type="text/html" title="Black Friday - ช่วงแอพดี ราคาถูก แล้วบอกต่อ" /><published>2021-11-23T08:23:00+07:00</published><updated>2021-11-23T08:23:00+07:00</updated><id>https://nickuntitled.com/2021/11/23/black-friday-app</id><content type="html" xml:base="https://nickuntitled.com/2021/11/23/black_friday_app/">&lt;p&gt;Black Friday เป็นมหกรรมงาน Sale ลดราคาสินค้าหลายชนิดที่จัดทางฝั่งอเมริกา งานในลักษณะนี้ถ้าให้ใกล้เคียงกันก็เป็นงาน 11.11 12.12 ที่จัดตามเว็บแบบ Lazada Shopee ครับ โดยในช่วงนี้เราจะเห็นว่ามีการจัดโปรโมชันลดราคาแอพลงมาพอสมควร ทำให้เราจับจ่ายใช้สอยซื้อแอพของแท้ได้ง่ายขึ้นมากกว่าเดิมครับ งาน Black Friday งานนี้ปกติทุกปีจะจัดในช่วงวันศุกร์สัปดาห์ที่ 4 ของเดือนพฤศจิกายนครับ โดยปี 2564 ปีนี้จัดขึ้นในวันที่ 26 พฤศจิกายนครับ&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-11-26T01:13:16+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">สรุปบางส่วนจากสเปช How to Become a Web 3 Developer</title><link href="https://nickuntitled.com/2021/11/26/how_to_be_web3_developer/" rel="alternate" type="text/html" title="สรุปบางส่วนจากสเปช How to Become a Web 3 Developer" /><published>2021-11-26T00:30:00+07:00</published><updated>2021-11-26T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/11/26/how-to-be-web3-developer</id><content type="html" xml:base="https://nickuntitled.com/2021/11/26/how_to_be_web3_developer/">&lt;p&gt;เมื่อวันก่อนเปิดทวิตเตอร์เจอสเปชของทางเว็บ &lt;a href=&quot;https://hashnode.com&quot;&gt;Hashnode&lt;/a&gt; ที่มีหัวข้อว่า How to Become a Web 3 Developer หรือแปลเป็นภาษาไทยว่าวิธีการเป็นนักพัฒนาเว็บ 3.0&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hashnode เป็นเว็บที่อนุญาตให้คนเขัยนบทความที่เกี่ยวข้องกับการเขัยนโปรแกรมได้ แถมเราสามารถลิ้งค์โดเมนเนมที่เราจดไว้แล้วกับหน้าบล็อกนี้ได้เลย 
+จุดนี้นึกถึงเว็บ Medium ครับ แต่อันนี้สำหรับนักพัฒนาโปรแกรม ใครสนใจเข้าไปสมัครสมาชิกและเขียนบทความได้ฟรี&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ก่อนที่เราจะไปถึงสรุป เรามาพูดถึงเว็บ 3.0&lt;/p&gt;
+
+&lt;h2 id=&quot;web-3&quot;&gt;Web 3&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/cryptocurrency.jpg&quot; alt=&quot;Cryptocurrency&quot; /&gt;
+เงินคริปโตเป็นส่วนหนึ่งของ Blockchain ที่เกี่ยวข้องกับ Web 3.0&lt;/p&gt;
+
+&lt;p&gt;Web 3 หรือเรียกว่า Web 3.0 มีคำนิยามตามที่ Tim Berners-Lee ให้ไว้ว่ามันจะเป็น The next generation of internet ที่ตัวเว็บจะกลายเป็น Semantic Web ที่มีความฉลาดมากขึ้น ทำงานได้อัตโนมัติ ทำได้งานด้าน AI, Machine Learning, Blockchain และเทคโนโลยีอัจฉริยะอื่น ทำงานได้ดีมากขึ้นกว่าเดิม&lt;/p&gt;
+
+&lt;p&gt;นอกจากนี้ ทาง Berners-Lee ให้นิยามไว้เพิ่มเติมว่า Web 3.0 จะเป็นเครือข่ายที่อนุญาตให้ผู้อ่านสามารถสร้างคอนเท้นต์ได้โดยไม่จำเป็นต้องพึ่งทางผู้ให้บริการ ทางรัฐ หรืออื่น ๆ ก็คือจะมีความเป็น Decentralize มากขึ้นกว่าเดิม สิ่งนี้เหมือนกับเทคโนโลยีของ Blockchain ทางด้าน Cryptocurrency ตรับ&lt;/p&gt;
+
+&lt;p&gt;ผู้อ่านสามารถอ่านเพิ่มเติมได้ที่บทความในเว็บ&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.forbes.com/sites/forbestechcouncil/2020/01/06/what-is-web-3-0/?sh=3831244258df&quot;&gt;Forbes&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://slate.com/technology/2021/11/web3-explained-crypto-nfts-bored-apes.html&quot;&gt;Slate&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;รวมถึงใน&lt;a href=&quot;https://www.youtube.com/results?search_query=web+3.0&quot;&gt;ยูทูป&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;และอื่นๆ ครับ&lt;/p&gt;
+
+&lt;p&gt;เรามาพูดถึงที่สรุปจากสเปชบางส่วนครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;สรุปจากสเปช&quot;&gt;สรุปจากสเปช&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/web3_space.jpg&quot; alt=&quot;Web 3.0 Space&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;สเปชนี้จะเป็นสเปชที่เปิดให้คนกดยกมือเข้าไปถามได้ อันนี้นึกถึง &lt;a href=&quot;https://nickuntitled.com/2021/02/18/talk-about-clubhouse/&quot;&gt;Clubhouse&lt;/a&gt; ตรับ เพียงแต่อันนี้มีบนทวิตเตอร์มาระยะหนึ่งแล้ว และไม่เป็น&lt;a href=&quot;https://twitter.com/search?q=%23สเปซtoxic&amp;amp;src=typed_query&amp;amp;f=top&quot;&gt;สเปช Toxic&lt;/a&gt; ครับ โดยเราจะสรุปบางส่วนได้ตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;นักพัฒนา Web 3.0 ไม่จำเป็นต้องเชี่ยวชาญ Web 2.0 มาก่อน แต่ถ้าเคยทำเว็บมาก่อนอยู่แล้วจะทำให้เรียนรู้การทำ Web 3.0 ได้เร็วขึ้น&lt;/li&gt;
+  &lt;li&gt;การทำเว็บก็ต้องมีความรู้ทางด้านการเขียนโปรแกรม ในสเปชจะกล่าวถึ้งความรู้ทางด้าน HTML, CSS, JavaScript, Object-oriented Programming (OOP) และอื่น ๆ&lt;/li&gt;
+  &lt;li&gt;นอกจากความรู้ทางการเขียนโปรแกรมแล้ว ความรู้ทางด้าน Blockchain, Solana, Ethereum, Polygon รวมถึงหลักการ NFT, Smart Contract, Decentralization, Layer 2 เป็นต้น &lt;a href=&quot;https://www.youtube.com/watch?v=qOVAbKKSH10&quot;&gt;ลิ้งยูทูปอันนี้&lt;/a&gt;น่าจะอธิบายเรื่องที่กล่าวมาได้ในระดับหนึ่งครับ&lt;/li&gt;
+  &lt;li&gt;อีกอย่าง เรียนรู้การใช้ไลบรารีที่เกี่ยวข้องกับ Web 3.0 ครับ โดยหยิบไลบรารี Open Source มาฝึกได้เลย&lt;/li&gt;
+  &lt;li&gt;พอเรีัยนรู้ตามข้างบนไประยะหนึ่งแล้ว การสร้างโปรเจคขึ้นมาเป็นวิธีทำให้เราเรียนรู้ได้เร็วขึ้น&lt;/li&gt;
+  &lt;li&gt;เมื่อสร้างโปรเจคแล้ว นำมาเผยแพร่บนอินเตอร์เน็ต โซเชียล รวมถึงเขียนบล็อก บทความบนแพลตฟอร์มอะไรก็ได้เพื่อเผยแพร่โปรเจค ให้ความรู้ (ทางนั้นแนะนำ Hashnode แหม ก็ใครเป็นเจ้าของสเปช) และโพสลงโซเชียลเพื่อทำให้คนรู้จักเรา สร้างคอนเนคชั่นได้ (ที่ไม่ใช่ระบบอุปถัมภ์)&lt;/li&gt;
+  &lt;li&gt;สร้าง Resume, CV และมองหาบริษัทที่เปิดรับสมัครงาน&lt;/li&gt;
+  &lt;li&gt;ระยะเวลาเริ่มต้นจนทำเว็บ 3.0 เป็น อันนี้ไม่แน่นอน ขึ้นกับคน ถ้ายังไม่มีพื้นฐานอะไรเลย ก็จะช้าหน่อย&lt;/li&gt;
+  &lt;li&gt;มี Passion อยากจะเรียนรู้ ใช้เวลาฝึกสม่ำเสมอ สนุกกับมัน&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;สรุปได้คร่าว ๆ ประมาณนี้ครับ ดูจากแต่ละข้อแล้วก็คล้าย ๆ กันกับวิธีการเริ่มการเขียนโปรแกรม หรือวิธีการเริ่มสกิลใหม่สำหรับคนที่ทำงานหนึ่งแล้วต้องการเปลี่ยนสาย เช่นหมอไปเป็นนักบิน เป็นต้น ผู้อ่านสามารถนำสิ่งที่สรุปไปทำตามได้ครับ&lt;/p&gt;
+
+&lt;p&gt;แต่ถ้าผู้อ่านต้องการข้อมูลเพิ่มเติม ผู้อ่านสามารถหาได้ในอินเตอร์เน็ต ยูทูป หนังสือ และอื่น ๆ ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Web" /><category term="Web 3.0" /><category term="Developer" /><category term="Programmer" /><category term="Job" /><category term="Career" /><category term="Reskill" /><category term="Hashnode" /><category term="เว็บ" /><category term="เว็บ 3.0" /><category term="เขียนโปรแกรม" /><category term="โปรแกรมเมอร์" /><category term="อาชีพ" /><category term="รีสกิล" /><category term="นักพัฒนาเว็บ" /><summary type="html">เมื่อวันก่อนมีการจัดสเปชของ Hashnode ที่กล่าวถึง How to be Web 3.0 Developer ในบทความนี้สรุปบางส่วนครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/how_to_be_web3_developer_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/how_to_be_web3_developer_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Black Friday - ช่วงแอพดี ราคาถูก แล้วบอกต่อ</title><link href="https://nickuntitled.com/2021/11/23/black_friday_app/" rel="alternate" type="text/html" title="Black Friday - ช่วงแอพดี ราคาถูก แล้วบอกต่อ" /><published>2021-11-23T08:23:00+07:00</published><updated>2021-11-23T08:23:00+07:00</updated><id>https://nickuntitled.com/2021/11/23/black-friday-app</id><content type="html" xml:base="https://nickuntitled.com/2021/11/23/black_friday_app/">&lt;p&gt;Black Friday เป็นมหกรรมงาน Sale ลดราคาสินค้าหลายชนิดที่จัดทางฝั่งอเมริกา งานในลักษณะนี้ถ้าให้ใกล้เคียงกันก็เป็นงาน 11.11 12.12 ที่จัดตามเว็บแบบ Lazada Shopee ครับ โดยในช่วงนี้เราจะเห็นว่ามีการจัดโปรโมชันลดราคาแอพลงมาพอสมควร ทำให้เราจับจ่ายใช้สอยซื้อแอพของแท้ได้ง่ายขึ้นมากกว่าเดิมครับ งาน Black Friday งานนี้ปกติทุกปีจะจัดในช่วงวันศุกร์สัปดาห์ที่ 4 ของเดือนพฤศจิกายนครับ โดยปี 2564 ปีนี้จัดขึ้นในวันที่ 26 พฤศจิกายนครับ&lt;/p&gt;
 
 &lt;h2 id=&quot;ที่มาของงานนี้คืออะไร&quot;&gt;ที่มาของงานนี้คืออะไร?&lt;/h2&gt;
 
@@ -1176,241 +1225,4 @@ server {
 
 &lt;!-- wp:paragraph --&gt;
 &lt;p&gt;อีกอย่าง มีทีมงานคุณภาพที่ชื่อว่า &lt;a href=&quot;https://www.facebook.com/pajodsports/?__tn__=-UC*F&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/pajodsports/?__tn__=-UC*F&quot;&gt;PAJOD&lt;/a&gt; ด้วยครับ ใครจะลงทะเบียนมาปั่น เราแนะนำนะครับผม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Bike" /><category term="Diary" /><category term="audax" /><category term="Bike" /><category term="brevet" /><category term="cycling" /><category term="exercise" /><category term="PAJOD" /><category term="pajodgang" /><category term="prachuap khiri khan" /><category term="prachuapkhirikhan" /><category term="randonneurs" /><category term="road bike" /><category term="sightseeing" /><category term="Thai" /><category term="Thailand" /><category term="travel" /><category term="จักรยาน" /><category term="ท่องเที่ยว" /><category term="ประจวบคิรีขันธ์" /><category term="ปลาจวด" /><category term="ปั่นจักรยาน" /><category term="ออกกำลังกาย" /><category term="ออแด็กซ์" /><category term="เที่ยวไทย" /><category term="เสือหมอบ" /><summary type="html">สนาม 200 ประจวบคีรีขันธ์เป็นสนามที่จัดขึ้นภายใต้ทีม PAJOD ที่มีระยะทาง 200 km สนามนี้เป็นสนาม Normal ที่ไม่ยาก และไม่ง่ายไป ในบทความนี้จะมารีวิว และแนะนำครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/200BRM-Pajod-1.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/200BRM-Pajod-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ใช้ 3D Facial Landmarks ให้หาองศาขยับศีรษะ</title><link href="https://nickuntitled.com/2021/09/30/convert-3d-facial-landmark-coordinate-to-pose/" rel="alternate" type="text/html" title="ใช้ 3D Facial Landmarks ให้หาองศาขยับศีรษะ" /><published>2021-09-30T23:56:33+07:00</published><updated>2021-09-30T23:56:33+07:00</updated><id>https://nickuntitled.com/2021/09/30/convert-3d-facial-landmark-coordinate-to-pose</id><content type="html" xml:base="https://nickuntitled.com/2021/09/30/convert-3d-facial-landmark-coordinate-to-pose/">&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ใบหน้าของคนสำคัญต่อการสื่อสารทางการมองเห็น เนื่องมาจากใบหน้าของคนสามารถบ่งบอกข้อความที่ไม่จำเป็นต้องใช้คำพูด (อวัจนภาษา) ได้แก่ ตัวตนของบุคคล หรืออารมณ์ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อนำมาพูดถึงวงการ Computer Vision (คอมพิวเตอร์วิทัศน์) การเอาข้อมูลของใบหน้าออกมาโดยอัตโนมัตินั้น เราจำเป็นต้องกำหนดตำแหน่งอวัยวะบนใบหน้าเสียก่อน ขั้นตอนนี้เป็นขั้นตอนที่สำคัญก่อนที่เราจะนำผลลัพธ์ที่ได้จากการหาตำแหน่งอวัยวะบนใบหน้าไปใช้งาน ได้แก่ การหาองศาการขยับศีรษะ หรือการวิเคราะห์อารมณ์บนใบหน้า&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:more --&gt;
-&lt;!--more--&gt;
-&lt;!-- /wp:more --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สิ่งที่กล่าวถึงในย่อหน้าที่แล้ว เราเรียกการค้นหาตำแหน่งอวัยวะบนใบหน้านี้ว่า Facial Landmark Detection ซึ่งจะมีหลายเทคนิคที่สามารถค้นหาตำแหน่งบนใบหน้าได้ ได้แก่ &lt;a href=&quot;https://en.wikipedia.org/wiki/Active_appearance_model#:~:text=An%20active%20appearance%20model%20(AAM,built%20during%20a%20training%20phase.&amp;amp;text=The%20algorithm%20uses%20the%20difference,to%20drive%20an%20optimization%20process.&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://en.wikipedia.org/wiki/Active_appearance_model#:~:text=An%20active%20appearance%20model%20(AAM,built%20during%20a%20training%20phase.&amp;amp;text=The%20algorithm%20uses%20the%20difference,to%20drive%20an%20optimization%20process.&quot;&gt;Active Appearance Model&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/Active_shape_model#:~:text=Active%20shape%20models%20(ASMs)%20are,and%20Chris%20Taylor%20in%201995.&amp;amp;text=The%20ASM%20algorithm%20aims%20to%20match%20the%20model%20to%20a%20new%20image.&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://en.wikipedia.org/wiki/Active_shape_model#:~:text=Active%20shape%20models%20(ASMs)%20are,and%20Chris%20Taylor%20in%201995.&amp;amp;text=The%20ASM%20algorithm%20aims%20to%20match%20the%20model%20to%20a%20new%20image.&quot;&gt;Active Shape Model&lt;/a&gt;, &lt;a href=&quot;https://personalpages.manchester.ac.uk/staff/timothy.f.cootes/Models/clm.html&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://personalpages.manchester.ac.uk/staff/timothy.f.cootes/Models/clm.html&quot;&gt;Constrained Local Model&lt;/a&gt;, &lt;a href=&quot;https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf&quot;&gt;Face Alignment Network&lt;/a&gt;, &lt;a href=&quot;https://openaccess.thecvf.com/content_cvpr_2016/papers/Zhu_Face_Alignment_Across_CVPR_2016_paper.pdf&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://openaccess.thecvf.com/content_cvpr_2016/papers/Zhu_Face_Alignment_Across_CVPR_2016_paper.pdf&quot;&gt;3DDFA&lt;/a&gt; (3D Dense Face Alignment) และอื่น ๆ ซึ่งเราจะไม่กล่าวถึงในบทความนี้ เพราะเรื่องมันยาวครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;โดยเทคนิคเหล่านี้ จะให้ผลลัพธ์ที่เป็นจุดบนใบหน้า ซึ่งจะให้ผลลัพธ์เป็น 2 มิติ หรือ 3 มิติ ก็ขึ้นกับเทคนิคที่ผู้วิจัยได้พัฒนาขึ้น ในบทความนี้เราจะเน้นที่ 3 มิติ เพราะเราจะนำไปใช้หาทิศทางการหันศีรษะ ส่วนใครที่ใช้เทคนิคที่ให้ผลลัพธ์ออกมาเป็นจุด 2 มิติก็จะมีเทคนิคที่แปลงจุด 2 มิติเป็น 3 มิติอยู่ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;การแปลงจุด Facial Landmark 2 มิติ เป็น 3 มิติ&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3226,&quot;width&quot;:441,&quot;height&quot;:254,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/Screenshot-4.png&quot; alt=&quot;&quot; class=&quot;wp-image-3226&quot; /&gt;&lt;figcaption&gt;2D-to-3D-FAN network ที่สามารถแปลงจุด 2 มิติเป็น 3 มิติได้ (ภาพมาจากบทความ How far are we from solving the 2D &amp;amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;การแปลงจุด Facial Landmark 2 มิติ เป็น 3 มิติ เป็นการแปลงจากจุดที่ปรากฏบนภาพในหน้าจอกลายเป็นจุดในระบบพิกัด 3 มิติ โดยเราสามารถทำได้โดยเทคนิคตัวอย่างตามด้านล่างนี้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เทคนิคแรก ก็เป็นการใช้ 3D Morphable Model เราสามารถนำจุด 2 มิติที่ได้มาสร้างโมเดลใบหน้าเป็น 3 มิติได้ ส่วนรายละเอียดสามารถไปอ่านเพิ่มเติมได้ใน&lt;a href=&quot;https://github.com/3d-morphable-models/curated-list-of-awesome-3D-Morphable-Model-software-and-data&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://github.com/3d-morphable-models/curated-list-of-awesome-3D-Morphable-Model-software-and-data&quot;&gt;เว็บนี้ที่มีคนรวบรวมข้อมูลที่เกี่ยวข้อง&lt;/a&gt; และอื่น ๆ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เทคนิคต่อมา เราสามารถใช้ AI ให้แปลงจากจุด 2 มิติให้เป็น 3 มิติก็ได้เช่นกัน ตัวอย่างที่พบได้ก็เป็นเทคนิค Face Alignment Network (FAN) ที่มีบทความที่มีชื่อว่า &lt;a href=&quot;https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://openaccess.thecvf.com/content_ICCV_2017/papers/Bulat_How_Far_Are_ICCV_2017_paper.pdf&quot;&gt;How far are we from solving the 2D &amp;amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)&lt;/a&gt; ที่เราสามารถนำจุดสองมิติที่ได้ และใช้ภาพที่มีอยู่แล้วนำมาประมวลผลผ่านเครือข่ายประสาทเพื่อให้ผลลัพธ์ที่เป็นจุด 3 มิติผ่าน 2D-to-3D-FAN network ที่ได้รับแรงบันดาลใจมาจาก &lt;a href=&quot;https://arxiv.org/abs/1603.06937&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://arxiv.org/abs/1603.06937&quot;&gt;Stack Hourglass Network&lt;/a&gt; ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนเทคนิคอื่น ๆ ผู้อ่านสามารถอ่านได้ในอินเตอร์เน็ต อย่างไรก็ดี ถ้าจะเอาให้ชีวิตมันง่ายขึ้นมากกว่าเดิม แนะนำให้ใช้เทคนิคที่สามารถให้ผลลัพธ์เป็น Facial Landmark ในรูปแบบ 3 มิติไปเลยจะดีกว่า&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;การแปลงจุด Facial Landmark 3 มิติให้ออกมาเป็นองศาการเคลื่อนไหวของศีรษะ&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราสามารถแปลงจุดจากจุด Facial Landmark 3 มิติ ออกมาเป็นองศาการเคลื่อนไหวของศีรษะ (Head Pose) ได้หลายวิธี &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:quote --&gt;
-&lt;blockquote class=&quot;wp-block-quote&quot;&gt;&lt;p&gt;องศาการเคลื่อนไหวของศีรษะมีสามทิศทาง (ก็เป็นสามมิติ) ได้แก่ก้มเงย (Pitch), เอนซ้ายขวา (Roll) และหันซ้ายขวา (Yaw)&lt;/p&gt;&lt;/blockquote&gt;
-&lt;!-- /wp:quote --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;แต่ก่อนอื่น เรามาพูดถึงจุด Facial Landmark กันก่อน โดยจุดเหล่านี้เป็นจุดที่ปรากฏบนอวัยวะบนใบหน้า ทีนี้จะมีจำนวนจุดที่ใช้งานกันอยู่บ่อยระดับหนึ่งก็คือ 68 จุดตามภาพด้านล่างนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3221,&quot;width&quot;:425,&quot;height&quot;:343,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/68-facial-landmarks.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3221&quot; /&gt;&lt;figcaption&gt;จุด Facial Landmarks ทั้ง 68 จุด&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;นอกจากจุดทั้ง 68 จุดแล้วจุดเหล่านี้จะมีมากกว่า หรือน้อยกว่าก็ได้ ขึ้นกับความต้องการของผู้ใช้ แต่ในบทความนี้เราจะใช้ 68 จุดเป็นหลัก&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อทราบถึงจุด Facial Landmark ที่ใช้แล้ว เราจะมาแปลงจากจุดที่เป็น 3 มิติ ให้ออกมาเป็นมุมการเคลื่อนไหวของศีรษะได้อย่างไรล่ะ? &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราทำได้ครับ โดยเทคนิคที่เขียนในบทความนี้มาจาก&lt;a href=&quot;https://gist.github.com/zalo/71fbd5dbfe23cb46406d211b84be9f7e&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://gist.github.com/zalo/71fbd5dbfe23cb46406d211b84be9f7e&quot;&gt;หน้าหนึ่งในเว็บ Github&lt;/a&gt; ผู้อ่านสามารถอ่านในหัวข้อถัดไปได้ครับ สำหรับภาษาที่เขียนในที่นี่เราจะใช้&lt;a href=&quot;https://www.python.org/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.python.org/&quot;&gt;ภาษาไพทอน&lt;/a&gt;ที่เหมาะกับมือใหม่ที่เพิ่งหัดเขียนโปรแกรม ไปจนถึงงานด้าน AI/ML ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading {&quot;level&quot;:3} --&gt;
-&lt;h3&gt;แปลงจุด Facial Landmark 3 มิติ ให้เป็น Rotation Matrix&lt;/h3&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ขั้นตอนแรก เราต้องแปลงจุด Facial Landmark 3 มิติ ให้อยู่ในรูป Rotation Matrix ทำได้โดยการเขียนโค้ดในลักษณะตามด้านล่างนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:code --&gt;
-&lt;pre class=&quot;wp-block-code&quot;&gt;&lt;code&gt;# Construct a &quot;rotation&quot; matrix (strong simplification, might have shearing)
-rotationMatrix = np.empty((3,3))
-rotationMatrix&amp;#91;0,:] = (landm&amp;#91;16] - landm&amp;#91;0])/np.linalg.norm(landm&amp;#91;16] - landm&amp;#91;0])
-rotationMatrix&amp;#91;1,:] = (landm&amp;#91;8] - landm&amp;#91;27])/np.linalg.norm(landm&amp;#91;8] - landm&amp;#91;27])
-rotationMatrix&amp;#91;2,:] = np.cross(rotationMatrix&amp;#91;0, :], rotationMatrix&amp;#91;1, :])&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- /wp:code --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อเห็นตัวโค้ดแล้ว ผู้อ่านบางคนอาจจะไม่เข้าใจ เรามาอธิบายโค้ดกันก่อน&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading {&quot;level&quot;:4} --&gt;
-&lt;h4&gt;อธิบายตัวโค้ด&lt;/h4&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จากโค้ดเราจะสร้างอาเรย์ที่มีขนาด 3x3 ขึ้นมาโดยใช้คำสั่งของ numpy ในบรรทัดแรก&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:quote --&gt;
-&lt;blockquote class=&quot;wp-block-quote&quot;&gt;&lt;p&gt;สำหรับคนที่ไม่ทราบ numpy ตัวไลบรารี numpy เป็นไลบรารีภาษาไพทอนที่ช่วยให้เราทำงานทางด้านคณิตศาสตร์ รวมถึงแมทริกซ์ได้สะดวกสบายมากยิ่งขึ้นครับ&lt;/p&gt;&lt;p&gt;ใครที่ไม่ทราบ สามารถอ่านเพิ่มเติมได้ในเว็บ &lt;a href=&quot;https://numpy.org/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://numpy.org/&quot;&gt;numpy&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;!-- /wp:quote --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนบรรทัดต่อมาเราจะใช้เวกเตอร์ (Vector) ตำแหน่งจุดแลนมาร์คจุดที่ 1,17 มาลบกันแล้วทำค่าให้เป็นมาตรฐานโดยการทำ Normalize ข้อมูลด้วยการเอาผลลัพธ์ของการใช้ Matrix หรือ Vector norm มาหาร&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ในที่นี้เราจะใช้ norm ที่มีชื่อว่า Frobenius Norm ที่สามารถหาได้โดยการใช้สมการตามด้านล่างนี้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3246,&quot;width&quot;:274,&quot;height&quot;:119,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/Frobenius_norm_formula.gif&quot; alt=&quot;&quot; class=&quot;wp-image-3246&quot; /&gt;&lt;figcaption&gt;&lt;strong&gt;Frobenius norm&lt;/strong&gt; เอามาจาก&lt;a href=&quot;https://mathworld.wolfram.com/FrobeniusNorm.html&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://mathworld.wolfram.com/FrobeniusNorm.html&quot;&gt;หน้าเว็บของ Wolfram Mathworld&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อ m และ n เป็นขนาดของแมทริกซ์ในแกน y และแกน x ผลลัพธ์ของ Frobenius Norm สามารถหาได้ตามสมการด้านบนนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนแถวต่อมา เราใช้ Vector จุดแลนมาร์คที่ 9,28 มาทำแบบเดียวกันกับในแถวแรก &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนแถวสุดท้ายเราจะนำ Vector ของสองแถวแรกมาคูณด้วยการใช้ Cross Product ซึ่งผู้อ่านสามารถอ่านได้ในหน้าเว็บนี้เรื่อง&lt;a href=&quot;http://www.rmutphysics.com/charud/specialnews/7/vector/vector4.htm&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;http://www.rmutphysics.com/charud/specialnews/7/vector/vector4.htm&quot;&gt;เวกเตอร์และการเคลื่อนที่&lt;/a&gt;ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ผลลัพธ์ที่ได้ คือ Rotation Matrix เราจะอธิบายสิ่งนี้ในหัวข้อถัดไปครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading {&quot;level&quot;:4} --&gt;
-&lt;h4&gt;Rotation Matrix&lt;/h4&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;Rotation Matrix เป็นแมทริกซ์หนึ่งที่ใช้ในการหมุนของจุดแต่ละจุดในปริภูมิของยูคลิด (Euclidian space) ในบทความนี้เราจะเน้นไปที่ 3 มิติเป็นหลัก ดังนั้นแล้วแมทริกซ์นี้จะประกอบไปด้วยแมทริกซ์การหมุนที่หมุนตามแกน x, y และ z ที่อ้างอิงตามภาพด้านล่างนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3266,&quot;width&quot;:390,&quot;height&quot;:290,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/openGL_axis.png&quot; alt=&quot;&quot; class=&quot;wp-image-3266&quot; /&gt;&lt;figcaption&gt;ทิศทางการหมุนตามแกน x, y และ z (ภาพซ้าย) (ภาพมาจาก &lt;a href=&quot;http://www.songho.ca/opengl/gl_anglestoaxes.html&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;http://www.songho.ca/opengl/gl_anglestoaxes.html&quot;&gt;OpenGL Angles to Axis&lt;/a&gt;)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราจะแทนได้ว่าแกน x เป็นองศาการก้มเงย (Pitch), แกน y เป็นองศาการหันซ้ายขวา (Yaw) และแกน z เป็นองศาการเอนซ้ายขวา (Roll) โดยทิศการในแต่ละแกนจะใช้ตามกฏมือขวา (Right-hand rule)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading {&quot;level&quot;:3} --&gt;
-&lt;h3&gt;แปลง Rotation Matrix ให้อยู่ในรูปองศาการหันใบหน้าที่อยู่ในรูปองศา&lt;/h3&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;หลังจากที่เราได้ Rotation Matrix มาเรียบร้อย &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ในขั้นต่อไป เราจะแปลงจากแมทริกซ์นั้น ให้กลายเป็นมุนการหันศีรษะ ในบทความนี้เราจะเอาโค้ดที่เขียนในหน้าเว็บ Github ลิ้งค์เดียวกันกับที่เป็นโค้ดแปลงให้อยู่ในรูปแบบ Rotation Matrix ที่เขียนได้ตามด้านล่างนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:code --&gt;
-&lt;pre class=&quot;wp-block-code&quot;&gt;&lt;code&gt;sy = math.sqrt(R&amp;#91;0,0] * R&amp;#91;0,0] +  R&amp;#91;1,0] * R&amp;#91;1,0])
-singular = sy &amp;lt; 1e-6
-if not singular :
-    x = math.atan2(R&amp;#91;2,1] , R&amp;#91;2,2])
-    y = math.atan2(-R&amp;#91;2,0], sy)
-    z = math.atan2(R&amp;#91;1,0], R&amp;#91;0,0])
-else:
-    x = math.atan2(-R&amp;#91;1,2], R&amp;#91;1,1])
-    y = math.atan2(-R&amp;#91;2,0], sy)
-    z = 0
-
-# x = pitch, y = yaw, z = roll
-x = np.degrees(np.arcsin(np.sin(x)))
-z = -np.degrees(np.arcsin(np.sin(z)))
-y = -np.degrees(np.arcsin(np.sin(y)))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- /wp:code --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อเห็นตัวโค้ดแล้ว เราอธิบายได้ตามด้านล่างนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading {&quot;level&quot;:4} --&gt;
-&lt;h4&gt;อธิบายโค้ด&lt;/h4&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เรามาพูดถึงบรรทัดแรกก่อนที่เป็นการหารากที่สอง (Square Root) ของผลคูณของสมาชิกใน Rotation Matrix แล้วต่อมาเช็คว่าผลลัพธ์ที่ได้มีค่าน้อยกว่า 10 ยกกำลังลบ 6 หรือไม่ (ประมาณว่าค่ามันน้อยมากจนจะเข้าใกล้ 0 ครับ)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;กรณีที่ค่านั้นมีค่ามากกว่า 10 ยกกำลังลบ 6 เราจะหาองศาการหันศีรษะและลำคอได้ตามโค้ดที่เขียนไว้ในเงื่อนไขนั้นได้เลย ถัดจาก if not singular &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;แต่ถ้าได้น้อยกว่า 10 ยกกำลัง 6 เราจะหาองศาได้ตามโค้ดที่อยู่ในช่องที่ถัดจาก else ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อได้แล้ว ผลลัพธ์ที่ได้จะอยู่ในรูปตัวแปร x, y และ z ตามแกนที่เราได้กล่าวไว้ในหัวข้อ Rotation Matrix ผลลัพธ์นี้จะอยู่ในรูปเรเดียน (Radian) แต่เราต้องการให้มันออกมาเป็นองศาใช่ไหมครับ?&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราทำได้โดยการพิมพ์คำสั่งตามที่เขียนโค้ดด้านบนสามแถวล่างสุด แค่นี้เราจะได้ผลลัพธ์ที่อยู่ในรูปองศาเรียบร้อยครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;สรุป&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ในบทความนี้ เราแนะนำการแปลงจุด Facial Landmark 3 มิติให้มาเป็นองศาการเคลื่อนไหวของใบหน้าครับ ทำได้โดยการพิมพ์โค้ดตามตัวอย่างที่ระบุมาแล้วครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อย่างไรก็ดีเทคนิคการแปลงดังกล่าวมีเทคนิคอื่นด้วย ตัวอย่างเช่น Perspective-n-point ที่มีมาให้ในไลบรารี OpenCV ที่เคยลองแล้ว มันไม่ค่อยแม่นยำเท่าไรตามที่&lt;a href=&quot;https://openaccess.thecvf.com/content_cvpr_2018_workshops/papers/w41/Ruiz_Fine-Grained_Head_Pose_CVPR_2018_paper.pdf&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://openaccess.thecvf.com/content_cvpr_2018_workshops/papers/w41/Ruiz_Fine-Grained_Head_Pose_CVPR_2018_paper.pdf&quot;&gt;เปเปอร์ที่เกี่ยวกับเทคนิค Hopenet&lt;/a&gt; กล่าวไว้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ผู้อ่านสามารถนำตัวอย่างไปประยุกต์ใช้กับงานตามที่ต้องการได้เลยครับ เราเอาไปใช้แล้วชีวิตดีขึ้นครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;เพิ่มเติม&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;แล้วถ้าเราถ่ายภาพจากด้านข้างและเราต้องการวัดองศาของศีรษะทำได้ไหม ทำได้ครับ เพียงแต่เวลาที่เราสร้าง Rotation Matrix เดิมที่เราจะส่งอาเรย์ของแต่ละจุดตามแกน x, y และ z ใช่ไหมครับ เราก็สลับเป็น z, y และ x แทนครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ลืมไปอย่างนึง รูปภาพที่เอามาเป็นรูป Cover เอามาจากงา&lt;a href=&quot;http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm&quot;&gt;นวิจัยที่มีชื่อว่า Face Alignment Across Large Poses: A 3D Solution&lt;/a&gt; ที่ผู้วิจัยพัฒนาเป็นเทคนิคการจับจุดบนใบหน้าที่มีชื่อว่า 3DDFA และทำฐานข้อมูลสาธารณะ AFLW2000-3D, 300W_LP ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="calculation" /><category term="coding" /><category term="computer" /><category term="computer vision" /><category term="coordinate" /><category term="facial" /><category term="head" /><category term="head pose" /><category term="Head Pose Estimation" /><category term="landmark" /><category term="math" /><category term="matrix" /><category term="numpy" /><category term="programming" /><category term="python" /><category term="rotation" /><category term="การเคลื่อนไหวใบหน้า" /><category term="คอมพิวเตอร์" /><category term="จุดแลนมาร์ค" /><category term="วิทยาการคำนวณ" /><category term="เขียนโปรแกรม" /><category term="โค้ดดิ้ง" /><category term="ใบหน้า" /><category term="ไพทอน" /><summary type="html">เทคนิคหนึ่งเวลาที่เราหาองศาใบหน้าจากคอมพิวเตอร์เราจะใช้จุดบนใบหน้ามาช่วย ในบทความนี้เราแนะนำการแปลงจุดแลนมาร์ค 3 มิติ ให้เป็นองศาของใบหน้าแบบง่าย ๆ ครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/09/Convert-Landmark-Coord-to-Pose.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/09/Convert-Landmark-Coord-to-Pose.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Bike" /><category term="Diary" /><category term="audax" /><category term="Bike" /><category term="brevet" /><category term="cycling" /><category term="exercise" /><category term="PAJOD" /><category term="pajodgang" /><category term="prachuap khiri khan" /><category term="prachuapkhirikhan" /><category term="randonneurs" /><category term="road bike" /><category term="sightseeing" /><category term="Thai" /><category term="Thailand" /><category term="travel" /><category term="จักรยาน" /><category term="ท่องเที่ยว" /><category term="ประจวบคิรีขันธ์" /><category term="ปลาจวด" /><category term="ปั่นจักรยาน" /><category term="ออกกำลังกาย" /><category term="ออแด็กซ์" /><category term="เที่ยวไทย" /><category term="เสือหมอบ" /><summary type="html">สนาม 200 ประจวบคีรีขันธ์เป็นสนามที่จัดขึ้นภายใต้ทีม PAJOD ที่มีระยะทาง 200 km สนามนี้เป็นสนาม Normal ที่ไม่ยาก และไม่ง่ายไป ในบทความนี้จะมารีวิว และแนะนำครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/200BRM-Pajod-1.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/200BRM-Pajod-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
