@@ -1,4 +1,196 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-11-26T01:13:16+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">สรุปบางส่วนจากสเปช How to Become a Web 3 Developer</title><link href="https://nickuntitled.com/2021/11/26/how_to_be_web3_developer/" rel="alternate" type="text/html" title="สรุปบางส่วนจากสเปช How to Become a Web 3 Developer" /><published>2021-11-26T00:30:00+07:00</published><updated>2021-11-26T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/11/26/how-to-be-web3-developer</id><content type="html" xml:base="https://nickuntitled.com/2021/11/26/how_to_be_web3_developer/">&lt;p&gt;เมื่อวันก่อนเปิดทวิตเตอร์เจอสเปชของทางเว็บ &lt;a href=&quot;https://hashnode.com&quot;&gt;Hashnode&lt;/a&gt; ที่มีหัวข้อว่า How to Become a Web 3 Developer หรือแปลเป็นภาษาไทยว่าวิธีการเป็นนักพัฒนาเว็บ 3.0&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-12-01T01:28:42+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token</title><link href="https://nickuntitled.com/2021/12/01/implement_httponly_cookies_token_nodejs_express/" rel="alternate" type="text/html" title="ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token" /><published>2021-12-01T00:30:00+07:00</published><updated>2021-12-01T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/12/01/implement-httponly-cookie-token-nodejs-express</id><content type="html" xml:base="https://nickuntitled.com/2021/12/01/implement_httponly_cookies_token_nodejs_express/">&lt;p&gt;เดิมทีเวลาที่เราใช้งานเพื่อเข้าสู่ระบบ เราจะเขียนโค้ดเพื่อขอ Access Token จากเซิร์ฟเวอร์แล้วนำมาเก็บไว้บน Client เพื่อนำมาใช้งานระบบที่จำเป็น โดยใน&lt;a href=&quot;https://www.howtographql.com/react-apollo/5-authentication/&quot;&gt;บทความบนเว็บที่เกี่ยวกับการทำระบบ Authentication โดยใช้ไลบรารี Apollo GraphQL&lt;/a&gt; นั้น เราจะเก็บข้อมูล Access Token ที่สร้างขึ้นไว้บน LocalStorage เพื่อนำมาใช้งานต่อครับ&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี การเก็บข้อมูลไว้ในนี้ก็มีปัญหาเรื่องความปลอดภัย ในบทความนี้จะแนะนำวิธีการเก็บข้อมูล Access Token ที่ปลอดภัยกว่าการเก็บบน LocalStorage ครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;localstorage&quot;&gt;LocalStorage&lt;/h2&gt;
+
+&lt;p&gt;ก่อนอื่น เรามาพูดถึง LocalStorage ก่อน ตัว LocalStorage (หรือเรียกว่า window.localStorage) เป็นส่วนหนึ่งของ HTML5 Web Storage ที่ทำหน้าที่เก็บข้อมูลใส่ไว้บนเว็บเบราวเซอร์ทางฝั่ง Client ที่ข้อมูลยังคงอยู่ ถึงแม้ว่าเราจะปิดหน้าเว็บเบราวเซอร์นั้น ๆ ออกไป หรือข้อมูลหมดอายุตามที่เรากำหนดไว้เอง&lt;/p&gt;
+
+&lt;p&gt;การใช้งาน LocalStorage ทำได้โดยการเก็บข้อมูลตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem(&apos;token&apos;, &amp;lt; Access Token ที่ได้ &amp;gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;แล้วเราสามารถเรียกได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem(&apos;token&apos;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;จากนั้นข้อมูล Access Token ที่เก็บไว้ในเว็บเบราวเซอร์ก็จะคืนค่าอยู่ในตัวแปร token ครับ ฟังดูแล้วง่ายกว่าที่ดีคิดไว้ เพราะใช้คำสั่งตามที่เขียนไว้ข้างบนนี้ ข้อมูลก็ออกมาได้แล้วครับ อย่างไรก็ดี การเก็บข้อมูลไว้ใน LocalStorage มีข้อเสีย เนื่องมาจาก&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ข้อมูลที่เก็บ สามารถเก็บในรูปแบบ String เท่านั้น&lt;/li&gt;
+  &lt;li&gt;มีขนาดที่จำกัดเพียงแค่ 5MB (แต่ข้อมูลข้างบนไม่ถึง 5MB :P)&lt;/li&gt;
+  &lt;li&gt;มีปัญหาเรื่องความปลอดภัย เนื่องมาจากอ่านข้อมูลได้ง่ายเพียงใช้คำสั่งเดียวตามที่กล่าวไว้ข้างบน และสามารถดึกข้อมูลได้โดย &lt;a href=&quot;https://michael-coates.blogspot.com/2010/07/html5-local-storage-and-xss.html&quot;&gt;Cross site scripting (XSS)&lt;/a&gt; ครับ&lt;/li&gt;
+  &lt;li&gt;อ่านรายละเอียดเพิ่มเติมได้ใน&lt;a href=&quot;https://dev.to/rdegges/please-stop-using-local-storage-1i04&quot;&gt;หน้าเว็บ dev.to ที่มีคนหนึ่งได้เขียนไว้&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ดังนั้นแล้ว ข้อมูลที่เก็บไว้ใน LocalStorage ไม่ควรจะเก็บข้อมูลที่เป็นความลับครับ แล้วเราจะเก็บข้อมูลไว้ที่ไหนดีล่ะ?&lt;/p&gt;
+
+&lt;h2 id=&quot;httponly-cookies&quot;&gt;HTTPOnly Cookies&lt;/h2&gt;
+
+&lt;p&gt;HTTPOnly Cookies เป็นการตั้งค่าอันหนึ่งที่พบได้ระหว่าการตั้งค่า Set-Cookie HTTP Response Header ที่พบได้ตั้งแต่ Internet Explorer 6 SP1 (เก่ามากและ) โดยข้อมูลนี้เอามาจากบทความใน&lt;a href=&quot;https://owasp.org/www-community/HttpOnly&quot;&gt;หน้าเว็บมูลนิธิ OWASP&lt;/a&gt; ครับ&lt;/p&gt;
+
+&lt;p&gt;สำหรับข้อมูลที่เป็นความลับ หรือข้อมูลที่ Sensitive มากกว่าปกติ ยกตัวอย่างเช่นข้อมูล Access Token, User ID, Session ID, ข้อมูลบัตรเครดิต และอื่น ๆ ที่เราต้องการให้แชร์บน Facebook แบบ Public นั้น เราเก็บช้อมูลใน HTTPOnly Cookies ที่ทำได้ตามขั้นตอนด้านล่างนี้&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;เมื่อผู้ใช้เข้าสู่ระบบ เซิร์ฟเวอร์จะสร้างข้อมูล Session ที่จำเป็นขึ้นมาสำหรับการใช้งาน&lt;/li&gt;
+  &lt;li&gt;นำข้อมูลที่สร้างขึ้นเก็บอยู่ในรูปแบบ Cookie โดยกำหนดค่าคุกกี้ให้เป็น HTTPOnly เท่านั้น&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;ไลบรารีที่รองรับ HTTPOnly Cookies มีหลากหลายไลบรารีมาก ผู้อ่านสามารถหาเพิ่มเติมได้ในอินเตอร์เน็ต แต่ในตัวอย่างนี้ เราจะใช้ไลบรารีที่นิยมอันหนึ่งที่มีชื่อว่า &lt;a href=&quot;https://expressjs.com/&quot;&gt;Express&lt;/a&gt; ที่อยู่ในรูปแบบภาษา JavaScript ที่ทำงานบน Node.js ครับ&lt;/p&gt;
+
+&lt;p&gt;ตัวอย่างของการสร้าง HTTPOnly Cookies ทำได้ตามด้านล่างนี้ครับ แต่ก่อนอื่น เราต้องติดตั้งไลบรารีเหล่านี้ก่อนครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yarn add express dayjs cookie-parser jsonwebtoken
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อติดตั้งเสร็จแล้ว เราพิมพ์ส่วนนี้เพิ่มเติมลงไปใน package.json&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  [...]
+  &quot;type&quot;: &quot;module&quot;,
+  [...]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เพื่อให้ใช้งานตามตัวอย่างด้านล่างนี้ได้ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from &apos;http&apos;;
+import express from &apos;express&apos;;
+import dayjs from &apos;dayjs&apos;;
+import cookieParser from &quot;cookie-parser&quot;;
+import jwt from &apos;jsonwebtoken&apos;;
+
+const app = express();
+const httpServer = http.createServer(app);
+
+[...]
+
+app.use(cookieParser());
+
+[...]
+
+app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
+
+  [...]
+
+  let token = jwt.sign(payload, jwt_secret, { expiresIn: jwt_expire });
+
+  res.cookie(&quot;authorization&quot;, token, {
+      secure: true,
+      httpOnly: true,
+      expires: dayjs().add(1, &quot;days&quot;).toDate(),
+      sameSite: &apos;Strict&apos;
+  });
+
+  [...]
+
+});
+
+[...]
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อดูตัวอย่างจากข้างบนนี้แล้ว ดูตรงส่วนคำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.use(cookieParser());
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;คำสั่งนี้เป็นการเกิดใช้งานตัว cookie-parser Middleware ที่เป็นส่วนหนึ่งของไลบรารี Express ที่อนุญาตให้เราเรียกใช้งาน Cookie header เพื่อดึงข้อมูล HTTPOnly Cookies โดยพิมพ์ว่า req.cookies ครับ&lt;/p&gt;
+
+&lt;p&gt;ในหลายบรรทัดต่อมา ตรงส่วนคำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;res.cookie(&quot;token&quot;, token, 
+    secure: true,
+    httpOnly: true,
+    expires: dayjs().add(1, &quot;days&quot;).toDate(),
+    sameSite: &apos;Strict&apos;
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;คำสั่งนี้เป็นคำสั่งที่เรากำหนดค่าอะไรก็ตามลงไปใน Cookie ที่เราได้กำหนดไว้ คือ เรากำหนดค่า Access Token ลงไปใน Cookie token ครับ ส่วนการตั้งค่าที่อยู่ในปีกกานั้นเป็นการตั้งค่า Cookie นี้ให้&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;secure เป็นการตั้งค่าให้ใช้งานผ่าน HTTPS เท่านั้น&lt;/li&gt;
+  &lt;li&gt;httpOnly เป็นการตั้งค่าให้ cookie ตัวนี้เรียกใช้งานโดยเว็บเซิร์ฟเวอร์ได้เท่านั้น&lt;/li&gt;
+  &lt;li&gt;expires เป็นการตั้งค่าระยะเวลาหมดอายุ ตามคำสั่งที่เขียนข้างบนกำหนดให้มีอายุ 1 วัน&lt;/li&gt;
+  &lt;li&gt;sameSite ตั้งค่าให้เพิ่ม SameSite ใน Set-Cookie HTTP Header มีด้วยกันสองแบบได้แก่ Strict ที่ผ่านทางเว็บไซต์เราเท่านั้น หรือ Lax ที่ส่ง Cookie ผ่านเว็บไซต์อื่นได้ ผ่าน HTTP Get บน Address Bar (เช่นการกด Link)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ส่วนการตั้งค่าเพิ่มเติมที่เราไม่ได้กำหนดค่าไว้ มีได้แก่&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;domain กำหนดโดเมนเนม ในที่นี้ให้โดเมนเนมเดียวกันกับ app&lt;/li&gt;
+  &lt;li&gt;encode เป็นฟังก์ชันที่กำหนด encoding
+เป็นต้น โดยการตั้งต่าเพิ่มเติมนี้ ผู้อ่านสามารถเข้าไปดูได้ใน &lt;a href=&quot;https://expressjs.com/en/api.html&quot;&gt;Reference ของ Express&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;เมื่อเราเรียกใช้งานผ่านคำสั่งอย่าง fetch, XMLHttpRequest หรืออื่น ๆ เราดู HTTPOnly Cookies ได้ที่หน้า Developer Tools -&amp;gt; Application -&amp;gt; Storage -&amp;gt; Cookies -&amp;gt; ที่อยู่เว็บไซต์ -&amp;gt; เราจะพบ HTTPOnly Cookies ที่เราได้สร้างขึ้นครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/httponly_cookie_devtool.png&quot; alt=&quot;HTTPOnly Cookies บน Developer Tools&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;HTTPOnly Cookies บน Developer Tools (&lt;a href=&quot;https://asset.nickuntitled.com/2021/12/httponly_cookie_devtool.png&quot;&gt;ดูรูปเต็ม&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;ดูตรง Authorization เราจะพบว่า Cookie ที่สร้างนี้อันนี้เป็น HTTPOnly Cookies ครับ แล้วเวลาที่ใช้งานจริง เราจะเรียกใช้งานอย่างไรดีล่ะ?&lt;/p&gt;
+
+&lt;p&gt;เราเรียกใช้งานได้โดยผ่านการพิมพ์&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get(&apos;/isloggedin&apos;, (req, res, next) =&amp;gt; {
+  
+  [...]
+
+  let token = req.cookies.authorization;
+
+  [...]
+
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;สังเกตตรง req.cookies.authorization อันนี้แหละ เป็นการเรียกใช้งาน HTTPOnly Cookies ที่เราสร้างชึ้นครับ อย่างไรก็ดี กรณีที่เราใช้งานผ่าน Apollo Server GraphQL เรายังเรียก HTTPOnly Cookies ได้อยู่ไหม คำตอบคือ ทำได้สบายมาก เพียงแต่เราต้องมาพิมพ์คำสั่งใน context ที่สร้างขึ้น&lt;/p&gt;
+
+&lt;p&gt;เราพิมพ์โค้ดได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from &apos;apollo-server-express&apos;;
+import { ApolloServerPluginDrainHttpServer } from &apos;apollo-server-core&apos;;
+
+[...]
+
+const apollo_server = new ApolloServer({ 
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  context: ({ req }) =&amp;gt; {
+    let token = req.cookies.authorization || &apos;&apos;;
+    return {
+      token
+    };
+  }
+});
+
+[...]
+
+apollo_server.applyMiddleware({ &quot;app&quot;: express_app });
+
+[...]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;สังเกตตรง context ที่อยู่ใน new ApolloServer({ … }) อันนี้แหละมีส่วนที่เราเรียกใช้งาน HTTPOnly Cookies ครับ ส่วนไลบรารีอื่น ผู้อ่านสามารถหาอ่านได้ในอินเตอร์เน็ตเพิ่มเติมครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;ประโยชน์การใช้-httponly-cookies&quot;&gt;ประโยชน์การใช้ HTTPOnly Cookies&lt;/h2&gt;
+
+&lt;p&gt;ประโยชน์ของการใช้งาน HTTPOnly Cookies ตามที่เขียนในเว็บ &lt;a href=&quot;https://blog.codinghorror.com/protecting-your-cookies-httponly/&quot;&gt;CodingHorror&lt;/a&gt; หรืออื่น ๆ ได้แก่&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;HTTPOnly Cookies จำกัดให้เรียกใช้งานผ่านเว็บเซิร์ฟเวอร์เท่านั้น เราจะใช้งานผ่าน document.cookie ไม่ได้&lt;/li&gt;
+  &lt;li&gt;ป้องกันการเกิด Cross-site Scripting (XSS) ดังนั้นแล้ว เวลาที่เรียกใช้งาน fetch, XMLHttpRequest หรืออื่น ๆ จะกระทำได้โดยผ่านโดเมนเดียวกันกับเว็บเซิร์ฟเวอร์เท่านั้น&lt;/li&gt;
+  &lt;li&gt;ตามที่เขียนข้างบนนี้มีเขียนให้ใช้ Same-site Cookie ที่ใช้งานได้เฉพาะเว็บเราเท่านั้น ทำให้เรียกใช้ผ่านเว็บอื่นไม่ได้ ส่วนนี้จะป้องกัน Cross site request forgery (CSRF) ครับ&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;และอื่น ๆ&lt;/p&gt;
+
+&lt;h2 id=&quot;สรุป&quot;&gt;สรุป&lt;/h2&gt;
+
+&lt;p&gt;จากตัวอย่างจะพบว่าเราใช้งาน HTTPOnly Cookies โดยใช้งานบน Node.js ที่ใช้ไลบรารี Express ได้เพียงไม่กี่คำสั่งเท่านั้น เมื่อใช้งานแล้วทำให้เว็บไซต์ของเราปลอดภัยขึ้นมากกว่าเดิมครับ อย่างไรก็ดี อันนี้เป็นส่วนหนึ่งที่ทำให้เว็บของเราปลอดภัยตรับ จะต้องพิจารณาการเขียนโค้ดส่วนอื่นร่วมด้วยว่ามีช่องโหว่หรือไม่ครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Web" /><category term="HTTPOnly" /><category term="Developer" /><category term="HTTP" /><category term="Cookies" /><category term="Secure" /><category term="Security" /><category term="Token" /><category term="JWT" /><category term="JavaScript" /><category term="Coding" /><category term="GraphQL" /><category term="API" /><category term="เขียนโปรแกรม" /><category term="จาวาสคริป" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><category term="ความปลอดภัย" /><category term="โทเค็น" /><summary type="html">บทความนี้แนะนำวิธีการเก็บ Access Token ที่ปลอดภัยกว่าการเก็บใน LocalStorage ด้วย HTTPOnly Cookies บน Node.js</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/12/httponly_cookie_header.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/12/httponly_cookie_header.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">สรุปบางส่วนจากสเปช How to Become a Web 3 Developer</title><link href="https://nickuntitled.com/2021/11/26/how_to_be_web3_developer/" rel="alternate" type="text/html" title="สรุปบางส่วนจากสเปช How to Become a Web 3 Developer" /><published>2021-11-26T00:30:00+07:00</published><updated>2021-11-26T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/11/26/how-to-be-web3-developer</id><content type="html" xml:base="https://nickuntitled.com/2021/11/26/how_to_be_web3_developer/">&lt;p&gt;เมื่อวันก่อนเปิดทวิตเตอร์เจอสเปชของทางเว็บ &lt;a href=&quot;https://hashnode.com&quot;&gt;Hashnode&lt;/a&gt; ที่มีหัวข้อว่า How to Become a Web 3 Developer หรือแปลเป็นภาษาไทยว่าวิธีการเป็นนักพัฒนาเว็บ 3.0&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Hashnode เป็นเว็บที่อนุญาตให้คนเขัยนบทความที่เกี่ยวข้องกับการเขัยนโปรแกรมได้ แถมเราสามารถลิ้งค์โดเมนเนมที่เราจดไว้แล้วกับหน้าบล็อกนี้ได้เลย 
@@ -893,336 +1085,4 @@ server {
 
 &lt;!-- wp:paragraph --&gt;
 &lt;p&gt;อย่างไรก็ดี เรื่องนี้มีการดำเนินการเพื่อจัดการพวกนี้อยู่ จะหมดไปไหม ก็ยากอยู่นะครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Bank" /><category term="Banking" /><category term="Fraud" /><category term="Internet Banking" /><category term="Loan" /><category term="Loan Shark" /><category term="Payday" /><category term="phone" /><category term="Scam" /><category term="SMS" /><category term="Telephone" /><category term="Title loan" /><category term="ข้อความ" /><category term="นอกระบบ" /><category term="มิจฉาชีพ" /><category term="หลอกลวง" /><category term="เงินกู้" /><category term="เงินกู้นอกระบบ" /><category term="โกง" /><category term="โทรศัพท์" /><summary type="html">ช่วง 1-2 ปีนี้จะมีสายโทรศัพท์ และ SMS เงินกู้เข้ามาในที่เบอร์มือถือที่เราใช้งานอยู่ในปัจจุบัน ของเราก็ได้รับเช่นกัน ในบทความนีี้จะพูดจุดสังเกต และวิธีจัดการ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Audax 200BRM ประจวบคีรีขันธ์</title><link href="https://nickuntitled.com/2021/10/03/audax-200-brm-prachuapkirikhan/" rel="alternate" type="text/html" title="Audax 200BRM ประจวบคีรีขันธ์" /><published>2021-10-03T02:30:28+07:00</published><updated>2021-10-03T02:30:28+07:00</updated><id>https://nickuntitled.com/2021/10/03/audax-200-brm-prachuapkirikhan</id><content type="html" xml:base="https://nickuntitled.com/2021/10/03/audax-200-brm-prachuapkirikhan/">&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ประจวบคีรีขันธ์เป็นจังหวัดหนึ่งในประเทศไทยที่เป็นทางผ่านไปยังภาคใต้ ที่รถทุกคนจะต้องผ่านจังหวัดนี้ก่อน ทีนี้เมื่อสองปีที่แล้วมีการจัด&lt;a href=&quot;https://dayone.me/4PKXQzn9&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://dayone.me/4PKXQzn9&quot;&gt;งานปั่น Audax 200 Test run&lt;/a&gt; โดยทีมงาน PAJOD ที่ตั้งมาประมาณ 2 ปีแล้ว สนามตอน Test run ที่เราไปปั่นมา แต่ดันลืมดูยาง ยางแบนแล้วปั่นหนีดแทบไม่ไปจน DNF ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;พอมาถึงปีที่แล้ว ก่อนที่โควิดจะระบาดจนรัฐบาลสั่งล็อคดาวน์ งานปั่น Audax 200BRM ประจวบคีรีขันธ์ได้จัดขึ้นช่วงต้นเดือนมีนาคมพอดี เราเลยสมัครไปปั่นงานนี้เพื่อแก้มือครับ ตอนนั้นไปก็เอาหมอบไปนี่แหละครับ ปั่นสบายขา ไหล ๆ ดีตามที่&lt;a href=&quot;https://nickuntitled.com/2021/01/23/review-vintage-road-bike-emperor-802r/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;Review vintage road bike Emperor 802R&quot;&gt;เคยรีวิวไว้ก่อนหน้า&lt;/a&gt;นั้น&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:more --&gt;
-&lt;!--more--&gt;
-&lt;!-- /wp:more --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;การสมัคร ก็สมัครเข้าไปผ่านทางหน้าเว็บ &lt;a href=&quot;https://audaxthailand.knack.com/home#events/centenary/route-details/5c77409e953cd5548a63019b/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://audaxthailand.knack.com/home#events/centenary/route-details/5c77409e953cd5548a63019b/&quot;&gt;Audax Thailand&lt;/a&gt; ตามปกติ จ่ายเงิน 200 บาทนิด ๆ แล้วรอวันจริง ก็นั่งรถไฟไปที่พัก ที่พักที่เราพักเป็น&lt;a href=&quot;https://www.facebook.com/munruk.hostel/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/munruk.hostel/&quot;&gt;มั่นรัก Hostel&lt;/a&gt; ที่เป็นที่พักราคาประหยัด ใกล้ตัวเมือง เดินทางสะดวกครับ พักสองคืนครับ สภาพที่พักดีมาก จองห้องนึงนอนได้หลายคน สำหรับใครที่จะมาปั่นงานปั่น 200 ที่จัดขึ้นเป็นส่วนหนึ่งของกิจกรรมครบ 100 ปีที่จัด Audax ผู้อ่านสามารถเข้าไปจองที่พักได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:quote --&gt;
-&lt;blockquote class=&quot;wp-block-quote&quot;&gt;&lt;p&gt;รูปบางรูปเราไม่ได้ถ่ายไว้ เลยหยิบเอารูปจากเพจ PAJOD กับหยิบเอารูปใน Google Street View มาใช้นะครับ&lt;/p&gt;&lt;/blockquote&gt;
-&lt;!-- /wp:quote --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;จุด Start&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3309,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/FB_IMG_1633172711229-1024x678.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3309&quot; /&gt;&lt;figcaption&gt;สะพานสราญวิถี (ภาพจาก PAJOD)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อตื่นขึ้นมาวันจริง เรากับกลุ่มที่ปั่นไปที่จัดงานซึ่งตั้งอยู่บริเวณสะพานสราญวิถี ซึ่งเป็นตำแหน่งที่ดีเลย เพราะตั้งอยู่จะกลาง ๆ เมือง แถมเดินทางไปได้สะดวกครับ ระหว่างที่รอได้ถ่ายกับพี่สายขล &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:quote --&gt;
-&lt;blockquote class=&quot;wp-block-quote&quot;&gt;&lt;p&gt;ใครถ่ายกับพี่สายชล ไม่ว่าสนามไหน ปั่นจบทุกคน (แต่ 600 พิษณุโลกนี่ไม่ชัวร์)&lt;/p&gt;&lt;/blockquote&gt;
-&lt;!-- /wp:quote --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เรารอสักพักนึงจนถึงเวลา 7 โมง เราออกตัวจากสะพานสราญวิถี &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;หลังจากออกแล้ว เราต้องปั่นตามเส้นทางเป็นระยะทาง 200 กิโลเมตร เส้นทางและจุดที่ต้องผ่านไม่กี่จุดตามภาพครับ ระยะไต่ตามมาตรฐานของสนาม Audax ทั่วไป ไม่เยอะเกิน และไม่น้อยเกินไปครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3317,&quot;width&quot;:329,&quot;height&quot;:512,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/Screenshot_20211002-174548_RidewithGPS-658x1024.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3317&quot; /&gt;&lt;figcaption&gt;เส้นทางจาก RidewithGPS&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;จุด Control ด่านสิงขร (กม 25)&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3322,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/SmartSelect_20211002-180923_Maps-edited.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3322&quot; /&gt;&lt;figcaption&gt;ป้ายด่านสิงขร (รูปจาก Google Street View)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ออกจากจุด Start เราปั่นไปจุดแรกคือด่านสิงขร ด่านนี้เป็นด่านที่ตั้งอยู่ชายแดนระหว่างไทยกับเมียนมาร์ครับ จุดนี้เป็นจุดที่มีตลาด และคนมาพอสมควร (ในขณะนั้น) แต่พอเจอโควิดไป ได้ยินว่าเงียบไปเลย คงต้องรอเปิดประเทศถึงจะเริ่มกลับมาค้าขายได้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3310,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/FB_IMG_1633172044514-1024x678.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3310&quot; /&gt;&lt;figcaption&gt;ตอนออกตัว (ภาพจากเพจ PAJOD)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เส้นทางช่วงแรกเป็นเนินซึม เนินขึ้นลงเป็นระยะ ทำความเร็วได้ดีครับ ได้ 25~30 km/hr เป็นระยะ ๆ  จุดนี้ยังไม่ได้ยากเท่าไร ปั่นมาเป็นขบวนใหญ่ ทำให้ดูดและทำความเร็วได้ดี ปั่นแปบ ๆ ก็ถึงจุด Control แรกแล้ว ปั่นเร็วไปหน่อย ทิ้งคนอื่นมาไกลเลยคุณ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3305,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/FB_IMG_1633171859947-1024x678.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3305&quot; /&gt;&lt;figcaption&gt;ก่อนถึงจุด Control (ภาพจากเพจ PAJOD)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3316,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/FB_IMG_1633173113056.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3316&quot; /&gt;&lt;figcaption&gt;แถวด่านสิงขรครับ&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จุดนี้ เราถ่ายรูปกับป้ายตามภาพด้านบนเพื่อนำไปยื่นให้ทีมงานที่ CP1 จากนั้นพักซักพักนึง เลยปั่นออกไปยังป้ายจุดแคบสุดในสยามที่ตั้งอยู่ก่อนหน้า &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราแวะถ่ายรูปที่นี่ แล้วปั่นออกไปครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3380,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/139100191_10220016206340847_1431975361405176522_n.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3380&quot; /&gt;&lt;figcaption&gt;ป้ายจุดแคบสุดในสยาม&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;จุด CP 1 ร้านข้าวน้องไหม หาดห้วยยาง (กม 54.3)&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3338,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/CP1-min-1024x376.png&quot; alt=&quot;&quot; class=&quot;wp-image-3338&quot; /&gt;&lt;figcaption&gt;CP1 ร้านข้าวน้องไหม หาดห้วยยาง (ภาพจาก Google Street View)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราปั่นออกไปจากด่านสิงขรแล้ว เส้นทางระหว่างจุด CP1 และ Control ก็ยังเป็นเนินซึม เนินต่างระดับเล็กน้อย ปั่นไปก็แวะพักมินิมาร์ทชาวบ้านไป ซึ่งจุดนี้ก็ไม่ได้ปั่นยากจนเกินไป เพราะเส้นทางไม่ได้ชันมากเกิน 10% อะไร ปั่นไปทำความเร็วได้ดี&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อากาศช่วงนี้เริ่มร้อนขึ้นมาหน่อย แต่ก็ไม่ได้เป็นอุปสรรคอะไรมาก ยังปั่นได้เรื่อย ๆ จนลงเนินมายาวพอสมควร ระหว่างทางมีคนโดนผึ้ง (หรือต่อ ลืมไปแล้ว 55) ต่อยจมูกพอดีเป๊ะก็ระวังนิดนึง (มั้ง) &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ลงเนินเสร็จแล้ว เรามาถึงถนนเพชรเกษมที่ต้องลอดใต้สะพานเท่านั้นแหละ ทางเป็นลูกรัง และหินลอยซึ่งจุดนี้จะเข็นก็ได้ ไม่มีปัญหาอะไร แต่ของเราใช้หมอบอยู่แล้ว ก็ปั่นไปได้ตามปกติครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;พอปั่นมาถึงจุดนี้ตามภาพด้านบน และตามภาพที่เอามาจากเพจทางด้านล่างข้อความนี้ครับ ทางร้านมีน้ำมีอาหารให้กินสำหรับคนที่ยังไม่ได้กินข้าวเช้า เราประทับตราไว้ตอน 9.32 น (ประมาณชม. นิด ๆ ก่อนปิด) ก็ปั่นออกไป&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:quote --&gt;
-&lt;blockquote class=&quot;wp-block-quote&quot;&gt;&lt;p&gt;จุดนี้ต่างกับตอน Test run ที่เดิมจัดที่วัดข้าง ๆ ร้านที่จัด CP1 ครับ ตอนนั้นมีมะพร้าวให้กินด้วยนะ จนมี&lt;a href=&quot;https://www.facebook.com/pajodsports/photos/a.2310819842568686/2325906341060036&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/pajodsports/photos/a.2310819842568686/2325906341060036&quot;&gt;ภาพที่กิน&lt;/a&gt;ลงในเพจครับ&lt;/p&gt;&lt;/blockquote&gt;
-&lt;!-- /wp:quote --&gt;
-
-&lt;!-- wp:embed {&quot;url&quot;:&quot;https://www.facebook.com/Chillbearbikecycling/photos/902044986892912&quot;,&quot;type&quot;:&quot;rich&quot;,&quot;providerNameSlug&quot;:&quot;embed-handler&quot;,&quot;responsive&quot;:true,&quot;previewable&quot;:false} --&gt;
-&lt;figure class=&quot;wp-block-embed is-type-rich is-provider-embed-handler wp-block-embed-embed-handler&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;
-&lt;iframe src=&quot;https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FChillbearbikecycling%2Fphotos%2F902044986892912&amp;amp;width=500&amp;amp;show_text=true&amp;amp;appId=214975829912443&amp;amp;height=529&quot; width=&quot;500&quot; height=&quot;529&quot; style=&quot;border:none;overflow:hidden&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot; allow=&quot;autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;&lt;/figure&gt;
-&lt;!-- /wp:embed --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;จุด Control พระมหาธาตุเจดีย์ภักดีประกาศ (กม 93.8)&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;หลังจากที่ปั่นออกจากจุด CP1 แล้ว เราปั่นออกไปริมทะเล วิวกลาง ๆ ในระดับหนึ่ง ผู้อ่านสามารถแวะถ่ายรูปได้ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3339,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/หาดห้วยยาง-min-1024x383.png&quot; alt=&quot;&quot; class=&quot;wp-image-3339&quot; /&gt;&lt;figcaption&gt;ปั่นออกจากทางลูกรังก็จะเจอถนนแบบนี้ (ภาพจาก Google Street View)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;พอปั่นออกไป เราจะปั่นเข้าไปยังทางลูกรังที่อยู่ข้างโรงแรมที่เป็นหินลอยในระยะทางที่ไม่ไกลมากนัก (จุดนี้เป็นจุดที่อ.บุญสมปั่นมาแล้วล้มตอน Test run ครับ)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราปั่นออกไปแล้วจะไปยังถนนเล็ก ๆ ที่เป็นทางคอนกรีต และยางมะตอยปน ๆ กัน จุดนี้ก็มีเนินซึม เนินต่างระดับนวดซักเล็กน้อย แต่อากาศเริ่มร้อนขึ้นมาและมีทางรถไฟตัดผ่านซึ่งต้องใช้ความระมัดระวัง ก็ปั่นไปตามปกติ จุดนี้เราทำความเร็วได้ดีในระดับหนึ่ง บางทีก็ 20-25-30 km/hr ปน ๆ กันไป แต่จุดนี้ยังไม่ยากเท่าไร&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;พอออกจากช่วงที่เป็นทางปูนเล็ก ๆ มาแล้ว เราจะไปถึงแถวหาดทับสะแก จุดนี้มีสะพานทับสะแกที่เป็นจุดแลนมาร์ค และใครเริ่มหิว อยากจะกินข้าวเที่ยง ก็มีร้านอาหารตามสั่งให้แวะด้วย ผู้อ่านสามารถสั่งอาหาร และน้ำกินจุดนี้ได้เลย ส่วนใครที่ยังไม่หิวก็ปั่นผ่านไปได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3347,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/ทับสะแก-min-1024x394.png&quot; alt=&quot;&quot; class=&quot;wp-image-3347&quot; /&gt;&lt;figcaption&gt;ถนนแถวทับสะแกครับ (ภาพจาก Google Street View)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ก่อนจะออกจากทับสะแก จุดนี้มี Street Art ด้วยนะครับ (ตอนไปลืมถ่ายเลยเอาจากเพจนั้นไปเลย)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:embed {&quot;url&quot;:&quot;https://www.facebook.com/Chillbearbikecycling/photos/902045123559565&quot;,&quot;type&quot;:&quot;rich&quot;,&quot;providerNameSlug&quot;:&quot;embed-handler&quot;,&quot;responsive&quot;:true,&quot;previewable&quot;:false} --&gt;
-&lt;figure class=&quot;wp-block-embed is-type-rich is-provider-embed-handler wp-block-embed-embed-handler&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;
-&lt;iframe src=&quot;https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FChillbearbikecycling%2Fphotos%2F902045123559565&amp;amp;width=500&amp;amp;show_text=true&amp;amp;appId=214975829912443&amp;amp;height=466&quot; width=&quot;500&quot; height=&quot;466&quot; style=&quot;border:none;overflow:hidden&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot; allow=&quot;autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;&lt;/figure&gt;
-&lt;!-- /wp:embed --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ออกจากทับสะแกไปแล้ว จะเป็นถนนยางมะตอยตลอดทาง จุดนี้อากาศเริ่มร้อนขึ้น อันนี้ร้อนจริง ปั่นไปแล้วรู้สึกถึงความร้อนที่สัมผัสได้เลย และช่วงนี้ยังมีเนินซึม เนินต่างระดับมาให้นวดอีก พอปั่นไปก็แวะพักนิดนึง (คือรอคนเป็นตะคริวครับ) พอพักแล้วก็ปั่นไปตามปกติ ทำความเร็วได้ดี บางทีก็ 20-30 km/hr ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อมาถึงทางขึ้นเขาที่ชัน (ชันสุดของสนามนี้) เราก็ค่อย ๆ ปั่นขึ้นไปตามปกติ ใช้แรงเยอะขึ้นหน่อย ก็ไปถึงจุดที่เป็นสามแยกที่เลี้ยวขวาไปยังยอดเขา &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3308,&quot;width&quot;:341,&quot;height&quot;:512,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/FB_IMG_1633172296253-681x1024.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3308&quot; /&gt;&lt;figcaption&gt;ปั่นขึ้นเขาไปยังจุด Control&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราเลี้ยวขวาแล้วเข็นนิดนึงเพราะทางเข้าแคบ และทำจังหวะไม่ค่อยได้เท่าไร เข็นไปพักนึงก็ปั่นไปถึงยอด ประทับตรา กินผลไม้ครับ บนนั้นน่าจะมีหลากหลายระดับหนึ่ง (เช่นแตงโม มะพร้าวตามรูปด้านล่างที่เอามาจากนั้นเช่นกัน)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:embed {&quot;url&quot;:&quot;https://www.facebook.com/Chillbearbikecycling/photos/902045203559557&quot;,&quot;type&quot;:&quot;rich&quot;,&quot;providerNameSlug&quot;:&quot;embed-handler&quot;,&quot;responsive&quot;:true,&quot;previewable&quot;:false} --&gt;
-&lt;figure class=&quot;wp-block-embed is-type-rich is-provider-embed-handler wp-block-embed-embed-handler&quot;&gt;&lt;div class=&quot;wp-block-embed__wrapper&quot;&gt;
-&lt;iframe src=&quot;https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FChillbearbikecycling%2Fphotos%2F902045203559557&amp;amp;width=500&amp;amp;show_text=true&amp;amp;appId=214975829912443&amp;amp;height=466&quot; width=&quot;500&quot; height=&quot;466&quot; style=&quot;border:none;overflow:hidden&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot; allow=&quot;autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;&lt;/figure&gt;
-&lt;!-- /wp:embed --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราเติมน้ำเล็กน้อย ถ่ายรูปกับข้างบนนั้น สำหรับจุดนี้เราแนะนำให้ถ่าย เนื่องจากเป็นจุดที่สวยครับ ใครปั่นมาอย่าพลาด (แต่ในรูปก็ถ่ายตัวอาคารไม่ครบครับ :D)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3350,&quot;width&quot;:360,&quot;height&quot;:480,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full is-resized&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/139864576_10220016206780858_2528798539022101002_n.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3350&quot; /&gt;&lt;figcaption&gt;ถ่ายรูปก่อนปั่นลงเขาครับ&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อถ่ายเสร็จเรียบร้อยแล้ว เราปั่นลงมา&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;จุด CP2 ครัวเอกกะรัก แถวอ่าวแม่รำพึง (กม 118.2)&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;พอลงมาถึงสามแยกจุดเดิม รอกลุ่มที่ปั่นมาที่เราดันปั่นหนีไปก่อนมา พอมาครบแล้ว เราปั่นลงเขาไปยังถนนใหญ่เดิมที่เราปั่นมา จากนั้นเราปั่นไปยัง CP2&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3358,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/ถนนบ้านกรูด-min-1-1024x376.png&quot; alt=&quot;&quot; class=&quot;wp-image-3358&quot; /&gt;&lt;figcaption&gt;ถนนแถวบ้านกรูด โล่ง ๆ แบบนี้ลมแรงนะครับ&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จุดนี้ลมสวนแรง (แรงจริง) แต่ยังปั่นไปได้เรื่อย ๆ มีถ่ายรูป&lt;a href=&quot;https://www.facebook.com/pajodsports/posts/2442617789388890?__cft__[0]=AZW-Qgej6ks-hxYJKmPIUeeLG1xyMIwGYmI8yHm5Rha3chbOXuZAxhnmwPTf-6hxk2mFibGr9cqL_Eg-KvMp6AcMXOiovF4rE8zEh8Tan3TuEZOUxnWqQlgCk83CC4MOrj4pMMutvBeHiEJGWAFY5Uo9&amp;amp;__tn__=%2CO%2CP-R&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/pajodsports/posts/2442617789388890?__cft__[0]=AZW-Qgej6ks-hxYJKmPIUeeLG1xyMIwGYmI8yHm5Rha3chbOXuZAxhnmwPTf-6hxk2mFibGr9cqL_Eg-KvMp6AcMXOiovF4rE8zEh8Tan3TuEZOUxnWqQlgCk83CC4MOrj4pMMutvBeHiEJGWAFY5Uo9&amp;amp;__tn__=%2CO%2CP-R&quot;&gt;ตรงแลนมาร์คที่แนะนำระหว่างทาง&lt;/a&gt; (เราไม่ได้เอามาลง แต่เป็นจุดที่มีต้นมะพร้าว (หรือต้นปาล์ม) เอนมาตัดกันเป็นรูปตัว X) &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จุดนี้ระหว่างทางจะมีบ้านพักตากอากาศที่ให้คนมาพัก และมีตัวหนอนเป็นระยะด้วย ทำความเร็วไม่ได้มาก แต่พอพ้นไปแล้วนะ ทำความเร็วได้ดี 23 - 30 km/hr&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3361,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/สะพานแม่รำพึง-min-1024x429.png&quot; alt=&quot;&quot; class=&quot;wp-image-3361&quot; /&gt;&lt;figcaption&gt;สะพานแม่รำพึง (ภาพจาก Google Street View)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราปั่นออกจากถนนเล็ก ๆ เมื่อกี้ไปจะเป็นพื้นที่โล่งที่มีแดดตอนบ่ายพอดี อากาศร้อนไปหน่อย แต่เราก็ปั่นวนไป ช่วงนี้เริ่มมีเนินซึมขึ้นลงเล็กน้อย เราปั่นเลี้ยวขวาขึ้นไปยังสะพานแม่ลำพึงแถวใกล้ ๆ CP2 แล้วปั่นลงมาจะถึงจุด CP2 พอดี ประทับตราตอน 14.24 น (อีกไม่นานก็จะปิดแล้วนะ) &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราเติมน้ำ กินข้าวตามสั่งอีกรอบนึง&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ราคาอาหารจุดนี้ก็กลาง ๆ ไม่แพงมากจนเกินไป เหมาะกับนักปั่นที่มาปั่นที่นี่ อ้ออีกอย่าง จำได้ว่ามีไอติมกะทิฟรีนี่แหละครับ (แต่ตอนปั่นช่วงตุลาฯ นี้คงไม่น่าจะมี)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3364,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/ครัวเอกกะรัก-min-1024x505.png&quot; alt=&quot;&quot; class=&quot;wp-image-3364&quot; /&gt;&lt;figcaption&gt;ครัวเอกกะรัก (ภาพจาก Google Street View)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;จุด CP3 ปั้มปตท ตรงตวงปิโตรเลียม&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมิ่อกินเสร็จแล้ว เราปั่นออกไปเลี้ยวขวาเข้าถนนคอนกรีตเล็ก ๆ ก็ปั่นไปตามปกติจะออกมาเจอถนนใหญ่ ช่วงนี้ไม่มีร่มเลยซักนิด แดดร้อนมากตามสภาพตอนบ่าย &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;แต่ยังไงเราก็ปั่นไปได้เรื่อย ๆ นะ ประมาณ 23~28 km/hr ประมาณนี้ เราปั่นตรงไปซักพักนึง จะเจอทางโค้ง เลี้ยวขวาเข้าไปยังทางคอนกรีต ปั่นไปพักนึงเจอวัดระหว่างทางที่มีชื่อว่า วัดหนองมงคล &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;วันนั้นมีงานวัดพอดี เราเลยต้องเลี้ยวขวาเข้าวัด ทะลุตัววัดแล้วออกจากวัดเลี้ยวขวาไปตามถนนคอนกรีต&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3366,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/วัดระหว่างทาง-min-1024x562.png&quot; alt=&quot;&quot; class=&quot;wp-image-3366&quot; /&gt;&lt;figcaption&gt;วัดหนองมงคล (ภาพจาก Google Street View) วันนั้นมีงานวัด เลยต้องเลี้ยวขวาเข้าประตูวัดในภาพ&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อเราปั่นถึงบ้านกรูดแล้ว เราออกไปยังถนนยางมะตอยที่ระยะทางไม่มากนัก แล้วเราก็เข้าไปยังถนนรองที่เป็นคอนกรีตอีกครั้ง ระหว่างทางจะเป็นสวน บ้านพักคนนิดหน่อย ก็ปั่นไปตามปกตินี่แหละครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ปั่นไปซักพัก เราออกจากถนนคอนกรีต เราจะพบมีสามแยก เลี้ยวซ้ายไปยังถนนยางมะตอย จุดนี้ทำความเร็วได้ดีขึ้นมาครับ มีเนินซึมขึ้นลงบ้างก็ทำความเร็วได้อยู่ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เส้นทางช่วงนี้เป็นทางที่เราปั่นย้อนทางเดิมที่เราปั่นจากทางทับสะแกไปยังจุด Control ทางมันคุ้น ๆ ตอนนั้นเราปั่นขึ้น ตอนนี้เราปั่นลงเนินแทน ทำความเร็วได้ดี ใช้เกียร์จนจะหมดเลยครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3368,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/เพชรเกษม-ใกล้จบ-min-1024x601.png&quot; alt=&quot;&quot; class=&quot;wp-image-3368&quot; /&gt;&lt;figcaption&gt;ถนนเพชรเกษมช่วงที่ออกจากทับสะแก (ภาพจาก Google Street View)&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อถึงทับสะแกแล้ว เราจะเข้าตัวเมือง เลี้ยวซ้ายขวาวนไปซักพักนึง จะออกถนนเพชรเกษม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ช่วงถนนเพชรเกษมนี้มีรถเยอะ และขับเร็ว เราก็ปั่นไหล่ทางไป ถนนช่วงนี้จะเป็นเนินขึ้นลง เนินโรลลิง เราทำความเร็วส่งลงเนินแล้วปั่นขึ้นไปเป็นระยะ ทำความเร็วได้สุด ๆ ก็ใช้จนเกียร์หมดที่ราว ๆ 40-50 km/hr ปั่นแบบนี้ไปเรื่อย ๆ จนกระทั่งถึง CP3 เวลา 17.27 น (ประมาณห้าสิบนาทีก่อนปิด)&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3344,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/87450372_10217325153946219_3155173560796839936_n.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3344&quot; /&gt;&lt;figcaption&gt;CP3 ปั้มปตท&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ถึงแล้ว ประทับตราเช่นเคย เราซื้อของ เก็บใบเสร็จไว้ นั่งกินน้ำ กินขนมพักนึงครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;จุด Finish&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เมื่อนักพักไม่นานนัก เราปั่นออกไปยังถนนเพชรเกษมอีกเช่นเคย ก็ยังเป็นเนินอยู่ ถึงกม.ราว 180 กว่ากิโลเมตร กลับรถใต้สะพาน จากนั้นปั่นกลับมาพักนึง เลี้ยวซ้ายจะเข้าถนนที่มีขนาดเล็กที่เป็นคอนกรีต ตอนเย็น ช่วงนี้พระอาทิตย์ก็ตกพอดี แสงจากสว่างกลายเป็นมืด&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ช่วงนี้แหละ หมาเริ่มเปลี่ยนโหมดฮะ พอปั่นไป มีหมาไล่เห่าเป็นระยะ เราปั่นทำความเร็วพักนึงจนกระทั่งออกถนนใหญ่ริมทางรถไฟแถว ๆ หว้ากอที่เคยเป็นจุดสตาร์ทตอน Test run ปั่นทำความเร็วไปได้ไม่เยอะ (20 - 25 km/hr) เราก็เลี้ยงความเร็ว ระหว่างนี้ก็มีอีกทีมที่ (น่าจะหนีตาย) ปั่นหนีไปเป็นกลุ่มใหญ่ ๆ เท่าที่เห็นก็มี&lt;a href=&quot;https://medium.com/@ratchhere/%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81-audax-200-%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B5%E0%B8%A3%E0%B8%B5%E0%B8%82%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C-bd28bee8a887&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://medium.com/@ratchhere/%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81-audax-200-%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B5%E0%B8%A3%E0%B8%B5%E0%B8%82%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B9%8C-bd28bee8a887&quot;&gt;พี่รัช (Ratch Here) ที่เขียนรีวิว&lt;/a&gt;ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3345,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/140320142_10220016206300846_7752769200286300997_n.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3345&quot; /&gt;&lt;figcaption&gt;จุด Finish&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ช่วงสุดท้ายที่ปั่นจากหว้ากอเป็นระยะทาง 10 กว่ากม. สุดท้าย พ้นไปแล้ว เราจะปั่นเข้าตัวเมืองประจวบฯ ถึงตัวสถานีรถไฟประจวบฯ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เราเลี้ยวขวาปั่นตรงไปยังตลาดแถวสะพานสราญวิถี จะเจอจุด Finish ครับ ปั่นจบก่อนปิดราว 1 ชั่วโมง (ปั่นจบ 19.30 น) ถือว่าทำได้ดีนะ กลุ่มหลังจากนี้ก็มีคนเข้ามาอยู่บ้างครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อ้อ มีคนที่ใช้ชื่อเพจว่า&lt;a href=&quot;https://www.facebook.com/Chillbearbikecycling/?__tn__=-UC*F&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/Chillbearbikecycling/?__tn__=-UC*F&quot;&gt;หมีชิลล์&lt;/a&gt;ปั่นจบก่อนผมนะ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3372,&quot;sizeSlug&quot;:&quot;full&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-full&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/ใบบรีเวท.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3372&quot; /&gt;&lt;figcaption&gt;ใบบรีเวทก่อนที่จะส่งให้ทีมงาน&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;สรุป&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับคนที่คนมาปั่นสนามนี้ สนามนี้ก็ไม่ง่าย ไม่ได้ยากจนเกินไปครับ ปั่นสนุก มีจุดให้กินอาหารเยอะระดับหนึ่ง ไม่ต้องกลัวว่าจะไม่มีร้าน&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับคนที่ไม่มั่นใจว่าจะปั่นได้ไหม ไม่ค่อยคิดมากครับ มีคนนึงเอา&lt;a href=&quot;https://www.facebook.com/pajodsports/photos/a.2310819842568686/2507733202877348&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/pajodsports/photos/a.2310819842568686/2507733202877348&quot;&gt;ล้อ 14 สามเกียร์ไปปั่นก็จบ&lt;/a&gt;ได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อีกอย่าง มีทีมงานคุณภาพที่ชื่อว่า &lt;a href=&quot;https://www.facebook.com/pajodsports/?__tn__=-UC*F&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/pajodsports/?__tn__=-UC*F&quot;&gt;PAJOD&lt;/a&gt; ด้วยครับ ใครจะลงทะเบียนมาปั่น เราแนะนำนะครับผม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Bike" /><category term="Diary" /><category term="audax" /><category term="Bike" /><category term="brevet" /><category term="cycling" /><category term="exercise" /><category term="PAJOD" /><category term="pajodgang" /><category term="prachuap khiri khan" /><category term="prachuapkhirikhan" /><category term="randonneurs" /><category term="road bike" /><category term="sightseeing" /><category term="Thai" /><category term="Thailand" /><category term="travel" /><category term="จักรยาน" /><category term="ท่องเที่ยว" /><category term="ประจวบคิรีขันธ์" /><category term="ปลาจวด" /><category term="ปั่นจักรยาน" /><category term="ออกกำลังกาย" /><category term="ออแด็กซ์" /><category term="เที่ยวไทย" /><category term="เสือหมอบ" /><summary type="html">สนาม 200 ประจวบคีรีขันธ์เป็นสนามที่จัดขึ้นภายใต้ทีม PAJOD ที่มีระยะทาง 200 km สนามนี้เป็นสนาม Normal ที่ไม่ยาก และไม่ง่ายไป ในบทความนี้จะมารีวิว และแนะนำครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/200BRM-Pajod-1.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/200BRM-Pajod-1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Bank" /><category term="Banking" /><category term="Fraud" /><category term="Internet Banking" /><category term="Loan" /><category term="Loan Shark" /><category term="Payday" /><category term="phone" /><category term="Scam" /><category term="SMS" /><category term="Telephone" /><category term="Title loan" /><category term="ข้อความ" /><category term="นอกระบบ" /><category term="มิจฉาชีพ" /><category term="หลอกลวง" /><category term="เงินกู้" /><category term="เงินกู้นอกระบบ" /><category term="โกง" /><category term="โทรศัพท์" /><summary type="html">ช่วง 1-2 ปีนี้จะมีสายโทรศัพท์ และ SMS เงินกู้เข้ามาในที่เบอร์มือถือที่เราใช้งานอยู่ในปัจจุบัน ของเราก็ได้รับเช่นกัน ในบทความนีี้จะพูดจุดสังเกต และวิธีจัดการ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

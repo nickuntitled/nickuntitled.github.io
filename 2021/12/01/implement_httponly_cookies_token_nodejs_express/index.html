@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token - Nick Untitled</title>
+		<meta name="description" content="บทความนี้แนะนำวิธีการเก็บ Access Token ที่ปลอดภัยกว่าการเก็บใน LocalStorage ด้วย HTTPOnly Cookies บน Node.js">
+		<meta name="keywords" content="Web,HTTPOnly,Developer,HTTP,Cookies,Secure,Security,Token,JWT,JavaScript,Coding,GraphQL,API,เขียนโปรแกรม,จาวาสคริป,เขียนโค้ด,โค้ดดิ้ง,ความปลอดภัย,โทเค็น,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2021-12-01T00:30:00+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2021/12/01/implement_httponly_cookies_token_nodejs_express/"/>
+		<meta property="og:title" content="ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token - Nick Untitled" />
+		<meta property="og:description" content="บทความนี้แนะนำวิธีการเก็บ Access Token ที่ปลอดภัยกว่าการเก็บใน LocalStorage ด้วย HTTPOnly Cookies บน Node.js " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2021/12/httponly_cookie_header.jpeg"/>
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta property="twitter:title" content="ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token - Nick Untitled" />
+		<meta property="twitter:description" content="บทความนี้แนะนำวิธีการเก็บ Access Token ที่ปลอดภัยกว่าการเก็บใน LocalStorage ด้วย HTTPOnly Cookies บน Node.js " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/12/httponly_cookie_header.jpeg" />
+		<link rel="stylesheet" href="assets/css/reset.css">
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<div class="profile-about">
+			<div>
+				<h2>Nick Untitled</h2>
+			</div>
+			<div>
+				Writing as my personal diary
+			</div>
+			<div>
+				<ul class = 'go_right'>
+					<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+					
+					<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
+					
+					
+					<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
+					
+					
+					
+					<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
+					
+					
+					<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a></li>
+					<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a></li>
+					<li class="mode" id="mode-switcher" onclick="toggleNightMode();">
+						<span></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+<div class="blog-post-header">
+	<h1>ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token</h1>
+</div>
+
+<div class="post-header">
+	<div class="post-date">01.12.2021</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/implement-httponly-cookie-token-nodejs-express" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/implement-httponly-cookie-token-nodejs-express&amp;text=ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token - https://nickuntitled.com/implement-httponly-cookie-token-nodejs-express" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+	<figure>
+		<img src = 'https://asset.nickuntitled.com/2021/12/httponly_cookie_header.jpeg' />
+	</figure>
+	
+<div class="blog-post-content">
+	<p>เดิมทีเวลาที่เราใช้งานเพื่อเข้าสู่ระบบ เราจะเขียนโค้ดเพื่อขอ Access Token จากเซิร์ฟเวอร์แล้วนำมาเก็บไว้บน Client เพื่อนำมาใช้งานระบบที่จำเป็น โดยใน<a href="https://www.howtographql.com/react-apollo/5-authentication/">บทความบนเว็บที่เกี่ยวกับการทำระบบ Authentication โดยใช้ไลบรารี Apollo GraphQL</a> นั้น เราจะเก็บข้อมูล Access Token ที่สร้างขึ้นไว้บน LocalStorage เพื่อนำมาใช้งานต่อครับ</p>
+
+<p>อย่างไรก็ดี การเก็บข้อมูลไว้ในนี้ก็มีปัญหาเรื่องความปลอดภัย ในบทความนี้จะแนะนำวิธีการเก็บข้อมูล Access Token ที่ปลอดภัยกว่าการเก็บบน LocalStorage ครับ</p>
+
+<h2 id="localstorage">LocalStorage</h2>
+
+<p>ก่อนอื่น เรามาพูดถึง LocalStorage ก่อน ตัว LocalStorage (หรือเรียกว่า window.localStorage) เป็นส่วนหนึ่งของ HTML5 Web Storage ที่ทำหน้าที่เก็บข้อมูลใส่ไว้บนเว็บเบราวเซอร์ทางฝั่ง Client ที่ข้อมูลยังคงอยู่ ถึงแม้ว่าเราจะปิดหน้าเว็บเบราวเซอร์นั้น ๆ ออกไป หรือข้อมูลหมดอายุตามที่เรากำหนดไว้เอง</p>
+
+<p>การใช้งาน LocalStorage ทำได้โดยการเก็บข้อมูลตามด้านล่างนี้ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>localStorage.setItem('token', &lt; Access Token ที่ได้ &gt;);
+</code></pre></div></div>
+
+<p>แล้วเราสามารถเรียกได้โดยการพิมพ์คำสั่ง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let token = localStorage.getItem('token');
+</code></pre></div></div>
+
+<p>จากนั้นข้อมูล Access Token ที่เก็บไว้ในเว็บเบราวเซอร์ก็จะคืนค่าอยู่ในตัวแปร token ครับ ฟังดูแล้วง่ายกว่าที่ดีคิดไว้ เพราะใช้คำสั่งตามที่เขียนไว้ข้างบนนี้ ข้อมูลก็ออกมาได้แล้วครับ อย่างไรก็ดี การเก็บข้อมูลไว้ใน LocalStorage มีข้อเสีย เนื่องมาจาก</p>
+
+<ul>
+  <li>ข้อมูลที่เก็บ สามารถเก็บในรูปแบบ String เท่านั้น</li>
+  <li>มีขนาดที่จำกัดเพียงแค่ 5MB (แต่ข้อมูลข้างบนไม่ถึง 5MB :P)</li>
+  <li>มีปัญหาเรื่องความปลอดภัย เนื่องมาจากอ่านข้อมูลได้ง่ายเพียงใช้คำสั่งเดียวตามที่กล่าวไว้ข้างบน และสามารถดึกข้อมูลได้โดย <a href="https://michael-coates.blogspot.com/2010/07/html5-local-storage-and-xss.html">Cross site scripting (XSS)</a> ครับ</li>
+  <li>อ่านรายละเอียดเพิ่มเติมได้ใน<a href="https://dev.to/rdegges/please-stop-using-local-storage-1i04">หน้าเว็บ dev.to ที่มีคนหนึ่งได้เขียนไว้</a></li>
+</ul>
+
+<p>ดังนั้นแล้ว ข้อมูลที่เก็บไว้ใน LocalStorage ไม่ควรจะเก็บข้อมูลที่เป็นความลับครับ แล้วเราจะเก็บข้อมูลไว้ที่ไหนดีล่ะ?</p>
+
+<h2 id="httponly-cookies">HTTPOnly Cookies</h2>
+
+<p>HTTPOnly Cookies เป็นการตั้งค่าอันหนึ่งที่พบได้ระหว่าการตั้งค่า Set-Cookie HTTP Response Header ที่พบได้ตั้งแต่ Internet Explorer 6 SP1 (เก่ามากและ) โดยข้อมูลนี้เอามาจากบทความใน<a href="https://owasp.org/www-community/HttpOnly">หน้าเว็บมูลนิธิ OWASP</a> ครับ</p>
+
+<p>สำหรับข้อมูลที่เป็นความลับ หรือข้อมูลที่ Sensitive มากกว่าปกติ ยกตัวอย่างเช่นข้อมูล Access Token, User ID, Session ID, ข้อมูลบัตรเครดิต และอื่น ๆ ที่เราต้องการให้แชร์บน Facebook แบบ Public นั้น เราเก็บช้อมูลใน HTTPOnly Cookies ที่ทำได้ตามขั้นตอนด้านล่างนี้</p>
+
+<ol>
+  <li>เมื่อผู้ใช้เข้าสู่ระบบ เซิร์ฟเวอร์จะสร้างข้อมูล Session ที่จำเป็นขึ้นมาสำหรับการใช้งาน</li>
+  <li>นำข้อมูลที่สร้างขึ้นเก็บอยู่ในรูปแบบ Cookie โดยกำหนดค่าคุกกี้ให้เป็น HTTPOnly เท่านั้น</li>
+</ol>
+
+<p>ไลบรารีที่รองรับ HTTPOnly Cookies มีหลากหลายไลบรารีมาก ผู้อ่านสามารถหาเพิ่มเติมได้ในอินเตอร์เน็ต แต่ในตัวอย่างนี้ เราจะใช้ไลบรารีที่นิยมอันหนึ่งที่มีชื่อว่า <a href="https://expressjs.com/">Express</a> ที่อยู่ในรูปแบบภาษา JavaScript ที่ทำงานบน Node.js ครับ</p>
+
+<p>ตัวอย่างของการสร้าง HTTPOnly Cookies ทำได้ตามด้านล่างนี้ครับ แต่ก่อนอื่น เราต้องติดตั้งไลบรารีเหล่านี้ก่อนครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add express dayjs cookie-parser jsonwebtoken
+</code></pre></div></div>
+
+<p>เมื่อติดตั้งเสร็จแล้ว เราพิมพ์ส่วนนี้เพิ่มเติมลงไปใน package.json</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  [...]
+  "type": "module",
+  [...]
+}
+</code></pre></div></div>
+
+<p>เพื่อให้ใช้งานตามตัวอย่างด้านล่างนี้ได้ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import http from 'http';
+import express from 'express';
+import dayjs from 'dayjs';
+import cookieParser from "cookie-parser";
+import jwt from 'jsonwebtoken';
+
+const app = express();
+const httpServer = http.createServer(app);
+
+[...]
+
+app.use(cookieParser());
+
+[...]
+
+app.post('/login', (req, res, next) =&gt; {
+
+  [...]
+
+  let token = jwt.sign(payload, jwt_secret, { expiresIn: jwt_expire });
+
+  res.cookie("authorization", token, {
+      secure: true,
+      httpOnly: true,
+      expires: dayjs().add(1, "days").toDate(),
+      sameSite: 'Strict'
+  });
+
+  [...]
+
+});
+
+[...]
+
+</code></pre></div></div>
+
+<p>เมื่อดูตัวอย่างจากข้างบนนี้แล้ว ดูตรงส่วนคำสั่ง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app.use(cookieParser());
+</code></pre></div></div>
+
+<p>คำสั่งนี้เป็นการเกิดใช้งานตัว cookie-parser Middleware ที่เป็นส่วนหนึ่งของไลบรารี Express ที่อนุญาตให้เราเรียกใช้งาน Cookie header เพื่อดึงข้อมูล HTTPOnly Cookies โดยพิมพ์ว่า req.cookies ครับ</p>
+
+<p>ในหลายบรรทัดต่อมา ตรงส่วนคำสั่ง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>res.cookie("token", token, 
+    secure: true,
+    httpOnly: true,
+    expires: dayjs().add(1, "days").toDate(),
+    sameSite: 'Strict'
+});
+</code></pre></div></div>
+
+<p>คำสั่งนี้เป็นคำสั่งที่เรากำหนดค่าอะไรก็ตามลงไปใน Cookie ที่เราได้กำหนดไว้ คือ เรากำหนดค่า Access Token ลงไปใน Cookie token ครับ ส่วนการตั้งค่าที่อยู่ในปีกกานั้นเป็นการตั้งค่า Cookie นี้ให้</p>
+
+<ul>
+  <li>secure เป็นการตั้งค่าให้ใช้งานผ่าน HTTPS เท่านั้น</li>
+  <li>httpOnly เป็นการตั้งค่าให้ cookie ตัวนี้เรียกใช้งานโดยเว็บเซิร์ฟเวอร์ได้เท่านั้น</li>
+  <li>expires เป็นการตั้งค่าระยะเวลาหมดอายุ ตามคำสั่งที่เขียนข้างบนกำหนดให้มีอายุ 1 วัน</li>
+  <li>sameSite ตั้งค่าให้เพิ่ม SameSite ใน Set-Cookie HTTP Header มีด้วยกันสองแบบได้แก่ Strict ที่ผ่านทางเว็บไซต์เราเท่านั้น หรือ Lax ที่ส่ง Cookie ผ่านเว็บไซต์อื่นได้ ผ่าน HTTP Get บน Address Bar (เช่นการกด Link)</li>
+</ul>
+
+<p>ส่วนการตั้งค่าเพิ่มเติมที่เราไม่ได้กำหนดค่าไว้ มีได้แก่</p>
+<ul>
+  <li>domain กำหนดโดเมนเนม ในที่นี้ให้โดเมนเนมเดียวกันกับ app</li>
+  <li>encode เป็นฟังก์ชันที่กำหนด encoding
+เป็นต้น โดยการตั้งต่าเพิ่มเติมนี้ ผู้อ่านสามารถเข้าไปดูได้ใน <a href="https://expressjs.com/en/api.html">Reference ของ Express</a></li>
+</ul>
+
+<p>เมื่อเราเรียกใช้งานผ่านคำสั่งอย่าง fetch, XMLHttpRequest หรืออื่น ๆ เราดู HTTPOnly Cookies ได้ที่หน้า Developer Tools -&gt; Application -&gt; Storage -&gt; Cookies -&gt; ที่อยู่เว็บไซต์ -&gt; เราจะพบ HTTPOnly Cookies ที่เราได้สร้างขึ้นครับ</p>
+
+<p><img src="https://asset.nickuntitled.com/2021/12/httponly_cookie_devtool.png" alt="HTTPOnly Cookies บน Developer Tools" /></p>
+
+<p>HTTPOnly Cookies บน Developer Tools (<a href="https://asset.nickuntitled.com/2021/12/httponly_cookie_devtool.png">ดูรูปเต็ม</a>)</p>
+
+<p>ดูตรง Authorization เราจะพบว่า Cookie ที่สร้างนี้อันนี้เป็น HTTPOnly Cookies ครับ แล้วเวลาที่ใช้งานจริง เราจะเรียกใช้งานอย่างไรดีล่ะ?</p>
+
+<p>เราเรียกใช้งานได้โดยผ่านการพิมพ์</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app.get('/isloggedin', (req, res, next) =&gt; {
+  
+  [...]
+
+  let token = req.cookies.authorization;
+
+  [...]
+
+});
+</code></pre></div></div>
+
+<p>สังเกตตรง req.cookies.authorization อันนี้แหละ เป็นการเรียกใช้งาน HTTPOnly Cookies ที่เราสร้างชึ้นครับ อย่างไรก็ดี กรณีที่เราใช้งานผ่าน Apollo Server GraphQL เรายังเรียก HTTPOnly Cookies ได้อยู่ไหม คำตอบคือ ทำได้สบายมาก เพียงแต่เราต้องมาพิมพ์คำสั่งใน context ที่สร้างขึ้น</p>
+
+<p>เราพิมพ์โค้ดได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
+
+[...]
+
+const apollo_server = new ApolloServer({ 
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  context: ({ req }) =&gt; {
+    let token = req.cookies.authorization || '';
+    return {
+      token
+    };
+  }
+});
+
+[...]
+
+apollo_server.applyMiddleware({ "app": express_app });
+
+[...]
+</code></pre></div></div>
+
+<p>สังเกตตรง context ที่อยู่ใน new ApolloServer({ … }) อันนี้แหละมีส่วนที่เราเรียกใช้งาน HTTPOnly Cookies ครับ ส่วนไลบรารีอื่น ผู้อ่านสามารถหาอ่านได้ในอินเตอร์เน็ตเพิ่มเติมครับ</p>
+
+<h2 id="ประโยชน์การใช้-httponly-cookies">ประโยชน์การใช้ HTTPOnly Cookies</h2>
+
+<p>ประโยชน์ของการใช้งาน HTTPOnly Cookies ตามที่เขียนในเว็บ <a href="https://blog.codinghorror.com/protecting-your-cookies-httponly/">CodingHorror</a> หรืออื่น ๆ ได้แก่</p>
+
+<ol>
+  <li>HTTPOnly Cookies จำกัดให้เรียกใช้งานผ่านเว็บเซิร์ฟเวอร์เท่านั้น เราจะใช้งานผ่าน document.cookie ไม่ได้</li>
+  <li>ป้องกันการเกิด Cross-site Scripting (XSS) ดังนั้นแล้ว เวลาที่เรียกใช้งาน fetch, XMLHttpRequest หรืออื่น ๆ จะกระทำได้โดยผ่านโดเมนเดียวกันกับเว็บเซิร์ฟเวอร์เท่านั้น</li>
+  <li>ตามที่เขียนข้างบนนี้มีเขียนให้ใช้ Same-site Cookie ที่ใช้งานได้เฉพาะเว็บเราเท่านั้น ทำให้เรียกใช้ผ่านเว็บอื่นไม่ได้ ส่วนนี้จะป้องกัน Cross site request forgery (CSRF) ครับ</li>
+</ol>
+
+<p>และอื่น ๆ</p>
+
+<h2 id="สรุป">สรุป</h2>
+
+<p>จากตัวอย่างจะพบว่าเราใช้งาน HTTPOnly Cookies โดยใช้งานบน Node.js ที่ใช้ไลบรารี Express ได้เพียงไม่กี่คำสั่งเท่านั้น เมื่อใช้งานแล้วทำให้เว็บไซต์ของเราปลอดภัยขึ้นมากกว่าเดิมครับ อย่างไรก็ดี อันนี้เป็นส่วนหนึ่งที่ทำให้เว็บของเราปลอดภัยตรับ จะต้องพิจารณาการเขียนโค้ดส่วนอื่นร่วมด้วยว่ามีช่องโหว่หรือไม่ครับผม</p>
+
+</div>
+<div class="tags-container">
+	
+		<span class="post-tag">Web</span>, 
+	
+		<span class="post-tag">HTTPOnly</span>, 
+	
+		<span class="post-tag">Developer</span>, 
+	
+		<span class="post-tag">HTTP</span>, 
+	
+		<span class="post-tag">Cookies</span>, 
+	
+		<span class="post-tag">Secure</span>, 
+	
+		<span class="post-tag">Security</span>, 
+	
+		<span class="post-tag">Token</span>, 
+	
+		<span class="post-tag">JWT</span>, 
+	
+		<span class="post-tag">JavaScript</span>, 
+	
+		<span class="post-tag">Coding</span>, 
+	
+		<span class="post-tag">GraphQL</span>, 
+	
+		<span class="post-tag">API</span>, 
+	
+		<span class="post-tag">เขียนโปรแกรม</span>, 
+	
+		<span class="post-tag">จาวาสคริป</span>, 
+	
+		<span class="post-tag">เขียนโค้ด</span>, 
+	
+		<span class="post-tag">โค้ดดิ้ง</span>, 
+	
+		<span class="post-tag">ความปลอดภัย</span>, 
+	
+		<span class="post-tag">โทเค็น</span>
+	
+</div>
+<div class="navigation">
+	
+		<a class="prev" href="/2021/11/26/how_to_be_web3_developer/">< สรุปบางส่วนจากสเปช How to Become a Web 3 Developer</a>
+	 
+</div>
+	
+</div>
+
+<div class="footer">
+	<span>
+		<div class = 'go_left'>
+			<p>
+				<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+			</p>
+			<p>
+				Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'>Privacy Policy</a>
+			</p>
+		</div>	
+
+		<div class = 'go_right'>
+		</div>
+	</span>
+</div>
+
+	<!-- Messenger Chat plugin Code -->
+	<div id="fb-root"></div>
+
+	<!-- Your Chat plugin code -->
+	<div id="fb-customer-chat" class="fb-customerchat">
+	</div>
+
+	<script>
+	var chatbox = document.getElementById('fb-customer-chat');
+	chatbox.setAttribute("page_id", "104741474999804");
+	chatbox.setAttribute("attribution", "biz_inbox");
+
+	window.fbAsyncInit = function() {
+		FB.init({
+		xfbml            : true,
+		version          : 'v12.0'
+		});
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>
