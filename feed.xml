@@ -1,4 +1,266 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-12-01T01:28:42+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token</title><link href="https://nickuntitled.com/2021/12/01/implement_httponly_cookies_token_nodejs_express/" rel="alternate" type="text/html" title="ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token" /><published>2021-12-01T00:30:00+07:00</published><updated>2021-12-01T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/12/01/implement-httponly-cookie-token-nodejs-express</id><content type="html" xml:base="https://nickuntitled.com/2021/12/01/implement_httponly_cookies_token_nodejs_express/">&lt;p&gt;เดิมทีเวลาที่เราใช้งานเพื่อเข้าสู่ระบบ เราจะเขียนโค้ดเพื่อขอ Access Token จากเซิร์ฟเวอร์แล้วนำมาเก็บไว้บน Client เพื่อนำมาใช้งานระบบที่จำเป็น โดยใน&lt;a href=&quot;https://www.howtographql.com/react-apollo/5-authentication/&quot;&gt;บทความบนเว็บที่เกี่ยวกับการทำระบบ Authentication โดยใช้ไลบรารี Apollo GraphQL&lt;/a&gt; นั้น เราจะเก็บข้อมูล Access Token ที่สร้างขึ้นไว้บน LocalStorage เพื่อนำมาใช้งานต่อครับ&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-12-08T01:22:45+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python</title><link href="https://nickuntitled.com/2021/12/10/interpupillary_distance_measurement_python/" rel="alternate" type="text/html" title="วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python" /><published>2021-12-08T00:30:00+07:00</published><updated>2021-12-08T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/12/10/interpupillary-distance=measurement-python</id><content type="html" xml:base="https://nickuntitled.com/2021/12/10/interpupillary_distance_measurement_python/">&lt;p&gt;อันนี้เป็นส่วนหนึ่งของงานวิจัย ทำไปแล้วบางส่วน&lt;/p&gt;
+
+&lt;p&gt;ปกติการวัดตาดำ เราจะพบได้ในคนที่เลือกขนาดเครื่อง Virtual Reality Headset หรือวัดขนาดแว่นตา หรืออื่น ๆ ปกติเราจะใช้ไม้บรรทัดวัดเพื่อให้รู้ว่าระยะห่างระหว่างตาดำ (Interpupillary Distance) มีระยะห่างเท่าไร อย่างไรก็ดีเราจะใช้ไม้บรรทัดวัดไปตลอดเหรอก็ไม่สะดวกเท่าไร แถมสมัยนี้เราก็ใช้คอมพิวเตอร์กันอยู่แล้วด้วย เลยเอามาเขียนโค้ดส่วนนี้เพื่อจับระยะการอ้าปากครับ&lt;/p&gt;
+
+&lt;p&gt;หลักการวัดจากภาพดิจิทัล โดยปกติเวลาที่เราวัดจะได้หน่วยการวัดเป็น pixel แต่สิ่งที่เราต้องการก็คือ ต้องการการวัดที่มีหน่วยเป็นเซนติเมตร หรือมิลลิเมตรที่ตัวโปรแกรมวัดด้วยตัวเองไม่ได้ เราจำเป็นต้องหาวัตถุอ้างอิงเพื่อเป็น Reference สำหรับการแปลงหน่วยจาก pixel เป็นหน่วยที่เราวัดครับ&lt;/p&gt;
+
+&lt;p&gt;ในตัวอย่างนี้ เราจะใช้บัตรประชาชนซึ่งเป็นสิ่งที่คนทุกคนมีกันอยู่แล้ว (ยกเว้นเด็กเล็ก) เป็นวัตถุ Reference ใช้สำหรับการวัดในครั้งนี้ ขนาดของบัตรประชาชน (ไทย) มีขนาดที่เป็นมาตรฐาน โดนมีขนาดด้านยาว 86 mm ด้านกว้าง 54 mm เราจะใช้ด้านยาวเป็น Reference&lt;/p&gt;
+
+&lt;p&gt;แต่ก่อนที่จะไปวัด เราจะต้องแยกส่วน (Segment) บัตรประชาชนออกจากวัตถุอื่นในภาพก่อน แล้วจะทำอย่างไรดี หลักการนี้เรียกว่า Image Segmentation&lt;/p&gt;
+
+&lt;h2 id=&quot;image-segmentation&quot;&gt;Image Segmentation&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/mask_rcnn_segmentation.png&quot; alt=&quot;Image Segmentation&quot; /&gt;
+ภาพตัวอย่างการ Segmentation จากเปเปอร์​ Mask R-CNN&lt;/p&gt;
+
+&lt;p&gt;Image Segmentation เป็นหลักการจำแนก pixel ของวัตถุที่เราต้องการออกมาจากวัตถุอื่นในภาพดิจิทัล โดยยกตัวอย่างเช่นระบบการขับรถอัตโนมัติ (self-driving car) ที่จับคนในภาพเพื่อป้องกันไม่ให้เกิดอุบัติเหตุครับ หลักการนี้แบ่งออกมาได้เป็นสองวิธีได้แก่ Semantic Segmentation และ Instance Segmentation&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Semantic Segmentation เป็นการแยกวัตถุออกจากภาพวัตถุอื่นโดยการแบ่งประเภทของวัตถุ (class) จากภาพ ได้แก่ สีแดงเป็นคน สีน้ำเงินเป็นรถ เป็นต้น&lt;/li&gt;
+  &lt;li&gt;Instance Segmentation เป็นการแบ่งวัตถุแต่ละชิ้นในภาพ ที่แตกต่างกับ Semantic Segmentation ที่แบ่งเป็นวัตถุที่ 1,2,3,4 เป็นต้น&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ตัวอย่างของเทคนิคที่ใช้ Image Segmentation คือ Mask R-CNN, U-NET ครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;u-net&quot;&gt;U-NET&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/unet_artchitecture.png&quot; alt=&quot;U-NET Architecture&quot; /&gt;
+ภาพโครงสร้าง U-NET&lt;/p&gt;
+
+&lt;p&gt;U-NET ที่เป็นคนละอันกันกับ O-NET ที่สอบมัธยมศึกษาตอนปลายเข้ามหาวิทยาลัยที่จัดโดยสทศ ครับ&lt;/p&gt;
+
+&lt;p&gt;U-NET เป็นโครงข่ายประสาทเทียม (Neural Network Architecture) แบบ Convolutional Neural Network ที่ให้ผลลัพธ์เป็น Matrix ที่มีขนาดกว้าง x ยาวเท่ากันกับภาพเดิม โดยในแต่ละตำแหน่งจะระบุได้ว่าเป็น 0 (ไม่มีภาพ Object) หรือ 1 (มี Object) ในภาพ&lt;/p&gt;
+
+&lt;p&gt;โครงสร้างของเครือข่ายประสาท U-NET เราจะเห็นว่าเป็นรูปตัว U (U-shape) ที่แบ่งเป็นสองช่วง ได้แก่ Contracting Path (ด้านซ้าย) และ Upsampling Path (ด้านขวา) เราจะอธิบายในแต่ละส่วนตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;contract-path&quot;&gt;Contract Path&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/unet_downsampling.png&quot; alt=&quot;U-NET Contract Path&quot; /&gt;
+ภาพโครงสร้าง U-NET ในขั้นตอน Contract Path&lt;/p&gt;
+
+&lt;p&gt;ประกอบไปด้วย&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;3x3 Convolutions (ที่ไม่มี Padding) 2 รอบ&lt;/li&gt;
+  &lt;li&gt;ตามมาด้วย Activation Function ReLU&lt;/li&gt;
+  &lt;li&gt;ใช้ 2x2 Max Pooling ที่มี Stride 2 เพื่อ Down Sampling ระหว่างที่ทำ Down Sampling เราจะเพิ่มจำนวน Feature Channel เป็น 2 เท่าในแต่ละครั้ง&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;upsampling-path&quot;&gt;Upsampling Path&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/unet_upsampling.png&quot; alt=&quot;U-NET Contract Path&quot; /&gt;
+ภาพโครงสร้าง U-NET ในขั้นตอน Upsampling Path&lt;/p&gt;
+
+&lt;p&gt;ประกอบไปด้วย&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Up Sampling แล้วตามด้วย 2x2 Convolutions (หรือเรียกอีกอย่างว่า “up-convolution”) ที่แบ่งครึ่งจำนวน Channels&lt;/li&gt;
+  &lt;li&gt;นำภาพที่ได้จากขั้นตอนการทำ 3x3 Convolutions + ReLU ใน Contract Path ที่ผ่านการ Cropped แล้วมา Concatenate&lt;/li&gt;
+  &lt;li&gt;ทำ 3x3 Convolutions สองรอบ แล้วตามด้วย ReLU&lt;/li&gt;
+  &lt;li&gt;ทำไปจนกระทั่งถึง Layer สุดท้าย เราทำ 1x1 Convolution เพื่อนำ 64 Component Feature Vector ให้เป็นจำนวน Classes ที่เราต้องการ&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;จำนวน Convolutional Layer ทั้งหมดที่ใช้ใน U-NET มีทั้งหมด 23 Layers ครับ&lt;/p&gt;
+
+&lt;p&gt;สำหรับข้อมูลเพิ่มเติมของ U-NET ผู้อ่านศึกษาได้ใน&lt;a href=&quot;https://arxiv.org/abs/1505.04597&quot;&gt;เปเปอร์ U-Net: Convolutional Networks for Biomedical Image Segmentation จากเว็บ arXiv&lt;/a&gt; ครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;midv-500&quot;&gt;MIDV-500&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/midv_500.png&quot; alt=&quot;MIDV-500 Dataset&quot; /&gt;
+ตัวอย่างรูปภาพในฐานข้อมูล MIDV-500&lt;/p&gt;
+
+&lt;p&gt;MIDV-500 หรือเรียกอีกอย่างว่า Mobile Identity Document Video dataset ที่ประกอบไปด้วยวิดีโอ 500 ชิ้นที่มีเอกสารยืนยันตัวตนทั้งหมด 50 ชนิดที่สร้างขึ้นโดยใช้กล้องโทรศัพท์มือถืออย่าง iPhone 5, Samsung Galaxy S3 ที่บันทึกในสภาพแวดล้อม 5 รูปแบบ ได้แก่ ภาพวางบนโต๊ะ บนคีย์บอร์ด และบนมือ ภาพที่ถูกบังบางส่วน รวมถึงภาพที่มีพื้นหลังทีมีวัตถุต่าง ๆ เต็มหน้าจอที่ไม่เกี่ยวข้อง&lt;/p&gt;
+
+&lt;p&gt;ในภาพที่บันทึกได้ จะไม่มีข้อมูลสำคัญ หรือข้อมูลที่ไว้ก็อปปี้สำหรับการทำบัตรปลอมได้ จุดนี้เป็นปัญหาสำคัญที่ไม่มีฐานข้อมูลในลักษณะนี้มาก่อนครับ&lt;/p&gt;
+
+&lt;p&gt;สำหรับผู้อ่านที่ต้องการอ่านเพิ่มเติม สามารถอ่านได้ใน&lt;a href=&quot;https://arxiv.org/abs/1807.05786&quot;&gt;เปเปอร์ MIDV-500: a dataset for identity document analysis and recognition on mobile devices in video stream จากเว็บ arXiv&lt;/a&gt; ครับ และกรณีที่ต้องการดาวน์โหลดฐานข้อมูลไว้ใช้งาน สามารถดาวน์โหลดได้ที่ &lt;a href=&quot;https://github.com/fcakyon/midv500&quot;&gt;Github&lt;/a&gt; หรือดาวน์โหลดผ่านการติดตั้งไลบรารีใน pip ของไพทอน โดยพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install midv500
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ตัวไพทอนจะติดตั้งไลบรารี MIDV-500 ไว้ใช้งาน ตัวไลบรารีสามารถแปลงข้อมูล Annotation ของฐานข้อมูล MIDV-500 ให้อยู่ในรูปแบบของ COCO instance segmentation format&lt;/p&gt;
+
+&lt;p&gt;นอกเหนือจากนี้ ฐานข้อมูลได้รับการพัฒนาขึ้นมาให้เป็นเวอร์ชันใหม่ โดยฐานข้อมูลที่สร้างขึ้นมาใหม่มีชื่อว่า &lt;a href=&quot;https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11433/2558438/MIDV-2019--challenges-of-the-modern-mobile-based-document/10.1117/12.2558438.short?SSO=1&quot;&gt;MIDV-2019&lt;/a&gt; ครับ ฐานข้อมูลนี้แก้ปัญหาเรื่อง Projective Distortion และสภาพแสงสว่างที่แตกต่างกันไป&lt;/p&gt;
+
+&lt;h2 id=&quot;เขียนโค้ดกัน&quot;&gt;เขียนโค้ดกัน&lt;/h2&gt;
+
+&lt;p&gt;เราเขียนโค้ดเพื่อที่จะวัดระยะห่างระหว่างตาดำ การเขียนโค้ดจะมีขั้นตอนดังนี้&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;จับภาพใบหน้า (Face detection)&lt;/li&gt;
+  &lt;li&gt;Calibrate ระยะการวัด Pixel ต่อ mm โดยแยกส่วนบัตรประชาชนจากภาพ โดยให้ถือบัตรประชาชนให้ชิดริมฝีปากของผู้ที่ต้องการวัดภาพ&lt;/li&gt;
+  &lt;li&gt;จับภาพจุดแลนมาร์คบริเวณดวงตา หรือตาดำ (Facial Landmark Detection)&lt;/li&gt;
+  &lt;li&gt;วัดระยะห่างระหว่างตาดำ (Interpupillary Distance)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;เราเขียนโค้ดใน Google Colab ได้เลยครับ ผู้อ่านสามารถ&lt;a href=&quot;https://asset.nickuntitled.com/2021/12/ipd_measurement.ipynb&quot;&gt;ดาวน์โหลดไฟล์ ipynb&lt;/a&gt; มาทดลองรันบน Google Colab หรืออื่น ๆ ได้ครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;จับภาพใบหน้า-face-detection&quot;&gt;จับภาพใบหน้า (Face Detection)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/face_detection_python.jpg&quot; alt=&quot;Face Detection&quot; /&gt;
+ภาพจากเว็บ Wikipedia&lt;/p&gt;
+
+&lt;p&gt;การจับภาพใบหน้า หรือเรียกอีกอย่างว่า Face Detection คือการหาตำแหน่ง Face Regions of Interest จากภาพ โดยมีหลายเทคนิคที่เราสามารถใช้ได้เลย ตั้งแต่ Viola-Jones ที่พบได้ในคำสั่งบน OpenCV ที่คนโพสกันไปเยอะมาก หรือใช้เทคนิค dlib หรืออื่น ๆ ครับ อย่างไรก็ดี เราต้องพิจารณาความแม่นยำ ข้อดี ข้อเสียของแต่ละเทคนิค&lt;/p&gt;
+
+&lt;p&gt;ในที่นี้ จะใช้เทคนิค FaceBoxes ครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;การจับจุดแลนมาร์คบนใบหน้า-facial-landmark-detection&quot;&gt;การจับจุดแลนมาร์คบนใบหน้า (Facial Landmark Detection)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/dlib_facial_landmark.jpeg&quot; alt=&quot;Facial Landmark Detection&quot; /&gt;
+ภาพจากเว็บ Wikipedia&lt;/p&gt;
+
+&lt;p&gt;การจับจุดแลนมาร์คบนใบหน้า หรือเรียกอีกอย่างว่า Facial Landmark Detection เป็นการจับตำแหน่งอวัยวะบนใบหน้าเพื่อใช้สำหรับการประมวลผลในขั้นตอนต่อไป มีหลายเทคนิคที่ใช้ ตั้งแต่รุ่นเก่าเลยก็เป็น Active Appearance Models, Constrained Local Models หรืออื่น ๆ แต่ถ้าเอาง่ายหน่อยก็เป็น dlib (จากเปเปอร์ Ensemble of Regression Trees) หรือ FaceMesh หรืออื่น ๆ&lt;/p&gt;
+
+&lt;p&gt;ในตัวอย่าง เราใช้เทคนิค 3DDFA_V2 ครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;calibrate-ระยะการวัด-pixel-และหาระยะห่างระหว่างตาดำ&quot;&gt;Calibrate ระยะการวัด Pixel และหาระยะห่างระหว่างตาดำ&lt;/h3&gt;
+
+&lt;p&gt;เอาล่ะ มาเขียนโค้ดกันดีกว่า เราติดตั้งไลบรารีที่จำเป็นโดยการใช้ pip แต่สำหรับการทำ Calibrate เราใช้ไลบรารี&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;OpenCV&lt;/li&gt;
+  &lt;li&gt;Numpy&lt;/li&gt;
+  &lt;li&gt;PyTorch&lt;/li&gt;
+  &lt;li&gt;iglovikov_helper_functions&lt;/li&gt;
+  &lt;li&gt;midv500models&lt;/li&gt;
+  &lt;li&gt;imutils&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ติดตั้งเสร็จแล้ว อัพโหลดภาพเข้า Google Colab จากนั้นนำเข้าภาพโดยใช้คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;img = cv2.imread(&quot;&amp;lt; Image Path &amp;gt;&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;รันใน Google Colab โดยใช้ภาพเราถือบัตรเองที่อัพโหลดเข้าไประบบ จะได้ภาพตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/ipd_input.png&quot; alt=&quot;Input Colab Image&quot; /&gt;
+ภาพที่จะใช้ทำ Calibrate และหาระยะห่างระหว่างตาดำทั้งสองข้าง&lt;/p&gt;
+
+&lt;p&gt;ต่อมา เรานำภาพผ่านการจับใบหน้าโดยใช้เทคนิค Face Detection และอะไรก็ได้เพื่อหา Face Regions of Interest ครับ โดยการใช้คำสั่งตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;img = img[..., ::-1]
+boxes = face_boxes(img)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ต่อมาเรานำ Face Regions of Interest (ที่อยู่ในตัวแปร boxes) ไปประยุกต์ใช้ต่อสำหรับการทำ Calibrate เรานำเข้าไลบรารีได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import albumentations as albu
+import torch
+
+from iglovikov_helper_functions.utils.image_utils import load_rgb, pad, unpad
+from iglovikov_helper_functions.dl.pytorch.utils import tensor_from_rgb_image
+
+from midv500models.pre_trained_models import create_model
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ดาวน์โหลดโมเดล U-NET มาใช้งาน โดยใช้คำสั่งตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;model = create_model(&quot;Unet_resnet34_2020-05-19&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;กำหนดตัวโมเดลสำหรับการจับภาพที่ไม่ได้เทรนใหม่ (Evaluation model) และนำภาพที่เราจับภาพใบหน้ามาแล้วที่เป็นตำแหน่งแรกมาแยกส่วนบัตรประชาชน เราพิมพ์โค้ดได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;model.eval()
+boxes = [boxes[0]]
+size_box = len(boxes)
+box = boxes[0]
+
+[x1, y1, x2, y2] = box[:4]
+x1 = int(x1)
+y1 = int(y1)
+x2 = int(x2)
+y2 = int(y2)
+
+# Segment Image
+image = img[y1:y2,x1:x2].copy()
+transform = albu.Compose([albu.Normalize(p=1)], p=1)
+padded_image, pads = pad(image, factor=32, border=cv2.BORDER_CONSTANT)
+
+# Inference
+x = transform(image=padded_image)[&quot;image&quot;]
+x = torch.unsqueeze(tensor_from_rgb_image(x), 0)
+with torch.no_grad():
+    prediction = model(x)[0][0]
+
+# Postprocessing
+mask = (prediction &amp;gt; 0).cpu().numpy().astype(np.uint8)
+mask = unpad(mask, pads)
+mask = mask * 255
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราแยกส่วนบัตรประชาชนออกมาแล้วในรูปแบบตัวแปร mask ในตัวโค้ดจะออกมาเป็นอาเรย์ที่มีขนาดเท่าภาพต้นฉบับที่มีตัวแปรระหว่าง 0 กับ 1 แต่ภาพขาวดำปกติมันมีตั้งแต่ 0-255 (8-bit) เรานำ 255 มาคูณตามด้านบน&lt;/p&gt;
+
+&lt;p&gt;หลังจากแยกส่วนแล้ว เราต้องการหาความยาวด้านยาวเป็นจำนวน Pixel เราจำเป็นต้องหา Contour ของภาพ โดยใช้คำสั่ง cv2.findContours แล้วเรียง Contour จากบนลงล่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Contour
+contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+(cnts, boundingBoxes) = contour.sort_contours(contours, method=&quot;top-to-bottom&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อเรียงมาเรียบร้อยแล้ว เราหาความยาวด้านยาวของบัตรประชาชนที่แยกมาได้ โดยใช้คำสั่ง cv2.boundingRect&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# find boundingRect
+target_cnt = cnts[0]
+x,y,w,h = cv2.boundingRect(target_cnt)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราจะได้ความยาวมาเรียบร้อย เราแปลงให้อยู่ในรูปอัตราส่วนจำนวน pixel ต่อ mm ได้โดย&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Card size in pixels (compare to 86mm on long size)
+distance = w
+distancepermm = distance / 86
+print(f&quot;card size (pixel) = { distance } compare to (mm) = 85 mm =&amp;gt; distance { distancepermm } pixels/mm&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;รันใน Google Colab เราจะได้ผลลัพธ์ตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/ipd_calibrate.png&quot; alt=&quot;Calibrated Colab Image&quot; /&gt;
+ภาพหลังการทำ Calibrate&lt;/p&gt;
+
+&lt;p&gt;ต่อมา ในขั้นตอนต่อไป เป็นการหาตำแหน่งอวัยวะบนใบหน้า (Facial Landmark Detection) เราเอาภาพเดิมที่ผ่านการจับภาพใบหน้า (Face Detection) มาใช้งาน ได้ตามโค้ดด้านล่างนี้ที่ใช้เทคนิค 3DDFA_V2 ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;param_lst, roi_box_lst = tddfa(img, boxes)
+ver_lst = tddfa.recon_vers(param_lst, roi_box_lst, dense_flag=False)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราจะได้จุดบนใบหน้า 68 จุดออกมา แต่อาเรย์ของ ver_lst อยู่ในรูปแบบอาเรย์ที่มี Shape = [3, 68] เราจำเป็นต้องแปลงให้อยู่ในรูปแบบ Shape = [68, 3] เสียก่อน ได้โดย&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x = first_landmark[0,:].reshape(-1, 1)
+y = first_landmark[1,:].reshape(-1, 1)
+landmark = np.concatenate([x,y], axis = 1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;แล้ว เราจำเป็นต้องหาตำแหน่งตาดำตรงกลางเพื่อหาระยะห่างระหว่างตาดำ แต่ก่อนอื่น เรามาหาตำแหน่งรอบตาดำ และตาขาวก่อน จากภาพนี้&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/09/68-facial-landmarks.jpg&quot; alt=&quot;Facial Landmarks&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;จุดบนอวัยวะบนใบหน้าทั้งหมด 68 จุด&lt;/p&gt;
+
+&lt;p&gt;เรานำจุดบนอวัยวะบนใบหน้าตำแหน่งที่ 37-42 สำหรับตาขวา และตำแหน่งที่ 43-48 สำหรับตาซ้าย เพื่อนำมาหาตำแหน่งตาดำตรงกลางสำหรับการหาระยะห่างระหว่างตาดำ ได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;righteye = landmark[36:42]
+rightiris = np.array([np.mean(righteye[:, 0]), np.mean(righteye[:, 1])])
+lefteye = landmark[42:48]
+leftiris = np.array([np.mean(lefteye[:, 0]), np.mean(lefteye[:, 1])])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ต่อมา เราหาระยะห่างระหว่างตาดำทั้งสองข้างได้โดยนำค่า pixel ของภาพต่อระยะห่างที่เป็นหน่วย mm ที่ได้จากการทำ Calibrate มาใช้งานตามโค้ดด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Find IPD
+interpupillary_distance = 0.0
+for i in range(2):
+    interpupillary_distance += (rightiris[i] - leftiris[i])**2
+interpupillary_distance = np.sqrt(interpupillary_distance)
+interpupillary_distance_mm = interpupillary_distance / distancepermm
+print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals = { interpupillary_distance_mm } mm&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ทดลองเริ่มต้นการทำงาน จะได้ผลลัพธ์ตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/ipd_result.png&quot; alt=&quot;Interpupillary Distance Result&quot; /&gt;
+ผลลัพธ์ที่ได้&lt;/p&gt;
+
+&lt;p&gt;ฟังดูแล้วไม่ยากเกินไปใช่ไหมล่ะครับ สำหรับผู้อ่านวิธีการวัดระยะห่างระหว่างตาดำ (Interpupillary Distance) วิธีนี้เป็นวิธีหนึ่งแค่นั้นครับ&lt;/p&gt;
+
+&lt;p&gt;และอีกอย่าง เทคนิคนี้ยังไม่ได้ทดสอบความแม่นยำกับคนอื่น ๆ (ยกเว้นผู้เขียนเอง) เลยอาจจะต้องเอาไปทดสอบก่อนที่จะนำไปใช้งานบน Production จริงครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Python" /><category term="Coding" /><category term="Developer" /><category term="Mouth Opening" /><category term="Iris" /><category term="Interpupillary Distance" /><category term="Measurement" /><category term="Programming" /><category term="Machine Learning" /><category term="Computer Vision" /><category term="Segmentation" /><category term="Face Detection" /><category term="Calibration" /><category term="U-NET" /><category term="Deep Learning" /><category term="3DDFA_V2" /><category term="FaceBoxes" /><category term="Face Detection" /><category term="Landmark Detection" /><category term="Artificial Intelligence" /><category term="เขียนโปรแกรม" /><category term="ไพทอน" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><category term="ตาดำ" /><category term="การวัด" /><category term="คอมพิวเตอร์วิทัศน์" /><summary type="html">บทความนี้แนะนำวิธีการวัดระยะห่างระหว่างตาดำโดยใช้ภาษา Python จากภาพดิจิทัลครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/12/find_ipd_cover.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/12/find_ipd_cover.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token</title><link href="https://nickuntitled.com/2021/12/01/implement_httponly_cookies_token_nodejs_express/" rel="alternate" type="text/html" title="ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token" /><published>2021-12-01T00:30:00+07:00</published><updated>2021-12-01T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/12/01/implement-httponly-cookie-token-nodejs-express</id><content type="html" xml:base="https://nickuntitled.com/2021/12/01/implement_httponly_cookies_token_nodejs_express/">&lt;p&gt;เดิมทีเวลาที่เราใช้งานเพื่อเข้าสู่ระบบ เราจะเขียนโค้ดเพื่อขอ Access Token จากเซิร์ฟเวอร์แล้วนำมาเก็บไว้บน Client เพื่อนำมาใช้งานระบบที่จำเป็น โดยใน&lt;a href=&quot;https://www.howtographql.com/react-apollo/5-authentication/&quot;&gt;บทความบนเว็บที่เกี่ยวกับการทำระบบ Authentication โดยใช้ไลบรารี Apollo GraphQL&lt;/a&gt; นั้น เราจะเก็บข้อมูล Access Token ที่สร้างขึ้นไว้บน LocalStorage เพื่อนำมาใช้งานต่อครับ&lt;/p&gt;
 
 &lt;p&gt;อย่างไรก็ดี การเก็บข้อมูลไว้ในนี้ก็มีปัญหาเรื่องความปลอดภัย ในบทความนี้จะแนะนำวิธีการเก็บข้อมูล Access Token ที่ปลอดภัยกว่าการเก็บบน LocalStorage ครับ&lt;/p&gt;
 
@@ -947,142 +1209,4 @@ server {
 
 &lt;p&gt;I needed to have a remote development server, and I found a cheaper way to apply. I considered registering the VPS and installing code-server, Nginx, and Certbot to allow accessing code-server with HTTPS. I found it more convenient to develop from the laptop or the tablet. I do not need to install to take more spaces anymore. I can save many hours running on the laptop’s battery.&lt;/p&gt;
 
-&lt;p&gt;For anyone reading this, I recommend this way.&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Coding" /><category term="Programming" /><category term="Remote" /><category term="WFH" /><category term="Work from home" /><category term="Development" /><category term="Server" /><category term="code-server" /><category term="IDE" /><category term="Cloud" /><category term="Cloud computing" /><category term="VPS" /><summary type="html">With the development of cloud computing and the cloud-based IDE, you can use to create a remote development server. In this article, I describe how to do.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้</title><link href="https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan/" rel="alternate" type="text/html" title="จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้" /><published>2021-10-10T01:29:57+07:00</published><updated>2021-10-10T01:29:57+07:00</updated><id>https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan</id><content type="html" xml:base="https://nickuntitled.com/2021/10/10/observation-telephone-sms-loan/">&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ช่วงที่ผ่านมา 1-2 ปีจะมีสิ่งหนึ่งที่ระบาดอยู่ในขณะนี้ และมีคนพูดถึงเรื่องนี้ในโซเชียลเป็นประจำก็คือมีสายโทรศัพท์ และ SMS เงินกู้ (รวมถึงการพนัน และอื่น ๆ แต่เราเอาเงินกู้ก่อน) เข้ามาในที่เบอร์มือถือที่เราใช้งานอยู่ในปัจจุบัน &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ทีนี้ของเราก็ได้รับพวกนี้เช่นกัน อย่างไรก็ดีเมื่อเราได้สังเกตโทรศัพท์ และข้อความที่เข้ามาพวกนี้มีจุดที่เราจับได้ ในบทความนี้เราจะมาแนะนำจุดสังเกตที่พบเจอก่อนที่เราจะตอบรับแล้วโดนเงินกู้นอกระบบ หรือโดนหลอกครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:more --&gt;
-&lt;!--more--&gt;
-&lt;!-- /wp:more --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;เอาโทรศัพท์ก่อน&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3467,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/smartphone-min-1024x683.png&quot; alt=&quot;&quot; class=&quot;wp-image-3467&quot; /&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เวลาที่เราใช้งานโทรศัพท์ตอนกลางวันแสก ๆ หรือกลางคืนอยู่ดี ๆ จะมีใครก็ไม่รู้โทรศัพท์โดยใช้เบอร์โทรศัพท์มือถือเข้ามาหาเรา (ซึ่งทางนั้นอาจจะโทรศัพท์ผ่านทางอินเตอร์เน็ต) แล้วพอเรารับสายปุ๊บเสียงที่โทรมาจะเป็นเสียงอัตโนมัติ หรืออาจจะเป็นเสียงคน แล้วเล่าถึงรายละเอียดของเงินกู้ แถมบอกให้เราตอบรับไว ๆ เพื่อที่จะให้กู้เลย &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;จุดนี้เรามีข้อสังเกตตามด้านล่างนี้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;&lt;strong&gt;อย่างแรก&lt;/strong&gt; &lt;strong&gt;คนที่โทรมาจะไม่บอกสถาบันทางการเงินที่ให้บริการเงินกู้ หรืออาจจะเป็นสถาบันทางการเงิน (แบบปลอม ๆ)&lt;/strong&gt;&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ปกติเวลาที่โทรศัพท์เข้ามาในมือถือของเรา สิ่งแรกที่ทางธนาคารจะบอกเลยก็คือชื่อ นามสกุลคนที่โทรศัพท์มา รวมถึงชื่อสถาบันทางการเงินที่ให้บริการที่น่าเชื่อถือ แต่เวลาที่เป็นโทรศัพท์เงินกู้แนวนี้จะไม่บอกรายละเอียดอะไร ถึงบอกรายละเอียดก็จริง แต่ชื่อที่กล่าวมามันจะน่าเชื่อถือจริง ๆ หรือเปล่า เราก็ไม่ทราบใช่ไหม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;&lt;strong&gt;วิธีการตรวจสอบ&lt;/strong&gt; อันนี้ปกติสถาบันทางการเงินในไทยจะต้องมีธนาคารแห่งประเทศไทยให้อนุญาตก่อนครับ เราสามารถตรวจสอบได้โดย&lt;a href=&quot;https://www.bot.or.th/Thai/ConsumerInfo/Fraud/Pages/BOTLicensedLoan.aspx&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.bot.or.th/Thai/ConsumerInfo/Fraud/Pages/BOTLicensedLoan.aspx&quot;&gt;เข้าไปที่ลิ้งค์นี้&lt;/a&gt;ครับ กรณีที่หาไม่เจอ หรือปิดดำเนินการไปแล้ว อันนี้แหละน่าสงสัย &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อย่างไรก็ดี ถ้าทางโทรศัพท์ที่บอกมาเป็นชื่อธนาคารที่ได้รับการรับรอง อันนี้เราอาจจะต้องโทรไปที่เบอร์ที่เป็นคอลเซ็นเตอร์ของทางธนาคารแล้วเช็คกับทางนั้นจะดีกว่าครับ เพราะถามไปทางธนาคารจะตอบกลับมาประมาณว่าไม่ได้ให้บริการแบบนี้&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;&lt;strong&gt;อย่างต่อมา ข้อความที่โทรศัพท์มาจะดูแปลกไปกว่าความเป็นจริง&lt;/strong&gt;&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ปกติเวลาที่เรากู้ธนาคาร ธนาคารจะขอหลักฐานหลายสิ่ง ตั้งแต่เรื่องใบรับรองอาชีพ บัญชี รายการเดินบัญชี และอื่น ๆ นอกจากนี้เวลาที่ส่งหลักฐานไปแล้ว กว่าจะได้อนุมัติก็ไม่ได้ง่ายอะไร บางคนธนาคารก็ปฏิเสธที่จะให้กู้ เนื่องจากมีปัญหาด้านหลักฐาน มีปัญหาติดบัญชีดำ ติดเครดิตบูโร และอื่น ๆ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ทีนี้ทางโทรศัพท์ที่ให้บริการเงินกู้แบบนี้จะพูดประมาณว่าใช้หลักฐานน้อย ทำง่าย ทำเร็ว ได้เงินทันที ติดบัญชีดำก็กู้ได้ ดอกเบี้ยต่ำ ฟังดูแปลก ๆ ไปไหมล่ะ มันจะง่ายขนาดนี้เลยเหรอ &lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;คำตอบก็คือใช้หลักฐานน้อยจริง เพียงบัตรประจำตัวประชาชน เงินออกเร็วจริง แต่เงินที่ได้อาจจะไม่ครบตามที่ต้องการ กับเวลาที่จ่ายเงินคืน ดอกเบี้ยที่ต้องจ่ายมากกว่าตามเกณฑ์ของธนาคารแห่งประเทศไทยเยอะเลยครับ ใครที่จ่ายไม่ตรงนัดล่ะ โดนดอกเบี้ยบานเบอะ แถมอาจจะโดนโทรขู่ โดนประจาน ไปจนถึงโดนทำร้ายตามที่ปรากฏในข่าวครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;&lt;strong&gt;อย่างที่สาม ทางโทรศัพท์จะเร่งรัดให้เราตอบรับเพื่อกู้เงิน&lt;/strong&gt;&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เวลาที่ฟังรายละเอียดของธนาคารทั่วไป ทางธนาคารจะให้เราสอบถามรายละเอียด หรือให้เราพูดคุยเพิ่มเติมได้สะดวก หรือถ้าไม่สะดวกจริงก็ตอบปฏิเสธก่อนได้ ส่วนของเราแจ้งทางธนาคารว่าถ้ามีอะไรให้ส่งรายละเอียดมาทางอีเมลจะดีกว่า อันนี้เราตอบไปแล้วทางธนาคารจะไม่ได้ว่าอะไร&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนโทรศัพท์เงินกู้อันนี้เมื่อเราฟังรายละเอียดเกือบหมดแล้ว ทางธนาคารจะกล่าวประมาณว่าให้ตอบรับ หรือรอสายเพื่อที่จะตอบรับว่าเราจะกู้เงินผ่านทางโทรศัพท์ที่เคลมว่าได้เงินง่าย ถ้าเราถามไปประมาณว่าได้เบอร์มาได้อย่างไร ทางนั้นก็จะตอบอะไรก็ไม่รู้ หรือวางสายไปเลย หรือว่าถ้าเราตอบปฏิเสธไป ก็จะโดนว่ากลับมาอีก (ตามที่อ่านเจอในอินเตอร์เน็ต) และอื่น ๆ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ฟังแล้วมันดูแปลก ๆ ไหมฮะ ฟังแล้วมันก็แปลกจริงครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;&lt;strong&gt;นอกเหนือจากนี้&lt;/strong&gt;&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;การตรวจสอบว่าเป็นเบอร์ที่ให้บริการเงินกู้หรือเปล่า เราสามารถเช็คได้โดยใช้แอพอย่าง Whoscall ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;Whoscall เป็นแอพที่สร้างโดยบริษัทไต้หวันอย่าง Gogolook&amp;nbsp;ช่วยให้เราสามารถเช็คเบอร์ที่โทรศัพท์มาหาเราได้ว่าเป็นเบอร์อะไร ใช่เงินกู้นอกระบบหรือเปล่า ผ่านทางค้นหาในฐานข้อมูลของแอพที่มีเบอร์เป็นจำนวนมาก ประมาณ 700 ล้านหมายเลขทั่วโลก ที่มียอดการดาวน์โหลดมากกว่า 20 ล้านครั้ง&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;สำหรับคนที่สนใจจะใช้ ไปดาวน์โหลดใน &lt;a href=&quot;https://play.google.com/store/apps/details?id=gogolook.callgogolook2&amp;amp;hl=en&amp;amp;gl=US&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://play.google.com/store/apps/details?id=gogolook.callgogolook2&amp;amp;hl=en&amp;amp;gl=US&quot;&gt;Google Play&lt;/a&gt; หรือ &lt;a href=&quot;https://apps.apple.com/th/app/whoscall-caller-id-block/id929968679&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://apps.apple.com/th/app/whoscall-caller-id-block/id929968679&quot;&gt;Apple AppStore&lt;/a&gt; หรือ&lt;a href=&quot;https://global.whoscall.com/th-TH/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://global.whoscall.com/th-TH/&quot;&gt;หน้าเว็บ&lt;/a&gt;ได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;นอกจากแอพ Whoscall แล้วเวลาที่มีคนโทรศัพท์มาในลักษณะนี้เราติดต่อไปทางผู้ให้บริการโทรศัพท์เช่น AIS, DTAC, True เพื่อให้บล็อกเบอร์ รวมถึงเราสามารถบล็อกเบอร์ในแอพโทรศัพท์ของมือถือได้เลยครับ และเราสามารถแจ้งไปที่&lt;a href=&quot;https://www.facebook.com/fconsumerthai/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.facebook.com/fconsumerthai/&quot;&gt;เพจมูลนิธิเพื่อผู้บริโภค&lt;/a&gt;ได้ครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ส่วนขอให้ทางนั้นดักฟังเพื่อที่จะบล็อกสาย ทำได้ไหม เคยลองถามทางเบอร์คอลเซ็นเตอร์ AIS บอกว่าไม่ได้ มันจะผิดกฏหมายเกี่ยวกับการดักฟังสายครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;ต่อมาเป็น SMS&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:image {&quot;align&quot;:&quot;center&quot;,&quot;id&quot;:3468,&quot;sizeSlug&quot;:&quot;large&quot;,&quot;linkDestination&quot;:&quot;none&quot;} --&gt;
-&lt;div class=&quot;wp-block-image&quot;&gt;&lt;figure class=&quot;aligncenter size-large&quot;&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/img_6503-1024x603.jpg&quot; alt=&quot;&quot; class=&quot;wp-image-3468&quot; /&gt;&lt;/figure&gt;&lt;/div&gt;
-&lt;!-- /wp:image --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;SMS เงินกู้เป็นสิ่งหนึ่งที่ระบาดอยู่ในขณะนี้ การส่งข้อความมาลักษณะนี้จะไม่บอกเบอร์โทรศัพท์ที่ชัดเจน ทำให้เราตรวจสอบได้ยาก แล้วพอได้รับข้อความแล้ว มันจะดูแปลกไปกว่าที่ธนาคารส่งมาอย่างชัดเจนสุด ๆ วิะีการสังเกตเราสามารถสังเกตได้โดยตามด้านล่างนี้ที่เอามาจาก&lt;a href=&quot;https://www.scb.co.th/th/personal-banking/stories/tips-for-you/fake-sms.html&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot; title=&quot;https://www.scb.co.th/th/personal-banking/stories/tips-for-you/fake-sms.html&quot;&gt;หน้าเว็บของธนาคาร SCB&lt;/a&gt;&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ข้อความที่ทาง SMS เงินกู้นอกระบบส่งมา ข้อความจะออกมาดูหวือหวา ดูเรียกแขก อยากรู้อยากเห็น ทำให้ตื่นเต้น ดีใจว่าได้รับรางวัล เงินกู้ สิทธิพิเศษ หรือหลอกให้คลิกเข้าไปตามลิ้งค์เพื่อที่จะให้เราตอบรับเพื่อขอกู้นอกระบบ รวมถึงอาจจะมีการขอข้อมูลที่มากกว่าปกติ เช่น เลขบัตรประชาชน, เลขบัตรเครดิต, เลขบัญชีธนาคาร, วันเดือนปีเกิด, รหัส ATM, Password รวมถึงรหัส OTP ในการทําธุรกรรม&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;ปกติทางธนาคารจะขอเพียงชื่อ นามสกุล เบอร์โทรศัพท์ และอีเมลเท่านั้นเอง นอกเหนือไปกว่านี้ เวลากดเข้าไปที่ลิ้งค์มันจะเป็นลิ้งค์แปลก ๆ ที่ดูแล้วไม่ใช่เว็บจริงครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;วิธีการจัดการข้อความพวกนี้ ทำได้เพียงบล็อคไม่ให้ชื่อนี้ส่งมาหาเราได้อีกครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:heading --&gt;
-&lt;h2&gt;สรุป&lt;/h2&gt;
-&lt;!-- /wp:heading --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;เบอร์โทรศัพท์และ SMS เงินกู้ที่ระบาดอยู่ในขณะนี้มีจุดข้อสังเกตไม่กี่อย่าง ของโทรศัพท์ได้แก่ไม่ระบุสถาบันทางการเงิน ข้อความที่ดูแปลกไปมากกว่าปกติ และทางนั้นเร่งรัดให้เราตอบรับเพื่อกู้ ส่วนของ SMS จะเป็นข้อความที่ดูเรียกแขก ข้อความที่หวือหวา ดูตื่นเต้น และถ้าตอบเพื่อจะกู้ ทางนั้นจะขอข้อมูลส่วนตัวที่เยอะเกินไปครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;วิธีการจัดการทำได้เพียงบล็อกไม่ให้ทางนั้นโทรศัพท์มา หรือส่ง SMS มาหาเรา ผ่านทางผู้ให้บริการโทรศัพท์ ผ่านทางแอพโทรศัพท์ในมือถือของเรา รวมถึงแจ้งผ่านทางมูลนิธิเพื่อผู้บริโภคตามที่ได้กล่าวมาแล้วครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;
-
-&lt;!-- wp:paragraph --&gt;
-&lt;p&gt;อย่างไรก็ดี เรื่องนี้มีการดำเนินการเพื่อจัดการพวกนี้อยู่ จะหมดไปไหม ก็ยากอยู่นะครับ&lt;/p&gt;
-&lt;!-- /wp:paragraph --&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Bank" /><category term="Banking" /><category term="Fraud" /><category term="Internet Banking" /><category term="Loan" /><category term="Loan Shark" /><category term="Payday" /><category term="phone" /><category term="Scam" /><category term="SMS" /><category term="Telephone" /><category term="Title loan" /><category term="ข้อความ" /><category term="นอกระบบ" /><category term="มิจฉาชีพ" /><category term="หลอกลวง" /><category term="เงินกู้" /><category term="เงินกู้นอกระบบ" /><category term="โกง" /><category term="โทรศัพท์" /><summary type="html">ช่วง 1-2 ปีนี้จะมีสายโทรศัพท์ และ SMS เงินกู้เข้ามาในที่เบอร์มือถือที่เราใช้งานอยู่ในปัจจุบัน ของเราก็ได้รับเช่นกัน ในบทความนีี้จะพูดจุดสังเกต และวิธีจัดการ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;For anyone reading this, I recommend this way.&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Coding" /><category term="Programming" /><category term="Remote" /><category term="WFH" /><category term="Work from home" /><category term="Development" /><category term="Server" /><category term="code-server" /><category term="IDE" /><category term="Cloud" /><category term="Cloud computing" /><category term="VPS" /><summary type="html">With the development of cloud computing and the cloud-based IDE, you can use to create a remote development server. In this article, I describe how to do.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
