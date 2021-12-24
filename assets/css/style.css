@@ -331,6 +331,7 @@ strong, b {
   margin: 0.5em 0 0.5em 0;
   line-height: 1.75em;
   padding: 0;
+  text-align: justify;
 }
 
 .blog-post-content h1, 
