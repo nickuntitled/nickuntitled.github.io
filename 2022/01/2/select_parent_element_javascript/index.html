@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>วิธีการเลือก parent element ด้วย JavaScript - Nick Untitled</title>
+		<meta name="description" content="บทความนี้แนะนำวิธีการเลือกวัตถุ parent element ด้วยการใช้ภาษา JavaScript">
+		<meta name="keywords" content="JavaScript,Coding,Developer,Element,Selector,Parent Element,Programming,getElementById,getElementsByClassName,getElementsByName,getElementsByTagName,querySelector,querySelectorAll,Node,Parent Node,เขียนโปรแกรม,จาวาสคริป,เขียนโค้ด,โค้ดดิ้ง,วัตถุ,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2022-01-02T22:30:00+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/"/>
+		<meta property="og:title" content="วิธีการเลือก parent element ด้วย JavaScript - Nick Untitled" />
+		<meta property="og:description" content="บทความนี้แนะนำวิธีการเลือกวัตถุ parent element ด้วยการใช้ภาษา JavaScript " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg"/>
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta property="twitter:title" content="วิธีการเลือก parent element ด้วย JavaScript - Nick Untitled" />
+		<meta property="twitter:description" content="บทความนี้แนะนำวิธีการเลือกวัตถุ parent element ด้วยการใช้ภาษา JavaScript " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg" />
+		<link rel="stylesheet" href="assets/css/reset.css">
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<div class="profile-about">
+			<div>
+				<h2>Nick Untitled</h2>
+			</div>
+			<div>
+				Writing as my personal diary
+			</div>
+			<div>
+				<ul class = 'go_right'>
+					<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+					
+					<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
+					
+					
+					<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
+					
+					
+					
+					<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
+					
+					
+					<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a></li>
+					<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a></li>
+					<li class="mode" id="mode-switcher" onclick="toggleNightMode();">
+						<span></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	
+<div class="blog-post-header">
+	<h1>วิธีการเลือก parent element ด้วย JavaScript</h1>
+</div>
+
+<div class="post-header">
+	<div class="post-date">02.01.2022</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/element-closest" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/element-closest&amp;text=วิธีการเลือก parent element ด้วย JavaScript - https://nickuntitled.com/element-closest" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+	<figure>
+		<img src = 'https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg' />
+	</figure>
+	
+<div class="blog-post-content">
+	<p>ปกติเวลาที่เราเลือก element ด้วยภาษาจาวาสคริป เราจะใช้คำสั่งที่รู้จักกันอย่าง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>document.getElementById("id");
+document.document.getElementsByClassName("class name");
+document.document.getElementsByName("name");
+document.document.getElementsByTagName("tag name");
+</code></pre></div></div>
+
+<p>หรือเลือก element โดยการใช้ CSS Selector ด้วยคำสั่งที่รู้จักอย่าง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>document.querySelector("selector");
+parent_element.querySelector("selector");
+document.querySelectorAll("selector");
+parent_element.querySelectorAll("selector");
+</code></pre></div></div>
+
+<p>คำสั่งเหล่านี้ะคืนค่า element ที่เราเลือกไว้ ไม่ว่าจะเป็น element เดียว หรือ element ทั้งหมดที่เราพบในหน้าเว็บเพจนั้น ๆ อย่างไรก็ดีเราต้องการเลือก parent element จาก element ที่อยู่ภายใน จุดนี้เราจะทำได้อย่างไร?</p>
+
+<h2 id="jquery">jQuery</h2>
+
+<p>jQuery เป็นหนึ่งในไลบรารีที่คนนิยมใช้งานกัน เราเลือก parent element ได้โดยการพิมพ์คำสั่งอย่าง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("css selector").parent();
+</code></pre></div></div>
+
+<p>หรือ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("css selector").closest("parent css selector");
+</code></pre></div></div>
+
+<p>สองคำสั่งนี้จะอนุญาตเราเลือก parent element ได้ตามที่ต้องการเลย อย่างไรก็ดี ทั้งสองคำสั่งนี้มีข้อแตกต่างกัน เรายกตัวอย่างตามภาพด้านล่างนี้ก่อน</p>
+
+<p><img src="https://asset.nickuntitled.com/2021/12/parent_element_diagram.png" alt="DOM Example" />
+แผนภาพตัวอย่าง</p>
+
+<p>ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานทั้งสองคำสั่งได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("li").parent().parent();
+</code></pre></div></div>
+
+<p>หรือ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("li").closest("div");
+</code></pre></div></div>
+
+<p>ทั้งคู่จะเลือก parent element ที่เป็น div ครับ</p>
+
+<p>สรุปความแตกต่างระหว่างสองคำสั่งตามข้างบนนี้ตรงที่</p>
+<ul>
+  <li>.parent() เป็นคำสั่งที่ให้เราเลือก element ที่เป็น parent และอยู่ติดกับ element ที่เราเลือก</li>
+  <li>.closest() เป็นการเลือก element ที่อยู่เหนือ และอยู่ใกล้กันกับ element ที่เราเลือกไว้โดยการใช้ css selector</li>
+</ul>
+
+<p>อย่างไรก็ดีไลบรารีนี้มีข้อเสียได้แก่ ไลบรารีมีขนาดใหญ่ส่งผลต่อระยะเวลาการโหลดไลบรารีเพื่อใช้งาน กับไลบรารีนี้เก่าไปแล้ว เนื่องมาจากตัวจาวาสคริปเองได้รับการพัฒนาอย่างต่อเนื่องจนทำงานได้แบบเดียวกันกับ jQuery แต่ไม่ต้องพึ่งพาไลบรารีที่มีขนาดใหญ่ และทำงานได้เร็วมากกว่าไลบรารีที่กล่าวถึง</p>
+
+<p>ต่อไป เราจะมาพูดถึงคำสั่งที่มีอยู่แล้วในจาวาสคริป (หรือเรียกว่า <a href="http://vanilla-js.com">Vanilla JavaScript</a>) ที่อนุญาตให้เราเลือก parent element ครับ คำสั่งเหล่านี้ได้แก่ node.parentNode, element.parentElement และ element.closest</p>
+
+<h2 id="nodeparentnode-กับ-elementparentelement">node.parentNode กับ element.parentElement</h2>
+
+<p>ทั้งคู่นี้เป็นคำสั่งในจาวาสคริปที่เลือก parent node หรือ element ที่อยู่เหนือกว่า node หรือ element ที่เราเลือก ตัวอย่างการใช้งานคำสั่งนี้เป็นไปตามด้านล่างนี้ครับ (ตัวอย่างด้านล่างเอามาจากหน้าเว็บ <a href="https://stackoverflow.com/questions/8685739/difference-between-dom-parentnode-and-parentelement">StackOverflow</a>)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>document.body.parentNode; // the &lt;html&gt; element
+document.body.parentElement; // the &lt;html&gt; element
+</code></pre></div></div>
+
+<p>หรือยกตัวอย่างจากภาพเดิม</p>
+
+<p><img src="https://asset.nickuntitled.com/2021/12/parent_element_diagram.png" alt="DOM Example" />
+แผนภาพตัวอย่าง</p>
+
+<p>ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let li = docuent.getElementById('li');
+let div = li.parentNode.parentNode;
+</code></pre></div></div>
+
+<p>หรือ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let li = docuent.getElementById('li');
+let div = li.parentElement.parentElement;
+</code></pre></div></div>
+
+<p>เราก็จะเลือก parent Element ที่เป็น div ได้เลย ถ้าลองสังเกตดูจะพบว่าทั้งสองคำสั่งมันก็ใช้ได้เหมือนกันนี่ แล้วมันต่างกันอย่างไร?</p>
+
+<p>เรามาพูดถึงความแตกต่างระหว่าง Node กับ Element เสียก่อน (ความแตกต่างสรุปจาก<a href="https://blog.webdevsimplified.com/2021-05/node-vs-element/">หน้าเว็บนี้</a>)</p>
+
+<ul>
+  <li>Element ก็คือ HTML tag ต่าง ๆ ที่อยู่ในหน้าเว็บไซต์ ได้แก่ div, span, body หรืออื่น ๆ</li>
+  <li>Node จะเป็นอะไรก็ได้ที่มีอยู่ในหน้าเว็บไซต์ รวมถึงข้อความ คอมเม้นต์ ไม่จำกัดว่าเป็น div, span, body, input, form หรืออื่น ๆ ที่เป็น HTML tag</li>
+</ul>
+
+<p>เราจะเห็นว่าการเลือก Node จะดูยุ่งยากกว่า เพราะเราค้องแยกระหว่างข้อความ คอมเม้นต์ หรือ HTML tag ดังนั้นแล้ว การใช้งาน Element จะดูจำเพาะมากกว่า</p>
+
+<p>ผู้อ่านสามารถดูวิดีโอความแตกต่างระหว่าง Element กับ Node ได้ตามด้านล่างนี้</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rhvec8cXLlo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>ต่อมา เรามาดูความแตกต่างการใช้งานของสองคำสั่ง (โค้ดอ้างอิงจาก <a href="https://stackoverflow.com/questions/8685739/difference-between-dom-parentnode-and-parentelement">StackOverflow</a>)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>document.documentElement.parentNode;    // document เป็น node
+document.documentElement.parentElement; // null เนื่องจาก document ไม่ใช่ element
+(document.documentElement.parentNode === document);  // true
+(document.documentElement.parentElement === document);  // false
+</code></pre></div></div>
+
+<p>เราจะเห็นว่า document ไม่ได้เป็นหนึ่งใน HTML tag อะไรเลยตามที่กล่าวไว้ตามข้างบน และ document ไม่ได้เป็น element แต่ก็ยังเป็น node อยู่ ดังนั้นการใช้งาน element.parentElement จะคืนค่า null กลับมา</p>
+
+<h2 id="elementclosest">element.closest</h2>
+
+<p>คำสั่งนี้เป็นส่วนหนึ่งในภาษาสคริปที่อนุญาตให้เราเลือก parent element ที่อยู่ใกล้กันกับ element ที่เราเลือกอยู่โดยการใช้ CSS Selector การใช้งานใช้งานได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>element.closest("CSS selector");
+</code></pre></div></div>
+
+<p>ยกตัวอย่างโดยเอารูปเดิมมาใช้</p>
+
+<p><img src="https://asset.nickuntitled.com/2021/12/parent_element_diagram.png" alt="DOM Example" />
+แผนภาพตัวอย่าง</p>
+
+<p>ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let li = docuent.getElementById('li');
+let div = li.closest('div');
+</code></pre></div></div>
+
+<p>เมื่อพิมพ์ตามข้างบนนี้แล้ว เราจะเลือก parent element ที่เป็น div ครับ เมื่อสังเกตตัวโค้ดแล้วพบว่าใช้งานได้สะดวกมากกว่า node.parentNode กับ element.parentElement</p>
+
+<p>อย่างไรก็ดีการใช้งานทั้งสามคำสั่งได้แก่ node.parentNode, element.parentElement และ element.closest นี้ขึ้นกับผู้ใช้ว่าจะเอาไปใช้อย่างไรครับ ส่วนกรณีที่ผู้ใช้ไม่ได้ใช้ Vanilla JavaScript  คำสั่งทั้งสามคำสั่งนี้อาจจะไม่ได้ใช้เลยก็ได้ครับผม</p>
+
+</div>
+<div class="tags-container">
+	
+		<span class="post-tag">JavaScript</span>, 
+	
+		<span class="post-tag">Coding</span>, 
+	
+		<span class="post-tag">Developer</span>, 
+	
+		<span class="post-tag">Element</span>, 
+	
+		<span class="post-tag">Selector</span>, 
+	
+		<span class="post-tag">Parent Element</span>, 
+	
+		<span class="post-tag">Programming</span>, 
+	
+		<span class="post-tag">getElementById</span>, 
+	
+		<span class="post-tag">getElementsByClassName</span>, 
+	
+		<span class="post-tag">getElementsByName</span>, 
+	
+		<span class="post-tag">getElementsByTagName</span>, 
+	
+		<span class="post-tag">querySelector</span>, 
+	
+		<span class="post-tag">querySelectorAll</span>, 
+	
+		<span class="post-tag">Node</span>, 
+	
+		<span class="post-tag">Parent Node</span>, 
+	
+		<span class="post-tag">เขียนโปรแกรม</span>, 
+	
+		<span class="post-tag">จาวาสคริป</span>, 
+	
+		<span class="post-tag">เขียนโค้ด</span>, 
+	
+		<span class="post-tag">โค้ดดิ้ง</span>, 
+	
+		<span class="post-tag">วัตถุ</span>
+	
+</div>
+<div class="navigation">
+	
+		<a class="prev" href="/2021/12/10/interpupillary_distance_measurement_python/">< วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python</a>
+	 
+</div>
+	
+</div>
+
+<div class="footer">
+	<span>
+		<div class = 'go_left'>
+			<p>
+				<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+			</p>
+			<p>
+				Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'>Privacy Policy</a>
+			</p>
+		</div>	
+
+		<div class = 'go_right'>
+		</div>
+	</span>
+</div>
+
+	<!-- Messenger Chat plugin Code -->
+	<div id="fb-root"></div>
+
+	<!-- Your Chat plugin code -->
+	<div id="fb-customer-chat" class="fb-customerchat">
+	</div>
+
+	<script>
+	var chatbox = document.getElementById('fb-customer-chat');
+	chatbox.setAttribute("page_id", "104741474999804");
+	chatbox.setAttribute("attribution", "biz_inbox");
+
+	window.fbAsyncInit = function() {
+		FB.init({
+		xfbml            : true,
+		version          : 'v12.0'
+		});
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>

@@ -1,4 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2021-12-25T00:02:46+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python</title><link href="https://nickuntitled.com/2021/12/10/interpupillary_distance_measurement_python/" rel="alternate" type="text/html" title="วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python" /><published>2021-12-08T00:30:00+07:00</published><updated>2021-12-08T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/12/10/interpupillary-distance=measurement-python</id><content type="html" xml:base="https://nickuntitled.com/2021/12/10/interpupillary_distance_measurement_python/">&lt;p&gt;อันนี้เป็นส่วนหนึ่งของงานวิจัย ทำไปแล้วบางส่วน&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-01-02T22:57:45+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">วิธีการเลือก parent element ด้วย JavaScript</title><link href="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/" rel="alternate" type="text/html" title="วิธีการเลือก parent element ด้วย JavaScript" /><published>2022-01-02T22:30:00+07:00</published><updated>2022-01-02T22:30:00+07:00</updated><id>https://nickuntitled.com/2022/01/2/element-closest</id><content type="html" xml:base="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/">&lt;p&gt;ปกติเวลาที่เราเลือก element ด้วยภาษาจาวาสคริป เราจะใช้คำสั่งที่รู้จักกันอย่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;document.getElementById(&quot;id&quot;);
+document.document.getElementsByClassName(&quot;class name&quot;);
+document.document.getElementsByName(&quot;name&quot;);
+document.document.getElementsByTagName(&quot;tag name&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือเลือก element โดยการใช้ CSS Selector ด้วยคำสั่งที่รู้จักอย่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;document.querySelector(&quot;selector&quot;);
+parent_element.querySelector(&quot;selector&quot;);
+document.querySelectorAll(&quot;selector&quot;);
+parent_element.querySelectorAll(&quot;selector&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;คำสั่งเหล่านี้ะคืนค่า element ที่เราเลือกไว้ ไม่ว่าจะเป็น element เดียว หรือ element ทั้งหมดที่เราพบในหน้าเว็บเพจนั้น ๆ อย่างไรก็ดีเราต้องการเลือก parent element จาก element ที่อยู่ภายใน จุดนี้เราจะทำได้อย่างไร?&lt;/p&gt;
+
+&lt;h2 id=&quot;jquery&quot;&gt;jQuery&lt;/h2&gt;
+
+&lt;p&gt;jQuery เป็นหนึ่งในไลบรารีที่คนนิยมใช้งานกัน เราเลือก parent element ได้โดยการพิมพ์คำสั่งอย่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(&quot;css selector&quot;).parent();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(&quot;css selector&quot;).closest(&quot;parent css selector&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;สองคำสั่งนี้จะอนุญาตเราเลือก parent element ได้ตามที่ต้องการเลย อย่างไรก็ดี ทั้งสองคำสั่งนี้มีข้อแตกต่างกัน เรายกตัวอย่างตามภาพด้านล่างนี้ก่อน&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/parent_element_diagram.png&quot; alt=&quot;DOM Example&quot; /&gt;
+แผนภาพตัวอย่าง&lt;/p&gt;
+
+&lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานทั้งสองคำสั่งได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(&quot;li&quot;).parent().parent();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(&quot;li&quot;).closest(&quot;div&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ทั้งคู่จะเลือก parent element ที่เป็น div ครับ&lt;/p&gt;
+
+&lt;p&gt;สรุปความแตกต่างระหว่างสองคำสั่งตามข้างบนนี้ตรงที่&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;.parent() เป็นคำสั่งที่ให้เราเลือก element ที่เป็น parent และอยู่ติดกับ element ที่เราเลือก&lt;/li&gt;
+  &lt;li&gt;.closest() เป็นการเลือก element ที่อยู่เหนือ และอยู่ใกล้กันกับ element ที่เราเลือกไว้โดยการใช้ css selector&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;อย่างไรก็ดีไลบรารีนี้มีข้อเสียได้แก่ ไลบรารีมีขนาดใหญ่ส่งผลต่อระยะเวลาการโหลดไลบรารีเพื่อใช้งาน กับไลบรารีนี้เก่าไปแล้ว เนื่องมาจากตัวจาวาสคริปเองได้รับการพัฒนาอย่างต่อเนื่องจนทำงานได้แบบเดียวกันกับ jQuery แต่ไม่ต้องพึ่งพาไลบรารีที่มีขนาดใหญ่ และทำงานได้เร็วมากกว่าไลบรารีที่กล่าวถึง&lt;/p&gt;
+
+&lt;p&gt;ต่อไป เราจะมาพูดถึงคำสั่งที่มีอยู่แล้วในจาวาสคริป (หรือเรียกว่า &lt;a href=&quot;http://vanilla-js.com&quot;&gt;Vanilla JavaScript&lt;/a&gt;) ที่อนุญาตให้เราเลือก parent element ครับ คำสั่งเหล่านี้ได้แก่ node.parentNode, element.parentElement และ element.closest&lt;/p&gt;
+
+&lt;h2 id=&quot;nodeparentnode-กับ-elementparentelement&quot;&gt;node.parentNode กับ element.parentElement&lt;/h2&gt;
+
+&lt;p&gt;ทั้งคู่นี้เป็นคำสั่งในจาวาสคริปที่เลือก parent node หรือ element ที่อยู่เหนือกว่า node หรือ element ที่เราเลือก ตัวอย่างการใช้งานคำสั่งนี้เป็นไปตามด้านล่างนี้ครับ (ตัวอย่างด้านล่างเอามาจากหน้าเว็บ &lt;a href=&quot;https://stackoverflow.com/questions/8685739/difference-between-dom-parentnode-and-parentelement&quot;&gt;StackOverflow&lt;/a&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;document.body.parentNode; // the &amp;lt;html&amp;gt; element
+document.body.parentElement; // the &amp;lt;html&amp;gt; element
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือยกตัวอย่างจากภาพเดิม&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/parent_element_diagram.png&quot; alt=&quot;DOM Example&quot; /&gt;
+แผนภาพตัวอย่าง&lt;/p&gt;
+
+&lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
+let div = li.parentNode.parentNode;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
+let div = li.parentElement.parentElement;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราก็จะเลือก parent Element ที่เป็น div ได้เลย ถ้าลองสังเกตดูจะพบว่าทั้งสองคำสั่งมันก็ใช้ได้เหมือนกันนี่ แล้วมันต่างกันอย่างไร?&lt;/p&gt;
+
+&lt;p&gt;เรามาพูดถึงความแตกต่างระหว่าง Node กับ Element เสียก่อน (ความแตกต่างสรุปจาก&lt;a href=&quot;https://blog.webdevsimplified.com/2021-05/node-vs-element/&quot;&gt;หน้าเว็บนี้&lt;/a&gt;)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Element ก็คือ HTML tag ต่าง ๆ ที่อยู่ในหน้าเว็บไซต์ ได้แก่ div, span, body หรืออื่น ๆ&lt;/li&gt;
+  &lt;li&gt;Node จะเป็นอะไรก็ได้ที่มีอยู่ในหน้าเว็บไซต์ รวมถึงข้อความ คอมเม้นต์ ไม่จำกัดว่าเป็น div, span, body, input, form หรืออื่น ๆ ที่เป็น HTML tag&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;เราจะเห็นว่าการเลือก Node จะดูยุ่งยากกว่า เพราะเราค้องแยกระหว่างข้อความ คอมเม้นต์ หรือ HTML tag ดังนั้นแล้ว การใช้งาน Element จะดูจำเพาะมากกว่า&lt;/p&gt;
+
+&lt;p&gt;ผู้อ่านสามารถดูวิดีโอความแตกต่างระหว่าง Element กับ Node ได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/rhvec8cXLlo&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;ต่อมา เรามาดูความแตกต่างการใช้งานของสองคำสั่ง (โค้ดอ้างอิงจาก &lt;a href=&quot;https://stackoverflow.com/questions/8685739/difference-between-dom-parentnode-and-parentelement&quot;&gt;StackOverflow&lt;/a&gt;)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;document.documentElement.parentNode;    // document เป็น node
+document.documentElement.parentElement; // null เนื่องจาก document ไม่ใช่ element
+(document.documentElement.parentNode === document);  // true
+(document.documentElement.parentElement === document);  // false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราจะเห็นว่า document ไม่ได้เป็นหนึ่งใน HTML tag อะไรเลยตามที่กล่าวไว้ตามข้างบน และ document ไม่ได้เป็น element แต่ก็ยังเป็น node อยู่ ดังนั้นการใช้งาน element.parentElement จะคืนค่า null กลับมา&lt;/p&gt;
+
+&lt;h2 id=&quot;elementclosest&quot;&gt;element.closest&lt;/h2&gt;
+
+&lt;p&gt;คำสั่งนี้เป็นส่วนหนึ่งในภาษาสคริปที่อนุญาตให้เราเลือก parent element ที่อยู่ใกล้กันกับ element ที่เราเลือกอยู่โดยการใช้ CSS Selector การใช้งานใช้งานได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;element.closest(&quot;CSS selector&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ยกตัวอย่างโดยเอารูปเดิมมาใช้&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/12/parent_element_diagram.png&quot; alt=&quot;DOM Example&quot; /&gt;
+แผนภาพตัวอย่าง&lt;/p&gt;
+
+&lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
+let div = li.closest('div');
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อพิมพ์ตามข้างบนนี้แล้ว เราจะเลือก parent element ที่เป็น div ครับ เมื่อสังเกตตัวโค้ดแล้วพบว่าใช้งานได้สะดวกมากกว่า node.parentNode กับ element.parentElement&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดีการใช้งานทั้งสามคำสั่งได้แก่ node.parentNode, element.parentElement และ element.closest นี้ขึ้นกับผู้ใช้ว่าจะเอาไปใช้อย่างไรครับ ส่วนกรณีที่ผู้ใช้ไม่ได้ใช้ Vanilla JavaScript  คำสั่งทั้งสามคำสั่งนี้อาจจะไม่ได้ใช้เลยก็ได้ครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="JavaScript" /><category term="Coding" /><category term="Developer" /><category term="Element" /><category term="Selector" /><category term="Parent Element" /><category term="Programming" /><category term="getElementById" /><category term="getElementsByClassName" /><category term="getElementsByName" /><category term="getElementsByTagName" /><category term="querySelector" /><category term="querySelectorAll" /><category term="Node" /><category term="Parent Node" /><category term="เขียนโปรแกรม" /><category term="จาวาสคริป" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><category term="วัตถุ" /><summary type="html">บทความนี้แนะนำวิธีการเลือกวัตถุ parent element ด้วยการใช้ภาษา JavaScript</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python</title><link href="https://nickuntitled.com/2021/12/10/interpupillary_distance_measurement_python/" rel="alternate" type="text/html" title="วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python" /><published>2021-12-08T00:30:00+07:00</published><updated>2021-12-08T00:30:00+07:00</updated><id>https://nickuntitled.com/2021/12/10/interpupillary-distance=measurement-python</id><content type="html" xml:base="https://nickuntitled.com/2021/12/10/interpupillary_distance_measurement_python/">&lt;p&gt;อันนี้เป็นส่วนหนึ่งของงานวิจัย ทำไปแล้วบางส่วน&lt;/p&gt;
 
 &lt;p&gt;ปกติการวัดตาดำ เราจะพบได้ในคนที่เลือกขนาดเครื่อง Virtual Reality Headset หรือวัดขนาดแว่นตา หรืออื่น ๆ ปกติเราจะใช้ไม้บรรทัดวัดเพื่อให้รู้ว่าระยะห่างระหว่างตาดำ (Interpupillary Distance) มีระยะห่างเท่าไร อย่างไรก็ดีเราจะใช้ไม้บรรทัดวัดไปตลอดเหรอก็ไม่สะดวกเท่าไร แถมสมัยนี้เราก็ใช้คอมพิวเตอร์กันอยู่แล้วด้วย เลยเอามาเขียนโค้ดส่วนนี้เพื่อจับระยะการอ้าปากครับ&lt;/p&gt;
 
@@ -270,12 +397,12 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;การใช้งาน LocalStorage ทำได้โดยการเก็บข้อมูลตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem(&apos;token&apos;, &amp;lt; Access Token ที่ได้ &amp;gt;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem('token', &amp;lt; Access Token ที่ได้ &amp;gt;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;แล้วเราสามารถเรียกได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem(&apos;token&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem('token');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;จากนั้นข้อมูล Access Token ที่เก็บไว้ในเว็บเบราวเซอร์ก็จะคืนค่าอยู่ในตัวแปร token ครับ ฟังดูแล้วง่ายกว่าที่ดีคิดไว้ เพราะใช้คำสั่งตามที่เขียนไว้ข้างบนนี้ ข้อมูลก็ออกมาได้แล้วครับ อย่างไรก็ดี การเก็บข้อมูลไว้ใน LocalStorage มีข้อเสีย เนื่องมาจาก&lt;/p&gt;
@@ -318,11 +445,11 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;เพื่อให้ใช้งานตามตัวอย่างด้านล่างนี้ได้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from &apos;http&apos;;
-import express from &apos;express&apos;;
-import dayjs from &apos;dayjs&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from 'http';
+import express from 'express';
+import dayjs from 'dayjs';
 import cookieParser from &quot;cookie-parser&quot;;
-import jwt from &apos;jsonwebtoken&apos;;
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -333,7 +460,7 @@ app.use(cookieParser());
 
 [...]
 
-app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
+app.post('/login', (req, res, next) =&amp;gt; {
 
   [...]
 
@@ -343,7 +470,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
       secure: true,
       httpOnly: true,
       expires: dayjs().add(1, &quot;days&quot;).toDate(),
-      sameSite: &apos;Strict&apos;
+      sameSite: 'Strict'
   });
 
   [...]
@@ -367,7 +494,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
     secure: true,
     httpOnly: true,
     expires: dayjs().add(1, &quot;days&quot;).toDate(),
-    sameSite: &apos;Strict&apos;
+    sameSite: 'Strict'
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -397,7 +524,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราเรียกใช้งานได้โดยผ่านการพิมพ์&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get(&apos;/isloggedin&apos;, (req, res, next) =&amp;gt; {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get('/isloggedin', (req, res, next) =&amp;gt; {
   
   [...]
 
@@ -412,8 +539,8 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราพิมพ์โค้ดได้ตามด้านล่างนี้&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from &apos;apollo-server-express&apos;;
-import { ApolloServerPluginDrainHttpServer } from &apos;apollo-server-core&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 
 [...]
 
@@ -422,7 +549,7 @@ const apollo_server = new ApolloServer({
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   context: ({ req }) =&amp;gt; {
-    let token = req.cookies.authorization || &apos;&apos;;
+    let token = req.cookies.authorization || '';
     return {
       token
     };
@@ -724,7 +851,7 @@ def long_running_function(seconds):
 from rq import Queue, Connection
 from task import long_running_function
 
-redis_conn = Redis(&apos;127.0.0.1&apos;, 6379)
+redis_conn = Redis('127.0.0.1', 6379)
 q = Queue(connection=redis_conn)
 job = q.enqueue(long_running_function,  5)
 job_id = job.id
@@ -752,10 +879,10 @@ Task to print_numbers completed
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;q = Queue(connection=redis_conn)
 job = q.enqueue(long_running_function,  
-        args=(&apos;http://nvie.com&apos;,),
+        args=('http://nvie.com',),
         kwargs={
-            &apos;description&apos;: &apos;Function description&apos;, # This is passed on to count_words_at_url
-            &apos;ttl&apos;: 15  # This is passed on to count_words_at_url function
+            'description': 'Function description', # This is passed on to count_words_at_url
+            'ttl': 15  # This is passed on to count_words_at_url function
         }))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -771,7 +898,7 @@ job = q.enqueue(long_running_function,
 
 &lt;p&gt;หลังจากที่ได้ตัว id มาเรียบร้อยแล้ว เราสามารถติดตามการทำงานของฟังก์ชันที่ประมวลผลอยู่ใน Workers ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job = Job.fetch(&apos;job_id&apos;, connection=redis_conn)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job = Job.fetch('job_id', connection=redis_conn)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;พิมพ์คำสั่งนี้แล้ว ตัวฟังก์ชันจะคืนค่าตัวแปร Job เพื่อใช้สำหรับการประมวลผลในขั้นตอนต่อไป เราติดตามความก้าวหน้าของฟังก์ชันได้โดยพิมพ์คำสั่ง&lt;/p&gt;
@@ -807,21 +934,21 @@ def polling(job_id):
     status = job.get_status()
     result = job.result
 
-    if status == &apos;finished&apos;:
+    if status == 'finished':
         print(json.dumps({
-            &apos;status&apos;: &apos;success&apos;,
-            &apos;result&apos;: result
+            'status': 'success',
+            'result': result
         }))
         return False
-    elif status == &apos;failed&apos;:
+    elif status == 'failed':
         print(json.dumps({
-            &apos;status&apos;: &apos;failed&apos;,
-            &apos;result&apos;: result
+            'status': 'failed',
+            'result': result
         }))
         return False
 
     print(json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
+      'status': 'processing'
     }))
     return True
 
@@ -830,26 +957,26 @@ setInterval(1, polling, job_id)
 
 &lt;h4 id=&quot;ตัวอย่างที่ใช้ไลบรารีของ-flask&quot;&gt;ตัวอย่างที่ใช้ไลบรารีของ Flask&lt;/h4&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route(&apos;/get_status/&amp;lt;string:task_id&amp;gt;&apos;, methods=[&apos;GET&apos;])
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/get_status/&amp;lt;string:task_id&amp;gt;', methods=['GET'])
 def get_status(task_id):
     q = Queue(connection=redis_conn)
     job = Job.fetch(task_id, connection=redis_conn)
     status = job.get_status()
     result = job.result
 
-    if status == &apos;finished&apos;:
+    if status == 'finished':
         return json.dumps({
-          &apos;status&apos;: &apos;success&apos;,
-          &apos;result&apos;: result
+          'status': 'success',
+          'result': result
         })
-    elif status == &apos;failed&apos;:
+    elif status == 'failed':
         return json.dumps({
-          &apos;status&apos;: &apos;failed&apos;,
-          &apos;result&apos;: result
+          'status': 'failed',
+          'result': result
         })
 
     return json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
+      'status': 'processing'
     })
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1113,100 +1240,4 @@ def get_status(task_id):
 
 &lt;p&gt;Windows 11 เป็นระบบปฏิบัติการของไมโครซอฟท์ที่ปล่อยออกมาแล้วช่วงต้นเดือนตุลาคมที่ผ่านมา เราอัพเกรตลงบน Surface Pro X แล้วพบว่าการใช้งานหลายส่วนใช้งานได้ดีขึ้น แต่มีบางส่วนที่ยังขาด ๆ เกิน ๆ อยู่ อันนี้อาจจะต้องรอทางไมโครซอฟท์แก้ไข แล้วอัพเดทอีกทีนึงครับ&lt;/p&gt;
 
-&lt;p&gt;สำหรับคนที่ใช้ Windows 10 อยู่ แล้วใช้คอมที่เป็นซีพียู ARM อันนี้เราแนะนำให้อัพเดทครับ จะได้ใช้แอพที่มีอยู่ในปัจจุบันที่รองรับ x86 64-bit ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Windows" /><category term="Windows 11" /><category term="Microsoft" /><category term="Surface" /><category term="Surface Pro X" /><category term="Laptop" /><category term="Tablet" /><category term="ARM" /><category term="ARM64" /><category term="Upgrade" /><category term="Installation" /><category term="Apps" /><category term="UEFI" /><category term="TPM" /><category term="Trusted Platform Module" /><category term="BIOS" /><summary type="html">หลังจากที่วินโดว์ 11 ปล่อยออกมาให้อัพเกรตแล้ว ทีนี้รอจนกระทั่งไมโครซอฟท์ปล่อยให้อัพบน Windows Update ในบทความนี้กล่าวถึงการใช้งาน และแอพบนอุปกรณ์ที่ใช้อยู่</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Coding anywhere by code-server and VPS</title><link href="https://nickuntitled.com/2021/10/18/coding-anywhere/" rel="alternate" type="text/html" title="Coding anywhere by code-server and VPS" /><published>2021-10-18T02:00:00+07:00</published><updated>2021-10-18T02:00:00+07:00</updated><id>https://nickuntitled.com/2021/10/18/coding-anywhere</id><content type="html" xml:base="https://nickuntitled.com/2021/10/18/coding-anywhere/">&lt;p&gt;Some parts of this article is already written in Thai language in this article to &lt;a href=&quot;https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/&quot;&gt;bring iPad as the development machine&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Nowadays, you can create the remote development machine to replace the laptop and the tablet to develop anymore without hassles by the advances in cloud computing like &lt;a href=&quot;https://aws.amazon.com&quot;&gt;Amazon Web Services&lt;/a&gt;, or &lt;a href=&quot;https://azure.microsoft.com&quot;&gt;Microsoft Azure&lt;/a&gt;, and the cloud-based IDE such as Cloud9, code-server, etc. However, on that day, the cost of the creation of the server was expensive. It counted many bucks per hour. For me, I considered not to create until this year.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-can-i-find-out-this-way&quot;&gt;How can I find out this way?&lt;/h2&gt;
-
-&lt;p&gt;I see the old article about &lt;a href=&quot;https://yieldthought.com/post/12239282034/swapped-my-macbook-for-an-ipad&quot;&gt;bringing the iPad for remote web development&lt;/a&gt; by renting Linode as the development server. I found that it is more convenient. You don’t need to buy a newer and faster computer. You can just scale up or scale down for your needs.&lt;/p&gt;
-
-&lt;p&gt;I found a cheaper way to create the development server. I find the cheaper virtual private server (VPS) in my country like ReadyIDC, and I find the free self-hosted cloud IDE like code-server. You may feel a little confused about what code-server is.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/cdr/code-server&quot;&gt;code-server&lt;/a&gt; (or VS code in the browser) is the self-hosted cloud IDE invented by &lt;a href=&quot;https://coder.com/&quot;&gt;Coder&lt;/a&gt;. It has three advantages (from that Github page):&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Code on any device with a consistent development environment.&lt;/li&gt;
-  &lt;li&gt;Use cloud servers to speed up tests, compilations, downloads, and more.&lt;/li&gt;
-  &lt;li&gt;Preserve battery life when you’re on the go; all intensive tasks run on your server.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I find that it fits with my lifestyle. I bring the laptop or the tablet between home and the campus. I find that it is inconvenient to transfer files between these devices. I consider installation on the remote server.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-can-i-install-code-server&quot;&gt;How can I install code-server?&lt;/h2&gt;
-
-&lt;p&gt;I install code-server by running the Docker container. You can easily run the container by using this command below provided on &lt;a href=&quot;https://hub.docker.com/r/codercom/code-server&quot;&gt;the Docker hub page&lt;/a&gt; as an example.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# This will start a code-server container and expose it at http://127.0.0.1:8080.
-# It will also mount your current directory into the container as `/home/coder/project`
-# and forward your UID/GID so that all file system operations occur as your user outside
-# the container.
-#
-# Your $HOME/.config is mounted at $HOME/.config within the container to ensure you can
-# easily access/modify your code-server config in $HOME/.config/code-server/config.json
-# outside the container.
-mkdir -p ~/.config
-docker run -it --name code-server -p 127.0.0.1:8080:8080 \
-  -v &quot;$HOME/.config:/home/coder/.config&quot; \
-  -v &quot;$PWD:/home/coder/project&quot; \
-  -u &quot;$(id -u):$(id -g)&quot; \
-  -e &quot;DOCKER_USER=$USER&quot; \
-  codercom/code-server:latest
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then, you save this file and run this script. It will show that the code-server is running. You can run the code-server by typing localhost:8080 to access it. However, it is not secure. It is better to use HTTPS..&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-use-https&quot;&gt;How to use HTTPS?&lt;/h2&gt;
-
-&lt;p&gt;For me, I install Nginx and Certbot to reverse proxy to the code-server, and to get the SSL certificate from Let’s encrypt. Both are available as Docker containers. You can install, and configure it as a Docker-compose configuration file.&lt;/p&gt;
-
-&lt;p&gt;I wrote the Nginx configuration shown below as an example. Many parts are generated by Certbot.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
-    server_name &amp;lt;Your Domain Name&amp;gt;;
-
-    location / {
-      proxy_pass http://127.0.0.1:8080/;
-      proxy_set_header Host $host;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection upgrade;
-      proxy_set_header Accept-Encoding gzip;
-    }
-
-    listen [::]:443 ssl ipv6only=on; # managed by Certbot
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/&amp;lt;Your Domain Name&amp;gt;/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/&amp;lt;Your Domain Name&amp;gt;/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-}
-
-server {
-    if ($host = &amp;lt;Your Domain Name&amp;gt;) {
-        return 301 https://$host$request_uri;
-    } # managed by Certbot
-
-    listen 80;
-    listen [::]:80;
-    server_name &amp;lt;Your Domain Name&amp;gt;;
-    return 404; # managed by Certbot
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;After writing this configuration, restart Nginx. You will find that you can access this website as HTTPS.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;To make it easy, you can use &lt;a href=&quot;https://docs.linuxserver.io/general/swag&quot;&gt;LinuxServer SWAG Docker image&lt;/a&gt; to use Nginx and Certbot.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;update&quot;&gt;Update&lt;/h2&gt;
-
-&lt;p&gt;After posting this post on Twitter, there is an account that suggests I install &lt;a href=&quot;https://www.gitpod.io/blog/openvscode-server-launch&quot;&gt;Open Server on the Gitpod’s repo&lt;/a&gt;. I install on my own VPS server. I found that it is better than code-server. I don’t need to use the apt-get command to install, and I don’t need to config in the config.yml file like code-server anymore.&lt;/p&gt;
-
-&lt;p&gt;However, one thing you should consider is security. First, I choose to apply Nginx for the reverse proxy shown above, but you have to change the port from 8080 to 3000. Second, I apply authentication on the Nginx side. Third, I use HTTPS instead of HTTP to make my code environment more secure.&lt;/p&gt;
-
-&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;I needed to have a remote development server, and I found a cheaper way to apply. I considered registering the VPS and installing code-server, Nginx, and Certbot to allow accessing code-server with HTTPS. I found it more convenient to develop from the laptop or the tablet. I do not need to install to take more spaces anymore. I can save many hours running on the laptop’s battery.&lt;/p&gt;
-
-&lt;p&gt;For anyone reading this, I recommend this way.&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Coding" /><category term="Programming" /><category term="Remote" /><category term="WFH" /><category term="Work from home" /><category term="Development" /><category term="Server" /><category term="code-server" /><category term="IDE" /><category term="Cloud" /><category term="Cloud computing" /><category term="VPS" /><summary type="html">With the development of cloud computing and the cloud-based IDE, you can use to create a remote development server. In this article, I describe how to do.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/develop_anywhere_by_code_server.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;สำหรับคนที่ใช้ Windows 10 อยู่ แล้วใช้คอมที่เป็นซีพียู ARM อันนี้เราแนะนำให้อัพเดทครับ จะได้ใช้แอพที่มีอยู่ในปัจจุบันที่รองรับ x86 64-bit ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Windows" /><category term="Windows 11" /><category term="Microsoft" /><category term="Surface" /><category term="Surface Pro X" /><category term="Laptop" /><category term="Tablet" /><category term="ARM" /><category term="ARM64" /><category term="Upgrade" /><category term="Installation" /><category term="Apps" /><category term="UEFI" /><category term="TPM" /><category term="Trusted Platform Module" /><category term="BIOS" /><summary type="html">หลังจากที่วินโดว์ 11 ปล่อยออกมาให้อัพเกรตแล้ว ทีนี้รอจนกระทั่งไมโครซอฟท์ปล่อยให้อัพบน Windows Update ในบทความนี้กล่าวถึงการใช้งาน และแอพบนอุปกรณ์ที่ใช้อยู่</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
