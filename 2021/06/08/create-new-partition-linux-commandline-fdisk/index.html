@@ -109,43 +109,44 @@
 
 	
 
-<div class = 'container mx-auto max-w-screen-md'>
-	<div class="blog-post-header my-6">
-		<h1>
-			แบ่งพาร์ทิชันบนลินุกซ์ด้วย fdisk
-		</h1>
-	</div>
+<div class = 'px-4'>
+	<div class = 'container mx-auto max-w-screen-md'>
+		<div class="blog-post-header my-6">
+			<h1>
+				แบ่งพาร์ทิชันบนลินุกซ์ด้วย fdisk
+			</h1>
+		</div>
 
-	
-		<figure class = "max-w-full">
-			<img src = 'https://asset.nickuntitled.com/2021/06/c08f4d30-d8e1-433a-b38a-76b8c2f78ff8.png' 
-				class = "w-full"/>
-		</figure>
 		
+			<figure class = "max-w-full">
+				<img src = 'https://asset.nickuntitled.com/2021/06/c08f4d30-d8e1-433a-b38a-76b8c2f78ff8.png' 
+					class = "w-full"/>
+			</figure>
+			
 
-	<div class="post-header">
-		<div class="header-date">
-			<span class = 'mr-1'>Published:</span>
-			<span>08 June 2021</span>
+		<div class="post-header">
+			<div class="header-date">
+				<span class = 'mr-1'>Published:</span>
+				<span>08 June 2021</span>
+			</div>
+			<div class="post-share">
+				<span class = 'mr-1'>Share:</span>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/create-new-partition-linux-commandline-fdisk" target="_blank">
+					<div class = "share-button">
+						<i class="bi-facebook"></i>
+					</div>
+				</a>
+				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/create-new-partition-linux-commandline-fdisk&amp;text=แบ่งพาร์ทิชันบนลินุกซ์ด้วย fdisk - https://nickuntitled.com/create-new-partition-linux-commandline-fdisk" target="_blank">
+					<div class = "share-button">
+						<i class="bi-twitter"></i>
+					</div>
+				</a>
+			</div>
+			<div class = "clear-both"></div>
 		</div>
-		<div class="post-share">
-			<span class = 'mr-1'>Share:</span>
-			<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/create-new-partition-linux-commandline-fdisk" target="_blank">
-				<div class = "share-button">
-					<i class="bi-facebook"></i>
-				</div>
-			</a>
-			<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/create-new-partition-linux-commandline-fdisk&amp;text=แบ่งพาร์ทิชันบนลินุกซ์ด้วย fdisk - https://nickuntitled.com/create-new-partition-linux-commandline-fdisk" target="_blank">
-				<div class = "share-button">
-					<i class="bi-twitter"></i>
-				</div>
-			</a>
-		</div>
-		<div class = "clear-both"></div>
-	</div>
 
-	<div class="blog-post-content my-6 mx-auto">
-		<!-- wp:paragraph -->
+		<div class="blog-post-content my-6 mx-auto">
+			<!-- wp:paragraph -->
 <p>โปรแกรมแบ่งพาร์ทิชัน (Partition Tool) เป็นโปรแกรมแบ่งพื้นที่บนฮาร์ดดิสก์ของคอมพิวเตอร์ให้มีขนาดที่ต้องการเพื่อลงระบบปฏิบัติการ ลงโปรแกรม เก็บข้อมูล รูปภาพ เพลง เป็นต้น ถ้าเราใช้บนระบบปฏิบัติการแมคก็จะเป็น <a href="https://support.apple.com/th-th/guide/disk-utility/welcome/mac" target="_blank" rel="noreferrer noopener" title="https://support.apple.com/th-th/guide/disk-utility/welcome/mac">Disk Utility</a> หรือวินโดว์ก็จะเป็น <a href="https://docs.microsoft.com/en-us/windows-server/storage/disk-management/overview-of-disk-management" target="_blank" rel="noreferrer noopener" title="https://docs.microsoft.com/en-us/windows-server/storage/disk-management/overview-of-disk-management">Disk Management</a>, <a href="https://www.easeus.com/partition-manager/?ad&amp;gclid=Cj0KCQjwh_eFBhDZARIsALHjIKe8_yitkr2njU8ur9JT9jKzQ-femLVoEvkDidZDoN9fPaVBDk8F_eIaAqNGEALw_wcB" target="_blank" rel="noreferrer noopener" title="https://www.easeus.com/partition-manager/?ad&amp;gclid=Cj0KCQjwh_eFBhDZARIsALHjIKe8_yitkr2njU8ur9JT9jKzQ-femLVoEvkDidZDoN9fPaVBDk8F_eIaAqNGEALw_wcB">easeUS Partition Master</a> หรือบนลินุกซ์จะใช้โปรแกรม <a href="https://gparted.org/" target="_blank" rel="noreferrer noopener" title="https://gparted.org/">GParted</a> สำหรับคนที่ใช้งานบน GUI แต่สำหรับคนที่ใช้งานลินุกซ์แบบคอมมานไลน์แล้วเราจะใช้งานอย่างไรดีล่ะ</p>
 <!-- /wp:paragraph -->
 
@@ -329,58 +330,59 @@
 <p>ปล. รูป cover เอามาจาก<a rel="noreferrer noopener" href="https://pixnio.com/miscellaneous/code-programming-computer-technology-function-command#" target="_blank">เว็บ Pixnio</a> ครับ</p>
 <!-- /wp:paragraph -->
 
-	</div>
+		</div>
 
-	<div class="tags-container">
-		
-			<span class="post-tag">CLI</span>
-		
-			<span class="post-tag">command line</span>
-		
-			<span class="post-tag">fdisk</span>
-		
-			<span class="post-tag">harddisk</span>
-		
-			<span class="post-tag">linux</span>
-		
-			<span class="post-tag">partition</span>
-		
-			<span class="post-tag">partition table</span>
-		
-			<span class="post-tag">unix</span>
-		
-			<span class="post-tag">คอมมานไลน์</span>
-		
-			<span class="post-tag">พาร์ทิชัน</span>
-		
-			<span class="post-tag">ลินุกซ์</span>
-		
-			<span class="post-tag">ฮาร์ดดิสก์</span>
-		
-	</div>
+		<div class="tags-container">
+			
+				<span class="post-tag">CLI</span>
+			
+				<span class="post-tag">command line</span>
+			
+				<span class="post-tag">fdisk</span>
+			
+				<span class="post-tag">harddisk</span>
+			
+				<span class="post-tag">linux</span>
+			
+				<span class="post-tag">partition</span>
+			
+				<span class="post-tag">partition table</span>
+			
+				<span class="post-tag">unix</span>
+			
+				<span class="post-tag">คอมมานไลน์</span>
+			
+				<span class="post-tag">พาร์ทิชัน</span>
+			
+				<span class="post-tag">ลินุกซ์</span>
+			
+				<span class="post-tag">ฮาร์ดดิสก์</span>
+			
+		</div>
 
-	<div class = ' my-6'>
-		<div class="navigation">
-			<div class = "prev">
-				
-					<a href="/2021/06/04/pdf-reader-application-surface-pro-x/">
-						<i class = 'bi-arrow-left-square-fill'></i>
-						<span class = 'ml-1'>
-							พูดถึงแอพอ่านไฟล์ PDF บน Surface Pro X
-						</span>
-					</a>
-				
-			</div>
+		<div class = ' my-6'>
+			<div class="navigation">
+				<div class = "prev">
+					
+						<a href="/2021/06/04/pdf-reader-application-surface-pro-x/">
+							<i class = 'bi-arrow-left-square-fill'></i>
+							<span class = 'ml-1'>
+								พูดถึงแอพอ่านไฟล์ PDF บน Surface Pro X
+							</span>
+						</a>
+					
+				</div>
 
-			<div class = "next">
-				
-					<a href="/2021/06/12/introduction-of-river-audax/">
-						<span class = 'mr-1'>
-							แนะนำกิจกรรม Audax เรือ
-						</span>
-						<i class = 'bi-arrow-right-square-fill'></i>
-					</a>
-				
+				<div class = "next">
+					
+						<a href="/2021/06/12/introduction-of-river-audax/">
+							<span class = 'mr-1'>
+								แนะนำกิจกรรม Audax เรือ
+							</span>
+							<i class = 'bi-arrow-right-square-fill'></i>
+						</a>
+					
+				</div>
 			</div>
 		</div>
 	</div>

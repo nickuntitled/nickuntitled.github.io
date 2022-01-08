@@ -118,43 +118,44 @@
 
 	
 
-<div class = 'container mx-auto max-w-screen-md'>
-	<div class="blog-post-header my-6">
-		<h1>
-			เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter
-		</h1>
-	</div>
+<div class = 'px-4'>
+	<div class = 'container mx-auto max-w-screen-md'>
+		<div class="blog-post-header my-6">
+			<h1>
+				เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter
+			</h1>
+		</div>
 
-	
-		<figure class = "max-w-full">
-			<img src = 'https://asset.nickuntitled.com/2021/03/fd5fbff0-c4af-4c61-995a-127e7fda07d6.png' 
-				class = "w-full"/>
-		</figure>
 		
+			<figure class = "max-w-full">
+				<img src = 'https://asset.nickuntitled.com/2021/03/fd5fbff0-c4af-4c61-995a-127e7fda07d6.png' 
+					class = "w-full"/>
+			</figure>
+			
 
-	<div class="post-header">
-		<div class="header-date">
-			<span class = 'mr-1'>Published:</span>
-			<span>12 March 2021</span>
+		<div class="post-header">
+			<div class="header-date">
+				<span class = 'mr-1'>Published:</span>
+				<span>12 March 2021</span>
+			</div>
+			<div class="post-share">
+				<span class = 'mr-1'>Share:</span>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter" target="_blank">
+					<div class = "share-button">
+						<i class="bi-facebook"></i>
+					</div>
+				</a>
+				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter&amp;text=เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter - https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter" target="_blank">
+					<div class = "share-button">
+						<i class="bi-twitter"></i>
+					</div>
+				</a>
+			</div>
+			<div class = "clear-both"></div>
 		</div>
-		<div class="post-share">
-			<span class = 'mr-1'>Share:</span>
-			<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter" target="_blank">
-				<div class = "share-button">
-					<i class="bi-facebook"></i>
-				</div>
-			</a>
-			<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter&amp;text=เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter - https://nickuntitled.com/running-tensorflow-savedmodel-node-js-without-converter" target="_blank">
-				<div class = "share-button">
-					<i class="bi-twitter"></i>
-				</div>
-			</a>
-		</div>
-		<div class = "clear-both"></div>
-	</div>
 
-	<div class="blog-post-content my-6 mx-auto">
-		<!-- wp:paragraph -->
+		<div class="blog-post-content my-6 mx-auto">
+			<!-- wp:paragraph -->
 <p>ปกติเวลาเรามีข้อมูลที่ได้รับการเทรนเรียบร้อยแล้วทดสอบแล้วได้ผลที่แม่นยำตามที่เราต้องการ จากนั้นเรานำโมเดลที่ผ่านการเทรน และทดสอบแล้วมารันในโปรแกรมซึ่งส่วนใหญ่ก็จะเขียนในภาษาไพทอน แต่ทีนี้เราจะต้องดูปลายทางว่าเราจะนำข้อมูลที่เทรนมาทำงานบนเว็บเบราวเซอร์ มาไว้ในอุปกรณ์ IoT (Internet of Things) หรืออื่น ๆ</p>
 <!-- /wp:paragraph -->
 
@@ -256,60 +257,61 @@ tf.saved_model.save(pretrained_model, save_path)</code></pre>
 <p>หลังจากนั้นข้อมูลที่เป็น input ได้รับการทำนายโดยโมเดลที่ผ่านการเทรนเรียบร้อย หลังจากนั้นจะเอาข้อมูลที่ได้ไปทำอะไรก็ขึ้นกับผู้อ่านว่าจะเอาไปทำอะไรดีล่ะ ของเราเป็น Face detection ก็นำตำแหน่งของใบหน้าที่ได้ไปประมวลผลเพื่อหาองศาการหันของศีรษะต่อหรือเรียกว่า Head pose estimation ครับ</p>
 <!-- /wp:paragraph -->
 
-	</div>
+		</div>
 
-	<div class="tags-container">
-		
-			<span class="post-tag">artificial intelligence</span>
-		
-			<span class="post-tag">deep learning</span>
-		
-			<span class="post-tag">Google</span>
-		
-			<span class="post-tag">javascript</span>
-		
-			<span class="post-tag">machine learning</span>
-		
-			<span class="post-tag">Node.js</span>
-		
-			<span class="post-tag">savedmodel</span>
-		
-			<span class="post-tag">Tensorflow.js</span>
-		
-			<span class="post-tag">การเรียนรู้ของเครื่อง</span>
-		
-			<span class="post-tag">จาวาสคริป</span>
-		
-			<span class="post-tag">ปัญญาประดิษฐ์</span>
-		
-			<span class="post-tag">เขียนโปรแกรม</span>
-		
-			<span class="post-tag">เขียนโปรแรกม</span>
-		
-	</div>
+		<div class="tags-container">
+			
+				<span class="post-tag">artificial intelligence</span>
+			
+				<span class="post-tag">deep learning</span>
+			
+				<span class="post-tag">Google</span>
+			
+				<span class="post-tag">javascript</span>
+			
+				<span class="post-tag">machine learning</span>
+			
+				<span class="post-tag">Node.js</span>
+			
+				<span class="post-tag">savedmodel</span>
+			
+				<span class="post-tag">Tensorflow.js</span>
+			
+				<span class="post-tag">การเรียนรู้ของเครื่อง</span>
+			
+				<span class="post-tag">จาวาสคริป</span>
+			
+				<span class="post-tag">ปัญญาประดิษฐ์</span>
+			
+				<span class="post-tag">เขียนโปรแกรม</span>
+			
+				<span class="post-tag">เขียนโปรแรกม</span>
+			
+		</div>
 
-	<div class = ' my-6'>
-		<div class="navigation">
-			<div class = "prev">
-				
-					<a href="/2021/03/06/how-to-install-coding-onnx-js-observations/">
-						<i class = 'bi-arrow-left-square-fill'></i>
-						<span class = 'ml-1'>
-							การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต
-						</span>
-					</a>
-				
-			</div>
+		<div class = ' my-6'>
+			<div class="navigation">
+				<div class = "prev">
+					
+						<a href="/2021/03/06/how-to-install-coding-onnx-js-observations/">
+							<i class = 'bi-arrow-left-square-fill'></i>
+							<span class = 'ml-1'>
+								การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต
+							</span>
+						</a>
+					
+				</div>
 
-			<div class = "next">
-				
-					<a href="/2021/03/14/access-oreilly-student-price-acm/">
-						<span class = 'mr-1'>
-							เทคนิคสมัครสมาชิกเพื่อให้ใช้ Oreilly ในราคานักศึกษาเพียง 19$
-						</span>
-						<i class = 'bi-arrow-right-square-fill'></i>
-					</a>
-				
+				<div class = "next">
+					
+						<a href="/2021/03/14/access-oreilly-student-price-acm/">
+							<span class = 'mr-1'>
+								เทคนิคสมัครสมาชิกเพื่อให้ใช้ Oreilly ในราคานักศึกษาเพียง 19$
+							</span>
+							<i class = 'bi-arrow-right-square-fill'></i>
+						</a>
+					
+				</div>
 			</div>
 		</div>
 	</div>

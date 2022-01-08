@@ -109,43 +109,44 @@
 
 	
 
-<div class = 'container mx-auto max-w-screen-md'>
-	<div class="blog-post-header my-6">
-		<h1>
-			Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous
-		</h1>
-	</div>
+<div class = 'px-4'>
+	<div class = 'container mx-auto max-w-screen-md'>
+		<div class="blog-post-header my-6">
+			<h1>
+				Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous
+			</h1>
+		</div>
 
-	
-		<figure class = "max-w-full">
-			<img src = 'https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg' 
-				class = "w-full"/>
-		</figure>
 		
+			<figure class = "max-w-full">
+				<img src = 'https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg' 
+					class = "w-full"/>
+			</figure>
+			
 
-	<div class="post-header">
-		<div class="header-date">
-			<span class = 'mr-1'>Published:</span>
-			<span>07 November 2021</span>
+		<div class="post-header">
+			<div class="header-date">
+				<span class = 'mr-1'>Published:</span>
+				<span>07 November 2021</span>
+			</div>
+			<div class="post-share">
+				<span class = 'mr-1'>Share:</span>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/redis-queue-python" target="_blank">
+					<div class = "share-button">
+						<i class="bi-facebook"></i>
+					</div>
+				</a>
+				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/redis-queue-python&amp;text=Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous - https://nickuntitled.com/redis-queue-python" target="_blank">
+					<div class = "share-button">
+						<i class="bi-twitter"></i>
+					</div>
+				</a>
+			</div>
+			<div class = "clear-both"></div>
 		</div>
-		<div class="post-share">
-			<span class = 'mr-1'>Share:</span>
-			<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/redis-queue-python" target="_blank">
-				<div class = "share-button">
-					<i class="bi-facebook"></i>
-				</div>
-			</a>
-			<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/redis-queue-python&amp;text=Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous - https://nickuntitled.com/redis-queue-python" target="_blank">
-				<div class = "share-button">
-					<i class="bi-twitter"></i>
-				</div>
-			</a>
-		</div>
-		<div class = "clear-both"></div>
-	</div>
 
-	<div class="blog-post-content my-6 mx-auto">
-		<p>ปกติเวลาที่ฝั่ง Client ส่งข้อมูลไปที่ Server แล้ว เราจะรอระยะเวลาไม่นาน จากนั้น Server จะส่งข้อมูลกลับทาง Client ไว้สำหรับการประมวลผลต่อ ทีนี้เวลาที่เราส่งข้อมูลที่ใช้ระยะเวลาประมวลผลนานไปยัง Server แล้วประมวลผลผ่านไปซักพัก จะเกิดปัญหาหนึ่งคือ Request Timeout</p>
+		<div class="blog-post-content my-6 mx-auto">
+			<p>ปกติเวลาที่ฝั่ง Client ส่งข้อมูลไปที่ Server แล้ว เราจะรอระยะเวลาไม่นาน จากนั้น Server จะส่งข้อมูลกลับทาง Client ไว้สำหรับการประมวลผลต่อ ทีนี้เวลาที่เราส่งข้อมูลที่ใช้ระยะเวลาประมวลผลนานไปยัง Server แล้วประมวลผลผ่านไปซักพัก จะเกิดปัญหาหนึ่งคือ Request Timeout</p>
 
 <p>เมื่อเกิดปัญหา Timeout แล้ว เราต้องการแก้ปัญหานี้ จะทำอย่างไร? ปัญหานี้ที่เคยอ่านในอินเตอร์เน็ตก็มีหลายวิธี ตัวอย่างเช่น แก้ที่ตัวเว็บเซิร์ฟเวอร์ว่าตั้งค่าให้มีระยะเวลานานเท่าไรก่อนที่จะขึ้นว่า Timeout หรือว่าไปแก้ที่ตัวโค้ดให้ใช้เวลาประมวลผลที่สั้นลง</p>
 
@@ -414,54 +415,55 @@ def get_status(task_id):
 
 <p>ซึ่ง เราได้ทดลองใช้กับ web server ที่เขียนโดย Flask ไปแล้ว ตัว Redis Queue แก้ปัญหาเรื่อง Request Timeout ระหว่างการประมวลผลฟังก์ชันที่ต้องใช้ระยะเวลาประมวลผลนานครับ</p>
 
-	</div>
+		</div>
 
-	<div class="tags-container">
-		
-			<span class="post-tag">Redis</span>
-		
-			<span class="post-tag">Programming</span>
-		
-			<span class="post-tag">Python</span>
-		
-			<span class="post-tag">Redis Queue</span>
-		
-			<span class="post-tag">HTTP</span>
-		
-			<span class="post-tag">Web server</span>
-		
-			<span class="post-tag">Flask</span>
-		
-			<span class="post-tag">Worker</span>
-		
-			<span class="post-tag">ไพทอน</span>
-		
-			<span class="post-tag">เขียนโปรแกรม</span>
-		
-	</div>
+		<div class="tags-container">
+			
+				<span class="post-tag">Redis</span>
+			
+				<span class="post-tag">Programming</span>
+			
+				<span class="post-tag">Python</span>
+			
+				<span class="post-tag">Redis Queue</span>
+			
+				<span class="post-tag">HTTP</span>
+			
+				<span class="post-tag">Web server</span>
+			
+				<span class="post-tag">Flask</span>
+			
+				<span class="post-tag">Worker</span>
+			
+				<span class="post-tag">ไพทอน</span>
+			
+				<span class="post-tag">เขียนโปรแกรม</span>
+			
+		</div>
 
-	<div class = ' my-6'>
-		<div class="navigation">
-			<div class = "prev">
-				
-					<a href="/2021/11/5/hello_world/">
-						<i class = 'bi-arrow-left-square-fill'></i>
-						<span class = 'ml-1'>
-							Hello World ใน Python, JS และ C++
-						</span>
-					</a>
-				
-			</div>
+		<div class = ' my-6'>
+			<div class="navigation">
+				<div class = "prev">
+					
+						<a href="/2021/11/5/hello_world/">
+							<i class = 'bi-arrow-left-square-fill'></i>
+							<span class = 'ml-1'>
+								Hello World ใน Python, JS และ C++
+							</span>
+						</a>
+					
+				</div>
 
-			<div class = "next">
-				
-					<a href="/2021/11/9/enter_programming_how_to_move_from_medical_doctor/">
-						<span class = 'mr-1'>
-							Enter Programming - จากเรียนแพทย์เข้ามาเขียนโปรแกรมได้ยังไง?
-						</span>
-						<i class = 'bi-arrow-right-square-fill'></i>
-					</a>
-				
+				<div class = "next">
+					
+						<a href="/2021/11/9/enter_programming_how_to_move_from_medical_doctor/">
+							<span class = 'mr-1'>
+								Enter Programming - จากเรียนแพทย์เข้ามาเขียนโปรแกรมได้ยังไง?
+							</span>
+							<i class = 'bi-arrow-right-square-fill'></i>
+						</a>
+					
+				</div>
 			</div>
 		</div>
 	</div>

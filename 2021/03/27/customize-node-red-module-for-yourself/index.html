@@ -109,43 +109,44 @@
 
 	
 
-<div class = 'container mx-auto max-w-screen-md'>
-	<div class="blog-post-header my-6">
-		<h1>
-			เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ
-		</h1>
-	</div>
+<div class = 'px-4'>
+	<div class = 'container mx-auto max-w-screen-md'>
+		<div class="blog-post-header my-6">
+			<h1>
+				เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ
+			</h1>
+		</div>
 
-	
-		<figure class = "max-w-full">
-			<img src = 'https://asset.nickuntitled.com/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png' 
-				class = "w-full"/>
-		</figure>
 		
+			<figure class = "max-w-full">
+				<img src = 'https://asset.nickuntitled.com/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png' 
+					class = "w-full"/>
+			</figure>
+			
 
-	<div class="post-header">
-		<div class="header-date">
-			<span class = 'mr-1'>Published:</span>
-			<span>27 March 2021</span>
+		<div class="post-header">
+			<div class="header-date">
+				<span class = 'mr-1'>Published:</span>
+				<span>27 March 2021</span>
+			</div>
+			<div class="post-share">
+				<span class = 'mr-1'>Share:</span>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/customize-node-red-module-for-yourself" target="_blank">
+					<div class = "share-button">
+						<i class="bi-facebook"></i>
+					</div>
+				</a>
+				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/customize-node-red-module-for-yourself&amp;text=เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ - https://nickuntitled.com/customize-node-red-module-for-yourself" target="_blank">
+					<div class = "share-button">
+						<i class="bi-twitter"></i>
+					</div>
+				</a>
+			</div>
+			<div class = "clear-both"></div>
 		</div>
-		<div class="post-share">
-			<span class = 'mr-1'>Share:</span>
-			<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/customize-node-red-module-for-yourself" target="_blank">
-				<div class = "share-button">
-					<i class="bi-facebook"></i>
-				</div>
-			</a>
-			<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/customize-node-red-module-for-yourself&amp;text=เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ - https://nickuntitled.com/customize-node-red-module-for-yourself" target="_blank">
-				<div class = "share-button">
-					<i class="bi-twitter"></i>
-				</div>
-			</a>
-		</div>
-		<div class = "clear-both"></div>
-	</div>
 
-	<div class="blog-post-content my-6 mx-auto">
-		<!-- wp:paragraph -->
+		<div class="blog-post-content my-6 mx-auto">
+			<!-- wp:paragraph -->
 <p>Node-RED เป็นเครื่องมือที่ช่วยให้เราทำงานแบบ <a href="https://en.wikipedia.org/wiki/Flow-based_programming" target="_blank" rel="noreferrer noopener" title="https://en.wikipedia.org/wiki/Flow-based_programming">Flow-based programming</a> ซึ่งเป็นอุปกรณ์ที่ช่วยให้นักพัฒนาโปรแกรมสามารถทำงานให้เครื่องมือ <a href="https://www.ops.go.th/main/index.php/knowledge-base/article-pr/655-iot-%E0%B8%81%E0%B8%B3%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B0%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%A5%E0%B8%81#:~:text=IoT%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%20Internet%20of%20Things,%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94%E0%B9%89%20%E0%B8%AD%E0%B8%B5%E0%B8%81%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%20%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96" target="_blank" rel="noreferrer noopener" title="https://www.ops.go.th/main/index.php/knowledge-base/article-pr/655-iot-%E0%B8%81%E0%B8%B3%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B0%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%A5%E0%B8%81#:~:text=IoT%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%20Internet%20of%20Things,%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94%E0%B9%89%20%E0%B8%AD%E0%B8%B5%E0%B8%81%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%20%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96">IoT (Internet of Things)</a> ทำงานได้ตามที่เราต้องการได้ง่ายโดยทำผ่านเว็บเบราวเซอร์ ตัวอย่างของอุปกรณ์ที่จะมาพัฒนาที่มีชื่อก็ได้แก่ Raspberry Pi ที่วางขายมานานแล้ว จนตอนนี้ออกเป็นรุ่น Raspberry Pi 4 Model B ออกมาครับ เรามาเข้าเรื่องกันดีกว่า</p>
 <!-- /wp:paragraph -->
 
@@ -293,60 +294,61 @@
 <p>เอาล่ะครับ อันนี้เป็นตัวอย่างการสร้าง Node ขึ้นมาใช้เอง โค้ดในบทความเอามาจากเว็บ Node-RED เอง แต่สำหรับผู้อ่านที่ต้องการอ่านข้อมูลเพิ่มเติม <a href="https://nodered.org/docs/creating-nodes/" target="_blank" rel="noreferrer noopener" title="https://nodered.org/docs/creating-nodes/">เว็บของผู้ผลิตอย่าง Node-RED เอง</a>จะพูดถึงการเขียนอย่างละเอียด (ระดับนึง) เพื่อให้ผู้อ่านสร้าง Node ไปใช้งานต่อได้เองครับผม</p>
 <!-- /wp:paragraph -->
 
-	</div>
+		</div>
 
-	<div class="tags-container">
-		
-			<span class="post-tag">flow</span>
-		
-			<span class="post-tag">flow-based</span>
-		
-			<span class="post-tag">internet of things</span>
-		
-			<span class="post-tag">IoT</span>
-		
-			<span class="post-tag">javascript</span>
-		
-			<span class="post-tag">node-red</span>
-		
-			<span class="post-tag">Node.js</span>
-		
-			<span class="post-tag">programming</span>
-		
-			<span class="post-tag">raspberry pi</span>
-		
-			<span class="post-tag">จาวาสคริป</span>
-		
-			<span class="post-tag">อินเทอร์เน็ตของสรรพสิ่ง</span>
-		
-			<span class="post-tag">อิเล็กทรอนิกส์</span>
-		
-			<span class="post-tag">เขียนโปรแกรม</span>
-		
-	</div>
+		<div class="tags-container">
+			
+				<span class="post-tag">flow</span>
+			
+				<span class="post-tag">flow-based</span>
+			
+				<span class="post-tag">internet of things</span>
+			
+				<span class="post-tag">IoT</span>
+			
+				<span class="post-tag">javascript</span>
+			
+				<span class="post-tag">node-red</span>
+			
+				<span class="post-tag">Node.js</span>
+			
+				<span class="post-tag">programming</span>
+			
+				<span class="post-tag">raspberry pi</span>
+			
+				<span class="post-tag">จาวาสคริป</span>
+			
+				<span class="post-tag">อินเทอร์เน็ตของสรรพสิ่ง</span>
+			
+				<span class="post-tag">อิเล็กทรอนิกส์</span>
+			
+				<span class="post-tag">เขียนโปรแกรม</span>
+			
+		</div>
 
-	<div class = ' my-6'>
-		<div class="navigation">
-			<div class = "prev">
-				
-					<a href="/2021/03/20/update-asus-vivobook-x512-harddisk-1tb/">
-						<i class = 'bi-arrow-left-square-fill'></i>
-						<span class = 'ml-1'>
-							นำโน้ตบุ๊ค ASUS Vivobook ไปเพิ่ม Harddisk เป็น SSD 1TB
-						</span>
-					</a>
-				
-			</div>
+		<div class = ' my-6'>
+			<div class="navigation">
+				<div class = "prev">
+					
+						<a href="/2021/03/20/update-asus-vivobook-x512-harddisk-1tb/">
+							<i class = 'bi-arrow-left-square-fill'></i>
+							<span class = 'ml-1'>
+								นำโน้ตบุ๊ค ASUS Vivobook ไปเพิ่ม Harddisk เป็น SSD 1TB
+							</span>
+						</a>
+					
+				</div>
 
-			<div class = "next">
-				
-					<a href="/2021/04/02/power-supply-wattage-calculation/">
-						<span class = 'mr-1'>
-							Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ
-						</span>
-						<i class = 'bi-arrow-right-square-fill'></i>
-					</a>
-				
+				<div class = "next">
+					
+						<a href="/2021/04/02/power-supply-wattage-calculation/">
+							<span class = 'mr-1'>
+								Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ
+							</span>
+							<i class = 'bi-arrow-right-square-fill'></i>
+						</a>
+					
+				</div>
 			</div>
 		</div>
 	</div>
