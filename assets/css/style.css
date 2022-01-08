@@ -659,24 +659,38 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+}@media (min-width: 768px){.navigation{
+    display: grid;
+  }.navigation{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }.navigation .prev{
   font-size: 0.75rem;
   line-height: 1rem;
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}@media (min-width: 768px){.navigation .prev{
+    margin-bottom: 0.5rem;
+  }
+}.navigation .prev{
   font-weight: 400;
         font-family: 'Anakotmai', sans-serif;
 }.navigation .next{
   font-size: 0.75rem;
   line-height: 1rem;
-  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+}@media (min-width: 768px){.navigation .next{
+    margin-top: 0.5rem;
+  }
+}.navigation .next{
   font-weight: 400;
-  text-align: right;
+}@media (min-width: 768px){.navigation .next{
+    text-align: right;
+  }
+}.navigation .next {
         font-family: 'Anakotmai', sans-serif;
-}.navigation a{
+    }.navigation a{
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));

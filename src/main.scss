@@ -420,22 +420,26 @@
         @apply mt-0;
         @apply mb-2;
         @apply py-4;
-        @apply grid; 
-        @apply grid-cols-2;
+        @apply md:grid; 
+        @apply md:grid-cols-2;
     }
 
     .navigation .prev {
         @apply text-xs;
-        @apply my-2;
+        @apply mt-2;
+        @apply mb-6;
+        @apply md:mb-2;
         @apply font-normal;
         font-family: 'Anakotmai', sans-serif;
     }
 
     .navigation .next {
         @apply text-xs;
-        @apply my-2;
+        @apply mb-2;
+        @apply mt-6;
+        @apply md:mt-2;
         @apply font-normal;
-        @apply text-right;
+        @apply md:text-right;
         font-family: 'Anakotmai', sans-serif;
     }
 
