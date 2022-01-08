@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="assets/css/reset.css">
 		<link rel="stylesheet" href="assets/css/highlight.css">
 		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 		<link rel="shortcut icon" href="assets/images/favicon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
 		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
@@ -34,59 +35,117 @@
 	</head>
 <body>
 
-<div class="container">
+<div>
 	<div class="profile">
-		<div class="profile-about">
-			<div>
-				<h2>Nick Untitled</h2>
-			</div>
-			<div>
-				Writing as my personal diary
-			</div>
-			<div>
-				<ul class = 'go_right'>
-					<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+		<div>
+			<div class = 'px-4 py-4 w-full shadow-md'>
+				<div class = 'container mx-auto max-w-screen-md'>
+					<div class = 'float-none md:float-left'>
+						<div class = 'mb-3 md:mb-0'>
+							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
+								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
+							</h2>
+							<div class = 'font-sans text-base inline align-baseline'>
+								Writing as my personal diary
+							</div>
+						</div>
+					</div>
 					
-					<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
-					
-					
-					<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
-					
-					
-					
-					<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
-					
-					
-					<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a></li>
-					<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a></li>
-					<li class="mode" id="mode-switcher" onclick="toggleNightMode();">
-						<span></span>
-					</li>
-				</ul>
+					<div class = 'float-none md:float-right'>
+						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
+							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
+								<a href = 'feed.xml' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-rss-fill"></i>
+									</div>
+								</a>
+								
+								<a href = 'about' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-file-person-fill"></i>
+									</div>
+								</a>
+
+								
+									<a href = 'https://facebook.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-facebook"></i>
+										</div>
+									</a>
+								
+								
+									<a href = 'https://twitter.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-twitter"></i>
+										</div>
+									</a>
+								
+								
+								
+								
+									<a href = 'https://github.com/nickuntitled' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-github"></i>
+										</div>
+									</a>
+								
+							</div>
+						</div>
+					</div>
+
+					<div class = 'clear-both'></div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	
-<div class="blog-post-header">
-	<h1>เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค</h1>
-</div>
 
-<div class="post-header">
-	<div class="post-date">04.03.2021</div>
-	<div class="post-share">
-		Share:&nbsp; 
-		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/ipad-as-a-programming-laptop-replacement" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
-		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/ipad-as-a-programming-laptop-replacement&amp;text=เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค - https://nickuntitled.com/ipad-as-a-programming-laptop-replacement" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+<div class = 'container mx-auto max-w-screen-md'>
+	<div class="blog-post-header my-6">
+		<h1>
+			เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค
+		</h1>
 	</div>
-</div>
 
-	<figure>
-		<img src = 'https://asset.nickuntitled.com/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d.png' />
-	</figure>
 	
-<div class="blog-post-content">
-	<!-- wp:paragraph -->
+		<figure class = "max-w-full">
+			<img src = 'https://asset.nickuntitled.com/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d.png' 
+				class = "w-full"/>
+		</figure>
+		
+
+	<div class="post-header">
+		<div class="header-date">
+			<span class = 'mr-1'>Published:</span>
+			<span>04 March 2021</span>
+		</div>
+		<div class="post-share">
+			<span class = 'mr-1'>Share:</span>
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/ipad-as-a-programming-laptop-replacement" target="_blank">
+				<div class = "share-button">
+					<i class="bi-facebook"></i>
+				</div>
+			</a>
+			<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/ipad-as-a-programming-laptop-replacement&amp;text=เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค - https://nickuntitled.com/ipad-as-a-programming-laptop-replacement" target="_blank">
+				<div class = "share-button">
+					<i class="bi-twitter"></i>
+				</div>
+			</a>
+		</div>
+		<div class = "clear-both"></div>
+	</div>
+
+	<div class="blog-post-content my-6 mx-auto">
+		<!-- wp:paragraph -->
 <p>หลังจากที่ไม่ได้เขียนบทความมานาน เริ่มมาเขียนให้ถี่ขึ้นกันดีกว่า วันนี้เราจะมาพูดถึงการนำไอแพด (หรือแท็บเล็ตยี่ห้ออื่น) มาใช้งานแทนคอมพิวเตอร์</p>
 <!-- /wp:paragraph -->
 
@@ -256,60 +315,90 @@
 <p>ผู้เชียนเปลี่ยนจาก iPad Pro มาใช้งาน Microsoft Surface Pro X แทนแล้วครับ ซื้อมือสองมาใช้งานในราคาครึ่งหนึ่งของราคาเต็ม ส่วนแอพที่ใช้งานผู้อ่านสามารถ<a href="https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/" target="_blank" rel="noreferrer noopener" title="Surface Pro X กับแอพที่ใช้งานอยู่ในขณะนี้">อ่านต่อได้ที่ลิ้งค์นี้</a>ครับ ส่วนใครจะเอามาเขียนโปรแกรม ผู้อ่านสามารถ<a href="https://nickuntitled.com/2021/06/16/technique-software-development-on-surface-pro-x/" target="_blank" rel="noreferrer noopener" title="วิธีพัฒนาแอพลิเคชันบน Surface Pro X">อ่านต่อได้ที่บทความนี้เช่นกัน</a></p>
 <!-- /wp:paragraph -->
 
-</div>
-<div class="tags-container">
-	
-		<span class="post-tag">computer</span>, 
-	
-		<span class="post-tag">iPad</span>, 
-	
-		<span class="post-tag">iPad pro</span>, 
-	
-		<span class="post-tag">personal</span>, 
-	
-		<span class="post-tag">productivity</span>, 
-	
-		<span class="post-tag">programming</span>, 
-	
-		<span class="post-tag">replacement</span>, 
-	
-		<span class="post-tag">working</span>, 
-	
-		<span class="post-tag">คอมพิวเตอร์</span>, 
-	
-		<span class="post-tag">ทำงาน</span>, 
-	
-		<span class="post-tag">เขียนโปรแกรม</span>, 
-	
-		<span class="post-tag">แท็บเล็ต</span>, 
-	
-		<span class="post-tag">ไอแพด</span>
-	
-</div>
-<div class="navigation">
-	
-		<a class="prev" href="/2021/02/21/beware-of-reading-header-only/">< ระมัดระวังการอ่านแต่พาดหัวข่าว</a>
-	 
-	<a class="next" href="/2021/03/06/after-watching-raya-and-the-last-dragon/">พูดถึงหนัง Raya and The Last Dragon  หลังจากไปดูในโรงแล้ว ></a>
+	</div>
 
-</div>
-	
-</div>
+	<div class="tags-container">
+		
+			<span class="post-tag">computer</span>
+		
+			<span class="post-tag">iPad</span>
+		
+			<span class="post-tag">iPad pro</span>
+		
+			<span class="post-tag">personal</span>
+		
+			<span class="post-tag">productivity</span>
+		
+			<span class="post-tag">programming</span>
+		
+			<span class="post-tag">replacement</span>
+		
+			<span class="post-tag">working</span>
+		
+			<span class="post-tag">คอมพิวเตอร์</span>
+		
+			<span class="post-tag">ทำงาน</span>
+		
+			<span class="post-tag">เขียนโปรแกรม</span>
+		
+			<span class="post-tag">แท็บเล็ต</span>
+		
+			<span class="post-tag">ไอแพด</span>
+		
+	</div>
 
-<div class="footer">
-	<span>
-		<div class = 'go_left'>
-			<p>
-				<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-			</p>
-			<p>
-				Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'>Privacy Policy</a>
-			</p>
-		</div>	
+	<div class = ' my-6'>
+		<div class="navigation">
+			<div class = "prev">
+				
+					<a href="/2021/02/21/beware-of-reading-header-only/">
+						<i class = 'bi-arrow-left-square-fill'></i>
+						<span class = 'ml-1'>
+							ระมัดระวังการอ่านแต่พาดหัวข่าว
+						</span>
+					</a>
+				
+			</div>
 
-		<div class = 'go_right'>
+			<div class = "next">
+				
+					<a href="/2021/03/06/after-watching-raya-and-the-last-dragon/">
+						<span class = 'mr-1'>
+							พูดถึงหนัง Raya and The Last Dragon  หลังจากไปดูในโรงแล้ว
+						</span>
+						<i class = 'bi-arrow-right-square-fill'></i>
+					</a>
+				
+			</div>
 		</div>
-	</span>
+	</div>
+</div>
+
+</div>
+
+<div class = 'bg-gray-200 mt-4'>
+	<div class = 'px-4 py-4 w-full' >
+		<div class = 'container mx-auto max-w-screen-md'>
+			<div class = 'py-4'>
+				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
+					<p class = 'mb-2'>
+						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+						</a>
+					</p>
+					<p class = 'text-xs'>
+						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
+					</p>
+				</div>
+
+				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
+					<p class = 'text-xs'>
+						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
+					</p>
+				</div>
+			</div>	
+		</div>
+	</div>
 </div>
 
 	<!-- Messenger Chat plugin Code -->

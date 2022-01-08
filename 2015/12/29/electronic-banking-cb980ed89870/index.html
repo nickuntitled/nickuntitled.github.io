@@ -82,6 +82,7 @@
 		<link rel="stylesheet" href="assets/css/reset.css">
 		<link rel="stylesheet" href="assets/css/highlight.css">
 		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 		<link rel="shortcut icon" href="assets/images/favicon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
 		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
@@ -91,55 +92,112 @@
 	</head>
 <body>
 
-<div class="container">
+<div>
 	<div class="profile">
-		<div class="profile-about">
-			<div>
-				<h2>Nick Untitled</h2>
-			</div>
-			<div>
-				Writing as my personal diary
-			</div>
-			<div>
-				<ul class = 'go_right'>
-					<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+		<div>
+			<div class = 'px-4 py-4 w-full shadow-md'>
+				<div class = 'container mx-auto max-w-screen-md'>
+					<div class = 'float-none md:float-left'>
+						<div class = 'mb-3 md:mb-0'>
+							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
+								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
+							</h2>
+							<div class = 'font-sans text-base inline align-baseline'>
+								Writing as my personal diary
+							</div>
+						</div>
+					</div>
 					
-					<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
-					
-					
-					<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
-					
-					
-					
-					<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
-					
-					
-					<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a></li>
-					<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a></li>
-					<li class="mode" id="mode-switcher" onclick="toggleNightMode();">
-						<span></span>
-					</li>
-				</ul>
+					<div class = 'float-none md:float-right'>
+						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
+							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
+								<a href = 'feed.xml' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-rss-fill"></i>
+									</div>
+								</a>
+								
+								<a href = 'about' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-file-person-fill"></i>
+									</div>
+								</a>
+
+								
+									<a href = 'https://facebook.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-facebook"></i>
+										</div>
+									</a>
+								
+								
+									<a href = 'https://twitter.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-twitter"></i>
+										</div>
+									</a>
+								
+								
+								
+								
+									<a href = 'https://github.com/nickuntitled' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-github"></i>
+										</div>
+									</a>
+								
+							</div>
+						</div>
+					</div>
+
+					<div class = 'clear-both'></div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	
-<div class="blog-post-header">
-	<h1>Electronic Banking — ถึงเวลาทำธุรกรรมผ่านทางอิเล็กทรอนิกส์ซักที</h1>
-</div>
 
-<div class="post-header">
-	<div class="post-date">29.12.2015</div>
-	<div class="post-share">
-		Share:&nbsp; 
-		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/electronic-banking-cb980ed89870" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
-		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/electronic-banking-cb980ed89870&amp;text=Electronic Banking — ถึงเวลาทำธุรกรรมผ่านทางอิเล็กทรอนิกส์ซักที - https://nickuntitled.com/electronic-banking-cb980ed89870" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+<div class = 'container mx-auto max-w-screen-md'>
+	<div class="blog-post-header my-6">
+		<h1>
+			Electronic Banking — ถึงเวลาทำธุรกรรมผ่านทางอิเล็กทรอนิกส์ซักที
+		</h1>
 	</div>
-</div>
-	
-<div class="blog-post-content">
-	<h3 name="2f75" id="2f75" class="graf graf--h3 graf--leading graf--title">Electronic Banking — ถึงเวลาทำธุรกรรมผ่านทางอิเล็กทรอนิกส์ซักที</h3>
+
+		
+
+	<div class="post-header">
+		<div class="header-date">
+			<span class = 'mr-1'>Published:</span>
+			<span>29 December 2015</span>
+		</div>
+		<div class="post-share">
+			<span class = 'mr-1'>Share:</span>
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/electronic-banking-cb980ed89870" target="_blank">
+				<div class = "share-button">
+					<i class="bi-facebook"></i>
+				</div>
+			</a>
+			<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/electronic-banking-cb980ed89870&amp;text=Electronic Banking — ถึงเวลาทำธุรกรรมผ่านทางอิเล็กทรอนิกส์ซักที - https://nickuntitled.com/electronic-banking-cb980ed89870" target="_blank">
+				<div class = "share-button">
+					<i class="bi-twitter"></i>
+				</div>
+			</a>
+		</div>
+		<div class = "clear-both"></div>
+	</div>
+
+	<div class="blog-post-content my-6 mx-auto">
+		<h3 name="2f75" id="2f75" class="graf graf--h3 graf--leading graf--title">Electronic Banking — ถึงเวลาทำธุรกรรมผ่านทางอิเล็กทรอนิกส์ซักที</h3>
 <p name="9586" id="9586" class="graf graf--p graf-after--h3">การทำธุรกรรมผ่านทางธนาคารที่ทำเป็นประจำได้แก่</p>
 <ul class="postList"><li name="62bc" id="62bc" class="graf graf--li graf-after--p">การจ่ายค่าเรียนพิเศษที่ต้องรอเอาใบสมัครเรียนมาเขียนแล้วรอคิวเป็นระยะเวลานานหน้าธนาคารเพื่อรอธนาคารเปิดแล้วยื่นใบสมัครพร้อมกับเงินจำนวนหนึ่งแล้วก็เสร็จเรียบร้อย</li><li name="f4a2" id="f4a2" class="graf graf--li graf-after--li">จ่ายค่าสมัครสอบศรว. หรือ CU-TEP</li><li name="f7b1" id="f7b1" class="graf graf--li graf-after--li">การโอนเงิน</li><li name="6774" id="6774" class="graf graf--li graf-after--li">การจ่ายเงินเพื่อซื้อของทางออนไลน์</li></ul>
 <p name="9c9e" id="9c9e" class="graf graf--p graf-after--li">คำถามหนึ่งที่เราคิดเสมอนั่นก็คือ เราจำเป็นต้องพกกระดาษเพื่อไปที่ธนาคารแล้วสมัครตามข้างบนนี้หรือไม่</p>
@@ -159,34 +217,64 @@
 <p name="0e32" id="0e32" class="graf graf--p graf-after--p">วิธีการทำธุรกรรมผ่านทางนี้เราไม่กล่าวถึงในบทความนี้เนื่องจากแต่ละธนาคารมีวิธีที่แตกต่างกันไป</p>
 <p name="e362" id="e362" class="graf graf--p graf-after--p graf--trailing">ผู้อ่านทำได้โดยศึกษาบทความวิธีการทำธุรกรรมในเว็บของธนาคารแต่ละธนาคาร ในเว็บจะกล่าวถึงวิธีทำอย่างละเอียดอยู่แล้ว เพียงแค่เราทำตามวิธีเหล่านั้นเป็นขั้นตอน แค่นี้เราทำธุรกรรมผ่านทางอิเล็กทรอนิกส์ได้แล้วครับ</p>
 
-</div>
-<div class="tags-container">
-	
-</div>
-<div class="navigation">
-	
-		<a class="prev" href="/2015/12/25/error-message-571b14c6292/">< Error Message : สิ่งหนึ่งที่คนมองข้าม</a>
-	 
-	<a class="next" href="/2016/03/12/55f064bdb81a/">ขึ้นเขาคิชกูฏครั้งแรก ></a>
+	</div>
 
-</div>
-	
-</div>
+	<div class="tags-container">
+		
+	</div>
 
-<div class="footer">
-	<span>
-		<div class = 'go_left'>
-			<p>
-				<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-			</p>
-			<p>
-				Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'>Privacy Policy</a>
-			</p>
-		</div>	
+	<div class = ' my-6'>
+		<div class="navigation">
+			<div class = "prev">
+				
+					<a href="/2015/12/25/error-message-571b14c6292/">
+						<i class = 'bi-arrow-left-square-fill'></i>
+						<span class = 'ml-1'>
+							Error Message : สิ่งหนึ่งที่คนมองข้าม
+						</span>
+					</a>
+				
+			</div>
 
-		<div class = 'go_right'>
+			<div class = "next">
+				
+					<a href="/2016/03/12/55f064bdb81a/">
+						<span class = 'mr-1'>
+							ขึ้นเขาคิชกูฏครั้งแรก
+						</span>
+						<i class = 'bi-arrow-right-square-fill'></i>
+					</a>
+				
+			</div>
 		</div>
-	</span>
+	</div>
+</div>
+
+</div>
+
+<div class = 'bg-gray-200 mt-4'>
+	<div class = 'px-4 py-4 w-full' >
+		<div class = 'container mx-auto max-w-screen-md'>
+			<div class = 'py-4'>
+				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
+					<p class = 'mb-2'>
+						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+						</a>
+					</p>
+					<p class = 'text-xs'>
+						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
+					</p>
+				</div>
+
+				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
+					<p class = 'text-xs'>
+						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
+					</p>
+				</div>
+			</div>	
+		</div>
+	</div>
 </div>
 
 	<!-- Messenger Chat plugin Code -->

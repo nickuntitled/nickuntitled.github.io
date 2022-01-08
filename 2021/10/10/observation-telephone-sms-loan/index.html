@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="assets/css/reset.css">
 		<link rel="stylesheet" href="assets/css/highlight.css">
 		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 		<link rel="shortcut icon" href="assets/images/favicon.png" />
 		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
 		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
@@ -34,59 +35,117 @@
 	</head>
 <body>
 
-<div class="container">
+<div>
 	<div class="profile">
-		<div class="profile-about">
-			<div>
-				<h2>Nick Untitled</h2>
-			</div>
-			<div>
-				Writing as my personal diary
-			</div>
-			<div>
-				<ul class = 'go_right'>
-					<li><a href = '/'><img src="assets/images/icon/home.svg" class="social-icon"></a></li>
+		<div>
+			<div class = 'px-4 py-4 w-full shadow-md'>
+				<div class = 'container mx-auto max-w-screen-md'>
+					<div class = 'float-none md:float-left'>
+						<div class = 'mb-3 md:mb-0'>
+							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
+								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
+							</h2>
+							<div class = 'font-sans text-base inline align-baseline'>
+								Writing as my personal diary
+							</div>
+						</div>
+					</div>
 					
-					<li><a href = 'https://facebook.com/nicknznick' target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a></li>
-					
-					
-					<li><a href = 'https://twitter.com/nicknznick' target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a></li>
-					
-					
-					
-					<li><a href = 'https://github.com/nickuntitled' target="_blank"><img src="assets/images/icon/github.svg" class="social-icon"></a></li>
-					
-					
-					<li><a href = 'feed.xml'><img src="assets/images/icon/rss.svg" class="social-icon"></a></li>
-					<li><a href = 'about'><img src="assets/images/icon/me.svg" class="social-icon"></a></li>
-					<li class="mode" id="mode-switcher" onclick="toggleNightMode();">
-						<span></span>
-					</li>
-				</ul>
+					<div class = 'float-none md:float-right'>
+						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
+							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
+								<a href = 'feed.xml' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-rss-fill"></i>
+									</div>
+								</a>
+								
+								<a href = 'about' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-file-person-fill"></i>
+									</div>
+								</a>
+
+								
+									<a href = 'https://facebook.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-facebook"></i>
+										</div>
+									</a>
+								
+								
+									<a href = 'https://twitter.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-twitter"></i>
+										</div>
+									</a>
+								
+								
+								
+								
+									<a href = 'https://github.com/nickuntitled' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-github"></i>
+										</div>
+									</a>
+								
+							</div>
+						</div>
+					</div>
+
+					<div class = 'clear-both'></div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	
-<div class="blog-post-header">
-	<h1>จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้</h1>
-</div>
 
-<div class="post-header">
-	<div class="post-date">10.10.2021</div>
-	<div class="post-share">
-		Share:&nbsp; 
-		<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/observation-telephone-sms-loan" target="_blank"><img src="assets/images/icon/facebook.svg" class="social-icon"></a>
-		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/observation-telephone-sms-loan&amp;text=จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้ - https://nickuntitled.com/observation-telephone-sms-loan" target="_blank"><img src="assets/images/icon/twitter.svg" class="social-icon"></a>
+<div class = 'container mx-auto max-w-screen-md'>
+	<div class="blog-post-header my-6">
+		<h1>
+			จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้
+		</h1>
 	</div>
-</div>
 
-	<figure>
-		<img src = 'https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg' />
-	</figure>
 	
-<div class="blog-post-content">
-	<!-- wp:paragraph -->
+		<figure class = "max-w-full">
+			<img src = 'https://asset.nickuntitled.com/2021/10/Loan-and-SMS.jpg' 
+				class = "w-full"/>
+		</figure>
+		
+
+	<div class="post-header">
+		<div class="header-date">
+			<span class = 'mr-1'>Published:</span>
+			<span>10 October 2021</span>
+		</div>
+		<div class="post-share">
+			<span class = 'mr-1'>Share:</span>
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/observation-telephone-sms-loan" target="_blank">
+				<div class = "share-button">
+					<i class="bi-facebook"></i>
+				</div>
+			</a>
+			<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/observation-telephone-sms-loan&amp;text=จุดสังเกตโทรศัพท์/SMS เงินกู้ที่ระบาดตอนนี้ - https://nickuntitled.com/observation-telephone-sms-loan" target="_blank">
+				<div class = "share-button">
+					<i class="bi-twitter"></i>
+				</div>
+			</a>
+		</div>
+		<div class = "clear-both"></div>
+	</div>
+
+	<div class="blog-post-content my-6 mx-auto">
+		<!-- wp:paragraph -->
 <p>ช่วงที่ผ่านมา 1-2 ปีจะมีสิ่งหนึ่งที่ระบาดอยู่ในขณะนี้ และมีคนพูดถึงเรื่องนี้ในโซเชียลเป็นประจำก็คือมีสายโทรศัพท์ และ SMS เงินกู้ (รวมถึงการพนัน และอื่น ๆ แต่เราเอาเงินกู้ก่อน) เข้ามาในที่เบอร์มือถือที่เราใช้งานอยู่ในปัจจุบัน </p>
 <!-- /wp:paragraph -->
 
@@ -226,74 +285,104 @@
 <p>อย่างไรก็ดี เรื่องนี้มีการดำเนินการเพื่อจัดการพวกนี้อยู่ จะหมดไปไหม ก็ยากอยู่นะครับ</p>
 <!-- /wp:paragraph -->
 
-</div>
-<div class="tags-container">
-	
-		<span class="post-tag">Bank</span>, 
-	
-		<span class="post-tag">Banking</span>, 
-	
-		<span class="post-tag">Fraud</span>, 
-	
-		<span class="post-tag">Internet Banking</span>, 
-	
-		<span class="post-tag">Loan</span>, 
-	
-		<span class="post-tag">Loan Shark</span>, 
-	
-		<span class="post-tag">Payday</span>, 
-	
-		<span class="post-tag">phone</span>, 
-	
-		<span class="post-tag">Scam</span>, 
-	
-		<span class="post-tag">SMS</span>, 
-	
-		<span class="post-tag">Telephone</span>, 
-	
-		<span class="post-tag">Title loan</span>, 
-	
-		<span class="post-tag">ข้อความ</span>, 
-	
-		<span class="post-tag">นอกระบบ</span>, 
-	
-		<span class="post-tag">มิจฉาชีพ</span>, 
-	
-		<span class="post-tag">หลอกลวง</span>, 
-	
-		<span class="post-tag">เงินกู้</span>, 
-	
-		<span class="post-tag">เงินกู้นอกระบบ</span>, 
-	
-		<span class="post-tag">โกง</span>, 
-	
-		<span class="post-tag">โทรศัพท์</span>
-	
-</div>
-<div class="navigation">
-	
-		<a class="prev" href="/2021/10/03/audax-200-brm-prachuapkirikhan/">< Audax 200BRM ประจวบคีรีขันธ์</a>
-	 
-	<a class="next" href="/2021/10/18/coding-anywhere/">Coding anywhere by code-server and VPS ></a>
+	</div>
 
-</div>
-	
-</div>
+	<div class="tags-container">
+		
+			<span class="post-tag">Bank</span>
+		
+			<span class="post-tag">Banking</span>
+		
+			<span class="post-tag">Fraud</span>
+		
+			<span class="post-tag">Internet Banking</span>
+		
+			<span class="post-tag">Loan</span>
+		
+			<span class="post-tag">Loan Shark</span>
+		
+			<span class="post-tag">Payday</span>
+		
+			<span class="post-tag">phone</span>
+		
+			<span class="post-tag">Scam</span>
+		
+			<span class="post-tag">SMS</span>
+		
+			<span class="post-tag">Telephone</span>
+		
+			<span class="post-tag">Title loan</span>
+		
+			<span class="post-tag">ข้อความ</span>
+		
+			<span class="post-tag">นอกระบบ</span>
+		
+			<span class="post-tag">มิจฉาชีพ</span>
+		
+			<span class="post-tag">หลอกลวง</span>
+		
+			<span class="post-tag">เงินกู้</span>
+		
+			<span class="post-tag">เงินกู้นอกระบบ</span>
+		
+			<span class="post-tag">โกง</span>
+		
+			<span class="post-tag">โทรศัพท์</span>
+		
+	</div>
 
-<div class="footer">
-	<span>
-		<div class = 'go_left'>
-			<p>
-				<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-			</p>
-			<p>
-				Made with <font color="red">♥</font> on Earth, a minimalist Jekyll Theme by <a href="https://hakan.io"><b>Hakan</b></a> modified a little bit by <a href = 'https://nickuntitled.com'><b>Nick Untitled</b></a> / <a href = 'privacy-policy'>Privacy Policy</a>
-			</p>
-		</div>	
+	<div class = ' my-6'>
+		<div class="navigation">
+			<div class = "prev">
+				
+					<a href="/2021/10/03/audax-200-brm-prachuapkirikhan/">
+						<i class = 'bi-arrow-left-square-fill'></i>
+						<span class = 'ml-1'>
+							Audax 200BRM ประจวบคีรีขันธ์
+						</span>
+					</a>
+				
+			</div>
 
-		<div class = 'go_right'>
+			<div class = "next">
+				
+					<a href="/2021/10/18/coding-anywhere/">
+						<span class = 'mr-1'>
+							Coding anywhere by code-server and VPS
+						</span>
+						<i class = 'bi-arrow-right-square-fill'></i>
+					</a>
+				
+			</div>
 		</div>
-	</span>
+	</div>
+</div>
+
+</div>
+
+<div class = 'bg-gray-200 mt-4'>
+	<div class = 'px-4 py-4 w-full' >
+		<div class = 'container mx-auto max-w-screen-md'>
+			<div class = 'py-4'>
+				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
+					<p class = 'mb-2'>
+						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+						</a>
+					</p>
+					<p class = 'text-xs'>
+						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
+					</p>
+				</div>
+
+				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
+					<p class = 'text-xs'>
+						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
+					</p>
+				</div>
+			</div>	
+		</div>
+	</div>
 </div>
 
 	<!-- Messenger Chat plugin Code -->
