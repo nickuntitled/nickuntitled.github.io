@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="canonical" href="https://nickuntitled.com/2022/01/25/graphql_without_library/">
+		<title>การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี - Nick Untitled</title>
+		<meta name="description" content="A Nick's Journal on my Life">
+		<meta name="keywords" content="JavaScriptCodingDeveloperGraphQLAJAXHttprequestXMLHttpRequestHTTPPOSTJSONเขียนโปรแกรมจาวาสคริปเขียนโค้ดโค้ดดิ้งวัตถุ">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2022-01-25T06:30:00+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2022/01/25/graphql_without_library/amp/"/>
+		<meta property="og:title" content="การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี - Nick Untitled" />
+		<meta property="og:description" content="A Nick's Journal on my Life" />
+		<meta property="og:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta property="twitter:title" content="การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี - Nick Untitled" />
+		<meta property="twitter:description" content="A Nick's Journal on my Life" />
+		<meta property="twitter:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+
+    
+    
+    <style amp-custom> 
+      @charset "UTF-8";
+/* @import url('https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700&subset=latin-ext'); */
+@import url("https://fonts.googleapis.com/css2?family=Sarabun&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap");
+:root { --bg-color: #fafafa; --bg-hover-color: #ececec; --body-bg: #fff; --primary-font-color: #000; --border-color: #dadada; --link-color: #2980b9; }
+
+[data-theme="dark"] { --bg-color: #161f29; --bg-hover-color:#36404c; --body-bg: #10171e; --primary-font-color: #bfbfbf; --border-color: #6a6a6a; --link-color: #2980b9; }
+
+body { font-family: 'Sarabun', sans-serif; font-weight: 300; background: var(--body-bg); color: var(--primary-font-color); margin: 0; padding: 0; }
+
+h1, h2, h3, h4, h5, h6, strong, b { font-family: 'Prompt', sans-serif; }
+
+p { line-height: 1.75em; }
+
+.clear-nav { clear: both; }
+
+.nav-left { float: left; }
+
+.nav-right { float: right; }
+
+.container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 50%; margin-left: auto; margin-right: auto; }
+
+.profile li { display: inline; margin-right: 0.5em; }
+
+.profile li:last-child { margin-right: 0.5em; }
+
+.link-header { width: 100%; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.link-header ul { margin: 0; padding: 0; }
+
+.link-header li { display: inline; margin-right: 1em; }
+
+.post-container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 100%; margin-top: 1em; }
+
+.footer { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; padding: 5px 10px; background: var(--bg-color); border: 1px dashed var(--border-color); font-size: 12px; margin-bottom: 1em; }
+
+.post-list { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 5px 0; margin-bottom: 5px; }
+
+.post-list:last-child { margin-bottom: 1em; }
+
+.post-list .post-title { width: 100%; font-family: "Prompt", sans-serif; font-weight: 500; color: var(--link-color); margin-bottom: 0.25em; }
+
+.post-list .post-title:hover { text-decoration: underline; }
+
+.post-list .post-date { width: 20%; text-align: left; font-size: 0.75em; }
+
+.post-header { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.post-header .post-share { font-weight: 600; color: var(--primary-font-color); display: flex; justify-content: flex-end; align-items: center; }
+
+.post-header .post-date { font-weight: 600; }
+
+.post-header .post-share a { display: flex; }
+
+.aligncenter { text-align: center; }
+
+.tags-container { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 20px; margin-bottom: 20px; }
+
+.post-tag { margin-bottom: 5px; }
+
+.tags { display: flex; flex-wrap: wrap; justify-content: space-between; }
+
+.tag { background: var(--bg-color); padding: 5px 10px; margin-right: 10px; margin-bottom: 10px; display: flex; align-items: center; }
+
+.navigation { width: 100%; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.navigation .prev { width: 45%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--link-color); font-weight: 600; padding: 5px 10px; }
+
+.navigation .next { width: 45%; color: var(--link-color); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; text-align: right; padding: 5px 10px; }
+
+.pagination { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.pagination .prev { color: var(--link-color); font-weight: 600; }
+
+.pagination .next { color: var(--link-color); font-weight: 600; text-align: right; }
+
+.blog-post-header { width: 100%; font-size: 18px; margin-bottom: 0; padding: 0px; }
+
+.blog-post-header h1 { margin-bottom: 0.5em; }
+
+.blog-post-header img { margin-bottom: 1em; }
+
+.blog-post-content { width: 100%; font-size: 18px; margin-top: 0px; }
+
+.post-tag { background: var(--bg-color); color: var(--primary-font-color); padding: 5px 10px; }
+
+.profile { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 1em 0; margin-top: 20px; margin-bottom: 0; border-bottom: 1px solid var(--border-color); }
+
+.profile div { margin: 0 0 0.5em 0; }
+
+.profile div:last-child { margin: 1em 0 0 0; }
+
+.profile ul { margin: 0; padding: 0; }
+
+.profile-image-container { width: 40%; }
+
+.profile-image { width: 128px; height: 128px; border-radius: 50%; transition: transform .2s; }
+
+.profile-image:hover { transform: scale(1.05); }
+
+.profile-about { width: 100%; text-align: left; }
+
+.profile a { color: #000000; }
+
+.profile a:hover { text-decoration: none; }
+
+.font-2 { font-size: 2rem; }
+
+.font-1-5 { font-size: 1.5rem; }
+
+.font-1-2 { font-size: 1.2rem; }
+
+.font-0-8 { font-size: .8rem; }
+
+.text-right { text-align: right; }
+
+.w-100 { width: 100% !important; }
+
+a:hover { text-decoration: underline; }
+
+a { color: var(--link-color); text-decoration: none; }
+
+img { max-width: 100%; }
+
+figure { margin: 0; padding: 15px 0 15px 0; }
+
+figure iframe { width: 100%; }
+
+figcaption { margin: 0.5em 0 0 0; font-size: 1em; }
+
+blockquote { font-style: italic; padding: 5px 1em; margin: 0; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+blockquote cite { font-weight: 500; font-size: 1em; padding: 0 0 1em 0; margin: 0; }
+
+pre { font-size: 14px; max-width: 90vw; overflow: auto; }
+
+.social-icon { height: 24px; }
+
+@media (min-width: 769px) { .container { width: 70%; } }
+
+@media (min-width: 1200px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media (min-width: 1440px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media only screen and (max-width: 768px) { .container { width: 90%; } .mode:after { line-height: 22px; left: 1px; } h1 { font-size: 1.5rem; } .profile-image { width: 96px; height: 96px; } }
+
+[data-theme="dark"] .social-icon { filter: invert(100%) sepia(50%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%); }
+
+.mode { float: right; position: relative; margin: auto; width: 42px; height: 22px; background: #F1F2F4; border-radius: 20px; cursor: pointer; }
+
+.mode:after { content: "☀️"; position: absolute; top: 0; left: 4px; font-size: 14px; height: 22px; line-height: 23px; text-align: center; transition: all 0.3s ease; }
+
+.mode.active { background: #0771ca; }
+
+.mode.active:after { content: "🌛"; transform: translateX(20px); }
+
+.mode.active span { transform: translateX(0); }
+
+.mode span { position: absolute; z-index: 1; margin: 2px; display: block; width: 18px; height: 18px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transform: translateX(20px); transition: all 0.4s ease; }
+
+    </style>
+
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <link rel="alternate" type="application/rss+xml" title=" - A Nick's Journal on my Life" href="/feed.xml" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <div class="profile">
+            <div class="profile-about">
+                <div>
+                    <h2 style="margin-bottom: 0; font-weight: 700;">
+                        <a href = '/'>Nick Untitled</a>
+                    </h2>
+                </div>
+                <div>
+                    Writing as my personal diary
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-post-header">
+            <h1>การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี</h1>
+        </div>
+        
+        <div class="post-header">
+            <div class="post-date">25.01.2022</div>
+        </div>
+        
+            <figure>
+                <img src = 'https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg' />
+            </figure>
+        	
+        <div class="blog-post-content">
+            <p>เวลาที่ส่งข้อมูลระหว่าง Client และ Server ผ่านทางจาวาสคริปโดยเรียกใช้งานผ่านทาง <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX">AJAX</a> ปกติ เราจะส่งข้อมูลโดยวิธี POST ผ่านการพิมพ์โค้ดตามด้านล่างนี้ (ในตัวอย่างจะใช้ <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> แต่จะใช้ Fetch, Axios หรืออื่น ๆ ก็ได้ เพราะได้ผลเหมือนกัน)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+
+  ajaxrequest.open("POST", "&lt;url&gt;");
+
+  ajaxrequest.onload = (event) =&gt; {
+      if(ajaxrequest.readyState == ajaxrequest.DONE) {
+          if(ajaxrequest.status == 200) {
+              /* Do Something */
+          } else {
+              console.error("[*] Error!);
+          }
+      }
+  };
+
+  ajaxrequest.onprogress = (event) =&gt; {
+      console.log('Processing...');
+  };
+
+  ajaxrequest.send(`argument=value&amp;argument2=value`);
+</code></pre></div></div>
+
+<p>เมื่อใช้งานคำสั่งนี้แล้ว ข้อมูลจะได้รับการส่งไปยัง Server เพื่อประมวลผลต่อ จากนั้นเมื่อประมวลผลสำเร็จแล้ว ทางฝั่ง Server จะส่งข้อมูลกลับมาทาง Client เพื่อนำไปประมวลผลต่อ ขั้นตอนนี้แหละ ที่คนนำไปสร้าง API ที่ใช้กันอยู่ในปัจจุบันนี้ที่มีชื่อว่า REST API</p>
+
+<h2 id="rest-api">REST API</h2>
+
+<p><a href="https://medium.com/@settawatjanpuk/beginner-%E0%B8%A1%E0%B8%B2%E0%B8%97%E0%B8%B3%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%81%E0%B8%B1%E0%B8%9A-rest-api-%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B8%B5%E0%B8%81%E0%B8%A7%E0%B9%88%E0%B8%B2-%E0%B8%A1%E0%B8%B5%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87-c855d93beaf3">REST API</a> (ย่อมาจาก Representational State Transfer API) เป็นรูปแบบการส่งข้อมูลรูปแบบหนึ่งที่อยู่บนพื้นฐานของ HTTP Protocol เทคนิคนี้อนุญาตให้เราส่งข้อมูลในรูปแบบ JSON (JavaScript Object Notion), Text, File หรืออื่น ๆ แต่ที่ใช้กันบ่อยก็เป็น JSON เนื่องจากสะดวก และรองรับเว็บเบราวเซอร์หลายชนิด แถมเทคนิคนี้ใช้งานได้ง่าย ใช้ทำ Web Service ที่เกี่ยวข้องกับ CRUD ได้เลย เนื่องจากเราใช้งานโค้ดตามข้างบนได้เพียงแต่เปลี่ยนวิธีการส่งข้อมูลผ่านทาง HTTP Protocol ตามตัวอย่างด้านล่างนี้</p>
+
+<ul>
+  <li>GET — R(etrieve) เรียกดูข้อมูล</li>
+  <li>POST — C(reate) เพิ่มข้อมูล</li>
+  <li>PUT — U(pdate) แก้ไขข้อมูล</li>
+  <li>DELETE — D(elete) ลบข้อมูล</li>
+</ul>
+
+<p>อย่างไรก็ดี เราไม่จำเป็นต้องใช้งานตามข้างบนนี้เป๊ะ ๆ ก็ได้ ใช้งานแค่ POST กับ GET ก็ยังใช้งานได้ตามปกติ เพียงแต่ขึ้นกับทีมที่เขียนโปรแกรมว่าตกลงยังไงนี่แหละครับ</p>
+
+<p>ต่อมา เราจะมาพูดถึง GraphQL</p>
+
+<h2 id="graphql">GraphQL</h2>
+
+<p>REST API เป็นไลบรารีที่นิยมสำหรับการสร้าง Web Service อย่างไรก็ดีการใช้งาน REST API ก็มีข้อเสียหลัก ๆ ก็ต้องส่งข้อมูลผ่านทาง HTTP Protocol หลายรอบ (Multiple requests) และรับข้อมูลที่มากเกินจำเป็น (Over-fetching)</p>
+
+<p>ดังนั้นแล้ว <a href="https://graphql.org/">GraphQL</a> จึงได้รับการพัฒนาขึ้นเพื่อแก้ปัญหาตามย่อหน้าด้านบนนี้ แล้วมันคืออะไร?</p>
+
+<p>GraphQL เป็นโค้ดภาษาหนึ่งที่ใช้เรียกงาน API ผ่านทาง HTTP Protocol รูปแบบหนึ่งเพื่อจัดการข้อมูลได้ตามที่ต้องการ เครื่องมือนี้ได้รับการพัฒนาโดยบริษัท Meta (Facebook เดิม) ตั้งแต่ปี 2012 และเทคนิคนี้ได้รับการนำไปใช้งานจริงในหลายเว็บไซต์ ได้แก่ Github, Pinterest, Coursera เป็นต้น</p>
+
+<p>การใช้งาน ใช้งานได้ไม่ยากผ่านทางไลบรารีที่นิยมอย่างตัว GraphQL เอง หรือใช้งานผ่านไลบรารี Apollo Server/Client ก็ได้ อย่างไรก็ดี ในบทความนี้จะไม่ลงลึกเรื่องไลบรารี เราจะมาพูดถึงการส่งข้อมูล GraphQL ที่ไม่ได้ใช้งานไลบรารีกันดีกว่า</p>
+
+<p>การส่งข้อมูลผ่านทาง GraphQL ที่ใช้งานบ่อยก็เป็นการเรียกข้อมูล และการจัดการข้อมูลผ่านทางการใช้คำสั่งที่เกี่ยวข้องกับ query และ mutation</p>
+
+<h3 id="query">query</h3>
+
+<p>query เป็นการเรียกใช้ฟังก์ชันเพื่อดึงข้อมูลจากฐานข้อมูล สำหรับการแสดงผล และประมวลผลบน Client ในขั้นตอนต่อไป เราเขียน Schema สำหรับการเรียกข้อมูลบนเซิร์ฟเวอร์ได้ตามตัวอย่างด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {
+    &lt;GraphQL query command&gt;(&lt;GraphQL query arguments&gt;) {
+      &lt;the data that you want to be returned from the server&gt;
+    }
+  }
+</code></pre></div></div>
+
+<p>ตัวอย่างการเขียน Schema ก็เขียนตามด้านล่างนี้ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let str_query = `{
+    getUser(user_id: "${ user_id }") {
+        name
+        surname
+    }
+  }`;
+</code></pre></div></div>
+
+<p>เมื่อเขียน Schema เสร็จแล้ว เราเขียน Argument สำหรับการนำไปใช้งานผ่าน XMLHttpRequest ได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let query = {
+      query: str_query
+  };
+</code></pre></div></div>
+
+<p>เมื่อเขียน Argument เสร็จแล้ว เราก็ต้องส่งข้อมูลจาก Client ไปยัง Server เราส่งข้อมูลผ่าน XMLHttpRequest ได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+    
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open("POST", "&lt;URL for GraphQL Server&gt;");
+  ajaxrequest.setRequestHeader('Content-Type', 'application/json');
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &gt;= 400 &amp;&amp; ajaxrequest.status &lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &gt;= 500 &amp;&amp; ajaxrequest.status &lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+
+  ajaxrequest.send(JSON.stringify(query));
+</code></pre></div></div>
+
+<p>จากนั้น เมื่อเรียกใช้งานคำสั่งตามด้านบนนี้ ข้อมูลที่เขียนในรูปแบบ GraphQL จะส่งจาก Client ไปยัง Server แล้วทางนั้นจะคืนข้อมูล name, surname ที่อยู่ในรูปแบบ JSON ได้ตามที่ต้องการครับ</p>
+
+<h3 id="mutation">mutation</h3>
+
+<p>mutation เป็นการเรียกใช้ฟังก์ชันเพื่อเปลี่ยนแปลงข้อมูล แล้วแสดงผลข้อมูลกลับมาที่เราต้องการ เราเขียน Schema ของ mutation ได้ตามตัวอย่างด้านล่างนี้ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let query = `mutation {
+    &lt;GraphQL Mutation Command&gt;(&lt;Arguments&gt;) {
+      &lt;the data that you want to be returned from the server&gt;
+    }
+  }`;
+</code></pre></div></div>
+
+<p>ต่อมา เรานำ Argument ที่เขียนแล้วส่งข้อมูลผ่านทาง XMLHttpRequest ได้ด้วยการเขียนโค้ดตามตัวอย่างด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+  let form_data = new FormData();
+  let map = {};
+
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open("POST", "&lt;GraphQL server URL&gt;");
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &gt;= 400 &amp;&amp; ajaxrequest.status &lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &gt;= 500 &amp;&amp; ajaxrequest.status &lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+
+  // FormData
+  form_data.append("operations", JSON.stringify({ query }));
+  form_data.append("map", JSON.stringify(map));
+
+  // Send Form Data
+  ajaxrequest.send(form_data);
+</code></pre></div></div>
+
+<p>สำหรับการอัพโหลดไฟล์ เราพิมพ์ Schema เพื่ออัพโหลดไฟล์ได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let query = `mutation($file: Upload!) {
+      &lt;GraphQL Upload mutation command&gt;(&lt;Arguments&gt;, upload_file: $file) {
+          &lt;the data that you want to be returned from the server&gt;
+      }
+  }`;
+  let variables = { "file": null };
+  let map = { "0": ["variables.file"] };
+</code></pre></div></div>
+
+<p>แล้วสร้างตัวแปรเพื่อรองรับ File Object สำหรับการอัพโหลดไฟล์ตามโค้ดด้านล่าง ในตัวอยา่งจะใช้ File Input ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let fileObj = document.getElementById('&lt;File Input ID&gt;').files[0];
+</code></pre></div></div>
+
+<p>ต่อมา เราเรียกใช้งาน XMLHttpRequest เจ้าเดิมได้โดยการพิมพ์คำสั่งตามตัวอย่างด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open('POST', graphql_url);
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &gt;= 400 &amp;&amp; ajaxrequest.status &lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &gt;= 500 &amp;&amp; ajaxrequest.status &lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+  
+	// FormData
+	form_data.append("operations", JSON.stringify({ query, variables }));
+	form_data.append("map", JSON.stringify(map));
+	form_data.append("0", fileObj);
+
+	// Send Form Data
+  ajaxrequest.send(form_data);
+</code></pre></div></div>
+
+<p>เมื่อเรียกใช้งานจะพบว่าไฟล์ได้รับการอัพโหลดเรียบร้อย</p>
+
+<p>เมื่อเราเขียนโค้ดตามด้านบนแล้ว สามารถทดสอบบนเว็บเบราวเซอร์ได้เลย ผลลัพธ์ก็จะเหมือนการใช้งาน GraphQL ผ่านทางไลบรารี อย่างไรก็ดี การใช้งานตามที่เขียนนี้จะดูยุ่งยากกว่าการใช้งานผ่านทางไลบรารีครับ ดังนั้นแล้วถ้าใช้งานไลบรารีได้ ก็แนะนำให้ใช้ไลบรารีได้ก่อนได้เลย โดยไลบรารีที่เราเคยใช้ก็ตัวอย่างเช่น <a href="https://www.apollographql.com/docs/react/">Apollo Client</a> ครับ</p>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

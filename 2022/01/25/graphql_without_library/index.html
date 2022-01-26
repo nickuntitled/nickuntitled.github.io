@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี - Nick Untitled</title>
+		<meta name="description" content="บทความนี้แนะนำวิธีการเขียนโค้ด JavaScript เพื่อใช้งาน GraphQL แบบที่ไม่ได้ใช้ไลบรารี">
+		<meta name="keywords" content="JavaScript,Coding,Developer,GraphQL,AJAX,Httprequest,XMLHttpRequest,HTTP,POST,JSON,เขียนโปรแกรม,จาวาสคริป,เขียนโค้ด,โค้ดดิ้ง,วัตถุ,">
+		<base href="https://nickuntitled.com" />
+		
+    	<meta content="2022-01-25T06:30:00+07:00" property="article:published_time">
+    	<meta content="https://nickuntitled.com/about/" property="article:author">
+  		
+		<meta property="og:site_name" content="Nick Untitled">
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nickuntitled.com/2022/01/25/graphql_without_library/"/>
+		<meta property="og:title" content="การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี - Nick Untitled" />
+		<meta property="og:description" content="บทความนี้แนะนำวิธีการเขียนโค้ด JavaScript เพื่อใช้งาน GraphQL แบบที่ไม่ได้ใช้ไลบรารี " />
+		<meta property="og:image" content="https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg"/>
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta property="twitter:title" content="การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี - Nick Untitled" />
+		<meta property="twitter:description" content="บทความนี้แนะนำวิธีการเขียนโค้ด JavaScript เพื่อใช้งาน GraphQL แบบที่ไม่ได้ใช้ไลบรารี " />
+		<meta property="twitter:image" content="https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg" />
+		<link rel="stylesheet" href="assets/css/reset.css">
+		<link rel="stylesheet" href="assets/css/highlight.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
+		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
+		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
+		<meta name="google-site-verification" content="XXX" />
+		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
+	</head>
+<body>
+
+<div>
+	<div class="profile">
+		<div>
+			<div class = 'px-4 py-4 w-full shadow-md'>
+				<div class = 'container mx-auto max-w-screen-md'>
+					<div class = 'float-none md:float-left'>
+						<div class = 'mb-3 md:mb-0'>
+							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
+								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
+							</h2>
+							<div class = 'font-sans text-base inline align-baseline'>
+								Writing as my personal diary
+							</div>
+						</div>
+					</div>
+					
+					<div class = 'float-none md:float-right'>
+						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
+							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
+								<a href = 'feed.xml' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-rss-fill"></i>
+									</div>
+								</a>
+								
+								<a href = 'about' 
+									class = 'font-bold text-center align-baseline text-xl'>
+									<div class = "social-button">
+										<i class="bi-file-person-fill"></i>
+									</div>
+								</a>
+
+								
+									<a href = 'https://facebook.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-facebook"></i>
+										</div>
+									</a>
+								
+								
+									<a href = 'https://twitter.com/nicknznick' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-twitter"></i>
+										</div>
+									</a>
+								
+								
+								
+								
+									<a href = 'https://github.com/nickuntitled' 
+										class = 'font-bold text-center align-baseline text-xl'
+										target="_blank">
+										<div class = "social-button">
+											<i class="bi-github"></i>
+										</div>
+									</a>
+								
+							</div>
+						</div>
+					</div>
+
+					<div class = 'clear-both'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+<div class = 'px-4'>
+	<div class = 'container mx-auto max-w-screen-md'>
+		<div class="blog-post-header my-6">
+			<h1>
+				การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี
+			</h1>
+		</div>
+
+		
+			<figure class = "max-w-full">
+				<img src = 'https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg' 
+					class = "w-full"/>
+			</figure>
+			
+
+		<div class="post-header">
+			<div class="header-date">
+				<span class = 'mr-1'>Published:</span>
+				<span>25 January 2022</span>
+			</div>
+			<div class="post-share">
+				<span class = 'mr-1'>Share:</span>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/graphql-without-library" target="_blank">
+					<div class = "share-button">
+						<i class="bi-facebook"></i>
+					</div>
+				</a>
+				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/graphql-without-library&amp;text=การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี - https://nickuntitled.com/graphql-without-library" target="_blank">
+					<div class = "share-button">
+						<i class="bi-twitter"></i>
+					</div>
+				</a>
+			</div>
+			<div class = "clear-both"></div>
+		</div>
+
+		<div class="blog-post-content my-6 mx-auto">
+			<p>เวลาที่ส่งข้อมูลระหว่าง Client และ Server ผ่านทางจาวาสคริปโดยเรียกใช้งานผ่านทาง <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX">AJAX</a> ปกติ เราจะส่งข้อมูลโดยวิธี POST ผ่านการพิมพ์โค้ดตามด้านล่างนี้ (ในตัวอย่างจะใช้ <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> แต่จะใช้ Fetch, Axios หรืออื่น ๆ ก็ได้ เพราะได้ผลเหมือนกัน)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+
+  ajaxrequest.open("POST", "&lt;url&gt;");
+
+  ajaxrequest.onload = (event) =&gt; {
+      if(ajaxrequest.readyState == ajaxrequest.DONE) {
+          if(ajaxrequest.status == 200) {
+              /* Do Something */
+          } else {
+              console.error("[*] Error!);
+          }
+      }
+  };
+
+  ajaxrequest.onprogress = (event) =&gt; {
+      console.log('Processing...');
+  };
+
+  ajaxrequest.send(`argument=value&amp;argument2=value`);
+</code></pre></div></div>
+
+<p>เมื่อใช้งานคำสั่งนี้แล้ว ข้อมูลจะได้รับการส่งไปยัง Server เพื่อประมวลผลต่อ จากนั้นเมื่อประมวลผลสำเร็จแล้ว ทางฝั่ง Server จะส่งข้อมูลกลับมาทาง Client เพื่อนำไปประมวลผลต่อ ขั้นตอนนี้แหละ ที่คนนำไปสร้าง API ที่ใช้กันอยู่ในปัจจุบันนี้ที่มีชื่อว่า REST API</p>
+
+<h2 id="rest-api">REST API</h2>
+
+<p><a href="https://medium.com/@settawatjanpuk/beginner-%E0%B8%A1%E0%B8%B2%E0%B8%97%E0%B8%B3%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%81%E0%B8%B1%E0%B8%9A-rest-api-%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B8%B5%E0%B8%81%E0%B8%A7%E0%B9%88%E0%B8%B2-%E0%B8%A1%E0%B8%B5%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87-c855d93beaf3">REST API</a> (ย่อมาจาก Representational State Transfer API) เป็นรูปแบบการส่งข้อมูลรูปแบบหนึ่งที่อยู่บนพื้นฐานของ HTTP Protocol เทคนิคนี้อนุญาตให้เราส่งข้อมูลในรูปแบบ JSON (JavaScript Object Notion), Text, File หรืออื่น ๆ แต่ที่ใช้กันบ่อยก็เป็น JSON เนื่องจากสะดวก และรองรับเว็บเบราวเซอร์หลายชนิด แถมเทคนิคนี้ใช้งานได้ง่าย ใช้ทำ Web Service ที่เกี่ยวข้องกับ CRUD ได้เลย เนื่องจากเราใช้งานโค้ดตามข้างบนได้เพียงแต่เปลี่ยนวิธีการส่งข้อมูลผ่านทาง HTTP Protocol ตามตัวอย่างด้านล่างนี้</p>
+
+<ul>
+  <li>GET — R(etrieve) เรียกดูข้อมูล</li>
+  <li>POST — C(reate) เพิ่มข้อมูล</li>
+  <li>PUT — U(pdate) แก้ไขข้อมูล</li>
+  <li>DELETE — D(elete) ลบข้อมูล</li>
+</ul>
+
+<p>อย่างไรก็ดี เราไม่จำเป็นต้องใช้งานตามข้างบนนี้เป๊ะ ๆ ก็ได้ ใช้งานแค่ POST กับ GET ก็ยังใช้งานได้ตามปกติ เพียงแต่ขึ้นกับทีมที่เขียนโปรแกรมว่าตกลงยังไงนี่แหละครับ</p>
+
+<p>ต่อมา เราจะมาพูดถึง GraphQL</p>
+
+<h2 id="graphql">GraphQL</h2>
+
+<p>REST API เป็นไลบรารีที่นิยมสำหรับการสร้าง Web Service อย่างไรก็ดีการใช้งาน REST API ก็มีข้อเสียหลัก ๆ ก็ต้องส่งข้อมูลผ่านทาง HTTP Protocol หลายรอบ (Multiple requests) และรับข้อมูลที่มากเกินจำเป็น (Over-fetching)</p>
+
+<p>ดังนั้นแล้ว <a href="https://graphql.org/">GraphQL</a> จึงได้รับการพัฒนาขึ้นเพื่อแก้ปัญหาตามย่อหน้าด้านบนนี้ แล้วมันคืออะไร?</p>
+
+<p>GraphQL เป็นโค้ดภาษาหนึ่งที่ใช้เรียกงาน API ผ่านทาง HTTP Protocol รูปแบบหนึ่งเพื่อจัดการข้อมูลได้ตามที่ต้องการ เครื่องมือนี้ได้รับการพัฒนาโดยบริษัท Meta (Facebook เดิม) ตั้งแต่ปี 2012 และเทคนิคนี้ได้รับการนำไปใช้งานจริงในหลายเว็บไซต์ ได้แก่ Github, Pinterest, Coursera เป็นต้น</p>
+
+<p>การใช้งาน ใช้งานได้ไม่ยากผ่านทางไลบรารีที่นิยมอย่างตัว GraphQL เอง หรือใช้งานผ่านไลบรารี Apollo Server/Client ก็ได้ อย่างไรก็ดี ในบทความนี้จะไม่ลงลึกเรื่องไลบรารี เราจะมาพูดถึงการส่งข้อมูล GraphQL ที่ไม่ได้ใช้งานไลบรารีกันดีกว่า</p>
+
+<p>การส่งข้อมูลผ่านทาง GraphQL ที่ใช้งานบ่อยก็เป็นการเรียกข้อมูล และการจัดการข้อมูลผ่านทางการใช้คำสั่งที่เกี่ยวข้องกับ query และ mutation</p>
+
+<h3 id="query">query</h3>
+
+<p>query เป็นการเรียกใช้ฟังก์ชันเพื่อดึงข้อมูลจากฐานข้อมูล สำหรับการแสดงผล และประมวลผลบน Client ในขั้นตอนต่อไป เราเขียน Schema สำหรับการเรียกข้อมูลบนเซิร์ฟเวอร์ได้ตามตัวอย่างด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {
+    &lt;GraphQL query command&gt;(&lt;GraphQL query arguments&gt;) {
+      &lt;the data that you want to be returned from the server&gt;
+    }
+  }
+</code></pre></div></div>
+
+<p>ตัวอย่างการเขียน Schema ก็เขียนตามด้านล่างนี้ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let str_query = `{
+    getUser(user_id: "${ user_id }") {
+        name
+        surname
+    }
+  }`;
+</code></pre></div></div>
+
+<p>เมื่อเขียน Schema เสร็จแล้ว เราเขียน Argument สำหรับการนำไปใช้งานผ่าน XMLHttpRequest ได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let query = {
+      query: str_query
+  };
+</code></pre></div></div>
+
+<p>เมื่อเขียน Argument เสร็จแล้ว เราก็ต้องส่งข้อมูลจาก Client ไปยัง Server เราส่งข้อมูลผ่าน XMLHttpRequest ได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+    
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open("POST", "&lt;URL for GraphQL Server&gt;");
+  ajaxrequest.setRequestHeader('Content-Type', 'application/json');
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &gt;= 400 &amp;&amp; ajaxrequest.status &lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &gt;= 500 &amp;&amp; ajaxrequest.status &lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+
+  ajaxrequest.send(JSON.stringify(query));
+</code></pre></div></div>
+
+<p>จากนั้น เมื่อเรียกใช้งานคำสั่งตามด้านบนนี้ ข้อมูลที่เขียนในรูปแบบ GraphQL จะส่งจาก Client ไปยัง Server แล้วทางนั้นจะคืนข้อมูล name, surname ที่อยู่ในรูปแบบ JSON ได้ตามที่ต้องการครับ</p>
+
+<h3 id="mutation">mutation</h3>
+
+<p>mutation เป็นการเรียกใช้ฟังก์ชันเพื่อเปลี่ยนแปลงข้อมูล แล้วแสดงผลข้อมูลกลับมาที่เราต้องการ เราเขียน Schema ของ mutation ได้ตามตัวอย่างด้านล่างนี้ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let query = `mutation {
+    &lt;GraphQL Mutation Command&gt;(&lt;Arguments&gt;) {
+      &lt;the data that you want to be returned from the server&gt;
+    }
+  }`;
+</code></pre></div></div>
+
+<p>ต่อมา เรานำ Argument ที่เขียนแล้วส่งข้อมูลผ่านทาง XMLHttpRequest ได้ด้วยการเขียนโค้ดตามตัวอย่างด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+  let form_data = new FormData();
+  let map = {};
+
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open("POST", "&lt;GraphQL server URL&gt;");
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &gt;= 400 &amp;&amp; ajaxrequest.status &lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &gt;= 500 &amp;&amp; ajaxrequest.status &lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+
+  // FormData
+  form_data.append("operations", JSON.stringify({ query }));
+  form_data.append("map", JSON.stringify(map));
+
+  // Send Form Data
+  ajaxrequest.send(form_data);
+</code></pre></div></div>
+
+<p>สำหรับการอัพโหลดไฟล์ เราพิมพ์ Schema เพื่ออัพโหลดไฟล์ได้ตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let query = `mutation($file: Upload!) {
+      &lt;GraphQL Upload mutation command&gt;(&lt;Arguments&gt;, upload_file: $file) {
+          &lt;the data that you want to be returned from the server&gt;
+      }
+  }`;
+  let variables = { "file": null };
+  let map = { "0": ["variables.file"] };
+</code></pre></div></div>
+
+<p>แล้วสร้างตัวแปรเพื่อรองรับ File Object สำหรับการอัพโหลดไฟล์ตามโค้ดด้านล่าง ในตัวอยา่งจะใช้ File Input ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let fileObj = document.getElementById('&lt;File Input ID&gt;').files[0];
+</code></pre></div></div>
+
+<p>ต่อมา เราเรียกใช้งาน XMLHttpRequest เจ้าเดิมได้โดยการพิมพ์คำสั่งตามตัวอย่างด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  let ajaxrequest = new XMLHttpRequest();
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open('POST', graphql_url);
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &gt;= 400 &amp;&amp; ajaxrequest.status &lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &gt;= 500 &amp;&amp; ajaxrequest.status &lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+  
+	// FormData
+	form_data.append("operations", JSON.stringify({ query, variables }));
+	form_data.append("map", JSON.stringify(map));
+	form_data.append("0", fileObj);
+
+	// Send Form Data
+  ajaxrequest.send(form_data);
+</code></pre></div></div>
+
+<p>เมื่อเรียกใช้งานจะพบว่าไฟล์ได้รับการอัพโหลดเรียบร้อย</p>
+
+<p>เมื่อเราเขียนโค้ดตามด้านบนแล้ว สามารถทดสอบบนเว็บเบราวเซอร์ได้เลย ผลลัพธ์ก็จะเหมือนการใช้งาน GraphQL ผ่านทางไลบรารี อย่างไรก็ดี การใช้งานตามที่เขียนนี้จะดูยุ่งยากกว่าการใช้งานผ่านทางไลบรารีครับ ดังนั้นแล้วถ้าใช้งานไลบรารีได้ ก็แนะนำให้ใช้ไลบรารีได้ก่อนได้เลย โดยไลบรารีที่เราเคยใช้ก็ตัวอย่างเช่น <a href="https://www.apollographql.com/docs/react/">Apollo Client</a> ครับ</p>
+
+		</div>
+
+		<div class="tags-container">
+			
+				<span class="post-tag">JavaScript</span>
+			
+				<span class="post-tag">Coding</span>
+			
+				<span class="post-tag">Developer</span>
+			
+				<span class="post-tag">GraphQL</span>
+			
+				<span class="post-tag">AJAX</span>
+			
+				<span class="post-tag">Httprequest</span>
+			
+				<span class="post-tag">XMLHttpRequest</span>
+			
+				<span class="post-tag">HTTP</span>
+			
+				<span class="post-tag">POST</span>
+			
+				<span class="post-tag">JSON</span>
+			
+				<span class="post-tag">เขียนโปรแกรม</span>
+			
+				<span class="post-tag">จาวาสคริป</span>
+			
+				<span class="post-tag">เขียนโค้ด</span>
+			
+				<span class="post-tag">โค้ดดิ้ง</span>
+			
+				<span class="post-tag">วัตถุ</span>
+			
+		</div>
+
+		<div class = ' my-6'>
+			<div class="navigation">
+				<div class = "prev">
+					
+						<a href="/2022/01/2/select_parent_element_javascript/">
+							<i class = 'bi-arrow-left-square-fill'></i>
+							<span class = 'ml-1'>
+								วิธีการเลือก parent element ด้วย JavaScript
+							</span>
+						</a>
+					
+				</div>
+
+				<div class = "next">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<div class = 'bg-gray-200 mt-4'>
+	<div class = 'px-4 py-4 w-full' >
+		<div class = 'container mx-auto max-w-screen-md'>
+			<div class = 'py-4'>
+				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
+					<p class = 'mb-2'>
+						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+						</a>
+					</p>
+					<p class = 'text-xs'>
+						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
+					</p>
+				</div>
+
+				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
+					<p class = 'text-xs'>
+						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
+					</p>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+	<!-- Messenger Chat plugin Code -->
+	<div id="fb-root"></div>
+
+	<!-- Your Chat plugin code -->
+	<div id="fb-customer-chat" class="fb-customerchat">
+	</div>
+
+	<script>
+	var chatbox = document.getElementById('fb-customer-chat');
+	chatbox.setAttribute("page_id", "104741474999804");
+	chatbox.setAttribute("attribution", "biz_inbox");
+
+	window.fbAsyncInit = function() {
+		FB.init({
+		xfbml            : true,
+		version          : 'v12.0'
+		});
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script src="assets/js/ephesus.js"></script>
+	<script type="text/javascript">
+		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			document.getElementById('mode-switcher').classList.add('active');
+		}
+	</script>
+
+	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-46662350-1');
+    </script>
+	
+</body>
+</html>

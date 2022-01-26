@@ -1,4 +1,185 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-01-09T01:50:15+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">วิธีการเลือก parent element ด้วย JavaScript</title><link href="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/" rel="alternate" type="text/html" title="วิธีการเลือก parent element ด้วย JavaScript" /><published>2022-01-02T22:30:00+07:00</published><updated>2022-01-02T22:30:00+07:00</updated><id>https://nickuntitled.com/2022/01/2/element-closest</id><content type="html" xml:base="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/">&lt;p&gt;ปกติเวลาที่เราเลือก element ด้วยภาษาจาวาสคริป เราจะใช้คำสั่งที่รู้จักกันอย่าง&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-01-26T10:16:34+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี</title><link href="https://nickuntitled.com/2022/01/25/graphql_without_library/" rel="alternate" type="text/html" title="การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี" /><published>2022-01-25T06:30:00+07:00</published><updated>2022-01-25T06:30:00+07:00</updated><id>https://nickuntitled.com/2022/01/25/graphql-without-library</id><content type="html" xml:base="https://nickuntitled.com/2022/01/25/graphql_without_library/">&lt;p&gt;เวลาที่ส่งข้อมูลระหว่าง Client และ Server ผ่านทางจาวาสคริปโดยเรียกใช้งานผ่านทาง &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX&quot;&gt;AJAX&lt;/a&gt; ปกติ เราจะส่งข้อมูลโดยวิธี POST ผ่านการพิมพ์โค้ดตามด้านล่างนี้ (ในตัวอย่างจะใช้ &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest&quot;&gt;XMLHttpRequest&lt;/a&gt; แต่จะใช้ Fetch, Axios หรืออื่น ๆ ก็ได้ เพราะได้ผลเหมือนกัน)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
+
+  ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;url&amp;gt;&quot;);
+
+  ajaxrequest.onload = (event) =&amp;gt; {
+      if(ajaxrequest.readyState == ajaxrequest.DONE) {
+          if(ajaxrequest.status == 200) {
+              /* Do Something */
+          } else {
+              console.error(&quot;[*] Error!);
+          }
+      }
+  };
+
+  ajaxrequest.onprogress = (event) =&amp;gt; {
+      console.log('Processing...');
+  };
+
+  ajaxrequest.send(`argument=value&amp;amp;argument2=value`);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อใช้งานคำสั่งนี้แล้ว ข้อมูลจะได้รับการส่งไปยัง Server เพื่อประมวลผลต่อ จากนั้นเมื่อประมวลผลสำเร็จแล้ว ทางฝั่ง Server จะส่งข้อมูลกลับมาทาง Client เพื่อนำไปประมวลผลต่อ ขั้นตอนนี้แหละ ที่คนนำไปสร้าง API ที่ใช้กันอยู่ในปัจจุบันนี้ที่มีชื่อว่า REST API&lt;/p&gt;
+
+&lt;h2 id=&quot;rest-api&quot;&gt;REST API&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@settawatjanpuk/beginner-%E0%B8%A1%E0%B8%B2%E0%B8%97%E0%B8%B3%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%E0%B8%88%E0%B8%B1%E0%B8%81%E0%B8%81%E0%B8%B1%E0%B8%9A-rest-api-%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B8%B5%E0%B8%81%E0%B8%A7%E0%B9%88%E0%B8%B2-%E0%B8%A1%E0%B8%B5%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87-c855d93beaf3&quot;&gt;REST API&lt;/a&gt; (ย่อมาจาก Representational State Transfer API) เป็นรูปแบบการส่งข้อมูลรูปแบบหนึ่งที่อยู่บนพื้นฐานของ HTTP Protocol เทคนิคนี้อนุญาตให้เราส่งข้อมูลในรูปแบบ JSON (JavaScript Object Notion), Text, File หรืออื่น ๆ แต่ที่ใช้กันบ่อยก็เป็น JSON เนื่องจากสะดวก และรองรับเว็บเบราวเซอร์หลายชนิด แถมเทคนิคนี้ใช้งานได้ง่าย ใช้ทำ Web Service ที่เกี่ยวข้องกับ CRUD ได้เลย เนื่องจากเราใช้งานโค้ดตามข้างบนได้เพียงแต่เปลี่ยนวิธีการส่งข้อมูลผ่านทาง HTTP Protocol ตามตัวอย่างด้านล่างนี้&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GET — R(etrieve) เรียกดูข้อมูล&lt;/li&gt;
+  &lt;li&gt;POST — C(reate) เพิ่มข้อมูล&lt;/li&gt;
+  &lt;li&gt;PUT — U(pdate) แก้ไขข้อมูล&lt;/li&gt;
+  &lt;li&gt;DELETE — D(elete) ลบข้อมูล&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;อย่างไรก็ดี เราไม่จำเป็นต้องใช้งานตามข้างบนนี้เป๊ะ ๆ ก็ได้ ใช้งานแค่ POST กับ GET ก็ยังใช้งานได้ตามปกติ เพียงแต่ขึ้นกับทีมที่เขียนโปรแกรมว่าตกลงยังไงนี่แหละครับ&lt;/p&gt;
+
+&lt;p&gt;ต่อมา เราจะมาพูดถึง GraphQL&lt;/p&gt;
+
+&lt;h2 id=&quot;graphql&quot;&gt;GraphQL&lt;/h2&gt;
+
+&lt;p&gt;REST API เป็นไลบรารีที่นิยมสำหรับการสร้าง Web Service อย่างไรก็ดีการใช้งาน REST API ก็มีข้อเสียหลัก ๆ ก็ต้องส่งข้อมูลผ่านทาง HTTP Protocol หลายรอบ (Multiple requests) และรับข้อมูลที่มากเกินจำเป็น (Over-fetching)&lt;/p&gt;
+
+&lt;p&gt;ดังนั้นแล้ว &lt;a href=&quot;https://graphql.org/&quot;&gt;GraphQL&lt;/a&gt; จึงได้รับการพัฒนาขึ้นเพื่อแก้ปัญหาตามย่อหน้าด้านบนนี้ แล้วมันคืออะไร?&lt;/p&gt;
+
+&lt;p&gt;GraphQL เป็นโค้ดภาษาหนึ่งที่ใช้เรียกงาน API ผ่านทาง HTTP Protocol รูปแบบหนึ่งเพื่อจัดการข้อมูลได้ตามที่ต้องการ เครื่องมือนี้ได้รับการพัฒนาโดยบริษัท Meta (Facebook เดิม) ตั้งแต่ปี 2012 และเทคนิคนี้ได้รับการนำไปใช้งานจริงในหลายเว็บไซต์ ได้แก่ Github, Pinterest, Coursera เป็นต้น&lt;/p&gt;
+
+&lt;p&gt;การใช้งาน ใช้งานได้ไม่ยากผ่านทางไลบรารีที่นิยมอย่างตัว GraphQL เอง หรือใช้งานผ่านไลบรารี Apollo Server/Client ก็ได้ อย่างไรก็ดี ในบทความนี้จะไม่ลงลึกเรื่องไลบรารี เราจะมาพูดถึงการส่งข้อมูล GraphQL ที่ไม่ได้ใช้งานไลบรารีกันดีกว่า&lt;/p&gt;
+
+&lt;p&gt;การส่งข้อมูลผ่านทาง GraphQL ที่ใช้งานบ่อยก็เป็นการเรียกข้อมูล และการจัดการข้อมูลผ่านทางการใช้คำสั่งที่เกี่ยวข้องกับ query และ mutation&lt;/p&gt;
+
+&lt;h3 id=&quot;query&quot;&gt;query&lt;/h3&gt;
+
+&lt;p&gt;query เป็นการเรียกใช้ฟังก์ชันเพื่อดึงข้อมูลจากฐานข้อมูล สำหรับการแสดงผล และประมวลผลบน Client ในขั้นตอนต่อไป เราเขียน Schema สำหรับการเรียกข้อมูลบนเซิร์ฟเวอร์ได้ตามตัวอย่างด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  {
+    &amp;lt;GraphQL query command&amp;gt;(&amp;lt;GraphQL query arguments&amp;gt;) {
+      &amp;lt;the data that you want to be returned from the server&amp;gt;
+    }
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ตัวอย่างการเขียน Schema ก็เขียนตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let str_query = `{
+    getUser(user_id: &quot;${ user_id }&quot;) {
+        name
+        surname
+    }
+  }`;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อเขียน Schema เสร็จแล้ว เราเขียน Argument สำหรับการนำไปใช้งานผ่าน XMLHttpRequest ได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let query = {
+      query: str_query
+  };
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อเขียน Argument เสร็จแล้ว เราก็ต้องส่งข้อมูลจาก Client ไปยัง Server เราส่งข้อมูลผ่าน XMLHttpRequest ได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
+    
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;URL for GraphQL Server&amp;gt;&quot;);
+  ajaxrequest.setRequestHeader('Content-Type', 'application/json');
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &amp;gt;= 400 &amp;amp;&amp;amp; ajaxrequest.status &amp;lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &amp;gt;= 500 &amp;amp;&amp;amp; ajaxrequest.status &amp;lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+
+  ajaxrequest.send(JSON.stringify(query));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;จากนั้น เมื่อเรียกใช้งานคำสั่งตามด้านบนนี้ ข้อมูลที่เขียนในรูปแบบ GraphQL จะส่งจาก Client ไปยัง Server แล้วทางนั้นจะคืนข้อมูล name, surname ที่อยู่ในรูปแบบ JSON ได้ตามที่ต้องการครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;mutation&quot;&gt;mutation&lt;/h3&gt;
+
+&lt;p&gt;mutation เป็นการเรียกใช้ฟังก์ชันเพื่อเปลี่ยนแปลงข้อมูล แล้วแสดงผลข้อมูลกลับมาที่เราต้องการ เราเขียน Schema ของ mutation ได้ตามตัวอย่างด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let query = `mutation {
+    &amp;lt;GraphQL Mutation Command&amp;gt;(&amp;lt;Arguments&amp;gt;) {
+      &amp;lt;the data that you want to be returned from the server&amp;gt;
+    }
+  }`;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ต่อมา เรานำ Argument ที่เขียนแล้วส่งข้อมูลผ่านทาง XMLHttpRequest ได้ด้วยการเขียนโค้ดตามตัวอย่างด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
+  let form_data = new FormData();
+  let map = {};
+
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;GraphQL server URL&amp;gt;&quot;);
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &amp;gt;= 400 &amp;amp;&amp;amp; ajaxrequest.status &amp;lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &amp;gt;= 500 &amp;amp;&amp;amp; ajaxrequest.status &amp;lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+
+  // FormData
+  form_data.append(&quot;operations&quot;, JSON.stringify({ query }));
+  form_data.append(&quot;map&quot;, JSON.stringify(map));
+
+  // Send Form Data
+  ajaxrequest.send(form_data);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;สำหรับการอัพโหลดไฟล์ เราพิมพ์ Schema เพื่ออัพโหลดไฟล์ได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let query = `mutation($file: Upload!) {
+      &amp;lt;GraphQL Upload mutation command&amp;gt;(&amp;lt;Arguments&amp;gt;, upload_file: $file) {
+          &amp;lt;the data that you want to be returned from the server&amp;gt;
+      }
+  }`;
+  let variables = { &quot;file&quot;: null };
+  let map = { &quot;0&quot;: [&quot;variables.file&quot;] };
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;แล้วสร้างตัวแปรเพื่อรองรับ File Object สำหรับการอัพโหลดไฟล์ตามโค้ดด้านล่าง ในตัวอยา่งจะใช้ File Input ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let fileObj = document.getElementById('&amp;lt;File Input ID&amp;gt;').files[0];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ต่อมา เราเรียกใช้งาน XMLHttpRequest เจ้าเดิมได้โดยการพิมพ์คำสั่งตามตัวอย่างด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open('POST', graphql_url);
+  ajaxrequest.onload = function () {
+      if(ajaxrequest.status == 200) {
+          /* Do Something */
+      } else if(ajaxrequest.status &amp;gt;= 400 &amp;amp;&amp;amp; ajaxrequest.status &amp;lt; 500) {
+          /* Do Something for Client Error */
+      } else if(ajaxrequest.status &amp;gt;= 500 &amp;amp;&amp;amp; ajaxrequest.status &amp;lt; 600) {
+          /* Do Something for Internal Server Error */
+      }
+  };
+  
+	// FormData
+	form_data.append(&quot;operations&quot;, JSON.stringify({ query, variables }));
+	form_data.append(&quot;map&quot;, JSON.stringify(map));
+	form_data.append(&quot;0&quot;, fileObj);
+
+	// Send Form Data
+  ajaxrequest.send(form_data);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อเรียกใช้งานจะพบว่าไฟล์ได้รับการอัพโหลดเรียบร้อย&lt;/p&gt;
+
+&lt;p&gt;เมื่อเราเขียนโค้ดตามด้านบนแล้ว สามารถทดสอบบนเว็บเบราวเซอร์ได้เลย ผลลัพธ์ก็จะเหมือนการใช้งาน GraphQL ผ่านทางไลบรารี อย่างไรก็ดี การใช้งานตามที่เขียนนี้จะดูยุ่งยากกว่าการใช้งานผ่านทางไลบรารีครับ ดังนั้นแล้วถ้าใช้งานไลบรารีได้ ก็แนะนำให้ใช้ไลบรารีได้ก่อนได้เลย โดยไลบรารีที่เราเคยใช้ก็ตัวอย่างเช่น &lt;a href=&quot;https://www.apollographql.com/docs/react/&quot;&gt;Apollo Client&lt;/a&gt; ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="JavaScript" /><category term="Coding" /><category term="Developer" /><category term="GraphQL" /><category term="AJAX" /><category term="Httprequest" /><category term="XMLHttpRequest" /><category term="HTTP" /><category term="POST" /><category term="JSON" /><category term="เขียนโปรแกรม" /><category term="จาวาสคริป" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><category term="วัตถุ" /><summary type="html">บทความนี้แนะนำวิธีการเขียนโค้ด JavaScript เพื่อใช้งาน GraphQL แบบที่ไม่ได้ใช้ไลบรารี</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2022/01/graphql_js_cover.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">วิธีการเลือก parent element ด้วย JavaScript</title><link href="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/" rel="alternate" type="text/html" title="วิธีการเลือก parent element ด้วย JavaScript" /><published>2022-01-02T22:30:00+07:00</published><updated>2022-01-02T22:30:00+07:00</updated><id>https://nickuntitled.com/2022/01/2/element-closest</id><content type="html" xml:base="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/">&lt;p&gt;ปกติเวลาที่เราเลือก element ด้วยภาษาจาวาสคริป เราจะใช้คำสั่งที่รู้จักกันอย่าง&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;document.getElementById(&quot;id&quot;);
 document.document.getElementsByClassName(&quot;class name&quot;);
@@ -70,13 +251,13 @@ document.body.parentElement; // the &amp;lt;html&amp;gt; element
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentNode.parentNode;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;หรือ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentElement.parentElement;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -119,8 +300,8 @@ document.documentElement.parentElement; // null เนื่องจาก docu
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
-let div = li.closest(&apos;div&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
+let div = li.closest('div');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;เมื่อพิมพ์ตามข้างบนนี้แล้ว เราจะเลือก parent element ที่เป็น div ครับ เมื่อสังเกตตัวโค้ดแล้วพบว่าใช้งานได้สะดวกมากกว่า node.parentNode กับ element.parentElement&lt;/p&gt;
@@ -397,12 +578,12 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;การใช้งาน LocalStorage ทำได้โดยการเก็บข้อมูลตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem(&apos;token&apos;, &amp;lt; Access Token ที่ได้ &amp;gt;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem('token', &amp;lt; Access Token ที่ได้ &amp;gt;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;แล้วเราสามารถเรียกได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem(&apos;token&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem('token');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;จากนั้นข้อมูล Access Token ที่เก็บไว้ในเว็บเบราวเซอร์ก็จะคืนค่าอยู่ในตัวแปร token ครับ ฟังดูแล้วง่ายกว่าที่ดีคิดไว้ เพราะใช้คำสั่งตามที่เขียนไว้ข้างบนนี้ ข้อมูลก็ออกมาได้แล้วครับ อย่างไรก็ดี การเก็บข้อมูลไว้ใน LocalStorage มีข้อเสีย เนื่องมาจาก&lt;/p&gt;
@@ -445,11 +626,11 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;เพื่อให้ใช้งานตามตัวอย่างด้านล่างนี้ได้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from &apos;http&apos;;
-import express from &apos;express&apos;;
-import dayjs from &apos;dayjs&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from 'http';
+import express from 'express';
+import dayjs from 'dayjs';
 import cookieParser from &quot;cookie-parser&quot;;
-import jwt from &apos;jsonwebtoken&apos;;
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -460,7 +641,7 @@ app.use(cookieParser());
 
 [...]
 
-app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
+app.post('/login', (req, res, next) =&amp;gt; {
 
   [...]
 
@@ -470,7 +651,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
       secure: true,
       httpOnly: true,
       expires: dayjs().add(1, &quot;days&quot;).toDate(),
-      sameSite: &apos;Strict&apos;
+      sameSite: 'Strict'
   });
 
   [...]
@@ -494,7 +675,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
     secure: true,
     httpOnly: true,
     expires: dayjs().add(1, &quot;days&quot;).toDate(),
-    sameSite: &apos;Strict&apos;
+    sameSite: 'Strict'
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -524,7 +705,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราเรียกใช้งานได้โดยผ่านการพิมพ์&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get(&apos;/isloggedin&apos;, (req, res, next) =&amp;gt; {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get('/isloggedin', (req, res, next) =&amp;gt; {
   
   [...]
 
@@ -539,8 +720,8 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราพิมพ์โค้ดได้ตามด้านล่างนี้&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from &apos;apollo-server-express&apos;;
-import { ApolloServerPluginDrainHttpServer } from &apos;apollo-server-core&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 
 [...]
 
@@ -549,7 +730,7 @@ const apollo_server = new ApolloServer({
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   context: ({ req }) =&amp;gt; {
-    let token = req.cookies.authorization || &apos;&apos;;
+    let token = req.cookies.authorization || '';
     return {
       token
     };
@@ -851,7 +1032,7 @@ def long_running_function(seconds):
 from rq import Queue, Connection
 from task import long_running_function
 
-redis_conn = Redis(&apos;127.0.0.1&apos;, 6379)
+redis_conn = Redis('127.0.0.1', 6379)
 q = Queue(connection=redis_conn)
 job = q.enqueue(long_running_function,  5)
 job_id = job.id
@@ -879,10 +1060,10 @@ Task to print_numbers completed
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;q = Queue(connection=redis_conn)
 job = q.enqueue(long_running_function,  
-        args=(&apos;http://nvie.com&apos;,),
+        args=('http://nvie.com',),
         kwargs={
-            &apos;description&apos;: &apos;Function description&apos;, # This is passed on to count_words_at_url
-            &apos;ttl&apos;: 15  # This is passed on to count_words_at_url function
+            'description': 'Function description', # This is passed on to count_words_at_url
+            'ttl': 15  # This is passed on to count_words_at_url function
         }))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -898,7 +1079,7 @@ job = q.enqueue(long_running_function,
 
 &lt;p&gt;หลังจากที่ได้ตัว id มาเรียบร้อยแล้ว เราสามารถติดตามการทำงานของฟังก์ชันที่ประมวลผลอยู่ใน Workers ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job = Job.fetch(&apos;job_id&apos;, connection=redis_conn)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job = Job.fetch('job_id', connection=redis_conn)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;พิมพ์คำสั่งนี้แล้ว ตัวฟังก์ชันจะคืนค่าตัวแปร Job เพื่อใช้สำหรับการประมวลผลในขั้นตอนต่อไป เราติดตามความก้าวหน้าของฟังก์ชันได้โดยพิมพ์คำสั่ง&lt;/p&gt;
@@ -934,21 +1115,21 @@ def polling(job_id):
     status = job.get_status()
     result = job.result
 
-    if status == &apos;finished&apos;:
+    if status == 'finished':
         print(json.dumps({
-            &apos;status&apos;: &apos;success&apos;,
-            &apos;result&apos;: result
+            'status': 'success',
+            'result': result
         }))
         return False
-    elif status == &apos;failed&apos;:
+    elif status == 'failed':
         print(json.dumps({
-            &apos;status&apos;: &apos;failed&apos;,
-            &apos;result&apos;: result
+            'status': 'failed',
+            'result': result
         }))
         return False
 
     print(json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
+      'status': 'processing'
     }))
     return True
 
@@ -957,26 +1138,26 @@ setInterval(1, polling, job_id)
 
 &lt;h4 id=&quot;ตัวอย่างที่ใช้ไลบรารีของ-flask&quot;&gt;ตัวอย่างที่ใช้ไลบรารีของ Flask&lt;/h4&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route(&apos;/get_status/&amp;lt;string:task_id&amp;gt;&apos;, methods=[&apos;GET&apos;])
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/get_status/&amp;lt;string:task_id&amp;gt;', methods=['GET'])
 def get_status(task_id):
     q = Queue(connection=redis_conn)
     job = Job.fetch(task_id, connection=redis_conn)
     status = job.get_status()
     result = job.result
 
-    if status == &apos;finished&apos;:
+    if status == 'finished':
         return json.dumps({
-          &apos;status&apos;: &apos;success&apos;,
-          &apos;result&apos;: result
+          'status': 'success',
+          'result': result
         })
-    elif status == &apos;failed&apos;:
+    elif status == 'failed':
         return json.dumps({
-          &apos;status&apos;: &apos;failed&apos;,
-          &apos;result&apos;: result
+          'status': 'failed',
+          'result': result
         })
 
     return json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
+      'status': 'processing'
     })
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1082,162 +1263,4 @@ def get_status(task_id):
     &lt;li&gt;ผู้เขียนไม่ได้เป็นทีมงานของกลุ่มนี้ครับ อายุเกินไปหลายปีแล้วคุณ&lt;/li&gt;
     &lt;li&gt;และเราได้สนับสนุนไปเรียบร้อยครับ&lt;/li&gt;
   &lt;/ol&gt;
-&lt;/blockquote&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Badstudent" /><category term="Thai" /><category term="Democracy" /><category term="Student" /><category term="Funding" /><category term="Donation" /><category term="Support" /><category term="นักเรียนเลว" /><category term="นักเรียน" /><category term="ไทย" /><category term="สิทธิเสรีภาพ" /><category term="บริจาค" /><category term="สนับสนุน" /><summary type="html">กลุ่มนักเรียนเลวเป็นกลุ่มที่เคลื่อนไหวประเด็นสิทธิเสรีภาพ และทวงอนาคตสำหรับนักเรียนไทย ในบทความนี้จะกล่าวถึงวิธีการสนับสนุนกลุ่มให้สามารดำเนินงานต่อไปได้ครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/badstudent_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/badstudent_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Windows 11 - การใช้งาน &amp;amp; แอพบน Surface Pro X</title><link href="https://nickuntitled.com/2021/10/30/windows-11-usage-app-surfacepro-x/" rel="alternate" type="text/html" title="Windows 11 - การใช้งาน &amp;amp; แอพบน Surface Pro X" /><published>2021-10-30T02:18:30+07:00</published><updated>2021-10-30T02:18:30+07:00</updated><id>https://nickuntitled.com/2021/10/30/upgrading-to-windows-11</id><content type="html" xml:base="https://nickuntitled.com/2021/10/30/windows-11-usage-app-surfacepro-x/">&lt;p&gt;หลังจากที่ระบบปฏิบัติการของไมโครซอฟท์อย่าง Windows 11 ได้รับการปล่อยให้อัพเดทไปตั้งแต่ต้นเดือนตุลาคมที่ผ่านมา ซึ่งการปล่อยให้อัพเดทจะปล่อยผ่านทาง Windows Update เป็นระยะ แต่เราอัพเดทก่อนได้ผ่านทาง Windows 11 Installation Assistant แต่ในบทความนี้เราจะกล่าวถึงอุปกรณ์ที่ใช้อยู่ที่ใช้ซีพียู ARM เองนั่นก็คือ Surface Pro X&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ในบทความนี้สามารถเอาไปใช้กับคอมพิวเตอร์ที่ใช้ซีพียู ARM ได้นอกเหนือจาก Surface ครับ&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;ก่อนที่จะมาพูดถึงการใช้งาน เรามาพูดถึงตัววินโดว์ก่อน&lt;/p&gt;
-
-&lt;h2 id=&quot;windows-11&quot;&gt;Windows 11&lt;/h2&gt;
-
-&lt;p&gt;Windows 11 เป็นระบบปฏิบัติการที่ได้รับการพัฒนาจากบริษัทไมโครซอฟท์ ระบบปฏิบัติการนี้ได้รับการประกาศเปิดตัวไปแล้ววันที่ 24 มิถุนายน 2564 จากนั้นได้รับการปล่อยใน Windows Insider&lt;/p&gt;
-
-&lt;p&gt;ต่อมา Windows 11 ได้รับการปล่อยออกมาเป็นตัวจริงเมื่อวันที่ 5 ตุลาคม 2564 ที่อนุญาตให้เราอัพเกรตจากวินโดว์ 10 ฟรีผ่านทาง Windows Update หรือ Windows 11 Installation Assistant ที่เป็นแอพช่วยให้เราอัพเกรตเป็นวินโดว์ 11 ได้อย่างง่ายดาย เพียงแค่ดาวน์โหลดตัวติดตั้ง แล้วกดปุ่มเข้าไป ตัวแอพจะจัดการให้เราทั้งหมด&lt;/p&gt;
-
-&lt;p&gt;อย่างไรก็ดี เราได้ดาวน์โหลด Windows 11 Installation Assistant แล้ว แต่เมื่อเขียนลงไดรฟ์ USB แล้วเสียบกับคอมพิวเตอร์ที่ใช้อยู่ ระบบไม่บูทเข้าสู่หน้าจอการติดตั้งวินโดว์ 11 พอไปเช็คอีกที ตัวแอพดาวน์โหลดเวอร์ชันที่รองรับเฉพาะซีพียูสถาปัตยกรรม x86 64 Bit ครับ เลยเปิดเข้ามาหน้าจอการติดตั้งไม่ได้ครับ&lt;/p&gt;
-
-&lt;p&gt;เหลือทางเลือกหนึ่งคือรอทางไมโครซอฟท์ปล่อยให้อัพเกรตผ่านทาง Windows Update เรารอประมาณเกือบ 1 เดือน ก็ดาวน์โหลดมาอัพเกรตได้ครับ&lt;/p&gt;
-
-&lt;p&gt;ส่วนข่าวที่ปรากฏตั้งแต่การเปิดตัวก็จะมีปัญหาเรื่องของ TPM 2.0 และ Secure Boot ของ UEFI โดย&lt;/p&gt;
-
-&lt;h3 id=&quot;tpm&quot;&gt;TPM&lt;/h3&gt;
-
-&lt;p&gt;TPM (ย่อมาจาก Trusted Platform Module) เป็นชิพที่เกี่ยวข้องกับความปลอดภัยของระบบ ดูแลตั้งแต่เปิดเครื่องจนกระทั่งปิดคอมพิวเตอร์ ชิพตัวนี้เราพบได้ในชิพที่ซื้อมาติดบนเมนบอร์ดเพิ่ม หรือติดมากับ Chipset หรือซีพียูรุ่นใหม่ของ Intel, AMD และ Qualcomm ที่มีคนนำชิพนี้ไปใช้งานด้านการเข้ารหัสข้อมูลบน Disk อย่าง BitLocker, DRM, Anti-cheat ในบางเกม เช่น Valorant ก็ใช้ชิพนี้เช่นกัน&lt;/p&gt;
-
-&lt;p&gt;อย่างไรก็ดี Windows 11 ต้องการ TPM 2.0 ส่วนใครใช้รุ่นเก่ากว่า หรือไม่มีตัวนี้ก็อัพเกรตแล้วอาจจะใช้งานได้ไม่เต็มที่ หรือาจจะไม่ได้รับการอัพเดทเพิ่มเติมครับ&lt;/p&gt;
-
-&lt;p&gt;ส่วนสาเหตุที่ต้องการ TPM 2.0 ทาง&lt;a href=&quot;https://www.blognone.com/node/123419&quot;&gt;บริษัท Microsoft ได้ชี้แจงแล้วตามนี้ครับ&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;เราสามารถอ่านข้อมูลเพิ่มเติมได้ใน&lt;a href=&quot;https://en.wikipedia.org/wiki/Trusted_Platform_Module&quot;&gt;หน้านี้ครับ&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;uefi&quot;&gt;UEFI&lt;/h3&gt;
-
-&lt;p&gt;UEFI (ย่อมาจาก Unified Extensible Firmware Interface) เป็นโปรแกรมที่เริ่มทำงานตั้งแต่เปิดคอมพิวเตอร์ที่ทำหน้าที่เชื่อมต่อ ตรวจสอบ และตั้งค่าฮาร์ดแวร์ต่าง ๆ เช่น CPU, RAM, การ์ดจอ และอื่น ๆ เพื่อเริ่มต้นใช้งานในระบบปฏิบัติการต่อไป ตัวนี้มันดีกว่า BIOS เดิมอย่างไร ดีกว่าตรงที่&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;รองรับความจุฮาร์ดดิสก์ที่มีขนาดใหญ่ขึ้นมากกว่าเดิม (9 Zettabytes)&lt;/li&gt;
-  &lt;li&gt;บูตเครื่องได้เร็วขึ้น&lt;/li&gt;
-  &lt;li&gt;มีฟังก์ชันเกี่ยวกับความปลอดภัยอย่าง Secure Boot ที่ป้องกันการบูตเข้าไปในโปรแกรมที่ไม่ได้รับการรับรอง&lt;/li&gt;
-  &lt;li&gt;สามารถทำงานได้ใน 32-bit หรือ 64-bit ในขณะที่ BIOS ยังเป็น 16-bit อยู่เลย&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;สิ่งที่ Windows 11 ต้องการสำหรับการอัพเกรตคือฟังก์ชัน UEFI ที่เปิด Secure Boot เพื่อป้องกันแอพ Malware หรือ Randomware ที่ล็อคไฟล์แล้วต้องจ่ายเงินเพื่อปลดล็อคครับ&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;สำหรับข้อมูลเพิ่มเติม&lt;a href=&quot;https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface&quot;&gt;อ่านที่นี่&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;การใช้งาน&quot;&gt;การใช้งาน&lt;/h2&gt;
-
-&lt;p&gt;หลังจากที่ติดตั้งระบบปฏิบัติการ Windows 11 เรียบร้อยแล้ว เปิดเข้ามาหน้าจอหลักของ Windows แล้วใช้งาน เราจะพบว่าหน้าตา และการใช้งานเปลี่ยนไปพอสมควร ได้แก่&lt;/p&gt;
-
-&lt;h3 id=&quot;1-taskbar&quot;&gt;1. Taskbar&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/taskbar.png&quot; alt=&quot;Windows 11 new taskbar&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Taskbar เป็นแถบที่ปรากฏด้านล่างหน้าจอที่ปรากฏไอคอนแอพที่เปิดไว้อยู่ ทีนี้เปลี่ยนจากมุมล่างซ้ายมาอยู่ตรงกางแทน มันดูไม่ค่อยจะสมมาตรกันเท่าไร แถมมีไอคอนที่อยู่มุมล่างขวามาเบียดอีก เราเลยเปลี่ยนให้ไอคอนแอพที่เปิดไว้อยู่ที่มันอยู่ตรงกลาง มาเป็นด้านล่างซ้ายแทน ดูแล้วคล้ายกันกับที่ใช้บน Windows 10&lt;/p&gt;
-
-&lt;p&gt;ต่อมาเมื่อกดปุ่ม Start Menu ออกมาแล้ว เราจะปรากฏเมนูที่ให้เลือกแอพ จุดนี้หน้าตาเปลี่ยนไป ตัวเมนูตัดส่วนที่เราจัดกรุ๊ปแอพตามการใช้งานออกหมด เหลือเพียงแอพที่ติดตั้งอยู่ในคอมพิวเตอร์ อันนี้สำหรับเราไม่ค่อยสะดวกเท่าไร แก้ปัญหาเวลาที่เราอยากใช้แอพตัวไหน ก็พิมพ์ชื่อแอพบนคีย์บอร์ดเลย แอพนั้นจะปรากฏขึ้นมาให้กดเองครับ&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/control_center.png&quot; alt=&quot;Windows 11 control center&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;สุดท้าย แถบ Control Center ที่เปลี่ยนไป เวลาที่กดมุมล่างขวาของ Windows 10 มันจะขึ้นหน้าต่างการตั้งค่าที่ปรากฏเยอะมาก ตั้งแต่การปรับแสงหน้าจอ ปรับแต่งเสียง การหมุนหน้าจอ ไวไฟ บลูทูธ แต่พอใช้งานใน Windows 11 มีฟังก์ชันหนึ่งที่น่าจะตัดไปคือฟังก์ชันล็อคการหมุนของหน้าจอ ที่เราต้องไปปรับให้หน้าจอ Setting เพื่อปรับทิศทางการหมุนหน้าจอเองว่าจะให้อยู่ในแนวตั้ง แนวนอนครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;2-virtual-desktop&quot;&gt;2. Virtual Desktop&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/virtual_desktop.png&quot; alt=&quot;Windows 11 Virtual Desktop&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ปกติเวลาใช้งานบนวินโดว์จะแสดง Desktop ได้หลายหน้าตั้งแต่ Windows 10 แล้ว พออัพเกรตมาใช้งานบน Windows 11 พบว่าใช้งานได้สะดวกขึ้นมากกว่าเดิม เพียงแค่เอาเมาส์เลื่อนมาไว้บนปุ่มที่สามจากด้านซ้ายสุด แล้วกดปุ่ม จะปรากฏรายการหน้าต่างวินโดว์ที่เปิดไว้อยู่ และหน้า Desktop ที่เราใช้อยู่ครับ เราสามารถเพิ่ม-ลด Desktop ได้ตามที่ต้องการ รวมถึงสามารถเลื่อนหน้าต่างแอพที่เราเปิดไว้ ไปวางบน Desktop อื่นได้ เพื่อไม่ให้หน้าจอรกเกินไป&lt;/p&gt;
-
-&lt;p&gt;ฟังก์ชันนี้ทำให้นึกถึงเวลาที่ใช้งานฟังก์ชัน Mission Control บนระบบปฏิบัติการ MacOS หรือ Virtual Desktop บนระบบปฏิบัติการ Linux ครับ&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;การเปิดหน้าจอตามที่กล่าวไว้ เราสามารถทำได้โดยการกดปุ่ม Win + Tab ครับ&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;3-แอพ&quot;&gt;3. แอพ&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/app.png&quot; alt=&quot;Apps on Windows 11&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;หลังจากที่อัพเดทเป็นระบบปฏิบัติการ Windows 11 บนคอมพิวเตอร์ที่ใช้ซีพียูสถาปัตยกรรม ARM/ARM64 แล้ว ฟังก์ชันที่เพิ่งเพิ่มมาคือ&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;เราสามารถเปิดใช้งานแอพที่เป็น x86 64-bit&lt;/li&gt;
-  &lt;li&gt;กรณีที่ผู้พัฒนาต้องการพอร์ตแอพจาก x86 64-bit มาใช้บน ARM64 แต่ไลบรารีบางส่วนไม่รองรับก็สามารถคอมไพล์บางส่วนเป็น ARM บางส่วนเป็น 64-bit ก็ใช้งานได้เช่นกัน หรือที่เรียกว่า &lt;a href=&quot;https://blogs.windows.com/windowsdeveloper/2021/06/28/announcing-arm64ec-building-native-and-interoperable-apps-for-windows-11-on-arm/&quot;&gt;ARM64EC (ย่อมาจาก ARM64 Emulation Compatible)&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;สาเหตุที่รองรับเนื่องมาจากว่าแอพในปัจจุบันเปลี่ยนมาใช้งานบน 64-bit มากขึ้น และทางบริษัทได้รับ Feedback จากลูกค้าว่าต้องการให้รองรับการใช้งานแอพลักษณะนี้ครับ&lt;/p&gt;
-
-&lt;p&gt;อย่างไรก็ดี ที่รองรับการใช้งานในลักษณะนี้มีเฉพาะแอพเท่านั้น ไม่รองรับ Driver ที่เป็น x86 32-bit หรือ 64-bit แต่อย่างใด เราลองติดตั้งแอพหนึ่งที่เป็น 64-bit เช่น Cloudflare WARP แล้ว ก็เปิดแอพ เห็นหน้าต่างได้ตามปกติ แต่เปิดใช้งาน VPN ไม่ได้เพราะเครื่องนั้นไม่รองรับ Driver ที่เป็น x86 64-bit ครับ&lt;/p&gt;
-
-&lt;p&gt;ส่วนใครที่จะเอาไปเล่นเกมที่เป็น 64-bit ทั้งเกมออนไลน์ หรือออฟไลน์ อาจจะต้องเช็คตัว Anti-cheat ว่ารองรับหรือเปล่า ถ้าเปิดได้ อาจจะต้องดูรันไหวไหม เพราะเกม AAA ต้องการสเปคที่สูง ส่วนเกมที่แข่ง e-sport อันนี้เราไม่เคยเล่น เลยบอกไม่ได้ครับ&lt;/p&gt;
-
-&lt;p&gt;ส่วนแอพอื่น เรายังไม่ได้ทดลองใช้งาน เพราะว่าแอพที่ใช้งานในปัจจุบันรองรับการทำงานบนซีพียู ARM/ARM64 เกือบหมดแล้ว บางตัวเป็น x86 32-bit ครับ โดยแอพที่ใช้อยู่ได้แก่&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;แอพสำหรับประชุม หรือ Video Conference เช่น Microsoft Teams, Zoom&lt;/li&gt;
-  &lt;li&gt;แอพที่ไว้พัฒนาแอพ เช่น Visual Studio Code&lt;/li&gt;
-  &lt;li&gt;เว็บเบราวเซอร์ เช่น Microsoft Edge, Mozilla Firefox&lt;/li&gt;
-  &lt;li&gt;แอพแต่งภาพ เช่น Adobe Lightroom, Adobe Photoshop&lt;/li&gt;
-  &lt;li&gt;แอพออฟฟิส เช่น Office 365&lt;/li&gt;
-  &lt;li&gt;Linux เช่น Windows Subsystem for Linux 2 อย่าง Ubuntu&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;แอพเกือบทั้งหมดนี้ ได้กล่าวถึงไปแล้วในหน้า &lt;a href=&quot;https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/&quot;&gt;“Surface Pro X กับแอพที่ใช้งานอยู่ในขณะนี้”&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;นอกเหนือจากนี้ บางแอพเปิดแล้วมันไม่ติด เช่นแอพ LINE (ที่มีฟีเจอร์หลายอย่างมาก ยกเว้นเป็นแอพแชทที่ดี) อันนี้ยังไม่ได้ลองติดตั้งใหม่อีกทีว่าใช้ได้ไหม ถ้าไม่ได้ ก็อาจจะเปลี่ยนมาใช้บนมือถืออย่างเดียว แล้วเวลาที่รับไฟล์ เราค่อยอัพผ่าน OneDrive อีกที&lt;/p&gt;
-
-&lt;h3 id=&quot;4-คีย์บอร์ด&quot;&gt;4. คีย์บอร์ด&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/onscreenkeyboard.png&quot; alt=&quot;On Screen Keyboard&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;เวลาที่เราใช้งานบนแท็บเล็ต แล้วเอานิ้วแตะกล่องข้อความที่ปรากฏบนหน้าจอ สิ่งที่เราพบได้บ่อยที่สุดคือ On-screen keyboard&lt;/p&gt;
-
-&lt;p&gt;On-screen keyboard เป็นแป้นพิมพ์เสมือนที่ปรากฏบนหน้าจอ มีหน้าจอที่ให้เรากดปุ่มตัวอักษรที่อยู่บนหน้าจอ แล้วตัวอักษรนั้นจะปรากฏบนกล่องข้อความนั้น ๆ หรืออาจจะกดปุ่มบนหน้าจอเพื่อใช้งาน Shortcut ได้ตามที่ต้องการ&lt;/p&gt;
-
-&lt;p&gt;ฟังก์ชันนี้ในระบบปฏิบัติการ Windows 11 มีมาให้เช่นกัน หน้าตาที่สวยขึ้นมากกว่าเดิม สามารถปรับให้เป็นคีย์บอร์ดขนาดเล็กแบบที่พิมพ์บนมือถือได้ และยังรองรับการเขียนข้อความได้อีก อย่างไรก็ดีฟังก์ชันทั้งสองนี้ไม่รองรับภาษาไทย ผิดกับของซัมซุง (ที่เราใช้อยู่) ที่รองรับความสามารถทั้งสองอย่างเลย และสามารถใช้ปากกา S-Pen เขียนข้อความเป็นภาษาไทยได้อีก&lt;/p&gt;
-
-&lt;p&gt;ส่วนเราสามารถเพิ่ม Layout ที่ไม่ได้ติดมาในวินโดว์ได้ไหม อันนี้ไม่ได้ลอง เดี๋ยวค่อยเอา&lt;a href=&quot;https://manoonchai.com/&quot;&gt;แป้นพิมพ์มนูญชัย&lt;/a&gt;มาเพิ่มแล้วว่ามันใช้ได้ไหม ถ้าได้ก็โอเค&lt;/p&gt;
-
-&lt;h3 id=&quot;5-dark-mode&quot;&gt;5. Dark Mode&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/darkmode.png&quot; alt=&quot;Dark Mode&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ธีมบนระบบปฏิบัติการ Windows 11 รองรับการใช้งานธีมที่เป็น Dark Mode (ธีมสีออกเทา ๆ ดำ ๆ ครับ) ธีมนี้ทำให้เราสามารถใช้งานได้สบายตาขึ้นมากกว่าเดิม และลดปริมาณแสงที่ออกมาจากหน้าจอครับ รวมถึงประหยัดแบตด้วยครับ&lt;/p&gt;
-
-&lt;p&gt;ความสามารถนี้มีมาตั้งแต่ใน Windows 10 แล้ว เพียงแต่บน Windows 11 ทำงานได้ดีขึ้นมากกว่าเดิม&lt;/p&gt;
-
-&lt;p&gt;การเปิดใช้งาน คลิกขวาที่หน้า Desktop -&amp;gt; Personalize -&amp;gt; Colors -&amp;gt; แล้วเลือกตรงช่อง Choose your mode จาก Light ให้เป็น Dark ครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;6-หน้าต่าง-explorer&quot;&gt;6. หน้าต่าง Explorer&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/10/explorer.png&quot; alt=&quot;Windows 11 explorer&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;หน้าต่าง Explorer บนระบบปฏิบัติการ Windows 11 ที่มันดูไม่ค่อยรกแบบตอนที่ใช้บน Windows 8, 8.1 และ 10 แถมจุดหนึ่งที่เราว่ามันดีกว่าเดิม คือมันสามารถเปิดดูโฟลเดอร์บน Windows Subsystem for Linux ได้เลย สะดวกเวลาขึ้นเวลาที่ถ่ายโอนไฟล์ครับ&lt;/p&gt;
-
-&lt;p&gt;นอกเหนือจากนี้ หน้าตาของหน้าต่างนี้ รวมถึงไอคอนที่ดูทันสมัยกว่ารุ่นก่อน ๆ ครับ&lt;/p&gt;
-
-&lt;p&gt;ส่วนรายละเอียดเพิ่มเติม สามารถ &lt;a href=&quot;https://www.windowscentral.com/whats-new-file-explorer-windows-11&quot;&gt;อ่านได้ที่ลิ้งค์นี้ครับ&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;7-แอพ-android&quot;&gt;7. แอพ Android&lt;/h3&gt;
-
-&lt;p&gt;ความสามารถหนึ่งที่ช่วงเปิดตัว Windows 11 ก็คือรองรับการติดตั้งแอพ Android ที่มีให้โหลดใน Amazon App Store อันนี้มาไม่ทันตอนที่ปล่อย Windows 11&lt;/p&gt;
-
-&lt;p&gt;อย่างไรก็ดี ความสามารถนี้ได้ปล่อยออกมาใน Windows Insider แล้ว อีกไม่นานคงได้ปล่อยมาให้อัพเดทต่อ ๆ ไป และตอนที่ปล่อยออกมาแล้ว เรามีแอพที่อยากจะลงอยู่ และมีให้โหลดใน Amazon App Store ทีนี้เราจะได้ใช้งานได้สะดวกขึ้นมากกว่าเดิมครับ&lt;/p&gt;
-
-&lt;p&gt;ส่วน Google Play ตอนนี้มีคนพยายามลงแล้วก็พบว่าลงได้แล้ว &lt;a href=&quot;https://droidsans.com/how-to-install-google-play-store-on-windows-11-pc/&quot;&gt;ส่วนวิธีดูได้ที่ลิ้งค์นี้ครับ&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;บัค&quot;&gt;บัค&lt;/h2&gt;
-
-&lt;p&gt;เวลาที่ใช้งาน Windows 11 บนเครื่องที่ใช้ซีพียู ARM แบบ Surface Pro X มันก็มีบัค เวลาที่ใช้งาน ตัววินโดว์จะค้างไปเองแบบไม่มีปี่ไม่มีขลุ่ย รวมถึงทำงานได้ช้ากว่าตอน Windows 10&lt;/p&gt;
-
-&lt;p&gt;ผิดกับตอนที่เราใช้ macOS เลย อันนี้เวลาที่อัพเดทแล้วไม่ค่อยค้างเท่าไร ยกเว้นแต่ CPU เก่าเกินไป ทำงานได้ช้าครับ :P&lt;/p&gt;
-
-&lt;h2 id=&quot;สรุป&quot;&gt;สรุป&lt;/h2&gt;
-
-&lt;p&gt;Windows 11 เป็นระบบปฏิบัติการของไมโครซอฟท์ที่ปล่อยออกมาแล้วช่วงต้นเดือนตุลาคมที่ผ่านมา เราอัพเกรตลงบน Surface Pro X แล้วพบว่าการใช้งานหลายส่วนใช้งานได้ดีขึ้น แต่มีบางส่วนที่ยังขาด ๆ เกิน ๆ อยู่ อันนี้อาจจะต้องรอทางไมโครซอฟท์แก้ไข แล้วอัพเดทอีกทีนึงครับ&lt;/p&gt;
-
-&lt;p&gt;สำหรับคนที่ใช้ Windows 10 อยู่ แล้วใช้คอมที่เป็นซีพียู ARM อันนี้เราแนะนำให้อัพเดทครับ จะได้ใช้แอพที่มีอยู่ในปัจจุบันที่รองรับ x86 64-bit ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="Windows" /><category term="Windows 11" /><category term="Microsoft" /><category term="Surface" /><category term="Surface Pro X" /><category term="Laptop" /><category term="Tablet" /><category term="ARM" /><category term="ARM64" /><category term="Upgrade" /><category term="Installation" /><category term="Apps" /><category term="UEFI" /><category term="TPM" /><category term="Trusted Platform Module" /><category term="BIOS" /><summary type="html">หลังจากที่วินโดว์ 11 ปล่อยออกมาให้อัพเกรตแล้ว ทีนี้รอจนกระทั่งไมโครซอฟท์ปล่อยให้อัพบน Windows Update ในบทความนี้กล่าวถึงการใช้งาน และแอพบนอุปกรณ์ที่ใช้อยู่</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/windows11_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/blockquote&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Badstudent" /><category term="Thai" /><category term="Democracy" /><category term="Student" /><category term="Funding" /><category term="Donation" /><category term="Support" /><category term="นักเรียนเลว" /><category term="นักเรียน" /><category term="ไทย" /><category term="สิทธิเสรีภาพ" /><category term="บริจาค" /><category term="สนับสนุน" /><summary type="html">กลุ่มนักเรียนเลวเป็นกลุ่มที่เคลื่อนไหวประเด็นสิทธิเสรีภาพ และทวงอนาคตสำหรับนักเรียนไทย ในบทความนี้จะกล่าวถึงวิธีการสนับสนุนกลุ่มให้สามารดำเนินงานต่อไปได้ครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/badstudent_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/badstudent_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

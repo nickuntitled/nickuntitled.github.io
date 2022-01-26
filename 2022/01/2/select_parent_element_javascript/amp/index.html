@@ -4,9 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="canonical" href="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/">
 		<title>วิธีการเลือก parent element ด้วย JavaScript - Nick Untitled</title>
-		<meta name="description" content="บทความนี้แนะนำวิธีการเลือกวัตถุ parent element ด้วยการใช้ภาษา JavaScript">
-		<meta name="keywords" content="JavaScript,Coding,Developer,Element,Selector,Parent Element,Programming,getElementById,getElementsByClassName,getElementsByName,getElementsByTagName,querySelector,querySelectorAll,Node,Parent Node,เขียนโปรแกรม,จาวาสคริป,เขียนโค้ด,โค้ดดิ้ง,วัตถุ,">
+		<meta name="description" content="A Nick's Journal on my Life">
+		<meta name="keywords" content="JavaScriptCodingDeveloperElementSelectorParent ElementProgramminggetElementByIdgetElementsByClassNamegetElementsByNamegetElementsByTagNamequerySelectorquerySelectorAllNodeParent Nodeเขียนโปรแกรมจาวาสคริปเขียนโค้ดโค้ดดิ้งวัตถุ">
 		<base href="https://nickuntitled.com" />
 		
     	<meta content="2022-01-02T22:30:00+07:00" property="article:published_time">
@@ -16,137 +17,219 @@
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://nickuntitled.com/2022/01/2/select_parent_element_javascript/amp/"/>
 		<meta property="og:title" content="วิธีการเลือก parent element ด้วย JavaScript - Nick Untitled" />
-		<meta property="og:description" content="บทความนี้แนะนำวิธีการเลือกวัตถุ parent element ด้วยการใช้ภาษา JavaScript " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg"/>
-		<meta name="twitter:card" content="summary_large_image"/>
+		<meta property="og:description" content="A Nick's Journal on my Life" />
+		<meta property="og:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg"/>
+		<meta name="twitter:card" content="summary"/>
 		<meta property="twitter:title" content="วิธีการเลือก parent element ด้วย JavaScript - Nick Untitled" />
-		<meta property="twitter:description" content="บทความนี้แนะนำวิธีการเลือกวัตถุ parent element ด้วยการใช้ภาษา JavaScript " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
+		<meta property="twitter:description" content="A Nick's Journal on my Life" />
+		<meta property="twitter:image" content="https://nickuntitled.com/https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg" />
 		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
 		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
 		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
 		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+    
+    
+    <style amp-custom> 
+      @charset "UTF-8";
+/* @import url('https://fonts.googleapis.com/css?family=Catamaran:400,500,600,700&subset=latin-ext'); */
+@import url("https://fonts.googleapis.com/css2?family=Sarabun&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap");
+:root { --bg-color: #fafafa; --bg-hover-color: #ececec; --body-bg: #fff; --primary-font-color: #000; --border-color: #dadada; --link-color: #2980b9; }
 
-								
-									<a href = 'https://facebook.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-facebook"></i>
-										</div>
-									</a>
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+[data-theme="dark"] { --bg-color: #161f29; --bg-hover-color:#36404c; --body-bg: #10171e; --primary-font-color: #bfbfbf; --border-color: #6a6a6a; --link-color: #2980b9; }
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+body { font-family: 'Sarabun', sans-serif; font-weight: 300; background: var(--body-bg); color: var(--primary-font-color); margin: 0; padding: 0; }
 
-	
+h1, h2, h3, h4, h5, h6, strong, b { font-family: 'Prompt', sans-serif; }
 
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				วิธีการเลือก parent element ด้วย JavaScript
-			</h1>
-		</div>
+p { line-height: 1.75em; }
 
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg' 
-					class = "w-full"/>
-			</figure>
-			
+.clear-nav { clear: both; }
 
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>02 January 2022</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/element-closest" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/element-closest&amp;text=วิธีการเลือก parent element ด้วย JavaScript - https://nickuntitled.com/element-closest" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
+.nav-left { float: left; }
 
-		<div class="blog-post-content my-6 mx-auto">
-			<p>ปกติเวลาที่เราเลือก element ด้วยภาษาจาวาสคริป เราจะใช้คำสั่งที่รู้จักกันอย่าง</p>
+.nav-right { float: right; }
+
+.container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 50%; margin-left: auto; margin-right: auto; }
+
+.profile li { display: inline; margin-right: 0.5em; }
+
+.profile li:last-child { margin-right: 0.5em; }
+
+.link-header { width: 100%; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.link-header ul { margin: 0; padding: 0; }
+
+.link-header li { display: inline; margin-right: 1em; }
+
+.post-container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 100%; margin-top: 1em; }
+
+.footer { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; padding: 5px 10px; background: var(--bg-color); border: 1px dashed var(--border-color); font-size: 12px; margin-bottom: 1em; }
+
+.post-list { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 5px 0; margin-bottom: 5px; }
+
+.post-list:last-child { margin-bottom: 1em; }
+
+.post-list .post-title { width: 100%; font-family: "Prompt", sans-serif; font-weight: 500; color: var(--link-color); margin-bottom: 0.25em; }
+
+.post-list .post-title:hover { text-decoration: underline; }
+
+.post-list .post-date { width: 20%; text-align: left; font-size: 0.75em; }
+
+.post-header { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 10px; margin-bottom: 5px; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+.post-header .post-share { font-weight: 600; color: var(--primary-font-color); display: flex; justify-content: flex-end; align-items: center; }
+
+.post-header .post-date { font-weight: 600; }
+
+.post-header .post-share a { display: flex; }
+
+.aligncenter { text-align: center; }
+
+.tags-container { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 20px; margin-bottom: 20px; }
+
+.post-tag { margin-bottom: 5px; }
+
+.tags { display: flex; flex-wrap: wrap; justify-content: space-between; }
+
+.tag { background: var(--bg-color); padding: 5px 10px; margin-right: 10px; margin-bottom: 10px; display: flex; align-items: center; }
+
+.navigation { width: 100%; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.navigation .prev { width: 45%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--link-color); font-weight: 600; padding: 5px 10px; }
+
+.navigation .next { width: 45%; color: var(--link-color); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; text-align: right; padding: 5px 10px; }
+
+.pagination { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1em 0px 5px 0px; margin-bottom: 1em; border-top: 1px solid var(--border-color); }
+
+.pagination .prev { color: var(--link-color); font-weight: 600; }
+
+.pagination .next { color: var(--link-color); font-weight: 600; text-align: right; }
+
+.blog-post-header { width: 100%; font-size: 18px; margin-bottom: 0; padding: 0px; }
+
+.blog-post-header h1 { margin-bottom: 0.5em; }
+
+.blog-post-header img { margin-bottom: 1em; }
+
+.blog-post-content { width: 100%; font-size: 18px; margin-top: 0px; }
+
+.post-tag { background: var(--bg-color); color: var(--primary-font-color); padding: 5px 10px; }
+
+.profile { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 5px 0 1em 0; margin-top: 20px; margin-bottom: 0; border-bottom: 1px solid var(--border-color); }
+
+.profile div { margin: 0 0 0.5em 0; }
+
+.profile div:last-child { margin: 1em 0 0 0; }
+
+.profile ul { margin: 0; padding: 0; }
+
+.profile-image-container { width: 40%; }
+
+.profile-image { width: 128px; height: 128px; border-radius: 50%; transition: transform .2s; }
+
+.profile-image:hover { transform: scale(1.05); }
+
+.profile-about { width: 100%; text-align: left; }
+
+.profile a { color: #000000; }
+
+.profile a:hover { text-decoration: none; }
+
+.font-2 { font-size: 2rem; }
+
+.font-1-5 { font-size: 1.5rem; }
+
+.font-1-2 { font-size: 1.2rem; }
+
+.font-0-8 { font-size: .8rem; }
+
+.text-right { text-align: right; }
+
+.w-100 { width: 100% !important; }
+
+a:hover { text-decoration: underline; }
+
+a { color: var(--link-color); text-decoration: none; }
+
+img { max-width: 100%; }
+
+figure { margin: 0; padding: 15px 0 15px 0; }
+
+figure iframe { width: 100%; }
+
+figcaption { margin: 0.5em 0 0 0; font-size: 1em; }
+
+blockquote { font-style: italic; padding: 5px 1em; margin: 0; background: var(--bg-color); border: 1px dashed var(--border-color); }
+
+blockquote cite { font-weight: 500; font-size: 1em; padding: 0 0 1em 0; margin: 0; }
+
+pre { font-size: 14px; max-width: 90vw; overflow: auto; }
+
+.social-icon { height: 24px; }
+
+@media (min-width: 769px) { .container { width: 70%; } }
+
+@media (min-width: 1200px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media (min-width: 1440px) { .container, .container-lg, .container-md, .container-sm, .container-xl { max-width: 800px; } }
+
+@media only screen and (max-width: 768px) { .container { width: 90%; } .mode:after { line-height: 22px; left: 1px; } h1 { font-size: 1.5rem; } .profile-image { width: 96px; height: 96px; } }
+
+[data-theme="dark"] .social-icon { filter: invert(100%) sepia(50%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%); }
+
+.mode { float: right; position: relative; margin: auto; width: 42px; height: 22px; background: #F1F2F4; border-radius: 20px; cursor: pointer; }
+
+.mode:after { content: "☀️"; position: absolute; top: 0; left: 4px; font-size: 14px; height: 22px; line-height: 23px; text-align: center; transition: all 0.3s ease; }
+
+.mode.active { background: #0771ca; }
+
+.mode.active:after { content: "🌛"; transform: translateX(20px); }
+
+.mode.active span { transform: translateX(0); }
+
+.mode span { position: absolute; z-index: 1; margin: 2px; display: block; width: 18px; height: 18px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transform: translateX(20px); transition: all 0.4s ease; }
+
+    </style>
+
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <link rel="alternate" type="application/rss+xml" title=" - A Nick's Journal on my Life" href="/feed.xml" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <div class="profile">
+            <div class="profile-about">
+                <div>
+                    <h2 style="margin-bottom: 0; font-weight: 700;">
+                        <a href = '/'>Nick Untitled</a>
+                    </h2>
+                </div>
+                <div>
+                    Writing as my personal diary
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-post-header">
+            <h1>วิธีการเลือก parent element ด้วย JavaScript</h1>
+        </div>
+        
+        <div class="post-header">
+            <div class="post-date">02.01.2022</div>
+        </div>
+        
+            <figure>
+                <img src = 'https://asset.nickuntitled.com/2021/12/parent_element_js_cover.jpeg' />
+            </figure>
+        	
+        <div class="blog-post-content">
+            <p>ปกติเวลาที่เราเลือก element ด้วยภาษาจาวาสคริป เราจะใช้คำสั่งที่รู้จักกันอย่าง</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>document.getElementById("id");
 document.document.getElementsByClassName("class name");
@@ -275,145 +358,8 @@ let div = li.closest('div');
 
 <p>อย่างไรก็ดีการใช้งานทั้งสามคำสั่งได้แก่ node.parentNode, element.parentElement และ element.closest นี้ขึ้นกับผู้ใช้ว่าจะเอาไปใช้อย่างไรครับ ส่วนกรณีที่ผู้ใช้ไม่ได้ใช้ Vanilla JavaScript  คำสั่งทั้งสามคำสั่งนี้อาจจะไม่ได้ใช้เลยก็ได้ครับผม</p>
 
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">JavaScript</span>
-			
-				<span class="post-tag">Coding</span>
-			
-				<span class="post-tag">Developer</span>
-			
-				<span class="post-tag">Element</span>
-			
-				<span class="post-tag">Selector</span>
-			
-				<span class="post-tag">Parent Element</span>
-			
-				<span class="post-tag">Programming</span>
-			
-				<span class="post-tag">getElementById</span>
-			
-				<span class="post-tag">getElementsByClassName</span>
-			
-				<span class="post-tag">getElementsByName</span>
-			
-				<span class="post-tag">getElementsByTagName</span>
-			
-				<span class="post-tag">querySelector</span>
-			
-				<span class="post-tag">querySelectorAll</span>
-			
-				<span class="post-tag">Node</span>
-			
-				<span class="post-tag">Parent Node</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-				<span class="post-tag">จาวาสคริป</span>
-			
-				<span class="post-tag">เขียนโค้ด</span>
-			
-				<span class="post-tag">โค้ดดิ้ง</span>
-			
-				<span class="post-tag">วัตถุ</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/12/01/implement_httponly_cookies_token_nodejs_express/amp/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-	<!-- Messenger Chat plugin Code -->
-	<div id="fb-root"></div>
-
-	<!-- Your Chat plugin code -->
-	<div id="fb-customer-chat" class="fb-customerchat">
-	</div>
-
-	<script>
-	var chatbox = document.getElementById('fb-customer-chat');
-	chatbox.setAttribute("page_id", "104741474999804");
-	chatbox.setAttribute("attribution", "biz_inbox");
-
-	window.fbAsyncInit = function() {
-		FB.init({
-		xfbml            : true,
-		version          : 'v12.0'
-		});
-	};
-
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	</script>
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
