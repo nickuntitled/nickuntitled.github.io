@@ -709,6 +709,61 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}.web3header{
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 132 199 / var(--tw-bg-opacity));
+  --tw-border-opacity: 1;
+  border-color: rgb(52 211 153 / var(--tw-border-opacity));
+  border-style: solid;
+  border-radius: 0.375rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}.web3header p{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}@media (min-width: 768px){.web3header p{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}.web3header p{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}.web3container{
+  width: 100%;
+}@media (min-width: 640px){.web3container{
+    max-width: 640px;
+  }
+}@media (min-width: 768px){.web3container{
+    max-width: 768px;
+  }
+}@media (min-width: 1024px){.web3container{
+    max-width: 1024px;
+  }
+}@media (min-width: 1280px){.web3container{
+    max-width: 1280px;
+  }
+}@media (min-width: 1536px){.web3container{
+    max-width: 1536px;
+  }
+}.web3container{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 768px;
+}.web3header a{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}@media (min-width: 768px){.web3header a{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}.web3header a{
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }*, ::before, ::after{
   --tw-translate-x: 0;
   --tw-translate-y: 0;
@@ -769,6 +824,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }@media (min-width: 1536px){.container{
     max-width: 1536px;
   }
+}.float-right{
+  float: right;
+}.float-left{
+  float: left;
 }.float-none{
   float: none;
 }.clear-both{
