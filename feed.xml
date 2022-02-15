@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-01-26T10:16:34+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี</title><link href="https://nickuntitled.com/2022/01/25/graphql_without_library/" rel="alternate" type="text/html" title="การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี" /><published>2022-01-25T06:30:00+07:00</published><updated>2022-01-25T06:30:00+07:00</updated><id>https://nickuntitled.com/2022/01/25/graphql-without-library</id><content type="html" xml:base="https://nickuntitled.com/2022/01/25/graphql_without_library/">&lt;p&gt;เวลาที่ส่งข้อมูลระหว่าง Client และ Server ผ่านทางจาวาสคริปโดยเรียกใช้งานผ่านทาง &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX&quot;&gt;AJAX&lt;/a&gt; ปกติ เราจะส่งข้อมูลโดยวิธี POST ผ่านการพิมพ์โค้ดตามด้านล่างนี้ (ในตัวอย่างจะใช้ &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest&quot;&gt;XMLHttpRequest&lt;/a&gt; แต่จะใช้ Fetch, Axios หรืออื่น ๆ ก็ได้ เพราะได้ผลเหมือนกัน)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-02-16T00:58:17+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้</title><link href="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/" rel="alternate" type="text/html" title="รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้" /><published>2022-02-16T00:00:00+07:00</published><updated>2022-02-16T00:00:00+07:00</updated><id>https://nickuntitled.com/2022/02/13/run-jupyter-background</id><content type="html" xml:base="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/">&lt;p&gt;Jupyter Notebook เป็นเครื่องมือที่ช่วยให้เรารันตัว Python Notebook ได้ ซึ่งตัวนี้เหมาะกับการเขียนโค้ดเพื่อคำนวณทางด้านวิทยาศาสตร์ หรือทำงานด้าน Data Science และอื่น ๆ เป็นต้น ซึ่งเราจะพบการใช้งานตัว &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter Notebook&lt;/a&gt; ได้บ่อย ๆ ใน &lt;a href=&quot;http://colab.research.google.com/&quot;&gt;Google Colab&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี การใช้งานตัว Google Colab พบปัญหา เนื่องมาจากตัวฟรี หรือตัวโปรรุ่นล่าง ๆ จะเปิดให้รันบนเบื้องหลังได้ไม่นาน หลังจากนั้นตัวระบบจะตัดไป เพื่อนำทรัพยากรที่มีจำกัดให้กับบุคคลอื่นแทน ดังนั้นแล้วการใช้งาน Jupyter Notebook บนคอมพิวเตอร์ของเรา หรือบนเซิร์ฟเวอร์ของเราเองจะเป็นทางเลือกที่ดีกว่า&lt;/p&gt;
+
+&lt;p&gt;เมื่อเราติดตั้งตัว jupyter Notebook ไว้ในคอมพิวเตอร์ของเราแล้ว เราเข้าตัว Notebook ่ผ่านทางหน้าเว็บเบราวเซอร์เพื่อใช้งาน เมื่อเรารันโค้ดที่มีใน Python Notebook แล้วปิดหน้าเว็บเบราวเซอร์ทิ้งไว้ ตัวผลลัพธ์อาจจะไม่ปรากฏบนหน้าจอ หรือเปิดให้รันโค้ดไปซักพักแล้วจะขึ้น Keyboard Interrupt แล้วตัวโค้ดที่รันไว้จะหยุดการทำงาน&lt;/p&gt;
+
+&lt;p&gt;แล้วมีวิธีไหนที่จะรันตัวโค้ดที่เขียนอยู่ใน Python Notebook ให้ทำงานอยู่ถึงแม้ว่าเราจะปิดเว็บเบราวเซอร์ไปแล้วล่ะ? จากที่ไปค้นในเน็ตมีอยู่หลายวิธีได้แก่&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;รันตัวโค้ดผ่านทาง SSH&lt;/li&gt;
+  &lt;li&gt;รันผ่านทาง VNC&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;วิธีแรกอันนี้ทำไม่ได้ เพราะเซิร์ฟเวอร์ที่ใช้อยู่ไม่ได้เปิดให้เข้าผ่านทาง SSH ดังนั้นแล้ว เราเลือกวิธีที่สองแทน โดยวิธีนี้เอามาจากใน&lt;a href=&quot;https://towardsdatascience.com/keep-jupyter-notebook-running-even-after-browser-is-closed-9a1937b7c615&quot;&gt;เว็บ Towards Data Science&lt;/a&gt; แล้วเอามาใช้กับงานเราครับ&lt;/p&gt;
+
+&lt;p&gt;แต่ก่อนอื่นติดตั้ง ML workspace หรือติดตั้ง Jupyter Notebook ลงบนเซิร์ฟเวอร์ที่เราใช้งานอยู่ (หรือติดตั้งบนคลาวด์อย่าง DigitalOcean ก็ได้ ถ้าไม่มีสมาชิกก็&lt;a href=&quot;https://m.do.co/c/61ae5e7ddeb6&quot;&gt;สมัครสมาชิก&lt;/a&gt;ก่อน) อย่างไรก็ดีในตัวอย่างนี้เราแนะนำ ML workspace ที่ติดตั้งเป็นตัว Docker Container เพราะมันสะดวกมากกว่า แถมมันอยู่ใน Sandbox ไม่รบกวน OS หลักที่เราใช้งานอยู่&lt;/p&gt;
+
+&lt;h2 id=&quot;การเริ่มใช้งาน-และการเข้าไปใช้งาน-vnc&quot;&gt;การเริ่มใช้งาน และการเข้าไปใช้งาน VNC&lt;/h2&gt;
+
+&lt;p&gt;เมื่อติดตั้งเสร็จแล้ว เราเริ่มทำได้โดยเปิดใช้งาน ML workspace ผ่านการใช้คำสั่งของ Docker เอง จากนั้นให้เราเข้าไปใช้งาน ML workspace โดย&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;เข้าทางหน้าเว็บจากเครื่องคอมพิวเตอร์เครื่องมือ&lt;/li&gt;
+  &lt;li&gt;เมื่อเข้ามาแล้ว เราจะพบหน้าจอ Jupyter Notebook ให้ใส่รหัสผ่านแล้วเข้ามาจะเจอหน้าจอหลักตามภาพแรก&lt;/li&gt;
+  &lt;li&gt;เลื่อนเมาส์ไปยัง Tools ที่มุมบนขวา จากนั้นเลื่อนลงมาจะเจอ VNC ให้เลือกที่ VNC แล้วจะพบหน้าจอเดสก์ท็อปของลินุกซ์ ให้เราคลิกเมาส์ที่ Jupyter Notebook ตามภาพต่อมา&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/02/jupyter_notebook.jpeg&quot; alt=&quot;Jupyter Notebook&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/02/vnc.jpeg&quot; alt=&quot;VNC&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;การเริ่มรัน-jupyter-notebook&quot;&gt;การเริ่มรัน Jupyter Notebook&lt;/h2&gt;
+
+&lt;p&gt;เมื่อเราเข้าไปใช้งาน Jupyter Notebook ผ่านตัว VNC แล้ว ให้เราเลือกไฟล์ Python Notebook ที่เราต้องการ จากนั้นเลือกที่ Run Cells ที่มันรันนาน ๆ (ของเราเป็นการทำ Inference ของ Head Pose Estimation จากไฟล์วิดีโอ)&lt;/p&gt;
+
+&lt;p&gt;เมื่อกดเริ่มรันเรียบร้อย ระหว่างที่มันรันอยู่ ให้เราเลือกที่ Disconnect ที่ด้านซ้ายตามลูกศร&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/02/jupyter_vnc.jpeg&quot; alt=&quot;Running Jupyter Notebook on VNC&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;กดปุ่ม Disconnect แล้ว ระบบจะตัดการเชื่อมต่อไป ระหว่างนี้ตัวโค้ดก็ยังรันอยู่ตามปกติโดยที่ไม่เจอการตัดการทำงานของตัวโค้ดเลย ยกเว้นแต่ว่ามีคนไปปิดเครื่องเซิร์ฟเวอร์ หรือไฟดับระหว่างที่รันครับ&lt;/p&gt;
+
+&lt;p&gt;สำหรับผู้อ่านที่สนใจ สามารถไปประยุกต์ใช้ได้เลย วิธีนี้ใช้ง่ายดี ไม่ต้องเข้าผ่าน SSH แล้วพิมพ์คอมมานไลน์ให้ยุ่งยากฮะ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Python" /><category term="Coding" /><category term="Developer" /><category term="Jupyter" /><category term="Data Science" /><category term="AI" /><category term="Artificial Intelligence" /><category term="Machine Learning" /><category term="Notebook" /><category term="Background" /><category term="Python Notebook" /><category term="เขียนโปรแกรม" /><category term="ไพทอน" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><category term="วิทยาการคำนวณ" /><category term="ปัญญาประดิษฐ์" /><summary type="html">บทความนี้พูดถึงการใช้ Jupyter โดยรันตัว Python Notebook ที่ไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2022/02/jupyter_notebook_bg_cover.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2022/02/jupyter_notebook_bg_cover.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เขียนโค้ดจาวาสคริปเพื่อเช็คว่าใช้งาน MetaMask อยู่หรือไม่</title><link href="https://nickuntitled.com/2022/02/03/coding_check_metamask_crypto_web3/" rel="alternate" type="text/html" title="เขียนโค้ดจาวาสคริปเพื่อเช็คว่าใช้งาน MetaMask อยู่หรือไม่" /><published>2022-02-03T00:30:00+07:00</published><updated>2022-02-03T00:30:00+07:00</updated><id>https://nickuntitled.com/2022/02/03/check-web3-browser-javascript</id><content type="html" xml:base="https://nickuntitled.com/2022/02/03/coding_check_metamask_crypto_web3/">&lt;p&gt;Web3 (ที่ไม่ใช่ &lt;a href=&quot;https://en.wikipedia.org/wiki/Semantic_Web&quot;&gt;Web 3.0&lt;/a&gt; ตามที่คุณ Tim Berners-Lee กล่าวไว้) เป็นเว็บไซต์รูปแบบหนึ่งที่อยู่บนบล็อคเชนที่นำหลักการ Decentralization และหลักการ Token-based economics ตัวอย่างเช่นคริปโต โดย Web3 ที่พบได้ และบางคนก็ใช้ก็ตัวอย่างเช่น DeFi แบบ Pancakeswap หรืออื่น ๆ&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี เวลาที่เปิดใช้งานเว็บแนวนี้เราก็ต้องเช็คก่อนครับว่ามีกระเป๋าตังคริปโต (ที่ได้ยินบ่อยก็เป็น MetaMask) หรือไม่ ถ้ามี เราก็เปิดให้เชื่อมกับกระเป๋าตังสำหรับใช้ทำธุรกรรม Smart Contract หรืออื่น ๆ ต่อได้เลย แต่ถ้าไม่มีก็ให้เว็บแจ้งว่าไม่มี&lt;/p&gt;
+
+&lt;h2 id=&quot;เขียนโค้ด&quot;&gt;เขียนโค้ด&lt;/h2&gt;
+
+&lt;p&gt;หลังจากที่เกริ่นมาสักพักแล้ว เรามาเขียนโค้ดกันดีกว่า ในขั้นตอนแรก เราก็ต้องเช็คว่ามีตัวแปรที่เกี่ยวข้องกับ MetaMask หรือไม่ โดยเขียนโค้ดตามด้านล่างนี้&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;โค้ดบางส่วนนำมาจาก &lt;a href=&quot;https://ethereum.stackexchange.com/questions/44601/how-to-check-whether-metamask-is-installed&quot;&gt;StackOverflow&lt;/a&gt; และเอกสารจากทางเว็บ &lt;a href=&quot;https://docs.metamask.io/guide/ethereum-provider.html#properties&quot;&gt;MetaMask&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  if(typeof window.ethereum != &quot;undefined&quot; || typeof window.web3 != &quot;undefined&quot;) {
+
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อเช็คแล้วว่ามีตัวแปรที่เกี่ยวข้องแล้ว เราก็เรียกใช้งานตัวแปรที่เกี่ยวข้องแล้วอ่านค่าตัวแปรนี้ว่ามี MetaMask หรือไม่ โดยเขียนโค้ดตามด้านล่างนี้ในปีกกาครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  const web3provider = window.ethereum || window.web3.currentProvider;
+  const metamask = web3provider.isMetaMask;
+
+  if(metamask) {
+    console.log(&quot;We found MetaMask.&quot;);
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อเขียนโค้ดตามข้างบนนี้เสร็จแล้ว โค้ดที่ได้จะตามด้านล่างนี้&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  if(typeof window.ethereum != &quot;undefined&quot; || typeof window.web3 != &quot;undefined&quot;) {
+    const web3provider = window.ethereum || window.web3.currentProvider;
+    const metamask = web3provider.isMetaMask;
+
+    if(metamask) {
+      console.log(&quot;We found MetaMask.&quot;);
+    }
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราทดสอบบนเว็บเบราวเซอร์ที่ติดตั้ง MetaMask อยู่ เราเปิดหน้า JavaScript Console จะปรากฏผลลัพธ์ว่า&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  We found MetaMask.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ส่วนกรณีที่ไม่มี MetaMask ติดตั้งอยู่ เวลาเรียกใช้ฟังก์ชันตามข้างบนนี้จะพบ Error ขึ้นมากล่าวประมาณว่าไม่พบตัวแปร window.ethereum และ window.web3.currentProvider ครับ&lt;/p&gt;
+
+&lt;p&gt;เมื่อเราเขียนโค้ดตามข้างบนนี้แล้ว เราสามารถรประยุกต์ใช้งานเพื่อทำธุรกรรมอื่นต่อ หรือทำแบนเนอร์บอกว่าเราใช้งาน Web3 อยู่นะ อะไรประมาณนี้ครับ ตัวอย่างก็พบได้ในหน้าโฮมของเว็บนี้ หรือตามวิดีโอด้านล่างนี้ได้ครับ&lt;/p&gt;
+
+&lt;video src=&quot;https://asset.nickuntitled.com/2022/02/nickuntitled_web3.mp4&quot; controls=&quot;&quot;&gt;
+  เว็บเบราวเซอร์ของท่านไม่รองรับการใช้งานวิดีโอ อย่างไรก็ดีเราอธิบายวิดีโอนี้ได้ว่ามันเกี่ยวกับการเปิดใช้งานบนเว็บเบราวเซอร์ที่ติดมากับ MetaMask ครับ
+&lt;/video&gt;
+
+&lt;p&gt;สำหรับผู้อ่านแล้ว ผู้อ่านสามารถประยุกต์เอาไปใช้งานกับเว็บตัวเองได้เลยครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="JavaScript" /><category term="Coding" /><category term="Developer" /><category term="Web3" /><category term="MetaMask" /><category term="Cryptocurrency" /><category term="Wallet" /><category term="Ethereum" /><category term="เขียนโปรแกรม" /><category term="จาวาสคริป" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><summary type="html">บทความนี้พูดถึงการเขียนโค้ดเพื่อเช็คว่าใช้งาน MetaMask อยู่หรือไม่ สำหรับการนำไปใช้ทำธุรกรรมต่อ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2022/02/metamask_checker_cover.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2022/02/metamask_checker_cover.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี</title><link href="https://nickuntitled.com/2022/01/25/graphql_without_library/" rel="alternate" type="text/html" title="การเขียนโค้ดเพื่อใช้งาน GraphQL โดยไม่ใช้ไลบรารี" /><published>2022-01-25T06:30:00+07:00</published><updated>2022-01-25T06:30:00+07:00</updated><id>https://nickuntitled.com/2022/01/25/graphql-without-library</id><content type="html" xml:base="https://nickuntitled.com/2022/01/25/graphql_without_library/">&lt;p&gt;เวลาที่ส่งข้อมูลระหว่าง Client และ Server ผ่านทางจาวาสคริปโดยเรียกใช้งานผ่านทาง &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX&quot;&gt;AJAX&lt;/a&gt; ปกติ เราจะส่งข้อมูลโดยวิธี POST ผ่านการพิมพ์โค้ดตามด้านล่างนี้ (ในตัวอย่างจะใช้ &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest&quot;&gt;XMLHttpRequest&lt;/a&gt; แต่จะใช้ Fetch, Axios หรืออื่น ๆ ก็ได้ เพราะได้ผลเหมือนกัน)&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
 
@@ -1194,73 +1286,4 @@ def get_status(task_id):
   &lt;li&gt;เมื่อส่ง Queue ไปแล้ว เราต้องการค่า job_id ออกมา แล้วติดตามความก้าวหน้าของฟังก์ชันนั้น โดยทำตามข้อที่ 4-5&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;ซึ่ง เราได้ทดลองใช้กับ web server ที่เขียนโดย Flask ไปแล้ว ตัว Redis Queue แก้ปัญหาเรื่อง Request Timeout ระหว่างการประมวลผลฟังก์ชันที่ต้องใช้ระยะเวลาประมวลผลนานครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Redis" /><category term="Programming" /><category term="Python" /><category term="Redis Queue" /><category term="HTTP" /><category term="Web server" /><category term="Flask" /><category term="Worker" /><category term="ไพทอน" /><category term="เขียนโปรแกรม" /><summary type="html">ปัญหาหนึ่งเวลาที่เขียนหน้าเว็บเพื่อส่งข้อมูลสำหรับการประมวลผลที่ใช้เวลานานไปคือเกิด Request Timeout ในบทความนี้จะแนะนำตัวช่วยหนึ่งที่มีชื่อว่า Redis Queue</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Hello World ใน Python, JS และ C++</title><link href="https://nickuntitled.com/2021/11/5/hello_world/" rel="alternate" type="text/html" title="Hello World ใน Python, JS และ C++" /><published>2021-11-05T08:00:00+07:00</published><updated>2021-11-05T08:00:00+07:00</updated><id>https://nickuntitled.com/2021/11/5/hello-world</id><content type="html" xml:base="https://nickuntitled.com/2021/11/5/hello_world/">&lt;p&gt;Hello World เป็นโปรแกรมที่เขียนขึ้นมาเพื่อแสดงผลหน้าจอว่า “Hello World” ซึ่งเป็นสิ่งที่พบได้ในทุกภาษา และมีไว้แสดงลักษณะการเขียนในภาษาเขียนโปรแกรมนั้น ๆ (Syntax) นอกเหนือจากนี้แล้วการเขียนโปรแกรมนี้ขึ้นมามีหน้าที่ทดสอบว่า เราติดตั้งแล้วสามารถใช้งานตัว Compiler หรือตัว Interpreter ว่าทำงานได้ปกติหรือไม่&lt;/p&gt;
-
-&lt;p&gt;ต่อมา เราเขียนทวิตหนึ่งไป แล้วแมสมาพอดี มีโควทหนึ่งในทวิตว่าสนใจที่จะเขียน Hello World เราเลยแสดงให้เห็นว่า การเขียนในภาษาไพทอน จาวาสคริป และ C++ เป็นอย่างไรครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;ภาษาไพทอน&quot;&gt;ภาษาไพทอน&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_py.png&quot; alt=&quot;Hello World in Python&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;อันนี้เป็น Hello World ในภาษาไพทอน จะพบว่าเขียนได้จบในบรรทัดเดียว สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราแนะนำครับ เรียนแล้วเอาไปต่อยอดทางด้าน Data Science, AI/ML และอื่น ๆ ได้เลย&lt;/p&gt;
-
-&lt;h2 id=&quot;ภาษาจาวาสคริป&quot;&gt;ภาษาจาวาสคริป&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_js.png&quot; alt=&quot;Hello World in JS&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;อันนี้เป็น Hello World ในภาษาจาวาสคริป จะพบว่าเขียนได้จบในบรรทัดเดียวเช่นกัน สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราก็แนะนำครับ เรียนแล้วเอาไปต่อยอดทำเว็บได้ทั้ง Front-end, Back-end รวมถึงทำโปรแกรมบนเดสก์ท็อป มือถือได้ครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;ภาษา-c&quot;&gt;ภาษา C++&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_cpp.png&quot; alt=&quot;Hello World in CPP&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;อันนี้เป็น Hello World ในภาษา C++ จะพบว่าเขียนได้ไม่จบในบรรทัดเดียวเช่นกัน อย่างไรก็ดีภาษานี้ใครเรียนคอมในโรงเรียน หรือในมหาวิทยาลัยก็จะได้เจอกัน ส่วนตัวภาษานี้อาจจะยากไปนิดสำหรับคนที่เพิ่งเขียนโปรแกรม แต่ถ้าเขียนเป็นแล้วนี่เอาไปต่อยอดได้อีกเยอะครับ เช่นพัฒนาเกม, พัฒนาลงอุปกรณ์ IoT (Internet of Things), ฐานข้อมูล เป็นต้น&lt;/p&gt;
-
-&lt;p&gt;ผู้อ่านสามารถอ่านได้ใน&lt;a href=&quot;https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/&quot;&gt;หน้าเว็บของ Codecademy ที่สอนเขียนโปรแกรมได้ครับ&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;สรุป&quot;&gt;สรุป&lt;/h2&gt;
-
-&lt;p&gt;สำหรับคนที่เพิ่งเขียนโปรแกรม โปรแกรมนี้จะเป็นโปรแกรมแรกที่ได้เขียน เราแสดงให้เป็นตัวอย่างใน 3 ภาษาได้แก่ ไพทอน จาวาสคริป และ C++ ที่จะเห็นว่าโค้ดในสองภาษาแรกสามารถเขียนได้ในบรรทัดเดียว ส่วนตัวเราแนะนำให้เริ่มเขียนทั้งสองภาษานี้ก่อนครับ พอเขียนเป็นแล้วจะไปเรียนต่อภาษาอื่นก็ทำได้เช่นกันครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Hello World" /><category term="Programming" /><category term="Newbie" /><category term="เขียนโปรแกรม" /><category term="Python" /><category term="JavaScript" /><category term="JS" /><category term="C++" /><category term="CPP" /><category term="มือใหม่" /><category term="ไพทอน" /><category term="จาวาสคริป" /><summary type="html">Hello World เป็นสิ่งที่ผู้ที่เริ่มต้นเขียนโปรแกรมจะได้สัมผัส และเขียนขึ้นมา ในบทความนี้จะแสดงการเขียนในแต่ละภาษาครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">นักเรียนเลว - สนับสนุนเพื่อทวงสิทธิเสรีภาพ และอนาคตของนร.</title><link href="https://nickuntitled.com/2021/10/31/support-bad-student/" rel="alternate" type="text/html" title="นักเรียนเลว - สนับสนุนเพื่อทวงสิทธิเสรีภาพ และอนาคตของนร." /><published>2021-10-31T14:10:30+07:00</published><updated>2021-10-31T14:10:30+07:00</updated><id>https://nickuntitled.com/2021/10/31/support-badstudent</id><content type="html" xml:base="https://nickuntitled.com/2021/10/31/support-bad-student/">&lt;p&gt;กลุ่มนักเรียนเลว เป็นกลุ่มที่ได้รับการก่อตั้งเพื่อเคลื่อนไหวประเด็นทางด้านสิทธิ เสรีภาพ และทวงอนาคตสำหรับนักเรียนไทย ที่มาของชื่อกลุ่มนี้มาจากคำกล่าวที่ผู้ใหญ่จะกล่าวว่า “เป็นเด็กจะต้องเชื่อฟังผู้ใหญ่” แล้วทีนี้ผู้ก่อตั้ง และกลุ่มไม่ได้เชื่อฟังไปเสียทั้งหมดซึ่งก็ขัดตามคำที่ผู้ใหญ่บอก ตามที่&lt;a href=&quot;https://www.matichonweekly.com/column/article_345406&quot;&gt;ผู้ก่อตั้งกลุ่ม (มิน) สัมภาษณ์ไว้ในบทความนี้&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;สำหรับคนที่ไม่ทราบว่ากลุ่มนี้เคลื่อนไหวอะไรบ้าง กลุ่มนักเรียนเลวเคลื่อนไหวเกี่ยวกับ&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;การประท้วงกฎเกณฑ์เรื่องทรงผมในโรงเรียน&lt;/li&gt;
-  &lt;li&gt;การจัดขบวนเดินเท้าเรียกร้องความเท่าเทียมทางเพศ&lt;/li&gt;
-  &lt;li&gt;ปัญหาอำนาจนิยมในสถานศึกษา&lt;/li&gt;
-  &lt;li&gt;การหยุดคุกคาม และล่วงละเมิดทางเพศในนักเรียน&lt;/li&gt;
-  &lt;li&gt;การร่วมกิจกรรมวิ่งแฮมทาโร่&lt;/li&gt;
-  &lt;li&gt;เป็นต้น&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;รวมถึงการจัดกิจกรรมเพื่อแก้ปัญหาเรียนออนไลน์ในที่ผ่านมา ที่มีแฮชแทคว่า &lt;a href=&quot;https://twitter.com/search?q=%23%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%A5%E0%B8%99%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7%E0%B8%AD%E0%B8%B4%E0%B8%AA%E0%B8%B1%E0%B8%AA&amp;amp;src=trend_click&amp;amp;vertical=trends&quot;&gt;#ไม่เรียนออนไลน์แล้วอิสัส&lt;/a&gt; ที่จัดกิจกรรมเพื่อแสดงออกเรื่องปัญหาการเรียนออนไลน์ที่ขาดประสิทธิภาพครับ&lt;/p&gt;
-
-&lt;p&gt;อย่างไรก็ดี การจัดกิจกรรมในแต่ละครั้ง หรือจะทำอะไรก็ตามก็ต้องมีต้นทุนซึ่งเป็นปัญหาหลักเลยว่าจะหาเงินให้มันเพียงพอได้อย่างไร กลุ่มนี้เช่นกันตามที่ทีมงานในกลุ่มนี้กล่าวไว้ ก็ต้องมี&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ต้นทุนสำหรับค่าเดินทาง&lt;/li&gt;
-  &lt;li&gt;ค่าเช่าออฟฟิสสำหรับการประชุม&lt;/li&gt;
-  &lt;li&gt;ค่าน้ำ ค่าไฟ&lt;/li&gt;
-  &lt;li&gt;และอินเตอร์เน็ตเพื่อดำเนินงานครับ&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ที่ทางกลุ่มต้องการการสนับสนุนเพิ่มเติม แล้วเราจะสนับสนุนได้อย่างไร?&lt;/p&gt;
-
-&lt;p&gt;ผู้อ่านสามารถสนับสนุนการเคลื่อนไหวเพื่อทวงสิทธิ เสรีภาพ และอนาคตสำหรับนักเรียนไทยได้โดยการโอนเข้าบัญชีตามโพสทวิตเตอร์ของกลุ่มด้านล่างนี้ครับ&lt;/p&gt;
-
-&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;th&quot; dir=&quot;ltr&quot;&gt;เป็นส่วนหนึ่งในการทวงคืนสิทธิของนักเรียนกลับคืนมา ด้วยการสนับสนุนพวกเรา เพื่อให้นักเรียนเลวสามารถเคลื่อนไหว ทำกิจกรรม และผลิตเนื้อหาต่าง ๆ สู่สังคมต่อไปได้&lt;br /&gt;&lt;br /&gt;ผ่านทางธนาคารกสิกรไทย เลขที่บัญชี&lt;br /&gt;093-8-26583-6 ชื่อบัญชี ธญานี และ ลภนพัฒน์ และ ภาณุพงศ์&lt;br /&gt;——&lt;a href=&quot;https://twitter.com/hashtag/%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%A5%E0%B8%A7?src=hash&amp;amp;ref_src=twsrc%5Etfw&quot;&gt;#นักเรียนเลว&lt;/a&gt; &lt;a href=&quot;https://t.co/TLK7GzWiTD&quot;&gt;pic.twitter.com/TLK7GzWiTD&lt;/a&gt;&lt;/p&gt;&amp;mdash; นักเรียนเลว (@BadStudent_) &lt;a href=&quot;https://twitter.com/BadStudent_/status/1453998308855148549?ref_src=twsrc%5Etfw&quot;&gt;October 29, 2021&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;ส่วนผู้อ่านจะติดตามเพจนี้ต่อได้อย่างไร? เราสามารถติดตามกลุ่มนี้ได้ใน&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.facebook.com/Badstudent.th/&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://twitter.com/BadStudent_&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ได้เลยครับ ส่วนหน้าเว็บของกลุ่มนี้ ไม่มีครับ&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;เพิ่มเติม&lt;/strong&gt;&lt;/p&gt;
-  &lt;ol&gt;
-    &lt;li&gt;ผู้เขียนไม่ได้เป็นทีมงานของกลุ่มนี้ครับ อายุเกินไปหลายปีแล้วคุณ&lt;/li&gt;
-    &lt;li&gt;และเราได้สนับสนุนไปเรียบร้อยครับ&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Badstudent" /><category term="Thai" /><category term="Democracy" /><category term="Student" /><category term="Funding" /><category term="Donation" /><category term="Support" /><category term="นักเรียนเลว" /><category term="นักเรียน" /><category term="ไทย" /><category term="สิทธิเสรีภาพ" /><category term="บริจาค" /><category term="สนับสนุน" /><summary type="html">กลุ่มนักเรียนเลวเป็นกลุ่มที่เคลื่อนไหวประเด็นสิทธิเสรีภาพ และทวงอนาคตสำหรับนักเรียนไทย ในบทความนี้จะกล่าวถึงวิธีการสนับสนุนกลุ่มให้สามารดำเนินงานต่อไปได้ครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/10/badstudent_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/10/badstudent_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;ซึ่ง เราได้ทดลองใช้กับ web server ที่เขียนโดย Flask ไปแล้ว ตัว Redis Queue แก้ปัญหาเรื่อง Request Timeout ระหว่างการประมวลผลฟังก์ชันที่ต้องใช้ระยะเวลาประมวลผลนานครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Redis" /><category term="Programming" /><category term="Python" /><category term="Redis Queue" /><category term="HTTP" /><category term="Web server" /><category term="Flask" /><category term="Worker" /><category term="ไพทอน" /><category term="เขียนโปรแกรม" /><summary type="html">ปัญหาหนึ่งเวลาที่เขียนหน้าเว็บเพื่อส่งข้อมูลสำหรับการประมวลผลที่ใช้เวลานานไปคือเกิด Request Timeout ในบทความนี้จะแนะนำตัวช่วยหนึ่งที่มีชื่อว่า Redis Queue</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
