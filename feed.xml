@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-02-16T00:58:17+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้</title><link href="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/" rel="alternate" type="text/html" title="รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้" /><published>2022-02-16T00:00:00+07:00</published><updated>2022-02-16T00:00:00+07:00</updated><id>https://nickuntitled.com/2022/02/13/run-jupyter-background</id><content type="html" xml:base="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/">&lt;p&gt;Jupyter Notebook เป็นเครื่องมือที่ช่วยให้เรารันตัว Python Notebook ได้ ซึ่งตัวนี้เหมาะกับการเขียนโค้ดเพื่อคำนวณทางด้านวิทยาศาสตร์ หรือทำงานด้าน Data Science และอื่น ๆ เป็นต้น ซึ่งเราจะพบการใช้งานตัว &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter Notebook&lt;/a&gt; ได้บ่อย ๆ ใน &lt;a href=&quot;http://colab.research.google.com/&quot;&gt;Google Colab&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-02-16T01:11:35+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้</title><link href="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/" rel="alternate" type="text/html" title="รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้" /><published>2022-02-16T00:00:00+07:00</published><updated>2022-02-16T00:00:00+07:00</updated><id>https://nickuntitled.com/2022/02/13/run-jupyter-background</id><content type="html" xml:base="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/">&lt;p&gt;Jupyter Notebook เป็นเครื่องมือที่ช่วยให้เรารันตัว Python Notebook ได้ ซึ่งตัวนี้เหมาะกับการเขียนโค้ดเพื่อคำนวณทางด้านวิทยาศาสตร์ หรือทำงานด้าน Data Science และอื่น ๆ เป็นต้น ซึ่งเราจะพบการใช้งานตัว &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter Notebook&lt;/a&gt; ได้บ่อย ๆ ใน &lt;a href=&quot;http://colab.research.google.com/&quot;&gt;Google Colab&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;อย่างไรก็ดี การใช้งานตัว Google Colab พบปัญหา เนื่องมาจากตัวฟรี หรือตัวโปรรุ่นล่าง ๆ จะเปิดให้รันบนเบื้องหลังได้ไม่นาน หลังจากนั้นตัวระบบจะตัดไป เพื่อนำทรัพยากรที่มีจำกัดให้กับบุคคลอื่นแทน ดังนั้นแล้วการใช้งาน Jupyter Notebook บนคอมพิวเตอร์ของเรา หรือบนเซิร์ฟเวอร์ของเราเองจะเป็นทางเลือกที่ดีกว่า&lt;/p&gt;
 
@@ -17,7 +17,7 @@
 
 &lt;h2 id=&quot;การเริ่มใช้งาน-และการเข้าไปใช้งาน-vnc&quot;&gt;การเริ่มใช้งาน และการเข้าไปใช้งาน VNC&lt;/h2&gt;
 
-&lt;p&gt;เมื่อติดตั้งเสร็จแล้ว เราเริ่มทำได้โดยเปิดใช้งาน ML workspace ผ่านการใช้คำสั่งของ Docker เอง จากนั้นให้เราเข้าไปใช้งาน ML workspace โดย&lt;/p&gt;
+&lt;p&gt;เมื่อติดตั้งเสร็จแล้ว เราเริ่มทำได้โดยเปิดใช้งาน &lt;a href=&quot;https://github.com/ml-tooling/ml-workspace&quot;&gt;ML workspace&lt;/a&gt; ผ่านการใช้คำสั่งของ Docker เอง จากนั้นให้เราเข้าไปใช้งาน ML workspace โดย&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;เข้าทางหน้าเว็บจากเครื่องคอมพิวเตอร์เครื่องมือ&lt;/li&gt;
@@ -107,7 +107,7 @@
   };
 
   ajaxrequest.onprogress = (event) =&amp;gt; {
-      console.log(&apos;Processing...&apos;);
+      console.log('Processing...');
   };
 
   ajaxrequest.send(`argument=value&amp;amp;argument2=value`);
@@ -174,9 +174,9 @@
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
     
-  ajaxrequest.responseType = &apos;json&apos;;
+  ajaxrequest.responseType = 'json';
   ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;URL for GraphQL Server&amp;gt;&quot;);
-  ajaxrequest.setRequestHeader(&apos;Content-Type&apos;, &apos;application/json&apos;);
+  ajaxrequest.setRequestHeader('Content-Type', 'application/json');
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
           /* Do Something */
@@ -209,7 +209,7 @@
   let form_data = new FormData();
   let map = {};
 
-  ajaxrequest.responseType = &apos;json&apos;;
+  ajaxrequest.responseType = 'json';
   ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;GraphQL server URL&amp;gt;&quot;);
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
@@ -242,14 +242,14 @@
 
 &lt;p&gt;แล้วสร้างตัวแปรเพื่อรองรับ File Object สำหรับการอัพโหลดไฟล์ตามโค้ดด้านล่าง ในตัวอยา่งจะใช้ File Input ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let fileObj = document.getElementById(&apos;&amp;lt;File Input ID&amp;gt;&apos;).files[0];
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let fileObj = document.getElementById('&amp;lt;File Input ID&amp;gt;').files[0];
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;ต่อมา เราเรียกใช้งาน XMLHttpRequest เจ้าเดิมได้โดยการพิมพ์คำสั่งตามตัวอย่างด้านล่างนี้&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
-  ajaxrequest.responseType = &apos;json&apos;;
-  ajaxrequest.open(&apos;POST&apos;, graphql_url);
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open('POST', graphql_url);
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
           /* Do Something */
@@ -343,13 +343,13 @@ document.body.parentElement; // the &amp;lt;html&amp;gt; element
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentNode.parentNode;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;หรือ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentElement.parentElement;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -392,8 +392,8 @@ document.documentElement.parentElement; // null เนื่องจาก docu
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
-let div = li.closest(&apos;div&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
+let div = li.closest('div');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;เมื่อพิมพ์ตามข้างบนนี้แล้ว เราจะเลือก parent element ที่เป็น div ครับ เมื่อสังเกตตัวโค้ดแล้วพบว่าใช้งานได้สะดวกมากกว่า node.parentNode กับ element.parentElement&lt;/p&gt;
@@ -670,12 +670,12 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;การใช้งาน LocalStorage ทำได้โดยการเก็บข้อมูลตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem(&apos;token&apos;, &amp;lt; Access Token ที่ได้ &amp;gt;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem('token', &amp;lt; Access Token ที่ได้ &amp;gt;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;แล้วเราสามารถเรียกได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem(&apos;token&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem('token');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;จากนั้นข้อมูล Access Token ที่เก็บไว้ในเว็บเบราวเซอร์ก็จะคืนค่าอยู่ในตัวแปร token ครับ ฟังดูแล้วง่ายกว่าที่ดีคิดไว้ เพราะใช้คำสั่งตามที่เขียนไว้ข้างบนนี้ ข้อมูลก็ออกมาได้แล้วครับ อย่างไรก็ดี การเก็บข้อมูลไว้ใน LocalStorage มีข้อเสีย เนื่องมาจาก&lt;/p&gt;
@@ -718,11 +718,11 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;เพื่อให้ใช้งานตามตัวอย่างด้านล่างนี้ได้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from &apos;http&apos;;
-import express from &apos;express&apos;;
-import dayjs from &apos;dayjs&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from 'http';
+import express from 'express';
+import dayjs from 'dayjs';
 import cookieParser from &quot;cookie-parser&quot;;
-import jwt from &apos;jsonwebtoken&apos;;
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -733,7 +733,7 @@ app.use(cookieParser());
 
 [...]
 
-app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
+app.post('/login', (req, res, next) =&amp;gt; {
 
   [...]
 
@@ -743,7 +743,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
       secure: true,
       httpOnly: true,
       expires: dayjs().add(1, &quot;days&quot;).toDate(),
-      sameSite: &apos;Strict&apos;
+      sameSite: 'Strict'
   });
 
   [...]
@@ -767,7 +767,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
     secure: true,
     httpOnly: true,
     expires: dayjs().add(1, &quot;days&quot;).toDate(),
-    sameSite: &apos;Strict&apos;
+    sameSite: 'Strict'
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -797,7 +797,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราเรียกใช้งานได้โดยผ่านการพิมพ์&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get(&apos;/isloggedin&apos;, (req, res, next) =&amp;gt; {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get('/isloggedin', (req, res, next) =&amp;gt; {
   
   [...]
 
@@ -812,8 +812,8 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราพิมพ์โค้ดได้ตามด้านล่างนี้&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from &apos;apollo-server-express&apos;;
-import { ApolloServerPluginDrainHttpServer } from &apos;apollo-server-core&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 
 [...]
 
@@ -822,7 +822,7 @@ const apollo_server = new ApolloServer({
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   context: ({ req }) =&amp;gt; {
-    let token = req.cookies.authorization || &apos;&apos;;
+    let token = req.cookies.authorization || '';
     return {
       token
     };
@@ -1124,7 +1124,7 @@ def long_running_function(seconds):
 from rq import Queue, Connection
 from task import long_running_function
 
-redis_conn = Redis(&apos;127.0.0.1&apos;, 6379)
+redis_conn = Redis('127.0.0.1', 6379)
 q = Queue(connection=redis_conn)
 job = q.enqueue(long_running_function,  5)
 job_id = job.id
@@ -1152,10 +1152,10 @@ Task to print_numbers completed
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;q = Queue(connection=redis_conn)
 job = q.enqueue(long_running_function,  
-        args=(&apos;http://nvie.com&apos;,),
+        args=('http://nvie.com',),
         kwargs={
-            &apos;description&apos;: &apos;Function description&apos;, # This is passed on to count_words_at_url
-            &apos;ttl&apos;: 15  # This is passed on to count_words_at_url function
+            'description': 'Function description', # This is passed on to count_words_at_url
+            'ttl': 15  # This is passed on to count_words_at_url function
         }))
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1171,7 +1171,7 @@ job = q.enqueue(long_running_function,
 
 &lt;p&gt;หลังจากที่ได้ตัว id มาเรียบร้อยแล้ว เราสามารถติดตามการทำงานของฟังก์ชันที่ประมวลผลอยู่ใน Workers ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job = Job.fetch(&apos;job_id&apos;, connection=redis_conn)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job = Job.fetch('job_id', connection=redis_conn)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;พิมพ์คำสั่งนี้แล้ว ตัวฟังก์ชันจะคืนค่าตัวแปร Job เพื่อใช้สำหรับการประมวลผลในขั้นตอนต่อไป เราติดตามความก้าวหน้าของฟังก์ชันได้โดยพิมพ์คำสั่ง&lt;/p&gt;
@@ -1207,21 +1207,21 @@ def polling(job_id):
     status = job.get_status()
     result = job.result
 
-    if status == &apos;finished&apos;:
+    if status == 'finished':
         print(json.dumps({
-            &apos;status&apos;: &apos;success&apos;,
-            &apos;result&apos;: result
+            'status': 'success',
+            'result': result
         }))
         return False
-    elif status == &apos;failed&apos;:
+    elif status == 'failed':
         print(json.dumps({
-            &apos;status&apos;: &apos;failed&apos;,
-            &apos;result&apos;: result
+            'status': 'failed',
+            'result': result
         }))
         return False
 
     print(json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
+      'status': 'processing'
     }))
     return True
 
@@ -1230,26 +1230,26 @@ setInterval(1, polling, job_id)
 
 &lt;h4 id=&quot;ตัวอย่างที่ใช้ไลบรารีของ-flask&quot;&gt;ตัวอย่างที่ใช้ไลบรารีของ Flask&lt;/h4&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route(&apos;/get_status/&amp;lt;string:task_id&amp;gt;&apos;, methods=[&apos;GET&apos;])
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route('/get_status/&amp;lt;string:task_id&amp;gt;', methods=['GET'])
 def get_status(task_id):
     q = Queue(connection=redis_conn)
     job = Job.fetch(task_id, connection=redis_conn)
     status = job.get_status()
     result = job.result
 
-    if status == &apos;finished&apos;:
+    if status == 'finished':
         return json.dumps({
-          &apos;status&apos;: &apos;success&apos;,
-          &apos;result&apos;: result
+          'status': 'success',
+          'result': result
         })
-    elif status == &apos;failed&apos;:
+    elif status == 'failed':
         return json.dumps({
-          &apos;status&apos;: &apos;failed&apos;,
-          &apos;result&apos;: result
+          'status': 'failed',
+          'result': result
         })
 
     return json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
+      'status': 'processing'
     })
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
