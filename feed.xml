@@ -1,4 +1,277 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-02-03T02:23:39+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">เขียนโค้ดจาวาสคริปเพื่อเช็คว่าใช้งาน MetaMask อยู่หรือไม่</title><link href="https://nickuntitled.com/2022/02/03/coding_check_metamask_crypto_web3/" rel="alternate" type="text/html" title="เขียนโค้ดจาวาสคริปเพื่อเช็คว่าใช้งาน MetaMask อยู่หรือไม่" /><published>2022-02-03T00:30:00+07:00</published><updated>2022-02-03T00:30:00+07:00</updated><id>https://nickuntitled.com/2022/02/03/check-web3-browser-javascript</id><content type="html" xml:base="https://nickuntitled.com/2022/02/03/coding_check_metamask_crypto_web3/">&lt;p&gt;Web3 (ที่ไม่ใช่ &lt;a href=&quot;https://en.wikipedia.org/wiki/Semantic_Web&quot;&gt;Web 3.0&lt;/a&gt; ตามที่คุณ Tim Berners-Lee กล่าวไว้) เป็นเว็บไซต์รูปแบบหนึ่งที่อยู่บนบล็อคเชนที่นำหลักการ Decentralization และหลักการ Token-based economics ตัวอย่างเช่นคริปโต โดย Web3 ที่พบได้ และบางคนก็ใช้ก็ตัวอย่างเช่น DeFi แบบ Pancakeswap หรืออื่น ๆ&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-03-16T00:39:05+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Pyodide - แนะนำการเริ่มต้นใช้งาน และการพล็อตกราฟเพื่อแสดงบนหน้าเว็บ</title><link href="https://nickuntitled.com/2022/03/16/running_python_website_draw_graph/" rel="alternate" type="text/html" title="Pyodide - แนะนำการเริ่มต้นใช้งาน และการพล็อตกราฟเพื่อแสดงบนหน้าเว็บ" /><published>2022-03-16T00:00:00+07:00</published><updated>2022-03-16T00:00:00+07:00</updated><id>https://nickuntitled.com/2022/03/16/pyodide-matplotlib-img-element</id><content type="html" xml:base="https://nickuntitled.com/2022/03/16/running_python_website_draw_graph/">&lt;p&gt;Python เป็นภาษาคอมพิวเตอร์ภาษาหนึ่งที่ได้รับความนิยมภาษาหนึ่ง โดยภาษานี้เป็นภาษา General-purpose ท่เน้นการอ่านตัวโค้ดได้ง่าย รวมถึงง่ายต่อการเรียนรู้ ภาษานี้ปกติจะไม่ได้ออกแบบเพื่อการทำงานบนหน้าเว็บไซต์แบบจาวาสคริป อย่างไรก็ดีมีทีมงานกลุ่มหนึ่งใน Mozilla ที่พัฒนาตึวโค้ด CPython ให้ทำงานอยู่บน Webassembly ที่ออกแบบมาให้รันตัวโค้ดที่ได้รับการคอมไพล์บนหน้าเว็บไซต์&lt;/p&gt;
+
+&lt;p&gt;เมื่อตัวโค้ดได้รับการคอมไพล์ให้อยู่บน Webassembly แล้ว ตัวโค้ดที่เขียนในรูปแบบภาษา Python จะเข้าถึง Web APIs ทั้งหลายแหล่ที่อยู่บนเว็บเบราวเซอร์ได้นั่นเอง&lt;/p&gt;
+
+&lt;p&gt;ตัว Pyodide นี้นอกจากคอมไพล์ตัว Python แล้ว ยังรวบรวมไลบรารี Numpy, Matplotlib, Pandas, scikit-learn และอื่น ๆ อีกหลายสิบไลบรารี แถมยังรองรับการติดตั้งไลบรารี Python เพิ่มเติมได้โดยการติดตั้งผ่าน micropip&lt;/p&gt;
+
+&lt;h2 id=&quot;การเริ่มต้นการใช้งาน-pyodide&quot;&gt;การเริ่มต้นการใช้งาน Pyodide&lt;/h2&gt;
+
+&lt;p&gt;เราเริ่มต้นการใช้งานได้โดยการนำเข้าไลบรารี Pyodide ผ่านการแนบลิ้งค์ CDN ลงบนหน้า HTML ผ่านแท็ก script&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &amp;lt;script src = &quot;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือเรียกผ่านการใช้คำสั่ง import แบบ dynamic โดย&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  await import(&apos;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js&apos;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อนำเข้าไลบรารีนี้แล้ว เราเริ่มต้นการทำงานของ Pyodide ได้โดย&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let pyodide = await loadPyodide({
+      indexURL : &quot;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/&quot;
+  });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;การโหลดไลบรารี-และติดตั้งไลบรารีเพิ่มเติม&quot;&gt;การโหลดไลบรารี และติดตั้งไลบรารีเพิ่มเติม&lt;/h2&gt;
+
+&lt;p&gt;เมื่อเริ่มต้นการทำงานแล้ว เราสามารถโหลดไลบรารีที่ต้องการได้โดยคำสั่ง loadPackage ตามด้วยไลบรารีที่ต้องการโดยเขัยนตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  await pyodide.loadPackage(&quot;&amp;lt; ชื่อไลบรารี &amp;gt;&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ส่วนกรณีที่ต้องติดตั้งไลบรารีเพิ่มเติม เราสามารถติดตั้งได้โดยการใช้ micropip ซึ่งทำได้โดยการโหลดไบรารีผ่านการใช้ loadPackage และการเรียกใช้คำสั่ง micropip.install ผ่านการใช้คำสั่ง runPythonAsync ที่ให้เราเริ่มต้นการทำงานโค้ดไพทอนแบบ Asynchronous ได้ครับ&lt;/p&gt;
+
+&lt;p&gt;เราเขียนโค้ดได้ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  await pyodide.loadPackage(&quot;micropip&quot;);
+  await pyodide.runPythonAsync(`
+      import micropip
+      micropip.install(&apos;&amp;lt; ไลบรารีที่ต้องการ ตัวอย่างเช่น seaborn &amp;gt;&apos;)
+  `);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;การพล็อตกราฟด้วย-matplotlib--seaborn-แล้วแสดงบนแท็ก-img&quot;&gt;การพล็อตกราฟด้วย Matplotlib + Seaborn แล้วแสดงบนแท็ก img&lt;/h2&gt;
+
+&lt;p&gt;เราสามารถพล็อตกราฟได้โดยการใช้ไลบรารี Matplotlib และไลบรารีที่พัฒนาต่อยอดจากไลบรารีก่อนหน้าอย่าง Seaborn ที่ทำให้การพล็อตกราฟเป็นไปได้โดยง่ายขึ้น&lt;/p&gt;
+
+&lt;p&gt;ปกติเวลาที่เราพล็อตกราฟเสร็จแล้ว เราจะแสดงบนหน้าต่างใหม่ หรือแสดงบนหน้าเว็บใน Jupter Notebook ได้โดยการพิมพ์คำสั่งผ่านการเรียก pyplot ที่อยู่ใน matplotlib ได้โดย&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  pyplot.show()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หรือเซฟเป็นไฟล์ .png หรืออะไรแนวนี้ได้โดยการใช้คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  pyplot.savefig(&quot;&amp;lt; ที่อยู่ไฟล์ &amp;gt;&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;อย่างไรก็ดี เมื่อเราเขียนโค้ดแล้วนำมาทำงานบนหน้าเว็บไซต์ผ่านการใช้งาน Pyodide แล้ว มันก็จะไม่สามารถแสดงหน้าต่างใหม่ได้ หรือจะเซฟแบบนั้นโดยตรงก็ไม่น่าจะได้ ดังนั้นแล้วมีวิธีหนึ่งที่นำผลที่ได้จากการพล็อตกราฟมาแสดงบนหน้าเว็บไซต์ได้โดยการแปลงตัวกราฟที่พล็อตให้อยู่ในรูป base64 ที่สามารถเพิ่มลงไปใน src attribute ได้เลย&lt;/p&gt;
+
+&lt;p&gt;นอกเหนือจากนี้ เรายังนำ base64 ไปแปลงให้เป็นรูปแบบ blob เพื่อนำไปอัพโหลด หรือเซฟไฟล์สำหรับการนำไปใช้งานต่อได้อีก แต่ในบทความนี้ขอแนะนำถึงการพล็อต แล้วส่งออกให้อยู่ในรูปแบบ base64 เพื่อนำมาแสดงบนแท็ก img ครับ&lt;/p&gt;
+
+&lt;p&gt;เราทำได้ในขั้นตอนตัวอย่างตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;h3 id=&quot;1-เริ่มต้น-pyodide--เรียกใช้ไลบรารี&quot;&gt;1. เริ่มต้น Pyodide + เรียกใช้ไลบรารี&lt;/h3&gt;
+
+&lt;p&gt;เราเริ่มต้นการทำงานของ Pyodide และเรียกใช้งานไลบรารี numpy, matplotlib, seaborn (ที่ติดตั้งโดย micropip) ได้ตามหัวข้อก่อนหน้าครับ โดยเราเขียนโค้ดออกมาเป็น&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  async function importLib()
+  {
+      await import(&apos;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js&apos;);
+
+      let pyodide = await loadPyodide({
+          indexURL : &quot;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/&quot;
+      });
+
+      await pyodide.loadPackage(&quot;numpy&quot;);
+      await pyodide.loadPackage(&quot;matplotlib&quot;);
+      await pyodide.loadPackage(&quot;micropip&quot;);
+      await pyodide.runPythonAsync(`
+          import micropip
+          micropip.install(&apos;seaborn&apos;)
+      `);
+
+      return pyodide;
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราอธิบายโค้ดตามข้างบนนี้ โดยเป็นฟังก์ชัน importLib ที่เริ่มมาจากการนำเข้าไลบรารี เริ่มต้นการทำงานของ Pyodide แล้วนำเข้าแพคเกจเข้าไปในระบบโดยผ่านการใช้คำสั่ง loadPackage และ micropip.install (ที่ผ่านการใช้คำสั่ง runPythonAsync)&lt;/p&gt;
+
+&lt;h3 id=&quot;2-เริ่มการพล็อตกราฟ&quot;&gt;2. เริ่มการพล็อตกราฟ&lt;/h3&gt;
+
+&lt;p&gt;เริ่มต้นการพล็อตกราฟโดยใช้คำสั่งในไลบรารี&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;numpy มีไว้สำหรับการจำองข้อมูลขึ้นมา&lt;/li&gt;
+  &lt;li&gt;matplotlib + seaborn มีไว้ใช้สำหรับการพล็อตกราฟ&lt;/li&gt;
+  &lt;li&gt;base64 และ io มีไว้สำหรับการส่งออกกราฟให้อยู่ในรูปไบนารีที่แปลงออกมาเป็น base64&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;เราเขียนโค้ดได้โดยตามขั้นตอนตามด้านล่างนี้&lt;/p&gt;
+
+&lt;h4 id=&quot;21-เรียกใช้ไลบรารี&quot;&gt;2.1 เรียกใช้ไลบรารี&lt;/h4&gt;
+
+&lt;p&gt;เราเรียกใช้ไลบรารี numpy, matplotlib, seaborn, base64 และ io ผ่านการพิมพ์คำสั่ง Python ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  import numpy as np
+  import seaborn as sns
+  from matplotlib import pyplot as plt
+  import base64, io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;22-จำลองข้อมูลขึ้นมา&quot;&gt;2.2 จำลองข้อมูลขึ้นมา&lt;/h4&gt;
+
+&lt;p&gt;เราสามารถจำลองข้อมูลขึ้นมาได้โดยผ่านการสุ่มตัวเลขโดยผลลัพธ์ที่ต้องการเป็นในรูปแบบอาเรย์ที่สามารถพล็อตกราฟได้โดยใช้คำสั่งในไลบรารี numpy โดยในที่นี่เราจะสุ่มโดยการใช้ Normal Distribution (หรือ Gaussian Distribution) ผ่านการใช้คำสั่ง Python ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    mu, sigma = 0, 0.1
+    data = np.random.normal(mu, sigma, 1000)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เราจะได้อาเรย์ที่ผ่านการสุ่มแบบ &lt;a href=&quot;https://en.wikipedia.org/wiki/Normal_distribution&quot;&gt;Normal Distribution&lt;/a&gt; ที่มีตัวเลขทั้งหมด 1,000 ค่าครับ โดยกำหนดค่าเฉลี่ยเท่ากับ 0 และค่าส่วนเบี่ยงเบนมาตรฐานเท่ากับ 0.1&lt;/p&gt;
+
+&lt;h4 id=&quot;23-พล็อตกราฟ&quot;&gt;2.3 พล็อตกราฟ&lt;/h4&gt;
+
+&lt;p&gt;เรานำอาเรย์ที่ผ่านการสุ่มแบบ Normal Distribution มาพล็อตกราฟได้โดยการใช้คำสั่งในไลบรารี matplotlib + seaborn ได้โดยการพิมพ์โค้ด Python ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    plt.xlabel(&quot;Sample&quot;)
+    plt.ylabel(&quot;Count&quot;)
+    sns.histplot(data=data, color=&quot;y&quot;, kde = True)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;่จากตัวโค้ดเรากำหนดข้อความในแกน x เป็น Sample และแกน y เป็น Count แล้วพล็อตกราฟให้อยู่ในรูป Histrogram ที่มีพื้นหลังตัวกราฟเป็นสีเหลือง ร่วมกับกำหนด Distribution Cruve ผ่านการคำนวณโดย &lt;a href=&quot;https://en.wikipedia.org/wiki/Kernel_density_estimation&quot;&gt;Kernel Density Estimation&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;24-ส่งออกกราฟให้อยู่ในรูป-base64&quot;&gt;2.4 ส่งออกกราฟให้อยู่ในรูป base64&lt;/h4&gt;
+
+&lt;p&gt;เราสามารถส่งออกกราฟที่พล็อตผ่าน matplotlib + seaborn ให้อยู่ในรูป base64 ที่สามารถแสดงได้ในแท็ก img โดยการพิมพ์โค้ด Python ตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    buf = io.BytesIO()
+    plt.savefig(buf, format=&apos;png&apos;)
+    buf.seek(0)
+    img_str = &apos;data:image/png;base64,&apos; + base64.b64encode(buf.getvalue()).decode(&apos;UTF-8&apos;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;โค้ดตามด้านบนนี้ต้องการให้ส่งออกกราฟที่พล็อตได้ให้อยู่ในรูปไบนารีที่อยู่ในฟอร์แมต png และอยู่ในหน่วยความจำคอมพิวเตอร์ แล้วแปลงตัวไบนารีให้อยู่ในรูป base64&lt;/p&gt;
+
+&lt;h4 id=&quot;25-นำมาเขียนรวมกัน&quot;&gt;2.5 นำมาเขียนรวมกัน&lt;/h4&gt;
+
+&lt;p&gt;เราสามารถเขียนรวมกันได้ตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    import numpy as np
+    import seaborn as sns
+    from matplotlib import pyplot as plt
+    import base64, io
+
+    mu, sigma = 0, 0.1
+    data = np.random.normal(mu, sigma, 1000)
+
+    plt.xlabel(&quot;Sample&quot;)
+    plt.ylabel(&quot;Count&quot;)
+    sns.histplot(data=data, color=&quot;y&quot;, kde = True)
+        
+    buf = io.BytesIO()
+    plt.savefig(buf, format=&apos;png&apos;)
+    buf.seek(0)
+    img_str = &apos;data:image/png;base64,&apos; + base64.b64encode(buf.getvalue()).decode(&apos;UTF-8&apos;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;26-นำมาเขียนเพื่อให้ทำงานผ่านการใช้ไลบรารี-pyodide&quot;&gt;2.6 นำมาเขียนเพื่อให้ทำงานผ่านการใช้ไลบรารี Pyodide&lt;/h4&gt;
+
+&lt;p&gt;เราเขียนให้ทำงานผ่าน Pyodide ได้ตามด้านล่างนี้ผ่านการใช้คำสั่งใน runPythonAsync แล้วนำค่าตัวแปรที่ได้ใน Python ออกมาให้ใช้งานผ่าน JavaScript ได้โดยเขียนโค้ดตามด้านล่างนี้&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  async function drawGraph(pyodide)
+  {
+    await pyodide.runPythonAsync(`
+        import numpy as np
+        import seaborn as sns
+        from matplotlib import pyplot as plt
+        import base64, io
+
+        mu, sigma = 0, 0.1
+        data = np.random.normal(mu, sigma, 1000)
+
+        plt.xlabel(&quot;Sample&quot;)
+        plt.ylabel(&quot;Count&quot;)
+        sns.histplot(data=data, color=&quot;y&quot;, kde = True)
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format=&apos;png&apos;)
+        buf.seek(0)
+        img_str = &apos;data:image/png;base64,&apos; + base64.b64encode(buf.getvalue()).decode(&apos;UTF-8&apos;)
+        plt.clf()
+    `);
+
+    let b64result = pyodide.globals.get(&quot;img_str&quot;);
+    return b64result;
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อพิมพ์เสร็จแล้ว เราสามารถเรียกใช้ฟังก์ชัน drawGraph(&amp;lt;ไลบรารี pyodide ที่โหลดมาแล้ว&amp;gt;);&lt;/p&gt;
+
+&lt;h4 id=&quot;27-นำโค้ดที่ได้มาเขียนรวมกันเพื่อแสดงกราฟบนแท็ก-img&quot;&gt;2.7 นำโค้ดที่ได้มาเขียนรวมกันเพื่อแสดงกราฟบนแท็ก img&lt;/h4&gt;
+
+&lt;p&gt;เรานำโค้ดที่เขียนอยู่ในรูปฟังก์ชันตามข้างบนนี้เพื่อให้ได้ภาพมาแสดงบนแท็ก img ได้โดย&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  async function onPageLoaded(event)
+  {
+      let img_canvas = document.getElementById(&apos;&amp;lt; id ของแท็ก img &amp;gt;&apos;),
+      let pyodide = await importLib();
+      let b64result = await drawGraph(pyodide);
+      img_canvas.src = b64result;
+  }
+
+  window.addEventListener(&apos;DOMContentLoaded&apos;, onPageLoaded);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อนำมารวมกันแล้วทดลองรันบนเว็บเบราวเซอร์ เราจะพบว่ากราฟจะพล็อตเมื่อหน้าเว็บเริ่มโหลด แล้วเมื่อเว็บโหลดเสร็จแล้ว เราจะเห็นกราฟที่อยู่ในแท็ก img ออกมาเป็นตามภาพด้างล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/pyodide_graph_result.png&quot; alt=&quot;Graph Result&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;เป็นไงล่ะ เราจะเห็นกราฟ Histrogram ที่ผ่านการสุ่มแบบ Normal Distribution นั่นเองครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;จุดสังเกต&quot;&gt;จุดสังเกต&lt;/h2&gt;
+
+&lt;p&gt;ตัวเว็บทำงานได้ช้าเนื่องมาจาก&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ตัวโค้ดตามด้านบนต้องดาวน์โหลดไลบรารี pyodide จาก CDN&lt;/li&gt;
+  &lt;li&gt;ตัวโค้ดต้องเริ่มต้นการทำงาน pyodide ร่วมกับโหลดไลบรารีที่จำเป็น่ผ่านการดาวน์โหลดไลบรารีบน server&lt;/li&gt;
+  &lt;li&gt;พล็อตกราฟผ่านการใช้คำสั่ง Python ที่อยู่บน pyodide อีกที&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;จากจุดสังเกตตามข้างบนนี้ สำหรับผู้อ่านที่มาอ่านบทความนี้แล้วจะนำไปใช้ อาจจะต้องพิจารณาประสิทธิภาพในการทำงานอีกทีครับ&lt;/p&gt;
+
+&lt;p&gt;ถ้าเป็นไปได้ อาจจะลองใช้ไลบรารีที่มีอยู่แล้วอย่าง &lt;a href=&quot;https://www.chartjs.org/&quot;&gt;Chart.js&lt;/a&gt; หรือ &lt;a href=&quot;https://plotly.com/javascript/&quot;&gt;Plotly&lt;/a&gt; ก่อนก็ได้ครับผม ทั้งสองไลบรารีที่กล่าวมาในย่อหน้านี้ก็สามารถพล็อตกราฟให้สวยงามได้ตามใจชอบได้เช่นกัน&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Python" /><category term="Coding" /><category term="Developer" /><category term="Jupyter" /><category term="Data Science" /><category term="Pyodide" /><category term="Matplotlib" /><category term="Seaborn" /><category term="JavaScript" /><category term="Mozilla" /><category term="เขียนโปรแกรม" /><category term="ไพทอน" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><category term="วิทยาการคำนวณ" /><category term="กราฟ" /><summary type="html">บทความนี้พูดถึงการรันโค้ดไพทอนโดยใช้ไลบรารี Pyodide โดยจะแนะนำไลบรารี การเริ่มต้นใช้งาน และพล็อตกราฟแล้วนำมาแสดงบน img ที่หน้าเว็บไซต์</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2022/03/plot_python_graph_website_pyodide_cover.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2022/03/plot_python_graph_website_pyodide_cover.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้</title><link href="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/" rel="alternate" type="text/html" title="รันโค้ด Jupyter โดยไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้" /><published>2022-02-16T00:00:00+07:00</published><updated>2022-02-16T00:00:00+07:00</updated><id>https://nickuntitled.com/2022/02/13/run-jupyter-background</id><content type="html" xml:base="https://nickuntitled.com/2022/02/13/running_jupyter_notebook_bg/">&lt;p&gt;Jupyter Notebook เป็นเครื่องมือที่ช่วยให้เรารันตัว Python Notebook ได้ ซึ่งตัวนี้เหมาะกับการเขียนโค้ดเพื่อคำนวณทางด้านวิทยาศาสตร์ หรือทำงานด้าน Data Science และอื่น ๆ เป็นต้น ซึ่งเราจะพบการใช้งานตัว &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter Notebook&lt;/a&gt; ได้บ่อย ๆ ใน &lt;a href=&quot;http://colab.research.google.com/&quot;&gt;Google Colab&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี การใช้งานตัว Google Colab พบปัญหา เนื่องมาจากตัวฟรี หรือตัวโปรรุ่นล่าง ๆ จะเปิดให้รันบนเบื้องหลังได้ไม่นาน หลังจากนั้นตัวระบบจะตัดไป เพื่อนำทรัพยากรที่มีจำกัดให้กับบุคคลอื่นแทน ดังนั้นแล้วการใช้งาน Jupyter Notebook บนคอมพิวเตอร์ของเรา หรือบนเซิร์ฟเวอร์ของเราเองจะเป็นทางเลือกที่ดีกว่า&lt;/p&gt;
+
+&lt;p&gt;เมื่อเราติดตั้งตัว jupyter Notebook ไว้ในคอมพิวเตอร์ของเราแล้ว เราเข้าตัว Notebook ่ผ่านทางหน้าเว็บเบราวเซอร์เพื่อใช้งาน เมื่อเรารันโค้ดที่มีใน Python Notebook แล้วปิดหน้าเว็บเบราวเซอร์ทิ้งไว้ ตัวผลลัพธ์อาจจะไม่ปรากฏบนหน้าจอ หรือเปิดให้รันโค้ดไปซักพักแล้วจะขึ้น Keyboard Interrupt แล้วตัวโค้ดที่รันไว้จะหยุดการทำงาน&lt;/p&gt;
+
+&lt;p&gt;แล้วมีวิธีไหนที่จะรันตัวโค้ดที่เขียนอยู่ใน Python Notebook ให้ทำงานอยู่ถึงแม้ว่าเราจะปิดเว็บเบราวเซอร์ไปแล้วล่ะ? จากที่ไปค้นในเน็ตมีอยู่หลายวิธีได้แก่&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;รันตัวโค้ดผ่านทาง SSH&lt;/li&gt;
+  &lt;li&gt;รันผ่านทาง VNC&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;วิธีแรกอันนี้ทำไม่ได้ เพราะเซิร์ฟเวอร์ที่ใช้อยู่ไม่ได้เปิดให้เข้าผ่านทาง SSH ดังนั้นแล้ว เราเลือกวิธีที่สองแทน โดยวิธีนี้เอามาจากใน&lt;a href=&quot;https://towardsdatascience.com/keep-jupyter-notebook-running-even-after-browser-is-closed-9a1937b7c615&quot;&gt;เว็บ Towards Data Science&lt;/a&gt; แล้วเอามาใช้กับงานเราครับ&lt;/p&gt;
+
+&lt;p&gt;แต่ก่อนอื่นติดตั้ง ML workspace หรือติดตั้ง Jupyter Notebook ลงบนเซิร์ฟเวอร์ที่เราใช้งานอยู่ (หรือติดตั้งบนคลาวด์อย่าง DigitalOcean ก็ได้ ถ้าไม่มีสมาชิกก็&lt;a href=&quot;https://m.do.co/c/61ae5e7ddeb6&quot;&gt;สมัครสมาชิก&lt;/a&gt;ก่อน) อย่างไรก็ดีในตัวอย่างนี้เราแนะนำ ML workspace ที่ติดตั้งเป็นตัว Docker Container เพราะมันสะดวกมากกว่า แถมมันอยู่ใน Sandbox ไม่รบกวน OS หลักที่เราใช้งานอยู่&lt;/p&gt;
+
+&lt;h2 id=&quot;การเริ่มใช้งาน-และการเข้าไปใช้งาน-vnc&quot;&gt;การเริ่มใช้งาน และการเข้าไปใช้งาน VNC&lt;/h2&gt;
+
+&lt;p&gt;เมื่อติดตั้งเสร็จแล้ว เราเริ่มทำได้โดยเปิดใช้งาน &lt;a href=&quot;https://github.com/ml-tooling/ml-workspace&quot;&gt;ML workspace&lt;/a&gt; ผ่านการใช้คำสั่งของ Docker เอง จากนั้นให้เราเข้าไปใช้งาน ML workspace โดย&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;เข้าทางหน้าเว็บจากเครื่องคอมพิวเตอร์เครื่องมือ&lt;/li&gt;
+  &lt;li&gt;เมื่อเข้ามาแล้ว เราจะพบหน้าจอ Jupyter Notebook ให้ใส่รหัสผ่านแล้วเข้ามาจะเจอหน้าจอหลักตามภาพแรก&lt;/li&gt;
+  &lt;li&gt;เลื่อนเมาส์ไปยัง Tools ที่มุมบนขวา จากนั้นเลื่อนลงมาจะเจอ VNC ให้เลือกที่ VNC แล้วจะพบหน้าจอเดสก์ท็อปของลินุกซ์ ให้เราคลิกเมาส์ที่ Jupyter Notebook ตามภาพต่อมา&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/02/jupyter_notebook.jpeg&quot; alt=&quot;Jupyter Notebook&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/02/vnc.jpeg&quot; alt=&quot;VNC&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;การเริ่มรัน-jupyter-notebook&quot;&gt;การเริ่มรัน Jupyter Notebook&lt;/h2&gt;
+
+&lt;p&gt;เมื่อเราเข้าไปใช้งาน Jupyter Notebook ผ่านตัว VNC แล้ว ให้เราเลือกไฟล์ Python Notebook ที่เราต้องการ จากนั้นเลือกที่ Run Cells ที่มันรันนาน ๆ (ของเราเป็นการทำ Inference ของ Head Pose Estimation จากไฟล์วิดีโอ)&lt;/p&gt;
+
+&lt;p&gt;เมื่อกดเริ่มรันเรียบร้อย ระหว่างที่มันรันอยู่ ให้เราเลือกที่ Disconnect ที่ด้านซ้ายตามลูกศร&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/02/jupyter_vnc.jpeg&quot; alt=&quot;Running Jupyter Notebook on VNC&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;กดปุ่ม Disconnect แล้ว ระบบจะตัดการเชื่อมต่อไป ระหว่างนี้ตัวโค้ดก็ยังรันอยู่ตามปกติโดยที่ไม่เจอการตัดการทำงานของตัวโค้ดเลย ยกเว้นแต่ว่ามีคนไปปิดเครื่องเซิร์ฟเวอร์ หรือไฟดับระหว่างที่รันครับ&lt;/p&gt;
+
+&lt;p&gt;สำหรับผู้อ่านที่สนใจ สามารถไปประยุกต์ใช้ได้เลย วิธีนี้ใช้ง่ายดี ไม่ต้องเข้าผ่าน SSH แล้วพิมพ์คอมมานไลน์ให้ยุ่งยากฮะ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Python" /><category term="Coding" /><category term="Developer" /><category term="Jupyter" /><category term="Data Science" /><category term="AI" /><category term="Artificial Intelligence" /><category term="Machine Learning" /><category term="Notebook" /><category term="Background" /><category term="Python Notebook" /><category term="เขียนโปรแกรม" /><category term="ไพทอน" /><category term="เขียนโค้ด" /><category term="โค้ดดิ้ง" /><category term="วิทยาการคำนวณ" /><category term="ปัญญาประดิษฐ์" /><summary type="html">บทความนี้พูดถึงการใช้ Jupyter โดยรันตัว Python Notebook ที่ไม่ต้องเปิดหน้าเว็บเบราวเซอร์ทิ้งไว้</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2022/02/jupyter_notebook_bg_cover.jpeg" /><media:content medium="image" url="https://asset.nickuntitled.com/2022/02/jupyter_notebook_bg_cover.jpeg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">เขียนโค้ดจาวาสคริปเพื่อเช็คว่าใช้งาน MetaMask อยู่หรือไม่</title><link href="https://nickuntitled.com/2022/02/03/coding_check_metamask_crypto_web3/" rel="alternate" type="text/html" title="เขียนโค้ดจาวาสคริปเพื่อเช็คว่าใช้งาน MetaMask อยู่หรือไม่" /><published>2022-02-03T00:30:00+07:00</published><updated>2022-02-03T00:30:00+07:00</updated><id>https://nickuntitled.com/2022/02/03/check-web3-browser-javascript</id><content type="html" xml:base="https://nickuntitled.com/2022/02/03/coding_check_metamask_crypto_web3/">&lt;p&gt;Web3 (ที่ไม่ใช่ &lt;a href=&quot;https://en.wikipedia.org/wiki/Semantic_Web&quot;&gt;Web 3.0&lt;/a&gt; ตามที่คุณ Tim Berners-Lee กล่าวไว้) เป็นเว็บไซต์รูปแบบหนึ่งที่อยู่บนบล็อคเชนที่นำหลักการ Decentralization และหลักการ Token-based economics ตัวอย่างเช่นคริปโต โดย Web3 ที่พบได้ และบางคนก็ใช้ก็ตัวอย่างเช่น DeFi แบบ Pancakeswap หรืออื่น ๆ&lt;/p&gt;
 
 &lt;p&gt;อย่างไรก็ดี เวลาที่เปิดใช้งานเว็บแนวนี้เราก็ต้องเช็คก่อนครับว่ามีกระเป๋าตังคริปโต (ที่ได้ยินบ่อยก็เป็น MetaMask) หรือไม่ ถ้ามี เราก็เปิดให้เชื่อมกับกระเป๋าตังสำหรับใช้ทำธุรกรรม Smart Contract หรืออื่น ๆ ต่อได้เลย แต่ถ้าไม่มีก็ให้เว็บแจ้งว่าไม่มี&lt;/p&gt;
 
@@ -978,297 +1251,4 @@ apollo_server.applyMiddleware({ &quot;app&quot;: express_app });
 
 &lt;p&gt;ต่อไปหลังจากนี้ เราก็เดี๋ยวฝึกอันที่คนใช้กันเยอะ เช่น Django, FastAPI, Svelte, Tailwind CSS, NoSQL (MongoDB) และอื่น ๆ รวมถึงฝึกพื้นฐานอย่าง Math, Data Structure, Algorithm, Data Science และอื่น ๆ ที่จำเป็นต้องกรทำงานครับ&lt;/p&gt;
 
-&lt;p&gt;เดี๋ยวฝึกแล้วได้อะไร จะเอามาเขียนในนี้ในโพสต่อ ๆ ไปครับ ขอบคุณผู้อ่านที่ติดตามครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Doctor" /><category term="Programming" /><category term="Medicine" /><category term="Programmer" /><category term="Job" /><category term="Python" /><category term="JavaScript" /><category term="JS" /><category term="C" /><category term="HTML" /><category term="CSS" /><category term="Engineering" /><category term="Career" /><category term="Biomedical" /><category term="สายงาน" /><category term="เปลี่ยนสาย" /><category term="เปลี่ยนอาชีพ" /><category term="หมอ" /><category term="แพทย์" /><category term="โปรแกรมเมอร์" /><category term="เขียนโปรแกรม" /><category term="โปรแกรมมิง" /><category term="วิศวกรรมศาสตร์" /><category term="วิศวกร" /><category term="วิศวชีวการแพทย์" /><summary type="html">ก่อนหน้านี้เรียนหมอไม่ค่อยได้ฝึกเขียนโปรแกรมอะไร จนมาที่เรียนวิศวะชีวการแพทย์ ที่เขียนโปรแกรมได้ในระดับหนึ่งแล้ว ในบทความนี้จะพูดว่ามาเขียนโปรแกรมได้อย่างไรครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous</title><link href="https://nickuntitled.com/2021/11/7/redis_queue_for_asynchronous_task_web_server/" rel="alternate" type="text/html" title="Redis Queue - ตัวช่วยให้งานบน Web Server เป็น Asynchronous" /><published>2021-11-07T17:30:00+07:00</published><updated>2021-11-07T17:30:00+07:00</updated><id>https://nickuntitled.com/2021/11/7/redis-queue-python</id><content type="html" xml:base="https://nickuntitled.com/2021/11/7/redis_queue_for_asynchronous_task_web_server/">&lt;p&gt;ปกติเวลาที่ฝั่ง Client ส่งข้อมูลไปที่ Server แล้ว เราจะรอระยะเวลาไม่นาน จากนั้น Server จะส่งข้อมูลกลับทาง Client ไว้สำหรับการประมวลผลต่อ ทีนี้เวลาที่เราส่งข้อมูลที่ใช้ระยะเวลาประมวลผลนานไปยัง Server แล้วประมวลผลผ่านไปซักพัก จะเกิดปัญหาหนึ่งคือ Request Timeout&lt;/p&gt;
-
-&lt;p&gt;เมื่อเกิดปัญหา Timeout แล้ว เราต้องการแก้ปัญหานี้ จะทำอย่างไร? ปัญหานี้ที่เคยอ่านในอินเตอร์เน็ตก็มีหลายวิธี ตัวอย่างเช่น แก้ที่ตัวเว็บเซิร์ฟเวอร์ว่าตั้งค่าให้มีระยะเวลานานเท่าไรก่อนที่จะขึ้นว่า Timeout หรือว่าไปแก้ที่ตัวโค้ดให้ใช้เวลาประมวลผลที่สั้นลง&lt;/p&gt;
-
-&lt;p&gt;อย่างไรก็ดี กรณีที่ตัวโค้ดมันแก้ไปให้ทำงานสั้นลงได้ลำบาก ตัวอย่างก็เป็นงานด้าน AI/ML ที่ต้องนำภาพมาประมวลผลเพื่อหาใบหน้าในภาพ (Face Detection) อันนี้มีวิธีหนึ่งที่ช่วยแก้ปัญหาได้คือใช้ตัว Redis Queue&lt;/p&gt;
-
-&lt;p&gt;แต่ก่อนอื่น เรามาแนะนำ Redis&lt;/p&gt;
-
-&lt;h2 id=&quot;redis&quot;&gt;Redis&lt;/h2&gt;
-
-&lt;p&gt;Redis เป็นโปรแกรมฐานข้อมูลที่เป็น Open source ที่เก็บโครงสร้าง และข้อมูลไว้บน Memory โดยเราสามารถใช้งานเป็นฐานข้อมูลชั่วคราว หรือใช้ในการเก็บ Cache รวมถึงใช้ในการจัดการ Queue เพื่อไว้ใช้ประมวลผลสำหรับฟังก์ชันที่ต้องใช้ระยะเวลาประมวลผลที่มีระยะเวลานาน&lt;/p&gt;
-
-&lt;p&gt;อย่างไรก็ดี เราจะนำโปรแกรมนี้มาใช้งานแทนโปรแกรมฐานข้อมูลที่มีอยู่เดิมไม่ได้ทุกกรณี แต่ในบทความนี้เราจะเอามาใช้งานเรื่อง Queue ครับ&lt;/p&gt;
-
-&lt;p&gt;อ่านเพิ่มเติมได้ตามอินเตอร์เน็ตเลย อันนี้เป็น&lt;a href=&quot;https://www.borntodev.com/2020/07/14/redis-101/&quot;&gt;ตัวอย่างหนึ่งครับ&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;ต่อจาก Redis แล้ว ต้องมีตัวช่วยคือ Redis Queue&lt;/p&gt;
-
-&lt;h2 id=&quot;redis-queue&quot;&gt;Redis Queue&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://python-rq.org/&quot;&gt;Redis Queue&lt;/a&gt; เป็นไลบรารีหนึ่งในภาษาไพทอนที่มีหน้าที่จัดการคิว และประมวลผลฟังก์ชันที่ต้องใช้ระยะเวลานานให้อยู่เบื้องหลังโดยการใช้ตัว Workers ไลบรารีนี้ใช้ฐานข้อมูล Redis สำหรับการจัดการเรื่อง Queue ครับ ไลบรารีนี้มีข้อดีคือจัดการกับ Queue ได้ง่ายกว่าการใช้ไลบรารีอย่าง &lt;a href=&quot;https://www.fullstackpython.com/celery.html&quot;&gt;Celery&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;การติดตั้ง-และเขียนโค้ด&quot;&gt;การติดตั้ง และเขียนโค้ด&lt;/h2&gt;
-
-&lt;p&gt;การติดตั้งไลบรารี และเขียนโค้ดขึ้นมาทำได้ไม่ยากจนเกินไปครับ เราสามารถติดตั้งได้โดย&lt;/p&gt;
-
-&lt;h3 id=&quot;1-ติดตั้งฐานข้อมูล-redis&quot;&gt;1. ติดตั้งฐานข้อมูล Redis&lt;/h3&gt;
-
-&lt;p&gt;เราสามารถติดตั้งฐานข้อมูล Redis ได้หลายวิธี แต่วิธีที่ง่ายกว่าวิธีอื่น เพราะไม่ต้องติดตั้ง หรือตั้งค่าอะไรซับซ้อน ก็คือการใช้ Container ผ่านการใช้เครื่องมืออย่าง Docker&lt;/p&gt;
-
-&lt;p&gt;เราพิมพ์คำสั่งตามด้านล่างนี้ก็ติดตั้งได้เลยครับ ขั้นแรกเป็นการดึงตัว Container จากฐานข้อมูล Docker Hub&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull redis
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ต่อมา เริ่มการทำงานตัว Container ของ Redis&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 6379:6379 redis
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;เมื่อพิมพ์คำสั่งตามนี้แล้ว ตัว Container Docker ของ Redis ก็ทำงานเรียบร้อยครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;2-ติดตั้งไลบรารีที่จำเป็นของไพทอน&quot;&gt;2. ติดตั้งไลบรารีที่จำเป็นของไพทอน&lt;/h3&gt;
-
-&lt;p&gt;เราติดตั้งไลบรารีที่จำเป็นของไพทอนได้โดยการใช้คำสั่ง pip หรือ conda หรืออย่างอื่นก็ได้ แต่ในบทความนี้จะใช้คำสั่ง pip โดยติดตั้งผ่านการสร้างโดยใช้คำสั่ง &lt;a href=&quot;https://virtualenv.pypa.io/en/latest/&quot;&gt;virtualenv&lt;/a&gt; ครับ&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install redis rq
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;เมื่อพิมพ์คำสั่งแล้วกด Enter เราจะรอให้ตัวโปรแกรมติดตั้งไลบรารีครับ เมื่อติดตั้งเสร็จแล้ว เราสามารถเรียกใช้ไลบรารีทั้งสองได้แล้วครับ&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ส่วนใครที่ใช้ Container เราเขียนเพิ่มได้ในที่ไฟล์ requirements.txt หรืออื่น ๆ ตามที่เราใช้งานอยู่ได้ครับ&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;3-การเรียกใช้งาน&quot;&gt;3. การเรียกใช้งาน&lt;/h3&gt;
-
-&lt;p&gt;เราสามารถเขียนเพื่อใช้งานตัว Redis Queue ได้ตามด้านล่างนี้ครับ&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from redis import Redis
-from rq import Queue, Connection
-from rq.job import Job
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;4-การเชื่อมต่อเข้ากับฐานข้อมูล-redis&quot;&gt;4. การเชื่อมต่อเข้ากับฐานข้อมูล Redis&lt;/h3&gt;
-
-&lt;p&gt;เราเชื่อมต่อกับฐานข้อมูลของ Redis ได้โดยใช้คำสั่งในไลบรารี redis ที่เราติดตั้งในขั้นตอนก่อนหน้านี้ได้โดยการพิมพ์คำสั่งตามด้านล่างครับ&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;redis_conn = Redis(host URL, port)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;host URL คือที่อยู่ของเซิร์ฟเวอร์ที่ติดตั้งฐานข้อมูล Redis ไว้ ในกรณีนี้อยู่ในคอมเครื่องเดียวกัน เราพิมพ์ localhost แทนได้ แต่ถ้าอยู่ใน Container อาจจะต้องพิมพ์เป็นอย่างอื่นแทน ส่วน port ก็คือ port ของเซิร์ฟเวอร์ที่ลงตัว Redis ครับ&lt;/p&gt;
-
-&lt;p&gt;สำหรับการตั้งค่าอื่นเพิ่มเติม สามารถ&lt;a href=&quot;https://python-rq.org/docs/connections/&quot;&gt;อ่านได้ในหน้านี้&lt;/a&gt;ครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;4-การส่งฟังก์ชันที่ใช้เวลาประมวลผลนานไว้บน-redis-สำหรับ-queue&quot;&gt;4. การส่งฟังก์ชันที่ใช้เวลาประมวลผลนานไว้บน Redis สำหรับ Queue&lt;/h3&gt;
-
-&lt;p&gt;การส่งฟังก์ชันที่ใช้ระยะเวลาประมวลผลนานไว้บน Redis สำหรับ Queue เพื่อให้ตัว Redis Worker ใช้งานฟังก์ชันนั้นในเบื้องหลัง แทนที่จะประมวลผลบน HTTP server สามารถทำได้ไม่ยาก เพียงใช้ฟังก์ชันที่มีอยู่ใน Redis Queue ที่มีชื่อว่า Enqueue&lt;/p&gt;
-
-&lt;p&gt;เราเรียกใช้ฟังก์ชัน Enqueue ได้โดยการพิมพ์ตามด้านล่างนี้ครับ&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;q = Queue(connection=redis_conn)
-job = q.enqueue(long_running_function,  argument)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ตรงที่พิมพ์ long_running_function เป็นฟังก์ชันอะไรก็ได้ที่ใช้เวลาประมวลผลนานมากกว่าปกติ โดยฟังก์ชันนี้ต้องอยู่ในไฟล์ไพทอนที่__ไม่ใช่__ไฟล์หลักที่เริ่มต้นใช้งานครับ  ตัวอย่างการใช้งานดูได้ตามด้านล่างนี้ เราจะแบ่งไฟล์เป็นสองไฟล์คือไฟล์ task.py ที่ใส่ฟังก์ชันหนึ่งที่ใช้ระยะเวลาทำงานนานมากกว่าปกติ ส่วนไฟล์ main.py เป็นไฟล์หลักที่เริ่มต้นทำงานครับ&lt;/p&gt;
-
-&lt;h4 id=&quot;ไฟล์-taskpy&quot;&gt;ไฟล์ task.py&lt;/h4&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import time
-
-def long_running_function(seconds):
-    print(&quot;Starting num task&quot;)
-    for num in range(seconds):
-        print(num)
-        time.sleep(1)
-    print(&quot;Task to print_numbers completed&quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;ไฟล์หลัก-mainpy&quot;&gt;ไฟล์หลัก main.py&lt;/h4&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from redis import Redis
-from rq import Queue, Connection
-from task import long_running_function
-
-redis_conn = Redis(&apos;127.0.0.1&apos;, 6379)
-q = Queue(connection=redis_conn)
-job = q.enqueue(long_running_function,  5)
-job_id = job.id
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ทดลองเริ่มต้นการทำงานโดยพิมพ์คำสั่งตามข้อที่ 6 และ 7 ครับ  ผลลัพธ์ที่ได้จะแสดงตามด้านล่างนี้&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;10:00:29 default: task.long_running_function(5) (XXXX)
-Starting num task
-0
-1
-2
-3
-4
-Task to print_numbers completed
-10:00:34 default: Job OK (XXX)
-10:00:34 Result is kept for 500 seconds
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;แสดงว่าฟังก์ชันนี้ทำงานไดสำเร็จโดยไม่มีปัญหาอะไรครับ&lt;/p&gt;
-
-&lt;h4 id=&quot;กรณีที่มีมากกว่าหนึ่ง-argument&quot;&gt;กรณีที่มีมากกว่าหนึ่ง Argument&lt;/h4&gt;
-
-&lt;p&gt;ส่วนกรณีที่มีมากกว่าหนึ่ง Argument เราสามารถดูตัวอย่างได้ตามด้านล่างนี้ครับ&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;q = Queue(connection=redis_conn)
-job = q.enqueue(long_running_function,  
-        args=(&apos;http://nvie.com&apos;,),
-        kwargs={
-            &apos;description&apos;: &apos;Function description&apos;, # This is passed on to count_words_at_url
-            &apos;ttl&apos;: 15  # This is passed on to count_words_at_url function
-        }))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;นอกจากนี้ เราสามารถเพิ่มการตั้งค่าของคำสั่ง enqueue เพิ่มเติมได้ตามหน้านี้ของ&lt;a href=&quot;https://python-rq.org/docs/&quot;&gt;เว็บไลบรารี Redis Queue&lt;/a&gt; ครับ&lt;/p&gt;
-
-&lt;h4 id=&quot;การทำงานของฟังก์ชัน-enqueue&quot;&gt;การทำงานของฟังก์ชัน enqueue&lt;/h4&gt;
-
-&lt;p&gt;เมื่อใส่คำสั่งนี้แล้ว ตัวโปรแกรมจะส่งฟังก์ชันนี้ไว้ใน Queue ของ Redis แล้ว ตัว Workers จะนำฟังก์ชันใน Queue นั้น ๆ มาประมวลผลครับ&lt;/p&gt;
-
-&lt;p&gt;ตัวคำสั่ง enqueue จะคืนค่าชนิดตัวแปรที่มีชื่อเรียกว่า &lt;a href=&quot;https://python-rq.org/docs/jobs/&quot;&gt;Job&lt;/a&gt; ในตัวแปร job ตามที่เขียนไว้ข้างบนนี้ เราสามารถเรียกตัว id สำหรับการติดตามความก้าวหน้าได้โดยพิมพ์ job.id ครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;5-การติดตามความก้าวหน้าของการทำงานฟังก์ชัน&quot;&gt;5. การติดตามความก้าวหน้าของการทำงานฟังก์ชัน&lt;/h3&gt;
-
-&lt;p&gt;หลังจากที่ได้ตัว id มาเรียบร้อยแล้ว เราสามารถติดตามการทำงานของฟังก์ชันที่ประมวลผลอยู่ใน Workers ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้ครับ&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;job = Job.fetch(&apos;job_id&apos;, connection=redis_conn)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;พิมพ์คำสั่งนี้แล้ว ตัวฟังก์ชันจะคืนค่าตัวแปร Job เพื่อใช้สำหรับการประมวลผลในขั้นตอนต่อไป เราติดตามความก้าวหน้าของฟังก์ชันได้โดยพิมพ์คำสั่ง&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;status = job.get_status()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ตัวฟังก์ชันนี้จะคืนค่าสถานะของฟังก์ชันที่ทำงานอยู่ โดยสถานะนี้แบ่งได้เป็น queued, started, deferred, finished, stopped, scheduled, canceled และ failed ครับ ผู้อ่านนำไปประยุกต์ใช้เพื่อติดตามความก้าวหน้าของฟังก์ชันได้ครับ&lt;/p&gt;
-
-&lt;p&gt;ส่วนของผมจะเช็คว่าฟังก์ชันนี้ทำงานได้สำเร็จ หรือไม่สำเร็จ หรืออื่น ๆ หรือไม่ เราพิมพ์ได้ตามด้านล่างนี้ครับ&lt;/p&gt;
-
-&lt;h4 id=&quot;ตัวอย่างที่ใช้การวนลูปในไพทอน&quot;&gt;ตัวอย่างที่ใช้การวนลูปในไพทอน&lt;/h4&gt;
-
-&lt;p&gt;เราเพิ่มการนำเข้าไลบรารีเป็น&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from time import sleep
-import json
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;แล้วพิมพ์โค้ดเพิ่มตามด้านล่างนี้ (โค้ดส่วน setInterval เอามาจากเว็บ Stackoverflow)&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def call_at_interval(period, callback, args):
-    while True:
-        sleep(period)
-        if callback(*args) == False:
-            break
-
-def setInterval(period, callback, *args):
-    Thread(target=call_at_interval, args=(period, callback, args)).start()
-
-def polling(job_id):
-    job = Job.fetch(job_id, connection=redis_conn)
-    status = job.get_status()
-    result = job.result
-
-    if status == &apos;finished&apos;:
-        print(json.dumps({
-            &apos;status&apos;: &apos;success&apos;,
-            &apos;result&apos;: result
-        }))
-        return False
-    elif status == &apos;failed&apos;:
-        print(json.dumps({
-            &apos;status&apos;: &apos;failed&apos;,
-            &apos;result&apos;: result
-        }))
-        return False
-
-    print(json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
-    }))
-    return True
-
-setInterval(1, polling, job_id)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;ตัวอย่างที่ใช้ไลบรารีของ-flask&quot;&gt;ตัวอย่างที่ใช้ไลบรารีของ Flask&lt;/h4&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@app.route(&apos;/get_status/&amp;lt;string:task_id&amp;gt;&apos;, methods=[&apos;GET&apos;])
-def get_status(task_id):
-    q = Queue(connection=redis_conn)
-    job = Job.fetch(task_id, connection=redis_conn)
-    status = job.get_status()
-    result = job.result
-
-    if status == &apos;finished&apos;:
-        return json.dumps({
-          &apos;status&apos;: &apos;success&apos;,
-          &apos;result&apos;: result
-        })
-    elif status == &apos;failed&apos;:
-        return json.dumps({
-          &apos;status&apos;: &apos;failed&apos;,
-          &apos;result&apos;: result
-        })
-
-    return json.dumps({
-      &apos;status&apos;: &apos;processing&apos;
-    })
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ส่วน flask ตามข้างบนนี้คืออะไร Flask เป็นไลบรารีที่มีหน้าที่ทำตัว Web server ครับ รายละเอียดของไลบรารีนี้สามารถ&lt;a href=&quot;https://flask.palletsprojects.com/en/2.0.x/&quot;&gt;อ่านเพิ่มเติมได้ที่นี่ครับ&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;6-การเริ่มต้น-workers&quot;&gt;6. การเริ่มต้น Workers&lt;/h3&gt;
-
-&lt;p&gt;เราเรียกใช้งานตัว Workers ได้โดยพิมพ์คำสั่งตามด้านล่างนี้ครับ&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rq worker --with-scheduler
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;จากนั้นเรียกใช้งานไฟล์ไพทอนตามปกติ&lt;/p&gt;
-
-&lt;h3 id=&quot;7-การเริ่มต้นตัวโปรแกรม&quot;&gt;7. การเริ่มต้นตัวโปรแกรม&lt;/h3&gt;
-
-&lt;p&gt;เราเริ่มต้นตัวโปรแกรมที่ใช้ Redis Queue ตามข้างบนที่ผ่านมานี้ได้โดยใช้คำสั่ง&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &amp;lt;ชื่อไฟล์ .py&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;หรือกรณีที่ใช้ Flask, FastAPI หรืออื่น ๆ เราสามารถเรียกใช้งานผ่าน gunicorn, uvicorn, uWSGI ได้ครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;8-เพิ่มเติม&quot;&gt;8. เพิ่มเติม&lt;/h3&gt;
-
-&lt;p&gt;ฟังก์ชันอื่น ๆ ที่มีอยู่ในไลบรารี Redis Queue ผู้อ่านเข้าไปอ่านที่&lt;a href=&quot;https://python-rq.org/&quot;&gt;หน้าเว็บไซต์ตามลิ้งค์นี้ได้ครับ&lt;/a&gt; ตัว Reference ที่มีอยู่ในเว็บไซต์เข้าใจได้ไม่ยากจนเกินไปครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;สรุป&quot;&gt;สรุป&lt;/h2&gt;
-
-&lt;p&gt;ปกติการเรียกใช้งาน HTTP Request ทั่ว ๆ ไป เราจะเรียกจากตัว Client แล้วให้ทาง Server ประมวลผลตามปกติ ทีนี้กรณีที่ใช้ฟังก์ชัันที่ใช้ระยะเวลาการประมวลผลนานมากกว่าปกติ จะทำให้เกิด Timeout ขึ้นมา การใช้งานไลบรารี Redis Queue สามารถแก้ปัญหาที่จุดนี้ได้โดย&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Server รับ Request จากทาง Client แล้วใช้คำสั่งตามข้อที่ 3-5 เพื่อส่งฟังก์ชันนั้นไว้ใน Queue ของ Redis แล้วให้ทาง Workers ประมวลผลต่อ&lt;/li&gt;
-  &lt;li&gt;เมื่อส่ง Queue ไปแล้ว เราต้องการค่า job_id ออกมา แล้วติดตามความก้าวหน้าของฟังก์ชันนั้น โดยทำตามข้อที่ 4-5&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;ซึ่ง เราได้ทดลองใช้กับ web server ที่เขียนโดย Flask ไปแล้ว ตัว Redis Queue แก้ปัญหาเรื่อง Request Timeout ระหว่างการประมวลผลฟังก์ชันที่ต้องใช้ระยะเวลาประมวลผลนานครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Redis" /><category term="Programming" /><category term="Python" /><category term="Redis Queue" /><category term="HTTP" /><category term="Web server" /><category term="Flask" /><category term="Worker" /><category term="ไพทอน" /><category term="เขียนโปรแกรม" /><summary type="html">ปัญหาหนึ่งเวลาที่เขียนหน้าเว็บเพื่อส่งข้อมูลสำหรับการประมวลผลที่ใช้เวลานานไปคือเกิด Request Timeout ในบทความนี้จะแนะนำตัวช่วยหนึ่งที่มีชื่อว่า Redis Queue</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/redis_queue_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Hello World ใน Python, JS และ C++</title><link href="https://nickuntitled.com/2021/11/5/hello_world/" rel="alternate" type="text/html" title="Hello World ใน Python, JS และ C++" /><published>2021-11-05T08:00:00+07:00</published><updated>2021-11-05T08:00:00+07:00</updated><id>https://nickuntitled.com/2021/11/5/hello-world</id><content type="html" xml:base="https://nickuntitled.com/2021/11/5/hello_world/">&lt;p&gt;Hello World เป็นโปรแกรมที่เขียนขึ้นมาเพื่อแสดงผลหน้าจอว่า “Hello World” ซึ่งเป็นสิ่งที่พบได้ในทุกภาษา และมีไว้แสดงลักษณะการเขียนในภาษาเขียนโปรแกรมนั้น ๆ (Syntax) นอกเหนือจากนี้แล้วการเขียนโปรแกรมนี้ขึ้นมามีหน้าที่ทดสอบว่า เราติดตั้งแล้วสามารถใช้งานตัว Compiler หรือตัว Interpreter ว่าทำงานได้ปกติหรือไม่&lt;/p&gt;
-
-&lt;p&gt;ต่อมา เราเขียนทวิตหนึ่งไป แล้วแมสมาพอดี มีโควทหนึ่งในทวิตว่าสนใจที่จะเขียน Hello World เราเลยแสดงให้เห็นว่า การเขียนในภาษาไพทอน จาวาสคริป และ C++ เป็นอย่างไรครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;ภาษาไพทอน&quot;&gt;ภาษาไพทอน&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_py.png&quot; alt=&quot;Hello World in Python&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;อันนี้เป็น Hello World ในภาษาไพทอน จะพบว่าเขียนได้จบในบรรทัดเดียว สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราแนะนำครับ เรียนแล้วเอาไปต่อยอดทางด้าน Data Science, AI/ML และอื่น ๆ ได้เลย&lt;/p&gt;
-
-&lt;h2 id=&quot;ภาษาจาวาสคริป&quot;&gt;ภาษาจาวาสคริป&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_js.png&quot; alt=&quot;Hello World in JS&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;อันนี้เป็น Hello World ในภาษาจาวาสคริป จะพบว่าเขียนได้จบในบรรทัดเดียวเช่นกัน สะดวกไหมล่ะ? สำหรับคนที่เพิ่งเขียนโปรแกรม ภาษานี้เราก็แนะนำครับ เรียนแล้วเอาไปต่อยอดทำเว็บได้ทั้ง Front-end, Back-end รวมถึงทำโปรแกรมบนเดสก์ท็อป มือถือได้ครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;ภาษา-c&quot;&gt;ภาษา C++&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/hello_world_cpp.png&quot; alt=&quot;Hello World in CPP&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;อันนี้เป็น Hello World ในภาษา C++ จะพบว่าเขียนได้ไม่จบในบรรทัดเดียวเช่นกัน อย่างไรก็ดีภาษานี้ใครเรียนคอมในโรงเรียน หรือในมหาวิทยาลัยก็จะได้เจอกัน ส่วนตัวภาษานี้อาจจะยากไปนิดสำหรับคนที่เพิ่งเขียนโปรแกรม แต่ถ้าเขียนเป็นแล้วนี่เอาไปต่อยอดได้อีกเยอะครับ เช่นพัฒนาเกม, พัฒนาลงอุปกรณ์ IoT (Internet of Things), ฐานข้อมูล เป็นต้น&lt;/p&gt;
-
-&lt;p&gt;ผู้อ่านสามารถอ่านได้ใน&lt;a href=&quot;https://www.codecademy.com/resources/blog/what-is-c-plus-plus-used-for/&quot;&gt;หน้าเว็บของ Codecademy ที่สอนเขียนโปรแกรมได้ครับ&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;สรุป&quot;&gt;สรุป&lt;/h2&gt;
-
-&lt;p&gt;สำหรับคนที่เพิ่งเขียนโปรแกรม โปรแกรมนี้จะเป็นโปรแกรมแรกที่ได้เขียน เราแสดงให้เป็นตัวอย่างใน 3 ภาษาได้แก่ ไพทอน จาวาสคริป และ C++ ที่จะเห็นว่าโค้ดในสองภาษาแรกสามารถเขียนได้ในบรรทัดเดียว ส่วนตัวเราแนะนำให้เริ่มเขียนทั้งสองภาษานี้ก่อนครับ พอเขียนเป็นแล้วจะไปเรียนต่อภาษาอื่นก็ทำได้เช่นกันครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Hello World" /><category term="Programming" /><category term="Newbie" /><category term="เขียนโปรแกรม" /><category term="Python" /><category term="JavaScript" /><category term="JS" /><category term="C++" /><category term="CPP" /><category term="มือใหม่" /><category term="ไพทอน" /><category term="จาวาสคริป" /><summary type="html">Hello World เป็นสิ่งที่ผู้ที่เริ่มต้นเขียนโปรแกรมจะได้สัมผัส และเขียนขึ้นมา ในบทความนี้จะแสดงการเขียนในแต่ละภาษาครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/hello_world_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;เดี๋ยวฝึกแล้วได้อะไร จะเอามาเขียนในนี้ในโพสต่อ ๆ ไปครับ ขอบคุณผู้อ่านที่ติดตามครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Doctor" /><category term="Programming" /><category term="Medicine" /><category term="Programmer" /><category term="Job" /><category term="Python" /><category term="JavaScript" /><category term="JS" /><category term="C" /><category term="HTML" /><category term="CSS" /><category term="Engineering" /><category term="Career" /><category term="Biomedical" /><category term="สายงาน" /><category term="เปลี่ยนสาย" /><category term="เปลี่ยนอาชีพ" /><category term="หมอ" /><category term="แพทย์" /><category term="โปรแกรมเมอร์" /><category term="เขียนโปรแกรม" /><category term="โปรแกรมมิง" /><category term="วิศวกรรมศาสตร์" /><category term="วิศวกร" /><category term="วิศวชีวการแพทย์" /><summary type="html">ก่อนหน้านี้เรียนหมอไม่ค่อยได้ฝึกเขียนโปรแกรมอะไร จนมาที่เรียนวิศวะชีวการแพทย์ ที่เขียนโปรแกรมได้ในระดับหนึ่งแล้ว ในบทความนี้จะพูดว่ามาเขียนโปรแกรมได้อย่างไรครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
