@@ -339,7 +339,7 @@
   };
 
   ajaxrequest.onprogress = (event) =&amp;gt; {
-      console.log(&apos;Processing...&apos;);
+      console.log('Processing...');
   };
 
   ajaxrequest.send(`argument=value&amp;amp;argument2=value`);
@@ -406,9 +406,9 @@
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
     
-  ajaxrequest.responseType = &apos;json&apos;;
+  ajaxrequest.responseType = 'json';
   ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;URL for GraphQL Server&amp;gt;&quot;);
-  ajaxrequest.setRequestHeader(&apos;Content-Type&apos;, &apos;application/json&apos;);
+  ajaxrequest.setRequestHeader('Content-Type', 'application/json');
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
           /* Do Something */
@@ -441,7 +441,7 @@
   let form_data = new FormData();
   let map = {};
 
-  ajaxrequest.responseType = &apos;json&apos;;
+  ajaxrequest.responseType = 'json';
   ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;GraphQL server URL&amp;gt;&quot;);
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
@@ -474,14 +474,14 @@
 
 &lt;p&gt;แล้วสร้างตัวแปรเพื่อรองรับ File Object สำหรับการอัพโหลดไฟล์ตามโค้ดด้านล่าง ในตัวอยา่งจะใช้ File Input ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let fileObj = document.getElementById(&apos;&amp;lt;File Input ID&amp;gt;&apos;).files[0];
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let fileObj = document.getElementById('&amp;lt;File Input ID&amp;gt;').files[0];
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;ต่อมา เราเรียกใช้งาน XMLHttpRequest เจ้าเดิมได้โดยการพิมพ์คำสั่งตามตัวอย่างด้านล่างนี้&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
-  ajaxrequest.responseType = &apos;json&apos;;
-  ajaxrequest.open(&apos;POST&apos;, graphql_url);
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open('POST', graphql_url);
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
           /* Do Something */
@@ -575,13 +575,13 @@ document.body.parentElement; // the &amp;lt;html&amp;gt; element
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentNode.parentNode;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;หรือ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentElement.parentElement;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -624,8 +624,8 @@ document.documentElement.parentElement; // null เนื่องจาก docu
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
-let div = li.closest(&apos;div&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
+let div = li.closest('div');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;เมื่อพิมพ์ตามข้างบนนี้แล้ว เราจะเลือก parent element ที่เป็น div ครับ เมื่อสังเกตตัวโค้ดแล้วพบว่าใช้งานได้สะดวกมากกว่า node.parentNode กับ element.parentElement&lt;/p&gt;
@@ -902,12 +902,12 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;การใช้งาน LocalStorage ทำได้โดยการเก็บข้อมูลตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem(&apos;token&apos;, &amp;lt; Access Token ที่ได้ &amp;gt;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem('token', &amp;lt; Access Token ที่ได้ &amp;gt;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;แล้วเราสามารถเรียกได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem(&apos;token&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem('token');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;จากนั้นข้อมูล Access Token ที่เก็บไว้ในเว็บเบราวเซอร์ก็จะคืนค่าอยู่ในตัวแปร token ครับ ฟังดูแล้วง่ายกว่าที่ดีคิดไว้ เพราะใช้คำสั่งตามที่เขียนไว้ข้างบนนี้ ข้อมูลก็ออกมาได้แล้วครับ อย่างไรก็ดี การเก็บข้อมูลไว้ใน LocalStorage มีข้อเสีย เนื่องมาจาก&lt;/p&gt;
@@ -950,11 +950,11 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;เพื่อให้ใช้งานตามตัวอย่างด้านล่างนี้ได้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from &apos;http&apos;;
-import express from &apos;express&apos;;
-import dayjs from &apos;dayjs&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from 'http';
+import express from 'express';
+import dayjs from 'dayjs';
 import cookieParser from &quot;cookie-parser&quot;;
-import jwt from &apos;jsonwebtoken&apos;;
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -965,7 +965,7 @@ app.use(cookieParser());
 
 [...]
 
-app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
+app.post('/login', (req, res, next) =&amp;gt; {
 
   [...]
 
@@ -975,7 +975,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
       secure: true,
       httpOnly: true,
       expires: dayjs().add(1, &quot;days&quot;).toDate(),
-      sameSite: &apos;Strict&apos;
+      sameSite: 'Strict'
   });
 
   [...]
@@ -999,7 +999,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
     secure: true,
     httpOnly: true,
     expires: dayjs().add(1, &quot;days&quot;).toDate(),
-    sameSite: &apos;Strict&apos;
+    sameSite: 'Strict'
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1029,7 +1029,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราเรียกใช้งานได้โดยผ่านการพิมพ์&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get(&apos;/isloggedin&apos;, (req, res, next) =&amp;gt; {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get('/isloggedin', (req, res, next) =&amp;gt; {
   
   [...]
 
@@ -1044,8 +1044,8 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราพิมพ์โค้ดได้ตามด้านล่างนี้&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from &apos;apollo-server-express&apos;;
-import { ApolloServerPluginDrainHttpServer } from &apos;apollo-server-core&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 
 [...]
 
@@ -1054,7 +1054,7 @@ const apollo_server = new ApolloServer({
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   context: ({ req }) =&amp;gt; {
-    let token = req.cookies.authorization || &apos;&apos;;
+    let token = req.cookies.authorization || '';
     return {
       token
     };
