@@ -1,4 +1,243 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-03-16T01:03:09+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">Pyodide - แนะนำการเริ่มต้นใช้งาน และการพล็อตกราฟเพื่อแสดงบนหน้าเว็บ</title><link href="https://nickuntitled.com/2022/03/16/running_python_website_draw_graph/" rel="alternate" type="text/html" title="Pyodide - แนะนำการเริ่มต้นใช้งาน และการพล็อตกราฟเพื่อแสดงบนหน้าเว็บ" /><published>2022-03-16T00:00:00+07:00</published><updated>2022-03-16T00:00:00+07:00</updated><id>https://nickuntitled.com/2022/03/16/pyodide-matplotlib-img-element</id><content type="html" xml:base="https://nickuntitled.com/2022/03/16/running_python_website_draw_graph/">&lt;p&gt;Python เป็นภาษาคอมพิวเตอร์ภาษาหนึ่งที่ได้รับความนิยมภาษาหนึ่ง โดยภาษานี้เป็นภาษา General-purpose ท่เน้นการอ่านตัวโค้ดได้ง่าย รวมถึงง่ายต่อการเรียนรู้ ภาษานี้ปกติจะไม่ได้ออกแบบเพื่อการทำงานบนหน้าเว็บไซต์แบบจาวาสคริป อย่างไรก็ดีมีทีมงานกลุ่มหนึ่งใน Mozilla ที่พัฒนาตึวโค้ด CPython ให้ทำงานอยู่บน Webassembly ที่ออกแบบมาให้รันตัวโค้ดที่ได้รับการคอมไพล์บนหน้าเว็บไซต์&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-03-20T01:36:38+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">วิธีนำอุปกรณ์ Android มาใช้โค้ดทิ้งแทนที่โน้ตบุ๊ต</title><link href="https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/" rel="alternate" type="text/html" title="วิธีนำอุปกรณ์ Android มาใช้โค้ดทิ้งแทนที่โน้ตบุ๊ต" /><published>2022-03-20T01:00:00+07:00</published><updated>2022-03-20T01:00:00+07:00</updated><id>https://nickuntitled.com/2022/03/20/android-as-programming-replacement</id><content type="html" xml:base="https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/">&lt;p&gt;ช่วงที่ผ่านมาก็จะมีพูดถึงการให้นักเรียนมาเรียนการเขียนโค้ด หรือที่คนพูดกันบ่อย ๆ (รวมถึงเจ้าหน้าที่รัฐฯ) ก็จะเรียกกันว่าโค้ดดิ้งที่ได้รับการบรรจุลงในวิชาวิทยาการคำนวณ โดยภาษาที่เหมาะกับผู้เริ่มต้นนั่นก็คือไพทอน&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดีการเขียนโปรแกรมไพทอนจำเป็นต้องใช้คอมพิวเตอร์เป็นหลักที่ใช่ว่าทุกคนจะมีกันเสียเท่าไร เลยคิดว่าไหน ๆ มือถือแอนดรอยด์ก็มีกันหลายคนแล้ว แถมเราก็เปลี่ยนจากไอโฟนมาเป็นซัมซุงที่รองรับ Samsung DeX อยู่แล้ว เลยมาเขียนบทความนี้ดีกว่า&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ส่วนใครที่ใช้ไอแพดก็ไปอ่านได้ที่ &lt;a href=&quot;https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/&quot;&gt;“เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค”&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;การเขียนโปรแกรมโดยปกติจำเป็นต้องมีตัว Compiler หรือตัว Interpreter ของแต่ละภาษา โดยภาษาไพทอนจำเป็นต้องมีโปรแกรมของตัว Python เอง หรือตัวจาวาสคริปที่รันบนคอมพิวเตอร์ก็ใช้โปรแกรมอย่าง Node.js อย่างไรก็ดีโปรแกรมเหล่านี้ก็ไม่ได้มีให้ดาวน์โหลดจาก Google Play, Amazon App Store นี่ แล้วจะทำอย่างไร?&lt;/p&gt;
+
+&lt;p&gt;ทำได้ครับ วิธีแรกก็ตามในลิ้งค์บนนั้นเลย เราก็เช่าคลาวด์ที่ใดที่หนึ่งแล้วติดตั้งเครื่องมือที่เกี่ยวข้อง แล้วรีโหมดเข้าไปพัฒนาแอพ หรือใช้งานผ่าน Open VSCode Server (หรือ code-server) แต่เราจะไม่กล่าวถึงวิธีนั้น&lt;/p&gt;
+
+&lt;p&gt;อีกวิธีหนึ่งที่เราทำได้นั่นก็คือการติดตั้งเครื่องมือที่ให้เราติดตั้งแอพที่อนุญาตให้เรารันคอมมานไลน์ที่เป็น Linux Shell ได้อย่าง &lt;a href=&quot;https://termux.com/&quot;&gt;Termux&lt;/a&gt; ตามนิยามภาษาอังกฤษของตัวแอพนี้ว่า&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Termux is an Android terminal emulator and Linux environment app that works directly with no rooting or setup required. A minimal base system is installed automatically - additional packages are available using the APT package manager.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;อย่างไรก็ดี Termux มีข้อแตกต่างกับตัวลินุกซ์ปกติ&lt;/p&gt;
+
+&lt;h2 id=&quot;ความแตกต่างระหว่าง-termux-กับลินุกซ์&quot;&gt;ความแตกต่างระหว่าง Termux กับลินุกซ์&lt;/h2&gt;
+
+&lt;p&gt;Termux มีจุดที่แตกต่างระหว่างตัวลินุกซ์ที่อยู่ใน Termux กับตัวลินุกซ์ที่เราใช้งานกันปกติ (อ้างอิงจาก&lt;a href=&quot;https://wiki.termux.com/wiki/Differences_from_Linux&quot;&gt;หน้าเว็บนี้&lt;/a&gt;) นั่นก็คือ&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ระบบไฟล์จะไม่เข้ากันได้กับมาตรฐาน Filesystem Hierachy Standard ที่จะแบ่งตัวโฟลเดอร์เป็น /boot /etc /usr /home ทำให้อาจจะมีปัญหากับบางโปรแกรมบ้าง&lt;/li&gt;
+  &lt;li&gt;เนื่องมาจากตัวแอพคอมไพล์โดยใช้ Android NDK ทำให้ใช้งาน Bionic libc แทนที่จะใช้ตัวที่มีอยู่ลินุกซ์ปกติ ส่งผลทำให้เราไม่สามารถนำแอพบนลินุกซ์มาใช้งานได้ทันที เราจำเป็นต้องคอมไพล์ใหม่เสียก่อน&lt;/li&gt;
+  &lt;li&gt;โฟลเดอร์ที่เกี่ยวข้องกับ Termux รวมถึงโฟลเดอร์ที่เก็บข้อมูลแอพต่าง ๆ จะอยู่ในโฟลเดอร์ที่อยู่ในโฟลเดอร์ data ของ Termux อีกที&lt;/li&gt;
+  &lt;li&gt;Termux อนุญาตให้เราใช้งานเพียง user เดียว&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;เมื่อทราบข้อแตกต่างนี้แล้ว เรามาติดตั้ง Termux กันดีกว่า&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้ง-termux&quot;&gt;การติดตั้ง Termux&lt;/h2&gt;
+
+&lt;p&gt;เมื่อรู้จักกับ Termux แล้ว เราจะติดตั้งได้จากที่ไหน? ปกติเราจะติดตั้งจาก Google Play ใช่ไหมครับ ทีนี้แอพนี้มันก็มีให้ดาวน์โหลดอยู่ แต่ทว่า แอพที่ให้ดาวน์โหลดนั้นเป็นรุ่นเก่าที่ไม่ได้รัับการอัพเดทแล้วเนื่องมาจากปัญหาเรื่อง API เอง ดังนั้นทางเว็บผู้พัฒนาเอง และเราแนะนำให้ติดตั้งจาก &lt;a href=&quot;https://f-droid.org/en/&quot;&gt;F-Droid&lt;/a&gt; ที่เป็น App Store ที่ให้ดาวน์โหลดแอพที่ฟรี และเปิดเผยตัวโค้ด (Open Source) โดย&lt;/p&gt;
+
+&lt;p&gt;ขั้นตอนแรก ติดตั้งตัว F-Droid เสียก่อน โดยดาวน์โหลดจากเว็บผู้พัฒนาของ F-Droid&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/download_fdroid.jpg&quot; alt=&quot;Download F-Droid&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ต่อมา เมื่อดาวน์โหลดมาเรียบร้อย ตั้งค่าในหน้าการตั้งค่าให้ติดตั้งแอพจาก Unknown Sources (โดยมือถือซัมซุงที่เราใช้อยู่เข้าได้ที่ Settings -&amp;gt; Biometrics and Security -&amp;gt; Install unknown apps -&amp;gt; กดที่ตัว File Manager แล้วติ๊กถูกให้ Allow from this source ส่วนรุ่นอื่นอาจต้องไปอ่านคู่มืออีกทีครับ)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/enable_myfile.jpg&quot; alt=&quot;Enable Unknown Sources&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ขั้นตอนที่สาม เข้าไปที่ตัวติดตั้ง F-Droid ผ่านทางหน้า File Manager แล้วติดตั้ง เมื่อติดตั้งเสร็จแล้วไปตั้งค่าให้ติดตั้งแอพจาก Unknown Sources โดยเลือก F-Droid เพื่ออนุญาตให้ F-Droid ดาวน์โหลดแอพที่ไม่ได้อยู่ใน Google Play Store ได้ครีบ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/enable_fdroid.jpg&quot; alt=&quot;Enable F-Droid&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ต่อไป เข้าไปที่หน้า F-Droid ค้นหาแอพที่ชื่อว่า Termux จากนั้นกด Install&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/install_termux.jpg&quot; alt=&quot;Installation of Termux&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;สุดท้าย ตัวโปรแกรมจะติดตั้ง Termux เมื่อติดตั้งเสร็จแล้ว เข้าไปที่หน้าเมนูหลัก แล้วกดที่ Termux&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้งเครื่องมือที่เกี่ยวข้อง&quot;&gt;การติดตั้งเครื่องมือที่เกี่ยวข้อง&lt;/h2&gt;
+
+&lt;p&gt;หลังจากที่เข้ามาในตัว Termux แล้ว การใช้งานก็คือเราพิมพ์คำสั่งคอมมานไลน์เข้าไปในระบบให้มันทำงาน ซึ่งจุดนี้ก็จะคล้ายกันกับที่ใช้บนลินุกซ์เองครับ แต่จุดหนึ่งที่เราจะนำมาเขียนโปรแกรมแทนที่จะใช้คอมพิวเตอร์นั่นก็คือเราต้องติดตั้งเครื่องมือที่เกี่ยวข้องเสียก่อน&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;สำหรับผู้ที่ไม่เคยใช้คอมมานไลน์บนลินุกซ์ ผู้อ่านสามารถศึกษาได้&lt;a href=&quot;https://saixiii.com/unix-linux-command/&quot;&gt;ที่นี่&lt;/a&gt; หรือจาก&lt;a href=&quot;https://linuxcommand.org/&quot;&gt;ที่นี่แต่เป็นภาษาอังกฤษที่ดูครบครันมากกว่าครับ&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;โดยภาษาหลัก ๆ ที่เขียนก็เป็นไพทอนที่เหมาะกับผู้เริ่มต้น เราเริ่มต้นโดยการอัพเดทรายการแพคเกจที่มีอยู่ในระบบเสียก่อนโดยพิมพ์คำสั่งว่า&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ pkg update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หลังจากนั้นสั่งให้ระบบติดตั้งไพทอนได้โดยพิมพ์คำสั่งว่า&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ pkg install python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ระบบจะติดตั้งแพคเกจไพทอน หลังจากนั้นเราเริ่มต้นไพทอนได้โดยพิมพ์&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;หน้าจอจะปรากฏแอพไพทอนให้เราเขียนโปรแกรมได้แล้วตามภาพด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/python_termux.jpg&quot; alt=&quot;Python inside Termux&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;เมื่อเราเห็นหน้าจอตามข้างบนนี้แล้วมันเหมือนเป็นหน้าจอสำหรับการพิมพ์โค้ดเพื่อให้ตัวไพทอนประมวลผลได้ทันทีแบบ Interpreter ทั่ว ๆ ไปนี่แหละครับ อย่างไรก็ดีมีจุดที่สังเกตเลยเนื่องมาจากตัว Termux มีข้อจำกัดตามที่กล่าวไว้ในหัวข้อก่อนหน้า ดังนั้นแล้วไลบรารีบางไลบรารีที่ติดตั้งผ่านทาง pip3 อาจจะติดตั้งไม่ได้เนื่องมาจากมีปัญหาการคอมไพล์เครื่องมือที่เกี่ยวข้อง เรื่องนี้เราจะกล่าวถึงในหัวข้อถัดไปจากนี้&lt;/p&gt;
+
+&lt;p&gt;แต่ตอนนี้เราจะมากล่าวถึงวิธีการเขียนโค้ดเป็นไพล์ไพทอนออกมาแล้วค่อยสั่งให้ไพทอนทำงานด้วยคำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ python &amp;lt;ไฟล์ตัวโค้ดที่พิมพ์ไว้&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ที่ผู้อ่านอาจจะสงสัยว่าเราจะทำได้อย่างไรล่ะ คำตอบก็เหมือนเดิม ทำได้ครับ แต่ก่อนอื่น เราต้องมาอนุญาตให้ตัว Termux เข้าถึงไฟล์ที่มีอยู่ใน Internal Storage/SD Card บนแอนดรอยด์เสียก่อน ด้วยคำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ termux-setup-storage
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ตัวโปรแกรมจะขึ้นหน้าจออนุญาตให้เราเข้าถึงตัวไฟล์ที่มีอยู่ใน Internal Storage/SD Card ครับ แล้วเราจะเข้าถึงได้อย่างไร? ตัว Termux จะสร้างไฟลเดอร์หนึ่งที่เหมือนเป็น Shortcut เพื่อให้เราเข้าถึงโฟลเดอร์​ และไฟล์เหล่านี้ได้ผ่านทางการพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ cd storage
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ระบบจะเข้าถึงโฟลเดอร์ที่เกี่ยวข้องกับระบบ โดยจะแสดงโฟลเดอร์ dcim, downloads, movies, music, pictures ส่วนโฟลเดอร์ shared นี่เมื่อเปิดเข้าไปจะเป็นโฟลเดอร์ที่เป็น Shortcut เข้าไปยัง Internal Storage/SD Card ที่จะแสดงโฟลเดอร์ และไฟล์ที่มีอยู่ทั้งหมด เราสามารถแก้ไข ลบ สร้าง เปลี่ยนแปลงไฟล์เหล่านี้ได้เลย&lt;/p&gt;
+
+&lt;p&gt;ต่อไป เราจะมาแนะนำการติดตั้ง IDE ที่เกี่ยวข้อง&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้ง-ide-ที่เกี่ยวข้อง&quot;&gt;การติดตั้ง IDE ที่เกี่ยวข้อง&lt;/h2&gt;
+
+&lt;p&gt;IDE บนแอนดรอยด์มาหลาย IDE แต่ที่เราใช้ตัวหนึ่งก็เป็น DroidEdit ที่เป็นแอพที่เสียเงิน แต่ใช้งานได้ดีในระดับหนึ่งเลย โดยติดตั้งได้ผ่านทาง Google Play Store ครับ ราคาอยู่ประมาณหลักร้อยบาท แต่ใช้งานได้ดีครับ&lt;/p&gt;
+
+&lt;p&gt;หน้าจอการใช้งานก็ตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/droidedit.jpg&quot; alt=&quot;DroidEdit&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;วิธีที่สองที่เราใช้ได้ นั่นก็คือใช้งานผ่านทางเว็บของไมโครซอฟท์เองอย่าง &lt;a href=&quot;https://vscode.dev/&quot;&gt;vscode.dev&lt;/a&gt; ที่ให้เราใช้งานตัว Visual Studio Code บนหน้าเว็บได้เลย เพียงแต่ฟังก์ชันจะจำกัดเมื่อเทียบกันกับ Visual Studio Code ที่มีอยู่บนคอมพิวเตอร์ และยังเป็นรุ่น Preview ดังนั้นแล้วตัวนี้ยังไม่สมบูรณ์ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/andriod_vscodedev.jpg&quot; alt=&quot;VScode dot dev&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;วิธีที่สาม เราสามารถติดตั้งตัว &lt;a href=&quot;https://github.com/coder/code-server&quot;&gt;code-server&lt;/a&gt; หรือ &lt;a href=&quot;https://github.com/gitpod-io/openvscode-server&quot;&gt;OpenVScode server&lt;/a&gt; (ที่ทั้งสองตัวนี้ดูหน้าจอแล้วคล้ายกันกับที่เราเขียนบน Visual Studio Code) ได้ผ่านทางการติดตั้งใน Termux ได้อีก โดยการติดตั้งทำได้โดยติดตั้ง Debian แล้วติดตั้งเครื่องมืออันใดอันหนึ่งครับ โดยวิธีนี้ถ้าใครไม่อยากยุ่งยากก็ติดตั้ง IDE ตามที่แนะนำข้างบนนี้แล้วใช้งานกับไพทอนก็พอใช้ได้ในระดับหนึ่งแล้วครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้ง-debian&quot;&gt;การติดตั้ง Debian&lt;/h2&gt;
+
+&lt;p&gt;เราติดตั้ง code-server ได้โดยการติดตั้งตัว Debian เสียก่อนเพื่อให้เราใช้งานลินุกซ์ได้แบบเต็ม ๆ ไม่มีจุดที่จำกัดของตัวลินุกซ์ที่มีอยู่บน Termux เอง โดยวิธีการติดตั้ง Debian เราพิมพ์คำสั่งตามที่อ้างอิงมาจาก&lt;a href=&quot;https://coder.com/docs/code-server/latest/termux&quot;&gt;เว็บนี้&lt;/a&gt; ได้โดยพิมพ์ไปว่า&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pkg update -y &amp;amp;&amp;amp; pkg install wget curl proot tar -y &amp;amp;&amp;amp; wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh &amp;amp;&amp;amp; chmod +x debian.sh &amp;amp;&amp;amp; bash debian.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;กด Enter ตัว Termux จะติดตั้งเครื่องมือที่เกี่ยวข้อง หลังจากนั้นจะเริ่มต้นการติดตั้งตัว Debian ลงไป หลังจากนั้นเราจะพบว่าเราใช้งาน Debian อยู่ในขณะนี้ ขั้นตอนต่อไปจะเป็นการติดตั้งเครื่องมือที่เกี่ยวข้อง เราทำได้โดยติดตั้ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt update
+apt upgrade -y
+apt-get install nano vim sudo curl wget git -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ต่อมา สร้างผู้ใช้ และรหัสผ่านขึ้นมาแทนที่จะใช้ผู้ใช้ที่มีชื่อว่า root เราทำได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo adduser username
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;แล้วตอบคำถามตามที่หน้าจอปรากฏขึ้น เมื่อทำเสร็จแล้ว เราตั้งค่าให้ผู้ใช้นี้ใช้คำสัั่ง sudo ได้โดยการพิมพ์คำสั่งนี้ลงไป&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo usermod -aG sudo username
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;แต่ถ้าทำแล้วไม่ได้ เราก็เข้าไปแก้ไขในไฟล์การตั้งค่าของ sudo ได้โดยการพิมพ์&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;visudo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;แล้วเพิ่มผู้ใช้ใหม่ได้โดยการพิมพ์&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;username&amp;gt; ALL=(ALL:ALL) ALL
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;แล้วบันทึกไฟล์ก็ทำให้ผู้ใช้สามารถใช้คำสั่ง sudo ได้เช่นกัน&lt;/p&gt;
+
+&lt;p&gt;เมื่อทำเสร็จแล้ว เราก็จะได้ผู้ใช้ใหม่ที่สามารถใช้งานคำสั่ง sudo เวลาที่จะติดตั้งแอพ หรือทำอะไรที่เกี่ยวข้องการตัวระบบปฏิบัติการเองครับ การเปลี่ยนไปใช้ผู้ใช้นี้เราทำได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;su - &amp;lt;username&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;นอกเหนือจากนี้เวลาที่เราจะกลับมาใช้งานตัว Debian ใหม่ผ่านทางหน้าจอ Termux เราทำได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ ./start-debian.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ต่อไปจะเป็นการติดตั้งเครื่องมือที่เกี่ยวข้อง มีสองทางเลือก หนึ่งติดตั้ง code-server กับสองติดตั้ง OpenVScode server ครับ โดยส่วนตัวจากที่เคยใช้ ใช้ได้ดีทั้งคู่ แต่เราชอบ OpenVScode server มากกว่า เพราะมันง่าย และไม่ต้องติดตั้งแพคเกจลงไปในระบบ ถ้าอยากลบก็สั่งลบทั้งโฟลเดอร์ไปได้เลย ง่ายกว่าเยอะ&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;นอกจากนี้สำหรับคนที่อยากทำอะไรหลาย ๆ อย่างในหน้า Termux เดียวกัน แนะนำให้ติดตั้ง tmux เข้าไปในระบบโดยการติดตั้งด้วยการพิมพ์คำสั่ง sudo apt install tmux แล้วพิมพ์คำสั่ง tmux เพื่อเริ่มต้นการใช้งาน&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;วิธีแรก-ติดตั้ง-code-server&quot;&gt;วิธีแรก ติดตั้ง code-server&lt;/h2&gt;
+
+&lt;p&gt;ถัดไปจากการติดตั้ง และตั้งค่าตัว Debian แล้ว เราติดตั้งตัว code-server ได้โดยการพิมพ์คำสั่งด้านล่างนี้เพื่อทดสอบเสียก่อน&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -fsSL https://code-server.dev/install.sh | sh -s -- --dry-run
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;กรณีที่ทดสอบแล้วพบว่าใช้งานได้ดี เราสามารถพิมพ์คำสั่งนี้เพื่อติดตั้งได้เลยผ่านทางการพิมพ์โค้ด&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -fsSL https://code-server.dev/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ตัวระบบจะดาวน์โหลดตัว code-server ลงมาในตัวเครื่องแอนดรอยด์เอง เมื่อเราต้องการใช้งาน code-server เราทำได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;code-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เพื่อเริ่มต้นการทำงาน แล้วเราเข้าผ่านทางการพิมพ์ที่อยู่เว็บไซต์ http://127.0.0.1:8080 แล้วเราจะพบหน้าจอ code-server ตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/android-code-server-login.jpg&quot; alt=&quot;code-server login&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;เราเข้าสู่ระบบได้โดยการพิมพ์รหัสผ่านที่เป็นค่าเริ่มต้นได้โดยการเข้าไปดูในไฟล์ตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ~/.config/code-server/config.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ระบบจะแสดงข้อมูลการตั้งค่า โดยจะแสดงมาตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bind-addr: 127.0.0.1:8080
+auth: password
+password: &amp;lt;password&amp;gt;
+cert: false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ดูตรง password ให้ก็อปปี้ตัวนี้แล้วนำไปแปะในหน้าเว็บนั้น เราจะใช้งานตัว code-server ได้แล้วครับตามหน้าจอด้านล่างนี้เลย&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/android-code-server-main.jpg&quot; alt=&quot;code-server main&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;เราจะพบว่ามันใช้งานได้แล้วครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;วิธีสอง-ติดตั้ง-openvscode-server&quot;&gt;วิธีสอง ติดตั้ง OpenVscode server&lt;/h2&gt;
+
+&lt;p&gt;นอกจากตัว code-server ตามที่กล่าวไปข้างบนแล้ว ยังมีตัว IDE อีกตัวที่น่าใช้เช่นกัน แต่ติดตั้งได้ง่ายกว่าตัวข้างบน นั่นก็คือ OpenVSCode server ที่พัฒนาโดยผู้ให้บริการ &lt;a href=&quot;https://gitpod.io&quot;&gt;Gitpod&lt;/a&gt; ครับ เราติดตั้งได้โดยการดาวน์โหลดตัวติดตั้งเสียก่อนโดยดาวน์โหลดที่ส่วน &lt;a href=&quot;https://github.com/gitpod-io/openvscode-server/releases&quot;&gt;Release ในหน้า Github&lt;/a&gt; นี้ครับ&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ก่อนที่จะดาวน์โหลดไฟล์มา ให้ตรวจสอบสถาปัตยกรรมซีพียูเสียก่อนได้โดยการพิมพ์คำสั่ง dpkg –print-architecture หรือ cat /proc/cpuinfo แล้วจะปรากฏรายละเอียดซีพียูครับ ของผู้เขียนจะขึ้นเป็น arm64 ครับ&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;เมื่อดาวน์โหลดแล้ว แตกไฟล์ก่อนด้วยการพิมพ์คำสั่ง&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tar xzf &amp;lt;ตำแหน่งไฟล์ที่เราดาวน์โหลดไว้&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;เมื่อแตกไฟล์เสร็จแล้ว เราเข้าไปในโฟลเดอร์ที่แตกไฟล์ไว้ จากนั้นเริ่มต้นการทำงาน OpenVSCode server ได้โดยการพิมพ์&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./bin/openvscode-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ระบบจะเริ่มต้นการทำงาน OpenVSCode server ผู้ใช้สามารถเข้าไปใช้งานได้โดยการก็อปปี้ที่อยู่ตามที่ปรากฏในหน้าจอแล้วเอาไปแปะในเว็บเบราวเซอร์ แล้วจะปรากฏหน้าจอตามด้านล่างนี้ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/android_openvscode_server.jpg&quot; alt=&quot;OpenVScode server IDE&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;เราก็จะพบว่ามันใช้งานได้แล้วครับ&lt;/p&gt;
+
+&lt;h2 id=&quot;สำหรับผู้อ่าน&quot;&gt;สำหรับผู้อ่าน&lt;/h2&gt;
+
+&lt;p&gt;สำหรับผู้อ่านแล้ว ถ้าต้องการติดตั้งแบบไม่ยุ่งยากก็ติดตั้ง termux กับติดตั้งตัวไพทอนรวมถึงติดตั้ง IDE ที่มีอยู่บน Google Play ก็น่าจะเพียงพอในระดับหนึ่ง แต่ถ้าต้องการใช้ IDE แต่ต้องการให้ติดตั้งไลบรารีไพทอนให้ได้หลากหลายมากกว่านี้ได้ เราก็ทำจนถึงการติดตั้ง Debian&lt;/p&gt;
+
+&lt;p&gt;ส่วนผู้ใช้ที่ต้องการใช้งาน code-server หรือ OpenVSCode Server ก็ทำจนครบทุกขั้นตอนไปเลยนี่แหละครับ เมื่อติดตั้งเสร็จแล้ว มันใช้งานได้สบายเลยนะ เพราะไม่มีข้อจำกัดด้านไลบรารีไพทอนเลย เพียงแต่มันจะใช้งานได้ลำบากไปหน่อบยำหรับคนที่มีอุปกรณ์แอนดรอยด์ที่มีหน้าจอเล็ก&lt;/p&gt;
+
+&lt;p&gt;ดังนั้นแล้วเราแนะนำวิธีนี้สำหรับผู้ใช้มือถือที่รองรับการเชื่อมต่อหน้าจอภายนอกให้ออกมาเป็นเดสก์ท็อปอย่าง Samsung DeX รวมถึงแท็บเล็ตแอนดรอยด์มากกว่าครับ (ส่วนใครใช้แท็บเล็ตจอใหญ่ไปเลยแบบ &lt;a href=&quot;https://www.gsmarena.com/samsung_galaxy_tab_s8_ultra-11274.php&quot;&gt;Samsung Galaxy Tab S8 Ultra&lt;/a&gt; นี่ใช้เขียนโปรแกรมได้สบาย)&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="computer" /><category term="android" /><category term="mobile" /><category term="tablet" /><category term="personal" /><category term="productivity" /><category term="programming" /><category term="replacement" /><category term="working" /><category term="คอมพิวเตอร์" /><category term="ทำงาน" /><category term="เขียนโปรแกรม" /><category term="แท็บเล็ต" /><category term="มือถือ" /><category term="แอนดรอยด์" /><summary type="html">คราวนี้เราจะมาพูดถึงการนำอุปกรณ์แอนดรอยด์มาใช้งานเขียนโปรแกรมแทนคอมพิวเตอร์ที่มีอยู่ หลังจากที่ประสิทธิภาพของอุปกรณ์ดีขึ้นเยอะ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2022/03/android_as_development_machine_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2022/03/android_as_development_machine_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Pyodide - แนะนำการเริ่มต้นใช้งาน และการพล็อตกราฟเพื่อแสดงบนหน้าเว็บ</title><link href="https://nickuntitled.com/2022/03/16/running_python_website_draw_graph/" rel="alternate" type="text/html" title="Pyodide - แนะนำการเริ่มต้นใช้งาน และการพล็อตกราฟเพื่อแสดงบนหน้าเว็บ" /><published>2022-03-16T00:00:00+07:00</published><updated>2022-03-16T00:00:00+07:00</updated><id>https://nickuntitled.com/2022/03/16/pyodide-matplotlib-img-element</id><content type="html" xml:base="https://nickuntitled.com/2022/03/16/running_python_website_draw_graph/">&lt;p&gt;Python เป็นภาษาคอมพิวเตอร์ภาษาหนึ่งที่ได้รับความนิยมภาษาหนึ่ง โดยภาษานี้เป็นภาษา General-purpose ท่เน้นการอ่านตัวโค้ดได้ง่าย รวมถึงง่ายต่อการเรียนรู้ ภาษานี้ปกติจะไม่ได้ออกแบบเพื่อการทำงานบนหน้าเว็บไซต์แบบจาวาสคริป อย่างไรก็ดีมีทีมงานกลุ่มหนึ่งใน Mozilla ที่พัฒนาตึวโค้ด CPython ให้ทำงานอยู่บน Webassembly ที่ออกแบบมาให้รันตัวโค้ดที่ได้รับการคอมไพล์บนหน้าเว็บไซต์&lt;/p&gt;
 
 &lt;p&gt;เมื่อตัวโค้ดได้รับการคอมไพล์ให้อยู่บน Webassembly แล้ว ตัวโค้ดที่เขียนในรูปแบบภาษา Python จะเข้าถึง Web APIs ทั้งหลายแหล่ที่อยู่บนเว็บเบราวเซอร์ได้นั่นเอง&lt;/p&gt;
 
@@ -1213,46 +1452,4 @@ apollo_server.applyMiddleware({ &quot;app&quot;: express_app });
   &lt;li&gt;แอพกลุ่ม Corel ที่ลดราคาพอสมควรเลย ได้แก่ แอพ CorelDraw, Painter 2022, Paintshop Pro 2022 Ultimate, Pinnacle Studio 25 Ultimate และ VideoStudio Ultimate 2021&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;ส่วนแอพอื่นที่นอกเหนือจากนั้น ลองเปิดหาในอินเตอร์เน็ตเพิ่มเติมได้ครับ จะมีประกาศลดราคาให้เห็นเอง หรือถ้าลดใน App Store หรือ Play Store ก็จะได้เห็นในนั้นครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Black Friday" /><category term="Sale" /><category term="Discount" /><category term="Cheap" /><category term="App" /><category term="App Store" /><category term="Buying" /><category term="ลดราคา" /><category term="ราคาถูก" /><category term="แอพ" /><category term="โปรแกรม" /><category term="แอพลิเคชัน" /><summary type="html">Black Friday เป็นช่วงที่จัดขึ้นหลัง Thanksgiving Day เป็นช่วงที่สินค้าลดราคาหลายชนิด แอพก็เช่นกัน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/blackfriday_cover_min.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/blackfriday_cover_min.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Enter Programming - จากเรียนแพทย์เข้ามาเขียนโปรแกรมได้ยังไง?</title><link href="https://nickuntitled.com/2021/11/9/enter_programming_how_to_move_from_medical_doctor/" rel="alternate" type="text/html" title="Enter Programming - จากเรียนแพทย์เข้ามาเขียนโปรแกรมได้ยังไง?" /><published>2021-11-09T20:00:00+07:00</published><updated>2021-11-09T20:00:00+07:00</updated><id>https://nickuntitled.com/2021/11/9/being-programming-from-doctor</id><content type="html" xml:base="https://nickuntitled.com/2021/11/9/enter_programming_how_to_move_from_medical_doctor/">&lt;p&gt;บทความนี้เราเขียนเสริมจากที่พูดในคาบของอ. advisor ที่สอนให้ในวิชาเลือกของรพ.ริมน้ำที่เกี่ยวกับการเรียน AI สำหรับทางการแพทย์&lt;/p&gt;
-
-&lt;h2 id=&quot;ช่วงแรก-ก่อนเข้าเรียนหมอ&quot;&gt;ช่วงแรก ก่อนเข้าเรียนหมอ&lt;/h2&gt;
-
-&lt;p&gt;ตอนแรกก่อนเข้าเรียนหมอเรียนภาษา C มาก่อน เรียนเองและเรียนจากค่ายสอวน. คอม (ที่เคยไปถึงโอลิมปิกระดับชาติแล้วได้เหรียญทองแดง) ฝึกตั้งแต่พื้นฐาน, Data Structure &amp;amp; Algorithms และแก้โจทย์ปัญหาบ้างผ่านทางเว็บในสมัยนั้นก็มีเว็บ programming.in.th (ที่ตอนนี้มีหลายเว็บแล้ว เช่น &lt;a href=&quot;https://leetcode.com/&quot;&gt;Leetcode&lt;/a&gt;)&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/c_programming.jpg&quot; alt=&quot;C Programming&quot; /&gt;
-&lt;figcaption&gt;ก่อนเรียนหมอ ก็เรียนภาษา C มาก่อนแล้ว&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;ต่อมา เราก็ฝึกเขียน PHP + MySQL เพราะมีพื้นภาษา C อยู่แล้วนี่ แถมได้เขียนเว็บทางฝั่ง Front-end ด้วย HTML, CSS, JavaScript (สมัยนั้นใช้ jQuery เพราะมันฮิตด้วย แถมมันติดมากับ Bootstrap เวอร์ชัน 3-4)&lt;/p&gt;
-
-&lt;p&gt;ช่วงนี้เราเขียนหน้าเว็บให้กับทางคณะฯ มาบ้าง แต่พอขึ้นคลินิกก็ไม่ได้เขียนเลย ก็งานยุ่งนี่ครับ แค่ทบทวนเรื่องที่เรียนบนชั้นคลินิกเวลาก็หมดเสียแล้ว&lt;/p&gt;
-
-&lt;h2 id=&quot;หลังเรียนจบหมอ&quot;&gt;หลังเรียนจบหมอ&lt;/h2&gt;
-
-&lt;p&gt;เมื่อเรียนจบพอมาใช้ทุนสธ. ก็ไม่ได้เขียนเลย เพราะแค่ลงเวรมาก็อยากจะนอน ไม่อยากอ่านอะไรเพิ่ม ก็มันไม่มีเวลาอ่ะคุณ แต่พอคิดไปคิดมา ไม่ได้อยากเป็นหมอแต่แรกแล้ว พอใช้ไปสักพักก็ลาออกมา จ่ายเงินสองแสนกว่าบาท&lt;/p&gt;
-
-&lt;p&gt;แล้วเลือกเรียนต่อวิศวะชีวการแพทย์ ที่เลือกม.มหิดลเพราะเป็นแห่งแรก ๆ และมีอาจารย์ที่ทำเรื่องนี้ เราเลยเลือกสอบและสัมภาษณ์เข้าไป ก็เข้าไปเรียน&lt;/p&gt;
-
-&lt;h2 id=&quot;เข้าเรียนวิศวะชีวการแพทย์&quot;&gt;เข้าเรียนวิศวะชีวการแพทย์&lt;/h2&gt;
-
-&lt;p&gt;ตอนเรียนมีปรับพื้นฐานของวิศวะ ก็มีพวกคณิตศาสตร์ที่ใช้ มีตั้งแต่แคลคูลัส, Differential Equation, Probability เป็นต้น อย่างไรก็ดี ตอนเรียนที่แพทย์จุฬาฯ ไม่มีสอน Calculus 1 เราเลยซื้อหนังสือแคลคูลัส 1 มาอ่านแล้วทำโจทย์เอง แถมค้นหาข้อมูลเพิ่มเติมในอินเตอร์เน็ตที่มีสอนฟรี เราก็ฝึกไปก่อน นอกจากเรียนเลขแล้วยังมีเรียน Signals, Image Processing, Bioimage Informatics และอื่น ๆ&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/face_detection_python.jpg&quot; alt=&quot;Face Detection&quot; /&gt;
-&lt;figcaption&gt;หลังเข้าเรียน ก็ได้ฝึกเขียน Python และศึกษาเรื่อง Computer Vision เช่น Face Detection แบบในภาพ&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;แล้วเข้าไปแล็บที่เป็น AI ครับ ตอนนี้แหละ (Artificial Intelligence in Medicine) ได้ฝึกเขียนโปรแกรม เลยเอาภาษาไพทอนนี่แหละมาฝึก เพราะภาษาไพทอนเป็นภาษาที่ฝึกได้ง่าย ตัวโค้ดเขียนเข้าใจง่าย ฝึกไม่นานก็เขียนได้แล้ว&lt;/p&gt;
-
-&lt;p&gt;ต่อมาเราเลยศึกษาพวกไลบรารีไพทอนที่จำเป็นที่เกี่ยวข้องกับงานด้าน Computer Vision เช่น OpenCV, Numpy, Matplotlib, PyTorch, Tensorflow, ONNX runtime เป็นต้น&lt;/p&gt;
-
-&lt;p&gt;พอศึกษาแล้วเขียนพอได้ระดับหนึ่ง ก็ต้องทำตัวเว็บเซิร์ฟเวอร์ แล้วจะเอาตัวไหนดี ตอนแรกจะเอา Django มันจะดูยากไปไหม เลยเลือก Flask ฝึกและใช้งานไประดับหนึ่ง ก็ฝึก FastAPI มาลองใช้ดู ใช้ง่ายแฮะ แต่อันนี้ไม่ได้เอาไปทำตัวเว็บเซิร์ฟเวอร์ ใช้แต่ Flask&lt;/p&gt;
-
-&lt;p&gt;นอกจากทำตัว back-end แล้วก็ต้องทำ front-end เลยฝึก HTML, JS, CSS ใหม่อีกที ฝึกไม่นานก็ทำหน้าเว็บได้ และช่วงนี้ก็ฝึก Framework ในปัจจุบัน อย่าง ReactJS, GraphQL (Apollo Server &amp;amp; Client) เป็นต้น แถมสมัยนี้ใช้ Container กัน ก็ฝึกใช้ Docker, docker-compose เลย (แต่ตอนนั้นยังไม่ได้ฝึก Kubernetes)&lt;/p&gt;
-
-&lt;h2 id=&quot;หลังจากนี้&quot;&gt;หลังจากนี้&lt;/h2&gt;
-
-&lt;p&gt;ต่อไปหลังจากนี้ เราก็เดี๋ยวฝึกอันที่คนใช้กันเยอะ เช่น Django, FastAPI, Svelte, Tailwind CSS, NoSQL (MongoDB) และอื่น ๆ รวมถึงฝึกพื้นฐานอย่าง Math, Data Structure, Algorithm, Data Science และอื่น ๆ ที่จำเป็นต้องกรทำงานครับ&lt;/p&gt;
-
-&lt;p&gt;เดี๋ยวฝึกแล้วได้อะไร จะเอามาเขียนในนี้ในโพสต่อ ๆ ไปครับ ขอบคุณผู้อ่านที่ติดตามครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Doctor" /><category term="Programming" /><category term="Medicine" /><category term="Programmer" /><category term="Job" /><category term="Python" /><category term="JavaScript" /><category term="JS" /><category term="C" /><category term="HTML" /><category term="CSS" /><category term="Engineering" /><category term="Career" /><category term="Biomedical" /><category term="สายงาน" /><category term="เปลี่ยนสาย" /><category term="เปลี่ยนอาชีพ" /><category term="หมอ" /><category term="แพทย์" /><category term="โปรแกรมเมอร์" /><category term="เขียนโปรแกรม" /><category term="โปรแกรมมิง" /><category term="วิศวกรรมศาสตร์" /><category term="วิศวกร" /><category term="วิศวชีวการแพทย์" /><summary type="html">ก่อนหน้านี้เรียนหมอไม่ค่อยได้ฝึกเขียนโปรแกรมอะไร จนมาที่เรียนวิศวะชีวการแพทย์ ที่เขียนโปรแกรมได้ในระดับหนึ่งแล้ว ในบทความนี้จะพูดว่ามาเขียนโปรแกรมได้อย่างไรครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/enter_programming_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;ส่วนแอพอื่นที่นอกเหนือจากนั้น ลองเปิดหาในอินเตอร์เน็ตเพิ่มเติมได้ครับ จะมีประกาศลดราคาให้เห็นเอง หรือถ้าลดใน App Store หรือ Play Store ก็จะได้เห็นในนั้นครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Black Friday" /><category term="Sale" /><category term="Discount" /><category term="Cheap" /><category term="App" /><category term="App Store" /><category term="Buying" /><category term="ลดราคา" /><category term="ราคาถูก" /><category term="แอพ" /><category term="โปรแกรม" /><category term="แอพลิเคชัน" /><summary type="html">Black Friday เป็นช่วงที่จัดขึ้นหลัง Thanksgiving Day เป็นช่วงที่สินค้าลดราคาหลายชนิด แอพก็เช่นกัน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/blackfriday_cover_min.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/blackfriday_cover_min.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
