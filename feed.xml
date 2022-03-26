@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-03-20T01:36:38+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick&apos;s Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">วิธีนำอุปกรณ์ Android มาใช้โค้ดทิ้งแทนที่โน้ตบุ๊ต</title><link href="https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/" rel="alternate" type="text/html" title="วิธีนำอุปกรณ์ Android มาใช้โค้ดทิ้งแทนที่โน้ตบุ๊ต" /><published>2022-03-20T01:00:00+07:00</published><updated>2022-03-20T01:00:00+07:00</updated><id>https://nickuntitled.com/2022/03/20/android-as-programming-replacement</id><content type="html" xml:base="https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/">&lt;p&gt;ช่วงที่ผ่านมาก็จะมีพูดถึงการให้นักเรียนมาเรียนการเขียนโค้ด หรือที่คนพูดกันบ่อย ๆ (รวมถึงเจ้าหน้าที่รัฐฯ) ก็จะเรียกกันว่าโค้ดดิ้งที่ได้รับการบรรจุลงในวิชาวิทยาการคำนวณ โดยภาษาที่เหมาะกับผู้เริ่มต้นนั่นก็คือไพทอน&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2022-03-26T13:44:09+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Nick's Journal on my Life</subtitle><author><name>Nick Untitled</name><email>contact@nickuntitled.com</email></author><entry><title type="html">นำอุปกรณ์ Samsung มาใช้เขียนโปรแกรมแทนที่เดสก์ท็อป และโน้ตบุ๊ค โดย Samsung DeX</title><link href="https://nickuntitled.com/2022/03/26/samsung_dex_programming_replace_desktop/" rel="alternate" type="text/html" title="นำอุปกรณ์ Samsung มาใช้เขียนโปรแกรมแทนที่เดสก์ท็อป และโน้ตบุ๊ค โดย Samsung DeX" /><published>2022-03-26T13:30:00+07:00</published><updated>2022-03-26T13:30:00+07:00</updated><id>https://nickuntitled.com/2022/03/26/samsung-dex-programming-machine</id><content type="html" xml:base="https://nickuntitled.com/2022/03/26/samsung_dex_programming_replace_desktop/">&lt;p&gt;ภาคต่อจาก&lt;a href=&quot;https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/&quot;&gt;บทความก่อนหน้า&lt;/a&gt;ที่นำอุปกรณ์แอนดรอยด์มาติดตั้งโปรแกรม termux ร่วมกับการติดตั้งเครื่องมือการพัฒนาโปรแกรม รวมถึง IDE ที่จำเป็นมาใช้งาน ทีนี้เรามาพูดถึงอุปกรณ์แอนดรอยด์ที่คนใช้งานกันนั่นก็คือมือถือหรือแท็บเล็ตของซัมซุง&lt;/p&gt;
+
+&lt;p&gt;มือถือ หรือแท็บเล็ตของซัมซุงมีฟังก์ชันหนึ่งที่ทำให้เวลาที่เราต่อออกหน้าจอแล้วเป็นเดสก์ท็อปได้เลยผ่านการเสียบสาย USB-C ออกมาต่อเข้ากับจอผ่าน USB-C/HDMI/DisplayPort หรืออื่น ๆ โดยฟังก์ชันนี้เรียกว่า Samsung DeX&lt;/p&gt;
+
+&lt;h2 id=&quot;samsung-dex&quot;&gt;Samsung DeX&lt;/h2&gt;
+
+&lt;p&gt;Samsung DeX (หรือชื่อเต็มของมันเรียกว่า Samsung Desktop eXperience) เป็นฟังก์ชันที่ทำให้ชีวิตดีขึ้นมากกว่าเดิมเมื่อเทียบกับแต่ก่อนที่เวลาต่อออกหน้าจอคอมพิวเตอร์ทั่วไปแล้วมันจะเป็นหน้าจอแอนดรอยด์เหมือนกับบนหน้าจอมือถือ แต่มีขนาดใหญ่กว่า โดยฟังก์ชันนี้มีมานานแล้ว ตั้งแต่มือถือ Samsung Galaxy S8/S8+ เป็นต้นมา จนปัจจุบันมีให้ใช้ในมือถือ แล้วยังมีให้ใช้บนแท็บเล็ตอีกด้วยครับ (แต่ฟังก์ชันนี้ไม่ได้มีครบทุกรุ่นนะ ต้องเช็คกับทางซัมซุงอีกที)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;สำหรับคนที่ใช้มือถือยี่ห้ออื่นก็ไม่ต้องเสียใจไป เพราะมือถือหัวเว่ย (Huawei) ก็มีฟังก์ชันที่ต่อออกจอเป็นเดสก์ท็อปได้เช่นกัน โดยฟังก์ชันนี้มีชื่อว่า Huawei Easy Projection&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;เมื่อมี Samsung DeX แล้วยังไงต่อล่ะ อย่างแรกที่ต้องทำเลยก็คือการเตรียมอุปกรณ์&lt;/p&gt;
+
+&lt;h2 id=&quot;การเตรียมอุปกรณ์เพื่อใช้งาน-samsung-dex&quot;&gt;การเตรียมอุปกรณ์เพื่อใช้งาน Samsung DeX&lt;/h2&gt;
+
+&lt;p&gt;การเตรียมอุปกรณ์ที่ใช้งาน Samsung DeX นี้ จริง ๆ ถ้าเอาง่าย ๆ ก็หาคีย์บอร์ด + เมาส์ แล้วหาตัว USB-C hub ดีหน่อย ร่วมกันกับหาสาย HDMI และหาสาย USB-C to USB-C กับ Adapter ดี ๆ ก็สามารถใช้งานได้แล้วล่ะครับ&lt;/p&gt;
+
+&lt;p&gt;ส่วนของเราเตรียมอุปกรณ์ดังนี้&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;สาย USB-C to USB-C และ Adapter ของ Aukey ที่รองรับวัตต์เยอะหน่อย ของเราเลือกตัวที่รองรับวัตต์ประมาณ 100W&lt;/li&gt;
+  &lt;li&gt;เมาส์และคีย์บอร์ดของ Microsoft อย่าง Sculpt Ergonomic ที่ให้มาเป็นเซ็ต และดีที่มันไร้สาย เพราะเวลาจัดโต๊ะจะจัดได้ง่าย ไม่ต้องมีสายรุงรัง&lt;/li&gt;
+  &lt;li&gt;ตัว &lt;a href=&quot;https://nickuntitled.com/2021/09/04/usb-c-docking-station-with-surface/&quot;&gt;Docking Station ของ Feeltek&lt;/a&gt; ที่แต่เดิมเราใช้กับ Surface&lt;/li&gt;
+  &lt;li&gt;หน้าจอของ Dell 23.8” รุ่นล่าง ๆ ที่ใช้กับออฟฟิศครับ&lt;/li&gt;
+  &lt;li&gt;มือถือก็ต้องซัมซุงสิ ของเราใช้ Z fold 3&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;เมื่อต่อออกมาแล้วก็ใช้งานได้ดีในระดับหนึ่งเลย แถมสบายข้อมือระหว่างที่ใช้งานอีกเพราะเป็นคีย์บอร์ดแบบ Ergonomic ร่วมกันกับเมาส์แนวตั้งที่ลดการหันข้อมือได้สบาย&lt;/p&gt;
+
+&lt;p&gt;ส่วนใครที่งบไม่เยอะมาก แนะนำซื้อแท็บเล็ต Samsung Galaxy Tab S8 Wi-Fi ธรรมดาที่น่าจะแถมชุดคีย์บอร์ดและเมาส์มาก็เหลือ ๆ แล้ว (หรือจะไปซื้อ Tab S7 รุ่นเก่าหน่อยก็ใช้ได้เช่นกัน) เพราะแท็บเล็ตมันเปิดใช้งาน Samsung DeX ได้เลย โดยเราไม่ต้องเสียบต่อจอนอก&lt;/p&gt;
+
+&lt;h2 id=&quot;การติดตั้งเครื่องมือที่จำเป็น&quot;&gt;การติดตั้งเครื่องมือที่จำเป็น&lt;/h2&gt;
+
+&lt;p&gt;เราเลยเอามือถือมาต่อออกจอแล้วใช้งานโปรแกรม IDE ที่เราติดตั้งไปก่อนหน้า โดยเราทำตามขั้นตอนด้านล่างนี้ (อ่านแบบเต็ม ๆ ได้ที่บทความก่อนหน้า)&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ติดตั้ง termux&lt;/li&gt;
+  &lt;li&gt;ติดตั้ง Debian ผ่านการพิมพ์ (หรือก็อปปี้) คำสั่งมาใส่ใน termux เพื่อติดตั้งลงไปในระบบ&lt;/li&gt;
+  &lt;li&gt;เริ่มต้นการใช้งาน Debian แล้วติดตั้งโปรแกรม IDE ที่จำเป็น โดยของเราลง OpenVSCode server&lt;/li&gt;
+  &lt;li&gt;เข้าไปหน้า OpenVSCode server ผ่านการก็อปปี้ที่อยู่เว็บไซต์แล้ววางบนแถบ Address ของเว็บเบราวเซอร์&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;เมื่อเข้ามาแล้ว เราสามารถใช้งานได้ปกติเลย โดยฟังก์ชันเหล่านี้คล้ายกันกับที่เราใช้งานบน Visual Studio Code ครับ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/coding_samsung_dex_vscode.jpg&quot; alt=&quot;Samsung DeX with VS Code&quot; /&gt;
+OpenVSCode server บน Samsung DeX&lt;/p&gt;
+
+&lt;p&gt;ส่วนเรื่องการจัดการไฟล์ จุดนี้เราต้องลงโปรแกรมเพิ่มตัวหนึ่งที่มีชื่อว่า &lt;a href=&quot;https://play.google.com/store/apps/details%3Fid%3Dme.zhanghai.android.files&quot;&gt;Material Files จาก Google Play Store&lt;/a&gt; ที่ทำให้เราเข้าถึงไฟล์บน Termux ได้โดย&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ติดตั้งโปรแกรมผ่าน Google Play Store&lt;/li&gt;
+  &lt;li&gt;เปิดแอพ Material Files&lt;/li&gt;
+  &lt;li&gt;กดที่ Add Storage แล้วเลือก Android/data&lt;/li&gt;
+  &lt;li&gt;เข้าไปที่มุมบนซ้าย เลือกไปที่ termux ตัวโปรแกรมจะขึ้นว่าขออนุญาตเข้าถึงไฟล์ แล้วตอบตกลงไป (ถ้าจำไม่ผิด)&lt;/li&gt;
+  &lt;li&gt;เมื่อทำเสร็จแล้ว เราจะเข้าไปจัดการไฟล์ได้เลย&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/material_file_googleplay.jpg&quot; alt=&quot;Material File on Google Play&quot; /&gt;
+Material File บน Google Play&lt;/p&gt;
+
+&lt;p&gt;ส่วนผู้อื่นที่ต้องการเข้าถึงไฟล์ที่อยู่ใน Debian อีกที อันนี้เราเข้าถึงไฟล์เหล่านี้ได้เลย ผ่านการเข้าไปในโฟลเดอร์ของ termux ที่เราสร้างขึ้นตามขั้นตอนด้านบนนี้ จากนั้น&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;เลือกโฟลเดอร์ของ Debian เอง โดยของเราอยู่ที่ debian ส่วนของผู้อ่านจะเป็นชื่ออื่นก็เข้าไปในโฟลเดอร์ที่ได้ตั้งชื่อไว้ครับ&lt;/li&gt;
+  &lt;li&gt;เข้าไปที่ debian-fs เราจะพบโฟลเดอร์ Root ของ debian ที่ตัวติดตั้งสร้างขึ้นไว้&lt;/li&gt;
+  &lt;li&gt;เลือกที่ home แล้วเข้าไปในโฟลเดอร์ของผู้ใช้ของเราเองที่สร้างขึ้น&lt;/li&gt;
+  &lt;li&gt;เลือกไฟล์ที่อยู่ใน debian ที่เราเขียนโค้ดไว้เพื่อส่งงาน หรือทำอไรอย่างอื่นก็ได้ตามที่เราต้องการ&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2022/03/termux_file_access_materail_file.jpg&quot; alt=&quot;Material File access to Debian inside of termux&quot; /&gt;
+ภาพหน้าจอ Material File ที่เข้าถึงโฟลเดอร์ใน Debian ที่ติดตั้งใน termux อีกที&lt;/p&gt;
+
+&lt;h2 id=&quot;รีวิวการใช้งานซักหน่อย&quot;&gt;รีวิวการใช้งานซักหน่อย&lt;/h2&gt;
+
+&lt;p&gt;เมื่อเราใช้งาน OpenVSCode server ที่ใช้งานบนหน้าเว็บ ร่วมกันกับ Samsung DeX พร้อมอุปกรณ์ที่กล่าวถึงไปก่อนหน้า ก็พบว่าใช้งานได้ดีในระดับหนึ่งเลย พิมพ์ได้ลื่น ไม่พบการกระตุกอะไร แถมเราเปิด Terminal จากหน้า OpenVSCode server เพื่อทดลองรันโค้ด Node.js/Python คอมไพล์ตัวโค้ด รวมถึงเขียนบล็อคแล้วรัน Jekyll (ที่ตัวเครื่องมือตัวนี้เขียนบน Ruby) เพื่อทดสอบบล็อคเราเองก็ใช้งานได้ดี ไม่มีการติดขัดอะไร (โดยบทความนี้เขียนบนมือถือซัมซุงที่ใช้งาน Samsung DeX)&lt;/p&gt;
+
+&lt;p&gt;อย่างไรก็ดี เนื่องจากมันเป็นมือถือ/แท็บเล็ตที่ใช้ซีพียูมือถือที่มีประสิทธิภาพจำกัด รวมถึงการระบายความร้อนทำได้ไม่ดีเท่าเดสก์ท็อปแล้ว ดังนั้นจะนำอุปกรณ์เหล่านี้มารันหนัก ๆ แบบเทรนโมเดล AI/ML หรือประมวลผลหนัก ๆ อะไรแบบนี้ก็ใช่ที่ ดังนั้นแล้วถ้าจะเทรน AI จริง เราคิดว่าทดสอบการรันโค้ดว่าไม่มีบัคอะไรพวกนี้บนอุปกรณ์แบบนี้ก่อนก็ได้ แล้วค่อยเทรนบนเซิร์ฟเวอร์ หรือใช้งานผ่าน Google Colab/Jupyter อะไรแบบนี้น่าจะดีกว่า&lt;/p&gt;
+
+&lt;p&gt;นอกจากประสิทธิภาพที่จำกัดแล้ว การใช้งานในลักษณะนี้ก็มีข้อจำกัดอีกจุด นั่นก็คือมันจะเหมาะกับการพัฒนาเว็บ/แอพแบบคอมมานไลน์มากกว่า สำหรับคนที่พัฒนาแอพเพื่อลงอุปกรณ์มือถืออย่าง React Native/Flutter/iOS หรือพัฒนาแอพแบบเดสก์ท็อปแบบ .NET ปกติ การใช้งานแบบนี้อาจจะตอบสนองต่อผู้อ่านได้ไม่ดี คิดว่าใช้งานบนแมคบุ๊ค แล็ปท็อปหรือเดสก์ท็อปไปก่อนน่าจะดีกว่า&lt;/p&gt;
+
+&lt;h2 id=&quot;สำหรับผู้อ่าน&quot;&gt;สำหรับผู้อ่าน&lt;/h2&gt;
+
+&lt;p&gt;สำหรับผู้อ่าน อาจจะต้องเช็คความต้องการตัวผู้อ่านเองอีกที ว่าจะเอาไปใช้งานกับอะไรครับผม ถ้าผู้อ่านจะเอามาใช้งานตามด้านล่างนี้ ได้แก่&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ฝึกการเขียนโค้ด (โค้ดดิ้งตามที่ศธ. กล่าวถึง) ในวิชาแบบวิทยาการคำนวณ หรือตามที่เรียนในมหาวิทยาลัย&lt;/li&gt;
+  &lt;li&gt;เอาไปเขียนโปรแกรมเพื่อพัฒนาเว็บ&lt;/li&gt;
+  &lt;li&gt;Prototype ตัวโค้ดก่อนที่จะไปนำใช้งานบนเครื่อง Production จริง อย่างการเทรน AI/ML หรือการคำนวณคณิตศาสตร์หนัก ๆ หรืออื่น ๆ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;การใช้งาน Samsung DeX ร่วมกับการติดตั้งตามที่เรากล่าวไว้ในบทความที่แล้ว สิ่งเหล่านี้ตอบสนองผู้อ่านได้สบายครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Computer" /><category term="Diary" /><category term="samsung" /><category term="samsung dex" /><category term="samsung zfold 3" /><category term="zfold 3" /><category term="computer" /><category term="android" /><category term="mobile" /><category term="tablet" /><category term="personal" /><category term="productivity" /><category term="programming" /><category term="replacement" /><category term="working" /><category term="คอมพิวเตอร์" /><category term="ซัมซุง" /><category term="เดสก์ท็อป" /><category term="ทำงาน" /><category term="เขียนโปรแกรม" /><category term="แท็บเล็ต" /><category term="มือถือ" /><category term="แอนดรอยด์" /><summary type="html">คราวนี้เราจะมาพูดถึงภาคต่อของการนำอุปกรณ์แอนดรอยด์มาใช้งานเขียนโปรแกรมแทนคอมพิวเตอร์ที่มีอยู่โดยการใช้งาน Samsung DeX</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2022/03/samsung_dex_developing_replacement_pc_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2022/03/samsung_dex_developing_replacement_pc_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">วิธีนำอุปกรณ์ Android มาใช้โค้ดทิ้งแทนที่โน้ตบุ๊ต</title><link href="https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/" rel="alternate" type="text/html" title="วิธีนำอุปกรณ์ Android มาใช้โค้ดทิ้งแทนที่โน้ตบุ๊ต" /><published>2022-03-20T01:00:00+07:00</published><updated>2022-03-20T01:00:00+07:00</updated><id>https://nickuntitled.com/2022/03/20/android-as-programming-replacement</id><content type="html" xml:base="https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/">&lt;p&gt;ช่วงที่ผ่านมาก็จะมีพูดถึงการให้นักเรียนมาเรียนการเขียนโค้ด หรือที่คนพูดกันบ่อย ๆ (รวมถึงเจ้าหน้าที่รัฐฯ) ก็จะเรียกกันว่าโค้ดดิ้งที่ได้รับการบรรจุลงในวิชาวิทยาการคำนวณ โดยภาษาที่เหมาะกับผู้เริ่มต้นนั่นก็คือไพทอน&lt;/p&gt;
 
 &lt;p&gt;อย่างไรก็ดีการเขียนโปรแกรมไพทอนจำเป็นต้องใช้คอมพิวเตอร์เป็นหลักที่ใช่ว่าทุกคนจะมีกันเสียเท่าไร เลยคิดว่าไหน ๆ มือถือแอนดรอยด์ก็มีกันหลายคนแล้ว แถมเราก็เปลี่ยนจากไอโฟนมาเป็นซัมซุงที่รองรับ Samsung DeX อยู่แล้ว เลยมาเขียนบทความนี้ดีกว่า&lt;/p&gt;
 
@@ -252,7 +343,7 @@ cert: false
 
 &lt;p&gt;หรือเรียกผ่านการใช้คำสั่ง import แบบ dynamic โดย&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  await import(&apos;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  await import('https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;เมื่อนำเข้าไลบรารีนี้แล้ว เราเริ่มต้นการทำงานของ Pyodide ได้โดย&lt;/p&gt;
@@ -276,7 +367,7 @@ cert: false
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  await pyodide.loadPackage(&quot;micropip&quot;);
   await pyodide.runPythonAsync(`
       import micropip
-      micropip.install(&apos;&amp;lt; ไลบรารีที่ต้องการ ตัวอย่างเช่น seaborn &amp;gt;&apos;)
+      micropip.install('&amp;lt; ไลบรารีที่ต้องการ ตัวอย่างเช่น seaborn &amp;gt;')
   `);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -306,7 +397,7 @@ cert: false
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  async function importLib()
   {
-      await import(&apos;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js&apos;);
+      await import('https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js');
 
       let pyodide = await loadPyodide({
           indexURL : &quot;https://cdn.jsdelivr.net/pyodide/v0.19.1/full/&quot;
@@ -317,7 +408,7 @@ cert: false
       await pyodide.loadPackage(&quot;micropip&quot;);
       await pyodide.runPythonAsync(`
           import micropip
-          micropip.install(&apos;seaborn&apos;)
+          micropip.install('seaborn')
       `);
 
       return pyodide;
@@ -374,9 +465,9 @@ cert: false
 &lt;p&gt;เราสามารถส่งออกกราฟที่พล็อตผ่าน matplotlib + seaborn ให้อยู่ในรูป base64 ที่สามารถแสดงได้ในแท็ก img โดยการพิมพ์โค้ด Python ตามด้านล่างนี้&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    buf = io.BytesIO()
-    plt.savefig(buf, format=&apos;png&apos;)
+    plt.savefig(buf, format='png')
     buf.seek(0)
-    img_str = &apos;data:image/png;base64,&apos; + base64.b64encode(buf.getvalue()).decode(&apos;UTF-8&apos;)
+    img_str = 'data:image/png;base64,' + base64.b64encode(buf.getvalue()).decode('UTF-8')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;โค้ดตามด้านบนนี้ต้องการให้ส่งออกกราฟที่พล็อตได้ให้อยู่ในรูปไบนารีที่อยู่ในฟอร์แมต png และอยู่ในหน่วยความจำคอมพิวเตอร์ แล้วแปลงตัวไบนารีให้อยู่ในรูป base64&lt;/p&gt;
@@ -398,9 +489,9 @@ cert: false
     sns.histplot(data=data, color=&quot;y&quot;, kde = True)
         
     buf = io.BytesIO()
-    plt.savefig(buf, format=&apos;png&apos;)
+    plt.savefig(buf, format='png')
     buf.seek(0)
-    img_str = &apos;data:image/png;base64,&apos; + base64.b64encode(buf.getvalue()).decode(&apos;UTF-8&apos;);
+    img_str = 'data:image/png;base64,' + base64.b64encode(buf.getvalue()).decode('UTF-8');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;26-นำมาเขียนเพื่อให้ทำงานผ่านการใช้ไลบรารี-pyodide&quot;&gt;2.6 นำมาเขียนเพื่อให้ทำงานผ่านการใช้ไลบรารี Pyodide&lt;/h4&gt;
@@ -423,9 +514,9 @@ cert: false
         sns.histplot(data=data, color=&quot;y&quot;, kde = True)
 
         buf = io.BytesIO()
-        plt.savefig(buf, format=&apos;png&apos;)
+        plt.savefig(buf, format='png')
         buf.seek(0)
-        img_str = &apos;data:image/png;base64,&apos; + base64.b64encode(buf.getvalue()).decode(&apos;UTF-8&apos;)
+        img_str = 'data:image/png;base64,' + base64.b64encode(buf.getvalue()).decode('UTF-8')
         plt.clf()
     `);
 
@@ -442,13 +533,13 @@ cert: false
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  async function onPageLoaded(event)
   {
-      let img_canvas = document.getElementById(&apos;&amp;lt; id ของแท็ก img &amp;gt;&apos;),
+      let img_canvas = document.getElementById('&amp;lt; id ของแท็ก img &amp;gt;'),
       let pyodide = await importLib();
       let b64result = await drawGraph(pyodide);
       img_canvas.src = b64result;
   }
 
-  window.addEventListener(&apos;DOMContentLoaded&apos;, onPageLoaded);
+  window.addEventListener('DOMContentLoaded', onPageLoaded);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;เมื่อนำมารวมกันแล้วทดลองรันบนเว็บเบราวเซอร์ เราจะพบว่ากราฟจะพล็อตเมื่อหน้าเว็บเริ่มโหลด แล้วเมื่อเว็บโหลดเสร็จแล้ว เราจะเห็นกราฟที่อยู่ในแท็ก img ออกมาเป็นตามภาพด้างล่างนี้ครับ&lt;/p&gt;
@@ -582,7 +673,7 @@ cert: false
   };
 
   ajaxrequest.onprogress = (event) =&amp;gt; {
-      console.log(&apos;Processing...&apos;);
+      console.log('Processing...');
   };
 
   ajaxrequest.send(`argument=value&amp;amp;argument2=value`);
@@ -649,9 +740,9 @@ cert: false
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
     
-  ajaxrequest.responseType = &apos;json&apos;;
+  ajaxrequest.responseType = 'json';
   ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;URL for GraphQL Server&amp;gt;&quot;);
-  ajaxrequest.setRequestHeader(&apos;Content-Type&apos;, &apos;application/json&apos;);
+  ajaxrequest.setRequestHeader('Content-Type', 'application/json');
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
           /* Do Something */
@@ -684,7 +775,7 @@ cert: false
   let form_data = new FormData();
   let map = {};
 
-  ajaxrequest.responseType = &apos;json&apos;;
+  ajaxrequest.responseType = 'json';
   ajaxrequest.open(&quot;POST&quot;, &quot;&amp;lt;GraphQL server URL&amp;gt;&quot;);
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
@@ -717,14 +808,14 @@ cert: false
 
 &lt;p&gt;แล้วสร้างตัวแปรเพื่อรองรับ File Object สำหรับการอัพโหลดไฟล์ตามโค้ดด้านล่าง ในตัวอยา่งจะใช้ File Input ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let fileObj = document.getElementById(&apos;&amp;lt;File Input ID&amp;gt;&apos;).files[0];
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let fileObj = document.getElementById('&amp;lt;File Input ID&amp;gt;').files[0];
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;ต่อมา เราเรียกใช้งาน XMLHttpRequest เจ้าเดิมได้โดยการพิมพ์คำสั่งตามตัวอย่างด้านล่างนี้&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  let ajaxrequest = new XMLHttpRequest();
-  ajaxrequest.responseType = &apos;json&apos;;
-  ajaxrequest.open(&apos;POST&apos;, graphql_url);
+  ajaxrequest.responseType = 'json';
+  ajaxrequest.open('POST', graphql_url);
   ajaxrequest.onload = function () {
       if(ajaxrequest.status == 200) {
           /* Do Something */
@@ -818,13 +909,13 @@ document.body.parentElement; // the &amp;lt;html&amp;gt; element
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentNode.parentNode;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;หรือ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
 let div = li.parentElement.parentElement;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -867,8 +958,8 @@ document.documentElement.parentElement; // null เนื่องจาก docu
 
 &lt;p&gt;ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById(&apos;li&apos;);
-let div = li.closest(&apos;div&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let li = docuent.getElementById('li');
+let div = li.closest('div');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;เมื่อพิมพ์ตามข้างบนนี้แล้ว เราจะเลือก parent element ที่เป็น div ครับ เมื่อสังเกตตัวโค้ดแล้วพบว่าใช้งานได้สะดวกมากกว่า node.parentNode กับ element.parentElement&lt;/p&gt;
@@ -1145,12 +1236,12 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;การใช้งาน LocalStorage ทำได้โดยการเก็บข้อมูลตามด้านล่างนี้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem(&apos;token&apos;, &amp;lt; Access Token ที่ได้ &amp;gt;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;localStorage.setItem('token', &amp;lt; Access Token ที่ได้ &amp;gt;);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;แล้วเราสามารถเรียกได้โดยการพิมพ์คำสั่ง&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem(&apos;token&apos;);
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let token = localStorage.getItem('token');
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;จากนั้นข้อมูล Access Token ที่เก็บไว้ในเว็บเบราวเซอร์ก็จะคืนค่าอยู่ในตัวแปร token ครับ ฟังดูแล้วง่ายกว่าที่ดีคิดไว้ เพราะใช้คำสั่งตามที่เขียนไว้ข้างบนนี้ ข้อมูลก็ออกมาได้แล้วครับ อย่างไรก็ดี การเก็บข้อมูลไว้ใน LocalStorage มีข้อเสีย เนื่องมาจาก&lt;/p&gt;
@@ -1193,11 +1284,11 @@ print(f&quot;Interpupillary Distance = { interpupillary_distance } which equals 
 
 &lt;p&gt;เพื่อให้ใช้งานตามตัวอย่างด้านล่างนี้ได้ครับ&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from &apos;http&apos;;
-import express from &apos;express&apos;;
-import dayjs from &apos;dayjs&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import http from 'http';
+import express from 'express';
+import dayjs from 'dayjs';
 import cookieParser from &quot;cookie-parser&quot;;
-import jwt from &apos;jsonwebtoken&apos;;
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -1208,7 +1299,7 @@ app.use(cookieParser());
 
 [...]
 
-app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
+app.post('/login', (req, res, next) =&amp;gt; {
 
   [...]
 
@@ -1218,7 +1309,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
       secure: true,
       httpOnly: true,
       expires: dayjs().add(1, &quot;days&quot;).toDate(),
-      sameSite: &apos;Strict&apos;
+      sameSite: 'Strict'
   });
 
   [...]
@@ -1242,7 +1333,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
     secure: true,
     httpOnly: true,
     expires: dayjs().add(1, &quot;days&quot;).toDate(),
-    sameSite: &apos;Strict&apos;
+    sameSite: 'Strict'
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1272,7 +1363,7 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราเรียกใช้งานได้โดยผ่านการพิมพ์&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get(&apos;/isloggedin&apos;, (req, res, next) =&amp;gt; {
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;app.get('/isloggedin', (req, res, next) =&amp;gt; {
   
   [...]
 
@@ -1287,8 +1378,8 @@ app.post(&apos;/login&apos;, (req, res, next) =&amp;gt; {
 
 &lt;p&gt;เราพิมพ์โค้ดได้ตามด้านล่างนี้&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from &apos;apollo-server-express&apos;;
-import { ApolloServerPluginDrainHttpServer } from &apos;apollo-server-core&apos;;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 
 [...]
 
@@ -1297,7 +1388,7 @@ const apollo_server = new ApolloServer({
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   context: ({ req }) =&amp;gt; {
-    let token = req.cookies.authorization || &apos;&apos;;
+    let token = req.cookies.authorization || '';
     return {
       token
     };
@@ -1376,80 +1467,4 @@ apollo_server.applyMiddleware({ &quot;app&quot;: express_app });
 
 &lt;p&gt;สรุปได้คร่าว ๆ ประมาณนี้ครับ ดูจากแต่ละข้อแล้วก็คล้าย ๆ กันกับวิธีการเริ่มการเขียนโปรแกรม หรือวิธีการเริ่มสกิลใหม่สำหรับคนที่ทำงานหนึ่งแล้วต้องการเปลี่ยนสาย เช่นหมอไปเป็นนักบิน เป็นต้น ผู้อ่านสามารถนำสิ่งที่สรุปไปทำตามได้ครับ&lt;/p&gt;
 
-&lt;p&gt;แต่ถ้าผู้อ่านต้องการข้อมูลเพิ่มเติม ผู้อ่านสามารถหาได้ในอินเตอร์เน็ต ยูทูป หนังสือ และอื่น ๆ ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Web" /><category term="Web 3.0" /><category term="Developer" /><category term="Programmer" /><category term="Job" /><category term="Career" /><category term="Reskill" /><category term="Hashnode" /><category term="เว็บ" /><category term="เว็บ 3.0" /><category term="เขียนโปรแกรม" /><category term="โปรแกรมเมอร์" /><category term="อาชีพ" /><category term="รีสกิล" /><category term="นักพัฒนาเว็บ" /><summary type="html">เมื่อวันก่อนมีการจัดสเปชของ Hashnode ที่กล่าวถึง How to be Web 3.0 Developer ในบทความนี้สรุปบางส่วนครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/how_to_be_web3_developer_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/how_to_be_web3_developer_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Black Friday - ช่วงแอพดี ราคาถูก แล้วบอกต่อ</title><link href="https://nickuntitled.com/2021/11/23/black_friday_app/" rel="alternate" type="text/html" title="Black Friday - ช่วงแอพดี ราคาถูก แล้วบอกต่อ" /><published>2021-11-23T08:23:00+07:00</published><updated>2021-11-23T08:23:00+07:00</updated><id>https://nickuntitled.com/2021/11/23/black-friday-app</id><content type="html" xml:base="https://nickuntitled.com/2021/11/23/black_friday_app/">&lt;p&gt;Black Friday เป็นมหกรรมงาน Sale ลดราคาสินค้าหลายชนิดที่จัดทางฝั่งอเมริกา งานในลักษณะนี้ถ้าให้ใกล้เคียงกันก็เป็นงาน 11.11 12.12 ที่จัดตามเว็บแบบ Lazada Shopee ครับ โดยในช่วงนี้เราจะเห็นว่ามีการจัดโปรโมชันลดราคาแอพลงมาพอสมควร ทำให้เราจับจ่ายใช้สอยซื้อแอพของแท้ได้ง่ายขึ้นมากกว่าเดิมครับ งาน Black Friday งานนี้ปกติทุกปีจะจัดในช่วงวันศุกร์สัปดาห์ที่ 4 ของเดือนพฤศจิกายนครับ โดยปี 2564 ปีนี้จัดขึ้นในวันที่ 26 พฤศจิกายนครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;ที่มาของงานนี้คืออะไร&quot;&gt;ที่มาของงานนี้คืออะไร?&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/ddusa_blackfriday.jpg&quot; alt=&quot;Black Friday History&quot; /&gt;&lt;/p&gt;
-
-&lt;center&gt;Black Friday ที่มาภาพจาก &lt;a href=&quot;https://en.wikipedia.org/wiki/Black_Friday_(shopping)&quot;&gt;Wikipedia&lt;/a&gt;&lt;/center&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;ที่มาของงานนี้ตามในเว็บของ &lt;a href=&quot;https://www.history.com/news/black-friday-thanksgiving-origins-history&quot;&gt;Histroy&lt;/a&gt; กล่าวว่ามาจากเมืองฟิลาเดลเฟรีย ที่ประชาชนออกมาใช้เงินเป็นจำนวนมากอย่างกับจลาจล จนต้องมีตำรวจเข้ามาควบคุม และคอยระงับเหตุต่าง ๆ ในเมือง เลยเรียกวันนี้ว่า วันศุกร์อันแสนมืดหม่น ครับ แต่ตอนหลังก็ไม่ได้มืดหม่นอะไรแล้วล่ะฮะ เป็นช่วงงานช้อปปิ้งที่สินค้าลดราคาในช่วงนี้แทนครับ&lt;/p&gt;
-
-&lt;h2 id=&quot;แอพที่ลดราคา&quot;&gt;แอพที่ลดราคา&lt;/h2&gt;
-
-&lt;p&gt;ช่วงนี้เงินหายาก จะให้ไปดาวน์โหลดแอพเถื่อนเพื่อป้องกันนายทุนตามในทวิตเตอร์ที่ปรากฏในช่วงนี้ก็คงจะดูไม่ดี แถมการใช้งานแอพเถื่อนก็ยุ่งยากไปหน่อย เพราะเราต้อง Crack หรือลง Patch หรือทำวิธีอื่น ๆ เพื่อให้เราสามารถใช้งานแอพได้โดยไม่ซื้อของแท้ แล้วความเสี่ยงที่เกิดจากการใช้งานแอพเถื่อนก็มีได้แก่ ติดไวรัส ติดมัลแวร์ แอพมีช่องโหว่เนื่องจากแอพไม่ได้รับการอัพเดท ข้อมูลถูกขโมยได้ง่าย ขาดการซัพพอร์ตจากทางผู้ให้บริการ รวมถึงมีความเสี่ยงที่จะถูกจับได้ครับ&lt;/p&gt;
-
-&lt;p&gt;ดังนั้นแล้ว เรามาซื้อของแท้ดีกว่า แต่ก็มีคนบอกว่าไม่อยากจะจ่ายแอพราคาแพง เปลืองเงิน เงินไม่พอ หรือเงินเดือนน้อยจะให้ทำอย่างไร? เราจะบอกว่าช่วงนี้แหละ (รวมถึงช่วงอื่น ถ้าลดราคาครับ) เป็นช่วงที่เหมาะแก่การซื้อแอพเลยครับ เราจะยกตัวอย่างแอพที่ลดราคาในช่วงนี้ตามบทความที่เขียนใน &lt;a href=&quot;https://appleinsider.com/articles/21/11/22/black-friday-software-deals-save-up-to-70-on-adobe-creative-cloud-affinity-photo-parallels&quot;&gt;Apple Insider&lt;/a&gt; ครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;affinity-photo-desginer-publisher&quot;&gt;Affinity Photo, Desginer, Publisher&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/affinity_app.png&quot; alt=&quot;Affinity App&quot; /&gt;&lt;/p&gt;
-
-&lt;center&gt;แอพกลุ่ม Affinity Photo, Desginer, Publisher&lt;/center&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;แอพนี้เป็นแอพแต่งภาพ ทำงานด้านการออกแบบ หรือถึงทำงานด้านสิ่งพิมพ์ที่พัฒนาโดยบริษัท Serif ที่เป็นหนึ่งในแอพที่นิยมครับ แอพนี้ซื้อครั้งเดียว ใช้งานได้ยาว ๆ ไม่จำเป็นต้องจ่ายรายเดือนแบบที่เราสมัครใช้บริการผ่าน Adobe Creative Cloud ครับ&lt;/p&gt;
-
-&lt;p&gt;ช่วงนี้แอพเหล่านี้ลดราคาลงมา 30% เอาจริง ไม่ได้ลดแค่แอพอย่างเดียว ส่วนเสริมของแอพก็ลดราคา 30% ด้วย ใครที่ลังเลว่าจะซื้อไหม เราแนะนำให้ซื้อครับ ของเราใช้ Affinity Photo แล้วใช้แต่งภาพถ่ายได้ดีครับ&lt;/p&gt;
-
-&lt;p&gt;ซื้อได้ที่ไหน เราแนะนำให้ซื้อผ่าน&lt;a href=&quot;https://affinity.serif.com/en-us/&quot;&gt;หน้าเว็บของผู้ผลิต&lt;/a&gt;ครับ ซื้อแล้วสามารถติดตั้งลงบน macOS, Windows ได้ครับ ส่วน iPad ก็สามารถติดตั้งผ่าน App Store ได้เช่นกัน แต่ไม่มีแอพ Affinity Publisher ครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;parallels&quot;&gt;Parallels&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/parallel_app.png&quot; alt=&quot;Parallels App&quot; /&gt;&lt;/p&gt;
-
-&lt;center&gt;แอพกลุ่ม Parallels&lt;/center&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;แอพ Parallels ที่เรารู้จักกันเป็นแอพ Parallels Desktop ที่สามารถติดตั้งวินโดว์เพื่อใช้งานบนคอมพิวเตอร์เครื่องแมค ที่มีคนลง Windows 10 on ARM ลงบนคอมพิวเตอร์ Mac ที่ใช้ซีพียู Apple M1, M1 Pro และ M1 Max ครับ ทีนี้ช่วงนี้แอพเหล่านี้ลดราคาลงมา 20% ทำให้เราสามารถซื้อมาใช้งานได้ง่ายขึ้นมากกว่าเดิม&lt;/p&gt;
-
-&lt;p&gt;ไปซื้อได้ในเว็บของ &lt;a href=&quot;https://www.parallels.com&quot;&gt;Parallels&lt;/a&gt; เองตรับ&lt;/p&gt;
-
-&lt;h3 id=&quot;adobe-creative-cloud&quot;&gt;Adobe Creative Cloud&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/adobe_app.png&quot; alt=&quot;Adobe Creative Cloud App&quot; /&gt;&lt;/p&gt;
-
-&lt;center&gt;แอพกลุ่ม Creative Cloud&lt;/center&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;แอพ Adobe Creative Cloud เป็นแอพกลุ่มที่ใช้งานออกแบบ ตัดต่อวิดีโอ ทำเว็บ หรืออื่น ๆ ที่หลายคนรู้จักกัน ได้แก่ Photoshop, Lightroom, Premiere Pro, Illustrator, AfterEffects หรืออื่น ๆ ที่เดิมจากซื้อขาดมาเปลี่ยนเป็นจ่ายผ่านรายเดือนแทน มีหลายแพคเกจตั้งแต่ Photography Plan จนถึง All Apps&lt;/p&gt;
-
-&lt;p&gt;ที่เห็นในเว็บที่ลดราคาก็มีแพคเกจ All apps ที่ลดราคาสำหรับผู้ที่ใช้งานในปีแรก มีตั้งแต่สำหรับ&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Individual ที่ลดราคาเหลือ 1,143.83 บาทต่อเดือน จากเดิมราคา 2,020.16 บาทต่อเดือน&lt;/li&gt;
-  &lt;li&gt;Student and Teachers ที่ลดราคาเหลือ 609.90 บาทต่อเดือน จากเดิมราคา 2,020.16 บาทจ่อเดือน&lt;/li&gt;
-  &lt;li&gt;Teams ที่ลดราคาเหลือ 1,386.72 บาท&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ราคาทั้งหมด รวม VAT แล้วครับ&lt;/p&gt;
-
-&lt;p&gt;ใครสนใจ ไปสมัครสมาชิกรายเดือนได้ในเว็บของ &lt;a href=&quot;https://www.adobe.com/th_th/creativecloud.html?mv=affiliate&amp;amp;mv2=red&quot;&gt;Adobe&lt;/a&gt; เองครับ&lt;/p&gt;
-
-&lt;h3 id=&quot;อื่น-ๆ&quot;&gt;อื่น ๆ&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://asset.nickuntitled.com/2021/11/corel_app.png&quot; alt=&quot;Corel App&quot; /&gt;&lt;/p&gt;
-
-&lt;center&gt;แอพกลุ่ม Corels ครับ&lt;/center&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;นอกเหนือจากสองแอพที่กล่าวมาข้างบน ตามในเว็บนั้นก็มีบอกแอพที่ลดราคาเพิ่มเติมได้แก่&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;แอพกลุ่ม VMWare ที่ลดราคาถึง 40%&lt;/li&gt;
-  &lt;li&gt;แอพกลุ่ม Corel ที่ลดราคาพอสมควรเลย ได้แก่ แอพ CorelDraw, Painter 2022, Paintshop Pro 2022 Ultimate, Pinnacle Studio 25 Ultimate และ VideoStudio Ultimate 2021&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ส่วนแอพอื่นที่นอกเหนือจากนั้น ลองเปิดหาในอินเตอร์เน็ตเพิ่มเติมได้ครับ จะมีประกาศลดราคาให้เห็นเอง หรือถ้าลดใน App Store หรือ Play Store ก็จะได้เห็นในนั้นครับผม&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Black Friday" /><category term="Sale" /><category term="Discount" /><category term="Cheap" /><category term="App" /><category term="App Store" /><category term="Buying" /><category term="ลดราคา" /><category term="ราคาถูก" /><category term="แอพ" /><category term="โปรแกรม" /><category term="แอพลิเคชัน" /><summary type="html">Black Friday เป็นช่วงที่จัดขึ้นหลัง Thanksgiving Day เป็นช่วงที่สินค้าลดราคาหลายชนิด แอพก็เช่นกัน</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/blackfriday_cover_min.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/blackfriday_cover_min.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;แต่ถ้าผู้อ่านต้องการข้อมูลเพิ่มเติม ผู้อ่านสามารถหาได้ในอินเตอร์เน็ต ยูทูป หนังสือ และอื่น ๆ ครับ&lt;/p&gt;</content><author><name>nickuntitled</name></author><category term="Diary" /><category term="Computer" /><category term="Web" /><category term="Web 3.0" /><category term="Developer" /><category term="Programmer" /><category term="Job" /><category term="Career" /><category term="Reskill" /><category term="Hashnode" /><category term="เว็บ" /><category term="เว็บ 3.0" /><category term="เขียนโปรแกรม" /><category term="โปรแกรมเมอร์" /><category term="อาชีพ" /><category term="รีสกิล" /><category term="นักพัฒนาเว็บ" /><summary type="html">เมื่อวันก่อนมีการจัดสเปชของ Hashnode ที่กล่าวถึง How to be Web 3.0 Developer ในบทความนี้สรุปบางส่วนครับ</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://asset.nickuntitled.com/2021/11/how_to_be_web3_developer_cover.jpg" /><media:content medium="image" url="https://asset.nickuntitled.com/2021/11/how_to_be_web3_developer_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
