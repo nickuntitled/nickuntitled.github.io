@@ -353,7 +353,7 @@ array(&#91;0.731059, 0.880797, 0.952574, 0.982014], dtype=float32)</code></pre>
 </ul>
 
 <div class="wp-block-image">
-<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="182" height="99" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sigmoid_function.png" alt="" class="wp-image-3884" /></figure></div>
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sigmoid_function.png" alt="" class="wp-image-3884" /></figure></div>
 
 <p>การคำนวณในแต่ละฟังก์ขัน กรณีที่เขียนฟังก์ชันแบบตามด้านล่างนี้ ตัว MLX ยังไม่ประมวลผลทันที ตัวไลบรารีจะประมวลผลก็ต่อเมื่อใช้งานร่วมกันฟังก์ชัน mx.eval หรือใช้งานร่วมกับฟังก์ชันอื่นที่ไม่ใช่ไลบรารีของ MLX เช่น print, np.array หรืออื่น ๆ</p>
 
@@ -689,7 +689,7 @@ print("Root Mean Square Error", rmse)</code></pre>
 <p>ผลที่ได้จากการ Train และ Test แสดงตามด้านล่างนี้ โดยเราใช้ Dataset การทำนายน้ำหนักของสมอง ตามในเว็บ <a href="https://towardsdatascience.com/linear-regression-from-scratch-cd0dee067f72" target="_blank" rel="noopener" title="TowardsDataScience">TowardsDataScience</a></p>
 
 <div class="wp-block-image">
-<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="386" height="278" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph.png" alt="" class="wp-image-3905" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph-300x216.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph.png 386w" sizes="auto, (max-width: 386px) 100vw, 386px" /></figure></div>
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph.png" alt="" class="wp-image-3905" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph-300x216.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph.png 386w" sizes="auto, (max-width: 386px) 100vw, 386px" /></figure></div>
 
 <p>ส่วนต่อมาเป็นผลการทดสอบ พบว่าโมเดลสามารถทำนายด้วยค่า RMSE เท่ากับ 0.1075 ซึ่งจากกราฟการ Train และผลของการ Test เราสามารถปรับแต่งโมเดล ปรับพารามิเตอร์ ปรับแต่งการโหลด Dataset กันได้ทีหลัง</p>
 

@@ -107,7 +107,7 @@
 
 <p>ขั้นตอนแรกคือการคำนวณค่าโดยใช้สมการโมเดล Linear Regression ตามด้านล่างนี้ในขั้นตอนที่ 2 (ในสมการใช้ตัวแปร Features เพียงตัวแปรเดียวเพื่อยกตัวอย่าง)</p>
 
-<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="197" height="71" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/linear_regression_formula-2.png" alt="" class="wp-image-3782" /></figure>
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/linear_regression_formula-2.png" alt="" class="wp-image-3782" /></figure>
 
 <p>โดย</p>
 
@@ -125,7 +125,7 @@
 
 <p>เมื่อทำนายค่าตามสมการด้านบนแล้ว เราต้องการนำค่าที่ได้เปรียบเทียบกับ Outcome (Y) ที่มีอยู่แล้วใน Dataset ด้วยการคำนวณสมการด้านล่างนี้ที่ใช้ Mean Square Error (MSE) เพื่อหา Cost Function ตามขั้นตอนที่ 3</p>
 
-<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="344" height="108" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse.png" alt="" class="wp-image-3783" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse-300x94.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse.png 344w" sizes="auto, (max-width: 344px) 100vw, 344px" /></figure>
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse.png" alt="" class="wp-image-3783" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse-300x94.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse.png 344w" sizes="auto, (max-width: 344px) 100vw, 344px" /></figure>
 
 <p>โดย</p>
 
@@ -147,7 +147,7 @@
 
 <p>ถัดจากการได้ค่า Cost Function แล้ว เราจำเป็นต้องอัพเดทค่าพารามิเตอร์ในโมเดล Linear Regresion ด้วย Gradient Descent ตามขั้นตอนที่ 4 ที่สามารถเขียนรูปทั่วไปได้ตามข้างล่างนี้</p>
 
-<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="232" height="166" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/update_parameter-1.png" alt="" class="wp-image-3793" /></figure>
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/update_parameter-1.png" alt="" class="wp-image-3793" /></figure>
 
 <p>โดย</p>
 
@@ -167,7 +167,7 @@
 
 <p>ส่วนแรกเป็น Partial Derivative ของ Cost Function โดยเทียบกับ W</p>
 
-<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="559" height="400" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent.jpg" alt="" class="wp-image-3788" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent-300x215.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent.jpg 559w" sizes="auto, (max-width: 559px) 100vw, 559px" /></figure>
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent.jpg" alt="" class="wp-image-3788" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent-300x215.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent.jpg 559w" sizes="auto, (max-width: 559px) 100vw, 559px" /></figure>
 
 <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
 <p>บรรทัดที่สาม เมื่อเราทำ Differentiate ของสมการที่ยกกำลังสองแล้ว เราจำเป็นต้อง Differentiate ตัวแปรข้างในวงเล็บอีกตามกฏ Chain Rule</p>
@@ -175,11 +175,11 @@
 
 <p>ส่วนต่อมาเป็น Partial Derivative ของ Cost Function โดยเทียบกับ b</p>
 
-<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="558" height="413" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent.jpg" alt="" class="wp-image-3789" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent-300x222.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent.jpg 558w" sizes="auto, (max-width: 558px) 100vw, 558px" /></figure>
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent.jpg" alt="" class="wp-image-3789" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent-300x222.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent.jpg 558w" sizes="auto, (max-width: 558px) 100vw, 558px" /></figure>
 
 <p>จากนั้น เรานำผลที่ได้จากการทำ Partial Derivative มาแทนที่ในสมการก่อนหน้า ผลลัพธ์ที่ได้เป็นตามด้านล่างนี้</p>
 
-<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="397" height="223" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter.png" alt="" class="wp-image-3792" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter.png 397w" sizes="auto, (max-width: 397px) 100vw, 397px" /></figure>
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter.png" alt="" class="wp-image-3792" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter.png 397w" sizes="auto, (max-width: 397px) 100vw, 397px" /></figure>
 
 <p>เมื่อได้สมการที่เกี่ยวข้องทั้งหมดแล้ว เรามาเขียนโค้ดใน Python โดยไม่ใช้คลาส LinearRegression ที่มีมาให้ใน Scikit-learn</p>
 
@@ -453,7 +453,7 @@ print(mae)</code></pre>
 <p>ผลที่ได้จากการเทรน และการทดสอบก็แสดงตามด้านล่างนี้ โดยเราใช้ Dataset การทำนายน้ำหนักของสมอง ตามในเว็บ <a href="https://towardsdatascience.com/linear-regression-from-scratch-cd0dee067f72" target="_blank" rel="noopener" title="TowardsDataScience">TowardsDataScience</a></p>
 
 <div class="wp-block-image">
-<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="576" height="455" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image.png" alt="" class="wp-image-3824" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image-300x237.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image.png 576w" sizes="auto, (max-width: 576px) 100vw, 576px" /></figure></div>
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image.png" alt="" class="wp-image-3824" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image-300x237.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image.png 576w" sizes="auto, (max-width: 576px) 100vw, 576px" /></figure></div>
 
 <p>จากผลการฝึกพบว่าโมเดลเทรนโอเค พบว่าค่า Learning Rate สูงไปหน่อย อันนี้เราสามารถปรับ ๆ กันได้ทีหลัง</p>
 
