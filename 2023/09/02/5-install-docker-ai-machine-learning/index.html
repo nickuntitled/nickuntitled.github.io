@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#5 ติดตั้ง Docker เพื่อใช้งาน AI/ML</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#5 ติดตั้ง Docker เพื่อใช้งาน AI/ML" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2023/09/02/5-install-docker-ai-machine-learning/" />
+<meta property="og:url" content="http://localhost:4000/2023/09/02/5-install-docker-ai-machine-learning/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/5_docker_installation_for_ai_ml_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-02T08:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/5_docker_installation_for_ai_ml_cover.jpg" />
+<meta property="twitter:title" content="#5 ติดตั้ง Docker เพื่อใช้งาน AI/ML" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:42:22+07:00","datePublished":"2023-09-02T08:00:00+07:00","description":"None","headline":"#5 ติดตั้ง Docker เพื่อใช้งาน AI/ML","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/5_docker_installation_for_ai_ml_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/09/02/5-install-docker-ai-machine-learning/"},"url":"http://localhost:4000/2023/09/02/5-install-docker-ai-machine-learning/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#5 ติดตั้ง Docker เพื่อใช้งาน AI/ML</h1>
+
+  <p class="post-meta">
+    <time datetime="2023-09-02 08:00:00 +0700">2023-09-02</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/5_docker_installation_for_ai_ml_cover.jpg' />
+  </figure>
+  
+
+  <p>ปัญหาสำหรับงาน Machine Learning ส่วนหนึ่งเลยคือปัญหาการติดตั้ง และจัดการ Environment สำหรับการใช้งานทีประกอบไปด้วยปัญหาการติดตั้งเครื่องมือ ปัญหาการติดตั้งไลบรารี และปัญหาการตั้งค่า</p>
+
+<p>ปัญหาเหล่านี้ส่งผลทำให้งานเป็นไปได้ล่าช้า หรือถึงแม้ติดตั้งเองได้แต่ก็ลืม รวมถึงถึงติดตั้งได้ แต่เครื่องมือเหล่านี้ก็เป็นเวอร์ชันเก่าแล้ว</p>
+
+<!--more-->
+
+<p>โดยสำหรับเรา เดิมที่เราติดตั้งผ่านการใช้งาน Miniconda3 ที่มีปัญหาว่าเราจำเป็นต้องติดตั้งเครื่องมือเยอะแยะ หลายขั้นตอนไปหมด ส่งผลให้การทำงานเป็นได้อย่างล่าช้า แต่ปัญหานี้จะหมดไปได้ด้วยการใช้งาน <strong>Docker</strong></p>
+
+<p><strong>Docker </strong>เป็นเครื่องมือที่ช่วยในการพัฒนา ช่วยรันโปรแกรมต่าง ๆ ที่ช่วยทำให้ผู้ใช้สามารถใช้งานได้ง่ายขึ้น โดยเราสามารถติดตั้งเครื่องมือ ไลบารีที่จำเป็นลงไปในตัว Container นั้นได้เลย และเราสามารถย้ายตัว Container ไปใช้งานกับคอมพิวเตอร์เครื่องอื่นได้โดยไม่จำเป็นต้องตั้งค่าให้ยุ่งยากแต่อย่างใด</p>
+
+<p>วิธีการเริ่มใช้งานทำได้ไม่ยาก ผู้อ่านสามารถเข้าไปอ่านได้ที่<a href="https://docs.docker.com/engine/install/" target="_blank" rel="noopener" title="คู่มือการติดตั้ง Docker">คู่มือการติดตั้ง Docker</a> โดยผู้อ่านสามารถเลือกได้ว่าจะติดตั้ง </p>
+
+<ul class="wp-block-list">
+<li>Docker Desktop ที่มีหน้าต่างแบบวินโดว์ หรือ</li>
+
+
+
+<li>ติดตั้งตัว Docker เฉย ๆ ที่ใช้งานผ่านคอมมานไลน์ก็ได้</li>
+</ul>
+
+<h3 class="wp-block-heading">วิธีติดตั้งแพคเกจ Docker แบบคอมมานไลน์</h3>
+
+<p>ส่วนของเราที่ใช้ลินุกซ์ Ubuntu อยู่แล้ว ก็ติดตั้งแบบที่ใช้งานผ่านคอมมานไลน์ วิธีการติดตั้งทำได้ไม่ยาก ทำได้โดยการติดตั้งแพคเกจที่จำเป็นต่อการใช้งาน Docker ด้วยการพิมพ์คำสั่งด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>$ sudo apt-get update
+$ sudo apt-get install ca-certificates curl gnupg
+</code></pre>
+
+<p>ต่อมา ระบบจะติดตั้งแพคเกจที่จำเป็นต่อการรติดตั้ง Docker ขั้นตอนต่อไป เราจะเพิ่มตำแหน่งแพคเกจของ Docker (Docker package repository) เพื่อติดตั้ง Docker ได้สองขั้นตอน</p>
+
+<p>ขั้นตอนแรก เป็นการเพิ่มคีย์สำหรับการเพิ่มตำแหน่งแพคเกจของ Docker</p>
+
+<pre class="wp-block-code"><code>$ sudo install -m 0755 -d /etc/apt/keyrings
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+$ sudo chmod a+r /etc/apt/keyrings/docker.gpg</code></pre>
+
+<p>ขั้นตอนที่สอง เพิ่มตำแหน่งแพคเกจของ Docker ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>$ echo \
+  "deb &#91;arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</code></pre>
+
+<p>จากนั้น พิมพ์คำสั่งหลังจากเปลี่ยนแปลงทีอยู่ของแพคเกจสำหรับการติดตั้ง Docker เพื่ออัพเดทได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>$ sudo apt-get update</code></pre>
+
+<p>สุดท้าย ติดตั้งแพคเกจ Docker</p>
+
+<pre class="wp-block-code"><code>$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></pre>
+
+<p>เมื่อติดตั้งเสร็จแล้ว ผู้ใช้สามารถทดสอบการใช้งานได้โดยการพิมพ์คำสั่ง</p>
+
+<pre class="wp-block-code"><code>$ sudo docker run hello-world</code></pre>
+
+<p>ระบบจะปรากฏหน้าจอสำหรับการทดสอบของแพคเกจ hello-world เพื่อแสดงว่าการติดตั้งแพคเกจ Docker สำเร็จด้วยดี</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="411" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/hello-world-docker.png" alt="" class="wp-image-3598" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/hello-world-docker-300x213.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/hello-world-docker-768x544.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/hello-world-docker.png 792w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอ Docker (hello-world)</figcaption></figure></div>
+
+<p>จากข้างบนนี้เป็นการติดตั้ง Docker สำหรับการนำไปใช้ทำอะไรก็ได้ เช่นการพัฒนาโปรแกรม การติดตั้งตัวเว็บเซิร์ฟเวอร์ และอื่น ๆ แล้วครับ</p>
+
+<h3 class="wp-block-heading">การติดตั้ง NVIDIA Container Toolkit</h3>
+
+<p>ส่วนถ้าต้องการติดตั้งเพื่อใช้งานการ์ดจอเพิ่มเติม ผู้อ่านสามารถติดตั้งแพคเกจ <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/overview.html" target="_blank" rel="noopener" title="NVIDIA Container Toolkit">NVIDIA Container Toolkit</a> โดยเราสามารถติดตั้งได้ตามด้านล่างนี้</p>
+
+<p>หนึ่ง เพิ่มตำแหน่งแพคเกจของ NVIDIA Container Toolkit ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      &amp;&amp; curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      &amp;&amp; curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb &#91;signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list</code></pre>
+
+<p>สอง ติดตั้งแพคเกจ NVIDIA Container Toolkit</p>
+
+<pre class="wp-block-code"><code>sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit</code></pre>
+
+<p>สาม ตั้งค่าให้ Docker รับทราบถึง NVIDIA Container Toolkit ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>sudo nvidia-ctk runtime configure --runtime=docker
+</code></pre>
+
+<p>สี่ รีสตาร์ทตัวเครื่องมือ Docker แล้วทดสอบการใช้งาน NVIDIA Container Toolkit ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>sudo nvidia-ctk runtime configure --runtime=docker
+
+sudo docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi</code></pre>
+
+<p>เมื่อพิมพ์เสร็จแล้ว ระบบจะแสดงหน้าจอของเครื่องมือ ์nvidia-smi โดยแสดงตัวอย่างตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/nvidiasmi.png" alt="" class="wp-image-3592" style="width:610px;height:400px" width="580" height="380" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/nvidiasmi-300x197.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/nvidiasmi-768x503.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/09/nvidiasmi.png 800w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอ nvidia-smi</figcaption></figure></div>
+
+<p>เมื่อแสดงตามด้านบนนี้ก็แสดงว่าเราติดตั้ง Docker และ NVIDIA Container Toolkit เรียบร้อย เราสามารถดึงแพคเกจ PyTorch หรือ Tensorflow หรืออื่น ๆ เพื่อใช้งานทางด้าน Machine Learning ต่อไปได้ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

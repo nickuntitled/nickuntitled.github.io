@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#16 - เขียนโค้ด DBML เพื่อวาด ER Diagram</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#16 - เขียนโค้ด DBML เพื่อวาด ER Diagram" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/02/06/16-coding-dbml-for-drawing-erdiagram/" />
+<meta property="og:url" content="http://localhost:4000/2024/02/06/16-coding-dbml-for-drawing-erdiagram/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/16_write_dbml_draw_er_diagram.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-06T15:00:59+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/16_write_dbml_draw_er_diagram.jpg" />
+<meta property="twitter:title" content="#16 - เขียนโค้ด DBML เพื่อวาด ER Diagram" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:41:42+07:00","datePublished":"2024-02-06T15:00:59+07:00","description":"None","headline":"#16 - เขียนโค้ด DBML เพื่อวาด ER Diagram","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/16_write_dbml_draw_er_diagram.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/02/06/16-coding-dbml-for-drawing-erdiagram/"},"url":"http://localhost:4000/2024/02/06/16-coding-dbml-for-drawing-erdiagram/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#16 - เขียนโค้ด DBML เพื่อวาด ER Diagram</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-02-06 15:00:59 +0700">2024-02-06</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/16_write_dbml_draw_er_diagram.jpg' />
+  </figure>
+  
+
+  <p><strong>ER Diagram (Entity Relation Diagram)</strong> คือแบบจำลองที่ใช้อธิบายโครงสร้างของ Database ที่ออกมาเป็นรูปภาพ เพื่ออธิบายโครงสร้างและความสัมพันธ์ของข้อมูล ประกอบไปด้วย 2 ส่วน ได้แก่ Entity และ Relationship.</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">Entity</h2>
+
+<p><strong>Entity </strong>เป็นกลุ่มของสิ่งต่าง ๆ ที่เราสนใจที่เราเก็บข้อมูลภายใต้ Database โดยตัวอย่างของ Entity ได้แก่ บุคคล (เช่นนักเรียน) สิ่งของ (เช่นใบเสร็จ) และเหตุการณ์ (เช่นการทำธุรกรรม) เป็นต้น ที่มีลักษณะเป็นสี่เหลี่ยมมุมมนที่มีชื่ออยู่ข้างบน และมีคุณสมบัติ (Property) หรือ Attribute อยู่ข้างใน ที่นำมาอธิบาย Entity โดย อธิบายถึงชื่อ และชนิดของตัวแปร [1]</p>
+
+<p>ทั่ว ๆ ไป ข้อมูล Entity มักจะอยู่ในประเภท <strong>Strong Entity</strong> ที่เป็นข้อมูลที่ไม่ขึ้นกับ Entity อื่น ซึ่งแตกต่างกับ <strong>Weak Entity</strong> ที่เป็นข้อมูลที่ขึ้นกับ Entity อันอื่น (หรือ Existence dependent) กรณีที่ข้อมูลหลักถูกลบ หรือเปลี่ยนข้อมูล ข้อมูลก็จะกระทบไปยัง Weak Entity [2]</p>
+
+<p>การใช้งานเรานำ Entity มาอธิบาย Table ใน Database ตามตัวอย่างด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-medium is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="300" height="183" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-1-300x183.png" alt="" class="wp-image-4777" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-1-300x183.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-1-768x469.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-1.png 800w" sizes="auto, (max-width: 300px) 100vw, 300px" /><figcaption class="wp-element-caption">Entity (ภาพจาก <a href="https://commons.wikimedia.org/wiki/File:ERD-entity_(product).png" target="_blank" rel="noopener" title="Wikimedia">Wikimedia</a>)</figcaption></figure></div>
+
+<p>สำหรับ Attribute ที่เป็นคีย์หลักที่มีค่าที่ไม่ซ้ำกัน และไม่เป็นค่าช่องว่าง (Null) ส่วนนี้เรียกว่า <strong>Primary Key</strong> โดยเราสามารถนำคอลัมน์ Primary Key นี้ไปสร้างความสัมพันธ์ (Relation) กับตารางอื่น ๆ ผ่านการกำหนดคอลัมน์ที่เรียกว่า <strong>Foreign Key</strong> [3] โดยเราใช้ภาพด้านล่างนี้เป็นตัวอย่าง</p>
+
+<ul class="wp-block-list">
+<li>ตัว actor_id และ film_id ใน Table actor และ film เป็น <strong>Primary Key</strong> </li>
+
+
+
+<li>ส่วน actor_id และ film_id ใน Table actor_film_mapping เป็น <strong>Foreign Key</strong></li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="510" height="256" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-2.png" alt="" class="wp-image-4785" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-2-300x151.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-2.png 510w" sizes="auto, (max-width: 510px) 100vw, 510px" /><figcaption class="wp-element-caption">ภาพอธิบายความสัมพันธ์ในตาราง (ภาพจาก <a href="https://commons.wikimedia.org/wiki/File:Mapping_table_concept.png" target="_blank" rel="noopener" title="Wikimedia">Wikimedia</a>)</figcaption></figure></div>
+
+<h2 class="wp-block-heading">Relationship</h2>
+
+<p><strong>Relationship </strong>เป็นการอธิบายความสัมพันธ์ระหว่าง Entity ต่าง ๆ ในฐานข้อมูล โดยแบ่งตามจำนวน Entity ที่มีความสัมพันธ์กันได้ตามด้านล่างนี้ [4]</p>
+
+<ol class="wp-block-list">
+<li><strong>Binary Relationship</strong> ที่มีความสัมพันธ์แบบ 2 Entity</li>
+
+
+
+<li><strong>Ternary Relationship</strong> ที่มีความสัมพันธ์มากกว่า 2 Entity</li>
+
+
+
+<li><strong>Recursive Relationship</strong> หรือ Self Relationship หรือ Unary Relationship ที่มีความสัมพันธ์กับ Entity ตนเอง</li>
+</ol>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="171" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship_no_entity-1024x302.jpg" alt="" class="wp-image-4818" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship_no_entity-300x89.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship_no_entity-1024x302.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship_no_entity-768x227.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship_no_entity-1200x354.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship_no_entity.jpg 1318w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">แผนภาพแสดง Relationship ตามจำนวน Entity</figcaption></figure></div>
+
+<p>นอกจากนี้ เรายังแบ่ง Relationship ตามจำนวนข้อมูลระหว่าง Entity ที่มี Relationship กัน (Cardinality Ratio) ที่มีด้วยกันทั้งหมด 4 แบบ [4, 5] ได้แก่</p>
+
+<ol class="wp-block-list">
+<li><strong>One-to-one Relationship (1:1)</strong> เป็นการแสดงความสัมพันธ์ของข้อมูล Entity A 1 รายการ และ Entity B ไม่เกิน 1 รายการ</li>
+
+
+
+<li><strong>One-to-many Relationship (1:N)</strong> เป็นการแสดงความสัมพันธ์ของข้อมูล Entity A 1 รายการ และ Entity B ได้มากกว่า 1 รายการ</li>
+
+
+
+<li><strong>Many-to-one Relationship (N:1)</strong> เป็นการแสดงความสัมพันธ์ของข้อมูล Entity A 1 รายการ ที่สัมพันธ์กับ Entity B 1 รายการ ในขณะที่ข้อมูล Entity B 1 รายการสัมพันธ์กับ Entity A มากกว่า 1 รายการ</li>
+
+
+
+<li><strong>Many-to-many Relationship (M:N)</strong> เป็นการแสดงความสัมพันธ์ของข้อมูล Entity A 1 รายการ และ Entity B ได้มากกว่า 1 รายการ และ Entity B 1 รายการ และ Entity A ได้มากกว่า 1 รายการ</li>
+</ol>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e229a0a0&quot;}" data-wp-interactive="core/image" class="aligncenter size-large is-resized wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="207" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship-2-1024x365.jpg" alt="" class="wp-image-4810" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship-2-300x107.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship-2-1024x365.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship-2-768x274.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship-2-1200x428.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/db_relationship-2.jpg 1329w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">แผนภาพแสดง Relationship ตาม Cardinality Ratio</figcaption></figure></div>
+
+<h2 class="wp-block-heading">ER Diagram Model</h2>
+
+<p>ER Diagram Model [6, 7] แบ่งได้ทั้งหมด 3 ประเภทตามระดับของแนวคิด (Abstraction)</p>
+
+<p><strong>Conceptual ERD (Conceptual Data Model)</strong> เป็นการออกแบบฐานข้อมูลในระดับแนวคิดเพื่ออธิบายตามความต้องการของผู้ใช้ฐานข้อมูล ที่ออกแบบ Entity และ Relationship ระหว่าง Entity ร่วมกับกำหนดข้อบังคับของข้อมูล</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="397" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-3.png" alt="" class="wp-image-4842" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-3-300x206.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-3.png 740w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Conceptual Data Model (ภาพจาก <a href="https://commons.wikimedia.org/wiki/File:ConceptualDataModel.png" target="_blank" rel="noopener" title="Wikimedia">Wikimedia</a>)</figcaption></figure></div>
+
+<p><strong>Logical ERD (Logical Data Model)</strong> เป็น Data Model ที่ใช้บ่อยที่สุด ที่เป็นการแสดงรายละเอียดเพิ่มเติมนอกเหนือจาก Conceptual ERD ที่อธิบายถึง Entities, Relationships, Attributes กับ Primary Key และ Foreign Key โดยไม่ได้กล่าวถึง Database และ Platform ที่ใช้ในการประยุกต์ใช้งาน Model นี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="371" height="302" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/logical_data_model_wikimedia.png" alt="" class="wp-image-4844" style="width:371px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/logical_data_model_wikimedia-300x244.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/logical_data_model_wikimedia.png 371w" sizes="auto, (max-width: 371px) 100vw, 371px" /><figcaption class="wp-element-caption">Logical Data Model (ภาพจาก <a href="https://commons.wikimedia.org/wiki/File:LogicalDataModel.png" target="_blank" rel="noopener" title="Wikimedia">Wikimedia</a>)</figcaption></figure></div>
+
+<p><strong>Physical ERD (Physical Data Model) </strong>เป็น Data Model ที่ต่อยอดมาจาก Logical Data Model สำหรับการใช้งานใน Relational Database Management System (RDBMS) ที่ขึ้นอยู่กับ Database แต่ละเจ้า โดยระบุถึงชื่อ Table และชื่อ Column แทนที่จะใช้ชื่อ Entity และ Attributes นอกจากนี้เรายังระบุถึงชนิดของข้อมูลในแต่ละ Column ได้เลย </p>
+
+<p>ตัวแผนภาพลักษณะน้เราสามารถนำไปใช้งานต่อได้โดยเขียนโค้ดผ่านการใช้คำสั่ง SQL (Structured Query Language)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="568" height="340" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/physical_data_model.png" alt="" class="wp-image-4846" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/physical_data_model-300x180.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/physical_data_model.png 568w" sizes="auto, (max-width: 568px) 100vw, 568px" /><figcaption class="wp-element-caption">Physical Data Model (ภาพจาก <a href="https://commons.wikimedia.org/wiki/File:PhysicalDataModel.png" target="_blank" rel="noopener" title="Wikimedia">Wikimedia</a>)</figcaption></figure></div>
+
+<p>เราสามารถสรุปข้อแตกต่างได้ตามตาราง [7] ด้านล่างนี้</p>
+
+<figure class="wp-block-table aligncenter"><table><thead><tr><th>Feature</th><th class="has-text-align-center" data-align="center">Conceptual<br />Data Model</th><th class="has-text-align-center" data-align="center">Logical<br />Data Model</th><th class="has-text-align-center" data-align="center">Physical<br />Data Model</th></tr></thead><tbody><tr><td>Entity Names</td><td class="has-text-align-center" data-align="center">ระบุ</td><td class="has-text-align-center" data-align="center">ระบุ</td><td class="has-text-align-center" data-align="center">&#8211;</td></tr><tr><td>Entity Relationships</td><td class="has-text-align-center" data-align="center">ระบุ</td><td class="has-text-align-center" data-align="center">ระบุ</td><td class="has-text-align-center" data-align="center">&#8211;</td></tr><tr><td>Attributes</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">ระบุ</td><td class="has-text-align-center" data-align="center">&#8211;</td></tr><tr><td>Primary Keys</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">ระบุ</td><td class="has-text-align-center" data-align="center">ระบุ</td></tr><tr><td>Foreign Keys</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">ระบุ</td><td class="has-text-align-center" data-align="center">ระบุ</td></tr><tr><td>Table Names</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">ระบุ</td></tr><tr><td>Column Names</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">ระบุ</td></tr><tr><td>Column Data Types</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">&#8211;</td><td class="has-text-align-center" data-align="center">ระบุ</td></tr></tbody></table></figure>
+
+<h2 class="wp-block-heading">Database Markup Language (DBML)</h2>
+
+<p><strong>DBML หรือ Database Markup Language</strong> เป็นภาษาคอมพิวเตอร์ที่ประยุกต์ใช้สำหรับงานใดงานหนึ่ง (Domain-specific Language &#8211; DSL) ที่ออกแบบมาเพื่อใช้สำหรับ Define และ Document ลักษณะข้อมูล และโครงสร้างในตาราง (Database Schema and Structure) [8]</p>
+
+<p>ภาษานี้มีที่มาจากเว็บ <a href="https://dbdiagram.io/home" target="_blank" rel="noopener" title="dbdiagram.io">dbdiagram.io</a> ที่ทางทีมงานต้องการสร้างภาษาเขียนโค้ดขึ้นมาให้เป็นภาษาที่ดี และเรียบง่ายต่อการออกแบบ และการสร้างโครงสร้างของ Database โดยตัวภาษานี้ออกแบบมาให้เป็น Opensource อีกด้วย</p>
+
+<p>วัตถุประสงค์ของ DBML คือเป็นภาษาที่เรียบง่าย (Simple) อ่านง่าย (Highly-readable) และ Consistent โดยมีตัวคำสั่งคอมมานไลน์ที่ได้รับการออกแบบมาเพื่อแปลงโค้ดระหว่าง DBML และ SQL</p>
+
+<p>ภาษานี้ได้รับการออกแบบมาเพื่อแก้ปัญหา Database ของโครงการขนาดใหญ่ที่ซับซ้อน โดยวาดออกมาเป็นภาพคร่าว ๆ ของ Database ของทั้งโครงการ เพื่อให้คนเข้าใจข้อมูลในแต่ละ Column และ Relationship ได้ง่าย และลดความยุ่งยาก และความ Outdated ของโค้ดที่เขียนด้วยภาษา SQL ที่ใช้คำสั่ง DDL (Data Definition Language)</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>DDL (Data Definition Language) </strong>เป็นกลุ่มคำสั่งในภาษา SQL ที่มีหน้าที่สร้าง แก้ไข จัดการ และลบ Table ใน Database โดยตัวอย่างคำสั่งที่จัดอยู่ในกลุ่มนี้คือ CREATE, ALTER TABLE, TRUNCATE และ DROP</p>
+</blockquote>
+
+<p>ตัวโค้ด DBML มีเครื่องมือมาให้พร้อมเสร็จสรรพ โดยให้เครื่องมืออย่าง</p>
+
+<ol class="wp-block-list">
+<li>Free DB Visualizer อย่างเว็บ dbdiagram.io</li>
+
+
+
+<li>Free Documentation Reader อย่างเว็บ dbdocs.io</li>
+
+
+
+<li>คอมมานไลน์เพื่อแปลงคำสั่งจาก SQL ไป DBML และในทางกลับกัน</li>
+
+
+
+<li>ไลบรารีสำหรับการแปลงโค้ดกลับไปมาระหว่าง SQL และ DBML</li>
+</ol>
+
+<h3 class="wp-block-heading">Syntax</h3>
+
+<p>ลักษณะการเขียนโค้ดของ DBML ได้รับการออกแบบมาเพื่อให้คนเขียนโค้ดสำหรับการออกแบบ Database Schema and Structure ได้ง่าย โดยแบ่งออกเป็น 7 ส่วน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>Project</li>
+
+
+
+<li>Table</li>
+
+
+
+<li>Relationship &amp; Foreign Key</li>
+
+
+
+<li>Comment</li>
+
+
+
+<li>Note</li>
+
+
+
+<li>Enum</li>
+
+
+
+<li>TableGroup</li>
+</ul>
+
+<h4 class="wp-block-heading">Project</h4>
+
+<p>ส่วนแรก เป็นการเขียนโค้ดเพื่อกำหนด Project ของการออกแบบฐานข้อมูล โดยเรากำหนดรายละเอียด project ได้โดยการเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Project project_name {
+    database_type: 'MySQL'
+    Note: 'Description of this project'
+}</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>project_name เป็นการกำหนดชื่อ Project</li>
+
+
+
+<li>database_type เป็นการกำหนดเครื่องมือ Database ที่ต้องการ ตัวอย่างเช่น MySQL และ PostgreSQL เป็นต้น</li>
+
+
+
+<li>Note เป็นการใส่คำอธิบายของ Project</li>
+</ul>
+
+<h4 class="wp-block-heading">Table</h4>
+
+<p>ต่อมา เป็นการเขียนโค้ดเพื่อกำหนด Table ใน Database โดยเราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Table table_name {
+  column_name column_type &#91;column_settings]
+}</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>schema_name เป็นการกำหนดชื่อ Schema ของ Table จุดนี้ถ้าไม่ได้พิมพ์ชื่อ Schema ตัวระบบจะกำหนดให้เป็น public</li>
+
+
+
+<li>table_name คือชื่อของ Table</li>
+
+
+
+<li>column_name คือชื่อคอลัมน์</li>
+
+
+
+<li>column_type คือชนิดของข้อมูลในคอลัมน์นั้น ๆ</li>
+
+
+
+<li>column_settings เป็นการตั้งค่าในแต่ละคอลัมน์ โดยลักษณะฟอร์แมตทั่วไปของการตั้งค่าทำได้โดย [setting1: value1, setting2: value2, &#8230;] การตั้งค่ามีหลายรูปแบบ ได้แก่
+<ul class="wp-block-list">
+<li>note: &#8216;xxx&#8217; เป็นการใส่คำอธิบายเพิ่มรายละเอียดในคอลัมน์นั้น ๆ</li>
+
+
+
+<li>primary key หรือ pk เป็นการกำหนดให้คอลัมน์นั้น ๆ เป็น Primary Key</li>
+
+
+
+<li>null/not null เป็นการกำหนดให้ข้อมูลในคอลัมน์นั้นเป็น null ได้หรือไม่</li>
+
+
+
+<li>unique เป็นการกำหนดให้ในคอลัมน์นั้น มีค่าในแต่ละแถวที่ไม่เหมือนกัน</li>
+
+
+
+<li>default: some_value เป็นการกำหนดค่าเริ่มต้น</li>
+
+
+
+<li>increment เป็นการกำหนดให้คอลัมน์นั้นเป็น Auto increment</li>
+</ul>
+</li>
+</ul>
+
+<p>การกำหนดค่า default ในแต่ละคอลัมน์ขึ้นกับชนิดของข้อมูลในคอลัมน์ โดย</p>
+
+<ol class="wp-block-list">
+<li>กรณีที่เป็น <strong>number value</strong> เรากำหนดให้มีค่าเป็น 123 หรือ 123.456</li>
+
+
+
+<li>กรณีที่เป็น <strong>string </strong>เรากำหนดให้เป็นข้อความ &#8216;xxx&#8217;</li>
+
+
+
+<li>กรณีที่เป็นกำหนดข้อมูลด้วยการใช้ฟังก์ชัน (<strong>expression value</strong>) ตัวอย่างเช่นชนิดข้อมูลที่เป็น <strong>timestamp </strong>ที่เราต้องการเรียกค่าในเวลานั้น ๆ เราทำได้โดยการเขียนค่า default ได้โดยใส่เครื่องหมาย ` หน้าหลัง แล้วข้างในเขียนด้วยฟังก์ชัน now()</li>
+
+
+
+<li>นอกจากนี้ กรณีที่ข้อมูลเป็น <strong>boolean </strong>เรากำหนดให้ค่า default เป็น true, false หรือ null</li>
+</ol>
+
+<p>นอกจากนี้ เรายังกำหนดชื่อที่ใช้เรียกแทน Table นั้น ๆ ได้โดยเพิ่ม as &lt; ชื่อที่ต้องการให้เรียก &gt; ตามหลังชื่อ table_name ได้</p>
+
+<h4 class="wp-block-heading">Relationship &amp; Foreign Key</h4>
+
+<p>ถัดจากนั้น เรากำหนด Relation ระหว่าง Table ได้โดยใส่ Ref ใน column_setting ของแต่ละคอลัมน์ใน Table (inline-form) หรือใส่ Ref แยกออกมา (เช่น short-form หรือ long-form) ตัวอย่างแสดงได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Table table1 {
+    id integer
+    column1 integer
+}
+
+// Inline-form
+Table table2 {
+    id integer
+    colmn2 integer &#91;<strong>ref: &gt; table1.column1</strong>]
+}
+
+//Long form
+<strong>Ref name_optional {
+  table1.column1 &lt; table2.column2
+}</strong>
+
+//Short form:
+<strong>Ref name_optional: table1.column1 &lt; table2.column2</strong></code></pre>
+
+<p>โดยเรากำหนด Relationship ได้โดยการกำหนดด้วยหลัก Cardinality Ratio ได้แก่</p>
+
+<ol class="wp-block-list">
+<li><strong>&#8211;</strong> คือ one-to-one</li>
+
+
+
+<li><strong>&lt;</strong> คือ one-to-many</li>
+
+
+
+<li><strong>&gt;</strong> คือ many-to-one</li>
+
+
+
+<li><strong>&lt;&gt;</strong> คือ many-to-many</li>
+</ol>
+
+<p>เราสามารถกำหนดชื่อคอลัมน์ได้มากกว่า 1 คอลัมน์ได้โดยการกำหนดตามตัวอย่างด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Ref: merchant_periods.(merchant_id, country_code) &gt; merchants.(id, country_code)
+</code></pre>
+
+<p>นอกจากนี้ เราสามารถตั้งค่าให้กับแต่ละ Relationship ได้อีก [9] โดยตั้งค่าได้ทั้ง short-form และ long-form แต่ inline-form ส่วนนี้ไม่รองรับ โดยเราตั้งค่าได้โดยการพิมพ์ตามด้านล่างนี้หลัง Relationship</p>
+
+<pre class="wp-block-code"><code>Ref: Table1.column1 &lt; Table2.column2 <strong>&#91;setting1: setting2]</strong></code></pre>
+
+<p>โดยการตั้งค่าเราสามารถตั้งค่าตรง setting1 ให้เป็น delete หรือ update ใช้ในกรณีเมื่อมีการลบ หรือมีการอัพเดทของข้อมูล เราจะสั่งให้ทำตาม  setting2 ได้โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>cascade </strong>ใช้ในกรณีที่มีการลบ หรือมีการอัพเดทข้อมูลในตารางที่มี Primary Key ข้อมูลในตารางที่มี Foreign Key จะถูกลบหรือแก้ไขทั้งหมด (โดยเขียนใน Database ได้เป็น CASCADE)</li>
+
+
+
+<li><strong>restrict </strong>กรณีที่ตารางที่มี Foreign Key ยังมีข้อมูลอยู่ เราจะลบ หรือแก้ไขข้อมูลในตารางที่มี Primary Key ไม่ได้ (โดยเขียนใน Database ได้เป็น RESTRICT)</li>
+
+
+
+<li><strong>set default</strong> กรณีที่ลบ หรือมีการแก้ไขข้อมูลในตารางที่มี Primary Key จะทำให้ข้อมูลในตารางที่มี Foreign Key จะเก็บค่าเริ่มต้น (Default) โดยในคอลัมน์ที่มี Foreign Key นั้นจะต้องกำหนดค่า Default ไว้ (โดยเขียนใน Database ได้เป็น SET DEFAULT)</li>
+
+
+
+<li><strong>null </strong>กรณีที่ลบ หรือมีการแก้ไขข้อมูลในตารางที่มี Primary Key จะทำให้ข้อมูลในตารางที่มี Foreign Key จะเก็บค่า null ไว้ อย่างไรก็ดีคอลัมน์ที่เป็น Foreign Key จะต้องเก็บค่า null ได้ (โดยเขียนใน Database ได้เป็น SET NULL)</li>
+
+
+
+<li><strong>no action</strong> ไม่ว่าข้อมูลในตารางที่มี Primary Key จะถูกลบหรือแก้ไข ข้อมูลในตารางที่มี Foreign Key จะไม่เปลี่ยนแปลง (โดยเขียนใน Database ได้เป็น NO ACTION)</li>
+</ul>
+
+<h4 class="wp-block-heading">Comment</h4>
+
+<p>เราสามารถใส่คอมเม้นต์ใน DBML ด้วยบรรทัดเดียว หรือหลายบรรทัดได้โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>// singe line comment
+
+/*
+   multiple line comments
+*/</code></pre>
+
+<h4 class="wp-block-heading">Enum</h4>
+
+<p>เป็นการกำหนดค่าในคอลัมน์นั้น ๆ ให้เป็นไปตามค่าที่กำหนดในรายการ โดยชื่อของ Enum สามารถใส่เป็นชนิดของคอลัมน์ใน Table ได้เลย โดยตัวอย่างแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Enum <strong>job_status </strong>{
+    created &#91;<strong>note: 'Waiting to be processed'</strong>]
+    running
+    done
+    failure
+}
+
+Table jobs {
+    id integer &#91;primary key, increment]
+    status <strong>job_status</strong>
+}</code></pre>
+
+<h4 class="wp-block-heading">Note</h4>
+
+<p>การใส่ Note เราสามารถใส่ได้หลายที่ ได้แก่ ใส่ไว้ข้างใน Project กับ Note กับใส่ไว้ข้างหลังแต่ละคอลัมน์ใน Table  ตรง column_setting และใส่ไว้ข้างหลังของค่าใน Enum โดยแสดงตัวอย่างตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code><strong>Project Notes</strong>
+Project DBML {
+    <strong>Note: '''
+
+    '''
+</strong>}
+
+<strong>Table Notes</strong>
+Table users {
+    id int &#91;pk]
+    name varchar
+    <strong>Note: 'Stores user data'
+</strong>}
+
+<strong>Column Notes</strong>
+column_name column_type &#91;<strong>note: 'column notes'</strong>]
+
+<strong>Enum Notes
+</strong>enum job_status {
+    created &#91;<strong>note: 'Waiting to be processed'</strong>]
+    running
+    done
+    failure
+}</code></pre>
+
+<p>โดยเครื่องหมาย</p>
+
+<ul class="wp-block-list">
+<li><strong>&#8221;&#8217;</strong> กำหนดไว้ว่า Note ตรงนั้นสามารถเขียนได้หลายบรรทัด</li>
+
+
+
+<li><strong>&lt; Enter &gt;</strong> เป็นการกำหนด Line Break ของข้อความให้ตัดขึ้นบรรทัดใหม่</li>
+
+
+
+<li><strong>\</strong> เป็นการกำหนด Line Continue เพื่อให้เราสามารถเคาะ Enter เพื่อขึ้นบรรทัดใหม่ได้โดยข้อความที่แสดงบนหน้าจอยังคงเป็นข้อความบรรทัดเดียวกันอยู่</li>
+
+
+
+<li><strong>\\</strong> เป็นการกำหนด Escape Character ด้วยเครื่องหมาย \</li>
+
+
+
+<li><strong>\&#8221;&#8217;</strong> เป็นการกำหนด Escape Character ด้วยเครื่องหมาย &#8221;&#8217;</li>
+</ul>
+
+<h3 class="wp-block-heading">Table Group</h3>
+
+<p>เราสามารถจัดกลุ่มตารางให้อยู่ในหมวดเดียวกันได้โดยการกำหนด TableGroup ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>TableGroup tablegroup_name {
+    table1
+    table2
+    table3
+}</code></pre>
+
+<h4 class="wp-block-heading">ข้อแนะนำ</h4>
+
+<p>เมื่อออกแบบตารางเสร็จแล้ว ให้นำไฟล์เก็บไว้ใน Root folder แบบเดียวกันกับไฟล์ package.json หรือ README.md</p>
+
+<h2 class="wp-block-heading">ตัวอย่างการใช้งาน DBML</h2>
+
+<p>ตัวอย่างนี้เอามาจากงานที่เคยทำ Conference <a href="http://www.uarc.uec.ac.jp/8thUEC_Seminar/8th_top.html" target="_blank" rel="noopener" title="The 3rd ASEAN - USC Workshop on Informatics and Engineering for SDGs">The 3rd ASEAN &#8211; USC Workshop on Informatics and Engineering for SDGs</a> ตอนเรียนป.โทในหัวข้อ A Development of a Web-based Cervical Range of Motion Estimation System for Video Analysis</p>
+
+<p>งานนี้เป็นงานที่ทำเว็บทั้ง Backend และ Frontend สำหรับการนำโมเดล Machine Learning อย่าง Object Detection, Face Detection, Head Pose Estimation และ Semantic Segmentation สำหรับการวัดการเคลื่อนไหวศีรษะและลำคอ (Cervical Range of Motion) และการวัดการอ้าปาก (Mouth Opening Measurement) ในผู้ป่วยที่มีปัญหาด้านการกลืน</p>
+
+<p>โดยเราจะนำส่วนของ Database ที่เราเคยออกแบบในแต่ละ Table มาเขียนโดยการใช้ DBML เพื่อทำ Entity Relationship Diagram (ER Diagram) ส่วนข้อมูลในตารางอันนี้ไม่ได้นำออกมาเนื่องมาจากติดเรื่องข้อมูลของผู้ป่วยตาม Ethics ครับ</p>
+
+<p>การออกแบบทำได้โดยการเขียนโค้ดตามด้านล่างนี้ โดยแบ่งเป็น 3 ส่วน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>Project</li>
+
+
+
+<li>Table</li>
+
+
+
+<li>และ Relation</li>
+</ul>
+
+<h3 class="wp-block-heading">Project</h3>
+
+<p>เรากำหนดรายละเอียด Project สำหรับการออกแบบ Database ที่ใช้งานกับ MySQL ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Project FACE_MOVEMENT_DATA {
+  database_type: 'MySQL'
+  Note: 'The database used for rehabilitation assessment by using CROM measurement, and mouth-opening measurement.'  
+}</code></pre>
+
+<h3 class="wp-block-heading">Table</h3>
+
+<p>เรากำหนดรายละเอียด Table โดยแบ่งเป็น Table อย่างคร่าว ๆ ได้ทั้งหมด 5 Table ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>MEMBER_DATA </strong>สำหรับการทำระบบสมาชิกในเว็บไซต์ โดยแบ่งเป็นบุคลากรทางการแพทย์ กับผู้ดูแลระบบ</li>
+
+
+
+<li><strong>PATIENT_DATA </strong>เป็นการเก็บข้อมูล Subject ที่เข้ารับการตรวจในระบบ</li>
+
+
+
+<li><strong>RECORD_DATA </strong>สำหรับการเก็บรายการบันทึกวิดีโอในระบบสำหรับแต่ละ Subject</li>
+
+
+
+<li><strong>RECORD_VIDEO_DATA </strong>สำหรับการเก็บที่อยู่ไฟล์วิดีโอของแต่ละ Record</li>
+
+
+
+<li><strong>DETECT_DATA </strong>สำหรับการเก็บข้อมูลผลการวัดการเคลื่อนไหวศีรษะและลำคอ และผลการวัดการอ้าปาก</li>
+</ul>
+
+<h4 class="wp-block-heading">MEMBER_DATA</h4>
+
+<p>ตารางนี้ออกแบบมาสำหรับการทำระบบสมาชิกในเว็บไซต์ โดยแบ่งเป็นบุคลากรทางการแพทย์ (user) กับผู้ดูแลระบบ (admin) โดยออกแบบให้มีคอลัมน์ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li><strong>id </strong>เป็นการเก็บข้อมูล User ID โดยกำหนดให้เป็น Primary Key และค่าจะเพิ่มทุกครั้งที่เพิ่มข้อมูลเข้ามาในระบบ</li>
+
+
+
+<li><strong>email </strong>เป็นการเก็บข้อมูล E-Mail โดยกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>password </strong>เป็นการเก็บข้อมูล Password โดยกำหนดไม่ให้มีค่าว่าง และการเก็บข้อมูลนี้จะเก็บแบบเข้ารหัสไว้ ไม่เก็บ Plain Text</li>
+
+
+
+<li><strong>name </strong>และ <strong>surname </strong>เป็นการเก็บข้อมูลชื่อและนามสกุล โดยกำหนดไม่ให้มีค่าว่างเช่นกัน</li>
+
+
+
+<li><strong>user_type </strong>เป็นการเก็บข้อมูลประเภทผู้ใช้ โดย 0 &#8211; user และ 1 &#8211; admin</li>
+</ul>
+
+<pre class="wp-block-code"><code>Table FACE_MOVEMENT_DATA.MEMBER_DATA {
+  id integer &#91;primary key, increment]
+  email text &#91;not null]
+  password text &#91;not null]
+  name text &#91;not null]
+  surname text &#91;not null]
+  user_type int &#91;default: 0, Note: 'Type 0: user, and 1: admin'] 
+  Note: 'The list of members in the rehabilitation assessment system.'
+}</code></pre>
+
+<h4 class="wp-block-heading">PATIENT_DATA</h4>
+
+<p>ตารางนี้ออกแบบมาเพื่อเก็บข้อมูล Subject ที่เข้ารับการตรวจในระบบ โดยออกแบบให้มีคอลัมน์ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li><strong>id </strong>เป็นการเก็บข้อมูล Patient ID โดยกำหนดให้เป็น Primary Key และค่าจะเพิ่มทุกครั้งที่เพิ่มข้อมูลเข้ามาในระบบ</li>
+
+
+
+<li><strong>author_id </strong>เป็นการเก็บข้อมูล User ID ที่เพิ่มข้อมูล Subject นี้ โดยกำหนดให้เป็น Foreign Key กับ id ใน MEMBER_DATA และกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li>HN, name, surname เป็นรายละเอียดเลขที่ ชื่อ นามสกุล Subject โดยกำหนดไม่ให้มีค่าว่าง</li>
+</ul>
+
+<pre class="wp-block-code"><code>Table FACE_MOVEMENT_DATA.PATIENT_DATA {
+  id integer &#91;primary key, increment]
+  author_id integer
+  HN varchar(15) &#91;not null]
+  name varchar(255) &#91;not null]
+  surname varchar(255) &#91;not null]
+
+  Note: 'The list of the patients in the rehabilitation assessment system.'
+}</code></pre>
+
+<h4 class="wp-block-heading">RECORD_DATA</h4>
+
+<p>ตารางนี้ออกแบบมาเพื่อเก็บรายการบันทึกวิดีโอในระบบสำหรับแต่ละ Subject โดยออกแบบให้มีคอลัมน์ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li><strong>id </strong>เป็นการเก็บข้อมูล Record ID โดยกำหนดให้เป็น Primary Key และค่าจะเพิ่มทุกครั้งที่เพิ่มข้อมูลเข้ามาในระบบ</li>
+
+
+
+<li><strong>author_id </strong>เป็นการเก็บข้อมูล User ID ที่เพิ่มข้อมูล Record นี้ โดยกำหนดให้เป็น Foreign Key กับ id ใน MEMBER_DATA และกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>patient_id </strong>เป็นการเก็บข้อมูล Patient ID โดยกำหนดให้เป็น Foreign Key กับ id ใน PATIENT_DATA และกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>record_datetime </strong>เป็นการกำหนดวันและเวลาของการเพิ่มรายการบันทึกวิดีโอ โดยกำหนดให้เป็น timestamp ด้วยค่าเริ่มต้นว่า now()</li>
+
+
+
+<li><strong>description_text </strong>เป็นการใส่คำอธิบายของการบันทึกวิดีโอ โดยกำหนดให้มีค่าว่างได้</li>
+</ul>
+
+<pre class="wp-block-code"><code>Table FACE_MOVEMENT_DATA.RECORD_DATA {
+  id integer &#91;primary key, increment]
+  author_id integer &#91;not null]
+  patient_id integer &#91;not null]
+  reocord_datetime timestamp &#91;default: `now()`]
+  description text &#91;null]
+  Note: 'The list of the recorded video for each patient.'
+}</code></pre>
+
+<h4 class="wp-block-heading">RECORD_VIDEO_DATA</h4>
+
+<p>ตารางนี้ออกแบบมาเพื่อเก็บที่อยู่ไฟล์วิดีโอของแต่ละ Record โดยออกแบบให้มีคอลัมน์ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li><strong>id </strong>เป็นการเก็บข้อมูล Video ID โดยกำหนดให้เป็น Primary Key และค่าจะเพิ่มทุกครั้งที่เพิ่มข้อมูลเข้ามาในระบบ</li>
+
+
+
+<li><strong>record_id </strong>เป็นการเก็บข้อมูล Record ID โดยกำหนดให้เป็น Foreign Key กับ id ใน RECORD_DATA</li>
+
+
+
+<li><strong>video_name </strong>เป็นการกำหนดชื่อวิดีโอ โดยกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>path </strong>เป็นการกำหนดที่อยู่ไฟล์ โดยกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>view_type </strong>เป็นการกำหนดมุมของกล้อง ถ่ายจากด้านหน้า (front) หรือด้านข้าง (side)</li>
+</ul>
+
+<pre class="wp-block-code"><code>Table FACE_MOVEMENT_DATA.RECORD_VIDEO_DATA {
+  id integer &#91;primary key, increment]
+  record_id integer &#91;not null]
+  video_name text &#91;not null]
+  path text &#91;not null]
+  view_type text &#91;not null, default: 'front']
+  Note: 'The list of the videos in each record for each patient.'
+}</code></pre>
+
+<h4 class="wp-block-heading">DETECT_DATA</h4>
+
+<p>ตารางนี้เก็บข้อมูลผลการวัดการเคลื่อนไหวศีรษะและลำคอ และผลการวัดการอ้าปาก โดยออกแบบให้มีคอลัมน์ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li><strong>id </strong>เป็นการเก็บข้อมูล Detection ID โดยกำหนดให้เป็น Primary Key และค่าจะเพิ่มทุกครั้งที่เพิ่มข้อมูลเข้ามาในระบบ</li>
+
+
+
+<li><strong>record_id </strong>เป็นการเก็บข้อมูล Record ID โดยกำหนดให้เป็น Foreign Key กับ id ใน RECORD_DATA และกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>detect_type </strong>เป็นการกำหนดชนิดของการตรวจวัด โดยในที่นี่แบ่งเป็นการวัดการเคลื่อนไหวศีรษะและลำคอที่วัดทั้ง 6 ทิศทาง (Flexion, Extension, Left Lateral Bending, Right Lateral Bending, Left Rotation และ Right Rotation) และวัดการอ้าปาก (Mouth Opening) ร่วมกับกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>image_path </strong>เป็นการกำหนดที่อยู่ไฟล์ภาพของการวัดการเคลื่อนไหว โดยกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>datetime </strong>เป็นวันและเวลาที่ตรวจวัด โดยกำหนดไม่ให้มีค่าว่าง ร่วมกับกำหนดค่าเริ่มต้นโดยใช้ฟังก์ชัน now()</li>
+
+
+
+<li><strong>video_time </strong>เป็นการกำหนดเวลาของไฟล์วิดีโอว่าบันทึกทีช่วงเวลาไหน โดยกำหนดไม่ให้มีค่าว่าง</li>
+
+
+
+<li><strong>detection_data </strong>เป็นผลการวัดการเคลื่อนไหว โดยกำหนดให้มีค่าว่างได้</li>
+</ul>
+
+<pre class="wp-block-code"><code>Table FACE_MOVEMENT_DATA.DETECT_DATA {
+  id integer &#91;primary key, increment]
+  record_id integer &#91;not null]
+  detect_type varchar(255) &#91;not null]
+  image_path text &#91;null]
+  detection_data text &#91;null]
+  datetime timestamp &#91;not null, default: `now()`]
+  video_time integer &#91;not null]
+  Note: 'The list of the detection results for each recorded video for each patient.'
+}</code></pre>
+
+<h3 class="wp-block-heading">Relation</h3>
+
+<p>การกำหนด Relationship นี้ เรากำหนดให้เป็น One to Many โดยกำหนดให้มี Relationship ของ</p>
+
+<ul class="wp-block-list">
+<li>MEMBER_DATA.id </li>
+
+
+
+<li>PATIENT_DATA.id</li>
+
+
+
+<li>RECORD_DATA.id</li>
+</ul>
+
+<p>โดยรายละเอียดของ Relationship ที่เป็น Primary Key<strong> </strong>และ Foreign Key เราได้แสดงในขั้นตอนที่แล้วที่เป็นการออกแบบ Table แล้ว</p>
+
+<p>ส่วนการตั้งค่า Relationship ทุกอัน เรากำหนดให้เป็น <strong>DELETE CASCADE</strong> ก็คือ เมื่อเราลบข้อมูลพวกนี้ในตารางที่มี Primary Key แล้ว ข้อมูลที่มี Foreign Key ก็จะโดนลบไปด้วย</p>
+
+<p>ส่วนโค้ด DBML ที่แสดงรายละเอียดของ Relationship เราเขียนไว้ตามด้านล่างนี้</p>
+
+<h4 class="wp-block-heading">ความสัมพันธ์ของ MEMBER_DATA.id</h4>
+
+<pre class="wp-block-code"><code>// One-to-many by using author_id to get list of patients, and records. 
+Ref: FACE_MOVEMENT_DATA.MEMBER_DATA.id &lt; FACE_MOVEMENT_DATA.PATIENT_DATA.author_id &#91;delete: cascade]
+Ref: FACE_MOVEMENT_DATA.MEMBER_DATA.id &lt; FACE_MOVEMENT_DATA.RECORD_DATA.author_id &#91;delete: cascade]</code></pre>
+
+<h4 class="wp-block-heading">ความสัมพันธ์ของ PATIENT_DATA.id</h4>
+
+<pre class="wp-block-code"><code>// One-to-many by using patient_id to get list of records.
+Ref: FACE_MOVEMENT_DATA.PATIENT_DATA.id &lt; FACE_MOVEMENT_DATA.RECORD_DATA.patient_id &#91;delete: cascade]
+
+// One-to-many by using patient_id to get list of records.
+Ref: FACE_MOVEMENT_DATA.PATIENT_DATA.id &lt; FACE_MOVEMENT_DATA.RECORD_DATA.patient_id &#91;delete: cascade]</code></pre>
+
+<h4 class="wp-block-heading">ความสัมพันธ์ของ RECORD_DATA.id</h4>
+
+<pre class="wp-block-code"><code>// One-to-many by using record_id to get the list of videos.
+Ref: FACE_MOVEMENT_DATA.RECORD_DATA.id &lt; FACE_MOVEMENT_DATA.RECORD_VIDEO_DATA.record_id &#91;delete: cascade]
+
+// One-to-many by using record_id to get the list of detection results
+Ref: FACE_MOVEMENT_DATA.RECORD_DATA.id &lt; FACE_MOVEMENT_DATA.DETECT_DATA.record_id &#91;delete: cascade]</code></pre>
+
+<h3 class="wp-block-heading">ER Diagram</h3>
+
+<p>โดยแสดงออกมาเป็น ER Diagram ตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e229cb58&quot;}" data-wp-interactive="core/image" class="aligncenter size-full wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="226" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/FTRehab-DBML-Diagram.png" alt="" class="wp-image-4936" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/FTRehab-DBML-Diagram-300x117.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/FTRehab-DBML-Diagram-1024x400.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/FTRehab-DBML-Diagram-768x300.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/FTRehab-DBML-Diagram-1536x600.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/FTRehab-DBML-Diagram-1200x468.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/FTRehab-DBML-Diagram.png 1660w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ER Diagram ของงานที่ทำไว้</figcaption></figure></div>
+
+<h2 class="wp-block-heading">ที่มา</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://www.mindphp.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD/73-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3/6048-entity-relations-diagram-erd.html" target="_blank" rel="noopener" title="">https://www.mindphp.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD/73-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3/6048-entity-relations-diagram-erd.html</a></li>
+
+
+
+<li><a href="http://www.geog.pn.psu.ac.th/ComGeo60/ER%20diagram.pdf" target="_blank" rel="noopener" title="">http://www.geog.pn.psu.ac.th/ComGeo60/ER%20diagram.pdf</a></li>
+
+
+
+<li><a href="https://nickuntitled.com/2024/01/31/14-get-database-data-to-show-dashboard/" title="">https://nickuntitled.com/2024/01/31/14-get-database-data-to-show-dashboard/</a></li>
+
+
+
+<li><a href="http://std.bus.tu.ac.th/web04/images/DBMS/dbms6.pdf" target="_blank" rel="noopener" title="">http://std.bus.tu.ac.th/web04/images/DBMS/dbms6.pdf</a></li>
+
+
+
+<li><a href="https://blog.clicknext.com/what-is-er-diagram/" target="_blank" rel="noopener" title="">https://blog.clicknext.com/what-is-er-diagram/</a></li>
+
+
+
+<li><a href="https://www2.cs.science.cmu.ac.th/courses/204222/lib/exe/fetch.php?media=ch07_er_model.pdf" target="_blank" rel="noopener" title="">https://www2.cs.science.cmu.ac.th/courses/204222/lib/exe/fetch.php?media=ch07_er_model.pdf</a></li>
+
+
+
+<li><a href="https://vertabelo.com/blog/conceptual-logical-physical-data-model/" target="_blank" rel="noopener" title="">https://vertabelo.com/blog/conceptual-logical-physical-data-model/</a></li>
+
+
+
+<li><a href="https://dbml.dbdiagram.io/home/" target="_blank" rel="noopener" title="">https://dbml.dbdiagram.io/home/</a></li>
+
+
+
+<li><a href="https://sattayametharakcheep.medium.com/%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A-%E0%B9%80%E0%B8%94%E0%B8%AD%E0%B8%B0-%E0%B8%8B%E0%B8%B5%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B9%8C-%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88-34-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B9%80%E0%B8%87%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%82-constraint-%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%A1%E0%B9%82%E0%B8%A2%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87-cd9e4796c214" target="_blank" rel="noopener" title="">https://sattayametharakcheep.medium.com/%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A-%E0%B9%80%E0%B8%94%E0%B8%AD%E0%B8%B0-%E0%B8%8B%E0%B8%B5%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B9%8C-%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88-34-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B9%80%E0%B8%87%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B9%84%E0%B8%82-constraint-%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%A1%E0%B9%82%E0%B8%A2%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87-cd9e4796c214</a></li>
+</ol>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

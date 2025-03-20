@@ -1,419 +1,155 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค - Nick Untitled</title>
-		<meta name="description" content="คราวนี้เราจะมาพูดถึงการนำไอแพดมาใช้งานเขียนโปรแกรมแทนคอมพิวเตอร์ที่มีอยู่ หลังจากที่แอปเปิลเปิดให้ใช้งานเมาส์ + คีย์บอร์ดเรียบร้อยแล้วบน iPadOS">
-		<meta name="keywords" content="computer,iPad,iPad pro,personal,productivity,programming,replacement,working,คอมพิวเตอร์,ทำงาน,เขียนโปรแกรม,แท็บเล็ต,ไอแพด,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-03-04T21:00:01+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/"/>
-		<meta property="og:title" content="เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค - Nick Untitled" />
-		<meta property="og:description" content="คราวนี้เราจะมาพูดถึงการนำไอแพดมาใช้งานเขียนโปรแกรมแทนคอมพิวเตอร์ที่มีอยู่ หลังจากที่แอปเปิลเปิดให้ใช้งานเมาส์ + คีย์บอร์ดเรียบร้อยแล้วบน iPadOS " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d.png"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค - Nick Untitled" />
-		<meta property="twitter:description" content="คราวนี้เราจะมาพูดถึงการนำไอแพดมาใช้งานเขียนโปรแกรมแทนคอมพิวเตอร์ที่มีอยู่ หลังจากที่แอปเปิลเปิดให้ใช้งานเมาส์ + คีย์บอร์ดเรียบร้อยแล้วบน iPadOS " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d.png" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/03/04/ipad-as-a-programming-laptop-replacement/" />
+<meta property="og:url" content="http://localhost:4000/2021/03/04/ipad-as-a-programming-laptop-replacement/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d-1024x536.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-04T21:00:01+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d-1024x536.png" />
+<meta property="twitter:title" content="เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2023-01-23T00:58:18+07:00","datePublished":"2021-03-04T21:00:01+07:00","description":"None","headline":"เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d-1024x536.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/03/04/ipad-as-a-programming-laptop-replacement/"},"url":"http://localhost:4000/2021/03/04/ipad-as-a-programming-laptop-replacement/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-03-04 21:00:01 +0700">2021-03-04</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d-1024x536.png' />
+  </figure>
+  
 
-	
+  <p>หลังจากที่ไม่ได้เขียนบทความมานาน เริ่มมาเขียนให้ถี่ขึ้นกันดีกว่า วันนี้เราจะมาพูดถึงการนำไอแพด (หรือแท็บเล็ตยี่ห้ออื่น) มาใช้งานแทนคอมพิวเตอร์</p>
 
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค
-			</h1>
-		</div>
+<p>หลังจากที่บริษัทแอปเปิ้ลประกาศให้ไอแพดรองรับการใช้เมาส์ และคีย์บอร์ดบนไอแพดให้แล้ว เราเลยนำคีย์บอร์ดที่มีอยู่แล้ว และซื้อแทร็คแพด (ที่เป็น Magic TrackPad) มาใช้ร่วมกันกับไอแพดได้ง่ายโดยเพียงแค่ต่อบลูทูธกับตัวคอมพิวเตอร์แล้วพร้อมใช้งาน</p>
 
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/03/667ff2b5-de7d-4da9-8c1f-b41981ca629d.png' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>04 March 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/ipad-as-a-programming-laptop-replacement" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/ipad-as-a-programming-laptop-replacement&amp;text=เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค - https://nickuntitled.com/ipad-as-a-programming-laptop-replacement" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p>หลังจากที่ไม่ได้เขียนบทความมานาน เริ่มมาเขียนให้ถี่ขึ้นกันดีกว่า วันนี้เราจะมาพูดถึงการนำไอแพด (หรือแท็บเล็ตยี่ห้ออื่น) มาใช้งานแทนคอมพิวเตอร์</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>หลังจากที่บริษัทแอปเปิ้ลประกาศให้ใช้เมาส์ และคีย์บอร์ดบนไอแพดให้แล้ว เราเลยนำคีย์บอร์ดที่มีอยู่แล้ว และซื้อแทร็คแพด (ที่เป็น Magic TrackPad) มาใช้ร่วมกันกับไอแพดได้ง่ายโดยเพียงแค่ต่อบลูทูธกับตัวคอมพิวเตอร์แล้วพร้อมใช้งาน </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:more -->
 <!--more-->
-<!-- /wp:more -->
 
-<!-- wp:paragraph -->
-<p>ยิ่งกว่านั้นในปัจจุบันโปรแกรมหลายตัวบนไอแพดออกแบบมารองรับให้เรียบร้อยแล้ว โปรแกรมที่เรากล่าวถึงได้แก่ ออฟฟิศอย่าง Pages, Keynote, Numbers จดโน้ตอย่าง Notes ของแอปเปิลเอง ตัดต่อวิดีโอโดย LumaFusion แต่งภาพบน Lightroom, Photoshop รวมถึงมาใช้เขียนโปรแกรม ทำงานต่อรีโมทเข้ากับคอมพิวเตอร์เครื่องแม่ได้อีก</p>
-<!-- /wp:paragraph -->
+<p>ยิ่งกว่านั้นในปัจจุบันที่ไอแพดได้รับการอัพเดทให้เป็นระบบปฏิบัติการ iOS 16 ที่เพิ่มความสามารถให้ไอแพดรองรับการทำงานด้วยคีย์บอร์ดและเมาส์ดีขึ้น บวกกับโปรแกรมหลายตัวบนไอแพดออกแบบมาเพื่อรองรับคีย์บอร์ด และเมาส์ให้ทำงานได้ดี</p>
 
-<blockquote>
-  <h2 id="อัพเดท">อัพเดท</h2>
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>โปรแกรมที่เราเคยใช้ที่รองรับการทำงานผ่านคีย์บอร์ดและเมาส์ได้ดีเหล่านี้ก็ยกตัวอย่าง ได้แก่ ออฟฟิศอย่าง Pages, Keynote, Numbers, Notes, LumaFusion, Photoshop, Affinity Photo รวมถึงนำ Textastic มาใช้เขียนโปรแกรม และใช้ Microsoft Remote Desktop หรือ Terminus ทำงานต่อรีโมทเข้ากับคอมพิวเตอร์เครื่องแม่ได้อีก</p></blockquote>
 
-  <p>ตอนนี้ทางบริษัทไมโครซอฟท์ปล่อย Visual Studio Code ที่สามารถรันบนหน้าเว็บได้แล้ว ทำให้เราไม่จำเป็นต้องติดตั้ง code-server ลงบน &gt;VPS หรือบนคลาวด์ตามที่โพสไว้ในบทความนี้ครับ ผู้ใช้สามารถเข้าไปใช้งานโดยได้พิมพ์ที่อยู่เว็บไซต์ว่า <a href="https://vscode.dev">vscode.dev</a></p>
-</blockquote>
+<p>ยิ่งไปกว่านั้น เครื่องมืออย่าง Visual Studio Code ที่เป็นโปรแกรมที่ได้รับความนิยมสำหรับการเขียนโปรแกรมบนคอมพิวเตอร์ ทางไมโครซอฟท์ได้พัฒนาให้รองรับให้อยู่ในเวอร์ชันสำหรับการใช้งานผ่านเว็บไซต์ โดยผู้ใช้สามารถใช้งานได้ผ่านเว็บ <a href="https://vscode.dev/">vscode.dev</a> ได้ครับ อย่างไรก็ดี การใช้งานผ่านทางนี้มีข้อจำกัด ได้แก่</p>
 
-<!-- wp:paragraph -->
+<ul class="wp-block-list"><li>เครื่องมือนี้ไม่รองรับการใช้งานผ่าน Terminal</li><li>ไม่มีตัว Debugger มาให้</li><li>ตัว Extension ที่สามารถลงได้ในนี้ไม่ได้ลงได้ทุกตัว</li><li>ตัวเครื่องมือนี้ไม่ได้รองรับเว็บเบราวเซอร์ทุกอัน แต่ที่แน่ ๆ ก็คือเครื่องมือนี้รองรับ Chrome, Edge, Firefox ครับ</li></ul>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>สำหรับคนที่ใช้แอนดรอยด์ ผู้อ่านเอามาใช้เขียนโปรแกรมได้เช่นกัน เราได้เขียนไว้แล้วที่<a href="https://nickuntitled.com/2022/03/20/android_as_programming_pc_replacement/">บทความนี้</a> รวมถึงบทความนี้ที่กล่าวถึงการ<a href="https://nickuntitled.com/2022/03/26/samsung_dex_programming_replace_desktop/">เอา Samsung DeX ไปประยุกต์ใช้</a>ครับ</p></blockquote>
+
 <p>ต่อไปเราจะมาพูดถึงการนำไอแพดมาใช้งานเขียนโปรแกรมโดยผ่านรีโมทไปยังคอมพิวเตอร์เครื่องแม่</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2>การเซ็ตอัพเพื่อใช้งาน</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="--1">การเซ็ตอัพเพื่อใช้งาน</h2>
 
-<!-- wp:paragraph -->
-<p>ทีนี้เราเลยนำไอแพดมาเขียนโปรแกรมผ่านการเชื่อมต่อรีโมทเข้าโดยใช้โปรแกรม <a href="https://apps.apple.com/us/app/blink-shell-mosh-ssh-client/id1156707581" target="_blank" rel="noreferrer noopener" title="https://apps.apple.com/us/app/blink-shell-mosh-ssh-client/id1156707581">Blink ที่เสียเงินครั้งเดียวก็ใช้ได้เลย</a> (ค่าใช้จ่ายตอนที่เขียนอยู่ที่ 19.99 USD) ผิดกับโปรแกรม Terminus ที่ต้องจ่ายรายเดือน แถมข้อดีของการใช้โปรแกรม Blink คือเวลาต่อออกจอนอกแล้ว เราสามารถใช้งานการต่อรีโมทออกจอใหญ่ได้เลย</p>
-<!-- /wp:paragraph -->
+<p>ทีนี้เราเลยนำไอแพดมาเขียนโปรแกรมผ่านการเชื่อมต่อรีโมทเข้าโดยใช้โปรแกรม <a href="https://apps.apple.com/us/app/blink-shell-mosh-ssh-client/id1156707581" rel="noreferrer noopener">Blink ที่เสียเงินครั้งเดียวก็ใช้ได้เลย</a> (ค่าใช้จ่ายตอนที่เขียนอยู่ที่ 19.99 USD) ผิดกับโปรแกรม Terminus ที่ต้องจ่ายรายเดือน แถมข้อดีของการใช้โปรแกรม Blink คือเวลาต่อออกจอนอกแล้ว เราสามารถใช้งานการต่อรีโมทออกจอใหญ่ได้เลย</p>
 
-<!-- wp:paragraph -->
-<p>โปรแกรมนี้ดาวน์โหลดได้ใน <a href="https://apps.apple.com/us/app/blink-shell-mosh-ssh-client/id1156707581" target="_blank" rel="noreferrer noopener" title="https://apps.apple.com/us/app/blink-shell-mosh-ssh-client/id1156707581">App Store</a> ครับ</p>
-<!-- /wp:paragraph -->
+<p>โปรแกรมนี้ดาวน์โหลดได้ใน <a href="https://apps.apple.com/us/app/blink-shell-mosh-ssh-client/id1156707581" rel="noreferrer noopener">App Store</a> ครับ</p>
 
-<!-- wp:image {"align":"center","id":1680,"sizeSlug":"large","linkDestination":"media"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-03-at-19.47.07.png"><img src="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-03-at-19.47.07.png?w=1024" alt="" class="wp-image-1680" /></a><figcaption>แอปนี้เลยครับ</figcaption></figure></div>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/screen-shot-2564-03-03-at-19.47.07.png?w=580&#038;ssl=1" alt="" /><figcaption>แอปนี้เลยครับ</figcaption></figure>
 
-<!-- wp:paragraph -->
-<p>แต่ก่อนที่จะเริ่มใช้งาน Blink Shell เพื่อรีโมทเข้าไปใช้งานบนคลาวด์ เราต้องหาบริการเช่าคลาวด์เพื่อเขียนโปรแกรมผ่านรีโมทด้วยไอแพดก่อน </p>
-<!-- /wp:paragraph -->
+<p>แต่ก่อนที่จะเริ่มใช้งาน Blink Shell เพื่อรีโมทเข้าไปใช้งานบนคลาวด์ เราต้องหาบริการเช่าคลาวด์เพื่อเขียนโปรแกรมผ่านรีโมทด้วยไอแพดก่อน</p>
 
-<!-- wp:paragraph -->
-<p>ในที่นี้ เราใช้บริการบน <a href="https://m.do.co/c/61ae5e7ddeb6" target="_blank" rel="noreferrer noopener" title="https://m.do.co/c/61ae5e7ddeb6">DigitalOcean</a> ซึ่งเป็นบริการคลาวด์ที่ราคาเริ่มต้นไม่แพงมากนัก ส่วนผุ้อ่านจะใช้คอมพิวเตอร์ที่มีอยู่แล้ว หรือว่าเช่าคอมพิวเตอร์มาใช้งานก็รีโมทด้วยวิธีนี้ได้เช่นกัน </p>
-<!-- /wp:paragraph -->
+<p>ในบทความนี้ เราใช้บริการบน <a href="https://m.do.co/c/61ae5e7ddeb6" rel="noreferrer noopener">DigitalOcean</a> ซึ่งเป็นบริการคลาวด์ของต่างประเทศที่ราคาเริ่มต้นไม่แพงมากนัก ส่วนกรณีที่อยากใช้กับผู้ให้บริการในไทย ผู้ใช้อาจจะลองดูผู้ให้บริการ VPS (Virtual Private Server) อย่าง ReadyIDC, Hostatom หรืออื่น ๆ </p>
 
-<!-- wp:image {"align":"center","id":1690,"sizeSlug":"large","linkDestination":"media"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-04-at-20.45.23.png"><img src="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-04-at-20.45.23.png?w=1024" alt="" class="wp-image-1690" /></a><figcaption>บริการ DigitalOcean</figcaption></figure></div>
-<!-- /wp:image -->
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>ส่วนผุ้อ่านจะใช้คอมพิวเตอร์ หรือใช้งานผ่าน NAS ที่ลงระบบปฏิบัติการ Linux บน Virtual Machine ที่มีอยู่แล้วก็รีโมทด้วยวิธีนี้ได้เช่นกัน</p></blockquote>
 
-<!-- wp:paragraph -->
-<p>ของเราไม่ได้เลือกแพคเกจเริ่มต้นนะ เราเลือกแพคเกจ 10USD (ประมาณ 300 บาท) ที่เหนือกว่าแพคเกจเริ่มต้นหน่อยนึงที่อยู่ในหมวด Basic Droplets แต่ยังทำงานได้ดี ไม่ได้อืดจนเกินไปแต่อย่างใดครับ</p>
-<!-- /wp:paragraph -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/screen-shot-2564-03-04-at-20.45.23.png?w=580&#038;ssl=1" alt="" /><figcaption>บริการ DigitalOcean</figcaption></figure>
 
-<!-- wp:image {"align":"center","id":1693,"sizeSlug":"large","linkDestination":"media"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-04-at-20.49.31.png"><img src="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-04-at-20.49.31.png?w=1024" alt="" class="wp-image-1693" /></a><figcaption>เราเลือกแพคเกจ 10USD ที่อยู่ในหมวด Basic Droplets</figcaption></figure></div>
-<!-- /wp:image -->
+<p>สำหรับแพคเกจที่เลือก เราเลือกแพคเกจ 10USD (ประมาณ 300 กว่าบาทในวันที่เขียน) โดยแพคเกจนี้เหนือกว่าแพคเกจเริ่มต้นหน่อยนึงที่อยู่ในหมวด Basic Droplets แต่ยังทำงานได้ดี ไม่ได้อืดจนเกินไปแต่อย่างใดครับ</p>
 
-<!-- wp:paragraph -->
-<p>เมื่อเปิดใช้งานคลาวด์อย่าง DigitalOcean แล้ว จากนั้นเปิดตัวโปรแกรม Blink ตั้งค่าตัวโปรแกรมให้เชื่อมต่อไปยังคลาวด์ เราสามารถล็อคอินเพื่อใช้งานได้โดยการใช้ username, password แต่ก็ยังสู้การใช้ Public, private key (ที่สร้างขึ้นในระหว่างการสร้าง Droplet ของ DigitalOcean) ไม่ได้ครับ </p>
-<!-- /wp:paragraph -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/screen-shot-2564-03-04-at-20.49.31.png?w=580&#038;ssl=1" alt="" /><figcaption>เราเลือกแพคเกจ 10USD ที่อยู่ในหมวด Basic Droplets</figcaption></figure>
 
-<!-- wp:paragraph -->
+<p>เมื่อเปิดใช้งานคลาวด์อย่าง DigitalOcean แล้ว จากนั้นเปิดตัวโปรแกรม Blink ตั้งค่าตัวโปรแกรมให้เชื่อมต่อไปยังคลาวด์ เราสามารถล็อคอินเพื่อใช้งานได้โดยการใช้ username, password แต่ก็ยังสู้การใช้ Public, private key (ที่สร้างขึ้นในระหว่างการสร้าง Droplet ของ DigitalOcean) ไม่ได้ครับ</p>
+
 <p>ส่วนตัวแนะนำการใช้งาน Public, private key มากกว่า การใช้เทคนิคนี้ เราสามารถตั้งค่าได้ในโปรแกรม Blink ที่เราซื้อมาใช้งานแล้วนั่นเอง</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>สำหรับคนที่ยังไม่มีบัญชี DigitalOcean ก็เ<a rel="noreferrer noopener" href="https://m.do.co/c/61ae5e7ddeb6" target="_blank">ข้าไปกดสมัครได้ที่นี่เลย</a>ครับผม</p>
-<!-- /wp:paragraph -->
+<p>สำหรับคนที่ยังไม่มีบัญชี DigitalOcean ก็เ<a href="https://m.do.co/c/61ae5e7ddeb6" rel="noreferrer noopener">ข้าไปกดสมัครได้ที่นี่เลย</a>ครับผม</p>
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><p>สำหรับคนที่ใช้บริการคลาวด์เจ้าอื่นอยู่ อย่างเช่น AWS, Microsoft Azure หรืออื่น ๆ ก็นำวิธีในบทความไปประยุกต์ใช้ได้ครับ</p></blockquote>
-<!-- /wp:quote -->
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>สำหรับคนที่ใช้บริการคลาวด์เจ้าอื่นอยู่ อย่างเช่น AWS, Microsoft Azure หรืออื่น ๆ ก็นำวิธีในบทความไปประยุกต์ใช้ได้ครับ</p></blockquote>
 
-<!-- wp:heading -->
-<h2>การรีโมทเข้าไปใช้งานบนคลาวด์</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="--2">การรีโมทเข้าไปใช้งานบนคลาวด์</h2>
 
-<!-- wp:paragraph -->
 <p>เราเชื่อมต่อโดยใช้โปรแกรม Blink ปุ๊บ โปรแกรมจะแสดงผลว่าเราเชื่อมต่อเสร็จแล้ว พร้อมรับคำสั่งที่เราต้องการ</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>จากนั้นเปิดโปรแกรมแก้ไขข้อความในตำนานอย่าง <a rel="noreferrer noopener" href="https://www.vim.org" target="_blank">vim</a> ที่ดังมากเพราะคนออกจากตัวโปรแกรมไม่ได้ (แต่ออกได้โดยกดปุ่ม ESC)  และเริ่มต้นใช้งานได้ยากกว่าโปรแกรมอื่นที่เราเคยใช้ยอ่าง VS Code </p>
-<!-- /wp:paragraph -->
+<p>จากนั้นเปิดโปรแกรมแก้ไขข้อความในตำนานอย่าง <a href="https://www.vim.org" rel="noreferrer noopener">vim</a> ที่ดังมากเพราะคนออกจากตัวโปรแกรมไม่ได้ (แต่ออกได้โดยกดปุ่ม ESC) &nbsp;และเริ่มต้นใช้งานได้ยากกว่าโปรแกรมอื่นที่เราเคยใช้ยอ่าง VS Code</p>
 
-<!-- wp:paragraph -->
 <p>อย่างไรก็ตาม ถ้าเราเรียนรู้การใช้งานโปรแกรม VIM แล้ว ตัวโปรแกรมนี้แก้ไขข้อความได้ดีมาก เราใช้งานตัวโปรแกรมได้โดยมือไม่ต้องออกจากตัวคีย์บอร์ดมาสัมผัสกับเมาส์ หรือแทร็คแพดเลย ทำให้ประหยัดเวลาเขียนโค้ดมากขึ้น นอกจากนี้เมื่อบวกกับ Github แล้ว เราสามารถบันทึกโค้ดบนคลาวด์ได้เลย ไม่ต้องเซฟแยกโฟลเดอร์เป็นเวอร์ชัน 1, 2, 3, 4 เลย ชีวิตดีขึ้นไปอีก</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><p>สำหรับคนที่สนใจ และเริ่มต้นใช้งานโปรแกรมแก้ไขข้อความอย่าง vim ไม่ถูกสามารถเข้าไปได้ที่ตัวเว็บของโปรแกรมเองตามลิ้งค์ข้างบน หรืออ่านจาก <a href="https://vim.fandom.com/wiki/Tutorial" target="_blank" rel="noreferrer noopener">wiki นี้</a>ได้ครับผม</p></blockquote>
-<!-- /wp:quote -->
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>สำหรับคนที่สนใจ และเริ่มต้นใช้งานโปรแกรมแก้ไขข้อความอย่าง vim ไม่ถูกสามารถเข้าไปได้ที่ตัวเว็บของโปรแกรมเองตามลิ้งค์ข้างบน หรืออ่านจาก <a href="https://vim.fandom.com/wiki/Tutorial" rel="noreferrer noopener">wiki นี้</a>ได้ครับผม</p></blockquote>
 
-<!-- wp:image {"align":"center","id":1681,"sizeSlug":"large","linkDestination":"media"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://asset.nickuntitled.com/2021/03/img_3625.png"><img src="https://asset.nickuntitled.com/2021/03/img_3625.png?w=1024" alt="" class="wp-image-1681" /></a><figcaption>เอามาต่อออกจอได้เลย ได้พื้นที่การทำงานเยอะมาก</figcaption></figure></div>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/img_3625.png?w=580&#038;ssl=1" alt="" /><figcaption>เอามาต่อออกจอได้เลย ได้พื้นที่การทำงานเยอะมาก</figcaption></figure>
 
-<!-- wp:paragraph -->
 <p>โดยลักษณะโค้ดที่เราเขียนผ่านไอแพดเราเขียนด้วยภาษาจาวาสคริป ไพทอนซึ่งเป็นภาษาที่สามารถทำงานผ่านคอมมานไลน์ได้เลยโดยไม่ต้องออกแบบหน้าจอการทำงาน (GUI) แบบภาษาอื่น หรือไม่ต้องแสดงผลบนอุปกรณ์พกพา ทำให้เราเขียนโปรแกรมผ่านรีโมทไปยังคลาวด์โดยใช้ไอแพด แทนที่โน้ตบุ๊คครับผม</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><p>แต่ใครเขียนภาษาอื่น หรือต้องใช้ GUI หรือต้องทำงานผ่านมือถือ วิธีนี้อาจจะใช้กับท่านไม่ได้ฮะ คงต้องเขียนบนโน้ตบุ๊คอยู่ดี</p></blockquote>
-<!-- /wp:quote -->
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>แต่ใครเขียนภาษาอื่น หรือต้องใช้ GUI หรือต้องทำงานผ่านมือถือ วิธีนี้อาจจะใช้กับท่านไม่ได้ฮะ คงต้องเขียนบนโน้ตบุ๊คอยู่ดี</p></blockquote>
 
-<!-- wp:heading -->
-<h2>ทางเลือกอื่นนอกจาก Vim</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="-vim">ทางเลือกอื่นนอกจาก Vim</h2>
 
-<!-- wp:image {"align":"center","id":2382,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/06/screenshot.png" alt="" class="wp-image-2382" /><figcaption>code-server ทีเข้าผ่านทางหน้าเว็บไซต์ (รูปเอามาจากหน้า Github ของโปรแกรมนี้)</figcaption></figure></div>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/screenshot.png?w=580&#038;ssl=1" alt="" /><figcaption>code-server ทีเข้าผ่านทางหน้าเว็บไซต์ (รูปเอามาจากหน้า Github ของโปรแกรมนี้)</figcaption></figure>
 
-<!-- wp:paragraph -->
-<p>นอกเหนือจากโปรแกรม VIM แล้ว เราสามารถติดตั้งให้ใช้งานแบบ VS Code ผ่านหน้าจอเว็บไซต์ได้เลยโดยการติดตั้ง <a href="https://github.com/cdr/code-server" target="_blank" rel="noreferrer noopener" title="https://github.com/cdr/code-server">code-server</a> ทำได้โดยการดาวน์โหลดตัวติดตั้งบนหน้าเว็บก่อน ทำได้โดยพิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
+<p>นอกเหนือจากโปรแกรม VIM แล้ว เราสามารถติดตั้งให้ใช้งานแบบ VS Code ผ่านหน้าจอเว็บไซต์ได้เลยโดยการติดตั้ง <a href="https://github.com/cdr/code-server" rel="noreferrer noopener">code-server</a> ทำได้โดยการดาวน์โหลดตัวติดตั้งบนหน้าเว็บก่อน ทำได้โดยพิมพ์คำสั่ง</p>
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>curl -fsSL https://code-server.dev/install.sh | sh</code></pre>
-<!-- /wp:code -->
+<pre class="wp-block-code"><code>curl -fsSL <a href="https://code-server.dev/install.sh">https://code-server.dev/install.sh</a> | sh</code></pre>
 
-<!-- wp:paragraph -->
 <p>ตัวโปรแกรมจะติดตั้งให้อัตโนมัติ และแนะนำวิธีการใช้งานโปรแกรมนี้ครับ เมื่อเราเปิดใช้งาน code-server แล้ว เราสามารถเข้าถึงโปรแกรมนี้ผ่านทางหน้าเว็บอย่าง Safari ได้เลย</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>สำหรับข้อมูลเพิ่มเติมของ code-server ดูได้ในหน้า <a href="https://github.com/cdr/code-server" target="_blank" rel="noreferrer noopener">Github</a> ครับ</p>
-<!-- /wp:paragraph -->
+<p>สำหรับข้อมูลเพิ่มเติมของ code-server ดูได้ในหน้า <a href="https://github.com/cdr/code-server" rel="noreferrer noopener">Github</a> ครับ</p>
 
-<!-- wp:paragraph -->
-<p>ส่วนใครที่ใช้ Docker อยู่แล้ว สามารถทำได้โดย<a href="https://hub.docker.com/r/linuxserver/code-server" target="_blank" rel="noreferrer noopener" title="https://hub.docker.com/r/linuxserver/code-server">อ่านในหน้านี้ครับ</a> หรือถ้าต้องการใช้งานร่วมกันกับ Jupyter ด้วย ก็แนะนำตัว ml-workspace ที่มีทั้ง code-server และ Jupyter อยู่แล้ว ผู้อ่านสามารถอ่านเพิ่มเติมได้ที่<a href="https://github.com/ml-tooling/ml-workspace" target="_blank" rel="noreferrer noopener" title="https://github.com/ml-tooling/ml-workspace">หน้า Github นี้</a>ครับ</p>
-<!-- /wp:paragraph -->
+<p>ส่วนใครที่ใช้ Docker อยู่แล้ว สามารถทำได้โดย<a href="https://hub.docker.com/r/linuxserver/code-server" rel="noreferrer noopener">อ่านในหน้านี้ครับ</a> หรือถ้าต้องการใช้งานร่วมกันกับ Jupyter ด้วย ก็แนะนำตัว ml-workspace ที่มีทั้ง code-server และ Jupyter อยู่แล้ว ผู้อ่านสามารถอ่านเพิ่มเติมได้ที่<a href="https://github.com/ml-tooling/ml-workspace" rel="noreferrer noopener">หน้า Github นี้</a>ครับ</p>
 
-<!-- wp:heading -->
-<h2>ข้อสังเกตจากการใช้งาน</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="--3">ข้อสังเกตจากการใช้งาน</h2>
 
-<!-- wp:paragraph -->
 <p>หลังจากที่ใช้ผ่านไปซักระยะหนึ่งก็พบข้อดีข้อเสียของการใช้งานตามข้างล่างนี้ครับ</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>ข้อดีของการนำไอแพดมาใช้งานแบบนี้คือ แบตเตอรี่ที่อึดมาก ทำงานได้เร็ว เครื่องไม่ร้อน พกพาสะดวก </p>
-<!-- /wp:paragraph -->
+<p>ข้อดีของการนำไอแพดมาใช้งานแบบนี้คือ แบตเตอรี่ที่อึดมาก ทำงานได้เร็ว เครื่องไม่ร้อน พกพาสะดวก</p>
 
-<!-- wp:paragraph -->
 <p>อย่างไรก็ตามปัญหาหลักของคนที่จะนำมาใช้คือ</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul><li>ราคาครับ ยิ่งเป็นไอแพดโปรแล้วราคาจะสูงขึ้นไปอีก ถ้าซื้อเมจิคคีย์บอร์ด (Magic Keyboard) ร่วมด้วยราคาบวกไปอีกหมื่นนึง คิดว่าราคาสูงเมื่อเทียบกับโน้ตบุ๊คครับผม</li><li>มีพอร์ตเชื่อมต่อพอร์ตเดียว โดยของเราเป็นรุ่น 2017 จะใช้พอร์ต Lightning แต่ตอนนี้ไอแพดรุ่นใหม่จะเป็นพอร์ต USB-C แล้วก็สะดวกขึ้น (ยิ่งเป็นไอแพดโปรที่เป็น Apple M1 จะให้พอร์ต Thunderbolt) แต่มันก็มีพอร์ตเดียวอยู่ดีอ่ะ สำหรับคนที่ต้องโอนไฟล์ เชื่อมต่ออุปกรณ์ภายนอกถือว่าไม่สะดวกเท่าไรนัก</li><li>ราคาที่พอ ๆ กัน ไปซื้อโน้ตบุ๊ครุ่นที่ดีมากได้เลย เช่น โน้ตบุ๊คของแอปเปิ้ลที่ใช้ซีพียูของแอปเปิ้ลเอง (Apple M1) ครับ </li></ul>
-<!-- /wp:list -->
+<ul class="wp-block-list"><li>ราคาครับ ยิ่งเป็นไอแพดโปรแล้วราคาจะสูงขึ้นไปอีก ถ้าซื้อเมจิคคีย์บอร์ด (Magic Keyboard) ร่วมด้วยราคาบวกไปอีกหมื่นนึง คิดว่าราคาสูงเมื่อเทียบกับโน้ตบุ๊คครับผม</li><li>มีพอร์ตเชื่อมต่อพอร์ตเดียว โดยของเราเป็นรุ่น 2017 จะใช้พอร์ต Lightning แต่ตอนนี้ไอแพดรุ่นใหม่จะเป็นพอร์ต USB-C แล้วก็สะดวกขึ้น (ยิ่งเป็นไอแพดโปรที่เป็น Apple M1 จะให้พอร์ต Thunderbolt) แต่มันก็มีพอร์ตเดียวอยู่ดีอ่ะ สำหรับคนที่ต้องโอนไฟล์ เชื่อมต่ออุปกรณ์ภายนอกถือว่าไม่สะดวกเท่าไรนัก</li><li>ราคาที่พอ ๆ กัน ไปซื้อโน้ตบุ๊ครุ่นที่ดีมากได้เลย เช่น โน้ตบุ๊คของแอปเปิ้ลที่ใช้ซีพียูของแอปเปิ้ลเอง (Apple M1) ครับ</li></ul>
 
-<!-- wp:paragraph -->
 <p>ใครที่กำลังมองหาอุปกรณ์มาใช้งานอยู่ก็ค่อย ๆ ดูดีกว่าครับ</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2>อัพเดต</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="--4">อัพเดต</h2>
 
-<!-- wp:paragraph -->
-<p>ผู้เชียนเปลี่ยนจาก iPad Pro มาใช้งาน Microsoft Surface Pro X แทนแล้วครับ ซื้อมือสองมาใช้งานในราคาครึ่งหนึ่งของราคาเต็ม ส่วนแอพที่ใช้งานผู้อ่านสามารถ<a href="https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/" target="_blank" rel="noreferrer noopener" title="Surface Pro X กับแอพที่ใช้งานอยู่ในขณะนี้">อ่านต่อได้ที่ลิ้งค์นี้</a>ครับ ส่วนใครจะเอามาเขียนโปรแกรม ผู้อ่านสามารถ<a href="https://nickuntitled.com/2021/06/16/technique-software-development-on-surface-pro-x/" target="_blank" rel="noreferrer noopener" title="วิธีพัฒนาแอพลิเคชันบน Surface Pro X">อ่านต่อได้ที่บทความนี้เช่นกัน</a></p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">computer</span>
-			
-				<span class="post-tag">iPad</span>
-			
-				<span class="post-tag">iPad pro</span>
-			
-				<span class="post-tag">personal</span>
-			
-				<span class="post-tag">productivity</span>
-			
-				<span class="post-tag">programming</span>
-			
-				<span class="post-tag">replacement</span>
-			
-				<span class="post-tag">working</span>
-			
-				<span class="post-tag">คอมพิวเตอร์</span>
-			
-				<span class="post-tag">ทำงาน</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-				<span class="post-tag">แท็บเล็ต</span>
-			
-				<span class="post-tag">ไอแพด</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/02/21/beware-of-reading-header-only/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								ระมัดระวังการอ่านแต่พาดหัวข่าว
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/03/06/after-watching-raya-and-the-last-dragon/">
-							<span class = 'mr-1'>
-								พูดถึงหนัง Raya and The Last Dragon  หลังจากไปดูในโรงแล้ว
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<p>ผู้เชียนเปลี่ยนจาก iPad Pro มาใช้งาน Microsoft Surface Pro X แทนแล้วครับ ซื้อมือสองมาใช้งานในราคาครึ่งหนึ่งของราคาเต็ม ส่วนแอพที่ใช้งานผู้อ่านสามารถ<a href="https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/" rel="noreferrer noopener">อ่านต่อได้ที่ลิ้งค์นี้</a>ครับ ส่วนใครจะเอามาเขียนโปรแกรม ผู้อ่านสามารถ<a href="https://nickuntitled.com/2021/06/16/technique-software-development-on-surface-pro-x/" rel="noreferrer noopener">อ่านต่อได้ที่บทความนี้เช่นกัน</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#11 - Linear Regression แบบเขียนมือ</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#11 - Linear Regression แบบเขียนมือ" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/01/14/11-linear-regression-hands-on/" />
+<meta property="og:url" content="http://localhost:4000/2024/01/14/11-linear-regression-hands-on/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/11_handson_linear_regression_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-14T12:51:46+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/11_handson_linear_regression_cover.jpg" />
+<meta property="twitter:title" content="#11 - Linear Regression แบบเขียนมือ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-01-17T01:57:24+07:00","datePublished":"2024-01-14T12:51:46+07:00","description":"None","headline":"#11 - Linear Regression แบบเขียนมือ","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/11_handson_linear_regression_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/01/14/11-linear-regression-hands-on/"},"url":"http://localhost:4000/2024/01/14/11-linear-regression-hands-on/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#11 - Linear Regression แบบเขียนมือ</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-01-14 12:51:46 +0700">2024-01-14</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/11_handson_linear_regression_cover.jpg' />
+  </figure>
+  
+
+  <p><strong>Linear regression</strong> เป็นความสัมพันธ์แบบเชิงเส้นระหว่างค่าที่เราต้องการทำนาย กับตัวแปรที่เรานำมาใช้ในการคำนวณ เทคนิคนี้เป็นเทคนิคที่ใช้มานานแล้ว กับเป็นเทคนิคที่เป็นโมเดลทางคณิตศาสตร์ที่เข้าใจง่าย ร่วมกับใช้งานได้หลากหลาย ตั้งแต่การศึกษา ไปจนถึงธุรกิจต่าง ๆ</p>
+
+<!--more-->
+
+<p>อย่างไรก็ดี ก่อนที่เราจะใช้โมเดลทางคณิตศาสตร์นี้ เราจำเป็นต้องพิจารณา</p>
+
+<ol class="wp-block-list">
+<li>ตัวแปรที่ใช้จะเป็นตัวแปรแบบ Continuous ได้แก่เวลา ยอดขาย น้ำหนัก คะแนนสอบ</li>
+
+
+
+<li>ใช้ Scatter plot เพื่อหาความสัมพันธ์เชิงเส้นระหว่างตัวแปรที่เราต้องการหาคำตอบ และตัวแปร Feature ที่ใช้คำนวณในโมเดล</li>
+
+
+
+<li>ข้อมูลที่ใช้ไม่มีค่าที่เป็น Outlier อย่างเห็นได้ชัด</li>
+
+
+
+<li>เช็คว่าติดเรื่อง Homoscedasticity ที่ค่า Variance ของตัวแปรมีค่าไม่คงที่</li>
+
+
+
+<li>ค่า Residuals (errors)</li>
+</ol>
+
+<h2 class="wp-block-heading">ขั้นตอนการเทรนโมเดล</h2>
+
+<p>เมื่อพิจารณาแล้วไม่มีปัญหา เรามาพิจารณาขั้นตอนการเทรนโมเดลแบบคร่าว ๆ</p>
+
+<ol class="wp-block-list">
+<li>นำข้อมูลจาก Dataset มาหา Features หรือตัวแปรที่เราต้องการนำมาใช้ (X) และหาผลลัพธ์ (Outcome) ที่เราต้องการทำนาย</li>
+
+
+
+<li>ใช้โมเดล Linear Regression ตำนวณเพื่อให้โมเดลทำนายออกมา</li>
+
+
+
+<li>ค่าที่ได้จากการทำนายจะถูกนำมาเทียบกับค่า Ground Truth ของ Dataset (หรือค่า Y) ด้วยการคำนวณ Cost Function</li>
+
+
+
+<li>นำ Cost Function มาหา Partial Derivative โดยพิจารณาจากตัวแปรค่า weight ของแต่ละ Feature (W) และค่า bias (b) แล้วคำนวณร่วมกับ Learning Rate เพื่อนำมาปรับค่า weight และ bias ด้วย Gradient Descent</li>
+
+
+
+<li>วนไปข้อ 2.) เพื่อให้โมเดลฝึกไปเรื่อย ๆ จนกว่าค่า Cost Function จะอยู่กับค่าเท่า ๆ เดิม หรือวนครบรอบ Epoch ตามที่ต้องการ</li>
+</ol>
+
+<h2 class="wp-block-heading">สมการ</h2>
+
+<p>เมื่อทราบขั้นตอนแล้ว เรามาดูสมการที่เกี่ยวข้องกับโมเดล Linear Regression ในแต่ละขั้นตอนครั</p>
+
+<p>ขั้นตอนแรกคือการคำนวณค่าโดยใช้สมการโมเดล Linear Regression ตามด้านล่างนี้ในขั้นตอนที่ 2 (ในสมการใช้ตัวแปร Features เพียงตัวแปรเดียวเพื่อยกตัวอย่าง)</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="197" height="71" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/linear_regression_formula-2.png" alt="" class="wp-image-3782" /></figure>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>W คือค่าพารามิเตอร์ weight ของแต่ละ Feature</li>
+
+
+
+<li>b คือค่าพารามิเตอร์ bias</li>
+
+
+
+<li>X คือค่าของตัวแปรที่เราต้องการนำมาใช้คำนวณในโมเดล</li>
+</ul>
+
+<p>เมื่อทำนายค่าตามสมการด้านบนแล้ว เราต้องการนำค่าที่ได้เปรียบเทียบกับ Outcome (Y) ที่มีอยู่แล้วใน Dataset ด้วยการคำนวณสมการด้านล่างนี้ที่ใช้ Mean Square Error (MSE) เพื่อหา Cost Function ตามขั้นตอนที่ 3</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="344" height="108" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse.png" alt="" class="wp-image-3783" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse-300x94.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cost_function_mse.png 344w" sizes="auto, (max-width: 344px) 100vw, 344px" /></figure>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>fw,b เป็นฟังก์ชันที่ทำนายค่าตามขั้นตอนแรก</li>
+
+
+
+<li>Xi เป็นค่าตัวแปรที่เรานำมาใช้คำนวณ (X) ในแต่ละข้อมูลใน Dataset</li>
+
+
+
+<li>m คือจำนวนข้อมูลทั้งหมดใน Dataset</li>
+
+
+
+<li>Y คือค่า Ground Truth ที่เป็นผลลัพธ์ที่มีมาให้ใน Dataset</li>
+</ul>
+
+<p>ถัดจากการได้ค่า Cost Function แล้ว เราจำเป็นต้องอัพเดทค่าพารามิเตอร์ในโมเดล Linear Regresion ด้วย Gradient Descent ตามขั้นตอนที่ 4 ที่สามารถเขียนรูปทั่วไปได้ตามข้างล่างนี้</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="232" height="166" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/update_parameter-1.png" alt="" class="wp-image-3793" /></figure>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>W และ b คือพารามิเตอร์ weight และ bias</li>
+
+
+
+<li>J(w,b) คือ Cost Function</li>
+
+
+
+<li>ตัวคล้าย ๆ n คือ Learning rate</li>
+</ul>
+
+<p>ในรูปทั่วไป เราจะเห็นตัว Partial Derivative ที่อยู่ทางด้านขวาของสมการ ที่นำสมการ Cost Function มาหา Derivative โดยเทียบกับตัวแปร W และตัวแปร b ที่สามารถเขียนวิธีการทำ Differentiate ได้ตามด้านล่างนี้</p>
+
+<p>ส่วนแรกเป็น Partial Derivative ของ Cost Function โดยเทียบกับ W</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="559" height="400" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent.jpg" alt="" class="wp-image-3788" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent-300x215.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/W_gradient_descent.jpg 559w" sizes="auto, (max-width: 559px) 100vw, 559px" /></figure>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>บรรทัดที่สาม เมื่อเราทำ Differentiate ของสมการที่ยกกำลังสองแล้ว เราจำเป็นต้อง Differentiate ตัวแปรข้างในวงเล็บอีกตามกฏ Chain Rule</p>
+</blockquote>
+
+<p>ส่วนต่อมาเป็น Partial Derivative ของ Cost Function โดยเทียบกับ b</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="558" height="413" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent.jpg" alt="" class="wp-image-3789" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent-300x222.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/b_graident_descent.jpg 558w" sizes="auto, (max-width: 558px) 100vw, 558px" /></figure>
+
+<p>จากนั้น เรานำผลที่ได้จากการทำ Partial Derivative มาแทนที่ในสมการก่อนหน้า ผลลัพธ์ที่ได้เป็นตามด้านล่างนี้</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="397" height="223" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter.png" alt="" class="wp-image-3792" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/complete_update_parameter.png 397w" sizes="auto, (max-width: 397px) 100vw, 397px" /></figure>
+
+<p>เมื่อได้สมการที่เกี่ยวข้องทั้งหมดแล้ว เรามาเขียนโค้ดใน Python โดยไม่ใช้คลาส LinearRegression ที่มีมาให้ใน Scikit-learn</p>
+
+<h2 class="wp-block-heading">การเขียนโค้ด</h2>
+
+<p>การเขียนโค้ดในที่นี่เราจะใช้ไลบรารี numpy เพื่อช่วยเรื่องการคำนวณให้เป็นแบบ Vectorization เพื่อเป็นการคำนวณทั้งอาเรย์ของ Weight (W), Features (X) เป็นต้น โดยไม่จำเป็นต้องวนลูปเข้าไปในอาเรย์ เราเขียนโค้ดการนำเข้าไลบรารีได้โดย</p>
+
+<pre class="wp-block-code"><code>import numpy as np
+from sklearn.model_selection import train_test_split</code></pre>
+
+<h3 class="wp-block-heading">นำเข้าข้อมูลจาก Dataset</h3>
+
+<p>ในขั้นตอนแรก เราจะนำเข้าจาก Dataset อะไรก็ได้ โดยเปิดไฟล์จาก Excel (csv) เพื่อหา Features ที่ต้องการเพื่อนำไปมาใช้งานกับโมเดล Linear Regression ส่วนนี้ทำได้โดย</p>
+
+<pre class="wp-block-code"><code>X, Y = &#91;], &#91;]
+with open("CSV path", "r") as f:
+    line_idx = 0
+    for line in f:
+        if line_idx == 0:
+            line_idx += 1
+            continue
+            
+        line_idx += 1
+        line_split = line.strip().split(',')
+        X.append(&#91;float(x) for x in line_split&#91;:-1]])
+        Y.append(float(line_split&#91;-1]))
+
+X, Y = np.array(X), np.array(Y)</code></pre>
+
+<p>เมื่อโหลดข้อมูลมาอยู่ในตัวแปร X และ Y เรียบร้อยแล้ว เราจะนำค่าที่ได้มา Normalize โดยส่วนนี้จะไม่ได้กล่าวถึงในนี้ โดยตัวแปร</p>
+
+<ul class="wp-block-list">
+<li>X มีขนาดอาเรย์เท่ากับ [จำนวนข้อมูลที่มีใน Dataset (N_train), จำนวน Features (n_features)]</li>
+
+
+
+<li>Y มีขนาดอาเรย์เท่ากับ [จำนวนข้อมูลที่มีใน Dataset]</li>
+</ul>
+
+<h3 class="wp-block-heading">แบ่งข้อมูลใน Dataset</h3>
+
+<p>เมื่อทำเสร็จแล้วเราจะแบ่งข้อมูลที่มีใน Dataset โดยส่วนนี้เราแบ่งได้หลายวิธี เช่นแบ่งออกเป็น Train:Test ในอัตราส่วน 80:20, 70:30 หรือแบ่งออกเป็น Train:Validation:Test ในอัตราส่วน 70:20:10</p>
+
+<p>ในตัวอย่างนี้เราจะแบ่งเป็น Train:Test ด้วยสัดส่วน 80:20 โดยใช้ฟังก์ชัน train_test_split จาก scikit-learn</p>
+
+<p>การใช้งาน เราสามารถเขียนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>X_train, X_test, Y_train, Y_test = train_test_split(
+    X, Y, test_size=0.2, random_state=1234
+)</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>test_size = 0.2 คือการกำหนดว่าขนาดข้อมูล Test  subset มีค่าเท่ากับ 20% ของข้อมูลทั้งหมด</li>
+
+
+
+<li>random_state = 1234 เป็นการกำหนด Random Seed โดยค่า Random Seed เป็นการกำหนดค่าเริ่มต้นของการสุ่ม เพื่อให้โปรแกรมสุ่มตัวเลขแบบเดิมเสมอ เนื่องมาจากไพทอนจะใช้การสุ่มแบบ Pseudorandom (โดยปกติจะใส่ค่า 0 หรือ 42 ซึ่ง<a href="https://medium.com/geekculture/the-story-behind-random-seed-42-in-machine-learning-b838c4ac290a" target="_blank" rel="noopener" title="เลข 42">เลข 42</a> จริง ๆ มีที่มาจากหนังสือ The Hitchhiker&#8217;s Guide to the Galaxy ของ Douglas Adams ที่เขียนตอบคำถามที่เกี่ยวกับ Answer to the Ultimate Question of Life, the Universe, and Everything)</li>
+
+
+
+<li>X_train, Y_train คือตัวแปร X และ Y ของ Train subset ที่แบ่งออกมาจาก Dataset ในสัดส่วน 80% แรก</li>
+
+
+
+<li>X_test, Y_test คือตัวแปร X และ Y ของ Test subset ที่แบ่งออกมา 20% ของ Dataset ทั้งหมด</li>
+</ul>
+
+<h3 class="wp-block-heading">เขียนโค้ด Linear Regression</h3>
+
+<p>ต่อมา เรามาเขียนโค้ดส่วน Linear Regression ที่เกี่ยวข้องกับขั้นตอนที่ 2 &#8211; 5 ของการเทรนโมเดล Linear Regression</p>
+
+<h4 class="wp-block-heading">สร้างคลาส</h4>
+
+<p>ก่อนอื่น เรามาสร้างคลาสกันเสียก่อน โดยเขียนตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>class LinearRegression:
+    def __init__(self, n_features = 8, learning_rate = 0.01, n_epochs = 100):
+        self.n_features = n_features
+        self.n_epochs = n_epochs
+        self.lr = learning_rate
+        self.weights = None
+        self.bias = None
+
+    def cost_function(self, y_hat, y):
+        pass
+
+    def predict(self, X):
+        pass
+    
+    def fit(self, X_t, Y_t):
+        pass</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>n_features คือการกำหนดจำนวน Features ที่ต้องการใช้เพื่อทำนายในโมเดล Linear Regression</li>
+
+
+
+<li>n_epochs คือจำนวนรอบที่ต้องการเทรนโมเดล</li>
+
+
+
+<li>learning_rate คือการกำหนดพารามิเตอร์ที่จำเป็นต้องการปรับค่า weight และ bias ของโมเดล</li>
+
+
+
+<li>weights และ bias คือค่า weight (W) และ bias (b) ของโมเดล</li>
+</ul>
+
+<h4 class="wp-block-heading">Cost Function</h4>
+
+<p>ต่อมา เรามาเขียนโค้ดส่วนฟังก์ชัน cost_function เพื่อคำนวณ Cost Function ของโมเดล Linear Regression ที่เราใช้ Mean Square Error (MSE)</p>
+
+<pre class="wp-block-code"><code>def cost_function(self, y_hat, y):
+    return (np.square(y_hat - y)).mean() / 2</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>y_hat คือค่าที่โมเดลทำนายได้</li>
+
+
+
+<li>y คือค่า Ground Truth ที่เป็นผลลัพธ์ที่มีมาให้ใน Dataset</li>
+</ul>
+
+<h4 class="wp-block-heading">Training</h4>
+
+<p>เราสามารถเขียนโค้ดในฟังก์ชัน fit ที่ใช้สำหรับเทรนตัวโมเดลได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def fit(self, X, Y):
+    cache = &#91;]
+    N_train, n_features = X.shape
+    self.W = np.random.rand(n_features)
+    self.b = 0
+
+    for i in range(self.n_epochs):
+        X_train = X.copy()
+        Y_train = Y.copy()
+
+        # Forward Propagation
+        y_hat = np.dot(X_train, self.W) + self.b
+
+        # Calculation of Cost Function
+        L = self.cost_function(y_hat, Y_train)
+
+        cache.append(L)
+
+        # Backpropagation y_hat/y_train -&gt; &#91;n_batch] X_train -&gt; &#91;n_batch, n_features]
+        dz = y_hat - Y_train
+        dw = (1 / N_train) * np.dot(X_train.T, dz)
+        db = (1 / N_train) * np.sum(dz)
+                
+        # Update Parameters
+        self.W = self.W - self.lr * dw
+        self.b = self.b - self.lr * db
+
+        print(f"&#91;*] Epoch {i+1}/{self.n_epochs} : Loss\t{L:.4f}") #\tAccuracy\t{accuracy:.4f}%")
+
+    return cache</code></pre>
+
+<p>โดย ส่วนแรกเป็นการกำหนดค่าพารามิเตอร์ weight (W) และ bias (b) ของตัวโมเดล</p>
+
+<pre class="wp-block-code"><code>self.W = np.random.rand(n_features)
+self.b = 0</code></pre>
+
+<p>ส่วนต่อมาเป็นการให้ตัวโมเดลทำนายค่าตามที่เราใช้ใส่ข้อมูล Features (X) เข้าไป โดยเก็บตัวแปร X และ Y ไว้ในตัวแปร X_train และ Y_train</p>
+
+<pre class="wp-block-code"><code>X_train = X.copy()
+Y_train = Y.copy()
+
+# Forward Propagation
+y_hat = np.dot(X_train, self.W) + self.b</code></pre>
+
+<p>เมื่อได้ผลจากการคำนวณในโมเดลแล้ว เรามาคำนวณ Cost Function โดย y_hat คือค่า</p>
+
+<pre class="wp-block-code"><code># Calculation of Cost Function
+L = self.cost_function(y_hat, Y_train)</code></pre>
+
+<p>หลังจากคำนวณใน Cost Function แล้ว เราอัพเดทพารามิเตอร์ weight (W) และ bias (b)</p>
+
+<pre class="wp-block-code"><code># Backpropagation y_hat/y_train -&gt; &#91;n_batch] X_train -&gt; &#91;n_batch, n_features]
+dz = y_hat - Y_train
+dw = (1 / N_train) * np.dot(X_train.T, dz)
+db = (1 / N_train) * np.sum(dz)
+                
+# Update Parameters
+self.W = self.W - self.lr * dw
+self.b = self.b - self.lr * db</code></pre>
+
+<p>เมื่ออัพเดทพารามิเตอร์แล้ว เราก็จะให้วนลูปจนกว่าจะครบรอบตามที่กำหนดจากตัวแปร n_epochs</p>
+
+<h3 class="wp-block-heading">Predict</h3>
+
+<p>เมื่อเราเทรนโมเดลเสร็จเรียบร้อย เราก็ต้องนำโมเดลมาใช้ทำนายค่าใช่ไหมครับ?</p>
+
+<p>ใช่ครับ เราสามารถเขียนโค้ดทำนายได้ไม่ยากเลย ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def predict(self, X):
+    return np.dot(X, self.W) + self.b</code></pre>
+
+<p>โดย X คือตัวแปรอาเรย์ Features ที่มีใน Dataset ส่วน W และ b คือค่า Weight และ bias</p>
+
+<p>เมื่อเขียนโค้ดเสร็จแล้ว โค้ดจะมีหน้าตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>class LinearRegression:
+    def __init__(self, n_features = 8, learning_rate = 0.01, n_epochs = 100):
+        self.n_features = n_features
+        self.n_epochs = n_epochs
+        self.lr = learning_rate
+        self.weights = None
+        self.bias = None
+
+    def cost_function(self, y_hat, y):
+        return (np.square(y_hat - y)).mean() / 2
+
+    def predict(self, X):
+        return np.dot(X, self.W) + self.b
+    
+    def fit(self, X, Y):
+        cache = &#91;]
+        N_train, n_features = X.shape
+        self.W = np.random.rand(n_features)
+        self.b = 0
+
+        for i in range(self.n_epochs):
+            X_train = X.copy()
+            Y_train = Y.copy()
+
+            # Forward Propagation
+            y_hat = np.dot(X_train, self.W) + self.b
+
+            # Calculation of Cost Function
+            L = self.cost_function(y_hat, Y_train)
+
+            cache.append(L)
+
+            # Backpropagation y_hat/y_train -&gt; &#91;n_batch] X_train -&gt; &#91;n_batch, n_features]
+            dz = y_hat - Y_train
+            dw = (1 / N_train) * np.dot(X_train.T, dz)
+            db = (1 / N_train) * np.sum(dz)
+                
+            # Update Parameters
+            self.W = self.W - self.lr * dw
+            self.b = self.b - self.lr * db
+                
+            print(f"&#91;*] Epoch {i+1}/{self.n_epochs} : Loss\t{L:.4f}")
+
+        return cache</code></pre>
+
+<h2 class="wp-block-heading">ผลลัพธ์</h2>
+
+<p>เมื่อเขียนโค้ดเสร็จแล้ว เราสามารถฝึกโมเดล และทดสอบโมเดลด้วยการเขียนโค้ดตามด้านล่างนี้ โดยเรากำหนดให้เทรนทั้งหมด 500 รอบ ด้วย Learning Rate เท่ากับ 0.005</p>
+
+<pre class="wp-block-code"><code>learing_rate = 0.005
+num_epoch = 500
+model = LinearRegression(X_train.shape&#91;-1], learning_rate, num_epoch)
+cost = model.fit(X_train, Y_train)</code></pre>
+
+<p>และเขียนโค้ดสำหรับการทดสอบตามด้านล่างนี้ โดยในตัวอย่างจะใช้การประเมินผลการทำนายจากโมเดล Linear Regression ด้วย Mean Absolute Error</p>
+
+<pre class="wp-block-code"><code>from sklearn.metrics import mean_absolute_error
+
+out = model.predict(X_test)
+mae = mean_absolute_error(np.asarray(out), np.asarray(Y_test))
+print(mae)</code></pre>
+
+<p>ผลที่ได้จากการเทรน และการทดสอบก็แสดงตามด้านล่างนี้ โดยเราใช้ Dataset การทำนายน้ำหนักของสมอง ตามในเว็บ <a href="https://towardsdatascience.com/linear-regression-from-scratch-cd0dee067f72" target="_blank" rel="noopener" title="TowardsDataScience">TowardsDataScience</a></p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="576" height="455" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image.png" alt="" class="wp-image-3824" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image-300x237.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/image.png 576w" sizes="auto, (max-width: 576px) 100vw, 576px" /></figure></div>
+
+<p>จากผลการฝึกพบว่าโมเดลเทรนโอเค พบว่าค่า Learning Rate สูงไปหน่อย อันนี้เราสามารถปรับ ๆ กันได้ทีหลัง</p>
+
+<p>ส่วนต่อมาเป็นผลการทดสอบ พบว่าโมเดลสามารถทำนายด้วยค่า MAE เท่ากับ 220.164 ก็ถือว่าคลาดเคลื่อนไปหน่อย ซึ่งส่วนนี้เราสามารถปรับแต่งโมเดล ปรับพารามิเตอร์ ปรับแต่งการโหลด Dataset กันได้ทีหลังเช่นกัน</p>
+
+<h2 class="wp-block-heading">เสริม ลองใช้ Linear Regression จาก scikit-learn</h2>
+
+<p>ผู้อ่านสามารถเขียนโค้ดได้ง่ายเพียงไม่กี่บรรทัด โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+model = model.fit(X_train, Y_train)
+output = model.predict(X_test)
+mae= mean_absolute_error(np.asarray(Y_test), np.asarray(output))
+print(f"MAE {mae:.2f}")</code></pre>
+
+<p>ผลลัพธ์ที่ได้ก็มีค่า MAE เท่ากับ 59.81 ถือว่าทำได้โอเค ส่วนถ้าต้องการอ่านข้อมูลเพิ่มเติม ผู้อ่านสามารถอ่านได้<a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html" target="_blank" rel="noopener" title="ในเว็บของ scikit-learn">ในเว็บของ scikit-learn</a> ได้ครับ</p>
+
+<h2 class="wp-block-heading">เสริม ลองใช้ Linear Regression สำหรับ Apple MLX</h2>
+
+<p>ผู้อ่านสามารถเข้าไปอ่านได้ที่<a href="https://nickuntitled.com/2024/01/17/12-coding-apple-mlx-and-linear-regression/" title="#12 – รู้จัก Apple MLX และเขียนโค้ด Linear Regression">ลิ้งค์นี้ครับ</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

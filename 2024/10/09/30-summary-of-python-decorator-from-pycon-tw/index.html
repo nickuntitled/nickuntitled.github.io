@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/" />
+<meta property="og:url" content="http://localhost:4000/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-09T16:15:28+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg" />
+<meta property="twitter:title" content="#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-10-09T18:18:01+07:00","datePublished":"2024-10-09T16:15:28+07:00","description":"None","headline":"#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/"},"url":"http://localhost:4000/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-10-09 16:15:28 +0700">2024-10-09</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg' />
+  </figure>
+  
+
+  <p>ปลายเดือนที่แล้ว เราได้ไปงานประชุม PyCon Taiwan 2024 ตัวงานนั้นมีจัดทั้ง Presentation กับ Workshop โดยหนึ่งใน Workshop ที่เราเข้าร่วมนั่นก็คือ <strong>All about decorators</strong></p>
+
+<!--more-->
+
+<p>Workshop <strong>All about decorators</strong> นี้เป็น Workshop ที่จัดโดย <a href="https://lerner.co.il/" data-type="link" data-id="https://lerner.co.il/" target="_blank" rel="noreferrer noopener">Reuven M. Lerner</a> ที่</p>
+
+<ul class="wp-block-list">
+<li>สอนภาษา Python กับ Data Science ตั้งแต่ปี 1995</li>
+
+
+
+<li>เป็นผู้เขียนหนังสืออย่าง Python Workout กับ Pandas Workshop</li>
+
+
+
+<li>และเป็นผู้เขียนบล็อกรายสัปดาห์ที่มีชื่อว่า <a href="https://www.bambooweekly.com/" data-type="link" data-id="https://www.bambooweekly.com/" target="_blank" rel="noreferrer noopener">Bamboo Weekly</a></li>
+</ul>
+
+<p>โดยในบทความนี้ เราจะมาสรุปเรื่อง Decorators จาก Workshop + หาข้อมูลมาเสริมตามด้านล่างนี้ครับ</p>
+
+<h2 class="wp-block-heading">Decorators</h2>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="387" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-1024x683.jpg" alt="" class="wp-image-7401" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-300x200.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-1024x683.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-768x512.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-1536x1024.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-2048x1365.jpg 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-1200x800.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/tim-mossholder-unsplash-1980x1320.jpg 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ภาพโดย <a href="https://unsplash.com/@timmossholder?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Tim Mossholder</a> จากเว็บ <a href="https://unsplash.com/photos/man-spraying-on-white-canvas-hrm0hf8pCdU?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Unsplash</a></figcaption></figure></div>
+
+<p><strong>Decorators </strong>เป็น Pattern อย่างหนึ่งในภาษา Python ที่ทำหน้านี้ปรับแต่งการทำงานของ Function นั้น ๆ โดย</p>
+
+<ul class="wp-block-list">
+<li>เราสามารถเพิ่มบริเวณก่อน/หลังการทำงาน Function ที่เราใช้ Decorators นั้น ๆ ได้ครับ</li>
+
+
+
+<li>ไม่จำเป็นต้องเข้าไปแก้ไขที่ตัวโค้ดนั้น ๆ ด้วยตัวเอง ที่เข้ากันได้กับหลักการ DRY (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" data-type="link" data-id="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank" rel="noreferrer noopener">Don&#8217;t repeat yourself</a>)</li>
+</ul>
+
+<h3 class="wp-block-heading">หลักการ Decorator</h3>
+
+<p>หลักการพื้นฐานของ Decorator [1-3] นั่นก็คือ Function ในภาษาไพทอนนั้น จะได้รับการมองว่าเป็นตัวแปรประเภท Object ที่เป็น <strong>First-Class Object</strong> โดยเรา</p>
+
+<ul class="wp-block-list">
+<li>สามารถกำหนดให้เป็น Argument สำหรับฟังก์ชันนั้น</li>
+
+
+
+<li>กับกำหนดให้สามารถส่งคืนค่าออกมาจาก Function ที่สร้างขึ้น</li>
+
+
+
+<li>และทำ Function ซ้อน Function</li>
+</ul>
+
+<p>หนึ่ง เราสามารถส่งตัวแปรนั้นเป็น Argument สำหรับ Function อื่น (<strong>Functions as Arguments</strong>) โดยแสดงตัวอย่างตามโค้ดด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def func(<strong>arg_func</strong>):
+    print(f"Hello { <strong>arg_func</strong>() }")
+
+def print_my_name():
+    return "Me"
+
+func(print_my_name) &lt;-- ผลลัพธ์จะขึ้นเป็น "Hello Me"</code></pre>
+
+<p>สอง เราสามารถส่งคืนค่าออกมาจาก Function ที่เราสร้างขึ้นมาได้ (<strong>Functions Returning Functions</strong>) โดยแสดงตัวอย่างตามโค้ดด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def func():
+    def <strong>wrapper</strong>():
+        print("Hello")
+    return <strong>wrapper</strong>
+
+wrap = func()
+wrap() &lt;-- ผลลัพธ์จะขึ้นเป็น "Hello"</code></pre>
+
+<p>สาม เราสามารถเขียน Function ซ้อน Function ได้ (<strong>Nested Functions</strong>) ตามโค้ดด้านบนที่เราสร้าง Function func ที่มี Function wrapper ที่อยู่ข้างใน</p>
+
+<p>จุดนี้จะแตกต่างกับภาษาอื่นที่ตัว Function จะมองแค่เป็น Function สำหรับการเรียกใช้งานเท่านั้น</p>
+
+<h3 class="wp-block-heading">คุณสมบัติของ Decorator</h3>
+
+<p>เมื่อทราบหลักการพื้นฐานของ Function ที่ไพทอนมองว่าเป็น Object แล้ว เรามากล่าวถึงคุณสมบัติของตัว Decorators</p>
+
+<p>Decorators มีคุณสมบัติตามด้านล่างนี้</p>
+
+<ol class="wp-block-list">
+<li>มันเป็น Function (It&#8217;s a function)</li>
+
+
+
+<li>รับ Function เป็น Argument (Takes function as an argument)</li>
+
+
+
+<li>ตัว Function ที่ทำหน้าที่เป็น Decorator จะคืนผลลัพธ์ในรูปแบบ Function (Returns a function as a result)</li>
+
+
+
+<li>Function ที่คืนออกมาจาก Function ที่เป็น Decorator จะปรับแต่งการทำงานของ Function ที่เราใส่เข้าไปเป็น Argument (The returned function replaces the behavior of the original)</li>
+</ol>
+
+<p>เมื่อเห็นข้อความตามด้านบนนี้แล้ว อาจจะยังไม่เห็นภาพมากนัก เรามาเขียนโค้ด Decorator กันครับ</p>
+
+<h3 class="wp-block-heading">เขียนโค้ด Decorators</h3>
+
+<p>เรามาเขียนโค้ด Decorators กันเถอะ ในขั้นตอนแรก เรามาสร้าง Function ที่เป็น Decorator โดย</p>
+
+<ul class="wp-block-list">
+<li>ตั้งชื่อ Function ว่า <strong>with_lines_func</strong></li>
+
+
+
+<li>และเรากำหนดชื่อตัวแปรสำหรับการรับ Parameter ที่เป็น Function อย่าง <strong>func</strong></li>
+</ul>
+
+<pre class="wp-block-code"><code>def with_lines_func(func):</code></pre>
+
+<p>ต่อมา เราสร้าง Function ที่ปรับแต่งการทำงานของ Function ที่ใช้ชื่อตัวแปรอย่าง func ตัว Function ที่ปรับแต่งการทำงานนี้เราจะใช้ชื่อว่า wrapper</p>
+
+<pre class="wp-block-code"><code>def with_lines_func(func):
+    def wrapper():
+        <strong>pass</strong>
+
+    return wrapper</code></pre>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>จากโค้ดด้านบนนี้ ตัว <strong>pass</strong> ที่เรากำหนดไว้ข้างใน Function wrapper มีหน้าที่ระบุว่าไม่มีการดำเนินการใด ๆ ในฟังก์ชันนั้น แต่มีการสร้าง/ประกาศ Function, Loops เอาไว้ก่อน เผื่อสำหรับการเขียนโค้ดในคราวหลัง</p>
+<cite><a href="https://www.w3schools.com/python/ref_keyword_pass.asp">Python pass Keyword (w3schools.com)</a></cite></blockquote>
+
+<p>จากนั้น เราเขียนโค้ดข้างใน Function wrapper เพื่อปรับแต่งการทำงานของ Function ที่ใช้ตัวแปร func โดยตัวอย่างนี้ เราจะกำหนดให้พิมพ์ข้อความที่มีลักษณะแบบด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>-------------------
+ข้อความที่พิมพ์ออกมาจาก Function ที่ใช้ตัวแปร func
+-------------------</code></pre>
+
+<p>จาก Output ที่เราต้องการตามด้านบนนี้ เราสามารถเขียนโค้ดได้ตามด้านล่างนี้ครับ โดยลบข้อความ <strong>pass </strong>ใน Function wrapper ก่อนที่จะเขียนโค้ดเข้าไปครับ</p>
+
+<pre class="wp-block-code"><code>def with_lines_func(func):
+    def wrapper():
+        line = "-------------------\n"
+        return f"{ line }{ func() }\n{ line }"
+
+    return wrapper</code></pre>
+
+<p>เมื่อเขียน Function Decorators เสร็จแล้ว เรามาทดลองเรียกใช้กันครับ เราสามารถเรียกใช้ได้โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>@with_lines_func
+def hello():
+    return "Hello"
+
+print(<strong>hello()</strong>)</code></pre>
+
+<p>ผลลัพธ์ที่ได้จะแสดงตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>-------------------
+Hello
+-------------------</code></pre>
+
+<p>อันนี้จะเป็นการเขียน Decorator เบื้องต้นครับ</p>
+
+<p>อย่างไรก็ดี เวลาที่เราสร้าง Function นั้น หลายครั้งเราสร้าง function ที่รับตัวแปร Argument ต่าง ๆ เข้าไปใน Function เพื่อกำหนดการทำงานของ Function นั้นตามที่เราต้องการ</p>
+
+<p>โดยเราจะลองเขียนฟังก์ชันที่รับ Argument ที่ใช้ Decorator เดิมอย่าง with_lines_func</p>
+
+<pre class="wp-block-code"><code>@with_lines_func
+def add(a, b):
+    return a + b
+
+print(add(1, 3))</code></pre>
+
+<p>จากนั้น ทดลองให้โค้ดนี้ทำงาน ตัวระบบจะแจ้งว่าโค้ดมี Error ขึ้นว่า</p>
+
+<pre class="wp-block-code"><code>TypeError: with_lines_func.&lt;locals&gt;.wrapper() takes 0 positional arguments but 2 were given</code></pre>
+
+<p>ก็ไม่แปลกใจอะไร เพราะ Function wrapper ที่อยู่ใน Decorator with_lines_func เราได้สร้างขึ้นนั้นไม่ได้กำหนดให้รับค่า Argument เพื่อนำไปใช้สำหรับการส่งค่านั้นเข้า Function add</p>
+
+<p>ต่อมา เรามาปรับโค้ดส่วน Decorator เพื่อให้ Decorator ทำงานกับ Function ที่รับ Argument ได้ตามด้านล่างนี้ โดยปรับโค้ดได้ตามด้านล่งานี้</p>
+
+<pre class="wp-block-code"><code>def with_lines_func(func):
+    def wrapper(<strong>*args, **kwargs</strong>):
+        line = "-------------------\n"
+        return f"{ line }{ func(<strong>*args, **kwargs</strong>) }\n{ line }"
+
+    return wrapper</code></pre>
+
+<p>จากโค้ด เราจะเพิ่มตัวแปรอย่าง *args กับ *kwargs [4] เข้าไปครับ โดย</p>
+
+<ul class="wp-block-list">
+<li><em><strong>*args</strong></em> คือ พารามิเตอร์แบบที่ไม่ใช่คีย์เวิร์ด (Non-keyword Arguments) ที่เราสามารถส่งค่าเข้าไปใน Function ได้เลย โดยตัวแปร args นี้เป็นตัวแปรประเภท Tuple</li>
+
+
+
+<li><em><strong>**kwargs</strong></em> คือ พารามิเตอร์แบบที่เป็นคีย์เวิร์ด (Keyword Arguments) ที่เราจำเป็นต้องกำหนดชื่อพารามิเตอร์พร้อมกับค่านั้น ๆ เพื่อส่งเข้าไปใน Function โดยตัวแปร kwargs นี้เป็นตัวแปรประเภท Dictionary ที่ชื่อพารามิเตอร์เป็น key ส่วนค่าของพารามิเตอร์นั้น ๆ เป็น value</li>
+</ul>
+
+<p>เมื่อเราได้เพิ่มเข้าไปแล้ว จากนั้นให้ทดลองรันตัวโค้ดอีกรอบ ผลลัพธ์ที่ได้จะแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>-------------------
+4
+-------------------</code></pre>
+
+<h3 class="wp-block-heading">ตัวอย่างการประยุกต์ใช้งาน Decorators</h3>
+
+<p>เมื่อทราบการเขียน Decorators แล้ว ตัว Decorators นั้นสามารถใช้งานได้หลายรูปแบบ ได้แก่ เปลี่ยน Input, เปลี่ยน Output, พิมพ์ Log การทำงานของ Function, เช็ค Permission ของผู้ใช้ กับเก็บ Cache และอื่น ๆ</p>
+
+<p>ในตัวอย่างนี้ เราจะสร้าง Function ที่เป็น Decorators สำหรับการจับเวลารันตัวโค้ด โดยเราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>import time, random
+
+def timefunc(func): 
+    def wrapper(*args):
+        start = time.time()
+	result = func(*args)
+	end = time.time()
+	usage = end - start
+		
+	print(f"This function ({ func.__name__ }) takes { usage } seconds.\n")
+			
+	return result
+		
+    return wrapper</code></pre>
+
+<p>ตัวโค้ดตามด้านบนนี้ เราจะนำเข้าไลบรารีอย่าง</p>
+
+<ul class="wp-block-list">
+<li><strong>time </strong>เพื่อที่จะเรียกใช้งานฟังก์ชัน time.time() สำหรับการดึงเวลาในหน่วยวินาที ตั้งแต่วันที่ 1 มกราคม ค.ศ. 1970 จนถึงปัจจุบัน</li>
+
+
+
+<li><strong>random </strong>สำหรับการสุ่มค่า โดยเราใช้ฟังก์ชัน random.randint() สำหรับการสุ่มค่าเป็นจำนวนเต็มเพื่อหยุดรันโค้ดชั่วคราว</li>
+</ul>
+
+<p>เมื่อเราเขียนโค้ดสำหรับ Decorators แล้ว เรามาลองเขียนฟังก์ชันที่ใช้ Decorators ตามข้างบนนี้ครับ</p>
+
+<pre class="wp-block-code"><code>@timefunc
+def slow_add(first, second):
+	time.sleep(random.randint(0, 3))
+	return first + second
+	
+@timefunc
+def slow_mul(first, second):
+	time.sleep(random.randint(0, 3))
+	return first * second
+	
+print(slow_add(2, 3))
+print(slow_mul(2, 3))
+print(slow_add(2 ,3))
+print(slow_mul(2, 3))</code></pre>
+
+<p>เมื่อทดลองรันโค้ดแล้ว ผลลัพธ์แสดงตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>This function (slow_add) takes 1.005018711090088 seconds.
+This function (slow_mul) takes 1.5020370483398438e-05 seconds.
+This function (slow_add) takes 1.0967254638671875e-05 seconds.
+This function (slow_mul) takes 7.867813110351562e-06 seconds.</code></pre>
+
+<h4 class="wp-block-heading">ที่มา</h4>
+
+<ol class="wp-block-list">
+<li><a href="https://www.geeksforgeeks.org/decorators-in-python/">Decorators in Python &#8211; GeeksforGeeks</a></li>
+
+
+
+<li><a href="https://www.programiz.com/python-programming/decorator">Python Decorators (With Examples) (programiz.com)</a></li>
+
+
+
+<li><a href="https://realpython.com/primer-on-python-decorators/">Primer on Python Decorators – Real Python</a></li>
+
+
+
+<li><a href="https://devhub.in.th/blog/args-kwargs-python">การใช้งาน *args และ **kwargs ในภาษา Python | DH (devhub.in.th)</a></li>
+</ol>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

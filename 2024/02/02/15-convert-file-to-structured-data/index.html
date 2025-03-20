@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#15 แปลงข้อมูลจากไฟล์ให้เป็น Structured Data</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#15 แปลงข้อมูลจากไฟล์ให้เป็น Structured Data" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/02/02/15-convert-file-to-structured-data/" />
+<meta property="og:url" content="http://localhost:4000/2024/02/02/15-convert-file-to-structured-data/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/15_convert_unstructured_to_structured_data.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-02T07:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/15_convert_unstructured_to_structured_data.jpg" />
+<meta property="twitter:title" content="#15 แปลงข้อมูลจากไฟล์ให้เป็น Structured Data" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:41:47+07:00","datePublished":"2024-02-02T07:00:00+07:00","description":"None","headline":"#15 แปลงข้อมูลจากไฟล์ให้เป็น Structured Data","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/15_convert_unstructured_to_structured_data.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/02/02/15-convert-file-to-structured-data/"},"url":"http://localhost:4000/2024/02/02/15-convert-file-to-structured-data/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#15 แปลงข้อมูลจากไฟล์ให้เป็น Structured Data</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-02-02 07:00:00 +0700">2024-02-02</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/15_convert_unstructured_to_structured_data.jpg' />
+  </figure>
+  
+
+  <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>The English version is available in <a href="https://medium.com/@nickuntitled/build-a-data-pipeline-converting-from-unstructured-to-structured-data-with-head-pose-ac5c594a084e?source=user_profile---------0----------------------------" target="_blank" rel="noopener" title="Medium">Medium</a>.</p>
+</blockquote>
+
+<p>ข้อมูลประเภท <strong>Unstructured Data</strong> เป็นข้อมูลที่ไม่มีโครงสร้างที่แน่นอนแบบที่ปรากฏในข้อมูลประเภท Structured Data และ Semi-Structured Data โดยตัวอย่างข้อมูลประเภทนี้ได้แก่ ไฟล์ รูปภาพ วิดีโอ และเสียง</p>
+
+<!--more-->
+
+<p>ข้อมูลประเภทนี้จะถูกเก็บไว้ในที่เก็บข้อมูลประเภท Data Lake ที่เป็นที่เก็บข้อมูลที่มีขนาดใหญ่ที่เก็บข้อมูลประเภทไฟล์คล้ายกับ Hard disk ในคอมพิวเตอร์ของเรา แต่มีระบบป้องกันข้อมูลสูญหายที่ดีกว่า โดยตัวอย่างของการใช้งาน Data Lake ผ่านระบบคลาวด์ก็ได้แก่ Google Cloud Storage, Amazon S3 และ Azure Blob Storage</p>
+
+<p>ในตัวอย่างนี้ เราจะนำข้อมูลประเภท Unstructured Data มาแปลงให้ข้อมูลบางส่วนให้มาเป็น Structured Data ที่มีโครงสร้างที่แน่นอน ที่แสดงในรูปแบบของตารางได้ ตัวอย่างของไฟล์ที่เก็บข้อมูลประเภทนี้ ได้แก่ Excel, Column-Separated Value (CSV) และ Tab-Separated Values (TSV)</p>
+
+<h2 class="wp-block-heading">โจทย์</h2>
+
+<p>สำหรับโจทย์ในเคสนี้มีที่มาจากเราทำเทคนิค Head Pose Estimation มาก่อนที่ม.มหิดล ร่วมกับพัฒนาต่อยอดตอนไปฝึกงานที่ไต้หวันที่ National Chung Cheng University ที่จังหวัดเจียอี้ ไต้หวัน</p>
+
+<p>งานที่เราทำเป็นงาน Image Processing ทางด้าน Computer Vision โดยพัฒนาเทคนิค Head Pose Estimation สำหรับการวัดองศาการเคลื่อนไหวของศีรษะและลำคอเพื่อนำไปประยุกต์ในงานทางการแพทย์</p>
+
+<p>ตัว Dataset ที่นำมาใช้งานมีทั้งหมด 4 Dataset ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>300W_LP </strong>[1] เป็น Synthetic Dataset ที่สังเคราะห์ขึ้นจาก 4 Dataset ย่อย ได้แก่ AFW, HELEN, LFPW และ IBUG ด้วยการใช้ 3D Morphable Model Fitting ผ่านการใช้งาน Face Profiling เพื่อสร้าง 3D Head Model  ทำให้ใน Dataset มีข้อมูลทั้งหมด 61,225 ภาพ โดยประกอบไปด้วย
+<ul class="wp-block-list">
+<li>AFW จำนวน 16,556 ภาพ</li>
+
+
+
+<li>HELEN จำนวน 37,676 ภาพ</li>
+
+
+
+<li>LFPW จำนวน 16,556 ภาพ</li>
+
+
+
+<li>และ IBUG จำนวน 5,207 ภาพ</li>
+</ul>
+</li>
+
+
+
+<li><strong>AFLW2000 </strong>[1] เป็น Dataset ที่นำภาพจำนวน 2,000 ภาพแรกจาก Dataset AFLW (Annotated Facial Landmark in-the-Wild) มาสร้าง 3D facial landmark ผ่านการใช้งาน 3D Morphable Fitting ทำให้มีภาพทั้งหมด 2,000 ภาพ</li>
+
+
+
+<li><strong>BIWI Kinect Head Pose Dataset</strong> [2] เป็น Dataset ที่เก็บข้อมูลจากการใช้เครื่องมือ Microsoft Kinect กับ Subject ทั้งหมด 20 ราย (ผู้หญิง 4 ราย ผู้ชายทั้งหมด 16 ราย) ด้วยการบันทึกวิดีโอ ทำให้มีภาพทั้งหมด 15,678 ภาพ</li>
+
+
+
+<li>และข้อมูลการวัดการเคลื่อนไหวศีรษะและลำคอ (Cervical Range of Motion &#8211; CROM) ที่เก็บข้อมูลในคนปกติ</li>
+</ul>
+
+<p>โดยมี 3 Protocol สำหรับการเทรน และทดสอบเทคนิคที่พัฒนาขึ้น</p>
+
+<ul class="wp-block-list">
+<li><strong>Protocol แรก</strong> เป็นการเทรนตัวโมเดลด้วย Dataset 300W_LP แล้วทดสอบด้วย Dataset AFLW2000 และ BIWI</li>
+
+
+
+<li><strong>Protocol ที่สอง</strong> เป็นการแบ่ง Dataset BIWI โดย 70% ของ BIWI เอาไว้สำหรับการเทรน ส่วน 30% เป็นชุดข้อมูลสำหรับการทดสอบ</li>
+
+
+
+<li>ส่วน <strong>Protocol ที่สาม</strong> เป็นการเทรนด้วย 300W_LP แล้วทดสอบกับชุดข้อมูล Cervical Range of Motion ที่เก็บในคนปกติ</li>
+</ul>
+
+<p>2 Protocol แรกเป็นขั้นตอนการฝึก และทดสอบที่เทคนิค Head Pose Estimation หลายเปเปอร์ใช้กันครับ ตัวอย่างเช่นเทคนิค FSA-Net [3]</p>
+
+<p>อย่างไรก็ดี การนำ Dataset ไปใช้งานจำเป็นต้องดาวน์โหลดจากเว็บไซต์ของผู้พัฒนา Dataset แล้วจัดเตรียม Dataset ด้วยตัวเอง ซึ่งไม่ต้องจะสะดวกเท่าไร เพราะต้องพิมพ์คำสั่งผ่านทาง Command Line ด้วยตัวเองเพื่อจัดเตรียม Dataset และทดสอบ กว่าจะให้ตัวโค้ดเปิดไฟล์ที่ทางผู้จัดทำ Dataset Label ทีละไฟล์เพื่อเพื่อแปลงข้อมูลเอาไว้ใช้เทรนตัวโมเดลได้ก็เสียเวลา</p>
+
+<p>ดังนั้นแล้ว ทางเราเลยต้องการให้เตรียมข้อมูลเพื่อที่จะนำมาเทรนตัวโมเดล Head Pose Estimation ได้โดยไม่จำเป็นต้องพิมพ์คำสั่ง Command Line ตลอดเวลา (โดยใช้ Dataset อย่าง 300W_LP และ AFLW2000)</p>
+
+<p>เมื่อทราบตัวโจทย์ และปัญหาแล้ว เราก็วางแผนทำ <strong>Data Pipeline</strong> เลย นิยามและรายละเอียดแบบคร่าว ๆ ของ Data Pipeline ที่เอามาจาก<a href="https://nickuntitled.com/2024/01/26/13-create-datapipeline-get-tuition-cost/" target="_blank" rel="noopener" title="#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี">บทความก่อนหน้า</a>คือกระบวนการลำเลียงข้อมูลจากแหล่งข้อมูล (Data Source) มายังจุดหมาย (Destination) โดยมีทั้งหมด 4 ขั้นตอน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>การนำเข้าข้อมูล (Ingestion)</li>
+
+
+
+<li>การเปลี่ยนแปลงข้อมูล (Transformation)</li>
+
+
+
+<li>การเก็บข้อมูล (Storage) ที่แบ่งได้เป็น Data Warehouse และ Data Lake</li>
+
+
+
+<li>และปลายทางคือการวิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis)</li>
+</ul>
+
+<p>โดยเราสามารถสรุปขั้นตอนได้ตามข้างล่างนี้ โดยเราจะใช้ Region ทั้งหมดเป็น <strong>us-central1</strong></p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2290448&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/project_3_unstructured_data_2_structured_data-4-1024x576.jpg" alt="" class="wp-image-4752" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/project_3_unstructured_data_2_structured_data-4-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/project_3_unstructured_data_2_structured_data-4-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/project_3_unstructured_data_2_structured_data-4-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/project_3_unstructured_data_2_structured_data-4-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/project_3_unstructured_data_2_structured_data-4-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/project_3_unstructured_data_2_structured_data-4.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">Data Pipeline ที่ออกแบบไว้ใน Project นี้ ภาพล่างขวาเอามาจาก Asperti A, Filippini D. Deep learning for head pose estimation: A survey. SN Computer Science. 2023 Apr 26;4(4). doi:<a href="https://link.springer.com/article/10.1007/s42979-023-01796-z" target="_blank" rel="noopener" title="10.1007/s42979-023-01796-z">10.1007/s42979-023-01796-z</a></figcaption></figure></div>
+
+<h2 class="wp-block-heading">การนำเข้าข้อมูล (Ingestion)</h2>
+
+<p>ในขั้นตอนนี้เป็นการนำเข้าข้อมูลจาก Dataset ของผู้จัดทำโดยตรง ผ่านการดาวน์โหลดไฟล์ โดยตัว Dataset ที่เราใช้ก็ได้แก่ 300W_LP และ AFLW2000 </p>
+
+<h3 class="wp-block-heading">โครงสร้าง Dataset</h3>
+
+<p>ในแต่ละ Dataset ที่เราดาวน์โหลดมาจากเว็บไซต์ของผู้จัดทำ จะมีลักษณะเป็นไฟล์บีบอัดในรูปแบบ zip ที่มีโครงสร้างข้างในไฟล์ตามด้านล่างนี้</p>
+
+<h4 class="wp-block-heading"><strong>300W_LP</strong></h4>
+
+<p>ตัวโครงสร้างโฟลเดอร์ภายใน Dataset 300W_LP ประกอบไปด้วย 4 Dataset ย่อย ได้แก่ AFW, HELEN, LFPW และ IBUG ที่มีจำนวนข้อมูลทั้งหมด 61,225 ภาพ โดยได้ Flip เพิ่ม ทำให้มีโฟลเดอร์ทั้งหมด 8 โฟลเดอร์ที่มีจำนวนภาพทั้งหมด 122,450 ภาพ ภายในแต่ละโฟลเดอร์จะมีไฟล์ที่เป็นรูปภาพ JPG และไฟล์ Label ของแต่ละภาพที่เก็บไว้ในฟอร์แมต <strong>MAT</strong></p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ไฟล์ฟอร์แมต <strong>MAT </strong>เป็นไฟล์ที่เก็บข้อมูลที่เป็น Matrix, Structs, Scalars และ Strings ที่ใช้งานสำหรับโปรแกรม MATLAB ที่เป็นแพลตฟอร์มการวิเคราะห์ข้อมูล การพัฒนาอัลกอริทึม และสร้างโมเดลขึ้นมาที่เป็นที่นิยมสำหรับวิศวกร กับนักวิทยาศาสตร์ และนักวิจัย</p>
+</blockquote>
+
+<h4 class="wp-block-heading"><strong>AFLW2000</strong></h4>
+
+<p>ชุดข้อมูลนี้ประกอบไปด้วยไฟล์ภาพ JPG และไฟล์ MAT ที่มีจำนวนทั้งหมด 2,000 ภาพ</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2290bd7&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="208" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1024x368.jpg" alt="" class="wp-image-4701" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-300x108.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1024x368.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-768x276.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1536x553.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1200x432.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure.jpg 1712w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">โครงสร้างโฟลเดอร์และไฟล์ใน Dataset 300W_LP และ AFLW2000</figcaption></figure></div>
+
+<p>ข้อมูลจากทั้ง 2 Dataset เหล่านี้ เป็นข้อมูล<span style="font-size: revert;">ที่แบบ Unstructured Data ที่ไม่มีโครงสร้างแน่นอนแบบ Structured Data และไม่มีโครงสร้างที่ยืดหยุ่นแบบ JSON ใน Semi-structured Data ดังนั้นแล้ว เราจำเป็นต้องดาวน์โหลดข้อมูลมาเสียก่อน ประมวลผลแต่ละไฟล์แล้วเก็บไว้ใน Data Lake</span></p>
+
+<h3 class="wp-block-heading">สร้าง DAG</h3>
+
+<p>ในบทความนี้เราจะสร้าง DAG (Directed Acyclic Graph) ขึ้นมา เพื่อที่จะดึงข้อมูลจากเว็บของผู้จัดทำ Dataset ผ่านการใช้เครื่องมือสองเครื่องมือตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li><strong>Google Cloud Storage</strong> สำหรับการเก็บข้อมูลให้เป็น Data Lake</li>
+
+
+
+<li><strong>Google Cloud Composer</strong> ที่ใช้งาน Apache Airflow สำหรับการทำ Data Pipeline Orchestration โดยเราเปิดใช้ Instance ที่เป็น Composer 2 ที่มีขนาดเล็กที่สุด แต่ปรับพื้นที่การใช้งานจาก <strong>1GB</strong> เป็น <strong>4GB</strong> เพื่อให้มีพื้นที่เพียงพอต่อการเตรียม Dataset 300W_LP ที่มีขนาดราว 3GB</li>
+</ul>
+
+<p>ต่อมา เรามาเริ่มเขียนโค้ดเพื่อสร้าง DAG สำหรับการใช้งานใน Google Cloud Composer กันเลย โดยในไฟล์ DAG มีส่วนประกอบทั้งหมด 5 ส่วน ได้แก่</p>
+
+<ol class="wp-block-list">
+<li><strong>Import modules</strong> ที่เป็นการนำเข้าโมดูลที่จำเป็น</li>
+
+
+
+<li><strong>Default arguments (args) </strong>ที่เป็นการกำหนด config เริ่มต้นของ DAG</li>
+
+
+
+<li><strong>Instantiate a DAG</strong> เป็นการสร้าง DAG</li>
+
+
+
+<li><strong>Tasks </strong>เป็นการสร้าง Operator ขึ้นมา โดยต้องกำหนด task_id ไม่ซ้ำกับอันอื่น โดย Operator ที่ใช้กันบ่อย ได้แก่ BashOperator และ PythonOperator โดยในบทความนี้เราจะใช้เฉพาะ PythonOperator</li>
+
+
+
+<li><strong>Setting up dependencies</strong> ที่เราสามารถกำหนดทิศทางของการทำงานในแต่ละ Operator ได้</li>
+</ol>
+
+<h4 class="wp-block-heading">Import Modules</h4>
+
+<p>ส่วนแรกเป็นการนำเข้าไลบรารีเสียก่อน โดยเรานำเข้าไลบรารีตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>ไลบรารี Airflow โดยนำเข้า
+<ul class="wp-block-list">
+<li>DAG จาก airflow.models</li>
+
+
+
+<li>PythonOperator สำหรับการรันโค้ด Python จาก airflow.operators.python</li>
+
+
+
+<li>days_ago สำหรับการกำหนดวันเพื่อให้ตัว DAG รันจาก airflow.utils.dates</li>
+</ul>
+</li>
+
+
+
+<li>Client จากไลบรารีของ Google Cloud (google.cloud.storage)</li>
+
+
+
+<li>ไลบรารี NumPy, SciPy, Pandas, Requests, gdown, ZipFile และ OS</li>
+</ul>
+
+<pre class="wp-block-code"><code># Airflow
+from airflow.models import DAG
+from airflow.operators.python import PythonOperator
+from airflow.utils.dates import days_ago
+
+# Google Cloud Storage
+from google.cloud.storage import Client
+
+# Pandas Scipy requests gdown
+import numpy as np
+import scipy.io as sio
+import pandas as pd
+import requests
+import gdown
+import os 
+import zipfile</code></pre>
+
+<h4 class="wp-block-heading">Default Arguments</h4>
+
+<p>เมื่อนำเข้า เรียบร้อยแล้ว เรากำหนดค่าเริ่มต้นของตัว DAG นี้กัน โดยกำหนด</p>
+
+<ul class="wp-block-list">
+<li>กำหนดชื่อ dag_id</li>
+
+
+
+<li>กำหนดวันที่เริ่มต้นการทำงานของ DAG โดยกำหนดให้เป็น days_ago(1) เพื่อเริ่มต้นการทำงานทันที</li>
+
+
+
+<li>กำหนดความถี่ของการรัน DAG โดยในที่นี่ให้ทำครั้งเดียวผ่านการกำหนด @once</li>
+
+
+
+<li>กำหนด tags ให้เป็น unstructred</li>
+</ul>
+
+<pre class="wp-block-code"><code># 2. Default Arguments
+default_args = {
+    "dag_id": "headpose_dag",
+    "start_date": days_ago(1),
+    "schedule_interval": "@once",
+    "tags": &#91;"unstructured"]
+}</code></pre>
+
+<p>นอกจากนี้ เรากำหนดค่าที่เกี่ยวข้องกับการดาวน์โหลดไฟล์ การอ่านและเขียนไฟล์ออกมาเป็นไฟล์ CSV (Column-Separated Values) ที่เป็น Structured Data ผ่านการกำหนดตัวแปร dictionary ที่มีชื่อว่า datasets</p>
+
+<pre class="wp-block-code"><code>dataset_path = "/home/airflow/gcs/data/"
+
+datasets = {
+    "300W_LP": { 
+        "url": "https://drive.google.com/uc?id=0B7OEHD3T4eCkVGs0TkhUWFN6N1k", 
+        "output": os.path.join(dataset_path, "300W_LP.zip"),
+        "label_filename": os.path.join(dataset_path, "300W_LP.csv")
+    },
+    "AFLW2000": { 
+        "url": "http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/Database/AFLW2000-3D.zip", 
+        "output": os.path.join(dataset_path, "AFLW2000.zip"),
+        "label_filename": os.path.join(dataset_path, "AFLW2000.csv")
+    }
+}</code></pre>
+
+<p>เพิ่มเติม เรากำหนดชื่อ Bucket และตำแหน่ง Folder ที่ต้องการให้เก็บไฟล์ Dataset เวลาแตกไฟล์เสร็จแล้วผ่านตัวแปร bucket_name และ unzip_folder ตามลำดับ</p>
+
+<pre class="wp-block-code"><code>bucket_name   = "&lt; bucket name &gt;"
+unzip_folder = os.getcwd()</code></pre>
+
+<h4 class="wp-block-heading"><strong>Instantiate a DAG</strong></h4>
+
+<p>ขั้นตอนนี้เป็นการเริ่มต้นการทำงานของ DAG โดยเรากำหนด dag_id, start_date, schedule_interval และ tags เพื่อที่จะกำหนดชื่อ กำหนดเวลาเริ่มต้นการทำงาน กำหนดความถี่ และกำหนดหมวดหมู่ของ DAG ตามลำดับ</p>
+
+<p>วิธีการตั้งค่าทำได้โดยการเขียนโค้ดตามด้านล่างนี้ พารามิเตอร์ต่าง ๆ เอามาจากตัวแปร default_args ที่กำหนดในขั้นตอน Default Arguments</p>
+
+<pre class="wp-block-code"><code># 3. Initialize a DAG
+with DAG(
+    default_args&#91;'dag_id'],
+    start_date = default_args&#91;'start_date'],
+    schedule_interval = default_args&#91;'schedule_interval'],
+    tags = default_args&#91;'tags']
+) as dag:</code></pre>
+
+<h4 class="wp-block-heading">Tasks</h4>
+
+<p>ส่วนนี้จะเป็นส่วนที่สร้าง Operator ขึ้นมาเพื่อดาวน์โหลดข้อมูล Dataset จากทางเว็บผู้จัดทำโดยตรง แตกไฟล์ จากนั้นเปิดไฟล์ที่เก็บใน Dataset ที่เป็นไฟล์ MAT เพื่อที่จะอ่านข้อมูล Label ของไฟล์ จากนั้นจัดเก็บในรูปแบบไฟล์ CSV ที่เป็น Structured Data</p>
+
+<p>โดยส่วนการแตกไฟล์ การอ่านข้อมูล Label จะกล่าวถึงในขั้นตอน<strong>การเปลี่ยนแปลงข้อมูล (Transformation)</strong></p>
+
+<h5 class="wp-block-heading">ดาวน์โหลดไฟล์จาก Dataset</h5>
+
+<p>ส่วนแรก เป็นการดาวน์โหลดไฟล์ Dataset ส่วนนี้มีความแตกต่างระหว่าง Dataset 300W_LP และ AFLW2000</p>
+
+<p><strong>300W_LP</strong> จะเป็นการดาวน์โหลดไฟล์ zip จากทางเว็บ Google Drive ที่ทางผู้จัดทำ Dataset ได้เก็บไว้ การดาวน์โหลด Dataset นี้จะใช้งานไลบรารี gdown วิธีการดาวน์โหลดทำได้โดยการเขียนโค้ดใช้งานคำสั่ง download ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>import gdown
+
+url = "https://drive.google.com/uc?id=<strong>&lt; id of google drive link &gt;</strong>"
+
+gdown.download(url, &lt; output path &gt;, quiet = False)</code></pre>
+
+<p>โดยตัว id ของ Google Drive ทำได้โดยเวลาดูที่ลิ้งค์ที่ทางผู้จัดทำ Dataset ให้มา ให้เราเอาส่วนที่เน้นสีดำไปใส่ แค่นี้ก็ดาวน์โหลดไฟล์จาก Google Drive ด้วย gdown ได้แล้ว (ในลิ้งค์ด้านล่างเอามาจาก<a href="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/Database/300W-LP/main.htm" target="_blank" rel="noopener" title="หน้าเว็บของผู้จัดทำ Dataset">หน้าเว็บของผู้จัดทำ Dataset</a>)</p>
+
+<pre class="wp-block-code"><code>https://drive.google.com/file/d/<strong>0B7OEHD3T4eCkVGs0TkhUWFN6N1k</strong>/view?usp=sharing&amp;resourcekey=0-WT5tO4TOCbNZY6r6z6WmOA</code></pre>
+
+<p>จุดนี้จะแตกต่างกับการดาวน์โหลด Dataset <strong>AFLW2000</strong> ที่จะเป็นลิ้งค์สำหรับการดาวน์โหลดจาก<a href="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/Database/AFLW2000-3D.zip" target="_blank" rel="noopener" title="หน้าเว็บโดยตรง">หน้าเว็บโดยตรง</a> จุดนี้เราสามารถใช้ไลบรารี requests เพื่อดาวน์โหลดได้เลยด้วยการเขียนโค้ดด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>import requests
+
+rq = requests.get(&lt; url of the dataset file &gt;)
+with open(&lt; target zip file &gt;, "wb") as f:
+    f.write(rq)</code></pre>
+
+<p>เมื่อทราบวิธีการเขียนโค้ดเพื่อดาวน์โหลดไฟล์ Dataset แล้ว เรามาเขียนโค้ดฟังก์ชันกันดีกว่า</p>
+
+<pre class="wp-block-code"><code>def download_dataset(dataset_name, dataset_dict):
+    if dataset_name == '300W_LP':
+        url = dataset_dict&#91;'300W_LP']&#91;'url']
+        output_file = dataset_dict&#91;'300W_LP']&#91;'output']
+
+        <strong>gdown.download</strong>(url, output_file, quiet = False)
+    elif dataset_name == 'AFLW2000':
+        url = dataset_dict&#91;'AFLW2000']&#91;'url']
+        output_file = dataset_dict&#91;'AFLW2000']&#91;'output']
+
+        aflw2000_request = <strong>requests.get</strong>(url)
+        with open(output_file, "wb") as f:
+             f.write(aflw2000_request.content)
+
+initial_task = &#91;
+    PythonOperator(
+        task_id = f"download_{ dataset_name }",
+        python_callable = download_dataset,
+        op_kwargs = {
+            "dataset_name": dataset_name,
+            "dataset_dict": datasets
+        }
+    ) for dataset_name in &#91;'300W_LP', 'AFLW2000']
+]</code></pre>
+
+<h5 class="wp-block-heading">แตกไฟล์​ ZIP</h5>
+
+<p>ต่อมา เป็นการแตกไฟล์ ZIP ที่ดาวน์โหลดมาจากเว็บไซต์ จุดนี้ทำได้โดยการใช้ไลบรารีที่มีมาให้ใน Python คือไลบรารี zipfile ที่สามารถเปิดไฟล์​ZIP ได้โดยการใช้งานคลาส ZipFile ที่ใช้งานได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>zipfile_class = zipfile.<strong>ZipFile</strong>(&lt; zipfile_path &gt;, 'r')</code></pre>
+
+<p>โดย &#8216;r&#8217; คือการตั้งค่าให้อ่านไฟล์อย่างเดียว</p>
+
+<p>เมื่อได้ตัวแปรนี้แล้ว เราแตกไฟล์ทุกไฟล์ออกมาได้โดยการใช้ฟังก์ชัน extractall ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>zipfile_class.<strong>extractall</strong>(path = "&lt; target extract folder &gt;")</code></pre>
+
+<p>เมื่อทราบวิธีการใช้งานแล้ว เราเขียนฟังก์ชันสำหรับการแตกไฟล์จาก Dataset ที่ดาวน์โหลดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def unzip_file(zipfile_path, extract_folder):
+    # Unzip the file for preparation
+    print(f"{ zipfile_path } will be unzippeed at { extract_folder }.")
+    with zipfile.ZipFile(zipfile_path, 'r') as zip_300wlp:
+        zip_300wlp.extractall(path = extract_folder)
+
+unzip_task = &#91;
+    PythonOperator(
+        task_id = f"unzip_{ dataset_name }",
+        python_callable = unzip_file,
+        op_kwargs = {
+            "zipfile_path": datasets&#91;dataset_name]&#91;'output'],
+            "extract_folder": unzip_folder
+        }
+    ) for dataset_name in &#91;'300W_LP', 'AFLW2000']
+]</code></pre>
+
+<h2 class="wp-block-heading">การเปลี่ยนแปลงข้อมูล (Transformation)</h2>
+
+<p>ขั้นตอนนี้ เป็นการนำข้อมูลมาผ่านขั้นตอนการเปลี่ยนแปลงข้อมูล <a href="https://blog.datath.com/etl-คืออะไร/" target="_blank" rel="noopener" title="Extract Transform Load (ETL)">Extract Transform Load (ETL)</a> ที่ประกอบไปด้วย</p>
+
+<ul class="wp-block-list">
+<li><strong>E = Extract</strong> ที่เป็นขั้นตอนการดึงข้อมูลจากแหล่งข้อมูล (Data Source) ต่างๆ โดยในตัวอย่างจะดึงข้อมูลจาก Dataset ที่ทำไปแล้วผ่านการดาวน์โหลดในขั้นตอนก่อนหน้า</li>
+
+
+
+<li><strong>T = Transform</strong> เป็นขั้นตอนการเปลี่ยนแปลงข้อมูลที่ได้จากขั้นตอน Extractให้เป็นไปตามที่ต้องการ</li>
+
+
+
+<li><strong>L = Load</strong> เป็นการนำข้อมูลไปเก็บไว้ในระบบปลายทาง โดยนำไปเก็บใน Data Lake เพื่อนำข้อมูลไปทำโมเดล Machine Learning สำหรับการทำ Head Pose Estimation</li>
+</ul>
+
+<p>การเขียนโค้ด เราจะเขียนโค้ดโดยนำข้อมูลที่ดาวน์โหลดเป็นไฟล์ ZIP เพื่อประมวลผลสำหรับการแปลงจาก Unstructured Data เพื่อให้เป็น Structured Data </p>
+
+<p>ขั้นแรก เราแตกไฟล์ ZIP เสียก่อน แล้วเราจะได้โฟลเดอร์ของ Dataset 300W_LP และ AFLW2000 ตามที่อยู่ไฟล์ที่กำหนดไว้ โดยมีโครงสร้างไฟล์ตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2291d03&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="208" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1024x368.jpg" alt="" class="wp-image-4701" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-300x108.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1024x368.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-768x276.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1536x553.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure-1200x432.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/summarized_folder_structure.jpg 1712w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">โครงสร้างโฟลเดอร์ และไฟล์ในแต่ละ Dataset</figcaption></figure></div>
+
+<p>เมื่อทราบโครงสร้างแล้ว ก่อนอื่น เราเขียนฟังก์ชัน กับเขียนตัวแปรสำหรับการเก็บข้อมูลระหว่างการประมวลผลข้อมูลใน Dataset เพื่อแปลงข้อมูลจาก <strong>Unstructured Data</strong> ให้เป็น <strong>Structured Data</strong> ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Functions
+def dataset_preparation(extract_folder, 
+                label_filename, data, limit_pose = True):
+    
+    # Define output variable
+    dataset = {
+        "mat_path": &#91;],
+        "jpg_path": &#91;],
+        "yaw": &#91;],
+        "pitch": &#91;],
+        "roll": &#91;],
+        "x_min": &#91;],
+        "y_min": &#91;],
+        "x_max": &#91;],
+        "y_max": &#91;]
+    }</code></pre>
+
+<p>ต่อมา เรามาเปลี่ยนข้อมูลจาก MAT ที่เป็นข้อมูลแบบ Unstructured Data เป็น Structured Data แต่ก่อนอื่น เราต้องดึงรายชื่อไฟล์ทุกไฟล์ที่มีใน Dataset เสียก่อน โดยฟังก์ชันหลักที่ใช้ในขั้นนี้คือฟังก์ชัน os.listdir ที่มีความแตกต่างระหว่าง 300W_LP กับ AFLW2000 </p>
+
+<p>โดย 300W_LP จะต้องเก็บรายชื่อโฟลเดอร์ทุกโฟลเดอร์ใน Dataset ย่อย จากนั้นค่อยเก็บรายชื่อไฟล์ทุกไฟล์ ส่วน AFLW2000 จะเก็บรายชื่อไฟล์ทุกไฟล์ได้เลย</p>
+
+<pre class="wp-block-code"><code># Dataset name
+if data == '300W_LP':
+    output_folder = "300W_LP"
+    list_folder = True
+elif data == "AFLW2000":
+    output_folder = "AFLW2000"
+    list_folder = False
+else:
+    print("&#91;*] Not implement")
+    return None
+
+print("Folder List")
+if list_folder:
+    folder_path = os.path.join(extract_folder, output_folder)
+    subdata_list = &#91;x for x in os.listdir(folder_path)]
+else:
+    folder_path = extract_folder
+    subdata_list = &#91;output_folder]
+
+# Get the list of files
+file_list = &#91;]
+for subdata_each in subdata_list:
+    filelist_temp = &#91;]
+    dataset_path = os.path.join(folder_path, subdata_each)
+    for x in os.listdir(dataset_path):
+        if not x.endswith('.jpg'):
+            continue
+
+        filename = '.'.join(x.split('.')&#91;:-1])
+        if os.path.exists(os.path.join(dataset_path, f"{ filename }.jpg")) and \
+            os.path.exists(os.path.join(dataset_path, f"{ filename }.mat")):
+            filelist_temp.append(os.path.join(subdata_each, filename))
+
+    file_list.extend(filelist_temp)
+
+print("This dataset has both labels and pictures within ", len(file_list), " data.")</code></pre>
+
+<p>เมื่อเก็บรายชื่อไฟล์ทุกไฟล์ใน Dataset แล้ว เรามาวนลูปเพื่อเก็บข้อมูลในไฟล์​ MAT แต่ละไฟล์เพื่อนำข้อมูลไปเก็บไว้ในตัวแปร dictionary ที่มีชื่อ dataset เสียก่อน</p>
+
+<pre class="wp-block-code"><code># Create the table
+print("Preparation")
+for idx, file_each in enumerate(file_list):
+    pass</code></pre>
+
+<p>จากนั้น เปิดไฟล์ MAT ด้วยการใช้งานไลบรารี scipy.io ผ่านคำสั่ง loadmat ตามด้านล่างนี้ และเก็บที่อยู่ไฟล์ JPG และ MAT ไว้ในตัวแปร dataset</p>
+
+<pre class="wp-block-code"><code># Create the table
+print("Preparation")
+for idx, file_each in enumerate(file_list):
+    <strong>temp_path = os.path.join(folder_path, f"{ file_each }.mat")
+    mat_data = sio.loadmat(temp_path)</strong>
+
+    <strong># File Path
+    dataset&#91;'jpg_path'].append(f"{ file_each }.jpg")
+    dataset&#91;'mat_path'].append(f"{ file_each }.mat")</strong></code></pre>
+
+<p>โดยในไฟล์ MAT มีโครงสร้างตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>{'__header__': b'MATLAB 5.0 MAT-file, Platform: PCWIN64, Created on: Thu Nov 19 05:27:58 2015',
+ '__version__': '1.0',
+ '__globals__': &#91;],
+ <strong>'pt2d'</strong>: array(&#91;&#91;137.96485941, 141.81740513, 149.27325709, 153.45599499,
+         161.29984597, 177.60278044, 195.20333778, 214.39138619,
+         ...
+         195.7340099 , 218.8127165 , 232.5826945 , 244.71775868,
+         272.53979535, 246.14487262, 232.68518007, 218.32057934],
+        &#91;249.24581626, 269.88200318, 290.46580526, 313.98378888,
+         339.42819829, 359.00424682, 375.25811479, 387.9580489 ,
+         ...
+         318.22011528, 317.03825244, 318.69326663, 314.65008594,
+         309.32396846, 331.33344645, 333.96460526, 333.39003117]]),
+ 'Illum_Para': array(&#91;&#91; 1.11514795,  1.02066755,  0.96244568,  0.11801961,  0.32976416,
+          0.40309075,  0.74722213,  1.72785103,  0.        , 20.        ]]),
+ 'Color_Para': array(&#91;&#91;0.7713423 , 0.9595035 , 1.0477136 , 0.14376454, 0.09327234,
+         0.08470309, 1.        ]], dtype=float32),
+ 'Tex_Para': array(&#91;&#91; 4116.08642578],
+        &#91; -991.53222656],
+        ...
+        &#91;    0.        ],
+        &#91;    0.        ]]),
+ 'Shape_Para': array(&#91;&#91;-4.24112500e+05],
+        &#91;-4.53441406e+05],
+        &#91; 1.75243340e+04],
+        ...
+        &#91; 1.39480718e+02],
+        &#91;-1.68536982e+02],
+        &#91; 2.48268447e+02]]),
+ 'Exp_Para': array(&#91;&#91;-3.27298303],
+        &#91; 3.51753161],
+        &#91;-0.2836445 ],
+        &#91; 0.81075808],
+        ...
+        &#91; 0.00852742],
+        &#91; 0.03329538],
+        &#91;-0.03496649],
+        &#91; 0.00456543]]),
+ <strong>'Pose_Para'</strong>: array(&#91;&#91;<strong>-2.3974101e-01,  4.4346970e-01, -1.6167396e-01</strong>,  2.5770740e+02,
+          2.0082205e+02, -8.7112244e+01,  1.2718338e-03]], dtype=float32),
+ 'roi': array(&#91;&#91; 29, -82, 437, 326]], dtype=int16)}</code></pre>
+
+<p>โครงสร้างที่เราจะนำมาประมวลผลเพื่อ</p>
+
+<ul class="wp-block-list">
+<li>เก็บข้อมูล <strong>Facial Bounding Box</strong> จากการใช้จุด Facial Landmark ทั้งหมด 68 จุด ผ่านตัวแปร
+<ul class="wp-block-list">
+<li>pt2d ของ Dataset 300W_LP ที่มีขนาดอาเรย์ [2, 68]</li>
+
+
+
+<li>หรือ pt3d_68 ของ Dataset AFLW2000 ที่มีขนาดอาเรย์ [3, 68] โดยเพิ่มพิกัดแกน z (แต่ในที่นี่เราไม่ได้ใช้)</li>
+</ul>
+</li>
+
+
+
+<li>และเก็บข้อมูล Pose_Para สำหรับการแปลงให้เป็น <strong>Head Pose</strong> ที่เป็นองศาก้ม-เงย (pitch), องศาหันซ้าย-ขวา (left and right rotation) และองศาเอนศีรษะซ้าย-ขวา (left and right lateral bending) โดยอธิบายได้ตามภาพด้านล่างนี้</li>
+</ul>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22924f2&quot;}" data-wp-interactive="core/image" class="aligncenter size-full wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="350" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image.png" alt="" class="wp-image-4705" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-300x181.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-768x464.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image.png 965w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ภาพ Head Pose (จาก Asperti A, Filippini D. Deep learning for head pose estimation: A survey. SN Computer Science. 2023 Apr 26;4(4). doi:<a href="https://link.springer.com/article/10.1007/s42979-023-01796-z" target="_blank" rel="noopener" title="10.1007/s42979-023-01796-z">10.1007/s42979-023-01796-z</a>)</figcaption></figure></div>
+
+<p>เมื่อเปิดไฟล์แล้ว เราแปลงจากจุด Facial Landmark ให้เป็น Facial Bounding Box ด้วยการเขียนโค้ดเพื่อหาพิกัดแกน x และ y ต่ำสุด และหาพิกัดแกน x และ y สูงสุด ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Create the table
+print("Preparation")
+for idx, file_each in enumerate(file_list):
+<strong>   </strong> temp_path = os.path.join(folder_path, f"{ file_each }.mat")
+    mat_data = sio.loadmat(temp_path)
+
+    # File Path
+    dataset&#91;'jpg_path'].append(f"{ file_each }.jpg")
+    dataset&#91;'mat_path'].append(f"{ file_each }.mat")
+
+    <strong># Facial Landmarks
+    pt2d = mat_data&#91;'pt2d'] if data != 'AFLW2000' else mat_data&#91;'pt3d_68']
+    pt2d_x, pt2d_y = pt2d&#91;0, :], pt2d&#91;1, :]
+    x_min, x_max = min(pt2d_x), max(pt2d_x)
+    y_min, y_max = min(pt2d_y), max(pt2d_y)
+    dataset&#91;'x_min'].append(x_min)
+    dataset&#91;'y_min'].append(y_min)
+    dataset&#91;'x_max'].append(x_max)
+    dataset&#91;'y_max'].append(y_max)</strong></code></pre>
+
+<p>ขั้นตอนมา เป็นการดึงข้อมูล Head Pose ในทิศทาง yaw, pitch และ roll ด้วยการพิมพ์โค้ดด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Create the table
+print("Preparation")
+for idx, file_each in enumerate(file_list):
+<strong>   </strong> temp_path = os.path.join(folder_path, f"{ file_each }.mat")
+    mat_data = sio.loadmat(temp_path)
+
+    # File Path
+    dataset&#91;'jpg_path'].append(f"{ file_each }.jpg")
+    dataset&#91;'mat_path'].append(f"{ file_each }.mat")
+
+    # Facial Landmarks
+    pt2d = mat_data&#91;'pt2d'] if data != 'AFLW2000' else mat_data&#91;'pt3d_68']
+    pt2d_x, pt2d_y = pt2d&#91;0, :], pt2d&#91;1, :]
+    x_min, x_max = min(pt2d_x), max(pt2d_x)
+    y_min, y_max = min(pt2d_y), max(pt2d_y)
+    dataset&#91;'x_min'].append(x_min)
+    dataset&#91;'y_min'].append(y_min)
+    dataset&#91;'x_max'].append(x_max)
+    dataset&#91;'y_max'].append(y_max)
+
+    <strong># Head Pose parameters
+    pose = mat_data&#91;'Pose_Para']&#91;0]&#91;:3]
+    pitch = pose&#91;0] * 180 / np.pi
+    yaw   = pose&#91;1] * 180 / np.pi
+    roll  = pose&#91;2] * 180 / np.pi
+
+    dataset&#91;'yaw'].append(yaw)
+    dataset&#91;'pitch'].append(pitch)
+    dataset&#91;'roll'].append(roll)</strong></code></pre>
+
+<p>โดยเราดึงข้อมูลจาก Pose_Para 3 ข้อมูลแรกมาที่เป็นองศา Pitch, Yaw และ Roll ที่มีองศาแบบเรเดียน (Radian)</p>
+
+<p>ก่อนจะนำไปใช้งาน เราต้องแปลงข้อมูลจากหน่วยเรเดียน (Radian) ให้เป็นหน่วยองศา (Degree) ด้วยการหารด้วยค่า Pi (np.pi) แล้วคูณด้วย 180 จากนั้นนำค่าที่ผ่านการคำนวณแล้วเก็บไว้ในอาเรย์ dataset</p>
+
+<p>เมื่อเก็บข้อมูลไว้ในตัวแปร dataset เรียบร้อยแล้ว เราจะแปลงข้อมูลจากตัวแปร dictionary ให้เป็นตัวแปร Pandas DataFrame ด้วยการใช้งานคำสั่ง pd.DataFrame ที่เราพิมพ์โค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>pose_dataframe = pd.DataFrame(data = dataset)</code></pre>
+
+<p>ข้อมูลที่ได้ในตัวแปร Pandas DataFrame จะได้รับการแปลงจาก <strong>Unstructured</strong> เป็น <strong>Structured Data</strong> ที่มีโครงสร้างเป็น Table ที่ชัดเจน กับมีชื่อคอลัมน์ มีเลขจำนวนแถวอย่างชัดเจน</p>
+
+<p>เมื่อได้ข้อมูลที่เป็น Structured Data แล้ว ทีนี้ก็ง่ายขึ้นกว่าเดิม โดยเราสามารถประมวลผลเพียงแค่เขียนโค้ดไม่กี่บรรทัดก็สามารถประมวลผลได้ทั้ง DataFrame เลย โดยไม่ต้องไปวนลูปให้คำนวณทีละค่าที่ล่าช้ากว่าหลายเท่า</p>
+
+<p>ตัวอย่างหนึ่งที่ใช้การประมวลผลทั้ง DataFrame เลยคือ การคัดกรององศาของ Head Pose ใน Dataset ให้อยู่ระหว่าง -99 จนถึง 99 องศา ตามที่กำหนดในเทคนิค Head Pose Estimation อย่าง HopeNet [4] หรืออื่น ๆ ที่กำหนดผ่านการใช้โครงสร้าง Head Pose Bin Classification and Regression โดยสามารถอ่าน<a href="https://arxiv.org/abs/1710.00925" target="_blank" rel="noopener" title="รายละเอียดเพิ่มเติมในเปเปอร์ของผู้จัดทำเทคนิคนี้">รายละเอียดเพิ่มเติมในเปเปอร์ของผู้จัดทำเทคนิคนี้</a></p>
+
+<p>การคัดกรององศาของ Head Pose ทำได้โดยการกรองข้อมูลใน DataFrame ผ่านการเขียนเงื่อนไขให้แต่ละองศา Yaw, Pitch และ Roll ใช้ฟังก์ชัน ​abs() เพื่อให้เป็นค่าสัมบูรณ์ (Absolute) แล้วเขียนเงื่อนไขให้มีค่าน้อยกว่า 99 องศา โดยเราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Angle Header
+angle_header = &#91;'yaw', 'pitch', 'roll']
+
+# Filter Angle
+if limit_pose:
+    for header_each in angle_header:
+        pose_dataframe = pose_dataframe&#91;pose_dataframe&#91;header_each].abs() &lt; 99]</code></pre>
+
+<p>เมื่อทำเสร็จเรียบร้อยแล้ว เราเซฟไฟล์ให้อยู่ในรูปแบบไฟล์ CSV ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>pose_dataframe.to_csv(label_filename)</code></pre>
+
+<p>ฟังก์ชันเมื่อเขียนครบแล้วฟังก์ชันจะมีหน้าตาตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Functions
+def dataset_preparation(extract_folder, 
+                label_filename, data, limit_pose = True):
+    
+    # Define output variable
+    dataset = {
+        "mat_path": &#91;],
+        "jpg_path": &#91;],
+        "yaw": &#91;],
+        "pitch": &#91;],
+        "roll": &#91;],
+        "x_min": &#91;],
+        "y_min": &#91;],
+        "x_max": &#91;],
+        "y_max": &#91;]
+    }
+
+    # Dataset name
+    if data == '300W_LP':
+        output_folder = "300W_LP"
+        list_folder = True
+    elif data == "AFLW2000":
+        output_folder = "AFLW2000"
+        list_folder = False
+    else:
+        print("&#91;*] Not implement")
+        return None
+
+    print("Folder List")
+    if list_folder:
+        folder_path = os.path.join(extract_folder, output_folder)
+        subdata_list = &#91;x for x in os.listdir(folder_path)]
+    else:
+        folder_path = extract_folder
+        subdata_list = &#91;output_folder]
+
+    # Get the list of files
+    file_list = &#91;]
+    for subdata_each in subdata_list:
+        filelist_temp = &#91;]
+        dataset_path = os.path.join(folder_path, subdata_each)
+        for x in os.listdir(dataset_path):
+            if not x.endswith('.jpg'):
+                continue
+
+            filename = '.'.join(x.split('.')&#91;:-1])
+            if os.path.exists(os.path.join(dataset_path, f"{ filename }.jpg")) and \
+                os.path.exists(os.path.join(dataset_path, f"{ filename }.mat")):
+                filelist_temp.append(os.path.join(subdata_each, filename))
+
+        file_list.extend(filelist_temp)
+
+    print("This dataset has both labels and pictures within ", len(file_list), " data.")
+
+    # Create the table
+    print("Preparation")
+    for idx, file_each in enumerate(file_list):
+        temp_path = os.path.join(folder_path, f"{ file_each }.mat")
+        mat_data = sio.loadmat(temp_path)
+
+        # File Path
+        dataset&#91;'jpg_path'].append(f"{ file_each }.jpg")
+        dataset&#91;'mat_path'].append(f"{ file_each }.mat")
+
+        # Facial Landmarks
+        pt2d = mat_data&#91;'pt2d'] if data != 'AFLW2000' else mat_data&#91;'pt3d_68']
+        pt2d_x, pt2d_y = pt2d&#91;0, :], pt2d&#91;1, :]
+        x_min, x_max = min(pt2d_x), max(pt2d_x)
+        y_min, y_max = min(pt2d_y), max(pt2d_y)
+        dataset&#91;'x_min'].append(x_min)
+        dataset&#91;'y_min'].append(y_min)
+        dataset&#91;'x_max'].append(x_max)
+        dataset&#91;'y_max'].append(y_max)
+
+        # Head Pose parameters
+        pose = mat_data&#91;'Pose_Para']&#91;0]&#91;:3]
+        pitch = pose&#91;0] * 180 / np.pi
+        yaw   = pose&#91;1] * 180 / np.pi
+        roll  = pose&#91;2] * 180 / np.pi
+
+        dataset&#91;'yaw'].append(yaw)
+        dataset&#91;'pitch'].append(pitch)
+        dataset&#91;'roll'].append(roll)
+
+    pose_dataframe = pd.DataFrame(data = dataset)
+    
+    # Angle Header
+    angle_header = &#91;'yaw', 'pitch', 'roll']
+
+    # Filter Angle
+    if limit_pose:
+        for header_each in angle_header:
+            pose_dataframe = pose_dataframe&#91;pose_dataframe&#91;header_each].abs() &lt; 99]
+
+    pose_dataframe.to_csv(label_filename)</code></pre>
+
+<p>การเขียน Task ผ่าน PythonOperator เราทำได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>preparation_task = &#91;
+    PythonOperator(
+        task_id = f"prepare_{ dataset_name }",
+        python_callable = dataset_preparation,
+        op_kwargs = {
+            "extract_folder": unzip_folder, #'.',
+            "label_filename": datasets&#91;dataset_name]&#91;'label_filename'],
+            "data": dataset_name,
+            "limit_pose": True
+        }
+    ) for dataset_name in &#91;'300W_LP', 'AFLW2000']
+]</code></pre>
+
+<h2 class="wp-block-heading">การเก็บข้อมูล (Storage)</h2>
+
+<p>ในขั้นตอนนี้จะเป็นขั้นตอนถัดมาจากการเปลี่ยนแปลงข้อมูล (Transformation) ที่จะเป็นขั้นตอนการ Load ข้อมูลที่ประมวลผลเรียบร้อยแล้วไปเก็บไว้ใน Data Warehouse หรือ Data Lake</p>
+
+<p>ในบทความนี้เรานำข้อมูลที่ประมวลผลเรียบร้อยแล้ว มาเก็บข้อมูลไว้ใน Data Lake อย่าง Google Cloud Storage จุดนี้เราสามารถเขียนโค้ดเพื่ออัพโหลดไฟล์ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def move_to_cloudstorage(target_bucketname, filenames):
+    client = Client()
+    bucket = client.bucket(target_bucketname)
+    
+    # Upload Files
+    for file_each in filenames:
+        up_path = file_each
+        target_path = file_each.split('/')&#91;-1]
+
+        blob = bucket.blob(target_path)
+        blob.upload_from_filename(up_path, if_generation_match = None)
+        print(file_each, "Uploaded")</code></pre>
+
+<p>ต่อมา เราสามารถเขียน PythonOperator เพื่อเรียกใช้ฟังก์ชันการอัพโหลดข้อมูลลงไป Google Cloud Storage ได้ตามด้านล่างนี้ โดยเราเก็บข้อมูลรายชื่อไฟล์ในแต่ละไฟล์ไว้ในตัวแปร filename_list</p>
+
+<pre class="wp-block-code"><code>filename_list = &#91;]
+for data_name in &#91;'300W_LP', 'AFLW2000']:
+    for key in &#91;'output', 'label_filename']:
+        filename_list.append(datasets&#91;data_name]&#91;key])
+
+final_task = PythonOperator(
+    task_id = "move_cloud_storage",
+    python_callable = move_to_cloudstorage,
+    op_kwargs = {
+        "target_bucketname": bucket_name,
+        "filenames": filename_list
+    }
+)</code></pre>
+
+<h5 class="wp-block-heading">Setting up dependencies</h5>
+
+<p>เมื่อเขียนทุกฟังก์ชันเสร็จเรียบร้อยแล้ว เราเขียนโค้ดสำหรับการทำ Dependencies ที่เป็นการกำหนดทิศทางการทำงานของแต่ละ Operator ที่เราสร้างขึ้น โดยกำหนดให้ดาวน์โหลดไฟล์จาก Dataset -&gt; แตกไฟล์ ZIP -&gt; ประมวลผลในแต่ละ Dataset ให้เก็บเป็นไฟล์​ CSV แล้วทำ Fan-in เพื่อรวมการประมวลผลสำหรับการอัพโหลดไปยัง Google Cloud Storage</p>
+
+<p>จุดนี้ เราสามารถเขียนโค้ดได้ตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>&#91;initial_task&#91;0] &gt;&gt; unzip_task&#91;0] &gt;&gt; preparation_task&#91;0], initial_task&#91;1] &gt;&gt; unzip_task&#91;1] &gt;&gt; preparation_task&#91;1]] &gt;&gt; final_task</code></pre>
+
+<p>หลังจากนั้น เซฟไฟล์ DAG ให้เป็นชื่อไฟล์ตามที่ต้องการ หลังจากนั้นดาวน์โหลดไฟล์ไปยัง Bucket ของ Cloud Composer ในโฟลเดอร์ dags จากนั้นกดเริ่มต้นการทำงาน</p>
+
+<p>เมื่อ DAG ทำงานเสร็จแล้ว เราจะพบไฟล์เก็บไว้ใน Google Cloud Storage ก็เป็นอันเสร็จเรียบร้อยสำหรับการเตรียม Dataset</p>
+
+<h2 class="wp-block-heading">การวิเคราะห์และการนำข้อมูลไปใช้ประโยชน์ (Analysis)</h2>
+
+<p>หลังจากการทำดึงข้อมูลเข้ามาในระบบผ่านขั้นตอน Ingestion กับแปลงข้อมูลจาก Unstructured เป็น Structured Data ในขั้นตอน Transformation และเก็บข้อมูลไว้ใน Data Lake ผ่านขั้นตอน Storage แล้ว ขั้นตอนสุดท้าย เป็นการวิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis)</p>
+
+<p>ขั้นตอนนี้เป็นขั้นตอนที่นำข้อมูลที่ผ่านการรวบรวม แปลงสภาพและเก็บข้อมูลไว้ในที่เหมาะสมแล้วมาวิเคราะห์และรายงานผล หรือนำข้อมูลไปสร้าง และเทรนตัว Model สำหรับการนำไปตอบโจทย์ทางด้านธุรกิจ</p>
+
+<p>โดยในตัวอย่างนี้ เรานำข้อมูลที่ผ่านการเตรียมข้อมูล Dataset สำหรับการทำ Head Pose Estimation มาพัฒนาตัวโมเดล ร่วมกับการเทรน และทดสอบตัวโมเดลเพื่อดูความแม่นยำของการทำ Head Pose Estimation ในค่า Mean Absolute Error ในหน่วยองศา</p>
+
+<p>เทคนิคที่เราพัฒนาขึ้นตอนฝึกงานเป็นเทคนิคที่พัฒนาโดย มีโครงสร้างในรูปแบบ Pyramid Structure ที่ใช้ Backbone อย่าง EfficientNetV2-S ที่ใช้งานร่วมกับ Feature Pyramid Structure เพื่อรับข้อมูล Multi-scale Semantic Information ในแต่ละ Convolution Block แล้วนำมาประมวลผลเพื่อทำ Spatial และ Channel Attention ผ่านการใช้ Atrous Spatial Pyramid Pooling (ASPP) และ Efficient Channel Attention (ECA) module แล้วทำนายองศาการเคลื่อนไหวศีรษะ (Head Pose) ด้วยการใช้ Multi-binned classification and regression heads</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22932fb&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="303" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/EffV2-S-1024x535.jpg" alt="" class="wp-image-4762" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/EffV2-S-300x157.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/EffV2-S-1024x535.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/EffV2-S-768x401.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/EffV2-S-1536x803.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/EffV2-S-1200x627.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/EffV2-S.jpg 1550w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">เทคนิคที่พัฒนาขึ้นตอนฝึกงาน</figcaption></figure></div>
+
+<p>ผลลัพธ์ของการทดสอบได้ตามด้านล่างนี้</p>
+
+<figure class="wp-block-table aligncenter"><table><tbody><tr><td></td><td class="has-text-align-center" data-align="center"><strong>Yaw</strong></td><td class="has-text-align-center" data-align="center"><strong>Pitch</strong></td><td class="has-text-align-center" data-align="center"><strong>Roll</strong></td><td class="has-text-align-center" data-align="center"><strong>Mean</strong></td></tr><tr><td>AFLW2000</td><td class="has-text-align-center" data-align="center">2.84</td><td class="has-text-align-center" data-align="center">4.11</td><td class="has-text-align-center" data-align="center">3.00</td><td class="has-text-align-center" data-align="center">3.42</td></tr><tr><td>BIWI</td><td class="has-text-align-center" data-align="center">4.09</td><td class="has-text-align-center" data-align="center">3.82</td><td class="has-text-align-center" data-align="center">2.79</td><td class="has-text-align-center" data-align="center">3.57</td></tr></tbody></table></figure>
+
+<p>ส่วนโค้ดสามารถหยิบมาได้จาก <a href="https://github.com/nickuntitled/pyramid_aggregate_head_pose_estimation" target="_blank" rel="noopener" title="GitHub">GitHub</a></p>
+
+<p>ส่วนเปเปอร์ Head Pose Estimation อีกเปเปอร์นึงที่ทำก่อนที่จะมาฝึกงานก็ส่งเปเปอร์ไปเรียบร้อย อยู่ระหว่างการพิจารณาจากทางวารสารที่ส่งไปว่า Accept หรือไม่ครับ</p>
+
+<h2 class="wp-block-heading">ที่มา</h2>
+
+<p>[1] Zhu X, Lei Z, Liu X, Shi H, Li SZ. Face alignment across large poses: A 3D solution. 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR). 2016 Jun; doi:10.1109/cvpr.2016.23</p>
+
+<p>[2] Fanelli G, Gall J, Van Gool L. Real time head pose estimation with random regression forests. CVPR 2011. 2011 Jun; doi:10.1109/cvpr.2011.5995458</p>
+
+<p>[3] Yang T-Y, Chen Y-T, Lin Y-Y, Chuang Y-Y. FSA-net: Learning fine-grained structure aggregation for head pose estimation from a single image. 2019 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). 2019 Jun; doi:10.1109/cvpr.2019.00118</p>
+
+<p>[4] Ruiz N, Chong E, Rehg JM. Fine-grained head pose estimation without keypoints. 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW). 2018 Jun; doi:10.1109/cvprw.2018.00281&nbsp;</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#18 ใช้ Databricks ดึงอัตราแลกเปลี่ยนลงตาราง</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#18 ใช้ Databricks ดึงอัตราแลกเปลี่ยนลงตาราง" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/02/23/18-use-databricks-get-exchange-rate-to-table/" />
+<meta property="og:url" content="http://localhost:4000/2024/02/23/18-use-databricks-get-exchange-rate-to-table/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/18_lets_play_databricks_to_acquire_currency_exchange.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-23T07:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/18_lets_play_databricks_to_acquire_currency_exchange.jpg" />
+<meta property="twitter:title" content="#18 ใช้ Databricks ดึงอัตราแลกเปลี่ยนลงตาราง" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:41:31+07:00","datePublished":"2024-02-23T07:00:00+07:00","description":"None","headline":"#18 ใช้ Databricks ดึงอัตราแลกเปลี่ยนลงตาราง","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/18_lets_play_databricks_to_acquire_currency_exchange.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/02/23/18-use-databricks-get-exchange-rate-to-table/"},"url":"http://localhost:4000/2024/02/23/18-use-databricks-get-exchange-rate-to-table/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#18 ใช้ Databricks ดึงอัตราแลกเปลี่ยนลงตาราง</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-02-23 07:00:00 +0700">2024-02-23</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/18_lets_play_databricks_to_acquire_currency_exchange.jpg' />
+  </figure>
+  
+
+  <p>ช่วงสองสามสัปดาห์ที่ผ่านมาเราได้เข้าไปดู Special Classes เรื่อง Intro to Databricks ในคอร์ส <a href="https://school.datath.com/courses/road-to-data-engineer-2-0-2023" target="_blank" rel="noopener" title="Road to Data Engineer 2.0">Road to Data Engineer 2.0</a> ของ DataTH School จากนั้นเราเลยทดลองทำโปรเจคด้วย Databricks และแชร์ลงบทความนี้</p>
+
+<p>แต่ก่อนอื่น เราไม่เสียเวลาเกริ่นนาน เรามาเริ่มพูดถึง Databricks กันก่อนดีกว่าครับ</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>The English version is <a href="https://medium.com/@nickuntitled/hands-on-databricks-to-acquire-foreign-currency-exchange-rates-8bf07360c095?source=user_profile---------0----------------------------" target="_blank" rel="noopener" title="available here">available here</a>.</p>
+</blockquote>
+
+<!--more-->
+
+<h2 class="wp-block-heading">Databricks</h2>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-medium"><img data-recalc-dims="1" loading="lazy" decoding="async" width="300" height="158" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-6-300x158.png" alt="" class="wp-image-5064" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-6-300x158.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-6.png 720w" sizes="auto, (max-width: 300px) 100vw, 300px" /><figcaption class="wp-element-caption">Databricks</figcaption></figure></div>
+
+<p><strong>Databricks</strong> เป็นแพลตฟอร์มที่พัฒนาโดยผู้พัฒนาเครื่องมือ Open Source ชื่อดังในวงการ Big Data ได้แก่ Apache Spark, Delta Lake และ Koalas </p>
+
+<p>แพลตฟอร์มนี้ออกแบบมาเพื่อให้ผู้ใช้สามารถใช้งานทางด้าน Big Data ได้ง่ายขึ้นมากกว่าเดิมด้วยพื้นฐานของ Cloud และพื้นฐานจาก <strong>Lakehouse Architecture</strong> ที่รวมข้อดีระหว่าง Data Lake และ Data Warehouse ที่ช่วยลดค่าใช้จ่าย และช่วยทำให้งาน Data และ AI สำเร็จได้เร็วขึ้น</p>
+
+<p>จุดเด่นของการใช้งาน Databricks [1] มีรายละเอียดทั้งหมด 3 ข้อแบบคร่าว ๆ ตามด้านล่างนี้ ได้แก่</p>
+
+<ol class="wp-block-list">
+<li><strong>Unified:</strong> Databricks เป็นเครื่องมือหนึ่งที่ช่วยให้ผู้ใช้จัดการกับ Structured และ Unstructured Data ได้ง่ายขึ้น รวมถึงสามารดูข้อมูลเพื่อทำงานกับ Data lineage ได้สบาย และยังรวบรวมเครื่องมือที่จำเป็น ได้แก่ 
+<ul class="wp-block-list">
+<li>Python กับ SQL</li>
+
+
+
+<li>Notebooks กับ IDEs</li>
+
+
+
+<li>รองรับข้อมูลเข้ามาแบบ Batch กับ streaming</li>
+
+
+
+<li>AI กับ Analytics</li>
+
+
+
+<li>และยังรองรับ Cloud provider หลายเจ้า ได้แก่ AWS, Microsoft Azure และ Google Cloud Platform (GCP)</li>
+</ul>
+</li>
+
+
+
+<li><strong>Open:</strong> ผู้ใช้สามารถจัดการ และดูแลข้อมูลของผู้ใช้ใน Databricks ได้ด้วยตัวเอง โดยปราศจาก Proprietary formats และ Closed ecosystems แถมยังใช้ Lakehouse ที่รวมข้อดีระหว่าง Data Lake และ Data Warehouse และยังเป็นพื้นฐานของเครื่องมือ Open source ได้แก่ Apache Spark, Delta Lake และ ML Flow บวกกับรองรับการซัพพอร์ตโดย Databricks Partner Network นอกจากนี้ผู้ใช้สามารถแชร์ข้อมูลจาก Lakehouse ของคุณให้กับ Computing Platform อื่นด้วย Delta Sharing ได้โดยไม่ต้องก็อปปี้ และไม่ต้องทำ ETL ที่ซับซ้อน</li>
+
+
+
+<li><strong>Scalable:</strong> รองรับการเพิ่ม ลด Performance และ Storage ของคลาวด์ที่ใช้เพื่อให้ผู้ใช้มี Total Cost of Ownership (TCO) ที่ต่ำที่สุด แต่ยังให้ประสิทธิภาพที่ดีสำหรับการทำ Data Warehouse และ AI ได้แก่ Generative AI อย่าง Large language models (LLMs).</li>
+</ol>
+
+<p>นอกจาก 3 ข้อข้างบนนี้แล้ว Databricks ยังได้รับการนำไปใช้งานในองค์กรที่ต้องจัดการ และวิเคราะห์กับ Big Data โดย Databricks ช่วยให้ผู้ใช้เห็น Insight จากข้อมูลได้อย่างมีประสิทธิภาพ [2]</p>
+
+<h2 class="wp-block-heading">การทำงาน Spark บน Databricks</h2>
+
+<p>ลักษณะการทำงานของ Spark บน Databricks มีลักษณะเป็น Master กับ Slave ที่มีตัว Driver ที่กระจายงานไปยัง Executor ทำให้การจ่ายงานเป็นไปได้ง่ายขึ้นมากกว่าเดิม</p>
+
+<p>อีกทั้งยังมี Catalyst Optimizer [3] ที่เป็นแกนกลางของ Spark SQL ที่ช่วยหาวิธีการประมวลผลข้อมูลให้ได้รูปแบบที่ดีขึ้นมากกว่าเดิม แถมยังช่วยเพิ่มความเร็วของการประมวลผล ทำให้การประมวลผลข้อมูลทำได้เร็วมากกว่าเดิม</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22a9213&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="322" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-1024x568.jpeg" alt="" class="wp-image-5051" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-300x166.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-1024x568.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-768x426.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-1536x852.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-2048x1136.jpeg 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-1200x666.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_architecture_on_databricks-1980x1098.jpeg 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ลักษณะการทำงานของ Spark บน Databricks (นำมาจากคอร์ส Road to Data Engineer ของ DataTH)</figcaption></figure></div>
+
+<h2 class="wp-block-heading">Data Lakehouse</h2>
+
+<p>ก่อนหน้าที่เราจะมาพูดถึง Lakehouse เรามาพูดถึง Data Warehouse และ Data Lake เสียก่อน [4, 5] โดย</p>
+
+<p><strong>Data Warehouse (คลังข้อมูล)</strong> เป็นโกดังเก็บข้อมูลแบบ Structured Data ที่ผ่านการทำ Transform ข้อมูลเรียบร้อยแล้วสำหรับการนำไปใช้งาน Business Intelligence ที่เป็นงานหลักของการทำ Data Analytics</p>
+
+<p>สมัยก่อนนำไปใช้งานใน On-Premises แต่ปัจจุบันนี้ Storage มีราคาที่ถูกลง กับข้อมูลมีขนาดใหญ่ขึ้น และไม่ได้มีแค่ Structured Data แล้ว ทำให้การใช้งาน Data Warehouse อย่างเดียวเอาไม่อยู่</p>
+
+<p>ต่อมาจึงมีการใช้งาน <strong>Data Lake</strong> เป็นที่เก็บข้อมูลอะไรก็ได้ ไม่ว่าจะเป็น Structured Data, Semi-structured Data และ Unstructured Data ที่ช่วงแรก ๆ ก็ใช้ Hadoop File System (HDFS) แล้วต่อมาก็เก็บข้อมูลบนไว้บนคลาวด์ ได้แก่ Amazon S3 กับ Google Cloud Storage เป็นต้น</p>
+
+<p>ในปัจจุบันหลายองค์กรมีแนวคิดสำหรับการรวมข้อมูลของ Data Warehouse และ Data Lake เข้ามาด้วยกัน แนวคิดนี้มีชื่อเรียกว่า <strong>Data Lakehouse</strong> [6] ที่นำเสนอโดย Databricks</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22a9843&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="305" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-5-1024x538.png" alt="" class="wp-image-5058" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-5-300x158.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-5-1024x538.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-5-768x403.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-5.png 1200w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">แผนภาพ Data Warehouse, Data Lake และ Data Lakehouse</figcaption></figure></div>
+
+<p><strong>Data Lakehouse</strong> มีตัวอย่างจุดเด่นตามด้านล่างนี้ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>รองรับ ACID Transaction</li>
+
+
+
+<li>รองรับการทำ Business Intelligence (BI) เพื่อลดความยุ่งยากของการจัดการข้อมูล 2 ก็อปปี้ระหว่าง Data Lake กับ Data Warehouse</li>
+
+
+
+<li>แยกการเก็บข้อมูลออกจากส่วนประมวลผล ทำให้เราสามารถสร้าง Cluster สำหรับการประมวลผลเพื่อรองรับผู้ใช้เข้าพร้อมกันเป็นจำนวนมาก และรองรับข้อมูลที่มีขนาดใหญ่</li>
+
+
+
+<li>รองรับไฟล์แบบเปิด ได้แก่ Parquet</li>
+
+
+
+<li>มี API และเครื่องมือสำหรับการทำ Machine Learning กับไลบรารี Python กับ R ที่เข้าถึงข้อมูลได้โดยตรง</li>
+
+
+
+<li>รองรับข้อมูลจาก Unstructured ไปจนถึง Structured Data</li>
+
+
+
+<li>รองรับ Workload ที่หลากหลาย ได้แก่ Data science, Machine learning กับ SQL และ analytics</li>
+
+
+
+<li>รองรับการทำ Streaming ข้อมูล เพื่อให้ผู้ใช้ทำ Real-time data applications ได้</li>
+</ul>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">Demo การใช้งาน</h2>
+
+<h3 class="wp-block-heading">โจทย์</h3>
+
+<p>ในบทความนี้ เราต้องการทราบข้อมูลอัตราแลกเปลี่ยนของสกุลเงิน <a href="https://en.wikipedia.org/wiki/New_Taiwan_dollar" target="_blank" rel="noopener" title="TWD (หรือ Taiwanese Dollar)">TWD (หรือ Taiwanese Dollar)</a> กับสกุลเงินอื่นที่แตกต่างกัน เพื่อมองหา</p>
+
+<ul class="wp-block-list">
+<li>อัตราการเพิ่ม/ลดของอัตราแลกเปลี่ยนใช้แต่ละช่วงเวลา</li>
+
+
+
+<li>กับแนวโน้มการเปลี่ยนแปลงอัตราแลกเปลี่ยนในอนาคต</li>
+</ul>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>ข้อมูลเหล่านี้เป็นเครื่องมือที่ดีสำหรับบุคคลที่สนใจตลาด <a href="https://www.scb.co.th/th/personal-banking/stories/grow-your-wealth/forex.html" target="_blank" rel="noopener" title="Foreign exchange (Forex) currencies market">Foreign exchange (Forex) currencies market</a> (ซึ่งเราไม่ได้สนใจ และการลงทุนแบบนี้ไม่ได้รับรองโดยกลต.)</li>
+
+
+
+<li>ข้อมูลเหล่านี้ยังเป็นเครื่องมือที่ดีสำหรับคนที่อยากไปเที่ยวเพื่อดูว่าช่วงไหนน่าแลกเงิน</li>
+
+
+
+<li>และข้อมูลที่มีมาให้ในระบบจะเป็นข้อมูลที่สามารถย้อนหลังไปถึง 6 เดือน (ตั้งแต่ประมาณช่วงเดือนกันยายน จนถึงปัจจุบันที่เป็นกลางเดือนกุมภาพันธ์)</li>
+</ul>
+
+<p>เมื่อทราบจากโจทย์แล้ว เราจะเขียนโค้ดสำหรับการใช้งานบน Databricks เพื่อดึงข้อมูลอัตราแลกเปลี่ยนเงินตราระหว่างประเทศ โดยข้อมูลที่เราจะนำมาใช้งาน เราดาวน์โหลดมาจาก<a href="https://rate.bot.com.tw/xrt?Lang=en-US" target="_blank" rel="noopener" title="ธนาคารแห่งไต้หวัน">ธนาคารแห่งไต้หวัน</a> (台灣銀行, Bank of Taiwan ที่ย่อเป็น BOT (เหมือนตัวย่อธนาคารแห่งประเทศไทย))</p>
+
+<p>แต่ก่อนจะเริ่มต้นเขียนโค้ด เราจำเป็นต้องสมัครสมาชิกการใช้งานบน <a href="https://community.cloud.databricks.com" target="_blank" rel="noopener" title="Databricks Community Edition">Databricks Community Edition</a> เสียก่อน</p>
+
+<h3 class="wp-block-heading">Databricks Community Edition</h3>
+
+<p><strong>Databricks Community Edition</strong> [8] เป็นเครื่องมือ Cloud-based Big Data Platform อย่าง Databricks ที่เปิดให้ผู้ใช้สามารถใช้งานบนคลาวด์อย่าง Amazon Web Service ได้ฟรี โดยออกแบบมาเพื่อ</p>
+
+<ul class="wp-block-list">
+<li>ให้ Developers, Data Scientists, Data Engineers และเจ้าหน้าที่ที่เกี่ยวข้องได้เรียนรู้การใช้งาน Apache Spark</li>
+
+
+
+<li>เข้าถึงเครื่องมือการจัดการ Cluster กับการเขียนโค้ดลง Notebook สำหรับการ Prototype โปรแกรม</li>
+
+
+
+<li>และมีเครื่องมือสำหรับการทำ BI สำหรับการเชื่อมต่อไปยังฐานข้อมูลอย่าง Open Database Connectivity (ODBC) และ Java Database Connectivity (JDBC)</li>
+</ul>
+
+<p>ข้อจำกัดของการใช้งาน Databricks Community Edition คือผู้ใช้จะได้รับการอนุญาตให้เข้าถึง Clusters ที่มีพื้นที่จำกัดที่ 15GB และมีระยะเวลาไม่กี่ชั่วโมงระบบจะตัดในกรณีทีเราไม่ได้ทำอะไรใน Cluster นั้น</p>
+
+<p>เมื่อทราบข้อมูลแล้ว ให้สมัครสมาชิก จากนั้นเข้าสู่ระบบ เมื่อเข้าสู่ระบบแล้ว เราจะเข้ามาหน้าหลักตามด้านล่างนี้ ให้เราสร้าง Cluster ขึ้นมา โดยการกดที่เมนูด้านซ้าย ให้เลือกที่ Create จากนั้นเลือกที่ Cluster</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22aa343&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="305" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/main_page_databricks-1024x539.png" alt="" class="wp-image-5075" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/main_page_databricks-300x158.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/main_page_databricks-1024x539.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/main_page_databricks-768x404.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/main_page_databricks-1536x808.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/main_page_databricks-1200x632.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/main_page_databricks.png 1917w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">หน้าหลักหลังล็อคอินของ Databricks Community Edition</figcaption></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="400" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/create_notebook.png" alt="" class="wp-image-5077" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/create_notebook-300x207.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/create_notebook-768x530.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/create_notebook.png 844w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">เมนูหลักด้านซ้ายของ Databricks</figcaption></figure></div>
+
+<p>เมื่อเข้ามาหน้าการสร้าง Cluster ของ Databricks แล้ว ให้เรา</p>
+
+<ul class="wp-block-list">
+<li>ระบุชื่อ Cluster (Compute Name) ตามที่เราต้องการ</li>
+
+
+
+<li>เลือก Cluster Version โดยส่วนนี้เราเลือกตามที่ Databricks เลือกให้เลยก็ได้</li>
+</ul>
+
+<p>จากนั้นกดปุ่ม Create Compute เมื่อสร้างเสร็จแล้วย ให้เราสร้าง Notebook ขึ้นมาใหม่ แล้วเริ่มเขียนโค้ด</p>
+
+<h3 class="wp-block-heading">เขียนโค้ด</h3>
+
+<p>เอาล่ะ เรามาเริ่มเขียนโค้ดใน Databricks Notebook กัน</p>
+
+<p>ก่อนอื่นเลย เราจำเป็นต้องนำเข้าไลบรารีเสียก่อน โดยในตัวอย่างนี้เรานำเข้าไลบรารี</p>
+
+<ul class="wp-block-list">
+<li><strong>pyspark</strong> [9] ที่เป็นเครื่องมือที่อนุญาตให้ผู้ใช้เขียนโค้ด Python เพื่อเรียกใช้งาน Spark ได้ หรือเรียกอีกอย่างหนึ่งว่าเป็น Python API ของ Apache Spark</li>
+
+
+
+<li><strong>requests</strong> ที่เรียกใช้งานเพื่อใช้การส่ง HTTP Request ที่เป็น GET สำหรับการดาวน์โหลดข้อมูล</li>
+
+
+
+<li><strong>pandas</strong> ที่เป็นไลบรารีสำหรับการสร้าง DataFrame ที่ได้รับข้อมูลจากการดาวน์โหลดจากลิ้งค์ที่กำหนดให้ผ่านการใช้งานไลบรารี io</li>
+
+
+
+<li><strong>json, os</strong> และ <strong>io</strong></li>
+</ul>
+
+<pre class="wp-block-code"><code># create new Spark session
+from pyspark.sql.functions import lit, col
+from pyspark.sql.types import *
+from pyspark.sql.functions import asc, desc
+
+# Requests, DateTime, JSON, and Pandas
+import requests, datetime, json, os, io
+import pandas as pd</code></pre>
+
+<h3 class="wp-block-heading">ดึงข้อมูลอัตราแลกเปลี่ยนของวันที่ปัจจุบัน</h3>
+
+<p>ต่อมา หลังจากนำเข้าไลบรารีเข้ามาเรียบร้อยแล้ว</p>
+
+<p>ขั้นตอนนี้จะเป็นการดึงข้อมูลอัตราแลกเปลี่ยนของวันที่ปัจจุบัน (Data Ingestion)  โดยเราจะทำตามขั้นตอนด้านล่างนี้</p>
+
+<ol class="wp-block-list">
+<li>ดึงข้อมูลด้วยการเรียกใช้งานฟังก์ชัน requests.get</li>
+
+
+
+<li>ใช้คลาส StringIO จากไลบรารี io [10] เพื่อเก็บข้อมูลที่ดาวน์โหลดมาลงใน RAM เสียก่อน</li>
+
+
+
+<li>แล้วให้ฟังก์ชัน read_csv ของ Pandas เพื่อดึงข้อมูลจากหน่วยความจำมาแปลงเป็นตัวแปรแบบ DataFrame</li>
+</ol>
+
+<pre class="wp-block-code"><code>current_data_request = requests.get("https://rate.bot.com.tw/xrt/flcsv/0/day")
+current_df = pd.read_csv(io \
+    .StringIO(current_data_request \
+    .content.decode('utf-8')), index_col = False)</code></pre>
+
+<p>ถัดจากนั้น เรามาดูรายละเอียดคอลัมน์กันได้ด้วยการใช้ Property อย่าง columns แล้วผลลัพธ์ที่ได้จะแสดงเป็นชื่อคอลัมน์เป็นภาษาจีน</p>
+
+<pre class="wp-block-code"><code>print(current_df.columns)
+
+---
+
+Index(&#91;'<strong>幣別</strong>', '匯率', '現金', '<strong>即期</strong>', '遠期10天', '遠期30天', '遠期60天', '遠期90天', '遠期120天',
+       '遠期150天', '遠期180天', '匯率.1', '現金.1', '<strong>即期.1</strong>', '遠期10天.1', '遠期30天.1',
+       '遠期60天.1', '遠期90天.1', '遠期120天.1', '遠期150天.1', '遠期180天.1'],
+      dtype='object')</code></pre>
+
+<p>ในที่นี่เราจะสนใจ</p>
+
+<ul class="wp-block-list">
+<li>幣別 (bì biè) ที่เป็นสกุลเงิน</li>
+
+
+
+<li>即期 (jí qī) ที่แปลว่าราคาสำหรับการซื้อขายทันที (Spot Price) [11] โดย
+<ul class="wp-block-list">
+<li>即期 คือ Spot Price สำหรับการซื้อ</li>
+
+
+
+<li>ส่วน 即期.1 เป็น Spot Price สำหรับการขาย</li>
+</ul>
+</li>
+</ul>
+
+<p>ส่วนกรณีที่ต้องการดูข้อมูลใน DataFrame current_df เราทำได้โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>current_df</code></pre>
+
+<p>ผลลัพธ์ที่ได้ก็จะแสดงตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22aaf36&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="296" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/current_df_display-1024x522.png" alt="" class="wp-image-5102" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/current_df_display-300x153.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/current_df_display-1024x522.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/current_df_display-768x391.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/current_df_display-1200x611.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/current_df_display.png 1376w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลใน Pandas DataFrame</figcaption></figure></div>
+
+<h4 class="wp-block-heading">แปลงข้อมูลให้อยู่ในรูปแบบที่พร้อมใช้</h4>
+
+<p>ขั้นตอนต่อมา เป็นการแปลงข้อมูลที่เราดาวน์โหลดมาจากเว็บ Bank of Taiwan ตามที่เขียนในส่วนก่อนหน้า เพื่อให้ได้รูปแบบที่เราต้องการ โดยรูปแบบที่ต้องการมีทั้งหมด 4 คอลัมน์ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>date &#8211; วันที่ของอัตราแลกเปลี่ยนในขณะนั้น</li>
+
+
+
+<li>currency &#8211; สกุลเงิน</li>
+
+
+
+<li>buy_rate &#8211; อัตราแลกเปลี่ยนสำหรับการซื้อ</li>
+
+
+
+<li>sell_rate &#8211; อัตราแลกเปลี่ยนสำหรับการขาย</li>
+</ul>
+
+<p>แต่ปัจจุบันมีทั้งหมด 3 คอลัมน์ที่ต้องการ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>幣別 ที่เป็นสกุลเงิน</li>
+
+
+
+<li>即期 ที่แปลว่า Spot Price สำหรับการซื้อ</li>
+
+
+
+<li>即期.1 เป็น Spot Price สำหรับการขาย</li>
+</ul>
+
+<p>ดังนั้นแล้ว ก่อนอื่น เรามาแปลงข้อมูลจาก Pandas DataFrame ให้เป็นชนิดข้อมูล Spark DataFrame โดยใช้ไลบรารี PySpark ด้วยการกำหนด Schema ของ DataFrame ให้</p>
+
+<ul class="wp-block-list">
+<li>สกุลเงิน กับข้อมูลที่บ่งบอกว่าเป็นการซื้อและการขาย (匯率 และ 匯率.1) เป็นข้อมูลแบบ String (StringType)</li>
+
+
+
+<li>ส่วนข้อมูลอื่น ๆ เป็นข้อมูลประเภท float (FloatType)</li>
+</ul>
+
+<p>โดยเราเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>fields = &#91;]
+for field_name in current_df.columns:
+    if field_name in &#91;'幣別', '匯率', '匯率.1']:
+        fields.append(StructField(field_name, 
+             StringType(), True))
+    else:
+        fields.append(StructField(field_name, 
+             FloatType(), True))
+        
+schema = StructType(fields)
+spark_df = spark.createDataFrame(current_df, schema)</code></pre>
+
+<p>เราจะได้ตัวแปรแบบ Spark DataFrame โดยเราสามารถใช้คำสั่ง display เพื่อแสดงข้อมูลตารางที่เป็นแบบ Interactive</p>
+
+<pre class="wp-block-code"><code>display(spark_df)</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22ab7ec&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="228" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_df_display-1024x403.png" alt="" class="wp-image-5118" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_df_display-300x118.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_df_display-1024x403.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_df_display-768x302.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_df_display-1200x472.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/spark_df_display.png 1480w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลหลังการแปลงเป็น Spark DataFrame</figcaption></figure></div>
+
+<p>หลังจากที่ข้อมูลเราเป็น Spark DataFrame แล้ว เรามาเริ่มการแปลงข้อมูลให้เป็นไปตามที่ต้องการ</p>
+
+<p>ขั้นแรก เราลบคอลัมน์ที่เราไม่ได้ใช้ ด้วยการใช้ฟังก์ชัน drop ตามตัวอย่างด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>spark_df = spark_df.drop(
+    "匯率", "現金", "匯率.1", "現金.1", "遠期10天", "遠期30天", "遠期60天", "遠期90天", "遠期120天", "遠期150天", "遠期180天",
+    "遠期10天.1", "遠期30天.1", "遠期60天.1", "遠期90天.1", "遠期120天.1", "遠期150天.1", "遠期180天.1"
+)</code></pre>
+
+<p>เมื่อลบแล้ว เราใช้ฟังก์ชัน printSchema แล้วจะได้ผลลัพธ์ตามด้านล่างนี้โดยจะมีทั้งหมด 3 คอลัมน์</p>
+
+<pre class="wp-block-code"><code>spark_df.printSchema()
+
+root
+ |-- 幣別: string (nullable = true)
+ |-- 即期: float (nullable = true)
+ |-- 即期.1: float (nullable = true)</code></pre>
+
+<p>ขั้นที่สอง เราจะสังเกตว่าบางสกุลเงินมันขึ้น Spot Price สำหรับซื้อขายเป็น 0 ส่วนนี้บ่งบอกว่าไม่มีสกุลเงินนั้น ๆ ซ์้อขายในรูปแบบ Spot Price ดังนั้นแล้ว เราสามารถตัดออกได้ด้วยการใช้ฟังก์ชัน filter</p>
+
+<pre class="wp-block-code"><code>clear_missing_data = spark_df.filter(spark_df&#91;'即期'] != 0)
+display(clear_missing_data)</code></pre>
+
+<p>ผลลัพธ์จะพบว่ามีจำนวนแถวที่ลดลง เนื่องมาจากข้อมูลที่อัตราแลกเปลี่ยนสำหรับซ์้อขายเป็น 0 ได้ถูกลบออกไปแล้ว</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="509" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/remove_missing_data.png" alt="" class="wp-image-5125" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/remove_missing_data-300x263.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/remove_missing_data.png 685w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ช้อมูลหลังจากตัดสกุลเงินที่ Spot Price สำหรับซื้อและขายเป็น 0 ไปแล้ว</figcaption></figure></div>
+
+<p>ขั้นที่สาม เราเปลี่ยนชื่อคอลัมน์ให้เป็นไปตามที่กำหนดด้วยการใช้ฟังก์ชัน withColumnRenamed</p>
+
+<pre class="wp-block-code"><code>old_name = &#91;"幣別", "即期", "即期.1"]
+new_name = &#91;"currency", "buy_rate", "sell_rate"]
+
+for old, new in zip(old_name, new_name):
+    clear_missing_data = clear_missing_data.withColumnRenamed(old, new)</code></pre>
+
+<p>ผลลัพธ์ที่ได้จะแสดงตามตารางด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="468" height="406" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/renamed_column_name_sparkdf.png" alt="" class="wp-image-5129" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/renamed_column_name_sparkdf-300x260.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/renamed_column_name_sparkdf.png 468w" sizes="auto, (max-width: 468px) 100vw, 468px" /><figcaption class="wp-element-caption">ผลลัพธ์หลังเปลี่ยนชื่อคอลัมน์</figcaption></figure></div>
+
+<p>ขั้นที่สี่ เราเรียกใช้งานไลบรารี datetime สำหรับการดึงข้อมูลของวันเดือนปี ของวันที่ปัจจุบัน แล้วเราใช้ฟังก์ชัน lit เพื่อใส่ข้อมูลที่เป็นค่าคงที่ สำหรับการเพิ่มคอลัมน์ date ลงไปใน Spark DataFrame ที่ใช้ฟังก์ชัน withColumn </p>
+
+<pre class="wp-block-code"><code>date = datetime.datetime.now().strftime("%Y%m%d")
+include_date = clear_missing_data.withColumn("date", lit(date))</code></pre>
+
+<p>ผลลัพธ์ที่ได้หลังใส่คอลัมน์ date แสดงตามด้านล่างนี้ โดยผลลัพธ์เป็นไปตามที่ต้องการในย่อหน้าต้น ๆ ของส่วนนี้คือข้อมูลที่เราต้องการมีทั้งหมด 4 คอลัมน์ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>date &#8211; วันที่ของอัตราแลกเปลี่ยนในขณะนั้น</li>
+
+
+
+<li>currency &#8211; สกุลเงิน</li>
+
+
+
+<li>buy_rate &#8211; อัตราแลกเปลี่ยนสำหรับการซื้อ</li>
+
+
+
+<li>sell_rate &#8211; อัตราแลกเปลี่ยนสำหรับการขาย</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="524" height="405" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/after_add_date_column_sparkdf.png" alt="" class="wp-image-5134" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/after_add_date_column_sparkdf-300x232.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/after_add_date_column_sparkdf.png 524w" sizes="auto, (max-width: 524px) 100vw, 524px" /><figcaption class="wp-element-caption">ผลลัพธ์หลังใส่คอลัมน์ date</figcaption></figure></div>
+
+<h4 class="wp-block-heading">ดึงข้อมูลอัตราแลกเปลี่ยนย้อนหลัง</h4>
+
+<p>ส่วนก่อนหน้าเราจะได้ข้อมูลอัตราแลกเปลี่ยนในวันที่ปัจจุบัน แต่ส่วนนี้จะเป็นการดึงข้อมูลในอดีตย้อนหลังไปประมาณ 6 เดือน</p>
+
+<p>จุดนี้ก่อนอื่นเราจำเป็นต้องดึงตัวแปร List รายชื่อสกุลเงินต่างประเทศเสียก่อน โดยเขียนโค้ดเพื่อแปลงข้อมูลในคอลัมน์นั้นให้เป็น Pandas แล้วแปลงจาก Pandas ให้เป็น List</p>
+
+<pre class="wp-block-code"><code>currency_name = include_date.select('currency') \
+    .toPandas()&#91;'currency'].tolist()</code></pre>
+
+<p>ถัดจากนั้น เราดึงข้อมูลจากเว็บ Bank of Taiwan ที่เป็นข้อมูลอัตราแลกเปลี่ยนย้อนหลัง โดยเราจะ</p>
+
+<ul class="wp-block-list">
+<li>ดึงข้อมูลทีละสกุลเงินด้วยการใช้ฟังก์ชัน request.get แล้วเก็บเป็น String Buffer ด้วยการใช้คลาส io.stringIO</li>
+
+
+
+<li>แปลง String Buffer ให้เป็นตัวแปรแบบ Pandas DataFrame ด้วยการใช้ฟังก์ชัน pd.read_csv</li>
+
+
+
+<li>แปลงข้อมูลจาก Pandas DataFrame ให้เป็น Spark DataFrame ด้วยการกำหนด Schema แล้วแปลงตัวแปรออกมาด้วยการใช้ฟังก์ชัน createDataFrame</li>
+
+
+
+<li>ลบคอลัมน์ที่เราไม่ได้ใช้ ให้เหลือแต่คอลัมน์ 資料日期, 幣別, 即期 และ 即期.1 สำหรับวันที่ สกุลเงิน อัตราแลกเปลี่ยนสำหรับการซื้อ และขาย ตามลำดับ ด้วยการใช้ฟังก์ชัน drop</li>
+
+
+
+<li>แปลงชื่อจากภาษาจีนเป็นภาษาอังกฤษด้วยการใช้ฟังก์ชัน withColumnRenamed และเปลี่ยนตำแหน่งคอลัมน์ date ให้ไปอยู่ท้ายสุด</li>
+
+
+
+<li>ลบข้อมูลที่ซ้ำกับวันที่ปัจจุบันด้วยการใช้ฟังก์ชัน filter</li>
+
+
+
+<li>และรวม Spark DataFrame ที่ผ่านการแปลงแล้ว เข้ากับ Spark DataFrame ของอัตราแลกเปลี่ยนในวันที่ปัจจุบัน ด้วยการใช้ฟังก์ชัน union กับการใช้ฟังก์ชัน distinct เพื่อลบข้อมูลที่ซ้ำซ้อนกัน</li>
+</ul>
+
+<p>ส่วนแรก เราดึงข้อมูลทีละสกุลเงินด้วยการใช้ฟังก์ชัน request.get แล้วเก็บเป็น String Buffer ด้วยการใช้คลาส io.stringIO ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>old_name = &#91;"資料日期", "幣別", "即期", "即期.1"]
+new_name = &#91;"date", "currency", "buy_rate", "sell_rate"]
+
+overall_data = None
+for idx, currency_each in enumerate(currency_name):
+    # Download Historical Data
+    print(currency_each)
+    <strong>hist_data_request = requests.get(f"https://rate.bot.com.tw/xrt/flcsv/0/l6m/{ currency_each }")</strong></code></pre>
+
+<p>ส่วนที่สอง เราแปลง String Buffer ให้เป็นตัวแปรแบบ Pandas DataFrame ด้วยการใช้ฟังก์ชัน pd.read_csv ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>old_name = &#91;"資料日期", "幣別", "即期", "即期.1"]
+new_name = &#91;"date", "currency", "buy_rate", "sell_rate"]
+
+overall_data = None
+for idx, currency_each in enumerate(currency_name):
+    # Download Historical Data
+    print(currency_each)
+    hist_data_request = requests.get(f"https://rate.bot.com.tw/xrt/flcsv/0/l6m/{ currency_each }")
+    <strong>temporary_df = pd.read_csv(io.StringIO(hist_data_request.content.decode('utf-8')), index_col = False)</strong></code></pre>
+
+<p>ส่วนที่สาม เราแปลงข้อมูลจาก Pandas DataFrame ให้เป็น Spark DataFrame ด้วยการ</p>
+
+<ul class="wp-block-list">
+<li>กำหนด Schema ให้
+<ul class="wp-block-list">
+<li>คอลัมน์ 幣別 ที่เป็นสกุลเงินต่างประเทศ กับคอลัมน์ 匯率 และ 匯率.1 ที่บ่งบอกว่าเป็นการซื้อ และการขายตามลำดับ เป็นชนิดตัวแปรแบบ String (StringType)</li>
+
+
+
+<li>ส่วนคอลัมน์วันที่ (資料日期) เรากำหนดให้เป็น Int (IntegerType) </li>
+
+
+
+<li>คอลัมน์ที่เหลือ เรากำหนดเป็น Float (FloatType)</li>
+</ul>
+</li>
+
+
+
+<li>และแปลงตัวแปรออกมาด้วยการใช้ฟังก์ชัน createDataFrame เราเขียนโค้ดได้ตามด้านล่างนี้</li>
+</ul>
+
+<pre class="wp-block-code"><code>old_name = &#91;"資料日期", "幣別", "即期", "即期.1"]
+new_name = &#91;"date", "currency", "buy_rate", "sell_rate"]
+
+overall_data = None
+for idx, currency_each in enumerate(currency_name):
+    # Download Historical Data
+    try:
+        print(currency_each)
+        hist_data_request = requests.get(f"https://rate.bot.com.tw/xrt/flcsv/0/l6m/{ currency_each }")
+        temporary_df = pd.read_csv(io.StringIO(hist_data_request.content.decode('utf-8')), index_col = False)
+    except Exception as e:
+        print(f"&#91;*] Error =&gt; { e }")
+        continue
+
+    <strong>fields = &#91;]
+    for field_name in temporary_df.columns:
+        if field_name in &#91;'幣別', '匯率', '匯率.1']:
+            fields.append(StructField(field_name, StringType(), True))
+        elif field_name == '資料日期':
+            fields.append(StructField(field_name, IntegerType(), True))
+        else:
+            fields.append(StructField(field_name, FloatType(), True))
+            
+    schema = StructType(fields)
+    temporary_df = spark.createDataFrame(temporary_df, schema)</strong></code></pre>
+
+<p>ส่วนที่สี่ เราลบคอลัมน์ที่เราไม่ได้ใช้ ให้เหลือแต่คอลัมน์ 資料日期, 幣別, 即期 และ 即期 สำหรับวันที่ สกุลเงิน อัตราแลกเปลี่ยนสำหรับการซื้อ และขาย ตามลำดับ ด้วยการใช้ฟังก์ชัน drop เราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>old_name = &#91;"資料日期", "幣別", "即期", "即期.1"]
+new_name = &#91;"date", "currency", "buy_rate", "sell_rate"]
+
+overall_data = None
+for idx, currency_each in enumerate(currency_name):
+    # Download Historical Data
+    try:
+        print(currency_each)
+        hist_data_request = requests.get(f"https://rate.bot.com.tw/xrt/flcsv/0/l6m/{ currency_each }")
+        temporary_df = pd.read_csv(io.StringIO(hist_data_request.content.decode('utf-8')), index_col = False)
+    except Exception as e:
+        print(f"&#91;*] Error =&gt; { e }")
+        continue
+
+    fields = &#91;]
+    for field_name in temporary_df.columns:
+        if field_name in &#91;'幣別', '匯率', '匯率.1']:
+            fields.append(StructField(field_name, StringType(), True))
+        elif field_name == '資料日期':
+            fields.append(StructField(field_name, IntegerType(), True))
+        else:
+            fields.append(StructField(field_name, FloatType(), True))
+            
+    schema = StructType(fields)
+    temporary_df = spark.createDataFrame(temporary_df, schema)
+
+    <strong>temporary_df = temporary_df.drop(
+        "匯率", "現金", "匯率.1", "現金.1", "遠期10天", "遠期30天", "遠期60天", "遠期90天", "遠期120天", "遠期150天", "遠期180天",
+        "遠期10天.1", "遠期30天.1", "遠期60天.1", "遠期90天.1", "遠期120天.1", "遠期150天.1", "遠期180天.1"
+    )</strong></code></pre>
+
+<p>ส่วนที่ห้า เราแปลงชื่อจากภาษาจีนเป็นภาษาอังกฤษด้วยการใช้ฟังก์ชัน withColumnRenamed และเปลี่ยนตำแหน่งคอลัมน์ date ให้ไปอยู่ท้ายสุด</p>
+
+<pre class="wp-block-code"><code>old_name = &#91;"資料日期", "幣別", "即期", "即期.1"]
+new_name = &#91;"date", "currency", "buy_rate", "sell_rate"]
+
+overall_data = None
+for idx, currency_each in enumerate(currency_name):
+    # Download Historical Data
+    try:
+        print(currency_each)
+        hist_data_request = requests.get(f"https://rate.bot.com.tw/xrt/flcsv/0/l6m/{ currency_each }")
+        temporary_df = pd.read_csv(io.StringIO(hist_data_request.content.decode('utf-8')), index_col = False)
+    except Exception as e:
+        print(f"&#91;*] Error =&gt; { e }")
+        continue
+
+    fields = &#91;]
+    for field_name in temporary_df.columns:
+        if field_name in &#91;'幣別', '匯率', '匯率.1']:
+            fields.append(StructField(field_name, StringType(), True))
+        elif field_name == '資料日期':
+            fields.append(StructField(field_name, IntegerType(), True))
+        else:
+            fields.append(StructField(field_name, FloatType(), True))
+            
+    schema = StructType(fields)
+    temporary_df = spark.createDataFrame(temporary_df, schema)
+
+    temporary_df = temporary_df.drop(
+        "匯率", "現金", "匯率.1", "現金.1", "遠期10天", "遠期30天", "遠期60天", "遠期90天", "遠期120天", "遠期150天", "遠期180天",
+        "遠期10天.1", "遠期30天.1", "遠期60天.1", "遠期90天.1", "遠期120天.1", "遠期150天.1", "遠期180天.1"
+    )
+
+    <strong>for old, new in zip(old_name, new_name):
+        temporary_df = temporary_df.withColumnRenamed(old, new)</strong>
+
+    <strong>temporary_df = temporary_df.withColumn('tempdate', temporary_df&#91;'date'])
+    temporary_df = temporary_df.drop('date') 
+    temporary_df = temporary_df.withColumnRenamed('tempdate', 'date')</strong></code></pre>
+
+<p>ส่วนที่หก ลบข้อมูลที่ซ้ำกับวันที่ปัจจุบันด้วยการใช้ฟังก์ชัน filter</p>
+
+<pre class="wp-block-code"><code>old_name = &#91;"資料日期", "幣別", "即期", "即期.1"]
+new_name = &#91;"date", "currency", "buy_rate", "sell_rate"]
+
+overall_data = None
+for idx, currency_each in enumerate(currency_name):
+    # Download Historical Data
+    try:
+        print(currency_each)
+        hist_data_request = requests.get(f"https://rate.bot.com.tw/xrt/flcsv/0/l6m/{ currency_each }")
+        temporary_df = pd.read_csv(io.StringIO(hist_data_request.content.decode('utf-8')), index_col = False)
+    except Exception as e:
+        print(f"&#91;*] Error =&gt; { e }")
+        continue
+
+    fields = &#91;]
+    for field_name in temporary_df.columns:
+        if field_name in &#91;'幣別', '匯率', '匯率.1']:
+            fields.append(StructField(field_name, StringType(), True))
+        elif field_name == '資料日期':
+            fields.append(StructField(field_name, IntegerType(), True))
+        else:
+            fields.append(StructField(field_name, FloatType(), True))
+            
+    schema = StructType(fields)
+    temporary_df = spark.createDataFrame(temporary_df, schema)
+
+    temporary_df = temporary_df.drop(
+        "匯率", "現金", "匯率.1", "現金.1", "遠期10天", "遠期30天", "遠期60天", "遠期90天", "遠期120天", "遠期150天", "遠期180天",
+        "遠期10天.1", "遠期30天.1", "遠期60天.1", "遠期90天.1", "遠期120天.1", "遠期150天.1", "遠期180天.1"
+    )
+
+    for old, new in zip(old_name, new_name):
+        temporary_df = temporary_df.withColumnRenamed(old, new)
+
+    temporary_df = temporary_df.withColumn('tempdate', temporary_df&#91;'date'])
+    temporary_df = temporary_df.drop('date') 
+    temporary_df = temporary_df.withColumnRenamed('tempdate', 'date')
+    <strong>temporary_df = temporary_df.filter(col('date') != date)</strong></code></pre>
+
+<p>ส่วนสุดท้าย เรารวม Spark DataFrame ที่ผ่านการ Transform ข้อมูลแล้ว เข้ากับ Spark DataFrame ของอัตราแลกเปลี่ยนในวันที่ปัจจุบัน ด้วยการใช้ฟังก์ชัน union กับการใช้ฟังก์ชัน distinct เพื่อลบข้อมูลที่ซ้ำซ้อนกัน</p>
+
+<pre class="wp-block-code"><code>old_name = &#91;"資料日期", "幣別", "即期", "即期.1"]
+new_name = &#91;"date", "currency", "buy_rate", "sell_rate"]
+
+overall_data = None
+for idx, currency_each in enumerate(currency_name):
+    # Download Historical Data
+    try:
+        print(currency_each)
+        hist_data_request = requests.get(f"https://rate.bot.com.tw/xrt/flcsv/0/l6m/{ currency_each }")
+        temporary_df = pd.read_csv(io.StringIO(hist_data_request.content.decode('utf-8')), index_col = False)
+    except Exception as e:
+        print(f"&#91;*] Error =&gt; { e }")
+        continue
+
+    fields = &#91;]
+    for field_name in temporary_df.columns:
+        if field_name in &#91;'幣別', '匯率', '匯率.1']:
+            fields.append(StructField(field_name, StringType(), True))
+        elif field_name == '資料日期':
+            fields.append(StructField(field_name, IntegerType(), True))
+        else:
+            fields.append(StructField(field_name, FloatType(), True))
+            
+    schema = StructType(fields)
+    temporary_df = spark.createDataFrame(temporary_df, schema)
+
+    temporary_df = temporary_df.drop(
+        "匯率", "現金", "匯率.1", "現金.1", "遠期10天", "遠期30天", "遠期60天", "遠期90天", "遠期120天", "遠期150天", "遠期180天",
+        "遠期10天.1", "遠期30天.1", "遠期60天.1", "遠期90天.1", "遠期120天.1", "遠期150天.1", "遠期180天.1"
+    )
+
+    for old, new in zip(old_name, new_name):
+        temporary_df = temporary_df.withColumnRenamed(old, new)
+
+    temporary_df = temporary_df.withColumn('tempdate', temporary_df&#91;'date'])
+    temporary_df = temporary_df.drop('date') 
+    temporary_df = temporary_df.withColumnRenamed('tempdate', 'date')
+    temporary_df = temporary_df.filter(col('date') != date)
+    
+    <strong># Concatenate
+    if overall_data is None:
+        overall_data = include_date
+
+    overall_data = overall_data.union(temporary_df)
+    overall_data = overall_data.distinct()</strong></code></pre>
+
+<p>ผลลัพธ์ที่ได้ แสดงตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="544" height="426" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/prepared_each_currency_df.png" alt="" class="wp-image-5141" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/prepared_each_currency_df-300x235.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/prepared_each_currency_df.png 544w" sizes="auto, (max-width: 544px) 100vw, 544px" /><figcaption class="wp-element-caption">ข้อมูลสกุลเงินที่รวมกันเรียบร้อยแล้วระหว่างข้อมูลในวันที่ปัจจุบัน และข้อมูลในอดีต</figcaption></figure></div>
+
+<h4 class="wp-block-heading">เรียงข้อมูลตามวันที่</h4>
+
+<p>หลังจากที่ดึง และแปลงข้อมูลอัตราแลกเปลี่ยนย้อนหลังแล้ว เราเรียงข้อมูลใน Spark DataFrame ได้ด้วยการใช้ฟังก์ชัน sort</p>
+
+<p>การเรียงข้อมูลในฟังก์ชัน sort นี้ เราเลือกได้ว่าจะเรียงจากน้อยไปมาก (Ascending) หรือมากไปน้อย (Descending) ด้วยการใช้ฟังก์ชัน asc หรือ desc ตามลำดับ</p>
+
+<p>ในตัวอย่างจะเรียงข้อมูลแบบน้อยไปมาก</p>
+
+<pre class="wp-block-code"><code>sorted_df = overall_data.sort(asc('date'))</code></pre>
+
+<h4 class="wp-block-heading">นำเข้าข้อมูลไปใน Table</h4>
+
+<p>เมื่อเรียงข้อมูลตามวันที่เรียบร้อยแล้ว ขั้นตอนการ Transform ข้อมูลก็เสร็จเรียบร้อย</p>
+
+<p>ต่อจากนี้เรานำเข้าข้อมูลไปเก็บไว้ใน Table เพื่อการวิเคราะห์ข้อมูล (Analysis) หรือนำไปใช้ประโยชน์ต่อไป วิธีการเก็บข้อมูลทำได้โดยผ่านการใช้</p>
+
+<ul class="wp-block-list">
+<li>ฟังก์ชัน coalesce เพื่อรวมข้อมูลจากทุก Cluster ให้เป็นหนึ่งเดียวตามที่กำหนดด้วย coalesce(1)</li>
+
+
+
+<li>ฟังก์ชัน write ของ Spark DataFrame เพื่อเขียนข้อมูล โดยใช้งานร่วมกับ 
+<ul class="wp-block-list">
+<li>mode(&#8216;overwrite&#8217;) เพื่อทับข้อมูลกรณีที่มีข้อมูลนั้นอยู่แล้ว</li>
+
+
+
+<li>saveAsTable เพื่อบันทึกลง Table ใน Databricks ที่เราระบุ</li>
+</ul>
+</li>
+</ul>
+
+<pre class="wp-block-code"><code>sorted_df.coalesce(1).write.mode("overwrite").saveAsTable("default.bot_exchange")</code></pre>
+
+<p>เมื่อเก็บข้อมูลแล้ว เราลองเรียกดูข้อมูลผ่านการใช้คำสั่ง SQL SELECT ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>%sql
+SELECT * FROM default.bot_exchange</code></pre>
+
+<p>ผลลัพธ์จะแสดงตามภาพด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="441" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/select_from_data_warehouse_bot.png" alt="" class="wp-image-5145" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/select_from_data_warehouse_bot-300x228.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/select_from_data_warehouse_bot.png 684w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ผลลัพธ์การเรียกดูข้อมูลทั้งหมด</figcaption></figure></div>
+
+<p>ต่อมา เราลองมาเรียกดูข้อมูลเฉพาะสกุลเงินบาท (THB) เพื่อดูอัตราแลกเปลี่ยนระหว่างสกุลเงินไต้หวัน กับสกุลเงินบาท โดยเรียงข้อมูลจากใหม่ล่าสุดไปยังข้อมูลเก่าที่สุด (Descending)</p>
+
+<pre class="wp-block-code"><code>%sql
+SELECT date, buy_rate FROM default.bot_exchange WHERE currency = "THB" ORDER BY date DESC;</code></pre>
+
+<p>ผลลัพธ์ที่ได้แสดงตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="408" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/select_from_data_warehouse_bot_thb.png" alt="" class="wp-image-5146" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/select_from_data_warehouse_bot_thb-300x211.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/select_from_data_warehouse_bot_thb-768x540.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/select_from_data_warehouse_bot_thb.png 828w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ผลลัพธ์การเรียกดูข้อมูลเฉพาะเงินบาท</figcaption></figure></div>
+
+<p>นอกจากนี้ เรายังสามารถเข้าไปดูรายละเอียดแบบคร่าว ๆ ของ Table ที่สร้างขึ้น โดยเลือกที่เมนูด้านซ้าย จากนั้นเลือกไปที่ Catalog ระบบจะแสดงภาพตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="394" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/data_catalog_menu_databrick.png" alt="" class="wp-image-5148" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/data_catalog_menu_databrick-300x204.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/data_catalog_menu_databrick-768x521.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/data_catalog_menu_databrick.png 810w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">เมนูของ Databricks สำหรับการเข้าไปดูใน Table</figcaption></figure></div>
+
+<p>ให้เรากดไปที่ default แล้วไปที่ Table bot_exchange เพื่อดู Table ที่เราสร้างขึ้น ผลลัพธ์จะแสดงตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="683" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/data_table_bot_currency.png" alt="" class="wp-image-5149" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/data_table_bot_currency-255x300.png 255w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/data_table_bot_currency.png 727w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">รายละเอียดใน Table ที่เราสร้างขึ้น</figcaption></figure></div>
+
+<h2 class="wp-block-heading">สรุป</h2>
+
+<p>Databricks เป็นแพลตฟอร์มที่ออกแบบมาเพื่อให้ผู้ใช้สามารถใช้งานทางด้าน Big Data ได้ง่ายขึ้นมากกว่าเดิมด้วยพื้นฐานของ Cloud แถมยังได้รับการพัฒนาจากผู้พัฒนาเครื่องมือชื่อดังทางด้าน Big Data อย่าง Apache Spark, Lakehouse และ Koalas</p>
+
+<p>นอกจากนี้ หลังจากที่ทดลองทำโปรเจคบนแพลตฟอร์มนี้แล้ว พบว่าใช้งานได้ง่ายจริงตามที่ผู้พัฒนาได้กล่าวไว้ในหน้าเว็บ กับใช้งานสะดวกเนื่องมาจาก Data Lakehouse ที่รวมข้อดีของทั้งสองเครื่องมือเก็บข้อมูลอย่าง Data Warehouse และ Data Lake ไป</p>
+
+<p>อีกอย่าง Databricks ยังเปิดให้บุคคลทั่วไปที่ต้องการเรียนรู้ ฝึก และทดลองใช้ Databricks สามารถใช้งานได้ฟรีด้วยแพลตฟอร์ม Databricks Community Edition</p>
+
+<p>สำหรับผู้อ่านที่ต้องการทดลองใช้งาน Databricks เราแนะนำให้ทดลองใช้งานครับ โดยตัวโค้ด ผู้อ่านสามารถเข้าไปดูได้ที่ <a href="https://github.com/nickuntitled/bot_currency_databricks" target="_blank" rel="noopener" title="GitHub">GitHub</a> ครับ</p>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน <a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noopener" title="Linkedin">Linkedin</a> หรือ <a href="https://twitter.com/nicknznick" target="_blank" rel="noopener" title="X (หรือ Twitter)">X (หรือ Twitter)</a> ได้ครับ</p>
+
+<h2 class="wp-block-heading">ที่มา</h2>
+
+<ol class="wp-block-list">
+<li>Data Lakehouse Architecture &#8211; Databricks <a href="https://www.databricks.com/product/data-lakehouse" target="_blank" rel="noopener" title="">https://www.databricks.com/product/data-lakehouse</a></li>
+
+
+
+<li>ChatGPT</li>
+
+
+
+<li>Catalyst Optimizer : The Power of Spark SQL <a href="https://medium.com/@Shkha_24/catalyst-optimizer-the-power-of-spark-sql-cad8af46097f" target="_blank" rel="noopener" title="">https://medium.com/@Shkha_24/catalyst-optimizer-the-power-of-spark-sql-cad8af46097f</a></li>
+
+
+
+<li>#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี &#8211; <a href="https://nickuntitled.com/wp-admin/post.php?post=3925&amp;action=edit">https://nickuntitled.com/wp-admin/post.php?post=3925&amp;action=edit</a></li>
+
+
+
+<li>เข้าใจ Data Warehouse, Data Lake และ Data Lakehouse ฉบับมือใหม่ <a href="https://mesodiar.com/เข้าใจ-data-warehouse-data-lake-และ-data-lakehouse-ฉบับมือใหม่-7bc48b9ff295" target="_blank" rel="noopener" title="">https://mesodiar.com/เข้าใจ-data-warehouse-data-lake-และ-data-lakehouse-ฉบับมือใหม่-7bc48b9ff295</a></li>
+
+
+
+<li>What is a Lakehouse &#8211; <a href="https://www.databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html" target="_blank" rel="noopener" title="">https://www.databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html</a></li>
+
+
+
+<li>Historical Currency Exchange Rates Overview &#8211; <a href="https://www.investopedia.com/terms/forex/h/historical-currency-exchange-rates.asp" target="_blank" rel="noopener" title="">https://www.investopedia.com/terms/forex/h/historical-currency-exchange-rates.asp</a></li>
+
+
+
+<li>Databricks Community Edition FAQ &#8211; <a href="https://www.databricks.com/product/faq/community-edition" target="_blank" rel="noopener" title="">https://www.databricks.com/product/faq/community-edition</a></li>
+
+
+
+<li>Cheatsheet วิธีใช้ และเทคนิคใน Pyspark ฉบับสมบูรณ์ &#8211; <a href="https://blog.datath.com/cheatsheet-pyspark/" target="_blank" rel="noopener" title="">https://blog.datath.com/cheatsheet-pyspark/</a></li>
+
+
+
+<li>StringIO Module in Python &#8211; <a href="https://www.geeksforgeeks.org/stringio-module-in-python/" target="_blank" rel="noopener" title="">https://www.geeksforgeeks.org/stringio-module-in-python/</a></li>
+
+
+
+<li>ราคาสำหรับการซื้อขายทันที &#8211; TFEX <a href="https://www.tfex.co.th/th/education/glossary/spot-price" target="_blank" rel="noopener" title="">https://www.tfex.co.th/th/education/glossary/spot-price</a></li>
+</ol>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

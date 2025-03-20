@@ -1,371 +1,96 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit - Nick Untitled</title>
-		<meta name="description" content="Streamlit เป็นเครื่องมือที่อนุญาตให้เราแสดงผลข้อมูล ภาพ และอื่น ๆ ที่คำนวณในไพทอนออกมาทางหน้าเว็บ ในบทความนี้เราจะแนะนำการใช้งานกัน ว่าใช้งานกันยังไงครับ">
-		<meta name="keywords" content="computer,data,programming,python,streamlit,visualization,คอมพิวเตอร์,เขียนโปรแกรม,เว็บไซต์,ไพทอน,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-04-24T02:13:50+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/04/24/output-webbased-python-code-streamlit/"/>
-		<meta property="og:title" content="แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit - Nick Untitled" />
-		<meta property="og:description" content="Streamlit เป็นเครื่องมือที่อนุญาตให้เราแสดงผลข้อมูล ภาพ และอื่น ๆ ที่คำนวณในไพทอนออกมาทางหน้าเว็บ ในบทความนี้เราจะแนะนำการใช้งานกัน ว่าใช้งานกันยังไงครับ " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/04/2dba2a16-8d31-46c7-a532-a025188de9cb.png"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit - Nick Untitled" />
-		<meta property="twitter:description" content="Streamlit เป็นเครื่องมือที่อนุญาตให้เราแสดงผลข้อมูล ภาพ และอื่น ๆ ที่คำนวณในไพทอนออกมาทางหน้าเว็บ ในบทความนี้เราจะแนะนำการใช้งานกัน ว่าใช้งานกันยังไงครับ " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/04/2dba2a16-8d31-46c7-a532-a025188de9cb.png" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/04/24/output-webbased-python-code-streamlit/" />
+<meta property="og:url" content="http://localhost:4000/2021/04/24/output-webbased-python-code-streamlit/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/04/7s88E9Bc-2dba2a16-8d31-46c7-a532-a025188de9cb-1200x675.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-24T19:13:50+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/04/7s88E9Bc-2dba2a16-8d31-46c7-a532-a025188de9cb-1200x675.png" />
+<meta property="twitter:title" content="แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:47:13+07:00","datePublished":"2021-04-24T19:13:50+07:00","description":"None","headline":"แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/04/7s88E9Bc-2dba2a16-8d31-46c7-a532-a025188de9cb-1200x675.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/04/24/output-webbased-python-code-streamlit/"},"url":"http://localhost:4000/2021/04/24/output-webbased-python-code-streamlit/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-04-24 19:13:50 +0700">2021-04-24</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/04/7s88E9Bc-2dba2a16-8d31-46c7-a532-a025188de9cb-1200x675.png' />
+  </figure>
+  
 
-	
-
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/04/2dba2a16-8d31-46c7-a532-a025188de9cb.png' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>24 April 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/output-webbased-python-code-streamlit" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/output-webbased-python-code-streamlit&amp;text=แสดงข้อมูลจากไพทอนมาหน้าเว็บด้วย Streamlit - https://nickuntitled.com/output-webbased-python-code-streamlit" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p>ปกติเวลาแสดงข้อมูลในไพทอนที่เราเคยทำก็จะเป็นการเซฟเป็นไฟล์แล้วนำข้อมูลออกมาปรับแต่งเพื่อให้แสดงข้อมูลให้สวยงามผ่านโปรแกรมอื่นใช่ไหมครับ แต่ทีนี้เราต้องการแสดงข้อมูลผ่านทางหน้าเว็บก็ต้องใช้เครื่องมืออื่นช่วย อย่างเช่น Flask, Django ซึ่งฟังดูแล้วยุ่งยากไปหน่อย เลยคิดว่าน่าจะมีเครื่องมือนี้มาช่วยจะดีกว่านี้</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:more -->
-<!--more-->
-<!-- /wp:more -->
-
-<!-- wp:paragraph -->
-<p>ซึ่งมันก็มีจริง เครื่องมือที่แสดงข้อมูลให้สวยงามได้โดยการใช้ไลบรารีอย่าง <a href="https://streamlit.io/" target="_blank" rel="noreferrer noopener" title="https://streamlit.io/">Streamlit</a> </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+  <p>ปกติเวลาแสดงข้อมูลในไพทอนที่เราเคยทำก็จะเป็นการเซฟเป็นไฟล์แล้วนำข้อมูลออกมาปรับแต่งเพื่อให้แสดงข้อมูลให้สวยงามผ่านโปรแกรมอื่นใช่ไหมครับ แต่ทีนี้เราต้องการแสดงข้อมูลผ่านทางหน้าเว็บก็ต้องใช้เครื่องมืออื่นช่วย อย่างเช่น Flask, Django ซึ่งฟังดูแล้วยุ่งยากไปหน่อย เลยคิดว่าน่าจะมีเครื่องมือนี้มาช่วยจะดีกว่านี้</p>
+<p>ซึ่งมันก็มีจริง เครื่องมือที่แสดงข้อมูลให้สวยงามได้โดยการใช้ไลบรารีอย่าง <a href="https://streamlit.io/" rel="noreferrer noopener">Streamlit</a></p>
+<p><!--more--></p>
 <p>ไลบรารีนี้เป็นตัวช่วยที่ทำให้เราสร้างหน้าเว็บได้อย่างปังปุริเย่โดยที่เราไม่ต้องเขียนหน้า HTML, CSS, JavaScript เอง เพียงแค่เขียนด้วยภาษาไพทอนไม่กี่บรรทัด ก็สามารถแสดงหน้าเว็บออกมาได้อย่างสวยงามแล้ว</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>การติดตั้ง</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<h2 id="-">การติดตั้ง</h2>
 <p>การติดตั้งทำได้อย่างไรล่ะ? ทำได้ง่ายมาก เพียงแค่พิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2077,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/bash.png" alt="" class="wp-image-2077" /><figcaption>ติดตั้งไลบรารี</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/bash.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ติดตั้งไลบรารี</figcaption></figure>
 <p>กด Enter จะพบว่าตัวโปรแกรมจะติดตั้งไลบรารีตัวนี้ให้เรียบร้อย เราสามารถทดลองใช้งานได้โดยพิมพ์คำสั่งตามด้านล่างนี้</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2078,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/bash_hello.png" alt="" class="wp-image-2078" /><figcaption>ทดลองเรียกใช้งานได้ตามภาพ</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/bash_hello.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ทดลองเรียกใช้งานได้ตามภาพ</figcaption></figure>
 <p>เมื่อเรียกใช้งานแล้ว จะพบหน้าเว็บแสดงหน้าตัวอย่างการใช้งานแล้ว</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":2076,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://asset.nickuntitled.com/2021/04/Screen-Shot-2564-04-24-at-01.38.16.png" alt="" class="wp-image-2076" /><figcaption>ตัวอย่างการใช้งาน</figcaption></figure>
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-<h2>การเรียกใช้งาน</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/Screen-Shot-2564-04-24-at-01.38.16.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ตัวอย่างการใช้งาน</figcaption></figure>
+<h2 id="--1">การเรียกใช้งาน</h2>
 <p>การเรียกใช้งานไลบรารีตัวนี้ทำได้ง่ายโดยนำเข้าไลบรารีด้วยพิมพ์คำสั่งไพทอนว่า</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2075,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/import_streamlit.png" alt="" class="wp-image-2075" /><figcaption>การนำเข้าไลบรารี</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/import_streamlit.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>การนำเข้าไลบรารี</figcaption></figure>
 <p>เมื่อนำเข้าเสร็จแล้ว ต่อมาเราพิมพ์คำสั่งเพื่อสร้างหน้าจอออกมาเป็นหน้าเว็บได้โดยพิมพ์ไม่กี่คำสั่งตามด้านล่างนี้</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2080,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/streamlit_python.png" alt="" class="wp-image-2080" /><figcaption>ตัวอย่างคำสั่ง Streamlit</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/streamlit_python.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ตัวอย่างคำสั่ง Streamlit</figcaption></figure>
 <p>คำสั่ง <strong>st.write</strong> ตามภาพด้านบนเป็นคำสั่งที่มีหน้าที่เขียนข้อความ HTML หรือโค้ดด้วยภาษา Markdown ลงไปในหน้าเว็บตามที่เราต้องการ จากนั้นเราเปิดให้แสดงผลหน้าเว็บโดยพิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2081,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/streamlitrun.png" alt="" class="wp-image-2081" /><figcaption>คำสั่งให้เริ่มต้นการแสดงผลออกมาหน้าเว็บ</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/streamlitrun.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>คำสั่งให้เริ่มต้นการแสดงผลออกมาหน้าเว็บ</figcaption></figure>
 <p>เมื่อพิมพ์เสร็จแล้ว เราจะเห็นการแสดงผลออกมาทางหน้าเว็บที่เราต้องการแล้วตามภาพ เวลาที่เราแก้ไขไฟล์ในไพทอนที่เราเขียน เราสามารถแสดงผลให้เห็นได้โดย Refresh หน้าเว็บครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2082,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/Screen-Shot-2564-04-24-at-01.50.56.png" alt="" class="wp-image-2082" /><figcaption>หน้าเว็บที่แสดงผล</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-<h2>ตัวอย่างการใช้งาน Streamlit</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/Screen-Shot-2564-04-24-at-01.50.56.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>หน้าเว็บที่แสดงผล</figcaption></figure>
+<h2 id="-streamlit">ตัวอย่างการใช้งาน Streamlit</h2>
 <p>ในภาพในหัวข้อก่อนหน้าจอแสดงเขียนโค้ดด้านบนเป็นตัวอย่างการใช้งานครับ แต่ตัว Streamlit เองก็ไม่ได้มีแค่คำสั่ง <strong>write</strong> เพียงอย่างเดียว เราสามารถแสดง<strong>หัวข้อ/ข้อความ</strong>โดยเขียนโค้ดให้ง่ายกว่าการเขียนแบบ Markdown แบบข้างบนได้โดยพิมพ์ตามด้านล่าง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2083,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/refactored_streamlit.png" alt="" class="wp-image-2083" /><figcaption>ปรับโค้ดนิดหน่อย แทนที่การใช้ Markdown</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/refactored_streamlit.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ปรับโค้ดนิดหน่อย แทนที่การใช้ Markdown</figcaption></figure>
 <p>พิมพ์เสร็จก็พิมพ์คำสั่งให้เริ่มต้นการทำงานเหมือนเดิม จะแสดงผลหน้าจอคล้าย ๆ เดิมครับผม</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>สำหรับคนที่อยาก<strong>แสดงภาพ</strong> ก็เราสามารถแสดงภาพจาก URL หรือไฟล์ภาพที่อยู่ในรูปอาเรย์ของ numpy หรือไฟล์ภาพจาก PIL ได้เลย โดยพิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2084,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/streamlit_image.png" alt="" class="wp-image-2084" /><figcaption>เขียนโค้ดเพื่อแสดงภาพจาก URL, numpy array หรือไฟล์ภาพจาก PIL (เว็บนั้นมีปัญหาการแสดงภาษาไทย)</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/streamlit_image.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>เขียนโค้ดเพื่อแสดงภาพจาก URL, numpy array หรือไฟล์ภาพจาก PIL (เว็บนั้นมีปัญหาการแสดงภาษาไทย)</figcaption></figure>
 <p>หรือใครอยากแบ่งหน้าจอออกแบบ column ทำได้โดยพิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2085,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/04/carbon-4.png" alt="" class="wp-image-2085" /><figcaption>แสดงผลออกมาเป็น column</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>สำหรับคำสั่งอื่น ๆ นอกเหนือจากนี้ ผู้อ่านสามารถศึกษาได้ในเว็บของ <a rel="noreferrer noopener" title="https://streamlit.io" href="https://streamlit.io" target="_blank">Streamlit</a> เองอยู่แล้ว ซึ่งเว็บนี้เองแสดงตัวอย่างของการนำ Streamlit ไปใช้งานเกี่ยวกับ Data ทั้งหลายแหล่ รวมถึงงานด้าน MI/AL ที่ทำกันอยู่อีกด้วย หรือใครที่เขียนโค้ดโดยใช้ไลบรารีอยู่แล้วดันลืมไปชั่วขณะ เราสามารถเข้าไปดูสรุปคำสั่งที่มีใน Streamlit ได้จาก<a rel="noreferrer noopener" title="https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py" href="https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py" target="_blank">หน้าเว็บ Cheatsheet หน้านี้ครับ</a> </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2><strong>โดยสรุปแล้ว</strong> </h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/04/carbon-4.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>แสดงผลออกมาเป็น column</figcaption></figure>
+<p>สำหรับคำสั่งอื่น ๆ นอกเหนือจากนี้ ผู้อ่านสามารถศึกษาได้ในเว็บของ <a href="https://streamlit.io" rel="noreferrer noopener">Streamlit</a> เองอยู่แล้ว ซึ่งเว็บนี้เองแสดงตัวอย่างของการนำ Streamlit ไปใช้งานเกี่ยวกับ Data ทั้งหลายแหล่ รวมถึงงานด้าน MI/AL ที่ทำกันอยู่อีกด้วย หรือใครที่เขียนโค้ดโดยใช้ไลบรารีอยู่แล้วดันลืมไปชั่วขณะ เราสามารถเข้าไปดูสรุปคำสั่งที่มีใน Streamlit ได้จาก<a href="https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py" rel="noreferrer noopener">หน้าเว็บ Cheatsheet หน้านี้ครับ</a></p>
+<h2 id="--2"><strong>โดยสรุปแล้ว</strong></h2>
 <p>ไลบรารี Streamlit ไลบรารีนี้ เป็นไลบรารีที่ทำให้เราซึ่งเขียนโปรแกรมด้วยภาษาไพทอนอยู่แล้ว สามารถสร้างหน้าเว็บเพื่อแสดงผลตามที่เราต้องการได้โดยไม่จำเป็นต้องมีความรู้ภาษา HTML, CSS และ JavaScript ครับ ฟังแล้วน่าใช้มาก เพราะตอนนี้เราเอาไลบรารีนี้ไปทำงานราษฏร์ งานหลวงทำให้สร้างหน้าเว็บเพื่อดึงไฟล์ภาพออกมาแสดงผลได้ง่ายกว่าเดิมที่โค้ดบางส่วนเขียนด้วย React ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>ใครสนใจก็ไปเปิดได้ในหน้าเว็บของผู้ผลิตตามลิ้งค์ข้างบนได้ครับ</p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">computer</span>
-			
-				<span class="post-tag">data</span>
-			
-				<span class="post-tag">programming</span>
-			
-				<span class="post-tag">python</span>
-			
-				<span class="post-tag">streamlit</span>
-			
-				<span class="post-tag">visualization</span>
-			
-				<span class="post-tag">คอมพิวเตอร์</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-				<span class="post-tag">เว็บไซต์</span>
-			
-				<span class="post-tag">ไพทอน</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/04/21/1st-customized-node-red-is-downloader/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								1st customized Node-RED คือตัว Downloader
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/04/30/content-alternative-to-medium-facebook-wordpress/">
-							<span class = 'mr-1'>
-								ทางเลือกทำคอนเท้นต์นอกจากโซเชียล และ Medium
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#21 A* Search Algorithm กับการเดินในเขาวงกต</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#21 A* Search Algorithm กับการเดินในเขาวงกต" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/03/08/21-a-star-and-the-traversal-in-maze/" />
+<meta property="og:url" content="http://localhost:4000/2024/03/08/21-a-star-and-the-traversal-in-maze/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-08T06:30:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze.jpg" />
+<meta property="twitter:title" content="#21 A* Search Algorithm กับการเดินในเขาวงกต" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T17:53:55+07:00","datePublished":"2024-03-08T06:30:00+07:00","description":"None","headline":"#21 A* Search Algorithm กับการเดินในเขาวงกต","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/03/08/21-a-star-and-the-traversal-in-maze/"},"url":"http://localhost:4000/2024/03/08/21-a-star-and-the-traversal-in-maze/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#21 A* Search Algorithm กับการเดินในเขาวงกต</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-03-08 06:30:00 +0700">2024-03-08</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze.jpg' />
+  </figure>
+  
+
+  <p>หลังจากที่เขียนในบทความก่อนหน้าถึงโครงสร้างข้อมูลแบบ Graph และ เทคนิคการเดินทางใน Graph (Graph Traversal) เพื่อหาเส้นทาง Shortest Path โดย Dijkstra&#8217;s กับ Bellman-Ford&#8217;s Algorithms แล้ว</p>
+
+<p>ในบทความนี้เราจะมาแนะนำเทคนิคอีกเทคนิคหนึ่งที่มีชื่อว่า <strong>A* (อ่านว่าเอ-สตาร์)</strong> <strong>Search Algorithm</strong></p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>The English version is <a title="available here" href="https://medium.nickuntitled.com/a-search-algorithm-and-the-maze-traversal-52273bdd552f">available here</a>.</p>
+</blockquote>
+
+<!--more-->
+
+<h2 class="wp-block-heading" id="table-of-contents">สารบัญ</h2>
+
+<ul class="wp-block-list">
+<li><a href="#a-search-algorithm">A* Search Algorithm</a></li>
+
+
+
+<li><a href="#process">ขั้นตอนการทำงาน</a></li>
+
+
+
+<li><a href="#code">เขียนโค้ด</a></li>
+
+
+
+<li><a href="#complexity-analysis">Complexity Analysis</a></li>
+
+
+
+<li><a href="#application">การนำไปใช้</a></li>
+
+
+
+<li><a href="#maze">นำ A* Search Algorithm หาเส้นทางในเขาวงกต</a></li>
+
+
+
+<li><a href="#addition">เพิ่มเติม</a></li>
+
+
+
+<li><a href="#summary">สรุป</a></li>
+
+
+
+<li><a href="#reference">แหล่งข้อมูลอ้างอิง</a></li>
+</ul>
+
+<h2 class="wp-block-heading" id="a-search-algorithm">A* Search Algorithm</h2>
+
+<p><strong>A* Search Algorithm</strong> [1] เป็นพื้นฐานที่ใช้ในการทำ Artificial Intelligence สำหรับการทำ Graph Traversal เพื่อหา Path ที่เหมาะสมที่สุดระหว่าง 2 โหนดจากโหนดเริ่มต้น ไปยังโหนดสิ้นสุดใน Graph ที่เป็น Directed Unweighted ที่ไม่มี Negative Edge Weights</p>
+
+<p>เทคนิคนี้คล้ายกันกับเทคนิค Dijkstra&#8217;s Algorithm ที่กล่าวถึงใน<a href="https://nickuntitled.com/2024/03/06/20-graph-and-shortest-path-algorithms/" target="_blank" rel="noopener" title="#20 – Graph และ Shortest Path Algorithms">บทความก่อนหน้า</a> แต่มีข้อแตกต่างคือเทคนิคนี้จะฟังก์ชันสำหรับการประเมิน [2] ที่มีส่วนประกอบ ได้แก่</p>
+
+<ol class="wp-block-list">
+<li><strong>Heuristic </strong>คือค่าสำหรับการตัดสินในการผ่านโหนด</li>
+
+
+
+<li><strong>Cost </strong>คือค่าที่บ่งบอกค่าใช้จ่าย ระยะเวลา หรืออะไรก็ตามแต่ ที่ช่วยพิจารณาว่าโหนดนั้นเหมาะสมต่อการผ่านหรือไม่</li>
+
+
+
+<li><strong>Priority </strong>คือค่าที่ได้จากทั้ง Heuristic และ Cost จะได้เป็นค่านี้ออกมา เพื่อบ่งบอกว่าโหนดนั้นเหมาะสมหรือไม่</li>
+</ol>
+
+<p>เรากำหนดให้</p>
+
+<ul class="wp-block-list">
+<li><strong>Heuristic </strong>คือ h(x)</li>
+
+
+
+<li><strong>Cost </strong>คือ g(x)</li>
+
+
+
+<li>และ <strong>Priority </strong>คือ f(x)</li>
+</ul>
+
+<p>เราอธิบายได้ตามสมการทางคณิตศาสตร์ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>f(x) = g(x) + h(x)</code></pre>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="process">ขั้นตอนการทำงาน</h2>
+
+<p>เทคนิคนี้มีหน้าที่ค้นหาเส้นทางที่เหมาะสมสำหรับการเดินทางระหว่างโหนดเริ่มต้น (S) ไปยังโหนดสิ้นสุด (G) โดยใช้ cost การเดินทางที่ต่ำที่สุด</p>
+
+<p>เทคนิคนี้จำเป็นต้องมี 2 อาเรย์ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Open list หรือ priority queue</strong> เป็นอาเรย์สำหรับการเก็บโหนดต่อไปที่จำเป็นต้องการสำรวจ ข้อมูลที่นำมาเก็บในอาเรย์นี้ได้มาจากโหนดที่ผ่านการพิจารณาโดยการใช้ฟังก์ชันแล้วว่าให้ค่าต่ำที่สุด โดยตอนเริ่มต้นการทำงานของเทคนิคนี้ เราจะเป็นข้อมูลโหนดเริ่มต้น (S) ไว้ก่อน</li>
+
+
+
+<li><strong>Closed List</strong> มีหน้าที่เก็บข้อมูลโหนดที่ผ่านการสำรวจเพื่อค้นหาโหนดที่ให้ cost ต่ำที่สุดเรียบร้อยแล้ว</li>
+</ul>
+
+<p>เมื่อกำหนดอาเรย์เรียบร้อยแล้ว เราจะใช้ Open list สำหรับสร้าง Tree สำหรับการเก็บข้อมูลที่ต่ำที่สุดไว้ข้างบน แล้วค่อย ๆ ไล่ลงมาจนถึงโหนดที่มีค่าสูงที่สุดอยู่ระดับล่าง ลักษณะนี้ทำให้นึกถึง <strong>Min Heap Tree</strong> ที่อธิบายใน<a href="https://nickuntitled.com/2024/02/28/big-o-search-and-sort-in-data-engineering/" target="_blank" rel="noopener" title="#19 Big-O, Search &amp; Sort ที่ใช้ในงาน Data">บทความก่อนหน้า</a></p>
+
+<p>เราสามารถสรุปการทำงานเป็นขั้นตอนได้ตามด้านล่างนี้</p>
+
+<ol class="wp-block-list">
+<li>กำหนดให้โหนดทุกโหนดยกเว้นโหนดเริ่มต้น (S) มีค่า cost เป็น Infinity ส่วนโหนดเริ่มต้น (S) สำหรับให้ cost เป็น 0</li>
+
+
+
+<li>เริ่มต้นการสร้าง Tree โดยให้รูทเป็นโหนดเริ่มต้น (S)</li>
+
+
+
+<li>ลบโหนดรูท สำหรับการนำโหนดที่ดึงออกมาเพื่อสำรวจในโหนดนั้น</li>
+
+
+
+<li>เพิ่มโหนดที่ดึงออกมาลงไปใน Closed List</li>
+
+
+
+<li>สำรวจโหนดนั้น ๆ เพื่อค้นหาโหนดที่เชื่อมต่อกัน แล้ววนลูปในแต่ละโหนดสำหรับการประเมินโดยใช้ฟังก์ชันเพื่อหา cost ที่ต่ำที่สุด และอัพเดทค่า cost นั้น ๆ</li>
+
+
+
+<li>เพิ่มโหนดที่ให้ cost ที่ต่ำที่สุดลงไปใน Tree</li>
+
+
+
+<li>จากนั้นวนลูปตั้งแต่ข้อ 3 จนถึงข้อ 6 จนกว่าเราจะได้โหนดสิ้นสุด (G)</li>
+</ol>
+
+<p>เราแสดงขั้นตอนการทำงานได้ตามด้านล่างนี้ โดยใช้กราฟตัวอย่างตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230a2db&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1.jpg" alt="" class="wp-image-5974" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p>เรากำหนด</p>
+
+<ul class="wp-block-list">
+<li><strong>ระยะทาง: </strong>ให้โหนดทุกโหนด ยกเว้นโหนดเริ่มต้น (โหนดที่ 1) มีค่าเท่ากับ Infinity ส่วนโหนดเริ่มต้นเรากำหนดให้ cost เป็น 0</li>
+
+
+
+<li><strong>อาเรย์ Open List: </strong>กำหนดให้เป็นโหนดเริ่มต้น ที่คำนวณค่า cost โดยฟังก์ชัน f(x) = g(x) + h(x) ที่กำหนดให้
+<ul class="wp-block-list">
+<li>g(x) = 0 เนื่องจากไม่มีโหนดก่อนหน้า</li>
+
+
+
+<li>และ h(x) = 0 ตามที่ระบุในกราฟ</li>
+</ul>
+</li>
+
+
+
+<li><strong>อาเรย์ Closed List:</strong> กำหนดให้ทุกโหนดเป็น False </li>
+</ul>
+
+<p>ผลลัพธ์การกำหนดค่าเริ่มต้นแสดงตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230a923&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1.jpg" alt="" class="wp-image-5800" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_1.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p>ต่อมา เราสำรวจเข้าไปดูที่โหนดเริ่มต้น โดยการดึงโหนด 1 ออกจาก Open List (ถ้ามองเป็น Min-Heap โหนด 1 ที่ดึงออกมานั้นมันเป็นโหนดรูท)</p>
+
+<p>เมื่อดึงโหนดที่ 1 ออกมาแล้ว เรากำหนดในอาเรย์ Closed List ให้โหนดที่ 1 มีค่าเป็น True</p>
+
+<p>โหนดที่ 1 นี้มีโหนดที่เชื่อมต่อกันอยู่ทั้งหมด 2 โหนด ได้แก่โหนดที่ 2 และโหนดที่ 3 ที่มีค่า h(x) เท่ากับ 2 และ 7 ตามลำดับ และมีค่า g(x) เท่ากับ 3 และ 2 ตามลำดับ เรามาคำนวณเพื่อหาค่า cost ได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>f_node2(x) = h_node2(x) + g_node2(x) = 2 + 3 = 5</li>
+
+
+
+<li>f_node3(x) = h_node3(x) + g_node3(x) = 7 + 2 = 9</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้เราจะเห็นว่า ค่า cost ที่มาจากโหนดที่ 2 มีค่าต่ำที่สุด และค่า cost ที่มาจากโหนดที่ 3 อยู่รองลงมา</p>
+
+<p>ให้เราเพิ่มค่าทั้งสองค่าลงไปใน Open List โดยกำหนดให้โหนดที่ 2 ที่มีค่า cost น้อยกว่าอยู่ข้างบนตามหลักของ Min-Heap</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230af1e&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_initial.jpg" alt="" class="wp-image-5802" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_initial-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_initial-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_initial-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_initial-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_initial-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_initial.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p>เมื่อสำรวจโหนดที่ 1 เสร็จแล้ว ให้เราดึงโหนด 2 ออกจาก Open List</p>
+
+<p>เมื่อดึงโหนดที่ 2 ออกมาแล้ว เรากำหนดในอาเรย์ Closed List ให้โหนดที่ 2 มีค่าเป็น True</p>
+
+<p>ในโหนดนี้มีโหนดที่เชื่อมต่อกันอยู่เพียงโหนดเดียว คือโหนดที่ 3 ที่มีค่า h(x) เท่ากับ 7 และมีค่า g(x) เท่ากับ 1 เราคำนวณเพื่อหาค่า cost ได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>f_node3(x) = h_node3(x) + g_node3(x) = 7 + 1 = 8</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้เราจะเห็นว่า ค่า cost จากโหนด 3 ที่เชื่อมกับโหนดที่ 2 มีค่าที่ต่ำกว่าค่า cost ที่เป็นโหนดที่ 3 ที่มาจากโหนดที่ 1 ให้เราเพิ่มโหนดนี้พร้อมกับค่า cost ที่เพิ่งคำนวณได้ลงไปใน Open List โดยให้อยู่ข้างบนเหนือกว่าโหนดที่ 3 ที่มีค่า cost เท่ากับ 9</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230b531&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_1.jpg" alt="" class="wp-image-5803" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_1-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_1-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_1-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_1-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_1-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_1.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p>เมื่อสำรวจโหนดที่ 2 เสร็จแล้ว ให้เราดึงโหนด 3 ที่มีค่า cost เท่ากับ 8 ออกจาก Open List และกำหนดใน Closed List ให้โหนดที่ 3 เป็น True</p>
+
+<p>ในโหนดนี้มีโหนดที่เชื่อมต่อกันอยู่ทั้งหมด 2 โหนด ได้แก่โหนดที่ 4 และโหนดที่ 5 ที่มีค่า h(x) เท่ากับ 2 และ 7 ตามลำดับ และมีค่า g(x) เท่ากับ 3 และ 2 ตามลำดับ เรามาคำนวณเพื่อหาค่า cost ได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>f_node4(x) = h_node4(x) + g_node4(x) = 4 + 4 = 8</li>
+
+
+
+<li>f_node5(x) = h_node5(x) + g_node5(x) = 10 + 3 = 13</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้เราจะเห็นว่า</p>
+
+<ul class="wp-block-list">
+<li>ค่า cost ที่มาจากโหนดที่ 4 มีค่าต่ำที่สุด</li>
+
+
+
+<li>และค่า cost ที่มาจากโหนดที่ 5 มีค่ามากที่สุด</li>
+</ul>
+
+<p>ให้เราเพิ่มลงไปในตาราง โดยกำหนดให้โหนดที่ 4 อยู่บนสุด แต่โหนดที่ 5 อยู่ล่างสุดตามหลัก Min-Heap อีกเช่นเคย</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230bbb4&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_2.jpg" alt="" class="wp-image-5804" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_2-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_2-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_2-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_2-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_2-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_2.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p>เมื่อสำรวจโหนดที่ 3 เสร็จแล้ว ให้เราดึงโหนด 4 ที่มีค่า cost เท่ากับ 8 ออกจาก Open List และกำหนดใน Closed List ให้โหนดที่ 4 เป็น True</p>
+
+<p>โหนดที่ 4 โหนดนี้มีโหนดที่เชื่อมต่อกันอยู่เพียงโหนดเดียว คือโหนดที่ 5 ที่มีค่า h(x) เท่ากับ 10 และมีค่า g(x) เท่ากับ 3 เรามาคำนวณเพื่อหาค่า cost ได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>f_node5(x) = h_node5(x) + g_node5(x) = 10 + 3 = 13</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้เราจะเห็นว่า ค่า cost นี้ไม่ได้มีค่าต่ำกว่าค่า Cost ที่เป็นโหนดที่ 5 ที่เชื่อมกับโหนดที่ 3</p>
+
+<p>ดังนั้นเราจะไม่อัพเดทอะไรใน Open List</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230c1a3&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_3.jpg" alt="" class="wp-image-5805" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_3-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_3-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_3-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_3-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_3-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_3.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p>เมื่อสำรวจโหนดที่ 4 เสร็จแล้ว ให้เราดึงโหนด 3 ที่มีค่า cost เท่ากับ 9 ออกจาก Open List และกำหนดใน Closed List ให้โหนดที่ 3 เป็น True</p>
+
+<p>ในโหนดที่ 3 โหนดนี้มีโหนดที่เชื่อมต่อกันอยู่ทั้งหมด 2 โหนด ได้แก่โหนดที่ 4 และโหนดที่ 5 แต่โหนดที่ 4 ได้รับการเยือนไปเรียบร้อยแล้ว (ค่าใน Closed List เป็น True)</p>
+
+<p>ดังนั้นเราจะพิจารณาเฉพาะในโหนดที่ 5 ที่มีค่า h(x) เท่ากับ 7 และมีค่า g(x) เท่ากับ 2 เรามาคำนวณเพื่อหาค่า cost ได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>f_node5(x) = h_node5(x) + g_node5(x) = 10 + 3 = 13</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้เราจะเห็นว่า ค่า cost ที่คำนวณได้ไม่ได้มีค่าต่ำกว่าที่คำนวณในขั้นตอนก่อนหน้า ดังนั้นเราจะไม่อัพเดทค่าในตาราง</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230c765&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_4.jpg" alt="" class="wp-image-5806" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_4-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_4-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_4-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_4-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_4-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_step_4.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p>สุดท้าย ให้เราดึงโหนด 5 ที่มีค่า cost เท่ากับ 13 ออกจาก Open List และกำหนดใน Closed List ให้โหนดที่ 5 เป็น True</p>
+
+<p>เรามาสำรวจในโหนดที่ 5 โหนดนี้ไม่มีโหนดที่เชื่อมต่อกันอีก ดังนั้นเราสามารถสรุป Path ที่ได้ในกราฟได้ตามด้านล่างนี้</p>
+
+<p>โดยเราเดินจากโหนด <strong>1 -&gt; 2 -&gt; 3 -&gt; 5</strong> ตามเส้น และวงกลมสีแดงตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e230cc51&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_finished.jpg" alt="" class="wp-image-5801" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_finished-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_finished-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_finished-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_finished-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_finished-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/A_star_finished.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure></div>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="code">เขียนโค้ด</h2>
+
+<p>เราสามารถสรุปได้โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<p>ส่วนแรกเป็นการนำเข้าไลบรารี</p>
+
+<pre class="wp-block-code"><code>import heapq, copy</code></pre>
+
+<p>ส่วนที่สองเป็นการกำหนด Graph</p>
+
+<pre class="wp-block-code"><code>graph = &#91;
+    {
+        'h': 0,
+        'neighbor': &#91;(1, 3), (2, 2)],
+        'f': float('inf'), 'g': 0,
+        'parent': 0
+    },
+    {
+        'h': 2,
+        'neighbor': &#91;(2, 1)],
+        'f': float('inf'), 'g': float('inf'),
+        'parent': None
+    },
+    {
+        'h': 7,
+        'neighbor': &#91;(3, 4), (4, 3)],
+        'f': float('inf'), 'g': float('inf'),
+        'parent': None
+    },
+    {
+        'h': 4,
+        'neighbor': &#91;(4, 3)],
+        'f': float('inf'), 'g': float('inf'),
+        'parent': None
+    },
+    {
+        'h': 10,
+        'neighbor': &#91;],
+        'f': float('inf'), 'g': float('inf'),
+        'parent': None
+    }
+]</code></pre>
+
+<p>ต่อมาเป็นการเขียนโค้ดสำหรับเทคนิค A* Search Algorithm</p>
+
+<pre class="wp-block-code"><code>def a_star_search(graph_orig, source = 0, destination = 4):
+    if source == destination:
+        print("We are already at the destination.")
+        return
+    
+    # Create Open and Closed List
+    open = &#91;]
+    close = &#91;False for i in range(len(graph_orig))]
+
+    # Copy the original array
+    graph = copy.deepcopy(graph_orig)
+
+    graph&#91;source]&#91;'parent'] = None
+    graph&#91;source]&#91;'f'] = graph&#91;source]&#91;'g'] + graph&#91;source]&#91;'h']
+    heapq.heappush(open, &#91;graph&#91;source]&#91;'f'], source])
+
+    # destination
+    found_dest = False
+    while len(open) &gt; 0:
+        print(list(open))
+
+        vertex = heapq.heappop(open)&#91;1]
+        close&#91;vertex] = True
+
+        # Check if we found the destination.
+        if vertex == destination:
+            print("We found the destination")
+            found_dest = True
+
+            # Trace back
+            dest_vertex = vertex
+            path = &#91;]
+            print(dest_vertex)
+            while True:
+                path.append(dest_vertex)
+                dest_vertex = graph&#91;dest_vertex]&#91;'parent']
+                if dest_vertex is None:
+                    break
+
+            path.reverse()
+            return path
+        
+        # Look into neighbors
+        for neighbor_vertex, g_neighbor in graph&#91;vertex]&#91;'neighbor']:
+            # Check whether is visited or not
+            if close&#91;neighbor_vertex]:
+                continue
+
+            new_f = g_neighbor + graph&#91;neighbor_vertex]&#91;'h']
+            if graph&#91;neighbor_vertex]&#91;'f'] == float('inf') or \
+               new_f &lt; graph&#91;neighbor_vertex]&#91;'f']:
+                graph&#91;neighbor_vertex]&#91;'parent'] = vertex
+                graph&#91;neighbor_vertex]&#91;'f'] = new_f
+                graph&#91;neighbor_vertex]&#91;'g'] = g_neighbor
+                heapq.heappush(open, &#91;graph&#91;neighbor_vertex]&#91;'f'], neighbor_vertex])
+    
+    if not found_dest:
+        print("We cannot found dest.")
+
+result = a_star_search(graph, 0, 4)
+print(result)</code></pre>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="complexity-analysis">Complexity Analysis</h2>
+
+<p>ต่อมา เรามาวิเคราะห์ Computational Complexity ของเทคนิคนี้ เราจะเห็นว่าเทคนิคนี้มี</p>
+
+<ul class="wp-block-list">
+<li><strong>Time Complexity</strong> เท่ากับ O(b^d) โดย <em>b</em>&nbsp;is คือ branching factor ที่เป็นจำนวนเส้นเฉลี่ยในแต่ละโหนด และ&nbsp;<em>d</em>&nbsp;เป็นจำนวนโหนดบน Path ผลลัพธ์</li>
+</ul>
+
+<ul class="wp-block-list">
+<li><strong>Space Complexity</strong> เท่ากับ O(b^d)</li>
+</ul>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>สำหรับรายละเอียดเกี่ยวกับ Time Complexity, Space Complexity และตัว Big-O อ่านได้ที่<a href="https://nickuntitled.com/2024/02/28/big-o-search-and-sort-in-data-engineering/#big-o" data-type="link" data-id="https://nickuntitled.com/2024/02/28/big-o-search-and-sort-in-data-engineering/#big-o">บทความที่แล้ว</a></p>
+</blockquote>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="application">การนำไปใช้</h2>
+
+<p>เทคนิค A* Search Algorithm นำไปประยุกต์ใช้ในงานทางด้านการค้นหา Path และงานทางด้านการทำ Optimization โดยนำไปใช้ [3] สำหรับวงการ</p>
+
+<ul class="wp-block-list">
+<li><strong>Robotics:</strong> เทคนิค A* Search Algorithm ช่วยหุ่นยนต์เดินทางผ่านอุปสรรค และค้นหาเส้นทางที่เหมาะสม</li>
+
+
+
+<li><strong>Video Games:</strong> ช่วย NPCs (Non-player character) เดินทางภายในเกมได้อย่างชาญฉลาด</li>
+
+
+
+<li><strong>Route Planning:</strong> วางแผนเส้นทางที่สั้นที่สุด หรือเส้นทางที่เดินทางได้เร็วที่สุด</li>
+
+
+
+<li><strong>Logistics: </strong>ช่วยวางแผนการเดินทางของรถขนส่ง</li>
+
+
+
+<li><strong>Artificial Intelligence:</strong> ช่วยในงานทางด้าน Natural Language Processing และ Machine Learning</li>
+</ul>
+
+<p>ในบทความนี้ เราจะยกตัวอย่างการประยุกต์ใช้เทคนิค A* Search Algorithm นั่นก็คือการค้นหาเส้นทางในเขาวงกต</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<h2 class="wp-block-heading" id="maze">A* Space Algorithm กับการเดินทางในเขาวงกต</h2>
+
+<p>เอาล่ะ เรามาเข้าเรื่องหลักของบทความนี้แล้ว หลังจากที่เกริ่นนาน 555</p>
+
+<h3 class="wp-block-heading">โจทย์ปัญหา</h3>
+
+<p>เราต้องการเดินทางในเขาวงกตหนึ่งตามภาพด้านล่างนี้ โดย</p>
+
+<ul class="wp-block-list">
+<li>กำหนดจุดเริ่มต้นที่มุมบนซ้าย และจุดสิ้นสุดที่มุมล่างขวา</li>
+
+
+
+<li>และกำหนดให้สีดำแสดงพื้นที่ที่เราเดินได้่ ส่วนสีขาวคือพื้นที่ที่เราเดินไม่ได้</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial.jpg" alt="" class="wp-image-5936" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราต้องการให้คอมพิวเตอร์ประมวลผลเพื่อหาเส้นทางที่เหมาะสมที่สุด</p>
+
+<h3 class="wp-block-heading">การแก้ปัญหา</h3>
+
+<p>เราสามารถนำเทคนิค A* Search Algorithm ไปใช้ได้โดยการประมวลผลตามขั้นตอนด้านล่างนี้</p>
+
+<ol class="wp-block-list">
+<li>สร้างตัวแปร Maze ที่ระบุรายละเอียดตัวแปรใน Class ที่มี
+<ul class="wp-block-list">
+<li>รายละเอียดของแผนที่ว่าเดินผ่านได้หรือไม่ (1 = เดินผ่านได้, 0 = ผ่านไม่ได้)</li>
+
+
+
+<li>พิกัดแกน x และ y</li>
+
+
+
+<li>ระบุโหนดก่อนหน้า (parent)</li>
+
+
+
+<li>ระบุค่า <strong>Heuristic </strong>(h(x)) กับ <strong>Cost </strong>(g(x)) และ <strong>Priority </strong>(f(x)) ให้เป็น Infinity ทั้งหมด ยกเว้นโหนดเริ่มต้นที่มีค่าเท่ากับ 0</li>
+</ul>
+</li>
+
+
+
+<li>สร้าง Open List ที่เป็น Min-Heap Tree โดยกำหนดให้พิกัดเริ่มต้น (0, 0) เป็นรูท และสร้าง Closed List โดยให้ทุกพิกัดในเขาวงกตเป็น False</li>
+
+
+
+<li>ดึงโหนดรูทออกมา ประมวลผลเพื่อหาโหนดที่เชื่อมกันอยู่โดยพิจารณาจากทิศทางทั้งหมด 8 ทิศทาง (Up, Down, Left, Right, Up-left, Up-right, Down-left และ Down-right) โดย
+<ul class="wp-block-list">
+<li>พิจารณาว่าพิกัดนั้นของเขาวงกตผ่านได้หรือไม่ (เช็คว่ามีค่าเท่ากับ 0 หรือไม่)</li>
+
+
+
+<li>เช็คว่าอยู่ใน Closed List หรือไม่</li>
+
+
+
+<li>และใช้ฟังก์ชันเพื่อหา cost ที่ต่ำที่สุด โดยกำหนดให้ h(x) มีค่าเท่ากับ h(x) ปัจจุบันบวกด้วย 1 กับ g(x) เท่ากับฟังก์ชันการค้นหาระยะทางที่ใช้ Euclidian Distance และค่า f(x) = h(x) + g(x)</li>
+</ul>
+</li>
+
+
+
+<li>นำโหนดที่ผ่านการคำนวณ f(x) ที่ได้ค่าต่ำที่สุดเพิ่มเข้าไปใน Open List โดยโหนดที่ให้ค่า f(x) ต่ำที่สุดจะอยู่โหนดรูทตามหลัก Min-Heap</li>
+
+
+
+<li>เพิ่มพิกัดที่ดึงจากโหนดรูทเข้าไปใน Closed List โดยกำหนดให้เป็น True</li>
+
+
+
+<li>วนลูปตั้งแต่ข้อ 3 ถึง 5 จนกว่าจะถึงพิกัดสิ้นสุดของเขาวงกต</li>
+</ol>
+
+<p>เราสามารถเขียนโค้ดได้สำหรับการทำ A* Search Algorithm ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>import heapq, copy, math
+
+def isvalid(x, y, size_x, size_y):
+    return x &gt;= 0 and x &lt; size_x and y &gt;= 0 and y &lt; size_y
+
+def maze_astar(maze_orig, source_x = 0, source_y = 0, 
+               dest_x = 8, dest_y = 8, size_x = 4, size_y = 4):
+    if source_y == dest_y and source_x == dest_x:
+        print("This is a destination.")
+        return &#91;&#91;source_x, source_y]]
+    
+    # Create Maze, Open and Closed List
+    maze = &#91;&#91;Cell(j, i, maze_orig&#91;i]&#91;j]) for j in range(size_x)] for i in range(size_y)]
+    open = &#91;]
+    heapq.heappush(open, (0.0, source_x, source_y))
+    close = &#91;&#91;False for j in range(size_x)] for i in range(size_y)]
+
+    # Direction
+    direction = &#91;
+        ('U', 0, -1),
+        ('D', 0, 1),
+        ('F', 1, 0),
+        ('B', -1, 0),
+        ('UF', 1, -1),
+        ('UB', -1, -1),
+        ('DF', 1, 1),
+        ('DB', -1, 1)
+    ]
+
+    # Initial
+    maze&#91;source_y]&#91;source_x].parent = None
+    maze&#91;source_y]&#91;source_x].f = 0
+    maze&#91;source_y]&#91;source_x].g = 0
+    maze&#91;source_y]&#91;source_x].h = 0
+
+    found_dest = False
+
+    while len(open) &gt; 0:
+        q = heapq.heappop(open)
+        source_x, source_y = q&#91;1:]
+        close&#91;source_y]&#91;source_x] = True
+        
+        # Check if we found the destination.
+        if source_y == dest_y and source_x == dest_x:
+            print("We found the destination")
+            found_dest = True
+
+            # Trace back
+            dest_vertex = &#91;source_x, source_y]
+            path = &#91;]
+            while True:
+                path.append(dest_vertex)
+                dest_vertex = maze&#91;dest_vertex&#91;1]]&#91;dest_vertex&#91;0]].parent
+                if dest_vertex is None:
+                    break
+
+            path.reverse()
+            return path
+        
+        # Find Direction
+        for name, add_x, add_y in direction:
+            # New Coordinates
+            neighbor_x, neighbor_y = source_x + add_x, source_y + add_y
+
+            # Is not valid continue
+            if not isvalid(neighbor_x, neighbor_y, size_x, size_y) or \
+               maze&#91;neighbor_y]&#91;neighbor_x].detail == '0' or \
+               close&#91;neighbor_y]&#91;neighbor_x]:
+               continue
+
+            new_g = maze&#91;source_y]&#91;source_x].g + 1
+            new_h = calculate_h(source_x, source_y, neighbor_x, neighbor_y)
+            new_f = new_h + new_g
+            if maze&#91;neighbor_y]&#91;neighbor_x].f == float('inf') or \
+               new_f &lt; maze&#91;neighbor_y]&#91;neighbor_x].f:
+                maze&#91;neighbor_y]&#91;neighbor_x].parent = &#91;source_x, source_y]
+                maze&#91;neighbor_y]&#91;neighbor_x].f = new_f 
+                maze&#91;neighbor_y]&#91;neighbor_x].g = new_h 
+                maze&#91;neighbor_y]&#91;neighbor_x].h = new_g
+
+                heapq.heappush(open, (new_f, neighbor_x, neighbor_y))
+
+    if not found_dest:
+        print("We cannot found dest.")
+        return &#91;]
+    
+    return None</code></pre>
+
+<p>โดยเรากำหนดฟังก์ชันการหา cost ของโหนดด้วยฟังก์ชัน Euclidian Distance ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Calculate_h by Euclidian Distance
+def calculate_h(source_x, source_y, dest_x, dest_y):
+    return math.sqrt((source_x - dest_x) ** 2 +
+                     (source_y - dest_y) ** 2)</code></pre>
+
+<p>เรากำหนดให้เขาวงกตมีอาเรย์ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>class Cell:
+    def __init__(self, x, y, detail):
+        self.detail = detail
+        self.x = x
+        self.y = y
+        self.parent = &#91;None, None]
+        self.h = float('inf')
+        self.g = float('inf')
+        self.f = float('inf')
+
+maze = &#91;
+        &#91;'1', '0', '0', '0', '0', '0', '0'],
+        &#91;'1', '1', '1', '1', '1', '1', '0'],
+        &#91;'1', '1', '0', '0', '0', '1', '0'],
+        &#91;'0', '1', '1', '0', '0', '0', '0'],
+        &#91;'0', '0', '1', '1', '1', '1', '0'],
+        &#91;'1', '1', '1', '1', '0', '1', '0'],
+        &#91;'1', '0', '0', '1', '0', '1', 'F'],
+]
+
+size_y = len(maze)
+size_x = len(maze&#91;0])</code></pre>
+
+<p>เราสามารถแสดงเขาวงกตเป็นภาพได้ตามด้านล่างนี้ โดยให้ 0 เป็นสีขาว ส่วน 1 เป็นสีดำ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial.jpg" alt="" class="wp-image-5936" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ต่อมา เราเขียนโค้ดสำหรับการรันคำสั่ง A* Search Algorithm สำหรับการเดินทางในเขาวงกตที่แสดงได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>output = maze_astar(maze, 0, 0, 
+         size_x - 1, size_y - 1, 
+         size_x, size_y)
+
+visualize_maze = copy.deepcopy(maze)
+for x, y in output:
+    visualize_maze&#91;y]&#91;x] = 'X'
+
+for i in range(size_y):
+    for j in range(size_x):
+        print(visualize_maze&#91;i]&#91;j], end = '')
+    print('')</code></pre>
+
+<p>จากนั้น สั่งให้รันเข้าไปในเขาวงกต</p>
+
+<p>ผลลัพธ์ของการเดินในเขาวงกต เราแสดงตามภาพด้านล่างนี้ โดยสีฟ้าแสดงถึงการเดินในเขาวงกตตั้งแต่จุดเริ่มต้น ไปยังจุดสิ้นสุด</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result.jpg" alt="" class="wp-image-5933" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<h3 class="wp-block-heading" id="addition">เพิ่มเติม</h3>
+
+<p>การค้นหาระยะทางในทางคณิตศาสตร์ เราสามารถใช้ฟังก์ชันการค้นหาระยะทาง (distance) ได้ตามด้านล่างนี้</p>
+
+<p><strong>Manhattan Distance</strong> ที่หาระยะทางโดยค่าสัมบูรณ์ (absolute) ของผลต่างระหว่างพิกัดเริ่มต้น กับพิกัดปลายทางในแกน x และ y</p>
+
+<pre class="wp-block-code"><code>distance = |x_dist - x_source| + |y_dist - y_source|</code></pre>
+
+<p><strong>Euclidian Distance</strong> เราค้นหาระยะทางระหว่างพิกัดปลายทาง กับพิกัดต้นทางโดยการใช้รากที่สอง (Square Root) ของผลรวมยกกำลังสองของผลต่างระหว่างแกน x และแกน y</p>
+
+<pre class="wp-block-code"><code>distance = sqrt((x_dist - x_source)^2 + (y_dist - y_source)^2)</code></pre>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="summary">สรุป</h2>
+
+<p>เทคนิคการทำ Graph Traversal เพื่อหา Path ที่เหมาะสมที่สุด นอกจากเทคนิค Dijkstra&#8217;s กับ Bellman-Ford&#8217;s Algorithms แล้วยังมีเทคนิคที่ดีกว่าสองเทคนิคก่อนหน้า นั่นก็คือเทคนิค <strong>A* (อ่านว่าเอ-สตาร์)</strong> <strong>Search Algorithm</strong></p>
+
+<p>เทคนิคนี้เป็นเทคนิคที่ได้รับความนิยมมาก โดยนำไปใช้แก้ปัญหาในหลายด้าน ได้แก่ Robotics, Video Games, Route Planning, Logistics และ Artificial Intelligence</p>
+
+<p>ในบทความนี้เรายกตัวอย่างการประยุกต์ใช้เทคนิคนี้ในการทำ Route Planning โดยวางแผนการเดินในเขาวงกตที่ให้ผลลัพธ์ตามที่เราต้องการ</p>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="reference">แหล่งอ้างอิง</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search" target="_blank" rel="noopener" title="">https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search</a></li>
+
+
+
+<li><a href="https://www.thaicyberpoint.com/ford/blog/id/128/" target="_blank" rel="noopener" title="">https://www.thaicyberpoint.com/ford/blog/id/128/</a></li>
+
+
+
+<li><a href="https://www.simplilearn.com/tutorials/artificial-intelligence-tutorial/a-star-algorithm" target="_blank" rel="noopener" title="">https://www.simplilearn.com/tutorials/artificial-intelligence-tutorial/a-star-algorithm</a></li>
+
+
+
+<li><a title="" href="https://www.geeksforgeeks.org/a-search-algorithm/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/a-search-algorithm/</a></li>
+</ol>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

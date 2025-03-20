@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>วิธีการเลือก parent element ด้วย JavaScript</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="วิธีการเลือก parent element ด้วย JavaScript" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2022/01/02/select_parent_element_javascript/" />
+<meta property="og:url" content="http://localhost:4000/2022/01/02/select_parent_element_javascript/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/01/parent_element_js_cover.jpeg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-02T22:30:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/01/parent_element_js_cover.jpeg" />
+<meta property="twitter:title" content="วิธีการเลือก parent element ด้วย JavaScript" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2023-01-23T00:58:16+07:00","datePublished":"2022-01-02T22:30:00+07:00","description":"None","headline":"วิธีการเลือก parent element ด้วย JavaScript","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/01/parent_element_js_cover.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/01/02/select_parent_element_javascript/"},"url":"http://localhost:4000/2022/01/02/select_parent_element_javascript/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>วิธีการเลือก parent element ด้วย JavaScript</h1>
+
+  <p class="post-meta">
+    <time datetime="2022-01-02 22:30:00 +0700">2022-01-02</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/01/parent_element_js_cover.jpeg' />
+  </figure>
+  
+
+  <p>ปกติเวลาที่เราเลือก element ด้วยภาษาจาวาสคริป เราจะใช้คำสั่งที่รู้จักกันอย่าง</p>
+
+<pre class="wp-block-code"><code>document.getElementById("id");<br />document.document.getElementsByClassName("class name");<br />document.document.getElementsByName("name");<br />document.document.getElementsByTagName("tag name");</code></pre>
+
+<p>หรือเลือก element โดยการใช้ CSS Selector ด้วยคำสั่งที่รู้จักอย่าง</p>
+
+<pre class="wp-block-code"><code>document.querySelector("selector");<br />parent_element.querySelector("selector");<br />document.querySelectorAll("selector");<br />parent_element.querySelectorAll("selector");</code></pre>
+
+<p>คำสั่งเหล่านี้ะคืนค่า element ที่เราเลือกไว้ ไม่ว่าจะเป็น element เดียว หรือ element ทั้งหมดที่เราพบในหน้าเว็บเพจนั้น ๆ อย่างไรก็ดีเราต้องการเลือก parent element จาก element ที่อยู่ภายใน จุดนี้เราจะทำได้อย่างไร?</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading" id="jquery">jQuery</h2>
+
+<p>jQuery เป็นหนึ่งในไลบรารีที่คนนิยมใช้งานกัน เราเลือก parent element ได้โดยการพิมพ์คำสั่งอย่าง</p>
+
+<pre class="wp-block-code"><code>$("css selector").parent();</code></pre>
+
+<p>หรือ</p>
+
+<pre class="wp-block-code"><code>$("css selector").closest("parent css selector");</code></pre>
+
+<p>สองคำสั่งนี้จะอนุญาตเราเลือก parent element ได้ตามที่ต้องการเลย อย่างไรก็ดี ทั้งสองคำสั่งนี้มีข้อแตกต่างกัน เรายกตัวอย่างตามภาพด้านล่างนี้ก่อน</p>
+
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/parent_element_diagram.png?w=580&#038;ssl=1" alt="DOM Example" /></figure>
+
+<p>แผนภาพตัวอย่าง</p>
+
+<p>ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานทั้งสองคำสั่งได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>$("li").parent().parent();</code></pre>
+
+<p>หรือ</p>
+
+<pre class="wp-block-code"><code>$("li").closest("div");</code></pre>
+
+<p>ทั้งคู่จะเลือก parent element ที่เป็น div ครับ</p>
+
+<p>สรุปความแตกต่างระหว่างสองคำสั่งตามข้างบนนี้ตรงที่</p>
+
+<ul class="wp-block-list"><li>.parent() เป็นคำสั่งที่ให้เราเลือก element ที่เป็น parent และอยู่ติดกับ element ที่เราเลือก</li><li>.closest() เป็นการเลือก element ที่อยู่เหนือ และอยู่ใกล้กันกับ element ที่เราเลือกไว้โดยการใช้ css selector</li></ul>
+
+<p>อย่างไรก็ดีไลบรารีนี้มีข้อเสียได้แก่ ไลบรารีมีขนาดใหญ่ส่งผลต่อระยะเวลาการโหลดไลบรารีเพื่อใช้งาน กับไลบรารีนี้เก่าไปแล้ว เนื่องมาจากตัวจาวาสคริปเองได้รับการพัฒนาอย่างต่อเนื่องจนทำงานได้แบบเดียวกันกับ jQuery แต่ไม่ต้องพึ่งพาไลบรารีที่มีขนาดใหญ่ และทำงานได้เร็วมากกว่าไลบรารีที่กล่าวถึง</p>
+
+<p>ต่อไป เราจะมาพูดถึงคำสั่งที่มีอยู่แล้วในจาวาสคริป (หรือเรียกว่า <a href="http://vanilla-js.com">Vanilla JavaScript</a>) ที่อนุญาตให้เราเลือก parent element ครับ คำสั่งเหล่านี้ได้แก่ node.parentNode, element.parentElement และ element.closest</p>
+
+<h2 class="wp-block-heading" id="node-parentnode-element-parentelement">node.parentNode กับ element.parentElement</h2>
+
+<p>ทั้งคู่นี้เป็นคำสั่งในจาวาสคริปที่เลือก parent node หรือ element ที่อยู่เหนือกว่า node หรือ element ที่เราเลือก ตัวอย่างการใช้งานคำสั่งนี้เป็นไปตามด้านล่างนี้ครับ (ตัวอย่างด้านล่างเอามาจากหน้าเว็บ <a href="https://stackoverflow.com/questions/8685739/difference-between-dom-parentnode-and-parentelement">StackOverflow</a>)</p>
+
+<pre class="wp-block-code"><code>document.body.parentNode; // the &lt;html&gt; <br />elementdocument.body.parentElement; // the &lt;html&gt; element</code></pre>
+
+<p>หรือยกตัวอย่างจากภาพเดิม</p>
+
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/parent_element_diagram.png?w=580&#038;ssl=1" alt="DOM Example" /></figure>
+
+<p>แผนภาพตัวอย่าง</p>
+
+<p>ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง</p>
+
+<pre class="wp-block-code"><code>let li = docuent.getElementById('li');<br />let div = li.parentNode.parentNode;</code></pre>
+
+<p>หรือ</p>
+
+<pre class="wp-block-code"><code>let li = docuent.getElementById('li');<br />let div = li.parentElement.parentElement;</code></pre>
+
+<p>เราก็จะเลือก parent Element ที่เป็น div ได้เลย ถ้าลองสังเกตดูจะพบว่าทั้งสองคำสั่งมันก็ใช้ได้เหมือนกันนี่ แล้วมันต่างกันอย่างไร?</p>
+
+<p>เรามาพูดถึงความแตกต่างระหว่าง Node กับ Element เสียก่อน (ความแตกต่างสรุปจาก<a href="https://blog.webdevsimplified.com/2021-05/node-vs-element/">หน้าเว็บนี้</a>)</p>
+
+<ul class="wp-block-list"><li>Element ก็คือ HTML tag ต่าง ๆ ที่อยู่ในหน้าเว็บไซต์ ได้แก่ div, span, body หรืออื่น ๆ</li><li>Node จะเป็นอะไรก็ได้ที่มีอยู่ในหน้าเว็บไซต์ รวมถึงข้อความ คอมเม้นต์ ไม่จำกัดว่าเป็น div, span, body, input, form หรืออื่น ๆ ที่เป็น HTML tag</li></ul>
+
+<p>เราจะเห็นว่าการเลือก Node จะดูยุ่งยากกว่า เพราะเราค้องแยกระหว่างข้อความ คอมเม้นต์ หรือ HTML tag ดังนั้นแล้ว การใช้งาน Element จะดูจำเพาะมากกว่า</p>
+
+<p>ผู้อ่านสามารถดูวิดีโอความแตกต่างระหว่าง Element กับ Node ได้ตามด้านล่างนี้</p>
+
+<figure class="kg-card kg-embed-card"><iframe loading="lazy" title="YouTube video player" src="https://www.youtube.com/embed/rhvec8cXLlo" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></figure>
+
+<p>ต่อมา เรามาดูความแตกต่างการใช้งานของสองคำสั่ง (โค้ดอ้างอิงจาก <a href="https://stackoverflow.com/questions/8685739/difference-between-dom-parentnode-and-parentelement">StackOverflow</a>)</p>
+
+<pre class="wp-block-code"><code>document.documentElement.parentNode;    // document เป็น node
+document.documentElement.parentElement; // null เนื่องจาก document ไม่ใช่ element
+
+(document.documentElement.parentNode === document);  // true
+(document.documentElement.parentElement === document);  // false</code></pre>
+
+<p>เราจะเห็นว่า document ไม่ได้เป็นหนึ่งใน HTML tag อะไรเลยตามที่กล่าวไว้ตามข้างบน และ document ไม่ได้เป็น element แต่ก็ยังเป็น node อยู่ ดังนั้นการใช้งาน element.parentElement จะคืนค่า null กลับมา</p>
+
+<h2 class="wp-block-heading" id="element-closest">element.closest</h2>
+
+<p>คำสั่งนี้เป็นส่วนหนึ่งในภาษาสคริปที่อนุญาตให้เราเลือก parent element ที่อยู่ใกล้กันกับ element ที่เราเลือกอยู่โดยการใช้ CSS Selector การใช้งานใช้งานได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>element.closest("CSS selector");</code></pre>
+
+<p>ยกตัวอย่างโดยเอารูปเดิมมาใช้</p>
+
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/parent_element_diagram.png?w=580&#038;ssl=1" alt="DOM Example" /></figure>
+
+<p>แผนภาพตัวอย่าง</p>
+
+<p>ในที่นี้เราต้องการเลือก element div ที่อยู่เหนือ element li เราสามารถเรียกใช้งานคำสั่งนี้ได้ตามด้านล่าง</p>
+
+<pre class="wp-block-code"><code>let li = docuent.getElementById('li');
+let div = li.closest('div');</code></pre>
+
+<p>เมื่อพิมพ์ตามข้างบนนี้แล้ว เราจะเลือก parent element ที่เป็น div ครับ เมื่อสังเกตตัวโค้ดแล้วพบว่าใช้งานได้สะดวกมากกว่า node.parentNode กับ element.parentElement</p>
+
+<p>อย่างไรก็ดีการใช้งานทั้งสามคำสั่งได้แก่ node.parentNode, element.parentElement และ element.closest นี้ขึ้นกับผู้ใช้ว่าจะเอาไปใช้อย่างไรครับ ส่วนกรณีที่ผู้ใช้ไม่ได้ใช้ Vanilla JavaScript &nbsp;คำสั่งทั้งสามคำสั่งนี้อาจจะไม่ได้ใช้เลยก็ได้ครับผม</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

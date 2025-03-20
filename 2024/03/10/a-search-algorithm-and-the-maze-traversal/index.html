@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>A* Search Algorithm and the maze traversal</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="A* Search Algorithm and the maze traversal" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/03/10/a-search-algorithm-and-the-maze-traversal/" />
+<meta property="og:url" content="http://localhost:4000/2024/03/10/a-search-algorithm-and-the-maze-traversal/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze_cover_english.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-10T14:59:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze_cover_english.jpg" />
+<meta property="twitter:title" content="A* Search Algorithm and the maze traversal" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T18:08:23+07:00","datePublished":"2024-03-10T14:59:00+07:00","description":"None","headline":"A* Search Algorithm and the maze traversal","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze_cover_english.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/03/10/a-search-algorithm-and-the-maze-traversal/"},"url":"http://localhost:4000/2024/03/10/a-search-algorithm-and-the-maze-traversal/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>A* Search Algorithm and the maze traversal</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-03-10 14:59:00 +0700">2024-03-10</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/21_astar_and_the_traversal_in_maze_cover_english.jpg' />
+  </figure>
+  
+
+  <p>After&nbsp;<a href="https://medium.nickuntitled.com/the-graph-and-the-shortest-path-algorithms-dijkstra-and-bellman-ford-2f820325d8d9" target="_blank" rel="noreferrer noopener">introducing graphs</a>&nbsp;and shortest path techniques like Dijkstra’s and Bellman-Ford’s algorithms, this article will introduce the following method:&nbsp;<strong>A* Search Algorithm</strong>.</p>
+
+<!--more-->
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>The original article is available on <a href="https://medium.nickuntitled.com/a-search-algorithm-and-the-maze-traversal-52273bdd552f" data-type="link" data-id="https://medium.nickuntitled.com/a-search-algorithm-and-the-maze-traversal-52273bdd552f" target="_blank" rel="noreferrer noopener">Medium</a>, and the Thai version of&nbsp;<a href="https://nickuntitled.com/2024/03/08/21-a-star-and-the-traversal-in-maze/">this article is available here</a>.</p>
+</blockquote>
+
+<h2 class="wp-block-heading" id="table-of-contents">Table of Contents</h2>
+
+<ul class="wp-block-list">
+<li><a href="#a-star" data-type="internal" data-id="#a-star">A* Search Algorithm</a></li>
+
+
+
+<li><a href="#process" data-type="internal" data-id="#process">Process</a></li>
+
+
+
+<li><a href="#use-case" data-type="internal" data-id="#use-case">Use Cases</a></li>
+
+
+
+<li><a href="#complexity" data-type="internal" data-id="#complexity">Computational Complexity</a></li>
+
+
+
+<li><a href="#maze" data-type="internal" data-id="#maze">Traverse in a maze</a></li>
+
+
+
+<li><a href="#summary">Summary</a></li>
+
+
+
+<li><a href="#reference">Reference</a></li>
+</ul>
+
+<h2 class="wp-block-heading" id="a-star">A* Search Algorithm</h2>
+
+<p id="ebf4"><strong>A* Search Algorithm</strong>&nbsp;[1] is a basis of Artificial Intelligence for finding an appropriate path between the start and the destination in a graph. This technique is suitable for a directed unweighted graph with non-negative edge weights.</p>
+
+<p id="6ed6">This technique is similar to&nbsp;<strong>Dijkstra’s Algorithm</strong>. However, there is a little difference.</p>
+
+<p id="71cb"><strong>A* Search Algorithm</strong>&nbsp;uses an evaluation function [2]:</p>
+
+<pre class="wp-block-code"><code>f(x) = g(x) + h(x)</code></pre>
+
+<p id="2332">where</p>
+
+<ul class="wp-block-list">
+<li><em>g(x)</em>&nbsp;is the&nbsp;<strong>actual cost</strong>&nbsp;of the node (or the distance to get to the node in the graph from a starting point)</li>
+
+
+
+<li><em>h(x)</em>&nbsp;is the&nbsp;<strong>heuristic cost</strong>&nbsp;to reach a goal (or the estimation of the distance to get to the finish line from a node)</li>
+
+
+
+<li>and&nbsp;<em>f(x)</em>&nbsp;is a&nbsp;<strong>priority&nbsp;</strong>that combines between&nbsp;<em>g(x)</em>&nbsp;and&nbsp;<em>h(x).</em>&nbsp;<em>f(x)</em>&nbsp;considers whether that node is suitable for passing.</li>
+</ul>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="process">Process</h2>
+
+<p id="5398"><strong>A* search algorithm</strong>&nbsp;finds the appropriate path to traverse between the start (S) and the destination (G) by using the lowest cost. This technique requires two arrays:</p>
+
+<ul class="wp-block-list">
+<li><strong>Open list or priority queue</strong>&nbsp;is an array that stores nodes with the lowest estimated cost (from f(x)) and waits for evaluation.</li>
+
+
+
+<li><strong>Closed list</strong>&nbsp;is an array that stores evaluated nodes.</li>
+</ul>
+
+<p id="4a72">After defining an array, we use the open list to store the node with the lowest cost at the top and the highest cost at the bottom. This data structure is similar to a&nbsp;<a href="https://www.digitalocean.com/community/tutorials/min-heap-binary-tree" rel="noreferrer noopener" target="_blank"><strong>Min-Heap tree</strong></a>.</p>
+
+<p id="c654">We summarize the process below.</p>
+
+<h3 class="wp-block-heading" id="6c6d">Initialization</h3>
+
+<ol class="wp-block-list">
+<li>Initialize the open and the closed lists.</li>
+
+
+
+<li>The open list initially contains only the start node as the root, while the closed list is empty.</li>
+
+
+
+<li>Set the cost of reaching the start node (or g(x)) to zero, get the heuristic cost (or h(x)), and calculate the actual cost (or f(x)).</li>
+</ol>
+
+<h3 class="wp-block-heading" id="6d70">The Loop</h3>
+
+<ol class="wp-block-list">
+<li>Remove the root and place the node on the closed list.</li>
+
+
+
+<li>Search the neighbor nodes and loop inside to calculate the cost (or f(x)) to get the lowest one, which is a promising candidate for exploration.</li>
+
+
+
+<li>The node with the lowest cost is inserted into the open list and arranged to conform to the&nbsp;<strong>Min-Heap</strong>&nbsp;tree.</li>
+
+
+
+<li>Repeat the process until reaching the destination (G).</li>
+</ol>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="use-case">Use cases</h2>
+
+<p id="2d7d">Various tasks use an<strong>&nbsp;A* Search Algorithm:&nbsp;</strong>Robotics, Video Games, Route Planning, Logistics, and Artificial Intelligence [3].</p>
+
+<ul class="wp-block-list">
+<li><strong>Robotics:</strong>&nbsp;A* algorithm assists the robot in navigating obstacles and finding an alternative path.</li>
+
+
+
+<li><strong>Video Games:&nbsp;</strong>This algorithm plans NPCs (or Non-Player Characters) to navigate inside the game smartly.</li>
+
+
+
+<li><strong>Route Planning:&nbsp;</strong>This technique provides the shortest path.</li>
+
+
+
+<li><strong>Logistics:&nbsp;</strong>This task uses this technique to plan vehicle routes and schedules.</li>
+
+
+
+<li><strong>Artificial Intelligence:&nbsp;</strong>This technique is utilized for natural language processing and machine learning to optimize decision-making processes.</li>
+</ul>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="complexity">Computational Complexity</h2>
+
+<p id="3441"><strong>Time Complexity</strong>&nbsp;equals&nbsp;<em>O(b^d)</em>, where b is a branching factor that finds the average line in each node, and d is the number of nodes on the result path.</p>
+
+<p id="fe5b"><strong>Space Complexity</strong>&nbsp;equals&nbsp;<em>O(b^d)</em>.</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="maze">Traverse a maze</h2>
+
+<p id="4b2f">We want to travel in the maze shown in the picture below, with a defined starting point and a destination. Then, we want to use the computer to find the most appropriate path.</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1024x576.jpg" alt="" class="wp-image-5936" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_initial.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">The example maze (the black is a walkable area, while the white is not).</figcaption></figure></div>
+
+<p id="5c57">We can apply the A* search algorithm with the following processes.</p>
+
+<h2 class="wp-block-heading" id="203e">Initialization</h2>
+
+<p id="16a6">First, we create the maze variable as a class that contains</p>
+
+<ul class="wp-block-list">
+<li>walkability (1 = walkable, 0 = non-walkable)</li>
+
+
+
+<li>x and y coordinates</li>
+
+
+
+<li>parent coordinates</li>
+
+
+
+<li>heuristic costs (h(x))</li>
+
+
+
+<li>actual costs (g(x))</li>
+
+
+
+<li>and priorities (f(x)).</li>
+</ul>
+
+<p id="b068">Then, we initialize the open and the closed set. The open set initially contains only the start node (at x = 0 and y = 0) as the root, while the closed set is empty.</p>
+
+<p id="eacc">After that, we set the costs (g(x), h(x), and f(x)) to zero.</p>
+
+<h2 class="wp-block-heading" id="9c9e">The Loop</h2>
+
+<p id="4761">First, we remove the root and place the node in the closed list.</p>
+
+<p id="6800">Second, we search the neighbor nodes from eight directions (Up, Down, Left, Right, Up-Left, Up-Right, Down-Left, and Down-Right). We consider three points.</p>
+
+<ul class="wp-block-list">
+<li>Consider whether the neighbor nodes are walkable (or walkability = 0).</li>
+
+
+
+<li>Check whether those nodes are in the closed list.</li>
+
+
+
+<li>Calculate f(x) to find the lowest cost by h(x) = current h(x) + 1, g(x) =&nbsp;<strong>Euclidian distance*</strong>&nbsp;from the current to the neighbor node, and f(x) = h(x) + g(x).</li>
+</ul>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p id="6918">*<strong>Euclidian Distance</strong>&nbsp;[3] is the most common distance measure to find the length of a segment connecting two points.</p>
+</blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="268" height="39" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/Euclidian_distance.png" alt="" class="wp-image-6286" /><figcaption class="wp-element-caption">Euclidian Distance</figcaption></figure></div>
+
+<p id="0df5">Third, we insert the nodes with the lowest cost into the open list and arrange the list to conform to the Min-Heap Tree.</p>
+
+<p id="755e">Fourth, loop the process from the first to the third until reaching the maze destination.</p>
+
+<h2 class="wp-block-heading" id="dc31">The Code</h2>
+
+<p id="fe69">First, we import the essential libraries.</p>
+
+<pre class="wp-block-code"><code>import heapq, copy, math</code></pre>
+
+<p id="9b89">Next, we define a maze and a related class using the code below.</p>
+
+<pre class="wp-block-code"><code>class Cell:
+    def __init__(self, x, y, walkable):
+        self.walkable = walkable      # Walkability
+        self.x = x                    # X coordinate
+        self.y = y                    # Y coordinate
+        self.parent = &#91;None, None]    # Parent coordinate
+        self.h = float('inf')         # h(x)
+        self.g = float('inf')         # g(x)
+        self.f = float('inf')         # f(x)
+
+maze = &#91;
+        &#91;'1', '0', '0', '0', '0', '0', '0'],
+        &#91;'1', '1', '1', '1', '1', '1', '0'],
+        &#91;'1', '1', '0', '0', '0', '1', '0'],
+        &#91;'0', '1', '1', '0', '0', '0', '0'],
+        &#91;'0', '0', '1', '1', '1', '1', '0'],
+        &#91;'1', '1', '1', '1', '0', '1', '0'],
+        &#91;'1', '0', '0', '1', '0', '1', 'F'],
+]
+
+size_y = len(maze)
+size_x = len(maze&#91;0])</code></pre>
+
+<p id="9b89">Third, we write a function to traverse a maze using&nbsp;<strong>an A* search algorithm</strong>, like the code below.</p>
+
+<pre class="wp-block-code"><code>def isvalid(x, y, size_x, size_y):
+    return x &gt;= 0 and x &lt; size_x and y &gt;= 0 and y &lt; size_y
+
+# Calculate_h by Euclidian Distance
+def calculate_h(source_x, source_y, dest_x, dest_y):
+    return math.sqrt((source_x - dest_x) ** 2 +
+                     (source_y - dest_y) ** 2)
+
+def maze_astar(maze_orig, source_x = 0, source_y = 0, 
+               dest_x = 8, dest_y = 8, size_x = 4, size_y = 4):
+    if source_y == dest_y and source_x == dest_x:
+        print("This is a destination.")
+        return &#91;&#91;source_x, source_y]]
+    
+    # Create Maze, Open and Closed List
+    maze = &#91;&#91;Cell(j, i, maze_orig&#91;i]&#91;j]) for j in range(size_x)] for i in range(size_y)]
+    open = &#91;]
+    heapq.heappush(open, (0.0, source_x, source_y))
+    close = &#91;&#91;False for j in range(size_x)] for i in range(size_y)]
+
+    # Direction
+    direction = &#91;
+        ('U', 0, -1),
+        ('D', 0, 1),
+        ('F', 1, 0),
+        ('B', -1, 0),
+        ('UF', 1, -1),
+        ('UB', -1, -1),
+        ('DF', 1, 1),
+        ('DB', -1, 1)
+    ]
+
+    # Initial
+    maze&#91;source_y]&#91;source_x].parent = None
+    maze&#91;source_y]&#91;source_x].f = 0
+    maze&#91;source_y]&#91;source_x].g = 0
+    maze&#91;source_y]&#91;source_x].h = 0
+
+    found_dest = False
+
+    while len(open) &gt; 0:
+        q = heapq.heappop(open)
+        source_x, source_y = q&#91;1:]
+        close&#91;source_y]&#91;source_x] = True
+        
+        # Check if we found the destination.
+        if source_y == dest_y and source_x == dest_x:
+            print("We found the destination")
+            found_dest = True
+
+            # Trace back
+            dest_vertex = &#91;source_x, source_y]
+            path = &#91;]
+            while True:
+                path.append(dest_vertex)
+                dest_vertex = maze&#91;dest_vertex&#91;1]]&#91;dest_vertex&#91;0]].parent
+                if dest_vertex is None:
+                    break
+
+            path.reverse()
+            return path
+        
+        # Find Direction
+        for name, add_x, add_y in direction:
+            # New Coordinates
+            neighbor_x, neighbor_y = source_x + add_x, source_y + add_y
+
+            # Is not valid continue
+            if not isvalid(neighbor_x, neighbor_y, size_x, size_y) or \
+               maze&#91;neighbor_y]&#91;neighbor_x].walkable == '0' or \
+               close&#91;neighbor_y]&#91;neighbor_x]:
+               continue
+
+            new_g = maze&#91;source_y]&#91;source_x].g + 1
+            new_h = calculate_h(source_x, source_y, neighbor_x, neighbor_y)
+            new_f = new_h + new_g
+            if maze&#91;neighbor_y]&#91;neighbor_x].f == float('inf') or \
+               new_f &lt; maze&#91;neighbor_y]&#91;neighbor_x].f:
+                maze&#91;neighbor_y]&#91;neighbor_x].parent = &#91;source_x, source_y]
+                maze&#91;neighbor_y]&#91;neighbor_x].f = new_f 
+                maze&#91;neighbor_y]&#91;neighbor_x].g = new_h 
+                maze&#91;neighbor_y]&#91;neighbor_x].h = new_g
+
+                heapq.heappush(open, (new_f, neighbor_x, neighbor_y))
+
+    if not found_dest:
+        print("We cannot found dest.")
+        return &#91;]
+    
+    return None</code></pre>
+
+<p>Final, we write the code to let the algorithm traverse a maze.</p>
+
+<pre class="wp-block-code"><code>output = maze_astar(maze, 0, 0, 
+         size_x - 1, size_y - 1, 
+         size_x, size_y)
+
+visualize_maze = copy.deepcopy(maze)
+for x, y in output:
+    visualize_maze&#91;y]&#91;x] = 'X'
+
+for i in range(size_y):
+    for j in range(size_x):
+        print(visualize_maze&#91;i]&#91;j], end = '')
+    print('')</code></pre>
+
+<p id="9b89">The result is provided in the picture below. The blue one is an appropriate path provided by the algorithm from the start to the destination.</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-1024x576.jpg" alt="" class="wp-image-5933" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/a_star_maze_result.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="summary">Summary</h2>
+
+<p id="11d7"><strong>A* Search algorithm</strong>&nbsp;is a graph traversal technique for finding the most appropriate path between the start and the destination in a graph. This technique is popular in various tasks, such as Robotics, Video Games, Route Planning, Logistics, and Artificial Intelligence.</p>
+
+<p id="a52a">In this article, we apply the algorithm for route planning to traverse a maze to get the most appropriate path to walk from the start to the destination.</p>
+
+<p id="597d">If you found this content useful, press Clap, and share it to various social media platforms. Moreover, readers can follow me on&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;or&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (or Twitter)</a>.</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="reference">Reference</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search" rel="noreferrer noopener" target="_blank">https://www.codecademy.com/resources/docs/ai/search-algorithms/a-star-search</a></li>
+
+
+
+<li><a href="https://www.simplilearn.com/tutorials/artificial-intelligence-tutorial/a-star-algorithm" rel="noreferrer noopener" target="_blank">https://www.simplilearn.com/tutorials/artificial-intelligence-tutorial/a-star-algorithm</a></li>
+
+
+
+<li><a href="https://towardsdatascience.com/9-distance-measures-in-data-science-918109d069fa" target="_blank" rel="noreferrer noopener">https://towardsdatascience.com/9-distance-measures-in-data-science-918109d069fa</a></li>
+</ol>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents&nbsp;↑</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

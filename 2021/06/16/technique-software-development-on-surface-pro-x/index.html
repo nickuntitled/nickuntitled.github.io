@@ -1,573 +1,140 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>วิธีพัฒนาแอพลิเคชันบน Surface Pro X - Nick Untitled</title>
-		<meta name="description" content="โดยปกติเราจะพัฒนาโปรแกรมบนคอมที่ใช้ซีพียู x86 แต่ในตอนนี้เราใช้ Surface Pro X ที่มีข้อจำกัดของเครื่องมือ ในบทความนี้เราจะมาแนะนำวิธีพัฒนาโปรแกรมบนอุปกรณ์นี้กัน">
-		<meta name="keywords" content="amazon,ARM,ARM64,cloud,Code,code-server,coding,github,Google Colab,Jupyter,Kaggle,machine learning,microsoft,ML,Remote,Surface Pro X,tablet,Ubuntu,Visual Studio,Windows,Windows Subsystem on Linux,WSL,WSL 2,การเรียนรู้ของเครื่อง,คลาวด์,พัฒนาโปรแกรม,ลินุกซ์,วินโดว์,เขียนโปรแกรม,เครื่องมือ,โค้ดดิ้ง,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-06-16T02:36:10+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/06/16/technique-software-development-on-surface-pro-x/"/>
-		<meta property="og:title" content="วิธีพัฒนาแอพลิเคชันบน Surface Pro X - Nick Untitled" />
-		<meta property="og:description" content="โดยปกติเราจะพัฒนาโปรแกรมบนคอมที่ใช้ซีพียู x86 แต่ในตอนนี้เราใช้ Surface Pro X ที่มีข้อจำกัดของเครื่องมือ ในบทความนี้เราจะมาแนะนำวิธีพัฒนาโปรแกรมบนอุปกรณ์นี้กัน " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd.png"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="วิธีพัฒนาแอพลิเคชันบน Surface Pro X - Nick Untitled" />
-		<meta property="twitter:description" content="โดยปกติเราจะพัฒนาโปรแกรมบนคอมที่ใช้ซีพียู x86 แต่ในตอนนี้เราใช้ Surface Pro X ที่มีข้อจำกัดของเครื่องมือ ในบทความนี้เราจะมาแนะนำวิธีพัฒนาโปรแกรมบนอุปกรณ์นี้กัน " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd.png" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>วิธีพัฒนาแอพลิเคชันบน Surface Pro X</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="วิธีพัฒนาแอพลิเคชันบน Surface Pro X" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/06/16/technique-software-development-on-surface-pro-x/" />
+<meta property="og:url" content="http://localhost:4000/2021/06/16/technique-software-development-on-surface-pro-x/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd-1200x675.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-16T19:36:10+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd-1200x675.png" />
+<meta property="twitter:title" content="วิธีพัฒนาแอพลิเคชันบน Surface Pro X" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:46:39+07:00","datePublished":"2021-06-16T19:36:10+07:00","description":"None","headline":"วิธีพัฒนาแอพลิเคชันบน Surface Pro X","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd-1200x675.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/06/16/technique-software-development-on-surface-pro-x/"},"url":"http://localhost:4000/2021/06/16/technique-software-development-on-surface-pro-x/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>วิธีพัฒนาแอพลิเคชันบน Surface Pro X</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-06-16 19:36:10 +0700">2021-06-16</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd-1200x675.png' />
+  </figure>
+  
 
-	
-
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				วิธีพัฒนาแอพลิเคชันบน Surface Pro X
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/06/0a429080-25bd-412f-83b8-cf2600b322bd.png' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>16 June 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/technique-software-development-on-surface-pro-x" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/technique-software-development-on-surface-pro-x&amp;text=วิธีพัฒนาแอพลิเคชันบน Surface Pro X - https://nickuntitled.com/technique-software-development-on-surface-pro-x" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p>ต่อจากบทความก่อนหน้าที่พูดถึง<a href="https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/" target="_blank" rel="noreferrer noopener" title="Surface Pro X กับแอพที่ใช้งานอยู่ในขณะนี้">แอพที่ใช้งานบนคอมพิวเตอร์ Surface Pro X</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>การพัฒนาแอพลิเคชันเพื่อใช้งานของเราที่กล่าวถึงจะเป็นการพัฒนาเว็บไซต์ รวมถึงพัฒนาโปรแกรมเพื่อใช้งานทางด้าน AI/ML (Artificial Intelligence/Machine Learning) เพื่อนำไปเทรนข้อมูล และทดสอบข้อมูลบนเครื่องคอมพิวเตอร์แม่ข่ายที่มีการ์ดจอเพื่อช่วยการประมวลผล  </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+  <p>ต่อจากบทความก่อนหน้าที่พูดถึง<a href="https://nickuntitled.com/2021/05/20/surface-pro-x-application-problem-solution/" rel="noreferrer noopener">แอพที่ใช้งานบนคอมพิวเตอร์ Surface Pro X</a></p>
+<p>การพัฒนาแอพลิเคชันเพื่อใช้งานของเราที่กล่าวถึงจะเป็นการพัฒนาเว็บไซต์ รวมถึงพัฒนาโปรแกรมเพื่อใช้งานทางด้าน AI/ML (Artificial Intelligence/Machine Learning) เพื่อนำไปเทรนข้อมูล และทดสอบข้อมูลบนเครื่องคอมพิวเตอร์แม่ข่ายที่มีการ์ดจอเพื่อช่วยการประมวลผล</p>
 <p>ในตอนนี้ เราจะพัฒนาบนเครื่อง Surface Pro X (คือมีเครื่องนี้อยู่แล้ว แต่จะเอาไปใช้กับคอมเครื่องอื่นที่ใช้ ARM ก็ได้) เพื่อทดสอบการใช้งานเบื้องต้น (Prototyping) ก่อนจะนำไปทำงานบนคอมพิวเตอร์เครื่องจริง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:more -->
-<!--more-->
-<!-- /wp:more -->
-
-<!-- wp:paragraph -->
 <p>ก่อนอื่นเรามาพูดถึงปัญหาที่พบจากการใช้งานบนคอมพิวเตอร์ที่ใช้ซีพียู ARM ก่อน</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>ปัญหาจากการใช้งาน</h2>
-<!-- /wp:heading -->
-
-<!-- wp:image {"align":"center","id":2427,"width":720,"height":480,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/cannot-install.png" alt="" class="wp-image-2427" /><figcaption>ติดตั้งเครื่องมือที่รองรับ x86 ที่ใช้ 64-Bit บน Surface Pro X จะขึ้นแบบนี้</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>การพัฒนาเว็บไซต์ รวมถึงเขียนโค้ดสำหรับเทรนและทดสอบอัลกอริทึม AI/ML ที่พัฒนาขึ้นจะมีเครื่องมือสำหรับการพัฒนาโปรแกรม ตัวอย่างเช่น <a href="https://www.python.org/" target="_blank" rel="noreferrer noopener" title="https://www.python.org/">Python</a>, <a href="https://nodejs.org/" target="_blank" rel="noreferrer noopener" title="https://nodejs.org/">Node.js</a>, <a href="https://visualstudio.microsoft.com/" target="_blank" rel="noreferrer noopener" title="https://visualstudio.microsoft.com/">Visual Studio</a>, <a href="https://notepad-plus-plus.org/" target="_blank" rel="noreferrer noopener" title="https://notepad-plus-plus.org/">Nodepad++</a> เป็นต้น เครื่องมือเหล่านั้นบนระบบปฏิบัติการ Windows ได้รับการพัฒนาขึ้นให้ใช้งานบนซีพียูที่ใช้สถาปัตยกรรมแบบ x86 อย่าง Intel/AMD </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<p><!--more--></p>
+<h2 id="-">ปัญหาจากการใช้งาน</h2>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/cannot-install.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ติดตั้งเครื่องมือที่รองรับ x86 ที่ใช้ 64-Bit บน Surface Pro X จะขึ้นแบบนี้</figcaption></figure>
+<p>การพัฒนาเว็บไซต์ รวมถึงเขียนโค้ดสำหรับเทรนและทดสอบอัลกอริทึม AI/ML ที่พัฒนาขึ้นจะมีเครื่องมือสำหรับการพัฒนาโปรแกรม ตัวอย่างเช่น <a href="https://www.python.org/" rel="noreferrer noopener">Python</a>, <a href="https://nodejs.org/" rel="noreferrer noopener">Node.js</a>, <a href="https://visualstudio.microsoft.com/" rel="noreferrer noopener">Visual Studio</a>, <a href="https://notepad-plus-plus.org/" rel="noreferrer noopener">Nodepad++</a> เป็นต้น เครื่องมือเหล่านั้นบนระบบปฏิบัติการ Windows ได้รับการพัฒนาขึ้นให้ใช้งานบนซีพียูที่ใช้สถาปัตยกรรมแบบ x86 อย่าง Intel/AMD</p>
 <p>จุดนี้เลยทำให้เกิดปัญหาขึ้นเมื่อนำโปรแกรมสำหรับการพัฒนาโปรแกรมไปใช้งานบนคอมพิวเตอร์ที่ใช้ซีพียูต่างสถาปัตยกรรมกัน เพราะเมื่อนำเครื่องมือไปเปิดใช้งานคนละสถาปัตยกรรมกัน เราจะใช้งานเครื่องมือนั้นไม่ได้ ตัว Windows จะแจ้งว่าเราไม่สามารถเปิดใช้งานโปรแกรมนี้ได้นะ แล้วเราจะทำอย่างไรดี?</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><p>ปัญหาที่กล่าวถึงนี้จะพบได้เมื่อเรานำเครื่องมือพัฒนาโปรแกรมที่รองรับซีพียูที่ใช้สถาปัตยกรรม x86 ที่รองรับ 64-bit เนื่องจาก Windows 10 สำหรับ ARM ที่ใช้งานอยู่ตอนนี้ยังไม่รองรับโปรแกรมประเภทนี้ ซึ่งไมโครซอฟท์กำลังพัฒนาอยู่ อ่านได้จาก<a href="https://blogs.windows.com/windows-insider/2020/12/10/introducing-x64-emulation-in-preview-for-windows-10-on-arm-pcs-to-the-windows-insider-program/" target="_blank" rel="noreferrer noopener" title="https://blogs.windows.com/windows-insider/2020/12/10/introducing-x64-emulation-in-preview-for-windows-10-on-arm-pcs-to-the-windows-insider-program/">บทความของผู้พัฒนา</a></p><p>สำหรับผู้อ่านที่สนใจ สามารถดาวน์โหลด Windows 10 แบบ Insider มาใช้ก่อนได้ครับ</p></blockquote>
-<!-- /wp:quote -->
-
-<!-- wp:paragraph -->
-<p>จากปัญหาที่กล่าวขึ้นมาตามข้างบนนี้ เราจะพบได้บ่อยเมื่อนำมาใช้งานคนละสถาปัตยกรรมกัน เราแก้ไขได้โดยคอมไพล์เครื่องมือพัฒนาโปรแกรมให้รองรับการทำงานบนซีพียู ARM หรือเปิดใช้งานเครื่องมือพัฒนาบน <a href="https://docs.microsoft.com/en-us/windows/wsl/about" target="_blank" rel="noreferrer noopener" title="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem on Linux</a> หรือว่าจะเปิดใช้งานผ่านเว็บเบราวเซอร์ก็ได้ ตัวอย่างเช่น <a href="https://jupyter.org/" target="_blank" rel="noreferrer noopener" title="https://jupyter.org/">Jupyter Notebook</a>, <a href="https://research.google.com/colaboratory/" target="_blank" rel="noreferrer noopener" title="https://research.google.com/colaboratory/">Google Colab</a>, <a href="https://www.kaggle.com/code" target="_blank" rel="noreferrer noopener" title="https://www.kaggle.com/code">Kaggle Notebooks</a> หรืออื่น ๆ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<blockquote><p>ปัญหาที่กล่าวถึงนี้จะพบได้เมื่อเรานำเครื่องมือพัฒนาโปรแกรมที่รองรับซีพียูที่ใช้สถาปัตยกรรม x86 ที่รองรับ 64-bit เนื่องจาก Windows 10 สำหรับ ARM ที่ใช้งานอยู่ตอนนี้ยังไม่รองรับโปรแกรมประเภทนี้ ซึ่งไมโครซอฟท์กำลังพัฒนาอยู่ อ่านได้จาก<a href="https://blogs.windows.com/windows-insider/2020/12/10/introducing-x64-emulation-in-preview-for-windows-10-on-arm-pcs-to-the-windows-insider-program/" rel="noreferrer noopener">บทความของผู้พัฒนา</a></p>
+<p>สำหรับผู้อ่านที่สนใจ สามารถดาวน์โหลด Windows 10 แบบ Insider มาใช้ก่อนได้ครับ</p></blockquote>
+<p>จากปัญหาที่กล่าวขึ้นมาตามข้างบนนี้ เราจะพบได้บ่อยเมื่อนำมาใช้งานคนละสถาปัตยกรรมกัน เราแก้ไขได้โดยคอมไพล์เครื่องมือพัฒนาโปรแกรมให้รองรับการทำงานบนซีพียู ARM หรือเปิดใช้งานเครื่องมือพัฒนาบน <a href="https://docs.microsoft.com/en-us/windows/wsl/about" rel="noreferrer noopener">Windows Subsystem on Linux</a> หรือว่าจะเปิดใช้งานผ่านเว็บเบราวเซอร์ก็ได้ ตัวอย่างเช่น <a href="https://jupyter.org/" rel="noreferrer noopener">Jupyter Notebook</a>, <a href="https://research.google.com/colaboratory/" rel="noreferrer noopener">Google Colab</a>, <a href="https://www.kaggle.com/code" rel="noreferrer noopener">Kaggle Notebooks</a> หรืออื่น ๆ</p>
 <p>วิธีแรกที่เรากล่าวถึง เรานำโค้ดที่ใช้มาใช้งานจริงแล้วจากการคอมไพล์โค้ดด้วยตัวเอง หรือนำตัวติดตั้งที่มีคนคอมไพล์มาติดตั้งแล้ว พบว่ามันใช้งานได้ในระดับหนึ่ง แต่ติดปัญหาตัวไลบรารีที่ติดตั้งผ่าน pip หรือ npm/yarn แล้วคอมไพล์ไลบรารีบางตัวไม่ได้ เพราะเครื่องมืออย่าง cmake, gcc, cygwin ไม่ได้รับการคอมไพล์ให้รองรับ เลยทำให้ใช้งานได้ไม่สะดวกครับ ในบทความนี้เราจะพูดถึงสองเทคนิคหลังที่เราใช้งานอยู่ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>ใช้งานผ่าน Windows Subsystem on Linux</h2>
-<!-- /wp:heading -->
-
-<!-- wp:image {"align":"center","id":2405,"width":720,"height":480,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/WSL-on-Surface-Pro-X.png" alt="" class="wp-image-2405" /><figcaption>Windows Subsystem for Linux</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<h2 id="-windows-subsystem-on-linux">ใช้งานผ่าน Windows Subsystem on Linux</h2>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/WSL-on-Surface-Pro-X.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>Windows Subsystem for Linux</figcaption></figure>
 <p>วิธีนี้เป็นวิธีที่ไมโครซอฟท์อนุญาตให้เราเปิดใช้งานลินุกซ์ที่เรารู้จักกันอย่าง Ubuntu, OpenSUSE, Debian หรืออื่น ๆ มาใช้งานบนระบบปฏิบัติการวินโดว์ ซึ่งเป็นวิธีที่สะดวกมาก เนื่องจากระบบปฏิบัติการลินุกซ์ได้พอร์ตเพื่อใช้งานซีพียูสถาปัตยกรรม ARM/ARM64 มานานแล้ว และมีโปรแกรม เครื่องมือการพัฒนาโปรแกรมที่ได้รับการคอลไพล์ พร้อมใช้งานบนซีพียูแบบนี้มานานระดับหนึ่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><p>วิธีทำวิธีนี้สามารถใช้งานกับคอมพิวเตอร์ทั่วไปได้ครับ เพียงแต่ตัวติดตั้งที่ได้ทำลิ้งค์ในบทความนี้รองรับสำหรับ ARM เท่านั้น เราสามารถดาวน์โหลดตัวติดตั้งที่รองรับ x86 ได้ตามเว็บผู้ผลิตได้เลยครับ</p></blockquote>
-<!-- /wp:quote -->
-
-<!-- wp:paragraph -->
+<blockquote><p>วิธีทำวิธีนี้สามารถใช้งานกับคอมพิวเตอร์ทั่วไปได้ครับ เพียงแต่ตัวติดตั้งที่ได้ทำลิ้งค์ในบทความนี้รองรับสำหรับ ARM เท่านั้น เราสามารถดาวน์โหลดตัวติดตั้งที่รองรับ x86 ได้ตามเว็บผู้ผลิตได้เลยครับ</p></blockquote>
 <p><strong>การติดตั้งเพื่อใช้งาน Windows Subsystem for Linux</strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>ก่อนที่จะติดตั้ง Windows Subsystem for Linux (WSL) เราจะต้องเช็คก่อนว่าเครื่องเราใช้งานวินโดว์ <strong>Version 2004</strong>&nbsp;หรือใหม่กว่า และ&nbsp;<strong>Build 19041</strong>&nbsp;หรือใหม่กว่านั้นก่อน ถ้ายังไม่ใช่ ให้อัพเดทผ่าน Windows Update ให้เสร็จเรียบร้อย </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เมื่อทำเสร็จแล้ว ขั้นตอนต่อไป เราสามารถติดตั้งได้ง่าย เพียงไม่กี่ขึ้นตอนตาม<a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank" rel="noreferrer noopener" title="https://docs.microsoft.com/en-us/windows/wsl/install-win10">เว็บไซต์ของไมโครซอฟท์</a> ตามนี้เลย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<p>ก่อนที่จะติดตั้ง Windows Subsystem for Linux (WSL) เราจะต้องเช็คก่อนว่าเครื่องเราใช้งานวินโดว์ <strong>Version 2004</strong> หรือใหม่กว่า และ <strong>Build 19041</strong> หรือใหม่กว่านั้นก่อน ถ้ายังไม่ใช่ ให้อัพเดทผ่าน Windows Update ให้เสร็จเรียบร้อย</p>
+<p>เมื่อทำเสร็จแล้ว ขั้นตอนต่อไป เราสามารถติดตั้งได้ง่าย เพียงไม่กี่ขึ้นตอนตาม<a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noreferrer noopener">เว็บไซต์ของไมโครซอฟท์</a> ตามนี้เลย</p>
 <p>ขั้นตอนแรกคือ เปิดเข้าหน้า Settings จาก Start Menu จากนั้นเลือกไปที่หน้า Apps จะได้ตามภาพ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2408,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/2.Apps_.png" alt="" class="wp-image-2408" /><figcaption>หน้าจอ Apps</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/2.Apps_.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>หน้าจอ Apps</figcaption></figure>
 <p>ให้เราเลือกหัวข้อบนขวาบริเวณ Programs and Feature เราจะพบหน้าจอที่คุ้นเคยตั้งแต่สมัย Windows 7 เป็นต้นมา ให้เลือก Turn Windows features on or off</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2409,"width":564,"height":297,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/3.Features.png" alt="" class="wp-image-2409" /><figcaption>หน้าจอ Programs and Features</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/3.Features.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>หน้าจอ Programs and Features</figcaption></figure>
 <p>เลือกติดตั้ง Windows Subsystem for Linux กับ Virtual Machine Platform ตามภาพ แล้วรอให้วินโดว์ติดตั้งจนเสร็จเรียบร้อย แล้วสั่งให้รีสตาร์ทคอมพิวเตอร์</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2410,"width":454,"height":395,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/4.Features-Installation.png" alt="" class="wp-image-2410" /><figcaption>หน้าจอ Turn Windows features on or off</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>เมื่อคอมพิวเตอร์เปิดเข้ามาหน้าจอหลักแล้ว เราอัพเกรตให้เป็น WSL 2 โดย<a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi" target="_blank" rel="noreferrer noopener" title="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">ดาวน์โหลด WSL 2</a> ก่อน รอให้คอมพิวเตอร์ติดตั้งแพคเกจให้เสร็จเรียบร้อย รีสตาร์ทเครื่อง รอจนคอมพิวเตอร์เข้ามาหน้าหลัก </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เราตั้งค่าให้ระบบใช้งาน WSL 2 โดยพิมพ์คำสั่งลงในหน้าจอ Command Line (cmd.exe) ว่า </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code -->
-<pre class="wp-block-code"><code>wsl.exe --set-default-version 2</code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/4.Features-Installation.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>หน้าจอ Turn Windows features on or off</figcaption></figure>
+<p>เมื่อคอมพิวเตอร์เปิดเข้ามาหน้าจอหลักแล้ว เราอัพเกรตให้เป็น WSL 2 โดย<a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi" rel="noreferrer noopener">ดาวน์โหลด WSL 2</a> ก่อน รอให้คอมพิวเตอร์ติดตั้งแพคเกจให้เสร็จเรียบร้อย รีสตาร์ทเครื่อง รอจนคอมพิวเตอร์เข้ามาหน้าหลัก</p>
+<p>เราตั้งค่าให้ระบบใช้งาน WSL 2 โดยพิมพ์คำสั่งลงในหน้าจอ Command Line (cmd.exe) ว่า</p>
+<pre><code>wsl.exe --set-default-version 2</code></pre>
 <p>ตัวโปรแกรมจะตั้งค่าเสร็จเรียบร้อย จากนั้นติดตั้งระบบปฏิบัติการลินุกซ์ตามที่ต้องการตามภาพด้านล่าง ซึ่งในบทความนี้ใช้ระบบปฏิบัติการ Ubuntu 20.04 LTS รอให้วินโดว์ดาวน์โหลดและติดตั้งสร็จเรียบร้อย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>จากนั้นผู้อ่านสามารถเปิดใช้งาน Windows Subsystem for Linux ได้เลย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2411,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/5.Ubuntu.png" alt="" class="wp-image-2411" /><figcaption>ติดตั้งลินุกซ์ที่ต้องการผ่าน Microsoft Store ได้เลย</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/5.Ubuntu.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ติดตั้งลินุกซ์ที่ต้องการผ่าน Microsoft Store ได้เลย</figcaption></figure>
 <p><strong>การใช้งาน</strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>กดที่ Start Menu เลือก Ubuntu 20.04 LTS เพื่อเปิดใช้งาน เราจะพบหน้าจอรับคำสั่งคอมมานไลน์ของลินุกซ์ เราสามารถติดตั้งเครื่องมือพัฒนาโปรแกรมอย่าง Python, Node.js หรืออื่น ๆ ผ่าน APT ได้เลยครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>แต่ถ้าเราต้องการเขียนโค้ดโดยใช้ IDE ในระบบปฏิบัติการนี้มีคำสั่ง vim ให้ใช้งาน แต่ถ้าจะเอาง่ายกว่านี้ ก็มีเครื่องมือที่รองรับวินโดว์บน ARM อยู่ที่มีชื่อว่า <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer noopener" title="https://code.visualstudio.com/">Visual Studio Code</a> เราสามารถดาวน์โหลดมาติดตั้ง ร่วมกันกับติดตั้ง Extensions อย่าง Remote - WSL เพื่อใช้งาน Surface Pro X ได้เลย </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2413,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/6.WSL-Extension.png" alt="" class="wp-image-2413" /><figcaption>ติดตั้ง Extensions เสียก่อน</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<p>แต่ถ้าเราต้องการเขียนโค้ดโดยใช้ IDE ในระบบปฏิบัติการนี้มีคำสั่ง vim ให้ใช้งาน แต่ถ้าจะเอาง่ายกว่านี้ ก็มีเครื่องมือที่รองรับวินโดว์บน ARM อยู่ที่มีชื่อว่า <a href="https://code.visualstudio.com/" rel="noreferrer noopener">Visual Studio Code</a> เราสามารถดาวน์โหลดมาติดตั้ง ร่วมกันกับติดตั้ง Extensions อย่าง Remote &#8211; WSL เพื่อใช้งาน Surface Pro X ได้เลย</p>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/6.WSL-Extension.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ติดตั้ง Extensions เสียก่อน</figcaption></figure>
 <p>เวลาที่เปิดใช้งาน Visual Studio Code บน WSL เราสามารถพิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code -->
-<pre class="wp-block-code"><code>code .</code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
+<pre><code>code .</code></pre>
 <p>เราจะเปิดใช้งานโปรแกรม Visual Studio Code บน Windows Subsystem for Linux ได้แล้วตามภาพ ส่วนตัวจุดที่พิมพ์ไว้ข้างบนหมายถึงเราเปิดใช้ให้โปรแกรมเปิดโฟลเดอร์ที่เราใช้งานอยู่ในขณะนี้ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2414,"width":720,"height":460,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/7.VS-Code.png" alt="" class="wp-image-2414" /><figcaption>ใช้งาน VS Code ผ่าน WSL ได้แล้ว</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/7.VS-Code.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ใช้งาน VS Code ผ่าน WSL ได้แล้ว</figcaption></figure>
 <p><strong>หลังจากการใช้งาน</strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>เราสามารถพัฒนาได้สะดวกขึ้นมาก เพราะเราสามารถพัฒนาผ่าน Visual Studio Code ที่เราใช้งานกันอยู่บ่อย ๆ ร่วมกันกับเครื่องมือพัฒนาที่เราคุ้นเคยอย่าง Python, Node.js บนลินุกซ์ได้เลย ทำให้เราทดสอบบนคอมพิวเตอร์เครื่องนี้ก่อน จากนั้นนำไปใช้งานจริงบนคอมพิวเตอร์บนคลาวด์ได้เลย ทำให้ใช้งานได้สะดวกขึ้น</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>ยิ่งกว่านั้น เมื่อเราใช้งานร่วมกันกับ <a href="https://git-scm.com/" target="_blank" rel="noreferrer noopener" title="https://git-scm.com/">Git</a> เราสามารถแก้ไขโค้ดสั่ง commit และ push เพื่อนำโค้ดขึ้นบน <a href="https://github.com/" target="_blank" rel="noreferrer noopener" title="https://github.com/">Github</a> จากนั้นเราเปิดบนคอมพิวเตอร์บนคลาด์เพื่อ pull โค้ดจากนั้นสั่งเปิดใช้งาน หรือสั่งทำให้เป็นคอนเทนเนอร์อย่าง Docker ได้เลย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>ใช้งานผ่านเว็บเบราวเซอร์</h2>
-<!-- /wp:heading -->
-
-<!-- wp:image {"align":"center","id":2416,"width":720,"height":444,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/8.Colab_.png" alt="" class="wp-image-2416" /><figcaption>Google Colab</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>นอกเหนือจากการใช้งานผ่าน Windows Subsystem on Linux แล้ว เราสามารถพัฒนาผ่านเว็บเบราวเซอร์ได้เลย โดยไม่จำกัดสถาปัตยกรรมของซีพียู (ก็ทำงานบนเว็บเบราวเซอร์ไงล่ะ) </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<p>ยิ่งกว่านั้น เมื่อเราใช้งานร่วมกันกับ <a href="https://git-scm.com/" rel="noreferrer noopener">Git</a> เราสามารถแก้ไขโค้ดสั่ง commit และ push เพื่อนำโค้ดขึ้นบน <a href="https://github.com/" rel="noreferrer noopener">Github</a> จากนั้นเราเปิดบนคอมพิวเตอร์บนคลาด์เพื่อ pull โค้ดจากนั้นสั่งเปิดใช้งาน หรือสั่งทำให้เป็นคอนเทนเนอร์อย่าง Docker ได้เลย</p>
+<h2 id="--1">ใช้งานผ่านเว็บเบราวเซอร์</h2>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/8.Colab_.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>Google Colab</figcaption></figure>
+<p>นอกเหนือจากการใช้งานผ่าน Windows Subsystem on Linux แล้ว เราสามารถพัฒนาผ่านเว็บเบราวเซอร์ได้เลย โดยไม่จำกัดสถาปัตยกรรมของซีพียู (ก็ทำงานบนเว็บเบราวเซอร์ไงล่ะ)</p>
 <p>วิธีนี้มีสองวิธีย่อย ได้แก่เปิดเข้าไปใช้งานเครื่องมือบนคลาวด์ที่มีอยู่แล้ว และติดตั้งใช้งานบนคลาวด์ด้วยตัวเอง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p><strong>วิธีแรก เข้าไปใช้งานเครื่องมือพัฒนาโปรแกรมบนคลาวด์ที่มีอยู่แล้ว</strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2430,"width":720,"height":444,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/kaggle-notebooks-1.png" alt="" class="wp-image-2430" /><figcaption>Kaggle Notebook</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>เรามาพูดถึงวิธีแรกก่อน ในตอนนี้ มีผู้พัฒนาโปรแกรมหลายเจ้าพัฒนาให้พิมพ์โค้ด แก้ไขโค้ดบนเว็บเบราวเซอร์นี้ได้สะดวกมากขึ้น ซึ่งเครื่องมือเหล่านี้ได้แก่ Google Colab, Kaggle Notebooks, <a href="https://github.com/features/codespaces" target="_blank" rel="noreferrer noopener" title="https://github.com/features/codespaces">Github Codespaces</a>, <a href="https://aws.amazon.com/th/sagemaker/" target="_blank" rel="noreferrer noopener" title="https://aws.amazon.com/th/sagemaker/">Amazon Sagemaker</a> เป็นต้น </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เครื่องมือเหล่านี้มีข้อดีคือ เราเปิดใช้งานผ่านเว็บเบราวเซอร์ ทำให้เราไม่จำเป็นต้องติดตั้งลงบนคอมพิวเตอร์ให้เสียพื้นที่ฮาร์ดดิสก์ที่มีอย่างจำกัด ไม่ต้องเช่าคลาวด์เพื่อติดตั้งเครื่องมือพัฒนาโปรแรกมอีกทีนึงแบบวิธีหลัง </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>อย่างไรก็ดีเครื่องมือบางอย่างนั้นมีระยะเวลาประมวลผลที่จำกัด ตัวอย่างเช่น </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>Google Colab มีระยะเวลาประมวลผลประมาณ 12 ชั่วโมง (ถ้าสมัครเป็น Colab Pro เราสามารถใช้งานได้ 24 ชั่วโมง) ซึ่งถ้าเราไม่ได้เปิดใช้งานซักระยะหนึ่งตัวโปรแกรมจะปิดการใช้งาน ต้องมาเปิดใช้งานใหม่ </li><li>ส่วน Kaggle Notebooks ทีระยะเวลาประมวลผลที่จำกัดประมาณ 9 ชั่วโมง ถ้าไม่เปิดใช้งานซักพักประมาณ 1 ชั่วโมงก็จะปิดการใช้งาน ต้องมาเปิดใหม่เช่นกัน</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-<p>ส่วน Amazon Sagemaker ก็มีข้อสังเกตคือราคาที่สูงไปหน่อย ถ้าจะนำมาเทรนผ่านการ์ดจอ (อันนี้มุมมองของเราเอง) </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p><strong>ต่อไปเป็นวิธีที่สอง ก็คือติดตั้งบนคลาวด์เอง </strong></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2421,"width":720,"height":410,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/jupyter-notebook.png" alt="" class="wp-image-2421" /><figcaption>Jupyter Notebook</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>เราสามารถติดตั้งบนคลาวด์เพื่อเปิดใช้งานการพัฒนาโปรแกรมผ่านทางเว็บเบราวเซอร์ได้ โดยเราติดตั้งเครื่องมือที่ให้ดาวน์โหลดได้ฟรีอย่าง Jupyter Notebook, <a href="https://github.com/cdr/code-server" target="_blank" rel="noreferrer noopener" title="https://github.com/cdr/code-server">code-server</a>, <a href="https://github.com/ml-tooling/ml-workspace" target="_blank" rel="noreferrer noopener" title="https://github.com/ml-tooling/ml-workspace">ml-workspace</a> หรืออื่น ๆ ลงบนคลาวด์เพื่อเปิดใช้งานได้เลย </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/kaggle-notebooks-1.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>Kaggle Notebook</figcaption></figure>
+<p>เรามาพูดถึงวิธีแรกก่อน ในตอนนี้ มีผู้พัฒนาโปรแกรมหลายเจ้าพัฒนาให้พิมพ์โค้ด แก้ไขโค้ดบนเว็บเบราวเซอร์นี้ได้สะดวกมากขึ้น ซึ่งเครื่องมือเหล่านี้ได้แก่ Google Colab, Kaggle Notebooks, <a href="https://github.com/features/codespaces" rel="noreferrer noopener">Github Codespaces</a>, <a href="https://aws.amazon.com/th/sagemaker/" rel="noreferrer noopener">Amazon Sagemaker</a> เป็นต้น</p>
+<p>เครื่องมือเหล่านี้มีข้อดีคือ เราเปิดใช้งานผ่านเว็บเบราวเซอร์ ทำให้เราไม่จำเป็นต้องติดตั้งลงบนคอมพิวเตอร์ให้เสียพื้นที่ฮาร์ดดิสก์ที่มีอย่างจำกัด ไม่ต้องเช่าคลาวด์เพื่อติดตั้งเครื่องมือพัฒนาโปรแรกมอีกทีนึงแบบวิธีหลัง</p>
+<p>อย่างไรก็ดีเครื่องมือบางอย่างนั้นมีระยะเวลาประมวลผลที่จำกัด ตัวอย่างเช่น</p>
+<ul>
+<li>Google Colab มีระยะเวลาประมวลผลประมาณ 12 ชั่วโมง (ถ้าสมัครเป็น Colab Pro เราสามารถใช้งานได้ 24 ชั่วโมง) ซึ่งถ้าเราไม่ได้เปิดใช้งานซักระยะหนึ่งตัวโปรแกรมจะปิดการใช้งาน ต้องมาเปิดใช้งานใหม่</li>
+<li>ส่วน Kaggle Notebooks ทีระยะเวลาประมวลผลที่จำกัดประมาณ 9 ชั่วโมง ถ้าไม่เปิดใช้งานซักพักประมาณ 1 ชั่วโมงก็จะปิดการใช้งาน ต้องมาเปิดใหม่เช่นกัน</li>
+</ul>
+<p>ส่วน Amazon Sagemaker ก็มีข้อสังเกตคือราคาที่สูงไปหน่อย ถ้าจะนำมาเทรนผ่านการ์ดจอ (อันนี้มุมมองของเราเอง)</p>
+<p><strong>ต่อไปเป็นวิธีที่สอง ก็คือติดตั้งบนคลาวด์เอง</strong></p>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/jupyter-notebook.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>Jupyter Notebook</figcaption></figure>
+<p>เราสามารถติดตั้งบนคลาวด์เพื่อเปิดใช้งานการพัฒนาโปรแกรมผ่านทางเว็บเบราวเซอร์ได้ โดยเราติดตั้งเครื่องมือที่ให้ดาวน์โหลดได้ฟรีอย่าง Jupyter Notebook, <a href="https://github.com/cdr/code-server" rel="noreferrer noopener">code-server</a>, <a href="https://github.com/ml-tooling/ml-workspace" rel="noreferrer noopener">ml-workspace</a> หรืออื่น ๆ ลงบนคลาวด์เพื่อเปิดใช้งานได้เลย</p>
 <p>ส่วนวิธีติดตั้ง เราสามารถติดตั้งเพื่อใช้งานได้ไม่ยากจนเกินไป เราสามารถติดตั้ง Jupyter Notebook ได้สองวิธี</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>วิธีแรก เราติดตั้งผ่านทาง <a href="https://www.anaconda.com/" target="_blank" rel="noreferrer noopener" title="https://www.anaconda.com/">conda</a> โดยแนะนำวิธีนี้เพราะเราสามารถจำกัดสภาพแวดล้อม รวมถึงเครื่องมือให้เหมาะสมต่อการพัฒนาโปรแกรมได้ เราสามารถติดตั้งได้โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code -->
-<pre class="wp-block-code"><code>conda install -c conda-forge notebook</code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
-<p>อีกวิธีคือการใช้งาน <a href="https://pypi.org/project/pip/" target="_blank" rel="noreferrer noopener" title="https://pypi.org/project/pip/">pip</a> เราติดตั้งได้โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code -->
-<pre class="wp-block-code"><code>pip install notebook หรือ python3 -m pip install notebook</code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
+<p>วิธีแรก เราติดตั้งผ่านทาง <a href="https://www.anaconda.com/" rel="noreferrer noopener">conda</a> โดยแนะนำวิธีนี้เพราะเราสามารถจำกัดสภาพแวดล้อม รวมถึงเครื่องมือให้เหมาะสมต่อการพัฒนาโปรแกรมได้ เราสามารถติดตั้งได้โดย</p>
+<pre><code>conda install -c conda-forge notebook</code></pre>
+<p>อีกวิธีคือการใช้งาน <a href="https://pypi.org/project/pip/" rel="noreferrer noopener">pip</a> เราติดตั้งได้โดย</p>
+<pre><code>pip install notebook หรือ python3 -m pip install notebook</code></pre>
 <p>เมื่อเราติดตั้งโดยวิธีใดวิธีหนึ่งเสร็จแล้ว เปิดใช้งาน Jupyter ได้โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code -->
-<pre class="wp-block-code"><code>jupyter notebook</code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
+<pre><code>jupyter notebook</code></pre>
 <p>จากนั้นเราเข้าหน้าเว็บตามที่ปรากฏบนหน้าจอ เราจะเข้าไปใช้งาน Jupyter Notebook ได้แล้วครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>อีกโปรแกรมหนึ่งคือ code-server เป็นเครื่องมือที่เราใช้งาน Visual Studio Code บนหน้าเว็บไซต์ เราสามารถติดตั้งได้ตาม<a href="https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/" target="_blank" rel="noreferrer noopener" title="เมื่อนำ iPad มาเขียนโปรแกรมแทนที่โน้ตบุ๊ค">บทความที่เคยเขียนไปแล้วตอนที่นำ iPad ไปเขียนโปรแกรม</a> และตัว ml-workspace ก็ติดตั้งได้ตามลิ้งค์ในประโยคก่อนหน้าได้เช่นกัน </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2432,"width":718,"height":442,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/code-server.png" alt="" class="wp-image-2432" /><figcaption>code-server</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<p>อีกโปรแกรมหนึ่งคือ code-server เป็นเครื่องมือที่เราใช้งาน Visual Studio Code บนหน้าเว็บไซต์ เราสามารถติดตั้งได้ตาม<a href="https://nickuntitled.com/2021/03/04/ipad-as-a-programming-laptop-replacement/" rel="noreferrer noopener">บทความที่เคยเขียนไปแล้วตอนที่นำ iPad ไปเขียนโปรแกรม</a> และตัว ml-workspace ก็ติดตั้งได้ตามลิ้งค์ในประโยคก่อนหน้าได้เช่นกัน</p>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/code-server.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>code-server</figcaption></figure>
 <p>เครื่องมือ ml-workspace นี้ทำให้เราสามารถใช้งาน Jupyter Notebook, code-server และอื่น ๆ ผ่านทางหน้าเว็บเบราวเซอร์ได้เลย และเราไม่ต้องติดตั้งทีละตัวด้วย เนื่องจากมันทำงานผ่าน Docker หน้าจอก็ตามภาพด้านล่างนี้ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2422,"width":720,"height":443,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/ml-workspace-1.png" alt="" class="wp-image-2422" /><figcaption>ml-workspace</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/ml-workspace-1.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ml-workspace</figcaption></figure>
 <p>ข้อดีของเทคนิคนี้คือมันอยู่บนคลาวด์ของตัวเองครับ เราสามารถแก้ไข ปรับแต่งให้เหมาะสมต่อการใช้งานของเราได้ ไม่มีระยะเวลาที่จำกัด และข้อมูลเป็นของเรา ไม่มีหลุดไปไหนแน่นอน แต่ข้อสังเกตคืออาจจะต้องมาติดตั้งด้วยตัวเอง คนที่ไม่ชินกับคำสั่งคอมมานไลน์อาจจะมึน ๆ หน่อยได้ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>สรุป</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<h2 id="--2">สรุป</h2>
 <p>การใช้างน Surface Pro X เดิมมีข้อจำกัดเพราะเราไม่สามารถนำเครื่องมือที่รองรับสถาปัตยกรรม x86 ที่คอมไพล์เป็น 64-bit มาใช้งานบนอุปกรณ์นี้ได้ แต่ตอนนี้เราไม่ได้มีอุปสรรคจากการพัฒนาโปรแกรมผ่านทางหน้าเว็บ หรือนำไปทำงาน AI/ML แต่อย่างใดนัก เพราะเราติดตั้งเครื่องมือผ่าน WSL กับเปิดใช้งานผ่านเว็บเบราวเซอร์ได้เลยครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>อย่างไรก็ดี ยังมีอุปสรรคอยู่บ้างสำหรับผู้พัฒนาโปรแกรมแบบ GUI หรือพัฒนาสำหรับมือถืออย่าง Flutter อันนี้คงต้องรอทางผู้พัฒนาเครื่องมือที่ใช้ให้พอร์ตมายัง ARM/ARM64 เสียก่อนครับ</p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">amazon</span>
-			
-				<span class="post-tag">ARM</span>
-			
-				<span class="post-tag">ARM64</span>
-			
-				<span class="post-tag">cloud</span>
-			
-				<span class="post-tag">Code</span>
-			
-				<span class="post-tag">code-server</span>
-			
-				<span class="post-tag">coding</span>
-			
-				<span class="post-tag">github</span>
-			
-				<span class="post-tag">Google Colab</span>
-			
-				<span class="post-tag">Jupyter</span>
-			
-				<span class="post-tag">Kaggle</span>
-			
-				<span class="post-tag">machine learning</span>
-			
-				<span class="post-tag">microsoft</span>
-			
-				<span class="post-tag">ML</span>
-			
-				<span class="post-tag">Remote</span>
-			
-				<span class="post-tag">Surface Pro X</span>
-			
-				<span class="post-tag">tablet</span>
-			
-				<span class="post-tag">Ubuntu</span>
-			
-				<span class="post-tag">Visual Studio</span>
-			
-				<span class="post-tag">Windows</span>
-			
-				<span class="post-tag">Windows Subsystem on Linux</span>
-			
-				<span class="post-tag">WSL</span>
-			
-				<span class="post-tag">WSL 2</span>
-			
-				<span class="post-tag">การเรียนรู้ของเครื่อง</span>
-			
-				<span class="post-tag">คลาวด์</span>
-			
-				<span class="post-tag">พัฒนาโปรแกรม</span>
-			
-				<span class="post-tag">ลินุกซ์</span>
-			
-				<span class="post-tag">วินโดว์</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-				<span class="post-tag">เครื่องมือ</span>
-			
-				<span class="post-tag">โค้ดดิ้ง</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/06/12/introduction-of-river-audax/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								แนะนำกิจกรรม Audax เรือ
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/06/17/remove-social-news-feed-by-eradicator/">
-							<span class = 'mr-1'>
-								ซ่อนฟีตบน Social โดย News Feed Eradicator
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>A Summary of MapReduce: Background, Processes, Example & Extension</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="A Summary of MapReduce: Background, Processes, Example &amp; Extension" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/03/16/a-summary-of-mapreduce-background-processes-example-extension/" />
+<meta property="og:url" content="http://localhost:4000/2024/03/16/a-summary-of-mapreduce-background-processes-example-extension/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover-1.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-16T13:28:25+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover-1.jpg" />
+<meta property="twitter:title" content="A Summary of MapReduce: Background, Processes, Example &amp; Extension" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T18:02:55+07:00","datePublished":"2024-03-16T13:28:25+07:00","description":"None","headline":"A Summary of MapReduce: Background, Processes, Example &amp; Extension","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover-1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/03/16/a-summary-of-mapreduce-background-processes-example-extension/"},"url":"http://localhost:4000/2024/03/16/a-summary-of-mapreduce-background-processes-example-extension/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>A Summary of MapReduce: Background, Processes, Example & Extension</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-03-16 13:28:25 +0700">2024-03-16</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover-1.jpg' />
+  </figure>
+  
+
+  <p>Recently, I read an interesting research article titled&nbsp;<strong>“MapReduce: Simplified Data Processing on Large Clusters”</strong>&nbsp;written by Google employees Jeffrey Dean and Sanjay Ghemawat.</p>
+
+<p id="0896">After reading the article, I summarized its key points, including the background, processes, and extension to be Apache Hadoop.</p>
+
+<!--more-->
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>This article is taken from the original one on <a href="https://medium.nickuntitled.com/a-short-summary-of-mapreduce-background-process-example-and-extension-8bc4902205fd" data-type="link" data-id="https://medium.nickuntitled.com/a-short-summary-of-mapreduce-background-process-example-and-extension-8bc4902205fd" target="_blank" rel="noreferrer noopener">Medium</a>. The Thai Article is available&nbsp;<a href="https://nickuntitled.com/2024/03/12/22-mapreduce-background-process-applications/">here</a>.</p>
+</blockquote>
+
+<p>First, what is MapReduce?</p>
+
+<h2 class="wp-block-heading" id="table-of-contents">Table of Contents</h2>
+
+<ul class="wp-block-list">
+<li><a href="#mapreduce">MapReduce</a></li>
+
+
+
+<li><a href="#process">Process</a></li>
+
+
+
+<li><a href="#example">Example</a></li>
+
+
+
+<li><a href="#extension">Extension</a></li>
+
+
+
+<li><a href="#summary">Summary</a></li>
+
+
+
+<li><a href="#reference">Reference</a></li>
+</ul>
+
+<h2 class="wp-block-heading" id="mapreduce">MapReduce</h2>
+
+<p id="49b4"><strong>MapReduce</strong>&nbsp;[1] is a programming paradigm used to process and manage big data that requires hundreds or thousands of servers.</p>
+
+<p id="d6b4">The idea of proposing MapReduce originated from the need to process vast amounts of data such as searched documents and requested web data in Google.</p>
+
+<p id="ef70">In traditional programming, we can simply write a loop code to process all the data. However, when dealing with enormous amounts of data, writing a loop code is not practical as it would take a considerable amount of time to complete. In such cases, we need to consider parallel processing, data distribution, and failure management.</p>
+
+<p id="a2f0">To address this problem, the developers of MapReduce were inspired by the Map and reduce functions from Lisp [2], a functional programming language. It has been observed that a majority of big data processing involves two key operations: Map and Reduce.</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited-1024x575.png" alt="" class="wp-image-6025" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited-1024x575.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited-768x432.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited.png 1075w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Map/Reduce programming model from&nbsp;<a href="https://research.google/pubs/mapreduce-the-programming-model-and-practice/" rel="noreferrer noopener" target="_blank">MapReduce: The programming model and practice</a></figcaption></figure></div>
+
+<p id="e8ba">The Map operation processes each record to create intermediate key/value pairs, while the Reduce operation takes these intermediate pairs and combines them to generate the final output.</p>
+
+<p id="b0f1">These processes have been designed in a way that enables developers to perform parallel processing and efficiently handle errors. This allows other developers to seamlessly integrate these operations into their own projects for streamlined and effective data processing.</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="process">Process</h2>
+
+<p id="6875">MapReduce employs a divide-and-conquer approach to processing massive datasets. It divides the data into smaller chunks and distributes them across multiple machines in a cluster.</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="393" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process.png" alt="" class="wp-image-6073" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process-300x203.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process-768x521.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process.png 780w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">The summary of MapReduce in parallel from&nbsp;<a href="https://research.google.com/archive/mapreduce-osdi04-slides/index-auto-0007.html" rel="noreferrer noopener" target="_blank">MapReduce: Simplified Data Processing on Large Clusters</a></figcaption></figure></div>
+
+<h3 class="wp-block-heading" id="c8e9">Map</h3>
+
+<p id="b122">The Map function is an important step in MapReduce for processing large datasets. It takes the input key/value pairs and divides them into smaller chunks, typically ranging from 16 to 64MB, in order to distribute the data evenly among the computers in a cluster.</p>
+
+<p id="22b8">Once the data is distributed, the Map function (M) processes it in parallel on each node, generating intermediate key-value pairs that are then passed on to the next step in MapReduce.</p>
+
+<p id="a0eb">We can summarize the Map function below</p>
+
+<pre class="wp-block-code"><code>map (k1, v1) -&gt; list(k2, v2)</code></pre>
+
+<p id="2af8">where <em>(k1, v1)</em> is the input key/value pair and <em>(k2, v2)</em> is the intermediate key/value pair.</p>
+
+<h3 class="wp-block-heading" id="61a4">Shuffle</h3>
+
+<p id="2c8b">In the context of MapReduce, Shuffle represents a crucial intermediate step between the Map and Reduce functions.</p>
+
+<p id="69b1">During this phase, the data is partitioned into smaller chunks, sorted, and grouped based on their keys, before being passed on to the Reduce function for further processing.</p>
+
+<p id="fd6d">The primary objective of the Shuffle phase is to minimize network bandwidth, data transfer, and input/output, which can significantly enhance the overall performance of MapReduce [3].</p>
+
+<p id="bc81">By optimizing data transfer and reducing the amount of unnecessary data exchanged between nodes, Shuffle plays a critical role in making MapReduce more efficient and scalable.</p>
+
+<h3 class="wp-block-heading" id="3ba6">Reduce</h3>
+
+<p id="26bf">Finally, the Reduce function (R) aggregates the intermediate data for each key and produces the final result.</p>
+
+<p id="9571">We can summarize this process below</p>
+
+<pre class="wp-block-code"><code>reduce (k2, list(v2)) -&gt; list(v2)</code></pre>
+
+<p id="751c">where <em>(k2, list(v2))</em> is the shuffled intermediate key/value pairs, and <em>list(v2)</em> is the final output.</p>
+
+<p id="737a">In a MapReduce process, data goes through three phases: Map, Shuffle, and Reduce. Once this process is complete, the final output is saved in a single file per function.</p>
+
+<p id="b991">Usually, there is no need to combine the output files into one because multiple files can be processed via another MapReduce function or a distributed processing framework that supports processing separated files. This provides flexibility in processing large amounts of data efficiently.</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="example">Example</h2>
+
+<p id="2626">The author of this research article provides one example is to count the number of words in one file by providing the below pseudocode.</p>
+
+<pre class="wp-block-code"><code>map(String key, String value):
+    // key: document name
+    // value: document contents for each word w in value:
+    EmitIntermediate(w, "1");
+    
+reduce(String key, Iterator values):
+    // key: a word
+    // values: a list of counts
+    int result = 0;
+    for each v in values:
+        result += ParseInt(v);
+    Emit(AsString(result));</code></pre>
+
+<p id="13bc">The Map function processes the input data and produces the intermediate key/value data which provides a word and a word count that the example provides only 1. The Reduce function then takes these intermediate results and aggregates them to produce the final output.</p>
+
+<p id="e056">To better understand the concept of MapReduce, we can relate it to the population census conducted during the Roman Empire, which counted the population in each town and sent the results to the capital. This results in faster population counting than sending only one person [4].</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="extension">Extension</h2>
+
+<p id="6a4b">Dug Cutting and Mike Cafarella extended MapReduce to build a robust data processing framework, which they named Apache Hadoop [5].</p>
+
+<p id="81be">Hadoop is an open-source tool that enables efficient management and processing of large-scale data sets by distributing data across a cluster of interconnected computers.</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="174" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/hadoop_logo.png" alt="" class="wp-image-6171" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/hadoop_logo-300x90.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/hadoop_logo.png 640w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Apache Hadoop from&nbsp;<a href="https://en.wikipedia.org/wiki/Apache_Hadoop#/media/File:Hadoop_logo_new.svg" rel="noreferrer noopener" target="_blank">Wikipedia</a></figcaption></figure></div>
+
+<p id="6be2">By breaking down large data sets into smaller chunks and processing them in parallel, Hadoop dramatically enhances the speed and scalability of data processing tasks.</p>
+
+<p id="f019">The invention of Hadoop marked a significant milestone in the history of big data processing. However, this tool has four limitations that make it less appealing to users [6,7].</p>
+
+<ul class="wp-block-list">
+<li>Firstly, Hadoop restricts the data processing to only one input per worker, which can increase the time needed to complete the process.</li>
+
+
+
+<li>Secondly, Hadoop is slower than other big data processing frameworks, such as Apache Spark, since it reads and writes data from the Harddisk as HDFS (Hadoop Distributed File System).</li>
+
+
+
+<li>Thirdly, Hadoop is not suitable for real-time data processing.</li>
+
+
+
+<li>Lastly, Hadoop has a steep learning curve as it only supports Java, while many users write SQL for data analysis.</li>
+</ul>
+
+<p id="b695">As a result, many users have switched to Apache Spark and Apache Flink, which support both Stream and Batch data processing.</p>
+
+<p id="f2bb">In fact, many companies prefer these tools over Hadoop. However, both tools still use HDFS as their data storage.</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="summary">Summary</h2>
+
+<p id="5371">MapReduce is a widely-used data processing framework that enables the swift and efficient processing of voluminous datasets across a distributed cluster of nodes.</p>
+
+<p id="8427">By dividing large datasets into smaller chunks and processing them in parallel, MapReduce allows the processing of massive datasets that would otherwise be impossible to handle using traditional programming techniques.</p>
+
+<p id="6e68">The above features of MapReduce. This leads to develop Apache Hadoop, which integrates MapReduce as an integral component. This serves as a popular entry point for big data processing.</p>
+
+<p id="f920">However, it has several downsides, including slow data processing, a high learning curve, and a lack of support for real-time data processing. Due to these limitations, Apache Spark and Apache Flink are more commonly used in the industry compared to Hadoop.</p>
+
+<p id="a44c">If you found this content useful, press Clap, and share it to various social media platforms. Moreover, readers can follow me on <a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a> or <a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X or Twitter</a>.</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="reference">Reference</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://static.googleusercontent.com/media/research.google.com/th//archive/mapreduce-osdi04.pdf" rel="noreferrer noopener" target="_blank">MapReduce: Simplified Data Processing on Large Clusters</a></li>
+
+
+
+<li><a href="https://research.google/pubs/mapreduce-the-programming-model-and-practice/" rel="noreferrer noopener" target="_blank">MapReduce: The programming model and practice — Google Research</a></li>
+
+
+
+<li><a href="https://mesodiar.com/2022/10/22/what-is-map-reduce-distributed-computing/" rel="noreferrer noopener" target="_blank">MAPREDUCE คืออะไร เข้าใจที่มา HADOOP และในด้าน DISTRIBUTED COMPUTING — Burasakorn Sabyeying (Mils)</a></li>
+
+
+
+<li><a href="https://www.ibm.com/topics/mapreduce" rel="noreferrer noopener" target="_blank">What is Apache MapReduce? — IBM</a>)</li>
+
+
+
+<li><a href="https://www.todaysoftmag.com/article/1358/hadoop-mapreduce-deep-diving-and-tuning" rel="noreferrer noopener" target="_blank">Hadoop MapReduce deep diving and tuning — Today Software Magazine</a></li>
+
+
+
+<li><a href="https://www.altexsoft.com/blog/hadoop-pros-cons/" rel="noreferrer noopener" target="_blank">The Good and the Bad of Hadoop Big Data Framework</a></li>
+
+
+
+<li><a href="https://school.datath.com/courses/road-to-data-engineer-2-0-2023" target="_blank" rel="noreferrer noopener">Road to Data Engineer 2.0 — DataTH School</a></li>
+</ol>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">Return to Table of Contents ↑</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

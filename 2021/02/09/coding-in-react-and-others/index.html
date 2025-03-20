@@ -1,326 +1,91 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Coding in React + Others - Nick Untitled</title>
-		<meta name="description" content="<!-- wp:paragraph -->
-<p>ตอนทำธิสิสทางอาจารย์จะให้ทำเป็นตัวโปรแกรมเพื่อให้ใช้งานกับคอมพิวเตอร์แทนที่จะใช้อุปกรณ์ไม้บรรทัดวัดมุมการเคลื่อนไหวของศีรษะและลำคอ หรือเรียกอีกอย่างว่า <a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Goniometer" target="_blank">Goniometer</a> เพราะเครื่องมือนั้นขึ้นกับผู้วัดแต่ละคน ทำให้เกิดความคลาดเคลื่อนระหว่างการวัดได้ เลยเป็นสาเหตุที่เราจะพัฒนาตัวโปรแกรมกัน</p>
-<!-- /wp:paragraph -->
-">
-		<meta name="keywords" content="ajax,bootstrap,coding,jquery,learning,library,programming,website,xmlhttprequest,จาวาสคริป,เขียนโปรแกรม,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-02-09T23:22:03+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/02/09/coding-in-react-and-others/"/>
-		<meta property="og:title" content="Coding in React + Others - Nick Untitled" />
-		<meta property="og:description" content="<!-- wp:paragraph -->
-<p>ตอนทำธิสิสทางอาจารย์จะให้ทำเป็นตัวโปรแกรมเพื่อให้ใช้งานกับคอมพิวเตอร์แทนที่จะใช้อุปกรณ์ไม้บรรทัดวัดมุมการเคลื่อนไหวของศีรษะและลำคอ หรือเรียกอีกอย่างว่า <a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Goniometer" target="_blank">Goniometer</a> เพราะเครื่องมือนั้นขึ้นกับผู้วัดแต่ละคน ทำให้เกิดความคลาดเคลื่อนระหว่างการวัดได้ เลยเป็นสาเหตุที่เราจะพัฒนาตัวโปรแกรมกัน</p>
-<!-- /wp:paragraph -->
- " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04.png"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="Coding in React + Others - Nick Untitled" />
-		<meta property="twitter:description" content="<!-- wp:paragraph -->
-<p>ตอนทำธิสิสทางอาจารย์จะให้ทำเป็นตัวโปรแกรมเพื่อให้ใช้งานกับคอมพิวเตอร์แทนที่จะใช้อุปกรณ์ไม้บรรทัดวัดมุมการเคลื่อนไหวของศีรษะและลำคอ หรือเรียกอีกอย่างว่า <a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Goniometer" target="_blank">Goniometer</a> เพราะเครื่องมือนั้นขึ้นกับผู้วัดแต่ละคน ทำให้เกิดความคลาดเคลื่อนระหว่างการวัดได้ เลยเป็นสาเหตุที่เราจะพัฒนาตัวโปรแกรมกัน</p>
-<!-- /wp:paragraph -->
- " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04.png" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>Coding in React + Others</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Coding in React + Others" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/02/09/coding-in-react-and-others/" />
+<meta property="og:url" content="http://localhost:4000/2021/02/09/coding-in-react-and-others/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/02/screen-shot-2564-02-09-at-22.06.04-1200x675.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-09T23:22:03+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/02/screen-shot-2564-02-09-at-22.06.04-1200x675.png" />
+<meta property="twitter:title" content="Coding in React + Others" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2023-01-23T00:58:19+07:00","datePublished":"2021-02-09T23:22:03+07:00","description":"None","headline":"Coding in React + Others","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/02/screen-shot-2564-02-09-at-22.06.04-1200x675.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/09/coding-in-react-and-others/"},"url":"http://localhost:4000/2021/02/09/coding-in-react-and-others/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>Coding in React + Others</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-02-09 23:22:03 +0700">2021-02-09</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/02/screen-shot-2564-02-09-at-22.06.04-1200x675.png' />
+  </figure>
+  
 
-	
-
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				Coding in React + Others
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04.png' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>09 February 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/coding-in-react-and-others" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/coding-in-react-and-others&amp;text=Coding in React + Others - https://nickuntitled.com/coding-in-react-and-others" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p>ตอนทำธิสิสทางอาจารย์จะให้ทำเป็นตัวโปรแกรมเพื่อให้ใช้งานกับคอมพิวเตอร์แทนที่จะใช้อุปกรณ์ไม้บรรทัดวัดมุมการเคลื่อนไหวของศีรษะและลำคอ หรือเรียกอีกอย่างว่า <a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Goniometer" target="_blank">Goniometer</a> เพราะเครื่องมือนั้นขึ้นกับผู้วัดแต่ละคน ทำให้เกิดความคลาดเคลื่อนระหว่างการวัดได้ เลยเป็นสาเหตุที่เราจะพัฒนาตัวโปรแกรมกัน</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:more -->
-<!--more-->
-<!-- /wp:more -->
-
-<!-- wp:paragraph -->
-<p>ตอนพัฒนาตัวเว็บที่จะใช้ในงานวิจัย (ธีสิสนะแหละ) เดิมใช้ภาษา HTML, CSS และ JS ที่ใช้เครื่องมือ <a rel="noreferrer noopener" href="https://getbootstrap.com" target="_blank">Bootstrap</a> ร่วมกันกับ <a rel="noreferrer noopener" href="http://jquery.com" target="_blank">jQuery</a> ในตอนนั้นเขียนเสร็จแล้ว ตัวเว็บทำงานได้ตามปกติเพียงแต่เกิดปัญหาเมื่อโปรแกรมที่มีขนาดใหญ่มากขึ้นเนื่องจาก</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>โค้ดที่มีความซับซ้อนส่งผลต่อประสิทธิภาพในการทำงาน</li><li>การแก้ไขตัวโต้ดเวลาเกิดบั้กทำได้ยาก เกิดปัญหาเวลาติดบั้กแล้วต้องไล่อ่านโค้ดที่เอ่อ งงไปหน่อย</li><li>เพิ่มเครื่องมือ (Library) ได้ลำบาก </li></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-<p>โดยจาก<a href="https://nickuntitled.com/2021/02/06/face-detection-in-my-thesis/" target="_blank" rel="noreferrer noopener">บทความที่แล้ว</a>ที่พูดถึงการใช้เทคนิคการจับภาพใบหน้าที่เขียนโดย Tensorflow.js กับ ONNX.js ที่ใช้ตัวจาวาสคริปธรรมดาแล้วเวลาเขียนไปเรื่อย ๆ ก็เริ่มงงและ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>React</h2>
-<!-- /wp:heading -->
-
-<!-- wp:image {"id":1592,"sizeSlug":"large","linkDestination":"media"} -->
-<figure class="wp-block-image size-large"><a href="https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04-1.png"><img src="https://asset.nickuntitled.com/2021/02/screen-shot-2564-02-09-at-22.06.04-1.png?w=1024" alt="" class="wp-image-1592" /></a><figcaption>React</figcaption></figure>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>หลังจากความงงของตัวโค้ดมานานมากจนกระทั่งมาทำงานโปรเจ็คหนึ่งในแล็ปที่ต้องมาใช้ <a rel="noreferrer noopener" href="https://reactjs.org" target="_blank">React</a> พอดี เดิมทีเห็นคู่มือแล้วพบว่ายากไปหน่อยเลยไม่ใช้ พอกลับมาเรียนรู้อีกรอบ เริ่มจากการอ่าน ค่อย ๆ อ่าน พร้อมกับลงมือเขียนโค้ดไปทีละบท แล้วฝึกการเขียนโค้ด หรือเรียกการเรียนรู้แบบนี้อีกอย่างว่า Learn by doing ทำแบบนี้ไปตลอด หลังจากการฝึกด้วยวิธีนี้แล้วนำมาพัฒนาตัวเว็บใช้ในงานนั้นก็พบว่าทำงานได้ดี เขียนแล้วเข้าใจง่าย มีประสิทธิภาพที่สูงมาก (แต่ไม่ได้รับประกันความพึงพอใจแบบบริษัทนึง) เลยลองพัฒนาตัวโปรแกรมขึ้นมาพบว่าเวิร์คดีนะ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+  <p>ตอนทำธิสิสทางอาจารย์จะให้ทำเป็นตัวโปรแกรมเพื่อให้ใช้งานกับคอมพิวเตอร์แทนที่จะใช้อุปกรณ์ไม้บรรทัดวัดมุมการเคลื่อนไหวของศีรษะและลำคอ หรือเรียกอีกอย่างว่า <a href="https://en.wikipedia.org/wiki/Goniometer" rel="noreferrer noopener">Goniometer</a> เพราะเครื่องมือนั้นขึ้นกับผู้วัดแต่ละคน ทำให้เกิดความคลาดเคลื่อนระหว่างการวัดได้ เลยเป็นสาเหตุที่เราจะพัฒนาตัวโปรแกรมกัน</p>
+<p>ตอนพัฒนาตัวเว็บที่จะใช้ในงานวิจัย (ธีสิสนะแหละ) เดิมใช้ภาษา HTML, CSS และ JS ที่ใช้เครื่องมือ <a href="https://getbootstrap.com" rel="noreferrer noopener">Bootstrap</a> ร่วมกันกับ <a href="http://jquery.com" rel="noreferrer noopener">jQuery</a> ในตอนนั้นเขียนเสร็จแล้ว ตัวเว็บทำงานได้ตามปกติเพียงแต่เกิดปัญหาเมื่อโปรแกรมที่มีขนาดใหญ่มากขึ้นเนื่องจาก</p>
+<ul>
+<li>โค้ดที่มีความซับซ้อนส่งผลต่อประสิทธิภาพในการทำงาน</li>
+<li>การแก้ไขตัวโต้ดเวลาเกิดบั้กทำได้ยาก เกิดปัญหาเวลาติดบั้กแล้วต้องไล่อ่านโค้ดที่เอ่อ งงไปหน่อย</li>
+<li>เพิ่มเครื่องมือ (Library) ได้ลำบาก</li>
+</ul>
+<p>โดยจาก<a href="https://nickuntitled.com/2021/02/06/face-detection-in-my-thesis/" rel="noreferrer noopener">บทความที่แล้ว</a>ที่พูดถึงการใช้เทคนิคการจับภาพใบหน้าที่เขียนโดย Tensorflow.js กับ ONNX.js ที่ใช้ตัวจาวาสคริปธรรมดาแล้วเวลาเขียนไปเรื่อย ๆ ก็เริ่มงงและ</p>
+<p><!--more--></p>
+<h2 id="react">React</h2>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/02/screen-shot-2564-02-09-at-22.06.04-1.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>React</figcaption></figure>
+<p>หลังจากความงงของตัวโค้ดมานานมากจนกระทั่งมาทำงานโปรเจ็คหนึ่งในแล็ปที่ต้องมาใช้ <a href="https://reactjs.org" rel="noreferrer noopener">React</a> พอดี เดิมทีเห็นคู่มือแล้วพบว่ายากไปหน่อยเลยไม่ใช้ พอกลับมาเรียนรู้อีกรอบ เริ่มจากการอ่าน ค่อย ๆ อ่าน พร้อมกับลงมือเขียนโค้ดไปทีละบท แล้วฝึกการเขียนโค้ด หรือเรียกการเรียนรู้แบบนี้อีกอย่างว่า Learn by doing ทำแบบนี้ไปตลอด หลังจากการฝึกด้วยวิธีนี้แล้วนำมาพัฒนาตัวเว็บใช้ในงานนั้นก็พบว่าทำงานได้ดี เขียนแล้วเข้าใจง่าย มีประสิทธิภาพที่สูงมาก (แต่ไม่ได้รับประกันความพึงพอใจแบบบริษัทนึง) เลยลองพัฒนาตัวโปรแกรมขึ้นมาพบว่าเวิร์คดีนะ</p>
 <p>หลังจากที่พัฒนาตัวโปรแกรมนั้นแล้ว รวมกับพบปัญหาระหว่างการเขียนโค้ดในเว็บที่ทำงานในงานวิจัย เลยปรับโค้ดใหมให้เป็น React เลยดีกว่า จับเอาแต่ละส่วนในหน้าเว็บเป็น Component แทน เขียนตัวแปรแต่ละตัวให้เป็น props, state ตามที่คู่มือในเว็บได้เขียนไว้ รวมถึง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>เดิมหน้าเว็บที่เป็น Bootstrap รวมกับ jQuery เลยลงเครื่องมือที่เรียกว่า <a rel="noreferrer noopener" href="https://react-bootstrap.github.io" target="_blank">react-bootstrap</a> ปรับตัวโค้ดให้เป็น component แต่ละชิ้นแทน ทำแล้วโค้ดจากเดิมที่ใช้ class กลายมาเป็นตัวนี้แทน</li><li>ตัวเว็บใช้ AJAX เดิมทีใช้ <a rel="noreferrer noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttprequest</a> แล้วเอามาเขียน พบว่าตัวโค้ดดูซับซ้อนไปหน่อย เลยเปลี่ยนมาใช้ axios แทน นอกเหนือจากนี้ตัวโค้ดที่โหลดหน้าที่เก็บข้อมูลหลาย ๆ อันที่ทำมาเป็นตารางใช้ axios-hook แทน </li><li>จากการใช้ getUsermedia เพื่อให้เปิดกล้องเว็บแคม เลยลง <a rel="noreferrer noopener" href="https://github.com/mozmorris/react-webcam" target="_blank">react-webcam</a> แล้วใส่ component Webcam แทนเพื่อเปิดกล้อง</li><li>และอื่น ๆ</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:image {"id":1593,"sizeSlug":"large","linkDestination":"media"} -->
-<figure class="wp-block-image size-large"><a href="https://asset.nickuntitled.com/2021/02/b4c7345e-fc90-4e7d-a085-3e635fdc62c1.png"><img src="https://asset.nickuntitled.com/2021/02/b4c7345e-fc90-4e7d-a085-3e635fdc62c1.png?w=1024" alt="" class="wp-image-1593" /></a><figcaption>ก่อนแล้วหลังการเปลี่ยนมาใช้ React</figcaption></figure>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>หลังจากการปรับเปลี่ยนโค้ดแล้วโดยสรุปคือตัวโค้ดเรียบง่ายขึ้นกว่าเดิมมาก แก้ปัญหาที่เกิดจากการทำงานตัวโค้ดได้ง่ายขึ้น รวมถึงประสิทธิภาพของตัวโค้ดที่ดีขึ้น เลยคิดว่าจะเอาตัวโค้ดนี้นี่แหละมาใช้ </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<ul>
+<li>เดิมหน้าเว็บที่เป็น Bootstrap รวมกับ jQuery เลยลงเครื่องมือที่เรียกว่า <a href="https://react-bootstrap.github.io" rel="noreferrer noopener">react-bootstrap</a> ปรับตัวโค้ดให้เป็น component แต่ละชิ้นแทน ทำแล้วโค้ดจากเดิมที่ใช้ class กลายมาเป็นตัวนี้แทน</li>
+<li>ตัวเว็บใช้ AJAX เดิมทีใช้ <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" rel="noreferrer noopener">XMLHttprequest</a> แล้วเอามาเขียน พบว่าตัวโค้ดดูซับซ้อนไปหน่อย เลยเปลี่ยนมาใช้ axios แทน นอกเหนือจากนี้ตัวโค้ดที่โหลดหน้าที่เก็บข้อมูลหลาย ๆ อันที่ทำมาเป็นตารางใช้ axios-hook แทน</li>
+<li>จากการใช้ getUsermedia เพื่อให้เปิดกล้องเว็บแคม เลยลง <a href="https://github.com/mozmorris/react-webcam" rel="noreferrer noopener">react-webcam</a> แล้วใส่ component Webcam แทนเพื่อเปิดกล้อง</li>
+<li>และอื่น ๆ</li>
+</ul>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/02/b4c7345e-fc90-4e7d-a085-3e635fdc62c1.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ก่อนแล้วหลังการเปลี่ยนมาใช้ React</figcaption></figure>
+<p>หลังจากการปรับเปลี่ยนโค้ดแล้วโดยสรุปคือตัวโค้ดเรียบง่ายขึ้นกว่าเดิมมาก แก้ปัญหาที่เกิดจากการทำงานตัวโค้ดได้ง่ายขึ้น รวมถึงประสิทธิภาพของตัวโค้ดที่ดีขึ้น เลยคิดว่าจะเอาตัวโค้ดนี้นี่แหละมาใช้</p>
 <p>นอกเหนือจากนี้การเขียนโค้ดโดยใช้ React ทำให้เราสามารถทำหน้าเว็บได้เร็วขึ้นกว่าเดิมมากด้วย สบายเราล่ะ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>โดยสรุป</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>เราควรจะเลือกเครื่องมือให้ถูกต้อง เพื่อให้ทำงานได้จนถึงเป้าหมายที่ต้องการ ในที่นี้คือเปลี่ยนการเขียนโค้ดเดิมที่ใช้ jQuery มาใช้ React แทน พบว่าเขียนโค้ดได้ง่าย มีประสิทธิภาพที่ดี และสามารถเพิ่มเครื่องมือ (Library) ไปได้ตามที่ต้องการ ในที่นี้คือ react-bootstrap, axios, react-webcam เป็นต้น </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<h2 id="-">โดยสรุป</h2>
+<p>เราควรจะเลือกเครื่องมือให้ถูกต้อง เพื่อให้ทำงานได้จนถึงเป้าหมายที่ต้องการ ในที่นี้คือเปลี่ยนการเขียนโค้ดเดิมที่ใช้ jQuery มาใช้ React แทน พบว่าเขียนโค้ดได้ง่าย มีประสิทธิภาพที่ดี และสามารถเพิ่มเครื่องมือ (Library) ไปได้ตามที่ต้องการ ในที่นี้คือ react-bootstrap, axios, react-webcam เป็นต้น</p>
 <p>นอกเหนือจากนี้สิ่งที่สำคัญที่สุดของการใช้เครื่องมือไหนก็ตามการเรียนรู้สำคัญที่สุด โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><p>คนที่ยึดการเรียนรู้ไว้เป็นลำดับหนึ่งเป็นบุคคลชั้นหนึ่ง </p><cite>อ.เฉิน</cite></blockquote>
-<!-- /wp:quote -->
-
-<!-- wp:paragraph -->
+<blockquote><p>คนที่ยึดการเรียนรู้ไว้เป็นลำดับหนึ่งเป็นบุคคลชั้นหนึ่ง อ.เฉิน</p></blockquote>
 <p>และอีกอย่างนึง งานวิจัย (ธีสิส) นี้ จะเอาเครื่องมือนี้แหละไปพัฒนาหน้าเว็บให้เสร็จ แล้วทดสอบเครื่องมือให้เรียบร้อย ก็จบงานได้ครับ</p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">ajax</span>
-			
-				<span class="post-tag">bootstrap</span>
-			
-				<span class="post-tag">coding</span>
-			
-				<span class="post-tag">jquery</span>
-			
-				<span class="post-tag">learning</span>
-			
-				<span class="post-tag">library</span>
-			
-				<span class="post-tag">programming</span>
-			
-				<span class="post-tag">website</span>
-			
-				<span class="post-tag">xmlhttprequest</span>
-			
-				<span class="post-tag">จาวาสคริป</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/02/06/face-detection-in-my-thesis/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								Face Detection in my thesis
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/02/18/talk-about-clubhouse/">
-							<span class = 'mr-1'>
-								เล่าหลังจากใช้งาน Clubhouse
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#10 - ปรับโมเดลให้แม่นขึ้นด้วย Two-Step Data Augmentation</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#10 - ปรับโมเดลให้แม่นขึ้นด้วย Two-Step Data Augmentation" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/01/13/10-adjust-model-better-via-twostep-data-augmentation/" />
+<meta property="og:url" content="http://localhost:4000/2024/01/13/10-adjust-model-better-via-twostep-data-augmentation/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/10_two_step_dataaugmentation.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-13T22:29:30+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/10_two_step_dataaugmentation.jpg" />
+<meta property="twitter:title" content="#10 - ปรับโมเดลให้แม่นขึ้นด้วย Two-Step Data Augmentation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-01-13T22:30:12+07:00","datePublished":"2024-01-13T22:29:30+07:00","description":"None","headline":"#10 - ปรับโมเดลให้แม่นขึ้นด้วย Two-Step Data Augmentation","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/10_two_step_dataaugmentation.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/01/13/10-adjust-model-better-via-twostep-data-augmentation/"},"url":"http://localhost:4000/2024/01/13/10-adjust-model-better-via-twostep-data-augmentation/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#10 - ปรับโมเดลให้แม่นขึ้นด้วย Two-Step Data Augmentation</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-01-13 22:29:30 +0700">2024-01-13</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/10_two_step_dataaugmentation.jpg' />
+  </figure>
+  
+
+  <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>For English, please click <a href="https://gist.github.com/nickuntitled/2e4bb2c57633a9a3ca8bdb1450cf72d6" target="_blank" rel="noopener" title="this link">this link</a> to the original article published in GitHub Gist.</p>
+</blockquote>
+
+<p>Data Augmentation คือเทคนิคที่ช่วยเพิ่มปริมาณของข้อมูลในชุดข้อมูล (Dataset) จากเดิมโดยการสังเคราะห์ข้อมูลขึ้นมาใหม่</p>
+
+<p>เหตุผลที่ทำแบบนี้มาจากการเทรนโมเดลสำหรับใช้งานทางด้าน Computer Vision จำเป็นต้องใช้ข้อมูลที่มีปริมาณมาก แต่ติดปัญหาอย่างหนึ่งเลยคือข้อมูลที่เรามีอยู่มีปริมาณน้อย ไม่เพียงพอต่อการนำไปใช้เทรนโมเดล ดังนั้นแล้วเราจำเป็นต้องทำ Data Augmentation เพื่อช่วยเพิ่มความแม่นยำของโมเดลที่นำมาใช้งานทางด้าน Computer Vision</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">Data Augmentation โดยทั่วไป</h2>
+
+<p>ปกติการเรียกใช้งาน Data Augmentation ในไพทอนด้วยไลบรารีอย่าง PyTorch เราจะเขียนเรียงกันลงมาเป็นลำดับไปด้วยการใช้งานฟังก์ชันอย่าง torchvision.transforms.Compose ดังตัวอย่างด้านล่างนี้ โดยตัวอย่างโค้ดนำมาจากโค้ดที่ใช้พัฒนาเทคนิค Head Pose Estimation อย่าง HopeNet</p>
+
+<pre class="wp-block-code"><code>transformations = transforms.Compose(&#91;transforms.Scale(240),
+    transforms.RandomCrop(224), transforms.ToTensor(),
+    transforms.Normalize(mean=&#91;0.485, 0.456, 0.406], std=&#91;0.229, 0.224, 0.225])])</code></pre>
+
+<p>ซึ่งดูแล้วก็เอาไปใช้เทรนได้ตามปกติ อย่างไรก็ตามข้อเสียของวิธีนี้คือเมื่อนำข้อมูลที่มีอยู่ใน Dataset นำมาเทรนแล้ว ภาพที่ได้จะเป็นภาพที่ผ่านการทำ Data Augmentation ซึ่งเราจะไม่ได้ภาพต้นฉบับ โดยจะส่งผลต่อความแม่นยำของการเทรนโมเดลที่นำไปใช้งานทางด้านนี้</p>
+
+<p>จากปัญหาที่เกิดขึ้น เราเลยเอาโค้ดมาดัดแปลงการทำงานของ Data Augmentation ใหม่ ให้ทำงานแบบ Two-step Data Augmentation</p>
+
+<h2 class="wp-block-heading">Two-step Data Augmentation</h2>
+
+<p><strong>Two-step Data Augmentation</strong> เป็นเทคนิคที่ดัดแปลงขั้นตอนการทำ Data Augmentation โดยจะแบ่งเป็นสองขั้นตอน โดยสรุปได้ตามภาพ</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2230563&quot;}" data-wp-interactive="core/image" class="aligncenter size-full wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="242" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Two-step-Data-Augmentation.jpg" alt="" class="wp-image-3760" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Two-step-Data-Augmentation-300x125.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Two-step-Data-Augmentation-1024x427.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Two-step-Data-Augmentation-768x320.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Two-step-Data-Augmentation-1536x640.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Two-step-Data-Augmentation-1200x500.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Two-step-Data-Augmentation.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ขั้นตอนของ Two-step Data Augmentation (คลิกที่รูปเพื่อต้องการดูแบบขนาดเต็ม)</figcaption></figure></div>
+
+<p>ขั้นตอนแรกเป็นการสุ่มระหว่างเลือกภาพจาก Dataset ผ่านขั้นตอน Data Augmentation กับส่งภาพที่ไม่ได้รับการปรับแต่งเข้าไปฝึกตัวโมเดลโดยตรง โดยมีความน่าจะเป็นเท่ากันคือ 50% และ 50% ตามลำดับ</p>
+
+<p>ขั้นตอนที่สอง เมื่อภาพที่ได้ผ่านการสุ่มในขั้นตอนแรกเพื่อผ่านขั้นตอน Data Augmentation ในขั้นตอนนี้จะแบ่งเป็นสองขั้นตอน ได้แก่</p>
+
+<p><strong>Geometric Transformation</strong> คือขั้นตอนการปรับแต่ง Face Region of Interest (Face RoI) สำหรับการนำภาพใน Dataset นำมาเทรนเพื่อฝึกตัวโมเดลให้ตอบสนองต่อภาพใบหน้าที่มี Face RoI ที่แตกต่างกันไป โดยในขั้นตอนนี้จะแบ่งออกเป็น 4 แบบที่มีความน่าจะเป็นที่เท่า ๆ กัน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Random Shifting and Cropping</strong></li>
+
+
+
+<li><strong>Random Zoom</strong> เป็นการซูมภาพเข้าไปในอัตรา 1.0 ถึง 1.25 เท่า</li>
+
+
+
+<li><strong>Random Flip</strong> เป็นการสุ่มกลับภาพในแนวนอน</li>
+
+
+
+<li><strong>Unaltered Geometric Transformation</strong> เป็นการส่งผ่านภาพ Face RoI ที่ไม่ได้รับการปรับแต่ง Face RoI แต่อย่างใด</li>
+</ul>
+
+<p>เพิ่มเติมจากข้างบน <strong>Random Shifting and Cropping</strong> ทำงานอย่างไร?</p>
+
+<p>การทำ <strong>Random Shifting and Cropping</strong> เป็นการสุ่มการขยับกรอบ Face RoI แล้วครอบภาพใบหน้าโดยไม่ให้ภาพใบหน้าหายไป โดยกรอบภาพที่ขยับจะขยับในอัตราที่ไม่เกิน 10% ของความกว้าง และความยาวของกรอบ Face RoI โดยตัวอย่างแสดงตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2230c7e&quot;}" data-wp-interactive="core/image" class="aligncenter size-medium wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="300" height="295" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/12/image-300x295.png" alt="" class="wp-image-3725" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/12/image-300x295.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/12/image.png 739w" sizes="auto, (max-width: 300px) 100vw, 300px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ภาพตัวอย่างการทำ Random Shifting and Cropping โดยกรอบสีเขียวเป็นกรอบที่ครอบโดยใช้จุดแลนมาร์คที่มีมาให้จาก Dataset 300W_LP ส่วนกรอบสีน้ำเงินเป็นกรอบที่ขยับ Face RoI<br />(คลิกที่รูปเพื่อต้องการดูแบบขนาดเต็ม)</figcaption></figure></div>
+
+<p><strong>Pixel-level Transformation</strong> เป็นขั้นตอนการปรับแต่งภาพ Face RoI ที่เป็น RGB ในระดับค่าพิคเซลเพื่อฝึกโมเดลให้ตอบสนองต่อภาพใบหน้าที่มีสี แสงสว่าง ความเบลอ และจุด Noise ที่แตกต่างกัน โดยในขั้นตอนนี้จะแบ่งออกเป็น 4 แบบที่มีความน่าจะเป็นที่เท่า ๆ กัน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Random Blur</strong> เป็นการเบลอภาพ ในที่นี่จะใช้ Gaussian Blur</li>
+
+
+
+<li><strong>Random Brightness and Contrast</strong> เป็นการสุ่มความสว่าง และคอนทราสท์ของภาพ</li>
+
+
+
+<li><strong>Random Gaussian Noise</strong> เป็นการสุ่มการเกิดจุด Noise ในภาพ</li>
+
+
+
+<li><strong>Unaltered Pixel-level Transformation</strong> เป็นการส่งผ่านภาพ Face RoI ที่ไม่ได้รับการปรับแต่งค่าพิคเซลแต่อย่างใด</li>
+</ul>
+
+<p>เมื่อมาถึงขั้นตอนนี้ ภาพที่ไม่ได้รับการทำ Data Augmentation กับภาพภาพที่ผ่านการทำ Data Augmentation แบบสองขั้นตอน จะถูกส่งต่อเพื่อฝึกโมเดลสำหรับการปรับแต่งพารามิเตอร์ในโมเดล โดยจะอธิบายเป็นโค้ดที่เขียนเพื่อใช้สำหรับ PyTorch ในตัวอย่างโค้ดเป็นการนำภาพจาก Dataset 300W_LP ที่ใช้สำหรับ Head Pose Estimation มาใช้ ผู้อ่านสามารถอ่านวิธีการเขียนโค้ดตามด้านล่างนี้</p>
+
+<h3 class="wp-block-heading">ตัวอย่างวิธีการเขียนโค้ด</h3>
+
+<p><strong>นำเข้าไลบรารี</strong></p>
+
+<p>ขั้นตอนแรก นำเข้าไลบรารีเสียก่อน โดยจะนำเข้าไลบรารี Torchvision, Albumentations, Numpy, Scipy และ PIL</p>
+
+<pre class="wp-block-code"><code>import albumentations
+from torchvision import transforms
+import numpy as np
+import scipy.io as sio
+from PIL import Image</code></pre>
+
+<p><strong>เขียนโค้ดส่วนหนึ่งของการทำ Data Augmentation ไว้ใน __ini__</strong></p>
+
+<p>เมื่อนำเข้าไลบรารีแล้ว เรามาเขียนโค้ดส่วนการทำ Data Augmentation โดยเราจะเขียนเป็นตัวแปรสำหรับการทำ Data Augmentation โดยเขียนตามด้านล่างนี้ไว้ในฟังก์ชัน __init__ ในคลาส Dataset ของ PyTorch</p>
+
+<p>ส่วนแรกเป็นโค้ดส่วนหนึ่งของการทำ Geometric Transformation ที่ทำผ่านเทคนิค Random Zoom ในอัตรา 1.0 ถึง 1.25 เท่า โดยใช้ไลบรารี Torchvision</p>
+
+<pre class="wp-block-code"><code>scaling_transformations = transforms.Compose(&#91;
+    transforms.Resize((target_size, target_size)), 
+    transforms.RandomResizedCrop(size=target_size,scale=(0.8,1))
+])</code></pre>
+
+<p>โค้ดส่วนที่สองเป็นการทำ Pixel-level Transformation ที่เป็นการทำ Random Blur, Random Brightness and Contrast และ Random Guassian Noise โดยใช้ไลบรารี Albumentations</p>
+
+<pre class="wp-block-code"><code>albu_transformations = &#91;
+    A.GaussianBlur(p=1.0),
+    A.RandomBrightnessContrast(p=1.0), 
+    A.augmentations.transforms.GaussNoise(p=1.0)]
+                     
+albu_transformations = &#91;
+    A.Compose(&#91;x]) for x in albu_transformations]</code></pre>
+
+<p>โค้ดส่วนที่สามเป็นโค้ดส่วนหลังสุดก่อนการนำภาพเข้าไปเทรนตัวโมเดล โดยส่วนนี้เป็นการปรับภาพให้ตรงกับขนาดที่ต้องการ แปลงตัวแปรให้อยู่ในรูป Tensor ของ PyTorch และ Normalize ด้วยค่าจาก ImageNet โดยใช้ไลบรารี Torchvision</p>
+
+<pre class="wp-block-code"><code>resize_compose = transforms.Compose(&#91;
+    transforms.Resize((target_size, target_size)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=&#91;0.485, 0.456, 0.406], std=&#91;0.229, 0.224, 0.225])
+])</code></pre>
+
+<p>เมื่อเขียนเสร็จแล้ว ขั้นตอนต่อมา เราจะเรียกเก็บตัวแปรนี้ไว้ในตัวแปร self.transform ในฟังก์ชัน __init__ ในคลาสของ Dataset เพื่อเรียกใช้งานในภายหลัง โดย</p>
+
+<ul class="wp-block-list">
+<li>Index 0, 1 และ 2 เป็นการทำ Pixel-level Transformation</li>
+
+
+
+<li>Index 3 เป็นการทำ Random Zoom ใน Geometric Transformation</li>
+
+
+
+<li>Index สุดท้ายเป็นการนำภาพเข้าไปเทรนตัวโมเดล</li>
+</ul>
+
+<pre class="wp-block-code"><code>self.transform = &#91;
+    *albu_transformations,
+    scaling_transformations,
+    resize_compose
+]</code></pre>
+
+<p><strong>เขียนโค้ดส่วนการทำ Data Augmentation ไว้ใน __getitem__</strong></p>
+
+<p>ต่อมา เราเขียนโค้ดในฟังก์ชัน __getitem__ ในคลาสของ Dataset เพื่อเปิดไฟล์ภาพที่เก็บไว้ในคอมพิวเตอร์ด้วยฟังก์ชันจากไลบรารี PIL</p>
+
+<pre class="wp-block-code"><code>img = Image.open(&lt; ตำแหน่งที่อยู่ของภาพในคอมพิวเตอร์ &gt;)
+img = img.convert('RGB')
+</code></pre>
+
+<p>เมื่อโหลดไฟล์ภาพเสร็จเรียบร้อยแล้ว เราจะโหลดข้อมูลจุดแลนมาร์คบนใบหน้าจาก Dataset (โดย Dataset 300W_LP จะเก็บค่านี้ไว้ในไฟล์ .mat) ด้วยการเขียนโค้ดตามด้านล่างนี้เพื่อหา Face RoI</p>
+
+<pre class="wp-block-code"><code>mat = sio.loadmat(mat_path)
+pt2d = mat&#91;'pt2d']
+
+x_min = min(pt2d&#91;0, :])
+y_min = min(pt2d&#91;1, :])
+x_max = max(pt2d&#91;0, :])
+y_max = max(pt2d&#91;1, :])
+
+k = np.random.random_sample() * 0.2 + 0.2
+x_min -= 0.6 * k * abs(x_max - x_min)
+y_min -= 2 * k * abs(y_max - y_min)
+x_max += 0.6 * k * abs(x_max - x_min)
+y_max += 0.6 * k * abs(y_max - y_min)</code></pre>
+
+<p><strong>เขียนโค้ด Two-Step Data Augmentation</strong></p>
+
+<p>หลังจากที่เขียนวิธีการโหลดรูปและเตรียมภาพ และเราได้ไฟล์ภาพ และตำแหน่ง Face RoI แล้ว เราเริ่มเขียนโค้ด <strong>Two-step Data Augmentation</strong> กันจริง ๆ โดยเรามาสุ่มภาพเพื่อให้ได้</p>
+
+<ul class="wp-block-list">
+<li>50% แรกจะถูกนำเข้าไปสู่ขั้นตอนการทำ Data Augmentation ซึ่งมีสองขั้นตอนคือ Geometric Transformation และ Pixel-level Transformation โดยเขียนในกรอบ if augment_or_not &lt; 0.5: &#8230; else:</li>
+</ul>
+
+<ul class="wp-block-list">
+<li>50% หลังจะผ่านการครอบใบหน้าเพื่อทำ Transform เพื่อนำภาพเข้าไปในตัวโมเดลสำหรับการเทรน</li>
+</ul>
+
+<pre class="wp-block-code"><code># To have 50% chance to get equally data augmentation, and 
+# another 50% chance to get unaltered image.
+augment_or_not = np.random.random_sample()
+if augment_or_not &lt; 0.5:
+    pass # &lt;-- This part is the data augmentation code which will be described in the next part.  
+
+else:
+    # No Augmentation
+    img = img.crop((int(x_min), int(y_min), int(x_max), int(y_max)))
+
+# Finalize Transformation
+img = self.transform&#91;-1](img)</code></pre>
+
+<p><strong>Geometric Transformation</strong></p>
+
+<p>หลังจากที่สุ่ม 50% เพื่อเริ่มต้นการทำ Data Augmentation cล้ว ขั้นตอนแรกคือ Geometric Transformation ส่วนนี้จะเขียนหลังจากบรรทัดที่เขียนโค้ด if augment_or_not &lt; 0.5: ที่เป็นการสุ่มว่าจะให้ทำ Geometric Transformation อันไหน โดยสุ่มให้เลือกสี่อัน</p>
+
+<pre class="wp-block-code"><code># Geometric Transformation
+rand = random.randint(1, 4)</code></pre>
+
+<p>เมื่อสุ่มแล้วได้ค่าเท่ากับ 1 ให้ทำ Horizontal Flip ภาพที่ได้จะกลับภาพในแนวนอน สำหรับกรณีตัวอย่างนี้ที่ทำ Head Pose Estimation เราจำเป็นต้อง Flip องศาการหันใบหน้า (Yaw) และการเอนในหน้า (Roll) ด้วย</p>
+
+<pre class="wp-block-code"><code>if rand == 1:
+    # Flip
+    img = img.crop((int(x_min), int(y_min), int(x_max), int(y_max)))
+    img = img.transpose(Image.FLIP_LEFT_RIGHT)
+
+    # (For Head Pose Estimation only) When horizontally flipping, you have to flip the ground truth, too.
+    yaw = -yaw
+    roll = -roll</code></pre>
+
+<p>เมื่อสุ่มได้ค่าเท่ากับ 2 ให้ทำ Random Shifting and Cropping โดยให้ขยับ Face RoI ร้อยละ 10 ของความยาวและความกว้างของกรอบ</p>
+
+<pre class="wp-block-code"><code>elif rand == 2:
+    # Random Shifting and Cropping
+    mid_x = int((x_max + x_min) / 2)
+    mid_y = int((y_max + y_min) / 2)
+    width = x_max - x_min
+    height = y_max - y_min
+    kx = np.random.random_sample() * 0.2 - 0.1
+    ky = np.random.random_sample() * 0.2 - 0.1
+    shiftx = mid_x + width * kx
+    shifty = mid_y + height * ky
+    x_min = shiftx - width/2
+    x_max = shiftx + width/2
+    y_min = shifty - height/2
+    y_max = shifty + height/2
+    img = img.crop((int(x_min), int(y_min), int(x_max), int(y_max)))</code></pre>
+
+<p>เมื่อสุ่มได้ค่าเท่ากับ 3 ให้ทำ Random Zoom</p>
+
+<pre class="wp-block-code"><code>elif rand == 3:
+    # Random Scaling
+    img = img.crop((int(x_min), int(y_min), int(x_max), int(y_max)))
+    img = self.transform&#91;3](img)</code></pre>
+
+<p>และเมื่อสุ่มได้ค่าเท่ากับ 4 ให้ไม่ต้องทำอะไร ให้ครอบภาพด้วย Face RoI ที่ได้จากจุดแลนมาร์ค</p>
+
+<pre class="wp-block-code"><code>else:
+    # Unaltered Geometric Transformation
+    img = img.crop((int(x_min), int(y_min), int(x_max), int(y_max)))</code></pre>
+
+<p><strong>Pixel-level Transformation</strong></p>
+
+<p>ต่อมาจะเป็นโค้ดการทำ Pixel-level Transformation ส่วนนี้จะเรียกใช้งานตัวแปร self.transform ที่มีอาเรย์ในตำแหน่ง 0, 1 และ 2</p>
+
+<pre class="wp-block-code"><code># Intensiy-based Augmentation
+rand = random.randint(1, 4)
+if rand &gt;= 1 and rand &lt;= 3:
+    img = np.array(img)
+    img = self.transform&#91;rand-1](image = img)&#91;'image']
+    img = Image.fromarray(img)</code></pre>
+
+<p>เมื่อเขียนโค้ดส่วนนี้แล้ว เราจะได้ภาพพร้อมสำหรับการนำไปป้อนเข้าโมเดลสำหรับการเทรนเรียบร้อยนำภาพที่ได้มาใช้เทรนโมเดลครับ</p>
+
+<p>สำหรับตัวอย่างโค้ดเพื่อโหลดภาพจากคลาส 300W_LP แบบเต็ม ๆ ผู้อ่านสามารถอ่านใน <a href="https://github.com/nickuntitled/pyramid_aggregate_head_pose_estimation/tree/main" target="_blank" rel="noopener" title="GitHub">GitHub</a> ได้ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

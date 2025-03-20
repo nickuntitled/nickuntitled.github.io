@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>ทำ Synthetic Head Pose Dataset เพื่อเทรน AI</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="ทำ Synthetic Head Pose Dataset เพื่อเทรน AI" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2023/01/22/how-to-make-synthetic-head-pose-dataset-for-ai/" />
+<meta property="og:url" content="http://localhost:4000/2023/01/22/how-to-make-synthetic-head-pose-dataset-for-ai/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/synthetic_dataset_head_pose_estimation.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-22T23:35:53+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/synthetic_dataset_head_pose_estimation.jpg" />
+<meta property="twitter:title" content="ทำ Synthetic Head Pose Dataset เพื่อเทรน AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:42:57+07:00","datePublished":"2023-01-22T23:35:53+07:00","description":"None","headline":"ทำ Synthetic Head Pose Dataset เพื่อเทรน AI","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/synthetic_dataset_head_pose_estimation.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/01/22/how-to-make-synthetic-head-pose-dataset-for-ai/"},"url":"http://localhost:4000/2023/01/22/how-to-make-synthetic-head-pose-dataset-for-ai/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>ทำ Synthetic Head Pose Dataset เพื่อเทรน AI</h1>
+
+  <p class="post-meta">
+    <time datetime="2023-01-22 23:35:53 +0700">2023-01-22</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/synthetic_dataset_head_pose_estimation.jpg' />
+  </figure>
+  
+
+  <p>ปกติเวลาที่เทรนโมเดล AI ที่เป็น Deep Learning สิ่งหนึ่งที่โมเดลเหล่านี้ต้องการสำหรับการเทรนโมเดลคือข้อมูล Dataset สำหรับการฝึกที่มีข้อมูลเป็นจำนวนมาก อย่างไรก็ตามปัญหาหนึ่งคือไม่มี Dataset ที่มีจำนวนมากพอสำหรับการเทรน</p>
+
+<p>วิธีทั่วไปที่ทำก็ออกไปเก็บข้อมูล และจัดทำ Ground Truth สำหรับการเทรนโมเดล AI เพิ่ม ซึ่งโอเค อย่างไรก็ดีมีอีกวิธีหนึ่งที่เราสามารถทำได้คือการสังเคราะห์ชุดข้อมูล Dataset ขึ้นมา (หรือเรียกว่าทำ Synthetic Dataset)</p>
+
+<!--more-->
+
+<p>ตัวอย่างงานสำหรับการทำ Synthetic Dataset คืองานทางด้าน Head Pose Estimation ที่เป็นงานวัดการเคลื่อนไหวของใบหน้าเมื่อเทียบกับกล้องแล้วแสดงค่าออกมาเป็นองศาของการขยับศีรษะ </p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>องศาจะแสดงผลทั้ง 3 ทิศทาง ได้แก่ <strong>ก้ม-เงยศีรษะ (Pitch) หันศีรษะซ้าย-ขวา (Yaw) และเอนศีรษะซ้าย-ขวา (Roll) </strong></p>
+</blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" decoding="async" src="https://i0.wp.com/asset.nickuntitled.com/2021/06/head-pose-survey.png?w=580&#038;ssl=1" alt="" /><figcaption class="wp-element-caption">Head Pose Estimation ที่ให้ผลลัพธ์ออกมาเป็นองศาการหันศีรษะ 3 ทิศทาง ได้แก่ yaw, pitch และ roll</figcaption></figure></div>
+
+<p>การเทรน Head Pose Estimation ในปัจจุบันที่เราจะใช้ Deep Learning ในการเทรน ตัวอย่างเทคนิคที่ใช้ได้แก่ <a href="https://github.com/natanielruiz/deep-head-pose" target="_blank" rel="noopener" title="HopeNet">HopeNet</a>, <a href="https://github.com/shamangary/FSA-Net" target="_blank" rel="noopener" title="FSA-Net">FSA-Net</a> จุดนี้ตัวโมเดล Deep Learning จำเป็นต้องมีข้อมูล Dataset ที่มีจำนวนมากพอต่อการเทรน โดยตัวอย่างข้อมูล Dataset ที่เกิดจากการทำ Synthetic Dataset ที่เปเปอร์กล่าวถึงกันคือ 300W_LP</p>
+
+<p><a href="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm" target="_blank" rel="noopener" title="300W_LP">300W_LP</a> เป็น Dataset ที่ผ่านการสร้างข้อมูล Dataset การขยับศีรษะให้มีองศาที่กว้าง และมีจำนวนข้อมูลที่เยอะมากกว่าเดิม โดยสร้างจาก Dataset ทั้ง 4 Dataset ได้แก่ AFW, HELEN, IBUG และ LFPW และสร้างได้โดยที่ได้จำนวนข้อมูลทั้งหมด 61,225 ภาพ และได้กลับภาพซ้าย-ขวา (Flip) ทำให้ได้จำนวนข้อมูลทั้งหมด 122,450 ภาพ</p>
+
+<p>สำหรับเทคนิคการทำ Synthetic Dataset สำหรับ Dataset นี้ก็มาจากเทคนิค <a href="https://arxiv.org/pdf/1804.01005.pdf" target="_blank" rel="noopener" title="3DDFA (3D Dense Face Alignment)">3DDFA (3D Dense Face Alignment)</a> ที่มีคนเผยแพร่โค้ดสำหรับการทำ Synthetic Dataset ที่มีชื่อว่า <a href="https://github.com/hhj1897/face_pose_augmentation" target="_blank" rel="noopener" title="IBUG Face Pose Augmentation">IBUG Face Pose Augmentation</a> บน GitHub เครื่องมือนี้เป็นเครื่องมือสำหรับการทำ Synthetic Dataset โดยเราสามารถเลือกองศาที่ต้องการใบหน้าในภาพหันศีรษะไปในองศาที่ต้องการได้ครับ</p>
+
+<h3 class="wp-block-heading">วิธีการทำ Face Detection และจุด Facial Landmark</h3>
+
+<p>ก่อนจะทำ Synthetic Dataset ผู้อ่านจำเป็นต้องมีรูปภาพที่มีใบหน้าคน และมีจุด Facial Landmark เสียก่อน แต่ถ้ายังไม่มีจุด Facial Landmark ผู้อ่านสามารถหาจุด Facial Landmark ได้โดยใช้เทคนิค Face Detection และ Facial Landmark Detection</p>
+
+<p>ในตัวอย่างนี้จะใช้ไลบรารี IBUG Face Detection และ IBUG Face Alignment ที่ใช้เทคนิคการทำ Face Detection โดย <a href="https://arxiv.org/abs/1905.00641" target="_blank" rel="noreferrer noopener">RetinaFace</a> และใช้เทคนิคการหา Facial Landmark โดย <a href="https://www.adrianbulat.com/face-alignment" target="_blank" rel="noreferrer noopener">FAN (Face Alignment Network)</a> ตามลำดับ</p>
+
+<p>แต่ก่อนอื่น เราจะต้องติดตั้งไลบรารีเสียก่อน ทำได้ตามด้านล่างนี้ครับ</p>
+
+<p><strong>ติดตั้งแพคเกจ Face Detection</strong></p>
+
+<pre class="wp-block-code"><code>git clone https://github.com/hhj1897/face_detection.git
+cd face_detection
+git lfs pull
+pip install -e .</code></pre>
+
+<p><strong>ติดตั้งแพคเกจ Face Alignment</strong></p>
+
+<pre class="wp-block-code"><code>git clone https://github.com/hhj1897/face_alignment.git
+cd face_alignment
+pip install -e .</code></pre>
+
+<p>ต่อมาโหลดภาพสำหรับการหา Facial Landamark ส่วนนี้ทำได้โดยการพิมพ์โค้ดตามด้านล่างนี้่ครับ</p>
+
+<p><strong>นำเข้าไลบรารี</strong></p>
+
+<p>ส่วนแรกเป็นการนำเข้าไลบรารีที่เราติดตั้งเข้ามา รวมถึงไลบรารี OpenCV</p>
+
+<pre class="wp-block-code"><code>import cv2
+from ibug.face_detection import RetinaFacePredictor
+from ibug.face_alignment import FANPredictor</code></pre>
+
+<p><strong>โหลดโมเดล</strong></p>
+
+<p>ส่วนที่สองเป็นการโหลดโมเดล Face Detection และ Face Alignment</p>
+
+<pre class="wp-block-code"><code>face_detector = RetinaFacePredictor(
+    threshold=0.8, device='cuda:0',
+    model=RetinaFacePredictor.get_model('resnet50'))
+
+landmark_detector = FANPredictor(
+    device='cuda:0', model=FANPredictor.get_model('2dfan2_alt'))</code></pre>
+
+<p>จากข้างบน</p>
+
+<ul class="wp-block-list">
+<li>ตัวโค้ดจะโหลดโมเดล Face Detection และ Facial Landmark Detection โดยกำหนด Threshold ของ Face Detection ว่าให้ได้ค่า Confidence มากกว่า 0.8 ขึ้นไป</li>
+
+
+
+<li>ตัวโค้ดกำหนดให้ใช้การ์ดจอตัวแรกสำหรับการทำ Face Detection และ Facial Landmark Detection ผ่านการพิมพ์ cuda:0 ตรง device</li>
+</ul>
+
+<p><strong>โหลดภาพและทำ Face Detection + หา Facial Landmark</strong></p>
+
+<p>ต่อมาโหลดภาพจากเครื่องด้วยคำสั่ง imread ของ OpenCV แล้วให้ Face Detection หาตำแหน่งใบหน้าจากภาพ ร่วมกับการใช้ Face Alignment หา Facial Landmark</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ตัวอย่างรูปสามารถดาวน์โหลดได้จาก <a href="https://upload.wikimedia.org/wikipedia/commons/1/10/Thaksin_crop.jpg" target="_blank" rel="noopener" title="Wikipedia">Wikipedia Commons</a>  เมื่อดาวน์โหลดรูปแล้วให้เปลี่ยนชื่อเป็น test.jpg (หรือชื่ออื่น ๆ ได้ตามผู้อ่าน)</p>
+</blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="250" height="375" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/thaksin_crop.jpg" alt="" class="wp-image-3422" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/thaksin_crop-200x300.jpg 200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/thaksin_crop.jpg 250w" sizes="auto, (max-width: 250px) 100vw, 250px" /><figcaption class="wp-element-caption">ตัวอย่างภาพ (ดาวน์โหลดมาจาก <a href="https://commons.wikimedia.org/wiki/File:Thaksin_crop.jpg" target="_blank" rel="noopener" title="Wikipedia Commons">Wikipedia Commons</a>)</figcaption></figure></div>
+
+<pre class="wp-block-code"><code># โหลดรูปภาพ
+image = cv2.imread('test.jpg')
+
+# ค้นหาใบหน้าจากภาพ
+# โดยเราตั้งค่าพารามิเตอร์ rgb ว่าภาพที่โหลดเป็น RGB หรือไม่ ถ้าใช่ตอบ True ถ้าไม่ตอบ False โดยตัว OpenCV แล้วภาพที่โหลดจะเป็น BGR ให้ตอบ False
+# ผลลัพธ์ที่ได้แสดงในรูปตัวแปร Array ที่มีขนาด Nx15
+detected_faces = face_detector(image, rgb=False)
+
+# ค้นหา Facial Landmark
+# ผลลัพธ์ที่ได้แสดงในรูปตัวแปร Array ที่มีขนาด Nx68x2
+landmarks, scores = landmark_detector(image, detected_faces, rgb=False)</code></pre>
+
+<p>เมื่อได้ตำแหน่งใบหน้าในภาพ ร่วมกับได้ Facial Landmark แล้ว ผู้อ่านจะ Crop ภาพใบหน้าหรือไม่ก็ได้ ในตัวอย่างนี้เราจะ Crop ภาพใบหน้าครับ</p>
+
+<p>ขั้นแรก หาตำแหน่งใบหน้าและ Facial Landmark จากภาพสำหรับการ Crop ใบหน้า</p>
+
+<pre class="wp-block-code"><code># Get BBOX and Facial Landmark Result
+x_min,y_min,x_max,y_max = detected_faces&#91;0]&#91;:4]
+
+# Crop Face
+img_h, img_w = image.shape&#91;:2]
+w = x_max - x_min
+h = y_max - y_min
+ad = 0.4
+x_min = max(int(x_min - ad * w), 0)
+x_max = min(int(x_max + ad * w), img_w - 1)
+y_min = max(int(y_min - ad * h), 0)
+y_max = min(int(y_max + ad * h), img_h - 1)</code></pre>
+
+<p>ขั้นตอนที่สอง Crop ใบหน้า และ Crop จุด Facial Landmark</p>
+
+<pre class="wp-block-code"><code>cropped_image = image&#91;y_min:y_max, x_min:x_max]
+
+# Crop Landmark
+
+landmark = landmarks&#91;0]
+landmark&#91;:, 0] -= x_min
+landmark&#91;:, 1] -= y_min</code></pre>
+
+<p>เมื่อครอบใบหน้าแล้ว จุดนี้เราจะมีข้อมูลสำหรับการทำ Synthetic Dataset แล้วครับ</p>
+
+<h3 class="wp-block-heading">วิธีการทำ Synthetic Dataset</h3>
+
+<p><strong>การติดตั้งไลบรารี</strong></p>
+
+<p>ก่อนจะเริ่มทำ Synthetic Dataset เราจะต้องดาวน์โหลด repo ของ IBUG Face Pose Augmentation เสียก่อนด้วยคำสั่ง git clone</p>
+
+<pre class="wp-block-code"><code>git clone --recurse-submodules https://github.com/hhj1897/face_pose_augmentation.git</code></pre>
+
+<p>จากโค้ดข้างบนจะสังเกตว่ามีการใส่ออฟชัน &#8211;recurse-submodules ร่วมด้วย อันนี้จะเป็นการดาวน์โหลดตัวโค้ด 3DDFA มาใช้สำหรับการหา 3D Morphable Model กับภาพที่เราต้องการนำมาทำ Synthetic Dataset</p>
+
+<p>ขั้นตอนถัดไป เป็นการติดตั้งไลบรารี จุดนี้ทำได้โดยเข้าไปที่โฟลเดอร์ที่เราดาวน์โหลดโค้ดมา หลังจากนั้นใช้คำสั่งไพทอนสำหรับการติดตั้งไลบรารี</p>
+
+<pre class="wp-block-code"><code>cd face_pose_augmentation
+pip install -r requirements.txt
+pip install -e .</code></pre>
+
+<p>ต่อมาเขียนโค้ด ส่วนแรกที่จะเขียนเป็นการนำเข้าไลบรารีสำหรับการทำ Synthetic Dataset</p>
+
+<p><strong>นำเข้าไลบรารี</strong></p>
+
+<p>ขั้นตอนแรกเป็นการนำเข้าไบรารีด้วยคำสั่ง import</p>
+
+<pre class="wp-block-code"><code>from ibug.face_pose_augmentation import TDDFAPredictor, FacePoseAugmentor
+import numpy as np
+</code></pre>
+
+<p><strong>โหลดโมเดล</strong></p>
+
+<p>ต่อมา เมื่อไลบรารีได้รับการโหลดเข้ามาแล้วก็ใช้คำสั่งตามด้านล่างนี้เพื่อโหลดโมเดล 3DDFA และโหลดเครื่องมือสำหรับการทำ Synthetic Dataset</p>
+
+<pre class="wp-block-code"><code># Instantiate 3DDFA
+tddfa = TDDFAPredictor(device='cuda:0')
+
+# Create the face pose augmentor
+augmentor = FacePoseAugmentor()</code></pre>
+
+<p><strong>การทำ Synthetic Dataset</strong></p>
+
+<p>ต่อมาเป็นการใช้คำสั่งเพื่อที่จะหา 3D Morphable Model สำหรับภาพที่ได้รับการ label ด้วย Facial Landmark ที่มีจำนวน Landmark ทั้งหมด 68 จุด โดยเราสามารถใช้ภาพที่หาจุด Facial Landmark แล้วในหัวข้อก่อนหน้ามาใช้ได้เลย</p>
+
+<p>รายละเอียดของคำสั่งก็แสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>tddfa_result = TDDFAPredictor.decode(tddfa(cropped_image, landmark, rgb=False))&#91;0]</code></pre>
+
+<p>ผลลัพธ์ของการหา 3D Morphable Model ตามโค้ดข้างบนจะแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>{  
+    'roi_box': '&lt; ตำแหน่งใบหน้าในภาพ &gt;', 
+    'params': '&lt; พารามิเตอร์ 3D Morphable Model &gt;',
+    'vertex': '&lt; vertex &gt;',
+    'pts68': '&lt; จุด Facial Landmark 3 มิติ &gt;',
+    'face_pose': {
+        'pitch': &lt; Pitch &gt;, 'yaw': &lt; Yaw &gt;, 'roll': &lt; Roll &gt;, 
+        't3d': &lt; 3D Translation Matrix &gt;, 
+        'f': &lt; Scale Factor &gt;
+    }, 
+    camera_transform': {
+        'fR': &lt; Rotation Matrix &gt;, 
+        'T': &lt; Translation Matrix &gt;
+    }
+}</code></pre>
+
+<p>เมื่อได้ 3D Morphable Model จากการใช้คำสั่งข้างบนนี้แล้ว ขั้นตอนต่อมาจะเป็นการสร้างภาพที่มีองศาที่ต้องการ </p>
+
+<p>ส่วนนี้ทำได้โดยการใช้คำสั่งที่อธิบายตามด้านล่างนี้</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ในตัวอย่างจะกำหนดให้ใบหน้าหันไปทางขวา 45 องศา</p>
+</blockquote>
+
+<pre class="wp-block-code"><code>augmentation_results = augmentor(
+    cropped_image, 
+    tddfa_result, 
+    np.array(&#91;0, -45 * np.pi / 180, 0]), 
+    landmark
+)</code></pre>
+
+<p>อธิบายส่วน delta pose อันนี้จะเป็นผลต่างขององศาการหันศีรษะในปัจจุบัน กับองศาของการหันศีรษะที่ต้องการ โดยจะเขียนในรูป Array ตามด้านล่างนี้ครับ </p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ค่าองศาที่เขียนใน Array จะต้องเป็นหน่วยเรเดียน (radian)</p>
+</blockquote>
+
+<pre class="wp-block-code"><code>&#91;&lt; องศาก้มศีรษะ pitch &gt;,&lt; องศาหันศีรษะซ้าย-ขวา yaw&gt;,&lt; องศาเอนศีรษะซ้าย-ขวา roll &gt;]</code></pre>
+
+<p>ผลลัพธ์ที่ได้จากการใช้คำสั่งเพื่อทำ Synthetic Dataset จะอยู่ในรูปตัวแปร Dictionary ครับ รายละเอียดแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>{
+    'correspondence_map': &lt; ผลลัพธ์การทำ 2D-3D correspondence &gt;, 
+    'warped_landmarks': {
+         '3d_style': &lt; ผลลัพธ์ 3D facial landmark &gt;, 
+         '2d_style': &lt; ผลลัพธ์ 2D facial landmark &gt;,
+         'projected_3d': &lt; ผลลัพธ์ของ Facial Landmark ที่แปลงเป็น 3 มิติ &gt;, 
+         'refined_2d': &lt; ผลลัพธ์ Facial Landmark ที่เป็น 2 มิติ &gt;
+    }, 
+    'warped_image': &lt; ตัวแปร array ภาพที่ได้รับการทำ Synthetic Dataset &gt;
+}</code></pre>
+
+<p>สำหรับภาพผลลัพธ์แสดงตามด้านล่างนี้ </p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ภาพด้านซ้ายเป็นภาพต้นฉบับที่ผ่านการ Crop ใบหน้า ส่วนภาพด้านขวาเป็นภาพผลลัพธ์ของการทำ Synthetic Dataset</p>
+</blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="380" height="245" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/synthesized_thaksin.png" alt="" class="wp-image-3407" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/synthesized_thaksin-300x193.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/01/synthesized_thaksin.png 380w" sizes="auto, (max-width: 380px) 100vw, 380px" /></figure></div>
+
+<p>จากผลลัพธ์ที่ได้ก็พบว่าเราสามารถทำ Synthetic Dataset สำหรับทำ Head Pose Estimation ได้ครับ โดยในตัวอย่างจะใช้ภาพ 1 ภาพ อย่างไรก็ตามเนื่องจากการเทรนโมเดลจำเป็นต้องใช้ข้อมูลเป็นจำนวนมาก อันนี้ผู้อ่านจำเป็นต้องหาภาพจำนวนมากสำหรับการทำ Synthetic Dataset ครับ </p>
+
+<p>กรณีที่หาภาพลักษณะนี้ไม่เจอ แนะนำให้ดาวน์โหลด Dataset อย่าง <a href="https://ibug.doc.ic.ac.uk/resources/300-W/" target="_blank" rel="noopener" title="300W">300W</a> มาทำ Synthetic Dataset ตามที่ Dataset 300W_LP ทำได้ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

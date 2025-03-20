@@ -1,146 +1,61 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python - Nick Untitled</title>
-		<meta name="description" content="บทความนี้แนะนำวิธีการวัดระยะห่างระหว่างตาดำโดยใช้ภาษา Python จากภาพดิจิทัลครับ">
-		<meta name="keywords" content="Python,Coding,Developer,Mouth Opening,Iris,Interpupillary Distance,Measurement,Programming,Machine Learning,Computer Vision,Segmentation,Face Detection,Calibration,U-NET,Deep Learning,3DDFA_V2,FaceBoxes,Face Detection,Landmark Detection,Artificial Intelligence,เขียนโปรแกรม,ไพทอน,เขียนโค้ด,โค้ดดิ้ง,ตาดำ,การวัด,คอมพิวเตอร์วิทัศน์,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-12-08T00:30:00+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/12/10/interpupillary_distance_measurement_python/"/>
-		<meta property="og:title" content="วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python - Nick Untitled" />
-		<meta property="og:description" content="บทความนี้แนะนำวิธีการวัดระยะห่างระหว่างตาดำโดยใช้ภาษา Python จากภาพดิจิทัลครับ " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/12/find_ipd_cover.jpeg"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python - Nick Untitled" />
-		<meta property="twitter:description" content="บทความนี้แนะนำวิธีการวัดระยะห่างระหว่างตาดำโดยใช้ภาษา Python จากภาพดิจิทัลครับ " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/12/find_ipd_cover.jpeg" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/12/10/interpupillary_distance_measurement_python/" />
+<meta property="og:url" content="http://localhost:4000/2021/12/10/interpupillary_distance_measurement_python/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/12/find_ipd_cover.jpeg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-10T17:30:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/12/find_ipd_cover.jpeg" />
+<meta property="twitter:title" content="วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:44:30+07:00","datePublished":"2021-12-10T17:30:00+07:00","description":"None","headline":"วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/12/find_ipd_cover.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/12/10/interpupillary_distance_measurement_python/"},"url":"http://localhost:4000/2021/12/10/interpupillary_distance_measurement_python/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-12-10 17:30:00 +0700">2021-12-10</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/12/find_ipd_cover.jpeg' />
+  </figure>
+  
 
-	
-
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/12/find_ipd_cover.jpeg' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>08 December 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/interpupillary-distance=measurement-python" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/interpupillary-distance=measurement-python&amp;text=วัดระยะห่างระหว่างตาดำจากภาพโดยภาษา Python - https://nickuntitled.com/interpupillary-distance=measurement-python" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<p>อันนี้เป็นส่วนหนึ่งของงานวิจัย ทำไปแล้วบางส่วน</p>
+  <p>อันนี้เป็นส่วนหนึ่งของงานวิจัย ทำไปแล้วบางส่วน</p>
 
 <p>ปกติการวัดตาดำ เราจะพบได้ในคนที่เลือกขนาดเครื่อง Virtual Reality Headset หรือวัดขนาดแว่นตา หรืออื่น ๆ ปกติเราจะใช้ไม้บรรทัดวัดเพื่อให้รู้ว่าระยะห่างระหว่างตาดำ (Interpupillary Distance) มีระยะห่างเท่าไร อย่างไรก็ดีเราจะใช้ไม้บรรทัดวัดไปตลอดเหรอก็ไม่สะดวกเท่าไร แถมสมัยนี้เราก็ใช้คอมพิวเตอร์กันอยู่แล้วด้วย เลยเอามาเขียนโค้ดส่วนนี้เพื่อจับระยะการอ้าปากครับ</p>
+
+<!--more-->
 
 <p>หลักการวัดจากภาพดิจิทัล โดยปกติเวลาที่เราวัดจะได้หน่วยการวัดเป็น pixel แต่สิ่งที่เราต้องการก็คือ ต้องการการวัดที่มีหน่วยเป็นเซนติเมตร หรือมิลลิเมตรที่ตัวโปรแกรมวัดด้วยตัวเองไม่ได้ เราจำเป็นต้องหาวัตถุอ้างอิงเพื่อเป็น Reference สำหรับการแปลงหน่วยจาก pixel เป็นหน่วยที่เราวัดครับ</p>
 
@@ -148,24 +63,23 @@
 
 <p>แต่ก่อนที่จะไปวัด เราจะต้องแยกส่วน (Segment) บัตรประชาชนออกจากวัตถุอื่นในภาพก่อน แล้วจะทำอย่างไรดี หลักการนี้เรียกว่า Image Segmentation</p>
 
-<h2 id="image-segmentation">Image Segmentation</h2>
+<h2 class="wp-block-heading" id="image-segmentation">Image Segmentation</h2>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/mask_rcnn_segmentation.png" alt="Image Segmentation" />
-ภาพตัวอย่างการ Segmentation จากเปเปอร์​ Mask R-CNN</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/mask_rcnn_segmentation.png?w=580&#038;ssl=1" alt="Image Segmentation" /></figure>
+
+<p>ภาพตัวอย่างการ Segmentation จากเปเปอร์​ Mask R-CNN</p>
 
 <p>Image Segmentation เป็นหลักการจำแนก pixel ของวัตถุที่เราต้องการออกมาจากวัตถุอื่นในภาพดิจิทัล โดยยกตัวอย่างเช่นระบบการขับรถอัตโนมัติ (self-driving car) ที่จับคนในภาพเพื่อป้องกันไม่ให้เกิดอุบัติเหตุครับ หลักการนี้แบ่งออกมาได้เป็นสองวิธีได้แก่ Semantic Segmentation และ Instance Segmentation</p>
 
-<ul>
-  <li>Semantic Segmentation เป็นการแยกวัตถุออกจากภาพวัตถุอื่นโดยการแบ่งประเภทของวัตถุ (class) จากภาพ ได้แก่ สีแดงเป็นคน สีน้ำเงินเป็นรถ เป็นต้น</li>
-  <li>Instance Segmentation เป็นการแบ่งวัตถุแต่ละชิ้นในภาพ ที่แตกต่างกับ Semantic Segmentation ที่แบ่งเป็นวัตถุที่ 1,2,3,4 เป็นต้น</li>
-</ul>
+<ul class="wp-block-list"><li>Semantic Segmentation เป็นการแยกวัตถุออกจากภาพวัตถุอื่นโดยการแบ่งประเภทของวัตถุ (class) จากภาพ ได้แก่ สีแดงเป็นคน สีน้ำเงินเป็นรถ เป็นต้น</li><li>Instance Segmentation เป็นการแบ่งวัตถุแต่ละชิ้นในภาพ ที่แตกต่างกับ Semantic Segmentation ที่แบ่งเป็นวัตถุที่ 1,2,3,4 เป็นต้น</li></ul>
 
 <p>ตัวอย่างของเทคนิคที่ใช้ Image Segmentation คือ Mask R-CNN, U-NET ครับ</p>
 
-<h2 id="u-net">U-NET</h2>
+<h2 class="wp-block-heading" id="u-net">U-NET</h2>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/unet_artchitecture.png" alt="U-NET Architecture" />
-ภาพโครงสร้าง U-NET</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/unet_artchitecture.png?w=580&#038;ssl=1" alt="U-NET Architecture" /></figure>
+
+<p>ภาพโครงสร้าง U-NET</p>
 
 <p>U-NET ที่เป็นคนละอันกันกับ O-NET ที่สอบมัธยมศึกษาตอนปลายเข้ามหาวิทยาลัยที่จัดโดยสทศ ครับ</p>
 
@@ -173,39 +87,35 @@
 
 <p>โครงสร้างของเครือข่ายประสาท U-NET เราจะเห็นว่าเป็นรูปตัว U (U-shape) ที่แบ่งเป็นสองช่วง ได้แก่ Contracting Path (ด้านซ้าย) และ Upsampling Path (ด้านขวา) เราจะอธิบายในแต่ละส่วนตามด้านล่างนี้ครับ</p>
 
-<h3 id="contract-path">Contract Path</h3>
+<h3 class="wp-block-heading" id="contract-path">Contract Path</h3>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/unet_downsampling.png" alt="U-NET Contract Path" />
-ภาพโครงสร้าง U-NET ในขั้นตอน Contract Path</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/unet_downsampling.png?w=580&#038;ssl=1" alt="U-NET Contract Path" /></figure>
 
-<p>ประกอบไปด้วย</p>
-<ol>
-  <li>3x3 Convolutions (ที่ไม่มี Padding) 2 รอบ</li>
-  <li>ตามมาด้วย Activation Function ReLU</li>
-  <li>ใช้ 2x2 Max Pooling ที่มี Stride 2 เพื่อ Down Sampling ระหว่างที่ทำ Down Sampling เราจะเพิ่มจำนวน Feature Channel เป็น 2 เท่าในแต่ละครั้ง</li>
-</ol>
-
-<h3 id="upsampling-path">Upsampling Path</h3>
-
-<p><img src="https://asset.nickuntitled.com/2021/12/unet_upsampling.png" alt="U-NET Contract Path" />
-ภาพโครงสร้าง U-NET ในขั้นตอน Upsampling Path</p>
+<p>ภาพโครงสร้าง U-NET ในขั้นตอน Contract Path</p>
 
 <p>ประกอบไปด้วย</p>
-<ol>
-  <li>Up Sampling แล้วตามด้วย 2x2 Convolutions (หรือเรียกอีกอย่างว่า “up-convolution”) ที่แบ่งครึ่งจำนวน Channels</li>
-  <li>นำภาพที่ได้จากขั้นตอนการทำ 3x3 Convolutions + ReLU ใน Contract Path ที่ผ่านการ Cropped แล้วมา Concatenate</li>
-  <li>ทำ 3x3 Convolutions สองรอบ แล้วตามด้วย ReLU</li>
-  <li>ทำไปจนกระทั่งถึง Layer สุดท้าย เราทำ 1x1 Convolution เพื่อนำ 64 Component Feature Vector ให้เป็นจำนวน Classes ที่เราต้องการ</li>
-</ol>
+
+<ol class="wp-block-list"><li>3&#215;3 Convolutions (ที่ไม่มี Padding) 2 รอบ</li><li>ตามมาด้วย Activation Function ReLU</li><li>ใช้ 2&#215;2 Max Pooling ที่มี Stride 2 เพื่อ Down Sampling ระหว่างที่ทำ Down Sampling เราจะเพิ่มจำนวน Feature Channel เป็น 2 เท่าในแต่ละครั้ง</li></ol>
+
+<h3 class="wp-block-heading" id="upsampling-path">Upsampling Path</h3>
+
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/unet_upsampling.png?w=580&#038;ssl=1" alt="U-NET Contract Path" /></figure>
+
+<p>ภาพโครงสร้าง U-NET ในขั้นตอน Upsampling Path</p>
+
+<p>ประกอบไปด้วย</p>
+
+<ol class="wp-block-list"><li>Up Sampling แล้วตามด้วย 2&#215;2 Convolutions (หรือเรียกอีกอย่างว่า “up-convolution”) ที่แบ่งครึ่งจำนวน Channels</li><li>นำภาพที่ได้จากขั้นตอนการทำ 3&#215;3 Convolutions + ReLU ใน Contract Path ที่ผ่านการ Cropped แล้วมา Concatenate</li><li>ทำ 3&#215;3 Convolutions สองรอบ แล้วตามด้วย ReLU</li><li>ทำไปจนกระทั่งถึง Layer สุดท้าย เราทำ 1&#215;1 Convolution เพื่อนำ 64 Component Feature Vector ให้เป็นจำนวน Classes ที่เราต้องการ</li></ol>
 
 <p>จำนวน Convolutional Layer ทั้งหมดที่ใช้ใน U-NET มีทั้งหมด 23 Layers ครับ</p>
 
 <p>สำหรับข้อมูลเพิ่มเติมของ U-NET ผู้อ่านศึกษาได้ใน<a href="https://arxiv.org/abs/1505.04597">เปเปอร์ U-Net: Convolutional Networks for Biomedical Image Segmentation จากเว็บ arXiv</a> ครับ</p>
 
-<h2 id="midv-500">MIDV-500</h2>
+<h2 class="wp-block-heading" id="midv-500">MIDV-500</h2>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/midv_500.png" alt="MIDV-500 Dataset" />
-ตัวอย่างรูปภาพในฐานข้อมูล MIDV-500</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/midv_500.png?w=580&#038;ssl=1" alt="MIDV-500 Dataset" /></figure>
+
+<p>ตัวอย่างรูปภาพในฐานข้อมูล MIDV-500</p>
 
 <p>MIDV-500 หรือเรียกอีกอย่างว่า Mobile Identity Document Video dataset ที่ประกอบไปด้วยวิดีโอ 500 ชิ้นที่มีเอกสารยืนยันตัวตนทั้งหมด 50 ชนิดที่สร้างขึ้นโดยใช้กล้องโทรศัพท์มือถืออย่าง iPhone 5, Samsung Galaxy S3 ที่บันทึกในสภาพแวดล้อม 5 รูปแบบ ได้แก่ ภาพวางบนโต๊ะ บนคีย์บอร์ด และบนมือ ภาพที่ถูกบังบางส่วน รวมถึงภาพที่มีพื้นหลังทีมีวัตถุต่าง ๆ เต็มหน้าจอที่ไม่เกี่ยวข้อง</p>
 
@@ -213,329 +123,178 @@
 
 <p>สำหรับผู้อ่านที่ต้องการอ่านเพิ่มเติม สามารถอ่านได้ใน<a href="https://arxiv.org/abs/1807.05786">เปเปอร์ MIDV-500: a dataset for identity document analysis and recognition on mobile devices in video stream จากเว็บ arXiv</a> ครับ และกรณีที่ต้องการดาวน์โหลดฐานข้อมูลไว้ใช้งาน สามารถดาวน์โหลดได้ที่ <a href="https://github.com/fcakyon/midv500">Github</a> หรือดาวน์โหลดผ่านการติดตั้งไลบรารีใน pip ของไพทอน โดยพิมพ์คำสั่ง</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install midv500
-</code></pre></div></div>
+<pre class="wp-block-code"><code>pip install midv500</code></pre>
 
 <p>ตัวไพทอนจะติดตั้งไลบรารี MIDV-500 ไว้ใช้งาน ตัวไลบรารีสามารถแปลงข้อมูล Annotation ของฐานข้อมูล MIDV-500 ให้อยู่ในรูปแบบของ COCO instance segmentation format</p>
 
 <p>นอกเหนือจากนี้ ฐานข้อมูลได้รับการพัฒนาขึ้นมาให้เป็นเวอร์ชันใหม่ โดยฐานข้อมูลที่สร้างขึ้นมาใหม่มีชื่อว่า <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11433/2558438/MIDV-2019--challenges-of-the-modern-mobile-based-document/10.1117/12.2558438.short?SSO=1">MIDV-2019</a> ครับ ฐานข้อมูลนี้แก้ปัญหาเรื่อง Projective Distortion และสภาพแสงสว่างที่แตกต่างกันไป</p>
 
-<h2 id="เขียนโค้ดกัน">เขียนโค้ดกัน</h2>
+<h2 class="wp-block-heading" id="-">เขียนโค้ดกัน</h2>
 
 <p>เราเขียนโค้ดเพื่อที่จะวัดระยะห่างระหว่างตาดำ การเขียนโค้ดจะมีขั้นตอนดังนี้</p>
 
-<ol>
-  <li>จับภาพใบหน้า (Face detection)</li>
-  <li>Calibrate ระยะการวัด Pixel ต่อ mm โดยแยกส่วนบัตรประชาชนจากภาพ โดยให้ถือบัตรประชาชนให้ชิดริมฝีปากของผู้ที่ต้องการวัดภาพ</li>
-  <li>จับภาพจุดแลนมาร์คบริเวณดวงตา หรือตาดำ (Facial Landmark Detection)</li>
-  <li>วัดระยะห่างระหว่างตาดำ (Interpupillary Distance)</li>
-</ol>
+<ol class="wp-block-list"><li>จับภาพใบหน้า (Face detection)</li><li>Calibrate ระยะการวัด Pixel ต่อ mm โดยแยกส่วนบัตรประชาชนจากภาพ โดยให้ถือบัตรประชาชนให้ชิดริมฝีปากของผู้ที่ต้องการวัดภาพ</li><li>จับภาพจุดแลนมาร์คบริเวณดวงตา หรือตาดำ (Facial Landmark Detection)</li><li>วัดระยะห่างระหว่างตาดำ (Interpupillary Distance)</li></ol>
 
 <p>เราเขียนโค้ดใน Google Colab ได้เลยครับ ผู้อ่านสามารถ<a href="https://asset.nickuntitled.com/2021/12/ipd_measurement.ipynb">ดาวน์โหลดไฟล์ ipynb</a> มาทดลองรันบน Google Colab หรืออื่น ๆ ได้ครับ</p>
 
-<h3 id="จับภาพใบหน้า-face-detection">จับภาพใบหน้า (Face Detection)</h3>
+<h3 class="wp-block-heading" id="-face-detection-">จับภาพใบหน้า (Face Detection)</h3>
 
-<p><img src="https://asset.nickuntitled.com/2021/11/face_detection_python.jpg" alt="Face Detection" />
-ภาพจากเว็บ Wikipedia</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/11/face_detection_python.jpg?w=580&#038;ssl=1" alt="Face Detection" /></figure>
+
+<p>ภาพจากเว็บ Wikipedia</p>
 
 <p>การจับภาพใบหน้า หรือเรียกอีกอย่างว่า Face Detection คือการหาตำแหน่ง Face Regions of Interest จากภาพ โดยมีหลายเทคนิคที่เราสามารถใช้ได้เลย ตั้งแต่ Viola-Jones ที่พบได้ในคำสั่งบน OpenCV ที่คนโพสกันไปเยอะมาก หรือใช้เทคนิค dlib หรืออื่น ๆ ครับ อย่างไรก็ดี เราต้องพิจารณาความแม่นยำ ข้อดี ข้อเสียของแต่ละเทคนิค</p>
 
 <p>ในที่นี้ จะใช้เทคนิค FaceBoxes ครับ</p>
 
-<h3 id="การจับจุดแลนมาร์คบนใบหน้า-facial-landmark-detection">การจับจุดแลนมาร์คบนใบหน้า (Facial Landmark Detection)</h3>
+<h3 class="wp-block-heading" id="-facial-landmark-detection-">การจับจุดแลนมาร์คบนใบหน้า (Facial Landmark Detection)</h3>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/dlib_facial_landmark.jpeg" alt="Facial Landmark Detection" />
-ภาพจากเว็บ Wikipedia</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/dlib_facial_landmark.jpeg?w=580&#038;ssl=1" alt="Facial Landmark Detection" /></figure>
+
+<p>ภาพจากเว็บ Wikipedia</p>
 
 <p>การจับจุดแลนมาร์คบนใบหน้า หรือเรียกอีกอย่างว่า Facial Landmark Detection เป็นการจับตำแหน่งอวัยวะบนใบหน้าเพื่อใช้สำหรับการประมวลผลในขั้นตอนต่อไป มีหลายเทคนิคที่ใช้ ตั้งแต่รุ่นเก่าเลยก็เป็น Active Appearance Models, Constrained Local Models หรืออื่น ๆ แต่ถ้าเอาง่ายหน่อยก็เป็น dlib (จากเปเปอร์ Ensemble of Regression Trees) หรือ FaceMesh หรืออื่น ๆ</p>
 
 <p>ในตัวอย่าง เราใช้เทคนิค 3DDFA_V2 ครับ</p>
 
-<h3 id="calibrate-ระยะการวัด-pixel-และหาระยะห่างระหว่างตาดำ">Calibrate ระยะการวัด Pixel และหาระยะห่างระหว่างตาดำ</h3>
+<h3 class="wp-block-heading" id="calibrate-pixel-">Calibrate ระยะการวัด Pixel และหาระยะห่างระหว่างตาดำ</h3>
 
 <p>เอาล่ะ มาเขียนโค้ดกันดีกว่า เราติดตั้งไลบรารีที่จำเป็นโดยการใช้ pip แต่สำหรับการทำ Calibrate เราใช้ไลบรารี</p>
 
-<ul>
-  <li>OpenCV</li>
-  <li>Numpy</li>
-  <li>PyTorch</li>
-  <li>iglovikov_helper_functions</li>
-  <li>midv500models</li>
-  <li>imutils</li>
-</ul>
+<ul class="wp-block-list"><li>OpenCV</li><li>Numpy</li><li>PyTorch</li><li>iglovikov_helper_functions</li><li>midv500models</li><li>imutils</li></ul>
 
 <p>ติดตั้งเสร็จแล้ว อัพโหลดภาพเข้า Google Colab จากนั้นนำเข้าภาพโดยใช้คำสั่ง</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>img = cv2.imread("&lt; Image Path &gt;")
-</code></pre></div></div>
+<pre class="wp-block-code"><code>img = cv2.imread("&lt; Image Path &gt;")</code></pre>
 
 <p>รันใน Google Colab โดยใช้ภาพเราถือบัตรเองที่อัพโหลดเข้าไประบบ จะได้ภาพตามด้านล่างนี้ครับ</p>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/ipd_input.png" alt="Input Colab Image" />
-ภาพที่จะใช้ทำ Calibrate และหาระยะห่างระหว่างตาดำทั้งสองข้าง</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/ipd_input.png?w=580&#038;ssl=1" alt="Input Colab Image" /></figure>
+
+<p>ภาพที่จะใช้ทำ Calibrate และหาระยะห่างระหว่างตาดำทั้งสองข้าง</p>
 
 <p>ต่อมา เรานำภาพผ่านการจับใบหน้าโดยใช้เทคนิค Face Detection และอะไรก็ได้เพื่อหา Face Regions of Interest ครับ โดยการใช้คำสั่งตามด้านล่างนี้</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>img = img[..., ::-1]
-boxes = face_boxes(img)
-</code></pre></div></div>
+<pre class="wp-block-code"><code>img = img&#91;..., ::-1]<br />boxes = face_boxes(img)</code></pre>
 
 <p>ต่อมาเรานำ Face Regions of Interest (ที่อยู่ในตัวแปร boxes) ไปประยุกต์ใช้ต่อสำหรับการทำ Calibrate เรานำเข้าไลบรารีได้ตามด้านล่างนี้</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import albumentations as albu
-import torch
-
-from iglovikov_helper_functions.utils.image_utils import load_rgb, pad, unpad
-from iglovikov_helper_functions.dl.pytorch.utils import tensor_from_rgb_image
-
-from midv500models.pre_trained_models import create_model
-</code></pre></div></div>
+<pre class="wp-block-code"><code>import albumentations as albu<br />import torch from iglovikov_helper_functions.utils.image_utils <br />import load_rgb, pad, unpad from iglovikov_helper_functions.dl.pytorch.utils <br />import tensor_from_rgb_image from midv500models.pre_trained_models <br />import create_model</code></pre>
 
 <p>ดาวน์โหลดโมเดล U-NET มาใช้งาน โดยใช้คำสั่งตามด้านล่างนี้</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>model = create_model("Unet_resnet34_2020-05-19")
-</code></pre></div></div>
+<pre class="wp-block-code"><code>model = create_model("Unet_resnet34_2020-05-19")</code></pre>
 
 <p>กำหนดตัวโมเดลสำหรับการจับภาพที่ไม่ได้เทรนใหม่ (Evaluation model) และนำภาพที่เราจับภาพใบหน้ามาแล้วที่เป็นตำแหน่งแรกมาแยกส่วนบัตรประชาชน เราพิมพ์โค้ดได้ตามด้านล่างนี้</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>model.eval()
-boxes = [boxes[0]]
+<pre class="wp-block-code"><code>model.eval()
+boxes = &#91;boxes&#91;0]]
 size_box = len(boxes)
-box = boxes[0]
+box = boxes&#91;0]&#91;x1, y1, x2, y2] = box&#91;:4]x1 = int(x1)y1 = int(y1)x2 = int(x2)y2 = int(y2)# Segment Imageimage = model.eval()
+boxes = &#91;boxes&#91;0]]
+size_box = len(boxes)
+box = boxes&#91;0]
 
-[x1, y1, x2, y2] = box[:4]
+&#91;x1, y1, x2, y2] = box&#91;:4]
 x1 = int(x1)
 y1 = int(y1)
 x2 = int(x2)
 y2 = int(y2)
 
 # Segment Image
-image = img[y1:y2,x1:x2].copy()
-transform = albu.Compose([albu.Normalize(p=1)], p=1)
+image = img&#91;y1:y2,x1:x2].copy()
+transform = albu.Compose(&#91;albu.Normalize(p=1)], p=1)
 padded_image, pads = pad(image, factor=32, border=cv2.BORDER_CONSTANT)
 
 # Inference
-x = transform(image=padded_image)["image"]
+x = transform(image=padded_image)&#91;"image"]
 x = torch.unsqueeze(tensor_from_rgb_image(x), 0)
 with torch.no_grad():
-    prediction = model(x)[0][0]
+    prediction = model(x)&#91;0]&#91;0]
 
 # Postprocessing
 mask = (prediction &gt; 0).cpu().numpy().astype(np.uint8)
 mask = unpad(mask, pads)
-mask = mask * 255
-</code></pre></div></div>
+mask = mask * 255</code></pre>
 
 <p>เราแยกส่วนบัตรประชาชนออกมาแล้วในรูปแบบตัวแปร mask ในตัวโค้ดจะออกมาเป็นอาเรย์ที่มีขนาดเท่าภาพต้นฉบับที่มีตัวแปรระหว่าง 0 กับ 1 แต่ภาพขาวดำปกติมันมีตั้งแต่ 0-255 (8-bit) เรานำ 255 มาคูณตามด้านบน</p>
 
 <p>หลังจากแยกส่วนแล้ว เราต้องการหาความยาวด้านยาวเป็นจำนวน Pixel เราจำเป็นต้องหา Contour ของภาพ โดยใช้คำสั่ง cv2.findContours แล้วเรียง Contour จากบนลงล่าง</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Contour
+<pre class="wp-block-code"><code># Contour
 contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-(cnts, boundingBoxes) = contour.sort_contours(contours, method="top-to-bottom")
-</code></pre></div></div>
+(cnts, boundingBoxes) = contour.sort_contours(contours, method="top-to-bottom")</code></pre>
 
 <p>เมื่อเรียงมาเรียบร้อยแล้ว เราหาความยาวด้านยาวของบัตรประชาชนที่แยกมาได้ โดยใช้คำสั่ง cv2.boundingRect</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># find boundingRect
-target_cnt = cnts[0]
-x,y,w,h = cv2.boundingRect(target_cnt)
-</code></pre></div></div>
+<pre class="wp-block-code"><code># find boundingRect
+target_cnt = cnts&#91;0]
+x,y,w,h = cv2.boundingRect(target_cnt)</code></pre>
 
 <p>เราจะได้ความยาวมาเรียบร้อย เราแปลงให้อยู่ในรูปอัตราส่วนจำนวน pixel ต่อ mm ได้โดย</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Card size in pixels (compare to 86mm on long size)
+<pre class="wp-block-code"><code># Card size in pixels (compare to 86mm on long size)
 distance = w
 distancepermm = distance / 86
-print(f"card size (pixel) = { distance } compare to (mm) = 85 mm =&gt; distance { distancepermm } pixels/mm")
-</code></pre></div></div>
+print(f"card size (pixel) = { distance } compare to (mm) = 85 mm =&gt; distance { distancepermm } pixels/mm")</code></pre>
 
 <p>รันใน Google Colab เราจะได้ผลลัพธ์ตามด้านล่างนี้ครับ</p>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/ipd_calibrate.png" alt="Calibrated Colab Image" />
-ภาพหลังการทำ Calibrate</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/ipd_calibrate.png?w=580&#038;ssl=1" alt="Calibrated Colab Image" /></figure>
+
+<p>ภาพหลังการทำ Calibrate</p>
 
 <p>ต่อมา ในขั้นตอนต่อไป เป็นการหาตำแหน่งอวัยวะบนใบหน้า (Facial Landmark Detection) เราเอาภาพเดิมที่ผ่านการจับภาพใบหน้า (Face Detection) มาใช้งาน ได้ตามโค้ดด้านล่างนี้ที่ใช้เทคนิค 3DDFA_V2 ครับ</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>param_lst, roi_box_lst = tddfa(img, boxes)
-ver_lst = tddfa.recon_vers(param_lst, roi_box_lst, dense_flag=False)
-</code></pre></div></div>
+<pre class="wp-block-code"><code>param_lst, roi_box_lst = tddfa(img, boxes)
+ver_lst = tddfa.recon_vers(param_lst, roi_box_lst, dense_flag=False)</code></pre>
 
 <p>เราจะได้จุดบนใบหน้า 68 จุดออกมา แต่อาเรย์ของ ver_lst อยู่ในรูปแบบอาเรย์ที่มี Shape = [3, 68] เราจำเป็นต้องแปลงให้อยู่ในรูปแบบ Shape = [68, 3] เสียก่อน ได้โดย</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x = first_landmark[0,:].reshape(-1, 1)
-y = first_landmark[1,:].reshape(-1, 1)
-landmark = np.concatenate([x,y], axis = 1)
-</code></pre></div></div>
+<pre class="wp-block-code"><code>x = first_landmark&#91;0,:].reshape(-1, 1)
+y = first_landmark&#91;1,:].reshape(-1, 1)
+landmark = np.concatenate(&#91;x,y], axis = 1)</code></pre>
 
 <p>แล้ว เราจำเป็นต้องหาตำแหน่งตาดำตรงกลางเพื่อหาระยะห่างระหว่างตาดำ แต่ก่อนอื่น เรามาหาตำแหน่งรอบตาดำ และตาขาวก่อน จากภาพนี้</p>
 
-<p><img src="https://asset.nickuntitled.com/2021/09/68-facial-landmarks.jpg" alt="Facial Landmarks" /></p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/09/68-facial-landmarks.jpg?w=580&#038;ssl=1" alt="Facial Landmarks" /></figure>
 
 <p>จุดบนอวัยวะบนใบหน้าทั้งหมด 68 จุด</p>
 
 <p>เรานำจุดบนอวัยวะบนใบหน้าตำแหน่งที่ 37-42 สำหรับตาขวา และตำแหน่งที่ 43-48 สำหรับตาซ้าย เพื่อนำมาหาตำแหน่งตาดำตรงกลางสำหรับการหาระยะห่างระหว่างตาดำ ได้ตามด้านล่างนี้</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>righteye = landmark[36:42]
-rightiris = np.array([np.mean(righteye[:, 0]), np.mean(righteye[:, 1])])
-lefteye = landmark[42:48]
-leftiris = np.array([np.mean(lefteye[:, 0]), np.mean(lefteye[:, 1])])
-</code></pre></div></div>
+<pre class="wp-block-code"><code>righteye = landmark&#91;36:42]
+rightiris = np.array(&#91;np.mean(righteye&#91;:, 0]), np.mean(righteye&#91;:, 1])])
+lefteye = landmark&#91;42:48]
+leftiris = np.array(&#91;np.mean(lefteye&#91;:, 0]), np.mean(lefteye&#91;:, 1])])</code></pre>
 
 <p>ต่อมา เราหาระยะห่างระหว่างตาดำทั้งสองข้างได้โดยนำค่า pixel ของภาพต่อระยะห่างที่เป็นหน่วย mm ที่ได้จากการทำ Calibrate มาใช้งานตามโค้ดด้านล่างนี้</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Find IPD
+<pre class="wp-block-code"><code># Find IPD
 interpupillary_distance = 0.0
 for i in range(2):
-    interpupillary_distance += (rightiris[i] - leftiris[i])**2
+    interpupillary_distance += (rightiris&#91;i] - leftiris&#91;i])**2
 interpupillary_distance = np.sqrt(interpupillary_distance)
 interpupillary_distance_mm = interpupillary_distance / distancepermm
-print(f"Interpupillary Distance = { interpupillary_distance } which equals = { interpupillary_distance_mm } mm")
-</code></pre></div></div>
+print(f"Interpupillary Distance = { interpupillary_distance } which equals = { interpupillary_distance_mm } mm")</code></pre>
 
 <p>ทดลองเริ่มต้นการทำงาน จะได้ผลลัพธ์ตามด้านล่างนี้ครับ</p>
 
-<p><img src="https://asset.nickuntitled.com/2021/12/ipd_result.png" alt="Interpupillary Distance Result" />
-ผลลัพธ์ที่ได้</p>
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/12/ipd_result.png?w=580&#038;ssl=1" alt="Interpupillary Distance Result" /></figure>
+
+<p>ผลลัพธ์ที่ได้</p>
 
 <p>ฟังดูแล้วไม่ยากเกินไปใช่ไหมล่ะครับ สำหรับผู้อ่านวิธีการวัดระยะห่างระหว่างตาดำ (Interpupillary Distance) วิธีนี้เป็นวิธีหนึ่งแค่นั้นครับ</p>
 
 <p>และอีกอย่าง เทคนิคนี้ยังไม่ได้ทดสอบความแม่นยำกับคนอื่น ๆ (ยกเว้นผู้เขียนเอง) เลยอาจจะต้องเอาไปทดสอบก่อนที่จะนำไปใช้งานบน Production จริงครับ</p>
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">Python</span>
-			
-				<span class="post-tag">Coding</span>
-			
-				<span class="post-tag">Developer</span>
-			
-				<span class="post-tag">Mouth Opening</span>
-			
-				<span class="post-tag">Iris</span>
-			
-				<span class="post-tag">Interpupillary Distance</span>
-			
-				<span class="post-tag">Measurement</span>
-			
-				<span class="post-tag">Programming</span>
-			
-				<span class="post-tag">Machine Learning</span>
-			
-				<span class="post-tag">Computer Vision</span>
-			
-				<span class="post-tag">Segmentation</span>
-			
-				<span class="post-tag">Face Detection</span>
-			
-				<span class="post-tag">Calibration</span>
-			
-				<span class="post-tag">U-NET</span>
-			
-				<span class="post-tag">Deep Learning</span>
-			
-				<span class="post-tag">3DDFA_V2</span>
-			
-				<span class="post-tag">FaceBoxes</span>
-			
-				<span class="post-tag">Face Detection</span>
-			
-				<span class="post-tag">Landmark Detection</span>
-			
-				<span class="post-tag">Artificial Intelligence</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-				<span class="post-tag">ไพทอน</span>
-			
-				<span class="post-tag">เขียนโค้ด</span>
-			
-				<span class="post-tag">โค้ดดิ้ง</span>
-			
-				<span class="post-tag">ตาดำ</span>
-			
-				<span class="post-tag">การวัด</span>
-			
-				<span class="post-tag">คอมพิวเตอร์วิทัศน์</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/12/01/implement_httponly_cookies_token_nodejs_express/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								ใช้ HTTPOnly Cookies บน Node.js ด้วย Express สำหรับ Access Token
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2022/01/2/select_parent_element_javascript/">
-							<span class = 'mr-1'>
-								วิธีการเลือก parent element ด้วย JavaScript
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

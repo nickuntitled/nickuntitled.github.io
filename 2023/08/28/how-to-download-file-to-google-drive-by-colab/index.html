@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#4 - วิธีโหลดไฟล์ลง Google Drive ด้วย Colab</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#4 - วิธีโหลดไฟล์ลง Google Drive ด้วย Colab" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2023/08/28/how-to-download-file-to-google-drive-by-colab/" />
+<meta property="og:url" content="http://localhost:4000/2023/08/28/how-to-download-file-to-google-drive-by-colab/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/4_download_file_google_drive.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-28T07:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/4_download_file_google_drive.jpg" />
+<meta property="twitter:title" content="#4 - วิธีโหลดไฟล์ลง Google Drive ด้วย Colab" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:42:26+07:00","datePublished":"2023-08-28T07:00:00+07:00","description":"None","headline":"#4 - วิธีโหลดไฟล์ลง Google Drive ด้วย Colab","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/4_download_file_google_drive.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/08/28/how-to-download-file-to-google-drive-by-colab/"},"url":"http://localhost:4000/2023/08/28/how-to-download-file-to-google-drive-by-colab/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#4 - วิธีโหลดไฟล์ลง Google Drive ด้วย Colab</h1>
+
+  <p class="post-meta">
+    <time datetime="2023-08-28 07:00:00 +0700">2023-08-28</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/4_download_file_google_drive.jpg' />
+  </figure>
+  
+
+  <p>ปกติเวลาดาวน์โหลดไฟล์จากเว็บมาลงบนคอมพิวเตอร์เราก็จะบันทึกลงคอมพิวเตอร์ของเราตามปกติโดยการกดปุ่มดาวน์โหลดในหน้าเว็บไซต์ของแต่ละเว็บไซต์</p>
+
+<p>อย่างไรก็ตาม กรณีที่เราอยู่ข้างนอกที่ใช้เน็ตมือถือ หรือพักโรงแรมที่เน็ตมันไม่เร็วมาก ถ้าเราดาวน์โหลดไฟล์ตามปกติ เราก็จะใช้ Bandwidth เป็นจำนวนมาก หรือต้องรอดาวน์โหลดไฟล์กว่าจะเสร็จก็ใช้ระยะเวลานาน</p>
+
+<!--more-->
+
+<p>ดังนั้นแล้ว เรามีวิธีหนึ่งเลยคือดาวน์โหลดไฟล์มาเก็บไว้ใน Google Drive ก่อน แล้วเราค่อยดาวน์โหลดจากที่เก็บไฟล์นี้ทีหลังก็ได้ แล้วเราจะทำอย่างไร?</p>
+
+<p>วิธีหนึ่งที่เราใช้เลยคือดาวน์โหลดผ่าน Colab</p>
+
+<p><strong>Google Colab (หรือ Colaboratory) </strong>เป็นเครื่องมือหนึ่งที่มีพื้นฐานมาจากโปรแกรม Jupyter ที่อนุญาตให้เราเขียนโค้ดด้วยไพทอนแล้วทำงานบนนั้นได้เลย โดยที่เรา</p>
+
+<ul class="wp-block-list">
+<li>ไม่จำเป็นต้องติดตั้ง Jupyter </li>
+
+
+
+<li>สามารถใช้งานการ์ดจอได้ฟรี</li>
+
+
+
+<li>สามารถแชร์ตัวไฟล์งานไปให้คนอื่นได้อีก</li>
+</ul>
+
+<p>จากข้อดีทั้งสามเหล่านี้ก็เป็นข้อดีที่ทำให้หลายคนใช้กัน ส่วนเราเอาตัว Colab มาใช้งานได้อย่างไร?</p>
+
+<p>คำตอบคือใช้ได้ครับ เนื่องจากตัว Jupyter เองอนุญาตให้ผู้ใช้สามารถเขียนคำสั่งของ Linux ลงบนตัวไฟล์เพื่อรันโค้ดส่วนนั้นได้เลย และอีกอย่างตัว Colab ก็สร้างอยู่บนพื้นฐานของ Jupyter อยู่แล้ว เราก็เอามาใช้ดาวน์โหลดไฟล์ลงบน Google Drive ได้เลย</p>
+
+<p>ขั้นตอนการดาวน์โหลดไฟล์ลงบน Google Drive ด้วย Colab มี 9 ขั้นตอน ตามด้านล่างนี้</p>
+
+<p><strong>หนึ่ง</strong> เปิดเข้าหน้าเว็บของ Google Colab เสียก่อน โดยพิมพ์ที่อยู่ https://colab.research.google.com/ ลงบนแถบ Address Bar ด้านบน หรือจะ<a href="https://colab.research.google.com/" target="_blank" rel="noopener" title="กดที่ลิ้งค์นี้เพื่อเข้าหน้าเว็บ">กดที่ลิ้งค์นี้เพื่อเข้าหน้าเว็บ</a>นั้น </p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="397" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/1_google_colab-1024x701.png" alt="" class="wp-image-3558" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/1_google_colab-300x205.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/1_google_colab-1024x701.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/1_google_colab-768x525.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/1_google_colab-1200x821.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/1_google_colab.png 1282w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอหน้าแรกของ Google Colab</figcaption></figure></div>
+
+<p>เมื่อเข้ามาหน้าเว็บแล้ว ตัวหน้าต่างจะปรากฏตามด้านบนนี้ ให้ผู้ใช้เข้าสู่ระบบด้วยการกดปุ่ม Sign In ที่มุมบนขวา จากนั้นใส่อีเมลที่เป็น GMail และรหัสผ่านแล้วกดปุ่มเข้าสู่ระบบ</p>
+
+<p><strong>สอง</strong> เมื่อเข้าสู่ระบบแล้ว ระบบจะปรากฏหน้าจอตามด้านล่างนี้ ให้ผู้ใช้สร้างไฟล์่ใหม่ด้วยการกดปุ่มที่ New Notebook</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="402" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/2_after_login-1024x709.png" alt="" class="wp-image-3561" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/2_after_login-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/2_after_login-1024x709.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/2_after_login-768x532.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/2_after_login-1200x831.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/2_after_login.png 1280w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอ Google Colab หลังล็อคอิน</figcaption></figure></div>
+
+<p><strong>สาม</strong> หลังจากกดปุ่ม New Notebook แล้ว ระบบจะปรากฏหน้าจอตามด้านล่างนี้ </p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="225" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/3_newnotebook-1024x398.png" alt="" class="wp-image-3563" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/3_newnotebook-300x116.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/3_newnotebook-1024x398.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/3_newnotebook-768x298.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/3_newnotebook-1200x466.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/3_newnotebook.png 1280w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอ Colab หลังสร้างไฟล์ใหม่</figcaption></figure></div>
+
+<p>ตัวระบบจะสร้างไฟล์ใหม่ขึ้นมาที่มีชื่อว่า Untitled ที่มุมบนซ้าย ผู้ใช้สามารถเปลี่ยนชื่อไฟล์ได้ตามที่ต้องการ ส่วนด้านล่างถัดจากชื่อไฟล์ก็จะมีปุ่ม + Code และปุ่ม + Text ที่อนุญาตให้เพิ่มช่องสำหรับพิมพ์โค้ด และช่องสำหรับพิมพ์ข้อความแบบ Markdown ได้</p>
+
+<p><strong>สี่</strong> ในตัวอย่างนี้เราจะเขียนโค้ดเพื่อให้ดาวน์โหลดไฟล์ตามที่ต้องการลงบน Google Colab ก่อนอื่นเลยเรากดปุ่มรูปโฟลเดอร์ (Folder) ทางด้านซ้ายก่อน เมื่อกดปุ่มแล้วระบบจะปรากฏหน้าจอตามด้านล่างนี้</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="334" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/4_filelist.png" alt="" class="wp-image-3566" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/4_filelist-300x173.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/4_filelist.png 601w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p><strong>ห้า</strong> ให้ผู้ใช้กดปุ่มที่รูป Google Drive ถัดจากรูปตาที่มีขีดฆ่าให้แนวทแยงมุม เมื่อกดปุ่มแล้วระบบจะถามว่าเราอนุญาตให้ Google Colab เข้าถึงไฟล์ใน Google Drive หรือไม่</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="271" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/5_authorized_colab.png" alt="" class="wp-image-3567" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/5_authorized_colab-300x140.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/5_authorized_colab-768x359.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/5_authorized_colab.png 802w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p><strong>หก</strong> ให้กดปุ่ม Connect to Google Drive เมื่อกดปุ่มแล้ว เราจะพบโฟลเดอร์ของ Google Drive ที่ชื่อว่า drive ทางด้านซ้าย</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="282" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/6_google_drive.png" alt="" class="wp-image-3568" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/6_google_drive-300x146.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/6_google_drive.png 637w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอเมื่ออนุญาตให้ Colab เชื่อมต่อกับ Google Drive</figcaption></figure></div>
+
+<p>ในตัวโฟลเดอร์ drive เมื่อเปิดเข้าไปดูเราจะพบว่ามีโฟลเดอร์ที่ชื่อว่า MyDrive กับ Othercomputers โฟลเดอร์ MyDrive เป็นโฟลเดอร์ที่เก็บไฟล์ที่เราอัพโหลดลงบน Google Drive ครับ</p>
+
+<p>ในตัวอย่างนี้เราจะดาวน์โหลดไฟล์ลงบน Google Drive เราก็ต้องดาวน์โหลดแล้วก็อปปี้ไฟล์ลงในโฟลเดอร์ MyDrive ครับ</p>
+
+<p><strong>เจ็ด </strong>ให้พิมพ์โค้ดที่ช่องทางด้านขวา โดยเราจะใช้คำสั่งอย่าง wget (หรือจะใช้คำสั่งอื่นอย่าง curl ก็ได้) เพื่อดาวน์โหลดไฟล์ วิธีการเรียกใช้คำสั่งเราสามารถเรียกได้โดยการพิมพ์ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>!wget &lt;ที่อยู่ไฟล์ที่ต้องการดาวน์โหลด&gt;</code></pre>
+
+<p>ตัวอย่างนี้ เราจะดาวน์โหลดไฟล์ Dataset สำหรับการวัดการเคลื่อนไหวศีรษะและลำคออย่าง AFLW2000 ที่มีที่อยู่ Address ไฟล์ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>http:&#47;&#47;www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/Database/AFLW2000-3D.zip</code></pre>
+
+<p>เรานำที่อยู่ไฟล์ตามด้านบนมาพิมพ์คำสั่งได้ตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>!wget http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/Database/AFLW2000-3D.zip</code></pre>
+
+<p>เมื่อพิมพ์คำสั่งนี้แล้ว ตัวคำสั่งข้างบนจะเป็นการดาวน์โหลดไฟล์ลงบน Google Colab อย่างไรก็ตามไฟล์ที่เก็บในนี้มันเก็บได้ชั่วคราว ในกรณีที่ปิดไป ไฟล์เหล่านี้ก็จะหาย</p>
+
+<p><strong>แปด </strong>เมื่อพิมพ์คำสั่งดาวน์โหลดไฟล์แล้ว เราจะต้องก็อบปี้ไฟล์ลงบน Google Drive เราทำได้โดยการใช้คำสั่ง cp (copy) วิธีการใช้ก็ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>!cp &lt;ที่อยู่ไฟล์ที่ต้องการ copy&gt; &lt;ตำแหน่งไฟล์/โฟลเดอร์ที่ต้องการวาง&gt;</code></pre>
+
+<p>ในตัวอย่างเราดาวน์โหลดไฟล์ AFLW2000-3D.zip ลงในโฟลเดอร์ของ Colab และเราต้องการก็อบปี้ไปยัง Google Drive เราทำได้โดยการพิมพ์ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>!cp AFLW2000-3D.zip drive/MyDrive</code></pre>
+
+<p><strong>เก้า </strong>เมื่อพิมพ์เสร็จแล้ว ตัวอย่างโค้ดก็จะแสดงตามภาพด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="248" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/7_aflw2000_download-1.png" alt="" class="wp-image-3573" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/7_aflw2000_download-1-300x128.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/7_aflw2000_download-1.png 608w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอเมื่อพิมพ์คำสั่งเสร็จแล้ว</figcaption></figure></div>
+
+<p>ให้เรากดปุ่มทางด้านซ้ายที่เป็นรูปเหมือนเวลาเล่นวิดีโอครับ หรืออีกวิธีคือกดเข้าไปที่ Runtime แล้วเลือกที่</p>
+
+<ul class="wp-block-list">
+<li>Run all กรณีที่ต้องการรันทั้งหมด</li>
+
+
+
+<li>Run the focused cell กรณีที่ต้องการรันในช่องที่เราพิมพ์โค้ดอยู่</li>
+
+
+
+<li>Run selection กรณีที่ต้องการรันในช่องที่เลือกไว้</li>
+
+
+
+<li>Run before กรณีที่ต้องการรันในช่องก่อนหน้า</li>
+
+
+
+<li>Run after กรณีที่ต้องการรันในช่องถัดไป</li>
+</ul>
+
+<p>ในตัวอย่าง เราจะมีช่องเดียว ผู้อ่านสามารถเลือก Run all หรือ Run the focused cell ก็ได้</p>
+
+<p>เมื่อกดที่ปุ่มตามที่ระบุแล้ว หรือกดที่เมนูแล้ว ระบบจะเริ่มต้นการดาวน์โหลดไฟล์ครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="258" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/8_downloading-1.png" alt="" class="wp-image-3574" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/8_downloading-1-300x133.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/8_downloading-1-768x341.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/8_downloading-1.png 939w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอขณะดาวน์โหลดไฟล์</figcaption></figure></div>
+
+<p>เมื่อดาวน์โหลดเสร็จแล้ว ระบบจะก็อบปี้ไฟล์ไปเก็บไว้ใน Google Drive</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="336" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/9_downloaded_file.png" alt="" class="wp-image-3576" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/9_downloaded_file-300x174.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/9_downloaded_file-768x446.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2023/08/9_downloaded_file.png 917w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ไฟล์ที่ดาวน์โหลดเสร็จแล้วจะได้รับการก็อบปี้มาอยู่บน Google Drive</figcaption></figure></div>
+
+<p>ทีนี้ผู้ใช้จะทำอะไรกับไฟล์นี้ต่อก็ได้ตามใจ หรือต้องการดาวน์โหลดไฟล์มาลงไว้ที่คอมพิวเตอร์เครื่องของเราเองก็ทำได้ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

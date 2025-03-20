@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#22 MapReduce ที่มา การทำงาน และการเอาไปใช้</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#22 MapReduce ที่มา การทำงาน และการเอาไปใช้" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/03/12/22-mapreduce-background-process-applications/" />
+<meta property="og:url" content="http://localhost:4000/2024/03/12/22-mapreduce-background-process-applications/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-12T19:12:15+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover.jpg" />
+<meta property="twitter:title" content="#22 MapReduce ที่มา การทำงาน และการเอาไปใช้" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T17:49:55+07:00","datePublished":"2024-03-12T19:12:15+07:00","description":"None","headline":"#22 MapReduce ที่มา การทำงาน และการเอาไปใช้","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/03/12/22-mapreduce-background-process-applications/"},"url":"http://localhost:4000/2024/03/12/22-mapreduce-background-process-applications/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#22 MapReduce ที่มา การทำงาน และการเอาไปใช้</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-03-12 19:12:15 +0700">2024-03-12</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/22_mapreduce_cover.jpg' />
+  </figure>
+  
+
+  <p>หลังจากที่เขียนเรื่องที่เกี่ยวกับ Data Structures &amp; Algorithms ไปในบทความก่อนหน้าที่เขียนถึง <a href="https://nickuntitled.com/2024/02/28/big-o-search-and-sort-in-data-engineering/" title="#19 Big-O, Search &amp; Sort ที่ใช้ในงาน Data">Big-O Notation, Searching กับ Sorting Algorithms</a> กับ <a href="https://nickuntitled.com/2024/03/06/20-graph-and-shortest-path-algorithms/" title="#20 – Graph และ Shortest Path Algorithms">Shortest Path อย่าง Dijkstra&#8217;s กับ Bellman-Ford&#8217;s Algorithm</a> รวมถึง <a href="https://nickuntitled.com/2024/03/08/21-a-star-and-the-traversal-in-maze/" title="#21 A* Search Algorithm กับการเดินในเขาวงกต">A* Search Algorithm</a></p>
+
+<p>คราวนี้มาเข้าเรื่องที่เกี่ยวข้องกับ Data ที่เป็นพื้นฐานหนึ่งเลยคือ <strong>MapReduce</strong></p>
+
+<!--more-->
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>The English version is available <a href="https://nickuntitled.com/2024/03/16/a-summary-of-mapreduce-background-processes-example-extension/" data-type="link" data-id="https://nickuntitled.com/2024/03/16/a-summary-of-mapreduce-background-processes-example-extension/">here</a>.</p>
+</blockquote>
+
+<p>สาเหตุที่เขียนเรื่องนี้มาก็ไม่ใช่อะไร วันก่อนเราได้อ่านเปเปอร์หนึ่งที่มีชื่อว่า <a href="https://static.googleusercontent.com/media/research.google.com/th//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener" title="">MapReduce: Simplified Data Processing on Large Clusters</a> ที่เขียนโดยผู้พัฒนา Jeffrey Dean และ Sanjay Ghemawat ที่ทำงานอยู่ในบริษัท Google</p>
+
+<p>เมื่ออ่านแล้ว เราก็สรุปรายละเอียดที่มา ขั้นตอนการประมวลผล และตัวอย่างในเปเปอร์นั้น ร่วมกับเสริมรายละเอียดอื่นในแง่การนำไปต่อยอด กับการนำไปใช้งานต่อ</p>
+
+<p>ว่าแต่ก่อนอื่นเลย <strong>MapReduce </strong>มันคืออะไร?</p>
+
+<h2 class="wp-block-heading" id="table-of-contents">สารบัญ</h2>
+
+<ul class="wp-block-list">
+<li><a href="#mapreduce" data-type="internal" data-id="#mapreduce">MapReduce</a></li>
+
+
+
+<li><a href="#process" data-type="internal" data-id="#process">ขั้นตอนการทำงาน</a></li>
+
+
+
+<li><a href="#example" data-type="internal" data-id="#example">ตัวอย่าง</a></li>
+
+
+
+<li><a href="#application" data-type="internal" data-id="#application">การเอาไปใช้</a></li>
+
+
+
+<li><a href="#addition" data-type="internal" data-id="#addition">เพิ่มเติม</a></li>
+
+
+
+<li><a href="#summary" data-type="internal" data-id="#summary">สรุป</a></li>
+
+
+
+<li><a href="#ending" data-type="internal" data-id="#ending">ส่งท้าย</a></li>
+
+
+
+<li><a href="#reference" data-type="internal" data-id="#reference">แหล่งข้อมูลอ้างอิง</a></li>
+</ul>
+
+<h2 class="wp-block-heading" id="mapreduce">MapReduce</h2>
+
+<p><strong>MapReduce </strong>[1] เป็นวิธีการเขียนโปรแกรมที่ใช้ในการประมวลผล และจัดการกับข้อมูลที่มีขนาดใหญ่ (หรือ Big Data) ที่มีปริมาณข้อมูลมหาศาล ซึ่งจำเป็นต้องใช้คลัสเตอร์ที่มีเซิร์ฟเวอร์จำนวนหลายร้อย หลายพันเครื่อง</p>
+
+<p>ที่มาของการคิดค้น MapReduce ขึ้นมาก็มีที่มาจากทางบริษัท Google จำเป็นต้องประมวลผลข้อมูลดิบที่มีปริมาณข้อมูลมหาศาล ได้แก่ ข้อมูลเอกสารที่ผ่านการค้นหา กับข้อมูลการทำ Web Request เป็นต้น</p>
+
+<p>โดยทั่วไป เราสามารถการประมวลผลข้อมูลเหล่านี้โดยการวนลูป หรือเขียนโปรแกรมทั่ว ๆ ไปได้เลย อย่างไรก็ดีข้อมูลที่เรามีอยู่ตอนนี้มันมีจำนวนมาก เราจำเป็นต้องใช้คอมพิวเตอร์ที่มีจำนวนมากเป็นหลักร้อย หรือหลักพันเครื่องเพื่อที่จะประมวลผลให้ได้ภายในระยะเวลาที่จำกัด</p>
+
+<p>การประมวลผลแบบนี้ เราจำเป็นต้องพิจารณาตามด้านล่างนี้ ได้แก่</p>
+
+<ol class="wp-block-list">
+<li>การประมวลผลแบบคู่ขนาน (Parallelize the computation)</li>
+
+
+
+<li>การกระจายข้อมูล (Distribute the data)</li>
+
+
+
+<li>การจัดการกับข้อผิดพลาดที่เกิดขึ้น (Handle failures)</li>
+</ol>
+
+<p>จากข้อพิจารณาตามข้างบนเหล่านี้ ผู้พัฒนาได้ออกแบบเครื่องมือ MapReduce ที่ได้รับแรงบันดาลใจมาจากการทำ Map และ Reduce ที่ใช้ในการเขียนโปรแกรมภาษา Lisp และภาษาที่เป็น Functional Programming อื่น ๆ โดยแสดงตามภาพด้านล่างนี้ [2]</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited.png" alt="" class="wp-image-6025" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited-1024x575.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited-768x432.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_lisp_programming_model-edited.png 1075w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ภาพ Map/Reduce programming model จากสไลค์การนำเสนอ <a href="https://research.google/pubs/mapreduce-the-programming-model-and-practice/" target="_blank" rel="noopener" title="MapReduce: The programming model and practice">MapReduce: The programming model and practice</a></figcaption></figure></div>
+
+<p>เมื่อได้รับแรงบันดาลใจจากที่มาการทำ Map และ Reduce ใน Lisp แล้ว ผู้วิจัยสังเกตว่าการประมวลผลข้อมูลส่วนใหญ่เราจะทำ</p>
+
+<ul class="wp-block-list">
+<li><strong>Map operation</strong> ที่ประมวลผลในแต่ละข้อมูล (Record) เพื่อที่จะสร้างข้อมูลคู่อันดับ Key-Value ที่อยู่ระหว่างกลาง (หรือ Intermediate key/value pairs)</li>
+
+
+
+<li><strong>Reduce operation</strong> ที่ประมวลผลข้อมูลระหว่างกลางทุกข้อมูลที่มี Key ที่เหมือนกันเพื่อที่จะรวมข้อมูลอย่างมีประสิทธิภาพ</li>
+</ul>
+
+<p>ผู้วิจัยนำเทคนิคการประมวลผลนี้ไปใช้งาน ส่งผลให้ผู้พัฒนาสามารถเขียนโปรแกรมเพื่อประมวลผลข้อมูลแบบขนานได้ง่ายขึ้นมากกว่าเดิม และจัดการกับข้อผิดพลาดที่เกิดขึ้นได้อย่างมีประสิทธิภาพ</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="process">ขั้นตอนการทำงาน</h2>
+
+<p><strong>MapReduce </strong>นำชุดข้อมูลคู่อันดับ Key-Value มาประมวลผลเพื่อที่จะสร้างชุดข้อมูลผลลัพธ์ของคู่อันดับ Key-Value โดยผ่านการประมวลผลหลักทั้งหมด 2 ขั้นตอน ได้แก่ <strong>Map </strong>และ <strong>Reduce</strong> ที่เราแสดงตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="406" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_summarized_process.png" alt="" class="wp-image-6067" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_summarized_process-300x210.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_summarized_process-768x538.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/mapreduce_summarized_process.png 843w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">สรุปขั้นตอนการทำ MapReduce ตามสไลค์การนำเสนอ <a href="https://research.google.com/archive/mapreduce-osdi04-slides/index-auto-0007.html" target="_blank" rel="noopener" title="">MapReduce: Simplified Data Processing on Large Clusters</a> โดย Jeff Dean และ Sanjay Ghemawat (เข้าถึงเมื่อ 12 มีนาคม 2024)</figcaption></figure></div>
+
+<p>และเราสามารถสรุปขั้นตอนสำหรับการรันแบบคู่ขนานได้ตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="393" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process.png" alt="" class="wp-image-6073" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process-300x203.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process-768x521.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/parallel_mapreduce_summarized_process.png 780w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">สรุปขั้นตอนการทำ MapReduce แบบ Parallel ตามสไลค์การนำเสนอ <a href="https://research.google.com/archive/mapreduce-osdi04-slides/index-auto-0007.html" target="_blank" rel="noopener" title="">MapReduce: Simplified Data Processing on Large Clusters</a> โดย Jeff Dean และ Sanjay Ghemawat (เข้าถึงเมื่อ 12 มีนาคม 2024)</figcaption></figure></div>
+
+<h3 class="wp-block-heading">Map</h3>
+
+<p><strong>Map </strong>นำข้อมูลคู่อันดับ Key-Value ที่เป็น Input มาแบ่งข้อมูล (Partition) เพื่อให้ได้ข้อมูลที่มีขนาดเล็กลงประมาณ 16 ถึง 64 MB สำหรับการจะกระจายข้อมูลไปยังคอมพิวเตอร์ในแต่ละเครื่องในคลัสเตอร์</p>
+
+<p>ข้อมูลที่ผ่านการแบ่งข้อมูลจะได้รับการประมวลผลในแต่ละข้อมูลด้วยฟังก์ชัน Map (M) ที่ผู้ใช้ได้เขียนขึ้น แล้วเราจะได้ผลลัพธ์ที่เป็นคู่อันดับ Key/Value ระหว่างกลาง (Intermediate key-value pairs)</p>
+
+<p>เราสามารถสรุปขั้นตอน Map ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code><strong>map</strong> (k1, v1) -&gt; list(k2, v2)</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>(k1, v1) คือคู่อันดับ Key-Value ที่เป็น Input</li>
+
+
+
+<li>(k2, v2) คือคู่อันดับ Key-Value ระหว่างกลาง (Intermediate key-value pairs)</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้จะได้รับการบันทึกลงในไปดิสก์ (Local Disk)</p>
+
+<h3 class="wp-block-heading">Shuffle</h3>
+
+<p><strong>Shuffle </strong>เป็นขั้นตอนที่อยู่ระหว่างขั้นตอน Map และ Reduce</p>
+
+<p>ขั้นตอนนี้สำหรับการรันในคอมพิวเตอร์<strong>เครื่องเดียว</strong> เราจะนำผลลัพธ์ที่ได้ในขั้นตอนก่อนหน้าที่บันทึกไว้ใน Local Disk มาจัดกลุ่มโดยนำข้อมูลที่มี Key เดียวกันมาอยู่ด้วยกัน เพื่อที่จะที่จะรันอยู่ในฟังก์ชัน Reduce (R) เดียวกัน</p>
+
+<p>ส่วนกรณีที่รันแบบ<strong>คู่ขนาน (Parallel)</strong> เราจะแบ่งข้อมูลทั้งหมดเป็นส่วน ๆ (ทำ Partitioning) แล้วนำข้อมูลไปเรียงข้อมูล (Sort) และจัดกลุ่มข้อมูลให้ Key เดียวกันมาอยู่ด้วยกัน เพื่อที่จะรันอยู่ในฟังก์ชัน Reduce (R) เดียวกัน</p>
+
+<p>ขั้นตอนนี้มีวัตถุประสงค์เพื่อที่จะลดปริมาณข้อมูลที่ส่งระหว่างคอมพิวเตอร์ผ่าน Network, Input/Output และ Bandwidth [3]</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ขั้นตอนนี้สำหรับพาร์ท MapReduce ใน Hadoop เราจะเรียกว่า <strong>Shuffle and Sort phase</strong></p>
+</blockquote>
+
+<h3 class="wp-block-heading">Reduce</h3>
+
+<p><strong>Reduce </strong>เป็นขั้นตอนที่วนลูปเข้าไปในข้อมูลที่อยู่ระหว่างกลาง (Intermediate data) ที่ผ่านการทำ Shuffle เรียบร้อยแล้วมาประมวลผลโดยผ่านฟังก์ชัน Reduce (R) ที่ผู้ใช้ได้เขียนขึ้น เพื่อให้ได้ผลลัพธ์ออกมา</p>
+
+<p>เราสามารถสรุปขั้นตอน Reduce ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code><strong>reduce</strong> (k2, list(v2)) -&gt; list(v2)</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>(k2, list(v2)) คือคู่อันดับ Key-Value ระหว่างกลาง (Intermediate key-value pairs) ทีผ่านขั้นตอน Shuffle เรียบร้อยแล้ว</li>
+
+
+
+<li>list(v2) ผลลัพธ์ที่ได้</li>
+</ul>
+
+<p>หลังจากการประมวลผลในขั้นตอน Map, Shuffle และ Reduce แล้ว เราจะได้ข้อมูลที่แบ่งเป็นส่วน ๆ ออกมา โดยไฟล์หนึ่งไฟล์ก็เป็นผลลัพธ์ตามฟังก์ชัน Reduce 1 ฟังก์ชัน</p>
+
+<p>โดยทั่วไป ผู้พัฒนาไม่จำเป็นต้องรวมไฟล์ผลลัพธ์ให้เป็นไฟล์เดียว เราจะนำข้อมูลเหล่านั้นไปผ่านฟังก์ชัน MapReduce อีกฟังก์ชันหนึ่ง หรือนำไปใช้กับโปรแกรมประมวลผลแบบ Distributred Processing ที่รองรับการประมวลผลกับไฟล์ที่แบ่งเป็นส่วน ๆ</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="example">ตัวอย่าง</h2>
+
+<p>เปเปอร์นี้ผู้วิจัยได้ยก<strong>ตัวอย่าง</strong>การใช้งานฟังก์ชัน MapReduce สำหรับการนำจำนวนคำที่ปรากฏในไฟล์เอกสาร โดยผู้วิจัยเขียน Pseudocode ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>map(String key, String value):
+    // key: document name
+    // value: document contents for each word w in value:
+    EmitIntermediate(w, "1");
+    
+reduce(String key, Iterator values):
+    // key: a word
+    // values: a list of counts
+    int result = 0;
+    for each v in values:
+        result += ParseInt(v);
+    Emit(AsString(result));</code></pre>
+
+<p>โดยฟังก์ชัน</p>
+
+<ul class="wp-block-list">
+<li><strong>Map</strong> ให้ผลลัพธ์ Intermediate Data ที่เป็นคำแต่ละคำ กับจำนวนคำที่ปรากฏในเอกสาร (ตัวอย่างใน Psuedocode กำหนดให้เท่ากับ 1)</li>
+
+
+
+<li><strong>Reduce</strong> รวมผลลัพธ์จำนวนคำที่นับได้ในแต่ละคำที่กระจายไปในแต่ละโหนด</li>
+</ul>
+
+<p>การเขียนโค้ด เราสามารถเขียนโค้ดด้วยภาษาได้หลายภาษา ได้แก่ ภาษา Java, C++ และ Python</p>
+
+<p>จากการใช้งานฟังก์ชันข้างบนนี้ เราสามารถ<strong>เปรียบเทียบ</strong>ได้กับการทำสำมะโนครัวที่ทำในสมัยอาณาจักรโรมันที่ส่งคนไปแต่ละเมือง เพื่อที่จะนับจำนวนคนทุกคน แล้วจะส่งผลลัพธ์ที่ได้ไปยังเมืองหลวง</p>
+
+<p>ผลลัพธ์ที่ได้จะเป็นจำนวนประชากรในอาณาจักรนั้น ๆ</p>
+
+<p>การประมวลผลแบบคู่ขนานนี้ทำให้การนับจำนวนประชากรทำได้อย่างรวดเร็วขึ้นมากกว่าการใช้คนเดียวนับจำนวนประชากรไปทีละเมือง [4]</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="application">การเอาไปใช้</h2>
+
+<p>MapReduce ได้รับนำไปใช้พัฒนาต่อยอดโดยผู้พัฒนาที่มีชื่อว่า Dug Cutting และ Mike Cafarella ที่ทำงานอยู่ในบริษัท Yahoo โดยได้เป็นเครื่องมือภายใต้โครงการของ Apache ที่มีชื่อว่า <strong>Apache Hadoop</strong> [5]</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>Apache Hadoop</strong> เป็นเครื่องมือสำหรับการจัดการ และประมวลผลกับข้อมูลที่มีขนาดใหญ่ด้วยการกระจายไปยังเครื่องคอมพิวเตอร์ส่วนบุคคลทั่วไปได้ที่เชื่อมต่อกันเป็นคลัสเตอร์</p>
+</blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="174" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/hadoop_logo.png" alt="" class="wp-image-6171" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/hadoop_logo-300x90.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/hadoop_logo.png 640w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Apache Hadoop (รูปจาก <a href="https://en.wikipedia.org/wiki/Apache_Hadoop" target="_blank" rel="noopener" title="Wikipedia">Wikipedia</a>)</figcaption></figure></div>
+
+<p>โดยเครื่องมือการประมวลผลแบบ Map และ Reduce อยู่ภายใต้เครื่องมือ <strong>Hadoop MapReduce</strong> อีกทีนึง</p>
+
+<p>เครื่องมือนี้ตอนออกใหม่ ๆ ก็เป็นจุดเริ่มต้นของการประมวลผลข้อมูลที่มีขนาดใหญ่ที่ใช้งานในหลายบริษัท อย่างไรก็ดี เครื่องมือนี้มีข้อเสีย [6, 7] อยู่หลายจุด ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>ประมวลผลได้จำกัด</strong> โดยตัวโหนดสำหรับการประมวลผล MapReduce ทำงานได้เพียง 1 Input ต่อครั้ง ในกรณีที่มีข้อมูลขนาดใหญ่ การประมวลผลทำได้ช้ามากจนงานไม่เสร็จ</li>
+
+
+
+<li><strong>ประมวลผลได้ช้า</strong> โดย MapReduce ไม่รองรับการ Cache ข้อมูล เครื่องมือนี้จำเป็นต้องใช้ Harddisk ที่เป็น HDFS (Hadoop Distributed File System) ในการอ่าน และเขียนข้อมูลทุกขั้นตอน ส่งผลให้ทำงานได้ช้ากว่าเครื่องมือประมวลผลข้อมูลที่มีขนาดใหญ่อื่น ๆ โดยช้ากว่า Apache Spark เมื่อประมวลผลแบบ Batch เหมือนกัน เนื่องมาจาก Apache Spark ที่รองรับการทำ Cache และประมวลผลในหน่วยความจำ</li>
+
+
+
+<li>ไม่รองรับการประมวลผลแบบ <strong>Real-time Data Processing</strong></li>
+
+
+
+<li><strong>ใช้งานยาก และเขียนโปรแกรมได้ยาก</strong> โดยทั่วไป เราจะใช้ SQL สำหรับการวิเคราะห์ข้อมูล แต่ตัว Hadoop มันไม่รองรับ ผู้พัฒนาจำเป็นต้องเขียนด้วย Java เท่านั้น</li>
+</ul>
+
+<p>จากข้อเสียข้างบนเหล่านี้ส่งผลให้เกิดการพัฒนาเครื่องมืออย่าง <strong>Apache Spark</strong> กับ <strong>Apache Flink</strong> ที่รองรับการประมวลผลข้อมูลแบบ Steam และ Batch อย่างรวดเร็วเนื่องมาจากการประมวลผลในหน่วยความจำ ส่งผลให้หลายบริษัทเปลี่ยนเครื่องมือมาใช้ Apache Spark และ Apache Flink แทน</p>
+
+<p>อย่างไรก็ดี เครื่องมือเหล่านี้ก็ยังใช้งานที่เก็บข้อมูลแบบ HDFS ที่อยู่เบื้องหลังอยู่ดี</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="addition">เพิ่มเติม</h3>
+
+<p><strong>สำหรับ Apache Spark</strong> อันนี้เราได้เขียนบทความอธิบายไว้ในบทความก่อนหน้าที่ทำโปรเจคสำหรับการดึงข้อมูลต้นทุนการผลิตนักศึกษาต่อปีครับ</p>
+
+<p>ผู้อ่านสามารถคลิกได้ที่ด้านล่างนี้</p>
+
+<figure class="wp-block-embed is-type-wp-embed is-provider-nick-untitled wp-block-embed-nick-untitled"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content" data-secret="3H8gVrikra"><a href="https://nickuntitled.com/2024/01/26/13-create-datapipeline-get-tuition-cost/">#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี</a></blockquote><iframe loading="lazy" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" title="&#8220;#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี&#8221; &#8212; Nick Untitled" src="https://nickuntitled.com/2024/01/26/13-create-datapipeline-get-tuition-cost/embed/#?secret=WFfzB3T6IL#?secret=3H8gVrikra" data-secret="3H8gVrikra" width="580" height="327" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div></figure>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="summary">สรุป</h2>
+
+<p><strong>MapReduce </strong>เป็นวิธีการเขียนโปรแกรมที่ใช้ในการประมวลผล และจัดการกับ Big Data ที่จำเป็นต้องใช้คลัสเตอร์ที่มีเซิร์ฟเวอร์จำนวนหลายร้อย หลายพันเครื่อง โดยเครื่องมือนี้ทำให้ผู้พัฒนาสามารถเขียนโปรแกรมเพื่อประมวลผลข้อมูลแบบขนานได้ง่ายขึ้นมากกว่าเดิม และจัดการกับข้อผิดพลาดที่เกิดขึ้นได้อย่างมีประสิทธิภาพ</p>
+
+<p>เครื่องมือนี้ได้รับการพัฒนาต่อยอดไปใช้งานใน Apache Hadoop ที่เป็นจุดเริ่มต้นของการประมวลผล Big Data อย่างไรก็ดี เครื่องมือนี้มีข้อเสียด้านการประมวลผลที่ช้า กับไม่รองรับการรันข้อมูลแบบ Stream Data Processing และใช้งานยาก ส่งผลให้เกิดการพัฒนาเครื่องมือ Apache Spark และ Apache Flink ที่ได้รับความนิยมมากกว่า</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="ending">ส่งท้าย</h2>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="reference">ข้อมูลอ้างอิง</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://static.googleusercontent.com/media/research.google.com/th//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener" title="">MapReduce: Simplified Data Processing on Large Clusters</a></li>
+
+
+
+<li><a href="https://research.google/pubs/mapreduce-the-programming-model-and-practice/" target="_blank" rel="noopener" title="">MapReduce: The programming model and practice &#8211; Google Research</a></li>
+
+
+
+<li><a href="https://mesodiar.com/2022/10/22/what-is-map-reduce-distributed-computing/" target="_blank" rel="noopener" title="MAPREDUCE คืออะไร เข้าใจที่มา HADOOP และในด้าน DISTRIBUTED COMPUTING">MAPREDUCE คืออะไร เข้าใจที่มา HADOOP และในด้าน DISTRIBUTED COMPUTING &#8211; Burasakorn Sabyeying (Mils)</a></li>
+
+
+
+<li><a href="https://www.ibm.com/topics/mapreduce" target="_blank" rel="noopener" title="What is Apache MapReduce? - IBM">What is Apache MapReduce? &#8211; IBM</a></li>
+
+
+
+<li><a href="https://www.todaysoftmag.com/article/1358/hadoop-mapreduce-deep-diving-and-tuning" target="_blank" rel="noopener" title="Hadoop MapReduce deep diving and tuning - Today Software Magazine">Hadoop MapReduce deep diving and tuning &#8211; Today Software Magazine</a></li>
+
+
+
+<li><a href="https://www.altexsoft.com/blog/hadoop-pros-cons/" target="_blank" rel="noopener" title="The Good and the Bad of Hadoop Big Data Framework">The Good and the Bad of Hadoop Big Data Framework</a></li>
+
+
+
+<li><a title="Road to Data Engineer 2.0 - DataTH School" href="https://school.datath.com/courses/road-to-data-engineer-2-0-2023" target="_blank" rel="noopener">Road to Data Engineer 2.0 &#8211; DataTH School</a></li>
+</ol>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

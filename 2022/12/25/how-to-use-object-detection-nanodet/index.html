@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>วิธีการทำ Object Detection โดย Nanodet</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="วิธีการทำ Object Detection โดย Nanodet" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2022/12/25/how-to-use-object-detection-nanodet/" />
+<meta property="og:url" content="http://localhost:4000/2022/12/25/how-to-use-object-detection-nanodet/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet_object_detection_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-12-25T14:50:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet_object_detection_cover.jpg" />
+<meta property="twitter:title" content="วิธีการทำ Object Detection โดย Nanodet" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:43:00+07:00","datePublished":"2022-12-25T14:50:00+07:00","description":"None","headline":"วิธีการทำ Object Detection โดย Nanodet","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet_object_detection_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/12/25/how-to-use-object-detection-nanodet/"},"url":"http://localhost:4000/2022/12/25/how-to-use-object-detection-nanodet/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>วิธีการทำ Object Detection โดย Nanodet</h1>
+
+  <p class="post-meta">
+    <time datetime="2022-12-25 14:50:00 +0700">2022-12-25</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet_object_detection_cover.jpg' />
+  </figure>
+  
+
+  <p>Object detection คือขั้นตอนการหาตำแหน่งวัตถุจากภาพโดย AI ตามที่กำหนดไว้  ได้แก่ คน รถยนต์ จักรยาน และอื่น ๆ โดยผลลัพธ์ที่ได้จากการใช้งานเทคนิคนี้จะแสดงผลในรูปแบบกรอบสี่เหลี่ยม Bounding box พร้อมกับจำแนก Class ของภาพที่จับได้ว่าเป็นอะไร </p>
+
+<!--more-->
+
+<p>เทคนิคของการทำ Object detection ที่คนนิยมนำไปใช้งานกันก็ได้แก่ Faster R-CNN, Single shot detector (SSD), YOLO (You Only Look Once), RetinaNet เป็นต้น ซึ่งเทคนิคนี้มีการพัฒนาต่อไปเพื่อเพิ่มความแม่นยำของการจับพื้นที่วัตถุในภาพ อย่างไรก็ดีปัญหาหนึ่งเมื่อนำไปใช้ประยุกต์กับแอพพลิเคชันบนเว็บเบราวเซอร์คือความเร็วในการประมวลผล</p>
+
+<p>เมื่อเทคนิคซับซ้อนมากขึ้น โมเดลมีขนาดใหญ่มากขึ้น ความต้องการคอมพิวเตอร์ที่จะนำมาใช้ประมวลผลเพิ่มขึ้น ส่งผลให้การประมวลผลโดยใช้ซีพียูประมวลผลได้ช้าลง ซึ่งจุดนี้มีงานวิจัยที่พัฒนาเทคนิคให้มีขนาดที่เล็กน้อย มีจำนวนพารามิเตอร์ใน Neural Network ที่ลดลง แต่ยังคงความแม่นยำ หรือยอมลดความแม่นยำของการจับวัตถุในภาพลงบ้าง</p>
+
+<p>เทคนิคหนึ่งที่มีขนาดเล็ก ประมวลผลได้เร็ว แต่ยอมให้ความแม่นยำของการจับวัตถุในภาพลดลงได้บ้าง เทคนิคที่จะกล่าวถึงในบทความนี้คือ Nanodet</p>
+
+<h2 class="wp-block-heading">Nanodet</h2>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="258" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet-plus-arch-1024x456.png" alt="" class="wp-image-3194" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet-plus-arch-300x134.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet-plus-arch-1024x456.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet-plus-arch-768x342.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet-plus-arch-1200x535.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/nanodet-plus-arch.png 1241w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">โมเดล nanodet (ภาพจาก Github ของโมเดล)</figcaption></figure></div>
+
+<p><a href="https://github.com/RangiLyu/nanodet/" target="_blank" rel="noopener" title="Nanodet">Nanodet</a> เป็นเทคนิคการจับวัตถุในภาพ (Object detection) ที่มีขนาดเล็ก ทำงานได้เร็วจนถึงระดับ Real-time บนอุปกรณ์พกพา และมีขนาดที่เล็ก โดยตามลิ้งค์ใน GitHub แจ้งว่าโมเดลมีขนาด 1.8MB กรณีที่ใช้ Float16</p>
+
+<p>โมเดลนี้เป็นโมเดลที่จัดอยู่ในกลุ่ม Fully Convolutional One-stage Object Detection ที่มีส่วนประกอบหลักทั้งหมด 3 ส่วนได้แก่</p>
+
+<ul class="wp-block-list">
+<li>Backbone เป็นส่วนที่ Extract Feature ออกจากภาพที่เป็น input</li>
+
+
+
+<li>Feature Pyramid เป็นส่วนที่ปรับตัวโมเดลให้รองรับ Feature ของวัตถุที่มีหลายขนาด</li>
+
+
+
+<li>Head เป็นส่วนทำนายผลลัพธ์ โดยจะทำนายในรูปแบบ Bounding box, Confidence หรืออื่น ๆ</li>
+</ul>
+
+<p>ส่วนโมเดล Nanodet หรือ Nanodet-Plus นี้ใช้ส่วนประกอบ 3 ส่วนตามที่กล่าวถึงแล้วในย่อหน้าข้างบน โดยโมเดลนี้ได้ปรับแต่งให้โมเดลสามารถจับวัตถุในภาพได้เร็ว แต่ยังรักษาความแม่นยำได้โดย</p>
+
+<ul class="wp-block-list">
+<li>Backbone ที่ใช้งาน ShuffleNetV2</li>
+
+
+
+<li>Feature Pyramid ใช้โมดูล PAFPN (Path Aggregation Feature Pyramid Network) ที่ได้รับการนำเสนอในเทคนิค PANet โมดูลนี้เป็นตัวโมดูลที่มีหน้าที่จับลักษณะของภาพ (Feature) ที่รับผลลัพธ์จากแต่ละ Layer ใน Backbone โดยจุดที่แตกต่างจาก FPN ปกติคือ
+<ul class="wp-block-list">
+<li>โมดูลนี้จะรับข้อมูล Low-level information จาก Layer ลำดับต้น ๆ ของ Backbone ที่ข้อมูลรายละเอียดของ Edge, corner รวมถึง Shape Feature ที่ส่งผลให้โมดูลนี้ช่วยจับวัตถุในภาพได้แม่นยำขึ้น</li>
+
+
+
+<li>สำหรับรายละเอียดโมดูลนี้<a href="https://arxiv.org/abs/1803.01534" target="_blank" rel="noopener" title="อ่านได้ที่เปเปอร์นี้">อ่านได้ที่เปเปอร์นี้</a>ครับ</li>
+</ul>
+</li>
+
+
+
+<li>Head เป็นส่วนที่ทำนายผลลัพธ์ของ input โดยแสดงออกเป็น bounding box และ confidence value</li>
+</ul>
+
+<p>นอกเหนือจากนี้ โมเดล Nanodet-Plus ยังเพิ่ม</p>
+
+<ul class="wp-block-list">
+<li>Generalized Focal Loss สำหรับ Bounding Box และ Confidence</li>
+
+
+
+<li>Assign guidance module (AGM) และ dynamic soft label assigner (DSLA) สำหรับการปรับ label ของภาพให้เหมาะสมต่อการ train ของโมเดลโดยผ่านการแก้ปัญหา optimal label assignment เพื่อให้โมเดลสามารถตรวจจับวัตถุในภาพได้แม่นยำขึ้นมากกว่าเดิม</li>
+</ul>
+
+<h3 class="wp-block-heading">Installation</h3>
+
+<p>การติดตั้งโมเดลนี้ทำได้โดย</p>
+
+<p>โคลน Github repo มาไว้ในโฟลเดอร์ที่ต้องการด้วยการใช้คำสั่ง</p>
+
+<pre class="wp-block-code"><code>git clone https://github.com/RangiLyu/nanodet.git</code></pre>
+
+<p>ติดตั้งไลบรารีที่จำเป็นโดยติดตั้ง PyTorch, torchvision</p>
+
+<pre class="wp-block-code"><code>pip install torch, torchvision</code></pre>
+
+<p>ติดตั้งไลบรารีที่จำเป็น โดยเข้าไปโฟลเดอร์เดียวกันกับ Nanodet ที่โคลนมาแล้ว</p>
+
+<pre class="wp-block-code"><code>pip3 install -r requirements.txt</code></pre>
+
+<p>ติดตั้ง Nanodet</p>
+
+<pre class="wp-block-code"><code>python setup.py develop</code></pre>
+
+<h3 class="wp-block-heading">Dataset Preparation</h3>
+
+<p>การเตรียมชุดข้อมูลสำหรับการฝึกโมเดล Nanodet หรือ Nanodet-Plus สามารถทำได้โดยจัดระเบียบไฟล์และโฟลเดอร์ของภาพแต่ละภาพในชุดข้อมูล โดยแบ่งเป็นชุดข้อมูล Training และ Validation อันนี้เราทำได้โดยการสร้างโฟลเดอร์ Training และ Validation จากนั้นนำรูปภาพที่มีอยู่ในชุดข้อมูลมาแบ่ง และใส่ในโฟลเดอร์ที่สร้างขึ้น </p>
+
+<p>ต่อมาเราเตรียมเตรียมไฟล์ Annotation ให้อยู่ในรูปแบบ <a href="https://cocodataset.org/#format-data" target="_blank" rel="noopener" title="COCO Annotation Format">COCO Annotation Format</a> นั้น เราสามารถเตรียมไฟล์ตามรูปแบบที่ปรากฏตามด้านล่างนี้ โดยเซฟเป็นไฟล์ JSON (JavaScript Object Notation)</p>
+
+<pre class="wp-block-code"><code>{
+    "<strong>images</strong>": &#91;&lt; แสดงข้อมูลของแต่ละภาพ &gt;], 
+    "<strong>annotations</strong>": &#91;&lt; แสดงข้อมูลที่ label ในแต่ละภาพ &gt;], 
+    "<strong>categories</strong>": &#91;&lt; แสดงรายละเอียดของ class &gt;],
+    "<strong>info</strong>": &lt; แสดงรายละเอียดของชุดข้อมูล &gt;, 
+    "<strong>licenses</strong>": &#91;&lt; แสดงข้อมูล license &gt;],
+}
+</code></pre>
+
+<p>เมื่อมาดูที่รายละเอียดของไฟล์นี้ จะแบ่งออกเป็นสี่ส่วนได้แก่ images, annotations, categories, info และ licenses</p>
+
+<h4 class="wp-block-heading">images</h4>
+
+<p>ส่วนนี้เป็นส่วนอาเรย์ของข้อมูลในแต่ละภาพ รายละเอียดแสดงตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>image {
+    "id": &lt; id ของภาพ &gt;, 
+    "width": &lt; ความกว้าง &gt;, 
+    "height": &lt; ความสูง &gt;, 
+    "file_name": &lt; ชื่อไฟล์ &gt;, 
+    "license": &lt; id ของ license (ดูรายะเอียดการเขียนได้ที่หัวข้อ <strong>license</strong> ส่วนนี้ไม่บังคับ) &gt;, 
+    "flickr_url": &lt; url ของ flickr (ส่วนนี้ไม่บังคับ) &gt;, 
+    "coco_url": &lt; url ของ coco (ส่วนนี้ไม่บังคับ) &gt;, 
+    "date_captured": &lt;วันที่และเวลาของภาพที่เก็บภาพนี้ได้ (ส่วนนี้ไม่บังคับ) &gt;,
+}</code></pre>
+
+<h4 class="wp-block-heading">annotations</h4>
+
+<p>ส่วนนี้แสดงรายละเอียดของ label ในแต่ละภาพ โดยแสดงตำแหน่ง bounding box, แสดงขนาดพื้นที่ของ bounding box ในหน่วย pixel และระบุ class ของวัตถุในกรอบนั้น ๆ</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>การ label ของ Object detection, Semantic Segmentation, Pose Estimation จะมีรายละเอียดที่แตกต่างกัน ส่วนนี้ผู้อ่านสามารถอ่านได้ใน<a href="https://cocodataset.org/#format-data" target="_blank" rel="noopener" title="เว็บของ COCO">เว็บของ COCO</a> </p>
+</blockquote>
+
+<pre class="wp-block-code"><code>annotation {
+    "id": &lt; id ของ label &gt;, 
+    "image_id": &lt; id ของภาพ ดูรายละเอียดได้ที่หัวข้อ <strong>images</strong> &gt;, 
+    "category_id": &lt; id ของ class &gt;, 
+    "area": &lt; พื้นที่ของ bounding box &gt;, 
+    "bbox": &lt; bounding box โดยเขียนในรูปแบบ &#91;x,y,width,height] โดย x,y เป็นตำแหน่งมุมบนซ้ายของ bounding box ที่ต้องการ label ส่วน width และ height เป็นความกว้าง และความสูง &gt;, 
+    "iscrowd": &lt; ระบุว่าการ label นี้เป็นการ label ของวัตถุหนึ่งชิ้น (เขียนด้วย 0) หรือ label กลุ่มของวัตถุนั้น ๆ (เขียนด้วย 1) โดยในบทความนี้จะเป็นการ label ของวัตถุหนึ่งชิ้นที่แทนด้วย 0 ครับ &gt; ,
+}</code></pre>
+
+<h4 class="wp-block-heading">categories</h4>
+
+<p>ส่วนนี้เป็นการระบุรายละเอียดในแต่ละ class สำหรับการทำ Object detection โดยตัวอย่าง class ที่ระบุได้แก่ คน จักรยาน ต้นไม้ เป็นต้น</p>
+
+<pre class="wp-block-code"><code>categories&#91;{
+    "id": &lt; id ของ class &gt;, 
+    "name": &lt; ชื่อ class &gt;, 
+    "supercategory": &lt; ชื่อกลุ่มของ class &gt;,
+}]</code></pre>
+
+<h4 class="wp-block-heading">info</h4>
+
+<p>info เป็นการแสดงรายละเอียดของชุดข้อมูลที่เราเตรียมขึ้นมาสำหรับการฝึก ตรวจสอบ หรือทดสอบโมเดลที่เราต้องการ สำหรับรายละเอียดส่วนนี้แสดงตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>info {
+    "year": &lt; แสดงปีของชุดข้อมูลนี้ &gt;, 
+    "version": &lt; version ของชุดข้อมูล &gt;, 
+    "description": &lt; คำอธิบาย &gt;, 
+    "contributor": &lt; ผู้สนับสนุน หรือผู้จัดทำชุดข้อมูล &gt;, 
+    "url": &lt; ที่อยู่ของชุดข้อมูล &gt;, 
+    "date_created": &lt; วันที่และเวลาที่จัดทำชุดข้อมูล &gt;,
+}</code></pre>
+
+<p>ส่วนนี้ไม่บังคับว่าต้องมีในไฟล์ Annotations ผู้อ่านไม่จำเป็นต้องกรอกครับ แต่ถ้ากรอกเพื่อเป็นข้อมูลก็จะทำให้คนที่เข้ามาดูไฟล์ Annotations แล้วทราบรายละเอียดของชุดข้อมูลนี้ครับ</p>
+
+<h4 class="wp-block-heading">licenses</h4>
+
+<p>ส่วนนี้แสดงลิขสิทธิ์ของแต่ละภาพที่อยู่ในชุดข้อมูล รายละเอียดแสดงตามด้านล่างนี้ </p>
+
+<p>ส่วนนี้ไม่ได้บังคับว่าต้องมีครับ ผู้อ่านไม่จำเป็นต้องใส่ license ลงไปในไฟล์​ Annotations ครับ</p>
+
+<pre class="wp-block-code"><code>license{
+    "id": &lt; id ของ license &gt;, 
+    "name": &lt; ชื่อ license &gt;, 
+    "url": &lt; url &gt;,
+}</code></pre>
+
+<h4 class="wp-block-heading">ตัวอย่าง</h4>
+
+<p>ตัวอย่างของการเขียนไฟล์ Annotation สำหรับชุดข้อมูลเพื่อทำ Object Detection บริเวณปากโดยใช้ชุดข้อมูล CelebA-MaskHQ มีรายละเอียดตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>{"categories": &#91;
+    {"id": 0, "name": "mouth", "supercategory": "organ"}
+    ], 
+ "images": &#91;
+    {
+         "id": 0, 
+         "file_name": "7259.jpg", 
+         "height": 640, "width": 640
+    }, 
+    {
+         "id": 1, 
+         "file_name": "726.jpg", 
+         "height": 640, "width": 640
+    }, 
+    {
+         "id": 2, 
+         "file_name": "7260.jpg", 
+         "height": 640, "width": 640
+    } ...],
+ "annotations": &#91;
+    {
+        "id": 0, 
+        "image_id": 0, 
+        "category_id": 0, 
+        "bbox": &#91;246, 242, 171, 119], 
+        "area": 10370, 
+        "iscrowd": 0
+    }, 
+    {
+        "id": 1, 
+        "image_id": 1, 
+        "category_id": 0, 
+        "bbox": &#91;230, 218, 182, 143], 
+        "area": 13260, 
+        "iscrowd": 0
+    }, 
+    {
+        "id": 2, 
+        "image_id": 2, 
+        "category_id": 0, 
+        "bbox": &#91;238, 250, 172, 133], 
+        "area": 11685, 
+        "iscrowd": 0
+    }, ...]
+}</code></pre>
+
+<p>ข้อมูล Annotation แบ่งออกเป็น 3 ส่วน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>csategories แสดงข้อมูลของแต่ละ class โดยในตัวอย่างมี 1 class ที่ต้องการคือปาก</li>
+
+
+
+<li>images แสดงรายละเอียดข้อมูลของแต่ละภาพที่นำมาใช้เป็นชุดข้อมูลสำหรับการทำ Training</li>
+
+
+
+<li>annotations แสดงรายละเอียด Label ของแต่ละภาพ</li>
+</ul>
+
+<h3 class="wp-block-heading">การตั้งค่าการ Training และ Validation</h3>
+
+<p>การตั้งค่าสำหรับการทำ Training และ Validation อันนี้ผู้อ่านทำได้โดยการเข้าไปในโฟลเดอร์ config เมื่อเข้ามาแล้วจะปรากฏไฟล์การตั้งค่าที่อยู่ในโฟลเดอร์นั้น แต่ละไฟล์จะมีชื่อที่แตกต่างกันไปขึ้นกับโมเดล Nanodet ที่ใช้สำหรับการ Training และ Validation</p>
+
+<p>การเลือกใช้โมเดล ผู้อ่านสามารถก็อปปี้ไฟล์โมเดลได้ตามที่ต้องการ และวางไว้ในโฟลเดอร์นั้น จากนั้นตั้งค่าโดยทำตามด้านล่างนี้</p>
+
+<ol class="wp-block-list">
+<li>เปลี่ยนที่อยู่ save_dir สำหรับการเก็บไฟล์ snapshot สำหรับการ Training โมเดล</li>
+
+
+
+<li>เปลี่ยน num_classes ในหัวข้อ model -&gt; arch -&gt; head กับ aux_head ให้เข้ากันได้กับจำนวน classes ที่เราระบุไว้ในไฟล์ Annotations</li>
+
+
+
+<li>เปลี่ยนตำแหน่งไฟล์ภาพ และไฟล์ Annotations ในหัวข้อ data -&gt; train และ val ตรงส่วน img_path, ann_path</li>
+
+
+
+<li>กำหนด GPU, batch size และจำนวน Worker ได้ที่หัวข้อ device</li>
+
+
+
+<li>กำหนดรายการระบุชื่อ Classes ได้ที่หัวข้อ class_names</li>
+</ol>
+
+<p>นอกเหนือจากการตั้งค่าตามด้านบนนี้แล้ว ผู้อ่านสามารถตั้งค่าในไฟล์นั้นเพิ่มเติมได้อีกว่าต้องการระบุ </p>
+
+<ul class="wp-block-list">
+<li>input_size</li>
+
+
+
+<li>data pipeline สำหรับ training และ validation เพื่อทำ data augmentation และอื่น ๆ ที่หัวข้อ data -&gt; train หรือ val -&gt; pipeline</li>
+
+
+
+<li>Optimizer กับ learning rate และ weight decay ที่หัวข้อ schedule -&gt; optimizer</li>
+
+
+
+<li>จำนวน Epoch ตรงหัวข้อ schedule -&gt; total_epochs</li>
+
+
+
+<li>และอื่น ๆ อันนี้ผู้อ่านสามารถเช็คได้ในไฟล์ config แต่ละไฟล์ครับ</li>
+</ul>
+
+<h3 class="wp-block-heading">Training</h3>
+
+<p>การฝึกโมเดลสามารถทำได้โดยการพิมพ์คำสั่งตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>python tools/train.py &lt; ตำแหน่งไฟล์ config ที่เราตั้งค่า &gt;</code></pre>
+
+<p>เมื่อพิมพ์คำสั่งนี้แล้ว กดปุ่ม Enter ระบบจะ Train ตัวโมเดลจนถึงจำนวนรอบ Epoch ที่เราระบุไว้ครับ</p>
+
+<h3 class="wp-block-heading">Demo</h3>
+
+<p>กรณีที่ต้องการทดลองใช้โมเดลที่สร้างขึ้น ผู้อ่านสามารถพิมพ์คำสั่งตามด้านล่างนี้ได้ครับ โดยแบ่งตาม input ของภาพที่ต้องการ</p>
+
+<p>อันแรก กรณีที่ input เป็นไฟล์ภาพ</p>
+
+<pre class="wp-block-code"><code>python demo/demo.py image --config &lt; ตำแหน่งไฟล์ config ที่เราสร้างขึ้น &gt; --model &lt; ตำแหน่งไฟล์โมเดลที่ผ่านการ Training&gt; --path &lt; ตำแหน่งไฟล์ภาพ &gt;</code></pre>
+
+<p>อันต่อมา กรณีที่ input เป็นไฟล์วิดีโอ</p>
+
+<pre class="wp-block-code"><code>python demo/demo.py video --config &lt; ตำแหน่งไฟล์ config ที่เราสร้างขึ้น &gt; --model &lt; ตำแหน่งไฟล์โมเดลที่ผ่านการ Training&gt; --path &lt; ตำแหน่งไฟล์วิดีโอ &gt;</code></pre>
+
+<p>อันสุดท้าย กรณีที่ input เป็น webcam</p>
+
+<pre class="wp-block-code"><code>python demo/demo.py webcam --config &lt; ตำแหน่งไฟล์ config ที่เราสร้างขึ้น &gt; --model &lt; ตำแหน่งไฟล์โมเดลที่ผ่านการ Training&gt; --camid &lt; id ของกล้อง &gt;</code></pre>
+
+<h2 class="wp-block-heading">Inference</h2>
+
+<p>การนำโมเดลไปใช้งานสำหรับการตรวจจับภาพนั้น เราทำได้โดยการเขียนโค้ดตามด้านล่างนี้ครับ</p>
+
+<p>นำเข้าไลบรารีที่จำเป็น โดยนำเข้าไลบรารี PyTorch, OpenCV, OS และไบรารี nanodet</p>
+
+<pre class="wp-block-code"><code>import os, cv2, torch
+
+from nanodet.data.batch_process import stack_batch_img
+from nanodet.data.collate import naive_collate
+from nanodet.data.transform import Pipeline
+from nanodet.model.arch import build_model
+from nanodet.util import Logger, cfg, load_config, load_model_weight
+from nanodet.util.path import mkdir</code></pre>
+
+<p>นำเข้าไฟล์ Config</p>
+
+<pre class="wp-block-code"><code>load_config(<strong>cfg</strong>, &lt; ตำแหน่งไฟล์ config ที่เราบันทึกไว้ &gt;)
+logger = Logger(-1, use_tensorboard=False)</code></pre>
+
+<p>นำเข้าโมเดลที่ผ่านการทำ Training</p>
+
+<pre class="wp-block-code"><code>model = build_model(<strong>cfg</strong>.model)
+ckpt = torch.load(&lt; ตำแหน่งไฟล์โมเดลที่ผ่าน Training &gt;, map_location=lambda storage, loc: storage)
+load_model_weight(model, ckpt, logger)</code></pre>
+
+<p>ตั้งค่าให้ใช้การ์ดจอสำหรับการตรวจจับภาพ และตั้งค่าให้โมเดลไม่ได้ทำ Training</p>
+
+<pre class="wp-block-code"><code>device = torch.device('cuda')
+model = model.to(device).eval()</code></pre>
+
+<p>ตรวจจับวัตถุในภาพ </p>
+
+<pre class="wp-block-code"><code>def inference(cfg, model, img, device):
+    # นำเข้าภาพ และตั้งค่ารายละเอียดของภาพก่อนการทำ Object detection
+    img_info = {"id": 0}
+    img_info&#91;"file_name"] = os.path.basename(img)
+    img = cv2.imread(img)
+    height, width = img.shape&#91;:2]
+    img_info&#91;"height"] = height
+    img_info&#91;"width"] = width
+    meta = dict(img_info=img_info, raw_img=img, img=img)
+
+    # กำหนด data pipeline สำหรับการทำ preprocess ภาพ โดยดึงข้อมูลจากไฟล์การตั้งค่าที่เราได้สร้างไว้
+    pipeline = Pipeline(cfg.data.val.pipeline, cfg.data.val.keep_ratio)
+
+    # Preprocess
+    meta = pipeline(None, meta, cfg.data.val.input_size)
+
+    # แปลงให้อยู่ในรูปตัวแปร PyTorch tensor
+    meta&#91;"img"] = torch.from_numpy(meta&#91;"img"].transpose(2, 0, 1)).to(device)
+    meta = naive_collate(&#91;meta])
+    meta&#91;"img"] = stack_batch_img(meta&#91;"img"], divisible=32)
+
+    # ทำ Object detection
+    with torch.no_grad():
+        results = model.inference(meta)
+
+    # คืนค่าผลลัพธ์
+    return meta, results</code></pre>
+
+<pre class="wp-block-code"><code>meta, res = inference(cfg, model, &lt; ตำแหน่งภาพที่เราต้องการให้ทำ Object detection &gt;, device)</code></pre>
+
+<p>แสดงผลลัพธ์ที่ได้ด้วยการวาด Bounding box </p>
+
+<pre class="wp-block-code"><code>from nanodet.util import overlay_bbox_cv
+
+result = overlay_bbox_cv(meta&#91;'raw_img']&#91;0], res&#91;0], cfg.class_names, score_thresh=&lt; กำหนดค่า Confidence ขั้นต่ำสำหรับการวาด Bounding box โดยกำหนดไว้ที่ 0.35 &gt;)</code></pre>
+
+<p>เมื่อวาดเสร็จแล้ว การแสดงผลลัพธ์ผู้อ่านสามารถใช้ไลบรารี matplotlib, OpenCV ผ่านการใช้ฟังก์ชัน imshow หรืออื่น ๆ ได้ครับ โดยในบทความนี้จะใช้ matplotlib</p>
+
+<pre class="wp-block-code"><code>from matplotlib import pyplot as plt
+
+plt.imshow(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
+plt.show()</code></pre>
+
+<p>เมื่อพิมพ์โค้ดเสร็จแล้ว ทดลองรันโมเดลนี้ ตัวโค้ดจะแสดงผลลัพธ์ของการทำ Object Detection ครับ </p>
+
+<p>ในบทความจะทดลองทำภาพของ Tony Woodsome มาครอบบริเวณครึ่งล่างของใบหน้าแล้วทดลองรันโมเดล ผลลัพธ์ที่ได้จะแสดงตามด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="543" height="361" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/result_tony.png" alt="" class="wp-image-3310" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/result_tony-300x199.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/12/result_tony.png 543w" sizes="auto, (max-width: 543px) 100vw, 543px" /><figcaption class="wp-element-caption">ตัวอย่างผลลัพธ์การทำ Object Detection โดยให้ค้นหา Bounding Box บริเวณปากของ Tony Woodsome</figcaption></figure></div>
+
+<h3 class="wp-block-heading">Deployment</h3>
+
+<p>เพื่อฝึกโมเดลนี้เรียบร้อย ผู้อ่านสามารถนำโมเดลไปใช้งานต่อได้ โดยสามารถส่งออกโมเดลเป็น ONNX, NCNN, OpenVINO หรือใช้งานบน Android ได้ครับ</p>
+
+<p>รายละเอียดของการส่งออกโมเดลนี้อ่านได้ที่ <a href="https://github.com/RangiLyu/nanodet" target="_blank" rel="noopener" title="Github repo ของโมเดล">Github repo ของโมเดล</a>นี้ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>ปรับโมเดล ONNX ให้ไวด้วย Static Quantization</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="ปรับโมเดล ONNX ให้ไวด้วย Static Quantization" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2022/11/24/modify-onnx-model-quantization/" />
+<meta property="og:url" content="http://localhost:4000/2022/11/24/modify-onnx-model-quantization/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/11/onnx_quantization_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-24T01:37:17+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/11/onnx_quantization_cover.jpg" />
+<meta property="twitter:title" content="ปรับโมเดล ONNX ให้ไวด้วย Static Quantization" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:43:05+07:00","datePublished":"2022-11-24T01:37:17+07:00","description":"None","headline":"ปรับโมเดล ONNX ให้ไวด้วย Static Quantization","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/11/onnx_quantization_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/11/24/modify-onnx-model-quantization/"},"url":"http://localhost:4000/2022/11/24/modify-onnx-model-quantization/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>ปรับโมเดล ONNX ให้ไวด้วย Static Quantization</h1>
+
+  <p class="post-meta">
+    <time datetime="2022-11-24 01:37:17 +0700">2022-11-24</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/11/onnx_quantization_cover.jpg' />
+  </figure>
+  
+
+  <p>ปกติเมื่อเราเทรนโมเดลที่ต้องใช้ระยะเวลาหลายชั่วโมง ไปจนถึงหลายวันเสร็จเรียบร้อยแล้ว เราจะต้องนำโมเดลไปใช้งานบนเซิร์ฟเวอร์ หรืออุปกรณ์ฝังตัวขนาดเล็กเพื่อนำไปใช้งานจริง อย่างไรก็ตามโมเดลมันมีขนาดใหญ่ ต้องใช้พลังการประมวลผลมาก แล้วเราจะต้องใช้เทคนิคอะไรมาช่วยล่ะ?</p>
+
+<p>คำตอบที่เหมาะสมกับปัญหานี้คือ Quantization</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">Quantization</h2>
+
+<p>เมื่อโมเดล Neural Network ซับซ้อนมากขึ้น ขนาดไฟล์ที่ใช้สำหรับการเก็บข้อมูลโมเดลมีขนาดที่ใหญ่ขึ้น ความต้องการหน่วยความจำ และพลังการประมวลผลของการ์ดจอ กับซีพียูที่ต้องใช้มากขึ้น ส่งผลให้เวลาที่เรานำโมเดล Neural Network ที่ผ่านการเทรนนำไปใช้งานจริง เราจะพบว่า</p>
+
+<ul class="wp-block-list">
+<li>กว่าจะโมเดลประมวลผลเสร็จเรียบร้อยใช้ระยะเวลาที่นานมากกว่าปกติ (บางครั้งกว่าจะคำนวณเสร็จใช้เวลาประมาณ 1-2 นาที ซึ่งไม่ทันใจผู้ใช้)</li>
+
+
+
+<li>ตัวโมเดลไม่ได้รองรับการประมวลผลเวลาที่ผู้ใช้เข้ามาใช้งานเป็นจำนวนมาก (ส่วนนี้ดูได้จากบทความของผู้พัฒนาเกม Roblox ที่กล่าวถึง<a href="https://medium.com/@quocnle/how-we-scaled-bert-to-serve-1-billion-daily-requests-on-cpus-d99be090db26" target="_blank" rel="noopener" title="การนำโมเดลให้ทำงานรองรังผู้ใช้เป็นจำนวนมากได้โดยการใช้ CPU ในเว็บ Medium">การนำโมเดลให้ทำงานรองรับผู้ใช้เป็นจำนวนมากได้โดยการใช้ CPU Intel Xeon Scalable ในเว็บ Medium</a>)</li>
+</ul>
+
+<p>วิธีการแก้ปัญหาโมเดลมีขนาดใหญ่ ต้องการการประมวลผลที่ซับซ้อนวิธีหนึ่งเลยคือการทำ Quantization</p>
+
+<p>เทคนิค Quantization เป็นเทคนิคที่ลดขนาดโมเดลให้มีขนาดที่เล็กลง แต่ยังคงความแม่นยำของเทคนิคไว้อยู่ กระบวนการปรับแต่งเทคนิคให้มีขนาดเล็กลงนี้ทำได้โดยการปรับพารามิเตอร์ของแต่ละ Layer ใน Neural Network จากเดิมที่เป็นตัวเลขทศนิยม Float32 ให้กะประมาณอยู่ในจำนวนเต็ม Integer</p>
+
+<p>สิ่งนี้เป็นสิ่งที่ดีต่อการนำโมเดล Neural Network ที่ผ่านการเทรนนำไปใช้งานกับเซิร์ฟเวอร์ หรือใช้งานกับอุปกรณ์ฝังตัวต่าง ๆ ทำให้การประมวลผลโมเดลทำได้เร็วขึ้น ลดการใช้หน่วยความจำลง ลดความซับซ้อนของการประมวลผลลง ส่งผลให้เราใช้ระยะเวลาในการประมวลผลโมเดลน้อยลงครับ</p>
+
+<p>เทคนิคของการทำ Quantization ตามที่เขียนใน Documentation ของ PyTorch แบ่งออกไป 3 วิธี ได้แก่</p>
+
+<ol class="wp-block-list">
+<li>Dynamic Quantization</li>
+
+
+
+<li>Post-training static quantization (PTQ)</li>
+
+
+
+<li>Quantization-aware training (QAT)</li>
+</ol>
+
+<p>ในบทความนี้เราจะกล่าวถึง <strong>Post-training Quantization (PTQ)</strong> ครับ</p>
+
+<p><strong>Post-training Quantization </strong>เป็นกระบวนการประมาณที่เรานำโมเดลที่ผ่านการเทรนโดยใช้ระยะเวลานานเป็นชั่วโมง ไปจนถึงหลายวัน นำมาปรับค่าพารามิเตอร์ของแต่ละ Layer ใน Neural Network โดยผ่านการประมวลผลในชุดข้อมูลที่กำหนดไว้สำหรับการ Calibrate เทคนิคนี้เหมาะกับการนำไปใช้งานกับโมเดล Neural Network ที่อยู่ในรูปแบบ <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network" target="_blank" rel="noopener" title="Convolutional Neural Network (CNN)">Convolutional Neural Network (CNN)</a></p>
+
+<h2 class="wp-block-heading">ONNX</h2>
+
+<p>สาเหตุที่เราใช้งาน ONNX เพราะอะไร? สาเหตุที่ใช้เพราะว่าเมื่อเราเทรนโมเดลใน PyTorch เป็นระยะเวลาหลายชั่วโมง ไปจนถึงหลายวันแล้ว การนำออกไปใช้งานบนเซิร์ฟเวอร์ หรืออุปกรณ์๋อื่น ๆ เราไม่สามารถหยิบไฟล์โมเดล (ไฟล์ pkl หรือ pth) ไปใช้งานได้ทันที เราเลยส่งออกไฟล์โมเดลให้อยู่ในรูปแบบ <strong>ONNX</strong> เสียก่อน</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Open_Neural_Network_Exchange" target="_blank" rel="noopener" title="ONNX (Open Neural Network Exchange)">ONNX (Open Neural Network Exchange)</a> เป็นฟอร์แมตกลางของไมโครซอฟต์และเฟสบุ๊ค สำหรับการนำโมเดลที่ผ่านการเทรนโดยใช้ไลบรารีต่าง ๆ ได้แก่ PyTorch, scikit-learn, MXNet และอื่น ๆ มาแลกเปลี่ยนข้อมูลระหว่างกันได้โดยไม่จำกัดว่าต้องใช้ค่ายใดค่ายหนึ่งเท่านั้น</p>
+
+<h3 class="wp-block-heading">การส่งออกโมเดล ONNX</h3>
+
+<p>การนำโมเดลที่ผ่านการเทรน (ในตัวอย่างนี้เราจะใช้ PyTorch) ส่งออกไฟล์ในรูปแบบ ONNX ทำได้โดย</p>
+
+<ol class="wp-block-list">
+<li>โหลดโมเดล PyTorch</li>
+
+
+
+<li>สร้างตัวแปร Dummy สำหรับการรันโมเดล PyTorch</li>
+
+
+
+<li>เขียนฟังก์ชันการส่งออกโมเดล ONNX</li>
+</ol>
+
+<p>ในบทความนี้ เราเอาโมเดล <a href="https://github.com/biubug6/Pytorch_Retinaface" target="_blank" rel="noopener" title="RetinaFace จาก GitHub">RetinaFace จาก GitHub</a> อันนี้มาใช้งานแทน จุดนี้เราทำได้โดยการ Clone GitHub Repo เสียก่อนครับ</p>
+
+<pre class="wp-block-code"><code>git clone https://github.com/biubug6/Pytorch_Retinaface.git</code></pre>
+
+<p>เมื่อกด Enter แล้ว เราจะพบข้อความประมาณตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>Cloning into 'Pytorch_Retinaface'...
+remote: Enumerating objects: 123, done.
+Receiving objects:  93% (115/123), 4.83 MiB | 4.27 MiB/sused 123
+Receiving objects: 100% (123/123), 6.81 MiB | 5.51 MiB/s, done.
+Resolving deltas: 100% (41/41), done.</code></pre>
+
+<p>เมื่อ Clone GitHub เรียบร้อยแล้ว เราดาวน์โหลดโมเดลที่เทรนโดยผู้เขียนโค้ดได้ที่ GitHub repo ข้างบนครับ ให้เราดาวน์โหลดตัวโมเดล ResNet50 (ที่มีชื่อไฟล์ Resnet50_Final.pth บน Google Drive) </p>
+
+<p>หลังจากดาวน์โหลดเสร็จแล้ว ให้สร้างโฟลเดอร์ที่มีชื่อ weights ไว้ในโฟลเดอร์ของ repo ที่โคลนมาแล้ว จากนั้นเก็บไฟล์โมเดล ResNet50 ที่ดาวน์โหลดไว้ที่โฟลเดอร์ weights</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>จริง ๆ จะเก็บไว้ในโฟลเดอร์ไหนก็ได้ แต่เก็บไว้ในโฟลเดอร์ weights ไว้ในโฟลเดอร์ของ repo ที่โคลนมาแล้วจะสะดวกต่อการใช้งานมากกว่าครับ</p>
+</blockquote>
+
+<h4 class="wp-block-heading">อธิบายตัวโค้ดการส่งออกโมเดล PyTorch เป็น ONNX</h4>
+
+<p>เมื่อบันทึกไฟล์เสร็จแล้ว เราจะส่งออกโมเดล ONNX ในตัวอย่างนี้เราจะใช้งานโค้ด <strong>convert_to_onnx.py </strong>ของผู้เขียนโค้ดครับ จุดนี้เรามาอธิบายโค้ดส่วนที่ส่งออกโมเดล ONNX เสียก่อน</p>
+
+<p>ส่วนแรก เป็นการนำเข้าไลบรารีที่จำเป็นต่อการใช้งาน โดยจะแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>import argparse
+import torch
+from data import cfg_mnet, cfg_re50
+from models.retinaface import RetinaFace</code></pre>
+
+<p>สองบรรทัดแรกเป็นการนำเข้าไลบรารี </p>
+
+<ul class="wp-block-list">
+<li>argparse ที่อนุญาตให้ผู้ใช้พิมพ์ argument ตามหลังไฟล์ไพทอนที่เรารันตัวโค้ด </li>
+
+
+
+<li>torch (ก็คือไลบรารี PyTorch) ที่เป็นไลบรารีที่จำเป็นต่อการส่งออกโมเดล PyTorch ให้เป็น ONNX</li>
+</ul>
+
+<p>บรรทัดต่อมาเป็นโค้ดที่เกี่ยวข้องกับการตั้งค่าโมเดล RetinaFace ในกรณีที่เลือก backbone เป็น MobileNet หรือ ResNet50 ส่วนบรรทัดสุดท้ายเป็นโค้ดคลาสของโมเดล RetinaFace</p>
+
+<p>ต่อมาเรามาดูโค้ดส่วนของ if __name__ == &#8216;__main__&#8217;: ที่เป็นโค้ดหลักของการส่งออกโมเดล PyTorch เป็น ONNX ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>torch.set_grad_enabled(False)
+cfg = None
+if args.network == "mobile0.25":
+    cfg = cfg_mnet
+elif args.network == "resnet50":
+    cfg = cfg_re50
+# net and model
+net = RetinaFace(cfg=cfg, phase = 'test')
+net = load_model(net, args.trained_model, args.cpu)
+net.eval()
+print('Finished loading model!')
+print(net)
+device = torch.device("cpu" if args.cpu else "cuda")
+net = net.to(device)
+
+# ------------------------ export -----------------------------
+output_onnx = 'FaceDetector.onnx'
+print("==&gt; Exporting model to ONNX format at '{}'".format(output_onnx))
+input_names = &#91;"input0"]
+output_names = &#91;"output0"]
+inputs = torch.randn(1, 3, args.long_side, args.long_side).to(device)
+
+torch_out = torch.onnx._export(net, inputs, output_onnx, export_params=True, verbose=False,
+                                input_names=input_names, output_names=output_names)
+</code></pre>
+
+<p>เราจะอธิบายโค้ดส่วนบนก่อนที่เป็นโค้ดที่เกี่ยวข้องกับตัวโมเดล</p>
+
+<pre class="wp-block-code"><code>cfg = None
+if args.network == "mobile0.25":
+    cfg = cfg_mnet
+elif args.network == "resnet50":
+    cfg = cfg_re50
+
+# net and model
+net = RetinaFace(cfg=cfg, phase = 'test')
+net = load_model(net, args.trained_model, args.cpu)
+net.eval()
+print('Finished loading model!')
+print(net)
+device = torch.device("cpu" if args.cpu else "cuda")
+net = net.to(device)</code></pre>
+
+<p>โค้ดห้าบรรทัดแรกเป็นการนำเข้าการตั้งค่าของโมเดล RetinaFace ที่มี backbone เป็น MobileNet หรือ ResNet50</p>
+
+<p>โค้ดสี่บรรทัดต่อมาเป็นการนำเข้าโมเดล RetinaFace ตามการตั้งค่าที่ผู้ใช้ได้กำหนดค่าไว้ แล้วหลังจากนั้นตัวโค้ดจะนำเข้าไฟล์โมเดล PyTorch ที่เก็บอยู่ในคอมพิวเตอร์ (ตัวอย่างก็คือไฟล์ Resnet50_Final.pth ที่เราดาวน์โหลดมาแล้ว)</p>
+
+<pre class="wp-block-code"><code># net and model
+net = RetinaFace(cfg=cfg, phase = 'test')
+net = load_model(net, args.trained_model, args.cpu)
+net.eval()</code></pre>
+
+<h5 class="wp-block-heading">โหลดโมเดล RetinaFace</h5>
+
+<p>จากนั้น เราจะมาโฟกัสส่วนฟังก์ชัน load_model ฟังก์ชันนี้เขียนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def load_model(model, pretrained_path, load_to_cpu):
+    print('Loading pretrained model from {}'.format(pretrained_path))
+    if load_to_cpu:
+        pretrained_dict = torch.load(pretrained_path, map_location=lambda storage, loc: storage)
+    else:
+        device = torch.cuda.current_device()
+        pretrained_dict = torch.load(pretrained_path, map_location=lambda storage, loc: storage.cuda(device))
+    if "state_dict" in pretrained_dict.keys():
+        pretrained_dict = remove_prefix(pretrained_dict&#91;'state_dict'], 'module.')
+    else:
+        pretrained_dict = remove_prefix(pretrained_dict, 'module.')
+    check_keys(model, pretrained_dict)
+    model.load_state_dict(pretrained_dict, strict=False)
+    return model</code></pre>
+
+<p>ส่วนนี้จะเป็นการนำเข้าไฟล์โมเดลที่เก็บไว้ในคอมพิวเตอร์ โดยโค้ดที่เกี่ยวข้องกับการโหลดตัวไฟล์โมเดลเข้าไปในโมเดลที่เราต้องการส่งออกจะอยู่ตรงบรรทัดที่เลือกว่าจะโหลด และเก็บตัวแปร dictionary ที่เกี่ยวข้องกับ weights ของตัวโมเดลที่เกี่ยวข้องไว้ให้ CPU เรียกใช้หรือไม่ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>if load_to_cpu:
+        pretrained_dict = torch.load(pretrained_path, map_location=lambda storage, loc: storage)
+    else:
+        device = torch.cuda.current_device()
+        pretrained_dict = torch.load(pretrained_path, map_location=lambda storage, loc: storage.cuda(device))</code></pre>
+
+<p>ฟังก์ชันที่เกี่ยวข้องคือ torch.load ที่อธิบายไว้แล้วในเอกสารของ <a href="https://pytorch.org/docs/stable/generated/torch.load.html" target="_blank" rel="noopener" title="PyTorch">PyTorch</a> เอง โดย</p>
+
+<ul class="wp-block-list">
+<li>กรณีที่นำเข้าตัวแปร dictionary ที่เก็บ weights ของโมเดลให้ CPU เรียกใช้ ตัวโค้ดจะ map เป็นตัวแปร dictionary ที่มีอยู่ในตัวไฟล์โมเดลเก็บไว้ให้ CPU เรียกใช้ครับ</li>
+
+
+
+<li>กรณีที่ใช้การ์ดจอ NVIDIA (ที่ใช้ CUDA) ตัวโค้ดจะ map เป็นตัวแปร dictionary ที่เก็บ weights ที่มีอยู่ในตัวไฟล์โมเดลเก็บไว้ให้การ์ดจอเรียกใช้ครับ</li>
+</ul>
+
+<p>ต่อมาเมื่อโหลดโมเดลแล้ว ตัวโค้ดจะเช็ค key ที่เก็บไว้ในตัวแปร dictionary ส่วนนี้จะไม่กล่าวถึง </p>
+
+<p>หลังจากเช็ค key ที่อยู่ในตัวแปรแล้ว ตัวโค้ดจะนำเข้าตัวแปร dictionary ที่เก็บ weights ของตัวโมเดลลงไปในตัวแปรโมเดลที่โหลดจากคลาสของ RetinaFace เอง</p>
+
+<pre class="wp-block-code"><code>model.load_state_dict(pretrained_dict, strict=False)</code></pre>
+
+<h5 class="wp-block-heading">ส่งออกโมเดล PyTorch เป็น ONNX</h5>
+
+<p>เมื่อโหลดโมเดลแล้ว เราจะส่งออกโมเดล PyTorch เป็น ONNX ตามโค้ดส่วนด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># ------------------------ export -----------------------------
+output_onnx = 'FaceDetector.onnx'
+input_names = &#91;"input0"]
+output_names = &#91;"output0"]
+inputs = torch.randn(1, 3, args.long_side, args.long_side).to(device)
+
+torch_out = torch.onnx._export(net, inputs, output_onnx, export_params=True, verbose=False, input_names=input_names, output_names=output_names)</code></pre>
+
+<p>โค้ดส่วนนี้จะเป็นการตั้งค่าชื่อไฟล์โมเดล ONNX ชื่อตัวแปร input, output รวมถึงสร้างตัวแปร Dummy ที่เกี่ยวข้องกับการรันตัวโมเดลเพื่อส่งออกไฟล์เป็น ONNX</p>
+
+<p>ในตัวอย่างโค้ดตั้งค่า</p>
+
+<ul class="wp-block-list">
+<li>ส่งออกไฟล์โมเดลเป็น FaceDetector.onnx </li>
+
+
+
+<li>ชื่อ input กับ output เป็น input0 กับ output0 ที่ตัวแปร input_names, output_names</li>
+
+
+
+<li>สร้างตัวแปร Dummy ที่มีขนาดตามที่ผู้ใช้กำหนดตาม argument ที่กรอกเวลารันตัวโค้ดตรงตัวแปร args.long_side</li>
+</ul>
+
+<p>เรามาอธิบายเรื่องการสร้างตัวแปร Dummy ส่วนนี้ผู้ใช้สามารถสร้างตัวแปร Dummy ได้โดยการใช้งานคำสั่งตามด้านล่างนี้ ตรง height และ width เป็นขนาดภาพที่กำหนดไว้สำหรับการรันโมเดล</p>
+
+<pre class="wp-block-code"><code>inputs = torch.randn(1, 3, &lt; height &gt;,&lt; width &gt;)</code></pre>
+
+<p>สำหรับขนาดภาพปกติที่ใช้เทรนกับโมเดล Deep Learning เราจะใช้ขนาด 224&#215;224 pixel ที่เป็นภาพสี RGB (คือมีทั้งหมด 3 Channel) แต่สำหรับโมเดล RetinaFace ที่เป็นโมเดลสำหรับการทำ Face detection จะเลือกขนาดเท่าไรก็ได้ ส่วนนี้สามารถอ่านได้ในเปเปอร์ของตัวโมเดลครับ ในตัวอย่างนี้จะเลือกใช้ขนาด 640&#215;640 pixel</p>
+
+<p>เมื่อสร้างตัวแปร Dummy และตั้งค่าเสร็จแล้ว เราจะส่งออกโมเดล ONNX ส่งออกโมเดลในรูป ONNX ผ่านการใช้งานฟังก์ชันตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>torch_out = torch.onnx._export(
+&lt; ตัวแปรโมเดล PyTorch &gt;,
+&lt; ตัวแปร Dummy ที่สร้างขึ้น &gt;,
+&lt; ที่อยู่ไฟล์ ONNX ที่ต้องการส่งออก &gt;, 
+export_params=True, verbose=False, 
+input_names=&lt; ตัวแปร array ชื่อ input ของโมเดล &gt;, 
+output_names=&lt; ตัวแปร array ชื่อ output model &gt;
+)</code></pre>
+
+<p>ในตัวอย่างจะเขียนโค้ดตามนี้ครับ โค้ดส่วนนี้จะส่งออกโมเดล RetinaFace ตามที่เราตั้งค่าไว้ครับ </p>
+
+<pre class="wp-block-code"><code>torch_out = torch.onnx._export(net, inputs, output_onnx, export_params=True, verbose=False, input_names=input_names, output_names=output_names)</code></pre>
+
+<p>รายละเอียดเพิ่มเติม</p>
+
+<ul class="wp-block-list">
+<li>ส่วน export_params จะเป็นการตั้งค่าให้ส่งออกโมเดลที่ผ่านการเทรนเรียบร้อย </li>
+
+
+
+<li>ส่วน verbose จะเป็นการตั้งค่าให้แสดงรายละเอียดเพิ่มเติมระหว่างการส่งออกโมเดล</li>
+</ul>
+
+<p>เมื่อเห็นตัวโค้ดแล้ว เรารันไฟล์นี้ผ่านการพิมพ์คำสั่งตามด้านล่างนี้ครับ </p>
+
+<pre class="wp-block-code"><code> python convert_to_onnx.py --trained_model ./weights/Resnet50_Final.pth --network resnet50 --long_side 640 --cpu </code></pre>
+
+<p>เมื่อรันตัวโค้ดนี้ ระบบจะแจ้งว่ามี Error ระหว่างการรันเนื่องมาจากตัวแปร args.long_side ไม่ได้อยู่ในรูปตัวแปร int จุดนี้เราแก้ไขตัวโค้ดส่วน argument ที่อยู่ใต้ส่วนการนำเข้าไลบรารีโดยเติม <em>, type=int,</em> ไว้ด้านหลัง <em>parser.add_argument(&#8216;&#8211;long_side&#8217;, default=640<strong>,</strong> </em></p>
+
+<p>เมื่อแก้เสร็จแล้ว จะได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>parser = argparse.ArgumentParser(description='Test')
+parser.add_argument('-m', '--trained_model', default='./weights/mobilenet0.25_Final.pth', type=str, help='Trained state_dict file path to open')
+parser.add_argument('--network', default='mobile0.25', help='Backbone network mobile0.25 or resnet50')
+parser.add_argument('--long_side', default=640<strong><em>, type=int,</em></strong> help='when origin_size is false, long_side is scaled size(320 or 640 for long side)')
+parser.add_argument('--cpu', action="store_true", default=True, help='Use cpu inference')</code></pre>
+
+<p>จากนั้นพิมพ์คำสั่งเดิม แล้วกด Enter </p>
+
+<p>เมื่อรันเสร็จแล้ว เราจะพบไฟล์ตัวโมเดลที่ส่งออกที่มีชื่อว่า FaceDetector.onnx ไฟล์นี้แหละเป็นไฟล์ที่จำเป็นต่อการทำ Quantization ในขั้นตอนต่อไป</p>
+
+<h4 class="wp-block-heading">การทำ Quantization</h4>
+
+<p>เมื่อได้ไฟล์ ONNX เรียบร้อยแล้ว ต่อมาเราจะมาทำ Quantization โมเดล ONNX จุดนี้เราทำได้โดยการใช้ฟังก์ชันตามด้านล่างนี้</p>
+
+<p>การใช้งานฟังก์ชันนี้ เราจำเป็นต้องเขียนโค้ด 2 ส่วน ได้แก่</p>
+
+<ol class="wp-block-list">
+<li>เขียนโค้ดส่วน Datareader สำหรับการดึงข้อมูลรูปภาพสำหรับการทำ Quantization</li>
+
+
+
+<li>เขียนโค้ดสำหรับการทำ Quantization</li>
+</ol>
+
+<p>ขั้นตอนแรก เราเขียนโค้ดส่วน Datareader สำหรับการโหลดรูปภาพเพื่อรันโมเดล ONNX สำหรับการทำ Quantization สำหรับรูปภาพที่เราจะนำมาโหลดจะเป็นรูปอะไรก็ได้ แต่ส่วนตัวแนะนำเอารูปภาพที่อยู่ใน Dataset ที่นำมาเทรนกับตัวโมเดลจะดีกว่า</p>
+
+<p>การเขียนโค้ดส่วนนี้ เราจะสร้าง Class สำหรับ Datareader เพื่อโหลดรูปภาพ ในตัวอย่างนี้เราจะโหลดรูปภาพจาก Dataset สำหรับการเทรน RetinaFace ที่มีชื่อว่า WIDERFACE </p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ตัว Dataset สามารถดาวน์โหลดได้จาก<a href="https://github.com/biubug6/Pytorch_Retinaface" target="_blank" rel="noopener" title="ลิ้งค์ของ GitHub RetinaFace">ลิ้งค์ของ GitHub RetinaFace</a> นี้ครับ</p>
+</blockquote>
+
+<p>เมื่อดาวน์โหลดเสร็จแล้ว ให้แตกไฟล์ไว้ในโฟลเดอร์ data ที่อยู่ในโฟลเดอร์ของ repo ที่โคลนมาเสร็จแล้ว จากนั้นเราจะมาดูตัวไฟล์ label.txt ของ WIDERFACE ก่อน ลักษณะไฟล์แสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># 0--Parade/0_Parade_marchingband_1_849.jpg
+449 330 122 149 488.906 373.643 0.0 542.089 376.442 0.0 515.031 412.83 0.0 485.174 425.893 0.0 538.357 431.491 0.0 0.82
+# 0--Parade/0_Parade_Parade_0_904.jpg
+361 98 263 339 424.143 251.656 0.0 547.134 232.571 0.0 494.121 325.875 0.0 453.83 368.286 0.0 561.978 342.839 0.0 0.89
+...</code></pre>
+
+<p>บรรทัดที่มีตัวอักษร # ขึ้นต้นอันนั้นเป็นตำแหน่งที่อยู่ของภาพ ส่วนบรรทัดต่อมาเป็นรายละเอียดของตำแหน่ง Bounding box และจุด Landmark </p>
+
+<h5 class="wp-block-heading">DataReader</h5>
+
+<p>ในที่นี้เราจะใช้แค่ตำแหน่งภาพก็ใช้ข้อมูลจากบรรทัดที่มีตัวอักษร # เราสามารถเขียนคลาสสำหรับ Datareader ครับ ตัวอย่างการเขียนโค้ดเขียนได้ตามด้านล่างนี้ (ส่วนชื่อไฟล์เราเซฟไฟล์ชื่อ datareader.py)</p>
+
+<pre class="wp-block-code"><code>import numpy, onnxruntime, cv2
+from onnxruntime.quantization import CalibrationDataReader
+
+class RetinaFaceDataReader(CalibrationDataReader):
+    def __init__(self, txt_path: str, model_path: str, limit_files: int = 50):
+        self.enum_data = None
+
+        # นำเข้าโมเดล ONNX เพื่อเอาขนาดภาพที่จำเป็นต่อการ calibrate
+        session = onnxruntime.InferenceSession(model_path, None, providers=&#91;'CPUExecutionProvider'])
+        (_, _, height, width) = session.get_inputs()&#91;0].shape
+        self.height = height
+        self.width = width
+
+        # โหลดไฟล์ label ของ Dataset WIDERFACE โดยเลือกจากบรรทัดที่มีตัวอักษร '#'
+        imgs_path = &#91;]
+        f = open(txt_path,'r')
+        lines = f.readlines()
+        for line in lines:
+            line = line.rstrip()
+            if not line.startswith('#'):
+                continue
+
+            path = line&#91;2:]
+            path = txt_path.replace('label.txt','images/') + path
+            imgs_path.append(path)
+
+        if limit_files &gt; 0:
+            imgs_path = imgs_path&#91;:limit_files]
+
+        # โหลดไฟล์ภาพ และเก็บข้อมูลไว้ใน List
+        self.nhwc_data_list = self._preprocess_images(
+            imgs_path, height, width
+        )
+
+        # เก็บชื่อ input จากโมเดล ONNX
+        self.input_name = session.get_inputs()&#91;0].name
+
+        # เก็บข้อมูลขนาดอาเรย์
+        self.datasize = len(self.nhwc_data_list)
+
+    def _preprocess_images(self, images_path: list,  height: int, width: int):
+        unconcatenated_batch_data = &#91;]
+        for image_path in images_path:
+
+            # โหลดไฟล์ภาพ และปรับขนาดภาพให้ตรงกับที่โมเดล ONNX ต้องการ
+            img = cv2.imread(image_path) 
+            img = cv2.resize(img, (width, height))
+
+            # Normalize
+            input_data = numpy.float32(img) - numpy.array(
+                &#91;104, 117, 123], dtype=numpy.float32
+            )
+
+            # ปรับขนาดอาเรย์ให้ตรงกับที่โมเดลต้องการ โดยจำเป็นต้องมีอาเรย์ที่มี Shape เหมือนกันกับที่กำหนดไว้ในขั้นตอนการส่งออกโมเดล PyTorch เป็นโมเดล ONNX เช่นถ้าใช้ขนาด &#91;1, 3, 640, 640] ผู้ใช้จำเป็นต้องปรับให้ได้ขนาดตามนี้
+            nhwc_data = numpy.expand_dims(input_data, axis=0)
+            nchw_data = nhwc_data.transpose(0, 3, 1, 2)  # ONNX Runtime standard
+
+            # เพิ่มข้อมูลลงไปใน List
+            unconcatenated_batch_data.append(nchw_data)
+
+        batch_data = numpy.concatenate(numpy.expand_dims(unconcatenated_batch_data, axis=0), axis=0)
+
+        return batch_data
+        
+    def get_next(self):
+        if self.enum_data is None:
+            self.enum_data = iter(
+                &#91;{self.input_name: nhwc_data} for nhwc_data in self.nhwc_data_list]
+            )
+        return next(self.enum_data, None)
+
+    def rewind(self):
+        self.enum_data = None</code></pre>
+
+<p>อธิบายโค้ดทีละส่วนตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>import numpy, onnxruntime, cv2
+from onnxruntime.quantization import CalibrationDataReader</code></pre>
+
+<p>ส่วนแรกเป็นการนำเข้าไลบรารีที่จำเป็น รวมถึงนำเข้าคลาส CalibrationDataReader ที่เป็นคลาสการโหลดข้อมูลจาก Dataset ที่จำเป็นสำหรับการทำ Calibrate โมเดลเพื่อทำ Quantization</p>
+
+<p>ต่อมาจะเป็นการสร้างคลาส และการสร้างฟังก์ชัน Constructor</p>
+
+<pre class="wp-block-code"><code>class RetinaFaceDataReader(CalibrationDataReader):
+    def __init__(self, txt_path: str, model_path: str, limit_files: int = 50):
+        self.enum_data = None
+
+        # นำเข้าโมเดล ONNX เพื่อเอาขนาดภาพที่จำเป็นต่อการ calibrate
+        session = onnxruntime.InferenceSession(model_path, None, providers=&#91;'CPUExecutionProvider'])
+        (_, _, height, width) = session.get_inputs()&#91;0].shape
+        self.height = height
+        self.width = width
+
+        # โหลดไฟล์ label ของ Dataset WIDERFACE โดยเลือกจากบรรทัดที่มีตัวอักษร '#'
+        imgs_path = &#91;]
+        f = open(txt_path,'r')
+        lines = f.readlines()
+        for line in lines:
+            line = line.rstrip()
+            if not line.startswith('#'):
+                continue
+
+            path = line&#91;2:]
+            path = txt_path.replace('label.txt','images/') + path
+            imgs_path.append(path)
+
+        if limit_files &gt; 0:
+            imgs_path = imgs_path&#91;:limit_files]
+
+        # โหลดไฟล์ภาพ และเก็บข้อมูลไว้ใน List
+        self.nhwc_data_list = self._preprocess_images(
+            imgs_path, height, width
+        )
+
+        # เก็บชื่อ input จากโมเดล ONNX
+        self.input_name = session.get_inputs()&#91;0].name
+
+        # เก็บข้อมูลขนาดอาเรย์
+        self.datasize = len(self.nhwc_data_list)</code></pre>
+
+<p>ส่วนนี้จะนำเข้าโมเดล ONNX เพื่อรับขนาดภาพ และรับชื่อ input เพื่อให้นำข้อมูลที่มีใน Dataset มา Calibrate ได้ถูกต้อง รวมถึงโหลดข้อมูล label จากไฟล์เพื่อเอาที่อยู่ของไฟล์ภาพใน Dataset สำหรับการโหลดข้อมูลเพื่อเก็บข้อมูลไปใน List</p>
+
+<p>ส่วนที่สาม จะเป็นการเตรียมข้อมูลสำหรับการเก็บข้อมูลลงใน List</p>
+
+<pre class="wp-block-code"><code>    def _preprocess_images(self, images_path: list,  height: int, width: int):
+        unconcatenated_batch_data = &#91;]
+        for image_path in images_path:
+
+            # โหลดไฟล์ภาพ และปรับขนาดภาพให้ตรงกับที่โมเดล ONNX ต้องการ
+            img = cv2.imread(image_path) 
+            img = cv2.resize(img, (width, height))
+
+            # Normalize
+            input_data = numpy.float32(img) - numpy.array(
+                &#91;104, 117, 123], dtype=numpy.float32
+            )
+
+            # ปรับขนาดอาเรย์ให้ตรงกับที่โมเดลต้องการ โดยจำเป็นต้องมีอาเรย์ที่มี Shape เหมือนกันกับที่กำหนดไว้ในขั้นตอนการส่งออกโมเดล PyTorch เป็นโมเดล ONNX เช่นถ้าใช้ขนาด &#91;1, 3, 640, 640] ผู้ใช้จำเป็นต้องปรับให้ได้ขนาดตามนี้
+            nhwc_data = numpy.expand_dims(input_data, axis=0)
+            nchw_data = nhwc_data.transpose(0, 3, 1, 2)  # ONNX Runtime standard
+
+            # เพิ่มข้อมูลลงไปใน List
+            unconcatenated_batch_data.append(nchw_data)
+
+        batch_data = numpy.concatenate(numpy.expand_dims(unconcatenated_batch_data, axis=0), axis=0)
+
+        return batch_data</code></pre>
+
+<p>ส่วนนี้จะโหลดไฟล์ภาพจากที่อยู่ที่กำหนดไว้ จากนั้นปรับขนาดภาพให้ตรงกับที่โมเดล ONNX ต้องการ</p>
+
+<p>ส่วนสุดท้ายที่จะกล่าวถึงเป็นการวนลูปเข้าไปในตัวแปร List ที่เก็บข้อมูลจาก Dataset สำหรับการ Calibrate โดยใช้ตัว Iterator โดยปรับตัว input เข้าไปในโมเดล ONNX ให้ตรงกับที่ตัวโมเดลต้องการ โดยจำเป็นต้องจัดในรูปแบบ {&lt; input name &gt;: &lt; data &gt;}</p>
+
+<pre class="wp-block-code"><code>def get_next(self):
+    if self.enum_data is None:
+         self.enum_data = iter(
+                &#91;{self.input_name: nhwc_data} for nhwc_data in self.nhwc_data_list]
+            )
+     return next(self.enum_data, None)</code></pre>
+
+<h5 class="wp-block-heading">เขียนโค้ดการทำ Quantization</h5>
+
+<p>เมื่อเขียนโค้ดส่วน DataReader สำเร็จแล้ว ต่อมาเราจำสร้างไฟล์สำหรับการรันตัวโค้ดสำหรับการทำ Quantization โดยตัวอย่างจะแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from onnxruntime.quantization import QuantFormat, QuantType, quantize_static
+import argparse, numpy as np, onnxruntime, time
+import datareader
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input_model", default='../FaceDetector.onnx', type=str, help="input model")
+    parser.add_argument("--output_model", default='./FaceDetector_quant.onnx', type=str, help="output model")
+    parser.add_argument(
+        "--calibrate_dataset", default="../data/widerface/train/label.txt", help="WIDERFACE annotation label path"
+    )
+    parser.add_argument(
+        "--quant_format",
+        default=QuantFormat.QDQ,
+        type=QuantFormat.from_string,
+        choices=list(QuantFormat),
+    )
+    parser.add_argument("--per_channel", default=False, type=bool)
+    parser.add_argument("--limit", default=50, type=int)
+    args = parser.parse_args()
+    return args
+
+def benchmark(model_path):
+    session = onnxruntime.InferenceSession(model_path, providers=&#91;'CPUExecutionProvider'])
+    input_name = session.get_inputs()&#91;0].name
+
+    total = 0.0
+    runs = 10
+    input_data = np.zeros((1, 3, 640, 640), np.float32)
+    # Warming up
+    _ = session.run(&#91;], {input_name: input_data})
+    for i in range(runs):
+        start = time.perf_counter()
+        _ = session.run(&#91;], {input_name: input_data})
+        end = (time.perf_counter() - start) * 1000
+        total += end
+        print(f"{end:.2f}ms")
+    total /= runs
+    print(f"Avg: {total:.2f}ms")
+
+if __name__ == "__main__":
+    args = get_args()
+    input_model_path = args.input_model
+    output_model_path = args.output_model
+    widerface_txt_path = args.calibrate_dataset
+
+    print(f"&#91;*] Load Data")
+    dr = datareader.RetinaFaceDataReader(
+        widerface_txt_path, input_model_path, args.limit
+    )
+
+    # Calibrate and quantize model
+    # Turn off model optimization during quantization
+    print(f"&#91;*] Calibrating")
+    quantize_static(
+        input_model_path,
+        output_model_path,
+        dr,
+        quant_format=args.quant_format,
+        per_channel=args.per_channel,
+        weight_type=QuantType.QInt8,
+        optimize_model=False,
+    )
+
+    print("Calibrated and quantized model saved.")
+
+    print("benchmarking fp32 model...")
+    benchmark(input_model_path)
+
+    print("benchmarking int8 model...")
+    benchmark(output_model_path)</code></pre>
+
+<p>ตัวโค้ดจะอธิบายตามด้านล่างนี้</p>
+
+<p>ส่วนแรกจะเป็นการนำเข้าไลบรารีที่เกี่ยวข้อง รวมถึงนำเข้าไฟล์ DataReader</p>
+
+<pre class="wp-block-code"><code>from onnxruntime.quantization import QuantFormat, QuantType, quantize_static
+import argparse, numpy as np, onnxruntime, time
+import datareader</code></pre>
+
+<p>สังเกตว่าเรานำเข้าไลบรารี onnxruntime ที่มี quantization อันนี้คือฟังก์ชันสำหรับการทำ Quantization ของโมเดล ONNX</p>
+
+<p>ส่วนต่อมาจะเป็นการเขียนโค้ดสำหรับการรับ Argument โดยให้ผู้ใช้</p>
+
+<ul class="wp-block-list">
+<li>กำหนดที่อยู่ input และ output model (&#8211;input_model, &#8211;output_model)</li>
+
+
+
+<li>กำหนดที่อยู่ไฟล์ label ของ WIDERFACE  (&#8211;calibrate_dataset)</li>
+
+
+
+<li>กำหนดจำนวนภาพที่ใช้สำหรับการทำ Calibrate (&#8211;limit)</li>
+
+
+
+<li>กำหนดชนิดการทำ Quantization (&#8211;quant_format) โดยแบ่งเป็นสองวิธี คือ 
+<ul class="wp-block-list">
+<li>QOperator เป็นการทำ Quantization ที่ตัว Operator ของโมเดล</li>
+
+
+
+<li>QDQ เป็นการใส่ QuantizeLinear/DeQuantizeLinear ก่อนและหลังการรันตัวโมเดล (ในบทความนี้จะใช้วิธีนี้)</li>
+</ul>
+</li>
+</ul>
+
+<pre class="wp-block-code"><code>def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input_model", default='../FaceDetector.onnx', type=str, help="input model")
+    parser.add_argument("--output_model", default='./FaceDetector_quant.onnx', type=str, help="output model")
+    parser.add_argument(
+        "--calibrate_dataset", default="../data/widerface/train/label.txt", help="WIDERFACE annotation label path"
+    )
+    parser.add_argument(
+        "--quant_format",
+        default=QuantFormat.QDQ,
+        type=QuantFormat.from_string,
+        choices=list(QuantFormat),
+    )
+    parser.add_argument("--per_channel", default=False, type=bool)
+    parser.add_argument("--limit", default=50, type=int)
+    args = parser.parse_args()
+    return args</code></pre>
+
+<p>ส่วนที่สามเป็นโค้ดสำหรับการทำ Quantization</p>
+
+<pre class="wp-block-code"><code>if __name__ == "__main__":
+    args = get_args()
+    input_model_path = args.input_model
+    output_model_path = args.output_model
+    widerface_txt_path = args.calibrate_dataset
+
+    dr = datareader.RetinaFaceDataReader(
+        widerface_txt_path, input_model_path, args.limit
+    )
+
+    # Calibrate and quantize model
+    print(f"&#91;*] Calibrating")
+    quantize_static(
+        input_model_path,
+        output_model_path,
+        dr,
+        quant_format=args.quant_format,
+        per_channel=args.per_channel,
+        weight_type=QuantType.QInt8,
+        optimize_model=False,
+    )
+
+    print("Calibrated and quantized model saved.")
+
+    print("benchmarking fp32 model...")
+    benchmark(input_model_path)
+
+    print("benchmarking int8 model...")
+    benchmark(output_model_path)</code></pre>
+
+<p>ส่วนนี้จะเป็นการทำ Quantization โดยแบ่งเป็นสามส่วน</p>
+
+<p>หนึ่ง เรียกใช้คลาส DataReader ที่สร้างไว้ก่อนหน้านี้โดยกำหนดที่อยู่ไฟล์ dataset, กำหนดที่อยู่โมเดลที่ต้องการทำ Quantization และกำหนดจำนวนภาพที่ต้องการทำ Calibrate</p>
+
+<pre class="wp-block-code"><code>dr = datareader.RetinaFaceDataReader(widerface_txt_path, input_model_path, args.limit)</code></pre>
+
+<p>สอง เป็นขั้นตอนการทำ Quantization โดยใช้เทคนิค Static Quantization จากการแปลงโมเดลที่เดิมใช้ Float32 มาเป็น Int8</p>
+
+<pre class="wp-block-code"><code>quantize_static(
+    input_model_path,
+    output_model_path,
+    dr,
+    quant_format=args.quant_format,
+    per_channel=args.per_channel,
+    weight_type=QuantType.QInt8,
+    optimize_model=False,
+)</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>input_model_path เป็นที่อยู่โมเดลที่ต้องการทำ Quantization</li>
+
+
+
+<li>output_model_path เป็นที่อยู่ที่เราต้องการส่งออกโมเดล</li>
+
+
+
+<li>dr เป็นตัว DataReader ที่เราสร้างขึ้น</li>
+
+
+
+<li>quant_format อันนี้มีสองแบบ ซึ่งได้อธิบายตอนที่กำหนดให้ผู้ใช้กำหนด argument</li>
+
+
+
+<li>per_channel ปรับค่า weight ให้ขึ้นกับแต่ละ channel</li>
+
+
+
+<li>weight_type อันนี้กำหนดให้ค่า weight ของตัวโมเดลอยู่ในรูป Int8</li>
+</ul>
+
+<p>สำหรับรายละเอียดเพิ่มเติม ผู้อ่านสามารถอ่านที่<a href="https://github.com/microsoft/onnxruntime/blob/main/onnxruntime/python/tools/quantization/quantize.py" target="_blank" rel="noopener" title="ไฟล์ตัวโค้ดใน GitHub">ไฟล์ตัวโค้ดใน GitHub</a> ครับ</p>
+
+<p>สาม จะเป็นการทำ Benchmark ตัวโค้ดเพื่อเปรียบเทียบระยะเวลาที่คำนวณโมเดลโดยเปรียบเทียบกับโมเดลก่อน และหลังการทำ Quantization</p>
+
+<pre class="wp-block-code"><code>print("Calibrated and quantized model saved.")
+
+print("benchmarking fp32 model...")
+benchmark(input_model_path)
+
+print("benchmarking int8 model...")
+benchmark(output_model_path)</code></pre>
+
+<p>สำหรับฟังก์ชันการทำ Benchmark อธิบายตามด้านล่างนี้ โดยในฟังก์ชันนี้เป็นการโหลดตัวโมเดล ONNX และทดสอบโดยสร้างตัวแปร Dummy ผ่านการรันทั้งหมด 10 รอบเพื่อดูระยะเวลาที่ใช้การรันตัวโมเดลโดยใช้ CPU</p>
+
+<pre class="wp-block-code"><code>def benchmark(model_path):
+    session = onnxruntime.InferenceSession(model_path, providers=&#91;'CPUExecutionProvider'])
+    input_name = session.get_inputs()&#91;0].name
+
+    total = 0.0
+    runs = 10
+    input_data = np.zeros((1, 3, 640, 640), np.float32)
+    # Warming up
+    _ = session.run(&#91;], {input_name: input_data})
+    for i in range(runs):
+        start = time.perf_counter()
+        _ = session.run(&#91;], {input_name: input_data})
+        end = (time.perf_counter() - start) * 1000
+        total += end
+        print(f"{end:.2f}ms")
+    total /= runs
+    print(f"Avg: {total:.2f}ms")</code></pre>
+
+<p>เมื่อเขียนเสร็จแล้ว เซฟไฟล์เป็น run.py (จะเซฟเป็นชื่ออื่น ๆ ก็ได้) จากนั้นเรารันตัวโค้ดได้โดยการพิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>python run.py --input_model &lt;ที่อยู่ FaceDetector.onnx&gt; --output_model &lt;ที่อยู่ไฟล์โมเดลที่ต้องการให้ส่งออก&gt; --calibrate_dataset &lt;ที่อยู่ไฟล์ label ของ Dataset WIDERFACE&gt; --limit &lt;กำหนดจำนวนภาพที่ต้องการ 50&gt;</code></pre>
+
+<p>เมื่อพิมพ์เสร็จแล้ว กด Enter แล้วรัน ตัวโค้ดจะทำ Quantization แล้วทดสอบระยะเวลาที่ใช้ต่อการรันโมเดล โค้ดจะแสดงผลตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Calibrated and quantized model saved.
+benchmarking fp32 model...
+263.57ms
+271.90ms
+286.12ms
+269.35ms
+240.35ms
+280.25ms
+275.00ms
+261.10ms
+276.35ms
+244.79ms
+Avg: 266.88ms
+benchmarking int8 model...
+79.46ms
+81.77ms
+80.25ms
+81.16ms
+92.68ms
+94.32ms
+94.91ms
+92.04ms
+91.75ms
+90.86ms
+89.67ms
+Avg: 91.09ms</code></pre>
+
+<p>เมื่อทำเสร็จแล้ว เราจะได้ตัวโมเดล ONNX ที่ผ่านการทำ Quantization เรียบร้อย ผู้อ่านสามารถนำโมเดลไปใช้งานต่อได้แล้วครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

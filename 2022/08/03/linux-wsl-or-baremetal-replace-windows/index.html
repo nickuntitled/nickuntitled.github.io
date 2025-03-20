@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>ใช้ Linux บน WSL หรือลง Linux แทนวินโดว์?</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="ใช้ Linux บน WSL หรือลง Linux แทนวินโดว์?" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2022/08/03/linux-wsl-or-baremetal-replace-windows/" />
+<meta property="og:url" content="http://localhost:4000/2022/08/03/linux-wsl-or-baremetal-replace-windows/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/linux_wsl_or_baremetal.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-08-03T01:26:54+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/linux_wsl_or_baremetal.jpg" />
+<meta property="twitter:title" content="ใช้ Linux บน WSL หรือลง Linux แทนวินโดว์?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:43:33+07:00","datePublished":"2022-08-03T01:26:54+07:00","description":"None","headline":"ใช้ Linux บน WSL หรือลง Linux แทนวินโดว์?","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/linux_wsl_or_baremetal.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/08/03/linux-wsl-or-baremetal-replace-windows/"},"url":"http://localhost:4000/2022/08/03/linux-wsl-or-baremetal-replace-windows/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>ใช้ Linux บน WSL หรือลง Linux แทนวินโดว์?</h1>
+
+  <p class="post-meta">
+    <time datetime="2022-08-03 01:26:54 +0700">2022-08-03</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/linux_wsl_or_baremetal.jpg' />
+  </figure>
+  
+
+  <p>ก่อนหน้านี้เวลาจะติดตั้งระบบปฏิบัติการ Linux อย่าง Ubuntu ที่ผู้เขียนใช้อยู่ เราจำเป็นต้องติดตั้งแยกเป็น Partition อีกห้องหนึ่ง หรือติดตั้งทับ Windows ไปเลย แต่ไม่กี่ปีมานี้ ทางไมโครซอฟต์พัฒนาความสามารถหนึ่งที่ติดมากับระบบปฏิบัติการ Windows 10 และ 11 นั่นก็คือ Windows Subsystem for Linux (WSL)</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">Windows Subsystem for Linux</h2>
+
+<p><strong><a href="https://docs.microsoft.com/en-us/windows/wsl/about" target="_blank" rel="noopener" title="Windows Subsystem for Linux (WSL)">Windows Subsystem for Linux (WSL)</a></strong> เป็นเครื่องมือที่อนุญาตให้เราติดตั้งระบบปฏิบัติการ Linux ลงบนคอมพิวเตอร์ที่ใช้ระบบปฏิบัติการ Windows ได้ โดยผู้ใช้สามารถลงระบบปฏิบัติการ <a href="https://ubuntu.com/" target="_blank" rel="noopener" title="Ubuntu">Ubuntu</a>, <a href="https://www.opensuse.org/" target="_blank" rel="noopener" title="openSUSE">openSUSE</a>, <a href="https://www.alpinelinux.org/" target="_blank" rel="noopener" title="Alpine">Alpine</a> ได้อย่างสะดวกสบาย โดยเราได้ใช้งานเครื่องมือสำหรับการพัฒนาโมเดล AI/ML ด้วย <a href="https://pytorch.org/" target="_blank" rel="noopener" title="PyTorch">PyTorch</a>, <a href="https://www.tensorflow.org/" target="_blank" rel="noopener" title="Tensorflow">Tensorflow</a> รวมถึง <a href="https://onnxruntime.ai/" target="_blank" rel="noopener" title="ONNX runtime">ONNX runtime</a> ผ่านทางนี้เราพบว่า</p>
+
+<ul class="wp-block-list"><li>เราไม่จำเป็นต้องติดตั้ง Driver ลงในระบบปฏิบัติการ Linux บน WSL อีก เนื่องมาจากเราติดตั้ง Driver บนระบบปฏิบัติการ Windows แล้ว เราก็ติดตั้ง <a href="https://developer.nvidia.com/cuda/wsl" target="_blank" rel="noopener" title="CUDA Toolkit สำหรับการใช้งาน Linux เพิ่มผ่านทางเว็บของ NVIDIA">CUDA Toolkit สำหรับการใช้งาน Linux เพิ่มผ่านทางเว็บของ NVIDIA</a> เอง (รวมถึง CUDNN ด้วย)</li><li>การติดตั้งเครื่องมือ <a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank" rel="noopener" title="Miniconda 3">Miniconda 3</a> รวมถึง PyTorch, Tensorflow และ ONNX Runtime ที่ติดตั้งได้สบายเหมือนการใช้งานผ่านคำสั่งบน Linux ตามปกติ</li><li>อย่างไรก็ตาม การใช้งานผ่านทางนี้มีข้อจำกัดด้านหน่วยความจำ (RAM) ที่มีขนาดที่จำเป็น และไม่ได้ให้ขนาดพอดีกันกับหน่วยความจำที่มีมาให้กับโน้ตบุ๊ค ตัวอย่างเช่นโน้ตบุ๊ค ROG Flow X13 ที่ให้แรมมา 16GB แต่บน WSL มีมาให้เพียง 8GB</li><li>นอกจากนี้ การใช้งานผ่านทางนี้ส่งผลให้ประสิทธิภาพการทำงานบนระบบปฏิบัติการ Windows ลดลง ยิ่งไปกว่านั้น ถ้าเราเพิ่มหน่วยความจำให้กับ Linux บน WSL แล้ว ส่งผลให้ RAM ที่ว่างสำหรับการใช้งานอื่น ๆ เพิ่มเติมบน Windows ก็ลดลงไปด้วย</li></ul>
+
+<p>เมื่อเราพบข้อจำกัดนี้แล้ว เราเลยทดลองติดตั้ง Linux อย่าง Ubuntu ลงบนคอมพิวเตอร์ ROG Flow X13 แทนที่ Windows</p>
+
+<h2 class="wp-block-heading">ติดตั้ง Linux บน Bare Metal</h2>
+
+<p>การติดตั้ง Linux บน Bare Metal (ติตตั้งบนคอมพิวเตอร์ที่ไม่มีระบบปฏิบัติการอื่น) ที่ผ่านการลบระบบปฏิบัติการ Windows ออกไปแล้ว อันนี้เป็นวิธีดั้งเดิมที่เคยทำกันมาตั้งแต่ที่มีคอมพิวเตอร์ออกมาใหม่ ๆ แล้ว จุดนี้ทำได้ไม่ยาก เพียงแค่</p>
+
+<ul class="wp-block-list"><li>เราดาวน์โหลดระบบปฏิบัติการ Ubuntu ผ่านทางเว็บที่ให้ดาวน์โหลด ซึ่งเราแนะนำให้โหลดจากทางมหาวิทยาลัยเกษตรศาสตร์จะดีกว่า</li><li>ดาวน์โหลดเสร็จแล้ว ไฟล์ที่ได้จะอยู่ในรูปแบบ ISO เรานำไฟล์นี้ทำเป็นตัวติดตั้งโดยใช้ Flash Drive (ก็คอมสมัยนี้ไม่มีไดรฟ์ DVD มาให้) จุดนี้เราสามารถใช้เครื่องมืออย่าง <a href="https://www.balena.io/etcher/" target="_blank" rel="noopener" title="balenaEtcher">balenaEtcher</a>, <a href="https://unetbootin.github.io/" target="_blank" rel="noopener" title="uNetBootin">uNetBootin</a> หรือ <a href="https://rufus.ie/en/" target="_blank" rel="noopener" title="Rufus">Rufus</a> ช่วยจัดทำส่วนนี้ได้</li><li>เมื่อทำตัวติดตั้งแล้ว เสียบ Flash Drive เข้ากับคอมพิวเตอร์ จากนั้นเปิดคอมพิวเตอร์ แล้วเลือกให้บูตเข้าตัว Flash Drive จากนั้นทำตามหน้าจอสำหรับการติดตั้ง โดยลบ Partition ที่ลงระบบปฏิบัติกาาร Windows แล้วลงตัวนี้แทน</li></ul>
+
+<p>เมื่อติดตั้งเสร็จแล้ว เราจะพบว่ายังใช้งานสำหรับงานด้าน AI/ML ทันทียังไม่ได้ เราจำเป็นต้องติดตั้งไดรฟ์เวอร์ รวมถึงเครื่องมือที่จำเป็นเสียก่อน เราทำได้โดย</p>
+
+<ul class="wp-block-list"><li>ติดตั้งไดรฟ์เวอร์ จุดนี้เราใช้เครื่องมือที่มีมาให้บน Ubuntu แล้วเลือก Hardware Drivers เพื่อติดตั้งไดรฟ์เวอร์การ์ดจอ NVIDIA หรือ AMD จากนั้นก็รอให้ติดตั้ง ส่วนอุปกรณ์ที่ชอบเจอปัญหาที่จำเป็นต้องตั้งค่าหน่อยก็เป็น Wireless LAN, การ์ดเสียง, Bluetooth และอื่น ๆ อันนี้จำเป็นต้องดาวน์โหลดผ่านทางการใช้งานคำสั่ง APT หรืออื่น ๆ ที่ขึ้นกับอุปกรณ์ที่ใช้</li><li>เมื่อติดตั้งไดรฟ์เวอร์เสร็จแล้ว เราจำเป็นต้องติดตั้ง CUDA Toolkit ผ่านทางเว็บของ NVIDIA เอง (รวมถึง CUDNN)</li><li>ติดตั้งเครื่องมือที่จำเป็น อันนี้เราติดตั้ง Miniconda 3, PyTorch, Tensorflow, ONNX runtime ได้ตามปกติ</li></ul>
+
+<p>ติดตั้งเสร็จแล้ว เราสามารถใช้งานด้าน AI/ML ได้แบบเดียวกันกับบน WSL ครับ อย่างไรก็ดี เมื่อเทียบกันแล้วมีข้อสังเกตตามด้านล่างนี้ครับ</p>
+
+<ul class="wp-block-list"><li>การติดตั้งด้วยวิธีนี้ จนไปถึงการตั้งค่าเพื่อให้พร้อมใช้งานจะยุ่งยากกว่าบน WSL ตั้งแต่เล็กน้อย ไปจนถึงยุ่งยากมาก อันนี้ขึ้นกับโน้ตบุ๊ค หรือคอมตั้งโต๊ะที่ใช้งานอยู่</li><li>อย่างไรก็ตาม เมื่อติดตั้งเสร็จแล้ว การใช้งาน Linux บน Bare Metal จะพบว่าทำงานได้เร็วมากกว่า Linux บน WSL รวมถึงจัดการไฟล์ได้ดีกว่าบน WSL เยอะ</li><li>ข้อต่อมา ประสิทธิภาพของการใช้งานด้าน AI/ML ทำได้ดีกว่าบน WSL รวมถึงหน่วยความจำที่มีขนาดเท่ากับที่คอมพิวเตอร์แจ้งมา ตัวอย่างเช่น ROG Flow X13 ที่ให้แรม 16GB เราจะพบว่าบน Linux ก็รายงานเท่า ๆ กันนี่แหละฮะ แต่ถ้ากังวลว่าหน่วยความจำจะไม่พอ เราสร้างตัว Swap เพิ่มเพื่อใช้งานได้</li><li>ข้อสุดท้าย เราไม่จำเป็นต้องไปแชร์หน่วยความจำกับระบบปฏิบัติการอื่นด้วย (แหม ก็ลงบน Bare Metal เลยนี่)</li></ul>
+
+<p>เมื่อผู้อ่านสังเกตจากการติดตั้ง Linux บน WSL และติดตั้งบน Bare Metal แล้วจะพบว่าการติดตั้ง Linux สำหรับการใช้งาน AI/ML บน WSL ทำได้ง่ายกว่า (มาก) อย่างไรก็ตามก็มีข้อจำกัดด้านประสิทธิภาพ ส่วนการติดตั้ง Linux บน Bare Metal ที่ให้ประสิทธิภาพที่ดีกว่ามาก ก็ติดตั้ง และตั้งค่าให้พร้อมใช้งานได้ยุ่งยากมากกว่า</p>
+
+<p>ข้อสังเกตข้อนี้ก็ขึ้นกับผู้อ่านครับว่าเราต้องการใช้งานโปรแกรมบนระบบปฏิบัติการ Windows เยอะไหม ของผู้เขียนเองใช้โน้ตบุ๊ค ROG Flow X13 ที่ต้องใช้งานบน Windows เยอะอยู่ โดยโปรแกรมที่ใช้งานได้แก่ Microsoft Office, Affinity Photo, Canva, LINE, Steam และ Origin รวมถึงเกม อันนี้ส่วนตัวถ้าต้องการใช้งาน Linux จริง เราจะลงบน WSL ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

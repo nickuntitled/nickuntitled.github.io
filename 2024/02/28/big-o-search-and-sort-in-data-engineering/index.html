@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#19 Big-O, Search & Sort ที่ใช้ในงาน Data</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#19 Big-O, Search &amp; Sort ที่ใช้ในงาน Data" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/02/28/big-o-search-and-sort-in-data-engineering/" />
+<meta property="og:url" content="http://localhost:4000/2024/02/28/big-o-search-and-sort-in-data-engineering/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/19_bigo_search_and_sort_in_data_or_others_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-28T17:07:08+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/19_bigo_search_and_sort_in_data_or_others_cover.jpg" />
+<meta property="twitter:title" content="#19 Big-O, Search &amp; Sort ที่ใช้ในงาน Data" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T17:42:26+07:00","datePublished":"2024-02-28T17:07:08+07:00","description":"None","headline":"#19 Big-O, Search &amp; Sort ที่ใช้ในงาน Data","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/19_bigo_search_and_sort_in_data_or_others_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/02/28/big-o-search-and-sort-in-data-engineering/"},"url":"http://localhost:4000/2024/02/28/big-o-search-and-sort-in-data-engineering/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#19 Big-O, Search & Sort ที่ใช้ในงาน Data</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-02-28 17:07:08 +0700">2024-02-28</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/19_bigo_search_and_sort_in_data_or_others_cover.jpg' />
+  </figure>
+  
+
+  <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>The English version of this blog related to the first part: <em>Big-O notation</em>, is available <a href="https://medium.com/@nickuntitled/big-o-notation-a-basic-topic-in-data-structures-algorithms-for-data-related-careers-f3600ae6f710" title="here">here</a>.</p>
+</blockquote>
+
+<p>เมื่อวันก่อนเข้าไปอ่านใน<a href="https://medium.com/towards-data-engineering/must-do-dsa-topics-for-data-engineers-ab6f50358ca1" target="_blank" rel="noopener" title="หน้าเว็บ Medium">หน้าเว็บ Medium</a> ที่กล่าวถึง Data Structures &amp; Algorithms (ย่อเป็น DSA) ที่จำเป็นสำหรับทาง Data Engineer ว่าต้องรู้เทคนิคไหนบ้าง แถมตอนเรียนใน<a href="https://school.datath.com/" target="_blank" rel="noopener" title="คอร์สจากเว็บ DataTH">คอร์สจากเว็บ DataTH</a> (รวมถึงที่อื่น) ก็มีกล่าวถึงไว้นิดหน่อยว่าจำเป็นต้องรู้เรื่องนี้ต่อยอดจากที่เรียนในคอร์ส</p>
+
+<p>เราเลยสังเกตตอนที่เขียนโค้ดแล้วพบว่าโค้ดมันก็รันได้ แต่ประสิทธิภาพมันก็ไม่ได้ดีอะไรขนาดนั้น การมีความรู้ทางด้าน DSA ก็นำไปใช้ช่วยเขียนโค้ดให้ทำงานได้มีประสิทธิภาพมากกว่าเดิม โดยในบทความนี้ก็สรุป และแชร์เรื่องนี้ครับ</p>
+
+<!--more-->
+
+<p>ก่อนอื่น เรามารู้กันก่อนว่าทำไมต้องรู้เรื่องนี้</p>
+
+<h2 class="wp-block-heading" id="table-of-contents">สารบัญ</h2>
+
+<ul class="wp-block-list">
+<li><a href="#rationale" data-type="internal" data-id="#rationale">เหตุผล</a></li>
+
+
+
+<li><a href="#asymptotic-analysis" data-type="internal" data-id="#asymptotic-analysis">Asymptotic Analysis</a></li>
+
+
+
+<li><a href="#big-o" data-type="internal" data-id="#big-o">Big-O Notation</a></li>
+
+
+
+<li><a href="#searching" data-type="internal" data-id="#searching">Searching Algorithm</a>
+<ul class="wp-block-list">
+<li><a href="#linear-search">Linear Search</a></li>
+
+
+
+<li><a href="#binary-search">Binary Search</a></li>
+
+
+
+<li><a href="#fibonacci-search">Fibonacci Search</a></li>
+</ul>
+</li>
+
+
+
+<li><a href="#sorting">Sorting Algorithm</a>
+<ul class="wp-block-list">
+<li><a href="#selection-sort">Selection Sort</a></li>
+
+
+
+<li><a href="#bubble-sort">Bubble Sort</a></li>
+
+
+
+<li><a href="#insertion-sort">Insertion Sort</a></li>
+
+
+
+<li><a href="#heap-sort">Heap Sort</a></li>
+
+
+
+<li><a href="#merge-sort">Merge Sort</a></li>
+
+
+
+<li><a href="#quick-sort">Quick Sort</a></li>
+</ul>
+</li>
+
+
+
+<li><a href="#summary">สรุป</a></li>
+
+
+
+<li><a href="#reference">แหล่งข้อมูลอ้างอิง</a></li>
+</ul>
+
+<h2 class="wp-block-heading" id="rationale">เหตุผล</h2>
+
+<p>เวลาที่เราเจอโจทย์ปัญหาอะไรก็ตาม สิ่งที่เราจะทำคือหาวิธีการแก้ไขปัญหา โดยจำเป็นต้องเลือกวิธีการแก้ปัญหาเป็นขั้นตอน 1 2 3 4 เพื่อให้เราแก้ไขปัญหาได้อย่างมีประสิทธิภาพมากที่สุด โดยโจทย์บางข้อเราสามารถใช้วิธีการแก้ไขปัญหาได้มากกว่า 1 วิธี</p>
+
+<p>สิ่งนี้ เราเรียกการแก้ไขปัญหาตามข้างบนนั้นว่า <strong>Algorithms </strong>(หรือขั้นตอนวิธี) [1]</p>
+
+<p>ต่อมา นอกจากเราเลือก Algorithm ที่เหมาะสมแล้ว เราจำเป็นต้องเลือกวิธีการเก็บ จัดการและเรียกใช้ข้อมูลคอมพิวเตอร์ที่เราเก็บไว้ เพื่อให้ตัว โค้ดใช้งานข้อมูลเหล่านั้นได้อย่างมีประสิทธิภาพมากที่สุด สิ่งนี้เราเรียกว่า <strong>Data Structures</strong> [1 &#8211; 3]</p>
+
+<p>คำสองคำนี้ ได้แก่ Data Structures กับ Algorithms เป็นสิ่งที่ออกแบบมามีเป้าหมายหลักอันเดียวกันคือ แก้ปัญหาที่เราเจออยู่ ว่าแต่มันจะไปเกี่ยวกับงานทางด้าน Data Engineer (หรืองาน Data อื่น ๆ) อย่างไร?</p>
+
+<p>ความรู้ด้านนี้มันจะเอาไปใช้กับงาน Data [4] ได้โดย</p>
+
+<ul class="wp-block-list">
+<li>เขียนโค้ดเพื่อจัดการ และประมวลผล Data ที่มีขนาดใหญ่ และซับซ้อนได้อย่างมีประสิทธิภาพ</li>
+
+
+
+<li>ปรับแต่ง Data Pipeline ให้ทำงานได้เร็วขึ้น และมีประสิทธิภาพขึ้นมากกว่าเดิม</li>
+
+
+
+<li>นำไปฝึกวิธีการแก้ไขปัญหา</li>
+
+
+
+<li>รวมถึงนำไปใช้งานกับงานทางด้านการประมวลผลแบบ Distributed Computing</li>
+</ul>
+
+<p>หลังจากที่ทราบเหตุผลแล้ว เราแชร์เรื่องต่อไปที่จำเป็นคือ Asymptotic Analysis</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="asymptotic-analysis">Asymptotic Analysis</h2>
+
+<p>ประสิทธิภาพของการทำงานของ Algorithm ที่เราพัฒนาขึ้นมาแล้วนั้น เราสามารถวิเคราะห์ และอธิบายได้โดยการใช้ <strong>Asymptotic Notations</strong> [5, 6] ที่แต่ละ Algorithm ที่เรานำมาใช้เพื่อแก้ไขปัญหานั้นให้ประสิทธิภาพที่ไม่เท่านั้น โดยขึ้นอยู่กับลักษณะของข้อมูลที่เรานำมาใช้</p>
+
+<p>Asymptotic Notations แบ่งออกได้เป็น 3 แบบ ตามการวัดประสิทธิภาพ ได้แก่ Big-O Notation (O) กับ Omega-Notation (Ω) และ Theta-Notation (Θ)</p>
+
+<p><strong>Big-O Notation (O)</strong> เป็นการระบุทรัพยากรที่ใช้ของ Algorithm นั้น ๆ เพื่อเทียบความสัมพันธ์ระหว่างระยะเวลา กับขนาดของ Input โดยคิดในกรณีที่ใช้ระยะเวลาในการทำงานมากที่สุด (Upper Bound) หรือใช้วัดในกรณีที่ประสิทธิภาพแย่ที่สุด (Worst Case)</p>
+
+<p>ตัวอย่างเช่น Algorithm A มีประสิทธิภาพการทำงานเป็น O(N^2) ถ้าเรามีข้อมูลทั้งหมด 10 ข้อมูล แล้ว Algorithm นั้นจะใช้ระยะเวลาการทำงานที่ช้าที่สุดเป็น 100 หน่วยเวลา</p>
+
+<p><strong>Omega Notation (Ω)</strong> ที่ใช้สำหรับการระบุระยะเวลาที่ใช้กับ Algorithm นั้นน้อยที่สุด (Lower Bound) เมื่อทำงานกับ Input ขนาดหนึ่ง โดยวัดเมื่อ Algorithm นั้น ๆ ทำงานได้ดีที่สุด (Best Case)</p>
+
+<p>ตัวอย่างเช่น Algorithm A มีประสิทธิภาพการทำงาน Ω(N) กรณีที่มีข้อมูลทั้งหมด 10 ข้อมูล ตัว Algorithm นี้จะใช้ระยะเวลาที่เร็วสุด 10 หน่วยเวลา โดยเราสามารถเขียนได้ว่า f(N) є&nbsp;Ω(A(N)) เพื่อบ่งบอกว่าฟังก์ชันของ N เป็นฟังก์ชันที่ไม่โต กับไม่ช้ากว่าฟังก์ชัน A(N)</p>
+
+<p><strong>Theta Notation (Θ)</strong> สำหรับการวัดประสิทธิภาพที่อยู่ระหว่าง Best Case กับ Worst Case (Average Case หรือเรียกอีกอย่างว่า Average Time Complexity)</p>
+
+<p>การใช้ Theta Notation นี้ เราใช้ได้ในกรณีที่ Upper Bound และ Lower Bound อธิบาย Algorithm เดียวกัน กล่าวคือเราสามารถแสดงความสัมพันธ์ของเวลาการทำงานได้ว่า</p>
+
+<p class="has-text-align-center">&#8220;f(N) = Θ(A(N)) ก็ต่อเมื่อ f(N) = O(A(N)) และ f(N) = Ω(A(N))&#8221;</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#table-of-contents">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h2 class="wp-block-heading" id="big-o">Big-O Notation</h2>
+
+<p>ในบทความนี้ เราจะใช้ <strong>Big-O Notation</strong> [6] สำหรับการอธิบาย Algorithm แต่ละ Algorithm เป็นหลัก โดยเราสามารถอธิบายลักษณะการทำงานของ Algorithm แต่ละ Algorithm ตามระยะเวลาที่ใช้ได้เป็น</p>
+
+<ul class="wp-block-list">
+<li><strong>Constant (O(c)) </strong>สำหรับ Algorithm ที่ใช้ระยะเวลาเป็นค่าคงที่</li>
+
+
+
+<li><strong>Logarithmic (O(log N)) </strong>สำหรับเทคนิคที่ใช้เวลาเป็นฟังก์ชันลอการิทึม</li>
+
+
+
+<li><strong>Linear (O(N)) </strong>สำหรับเทคนิคที่ใช้เวลาเป็นฟังก์ชันเชิงเส้น</li>
+
+
+
+<li><strong>Polynomial </strong>สำหรับเทคนิคที่ใช้ระยะเวลาเป็นฟังก์ชันยกกำลัง 2 (Quadratic, O(N^2)), 3 (Cubic, O(N^3)) หรืออื่น ๆ</li>
+
+
+
+<li><strong>Exponential </strong>(O(2^N))</li>
+
+
+
+<li><strong>Factorial </strong>(O(N!))</li>
+</ul>
+
+<p>โดยเมื่อเรียงลำดับตามระยะเวลาที่ใช้แล้ว เราเรียงลำดับได้ตามด้านล่างนี้</p>
+
+<p class="has-text-align-center">Constant &lt; Logarithmic &lt; Linear &lt; Quadratic &lt; Cubic &lt; Exponential &lt; Factorial</p>
+
+<p>เราสามารถสรุปได้เป็นกราฟตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22ba89f&quot;}" data-wp-interactive="core/image" class="aligncenter size-full wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-7.png" alt="" class="wp-image-5244" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-7-300x209.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-7-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-7.png 800w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">กราฟแสดงการใช้ระยะเวลาที่เพิ่มขึ้นของ Big O โดยนำมาจาก <a href="http://bigocheatsheet.com/" target="_blank" rel="noopener" title="Big O Cheatsheet">Big O Cheatsheet</a></figcaption></figure></div>
+
+<p>อย่างไรก็ดี กรณีที่ Big-O เป็น <strong>Exponential </strong>แบบ O(N^N) อันนี้จะใช้ระยะเวลาเพิ่มขึ้นเร็วมากกว่าฟังก์ชัน <strong>Factorial </strong>ในกรณีที่มีข้อมูล Input เพิ่มขึ้น</p>
+
+<p>คุณสมบัติของ Big-O Notation [7] ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Constant Multiplication: </strong>เมื่อ <strong>f(n) = c * g(n)</strong> แล้ว&nbsp;<strong>O(f(n)) = O(g(n))</strong>&nbsp;(ในกรณีที่&nbsp;<strong>c</strong>&nbsp;ไม่เท่ากับ 0).</li>
+
+
+
+<li><strong>Polynomial Function: </strong>เมื่อ <strong>f(n) = a₀ + a₁n + a₂n² + … + aₘnᵐ</strong> แล้ว <strong>O(f(n)) = O(nᵐ)</strong>.</li>
+
+
+
+<li><strong>Summation Function: </strong>เมื่อ <strong>f(n) = f₁(n) + f₂(n) + … + fₘ(n)</strong>&nbsp;และ <strong>fᵢ(n) ≤ fᵢ₊₁(n)</strong>&nbsp;สำหรับทุก ๆ ค่าของ&nbsp;<strong>i</strong> แล้ว&nbsp;<strong>O(f(n)) = O(max(f₁(n), f₂(n), …, fₘ(n)))</strong>.</li>
+
+
+
+<li><strong>Logarithmic Function:</strong> เมื่อ <strong>f(n) = logₐ(n)</strong>&nbsp;และ <strong>g(n) = log_b(n)</strong> แล้ว <strong>O(f(n)) = O(g(n))</strong>&nbsp;(เมื่อฟังก์ชันทุกฟังก์ชันเพิ่มขึ้นพอ ๆ กัน).</li>
+</ul>
+
+<p>การคำนวณหา Big-O Notation [8] เราทำได้โดย</p>
+
+<ol class="wp-block-list">
+<li>กรณีที่มีลูปซ้อนลูป (Nested Loop) ให้นำมาคูณกัน</li>
+
+
+
+<li>กรณีที่อยู่ลูประดับเดียวกันให้นำมาบวกกัน</li>
+
+
+
+<li>เมื่อรวมเสร็จแล้ว เราจะพบว่ามี Big-O Notation หลายอัน ให้ดูตัวที่แย่ที่สุด (Worst Case) เช่น O(n^2) + O(n) + O(n log n) เราจะได้เป็น O(n^2) ตาม Summation Function</li>
+
+
+
+<li>ไม่ต้องสนใจค่าที่เป็น Constant ได้แก่ If, switch หรือ Operator อื่นใด</li>
+
+
+
+<li>การเรียกใช้ฟังก์ชันนั้น ๆ ให้คำนวณ Big O ข้างในฟังก์ชันเพิ่มอีกด้วย</li>
+</ol>
+
+<p>การนำไปใช้งาน Big-O Notation นั้น นอกจากเราเอาไปวิเคราะห์ระยะเวลาที่ใช้ของ Algorithm นั้น ๆ ได้แล้ว เรายังเอามาวิเคราะห์ดูการใช้พื้นที่หน่วยความจำของแต่ละ Algorithm อีกด้วย (Space Complexity) [9] ตัวอย่างเช่นเทคนิค Bucket Sort (ที่เราไม่ได้กล่าวถึงในบทความนี้) ใช้ Space Complexity เท่ากับ O(n) แต่เราสามารถปรับการทำงานให้เหลือ O(1) ได้</p>
+
+<p>ต่อมา เรามาแชร์เรื่อง Algorithm Searching กับ Sorting ครับ ส่วน Data Structure กับ Algorithm อื่น เราไม่ได้กล่าวถึงในนี้</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="searching">Searching Algorithm</h2>
+
+<p><strong>Searching Algorithm</strong> เป็น Algorithm ที่ใช้ในการข้อมูลใน Array ตามที่เราต้องการ </p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>Array </strong>คือ Data Structure รูปแบบหนึ่งที่เก็บข้อมูลที่ชนิดตัวแปรเหมือน ๆ กันอยู่ในตำแหน่งของหน่วยความจำที่อยู่ติดกัน (Contiguous Memory Locations)</p>
+<cite><a href="https://www.geeksforgeeks.org/introduction-to-arrays-data-structure-and-algorithm-tutorials/">Introduction to Arrays &#8211; Data Structure and Algorithm Tutorials &#8211; GeeksforGeeks</a></cite></blockquote>
+
+<p>ตัวอย่างของ Searching Algorithm ในบทความนี้ ได้แก่ Linear Search, Binary Search และ Fibonacci Search โดยเทคนิค Search 2 อันหลังใช้ในกรณีที่ข้อมูลได้รับการเรียงลำดับ (Sorted) แล้ว</p>
+
+<h3 class="wp-block-heading" id="linear-search">Linear Search</h3>
+
+<p><strong>Linear Search</strong> [10] เป็นเทคนิคการหาข้อมูลใน Array โดยเรียงตามลำดับตั้งแต่ Array index ที่ 0, 1, 2, 3, &#8230; ไปจนถึง Array ตามที่เราต้องการหาข้อมูล</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/Search-Algorithm-1024x576.jpg" alt="" class="wp-image-5257" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/Search-Algorithm-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/Search-Algorithm-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/Search-Algorithm-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/Search-Algorithm-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/Search-Algorithm-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/Search-Algorithm.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def linear_search(arr, find):
+    for idx, arr_each in enumerate(arr):
+        if arr_each == find:
+            return idx
+
+    return -1</code></pre>
+
+<p>โดย -1 ใช้ในกรณีที่หาข้อมูลนั้น ๆ ไม่เจอ</p>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) เท่ากับ <strong>O(n)</strong> และมี Space <strong>Complexity </strong>เท่ากับ <strong>O(1)</strong></p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="binary-search">Binary Search</h3>
+
+<p><strong>Binary Search</strong> [11] เป็นเทคนิคการหาข้อมูลใน Array ที่ผ่านการเรียงข้อมูลมาเรียบร้อยแล้ว (Sorted) โดยการแบ่งข้อมูลการค้นหาทีละครึ่งจนกว่าจะถึงข้อมูลที่ต้องการ ทำให้เทคนิคนี้มีประสิทธิภาพดีมากกว่าเทคนิค Linear Search ก่อนหน้า</p>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน*</h4>
+
+<p>เราสามารถสรุปการทำงานได้ตามตัวอย่างด้านล่างนี้</p>
+
+<p>จากโจทย์ เราต้องการหาข้อมูลที่เป็นเลข 4</p>
+
+<p><strong>ขั้นตอนแรก</strong> เราหาข้อมูลที่อยู่ตรงกลางของ Array โดยการหารแล้วปัดเศษลง (Floor Division)</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>เราสามารถทำแบบนี้ใน Python ได้โดยการใช้เครื่องหมาย // โดยผลลัพธ์จะได้เป็นตัวแปรประเภท Integer (หรือจำนวนเต็ม)</p>
+</blockquote>
+
+<p>ผลลัพธ์ที่ได้จากการหารนี้จะได้ค่าเท่ากับ 4 ตำแหน่งนี้ได้ Array จะมีค่าเท่ากับ 5 โดย 5 มีค่ามากกว่า 4 ดังนั้นแล้วเราจะแบ่งข้อมูลไปทางซ้าย (ไม่รวม 5)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_first.jpg" alt="" class="wp-image-5621" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_first-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_first-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_first-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_first-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_first-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_first.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ต่อมา เราเลือกค่าที่อยู่ตรงกลางของ Array อีกเช่นเคย ผลลัพธ์ที่ได้จากการหารแบบนี้จะมีค่าเท่ากับ 1 ค่าที่ได้ในตำแหน่งที่ 1 ของ Array จะมีค่าเท่ากับ 2 ซึ่งน้อยกว่าค่าที่เราต้องการหา ให้เราแบ่งข้อมูลไปทางขวา</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_2.jpg" alt="" class="wp-image-5620" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_2-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_2-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_2-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_2-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_2-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_2.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ต่อมา เราทำแบบเดียวกันกับในขั้นตอนที่ 1 ผลลัพธ์ที่ได้จะมีค่าเท่ากับ 2 ตำแหน่งที่ 2 ใน Array นี้จะมีค่าเท่ากับ 3 ซึ่งน้อยกว่าค่าที่เราต้องการหา ให้เราแบ่งครึ่งไปทางขวาอีกรอบหนึ่ง</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_3-1.jpg" alt="" class="wp-image-5625" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_3-1-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_3-1-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_3-1-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_3-1-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_3-1-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_3-1.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ต่อมา เราทำแบบเดียวกันกับในขั้นตอนที่ 1 ผลลัพธ์ที่ได้มีค่าเท่ากับ 3 ค่าที่ได้ในตำแหน่งนี้ของ Array มีค่าเท่ากับ 4 ก็เท่ากับเลขที่เราต้องการหาใน Array</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_result-1.jpg" alt="" class="wp-image-5627" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_result-1-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_result-1-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_result-1-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_result-1-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_result-1-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/binary_search_result-1.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>การเขียนโค้ด เราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def binary_search(sorted_arr, find):
+    low = 0
+    high = len(sorted_arr)
+    while high - low &gt; 0:
+        mid_arr = (low + high) // 2
+        if find == sorted_arr&#91;mid_arr]:
+            return mid_arr
+
+        if find &gt; sorted_arr&#91;mid_arr]:
+            low = mid_arr + 1
+
+        if find &lt; sorted_arr&#91;mid_arr]:
+            high = mid_arr - 1
+
+    mid_arr = (low + high) // 2
+    if find == sorted_arr&#91;mid_arr]:
+        return mid_arr
+
+    return -1</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) ในกรณีที่เป็น</p>
+
+<ul class="wp-block-list">
+<li>Best Case เท่ากับ<strong> O(1)</strong></li>
+
+
+
+<li>Average และ Worst Case เท่ากับ <strong>O(log n)</strong></li>
+</ul>
+
+<p>และมี <strong>Space Complexity </strong>เท่ากับ <strong>O(1)</strong> ยกเว้นในกรณีที่รันผ่านการใช้ Recursion ที่จะใช้ <strong>Space Complexity</strong> เท่ากับ <strong>O(log n)</strong> [12]</p>
+
+<p>ข้อดีของ <strong>Binary Search</strong> คือเป็นเทคนิคการค้นหาข้อมูลที่มีประสิทธิภาพโดยค้นหาข้อมูลได้เร็วมากกว่าแบบ Linear Search ทำให้ Algorithm นี้เหมาะสมสำหรับข้อมูลที่มีขนาดใหญ่</p>
+
+<p>อย่างไรก็ดี เทคนิคนี้มี<strong>ข้อเสีย</strong> ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ข้อมูลที่เรานำมาใช้ต้องเรียงข้อมูลให้เรียบร้อยเสียก่อน</li>
+
+
+
+<li>ข้อมูลที่นำมาใช้งานนั้นจำเป็นต้องเก็บไว้ในหน่วยความจำ</li>
+
+
+
+<li>ข้อมูลที่นำมาเปรียบเทียบนั้นจำเป็นต้องเปรียบเทียบข้อมูลมากน้อยได้ (ตัวอย่างเช่น ข้อมูลที่เป็นตัวเลข)</li>
+</ul>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="fibonacci-search">Fibonacci Search</h3>
+
+<p><strong>Fibonacci Search</strong> [13] เป็นเทคนิคการค้นหาที่ใช้จำนวน Fibonacci ในการหาข้อมูลที่มีอยู่ใน Array ที่เรียงลำดับแล้ว</p>
+
+<p>ลักษณะการทำงานนี้จะคล้ายกันกับ Binary Search โดย</p>
+
+<ul class="wp-block-list">
+<li>เป็นเทคนิคที่ต้องแบ่งข้อมูลเสียก่อน (Divide and Conquer)</li>
+
+
+
+<li>และมี Time Complexity เท่ากับ O(log n)</li>
+</ul>
+
+<p>อย่างไรก็ดี เทคนิคนี้มีข้อแตกต่าง ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>Fibonacci Search แบ่งข้อมูลในอัตราส่วนที่ไม่เท่ากัน ผิดกับ Binary Search ที่แบ่งข้อมูลเป็นครึ่งต่อครึ่ง</li>
+
+
+
+<li>Fibonacci Search ใช้ Operator เป็น + กับ &#8211; แต่ Binary Search ใช้การหารซึ่งอาจจะส่งผลกระทบต่อเครื่องที่มี CPU ที่ไม่แรงพอ</li>
+
+
+
+<li>และเทคนิคนี้เหมาะกับข้อมูลที่มีขนาดใหญ่ที่ไม่สามารถใส่ใน CPU cache หรือ RAM ได้อย่างเพียงพอ</li>
+</ul>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน</h4>
+
+<p>เราสามารถสรุปการทำงานได้ตามตัวอย่างด้านล่างนี้</p>
+
+<p><strong>ขั้นตอนแรก</strong> เรากำหนดให้ F0 = 0, F1 = 1 และ F2 = 1 แล้วเพิ่มจำนวน Fibonacci ได้เรื่อย ๆ โดยให้ค่า F0 = F1, F1 = F2 และ F2 = F0 + F1 จนกว่าค่า F2 จะมีค่ามากกว่าขนาดของ Array (ในที่นี้ใช้ size)</p>
+
+<p>โดยในตัวอย่างจะเป็น Array ที่ข้อมูลทั้งหมด 9 ข้อมูล ดังนั้น ผลลัพธ์ที่ได้จากการคำนวณ Fibonacci จะได้ F0 = 5 F1 = 8 และ F2 = 13</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_1-1024x576.jpg" alt="" class="wp-image-5269" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_1-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_1-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_1-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_1-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_1-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_1.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อจบขั้นตอนแรกแล้ว เรากำหนดให้ค่าที่เป็นจุดเริ่มต้น (start) = -1</p>
+
+<p>จากนั้นเราใช้สูตรคำนวณเพื่อหาตำแหน่งและเช็คว่าตำแหน่งนั้นเป็นค่าที่เราต้องการหรือไม่ โดย</p>
+
+<p class="has-text-align-center">ตำแหน่งที่ต้องการหา (Index ที่ต้องการหา) = <strong>min(start + F0, size &#8211; 1)</strong></p>
+
+<p>ในตัวอย่าง เราแทนค่าลงไป ได้เป็น</p>
+
+<p>= min(-1 + 5, 9 &#8211; 1)</p>
+
+<p>= min(4, 8)</p>
+
+<p><strong>= 4</strong></p>
+
+<p>จากคำตอบ เราจะได้ตำแหน่ง index ใน Array นั้นที่เท่ากับ 4 โดยค่าที่ได้ในตำแหน่งนั้นมีค่าเท่ากับ 5 ซึ่งมีค่ามากกว่าค่าที่ต้องการ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_2-1024x576.jpg" alt="" class="wp-image-5270" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_2-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_2-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_2-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_2-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_2-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_2.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อเราทราบว่าค่าที่เจอนั้นมี<strong>ค่ามากกว่าค่าที่ต้องการ</strong> กรณีนี้ เราจะกำหนดให้</p>
+
+<ul class="wp-block-list">
+<li>F2 = F0</li>
+
+
+
+<li>F1 = F1 &#8211; F0</li>
+
+
+
+<li>และ F0 = F2 &#8211; F1</li>
+</ul>
+
+<p>โดยในตัวอย่างแทนค่าได้เป็น</p>
+
+<ul class="wp-block-list">
+<li>F2 = 5</li>
+
+
+
+<li>F1 = 8 &#8211; 5 = 3</li>
+
+
+
+<li>และ F0 = 5 &#8211; 3 = 2</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_3-1024x576.jpg" alt="" class="wp-image-5271" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_3-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_3-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_3-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_3-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_3-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_3.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>จากนั้นให้นำไปแทนค่าในฟังก์ชัน min(start + F0, size &#8211; 1) เพื่อหา Index ที่หาอีกเช่นเคย โดยจะได้ค่าเท่ากับ 1 ซึ่งมีค่าในตำแหน่งนั้นใน Array เท่ากับ 2 ซึ่งมี<strong>ค่าน้อยกว่าค่าที่เราต้องการ</strong>หา</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_4-1024x576.jpg" alt="" class="wp-image-5272" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_4-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_4-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_4-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_4-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_4-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_4.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>หลังจากที่ทราบว่าค่าที่เราพบมี<strong>ค่าน้อยกว่าค่าที่เราต้องการ</strong>หา ให้เรากำหนดค่า</p>
+
+<ul class="wp-block-list">
+<li>F2 = F1</li>
+
+
+
+<li>F1 = F0</li>
+
+
+
+<li>F0 = F2 &#8211; F1</li>
+
+
+
+<li>และค่าเริ่มต้น (start) เท่ากับ 1</li>
+</ul>
+
+<p>เราแทนค่าจะได้เป็น</p>
+
+<ul class="wp-block-list">
+<li>F2 = 3</li>
+
+
+
+<li>F1 = 2</li>
+
+
+
+<li>และ F0 = 3 &#8211; 2 = 1</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_5-1024x576.jpg" alt="" class="wp-image-5273" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_5-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_5-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_5-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_5-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_5-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_5.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เรานำผลที่ได้จากการคำนวณในขั้นตอนก่อนหน้ามาแทนที่ในฟังก์ชัน min เพื่อหาตำแหน่งอีกเช่นเคย โดยเราจะได้ index เท่ากับ 2 ที่มีค่าเท่ากับ 3 </p>
+
+<p>ค่าที่เราค้นหาได้ค่านั้น มีค่า<strong>น้อยกว่า</strong>ค่าที่เราต้องการ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_6-1024x576.jpg" alt="" class="wp-image-5274" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_6-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_6-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_6-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_6-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_6-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_6.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>หลังจากที่ทราบว่าค่าที่พบน้อยกว่าค่าที่เราต้องการ ให้เราปรับค่า F0, F1 และ F2 โดยแทนค่าแล้วจะได้ F2 = 2 F1 = 1 F0 = 2 &#8211; 1 = 1 ร่วมกับกำหนดค่า start เท่ากับ 2</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_7-1024x576.jpg" alt="" class="wp-image-5275" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_7-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_7-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_7-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_7-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_7-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_7.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เรานำค่าที่ได้ F0, F1, F2 และ start มาแทนค่าในฟังก์ชัน min แล้วเราจะได้ค่า Index เท่ากับ 3 ซึ่งมีค่าเท่ากับ 4 ตามที่เราต้องการ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_8-1024x576.jpg" alt="" class="wp-image-5276" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_8-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_8-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_8-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_8-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_8-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/fibo_search_8.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def fibonacci_search(arr, find):
+    f0, f1, f2 = 0, 1, 1
+    start = -1
+    size = len(arr) - 1
+    while f2 &lt; size:
+        f0 = f1
+        f1 = f2
+        f2 = f0 + f1
+
+    while f2 &gt; 1:
+        pos = min(start + f0, size)
+
+        if find &gt; arr&#91;pos]:
+            f2 = f1
+            f1 = f0
+            f0 = f2 - f1
+            start = pos
+        elif find &lt; arr&#91;pos]:
+            f2 = f0
+            f1 = f1 - f0
+            f0 = f2 - f1
+        else:
+            return pos
+
+    return -1</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) เท่ากับ <strong>O(log n)</strong> และมี <strong>Space Complexity </strong>เท่ากับ <strong>O(1)</strong></p>
+
+<p>เทคนิคนี้เป็นเทคนิคที่ดี อย่างไรก็ตาม Fibonacci Search มีข้อจำกัด ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ต้องใช้กับ Array ที่ Sorted แล้วเท่านั้น</li>
+
+
+
+<li>การคำนวณค่า Fibonacci มีค่าที่ซับซ้อน ส่งผลให้ทำงานได้ช้ากรณีที่ข้อมูลที่มีขนาดใหญ่มาก</li>
+
+
+
+<li>ค่าที่คำนวณได้จาก Fibonacci จะมีค่าเพิ่มขึ้นแบบ Exponential ส่งผลให้ค่าเกินกว่าข้อจำกัดของตัวแปร Integer ส่งผลให้เกิดข้อผิดพลาดได้</li>
+</ul>
+
+<p>จากข้อจำกัดตามข้างบนนี้ ส่งผลให้ Fibonacci ไม่ค่อยเหมาะสมต่อการนำไปใช้งานจริงเท่าไรนัก</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="sorting">Sorting Algorithm</h2>
+
+<p><strong>Sorting Algorithm</strong> เป็น Algorithm ที่ใช้ในการเรียงลำดับของข้อมูลใน Array ที่เป็นตัวเลข กับตัวอักษรให้เป็นไปตามลำดับที่กำหนด โดยจำเป็นต้องเรียงลำดับได้อย่างมีประสิทธิภาพ [14]</p>
+
+<p>ตัวอย่างของเทคนิค Sorting Algorithm ได้แก่ Selection Sort, Bubble Sort, Insertion Sort, Heap Sort, Merge Sort และ Quick Sort</p>
+
+<h3 class="wp-block-heading" id="selection-sort">Selection Sort</h3>
+
+<p><strong>Selection Sort</strong> [14, 15] เป็น Algorithm สำหรับการเรียงลำดับข้อมูลอย่างง่าย และมีประสิทธิภาพโดยการเลือกตัวเลขที่มีค่าน้อยที่สุด (หรือมากที่สุด) ใน Array นั้น แล้วย้ายข้อมูลไปยังด้านซ้าย หรือด้านขวาสุดของ Array ตามลำดับ</p>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน</h4>
+
+<p>เราแสดงได้ตามภาพเป็นขั้นตอนตามด้านล่างนี้</p>
+
+<p><strong>ขั้นแรก</strong> ให้เลือกค่าที่น้อยที่สุดใน Array ตั้งแต่ Index ที่ 0 ไปจนถึงขอบด้านขวาสุดของ Array เราจะได้ค่าที่น้อยที่สุดคือ 11 ให้เรานำค่านี้สลับกับตัวเลขใน Index 0 (64)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_2-1024x576.jpg" alt="" class="wp-image-5286" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_2-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_2-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_2-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_2-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_2-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_2.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ต่อมา เลือกค่าที่น้อยที่สุดใน Array ตั้งแต่ Index ที่ 1 เป็นต้นไป เราจะได้ค่าที่น้อยที่สุดคือ 12 ให้เรานำค่าสลับกับตัวเลขใน Index ที่ 1 (25)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_3-1024x576.jpg" alt="" class="wp-image-5287" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_3-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_3-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_3-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_3-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_3-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_3.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ขั้นตอนที่สาม ให้เลือกค่าที่น้อยที่สุดใน Array ตั้งแต่ Index ที่ 2 ไปจนถึงด้านขวาสุด เราจะได้ค่าที่น้อยที่สุดคือ 22 ให้เราสลับกับตัวเลขใน Index ที่ 2 (25)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_4-1024x576.jpg" alt="" class="wp-image-5288" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_4-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_4-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_4-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_4-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_4-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_4.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>หลังจากนั้น เราจะไม่พบค่าที่น้อยที่สุด</p>
+
+<p>เมื่อไม่พบค่าที่น้อยที่สุด เราก็ไม่ต้องสลับค่ากับตัวเลขที่เหลือใน Array</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_5-1024x576.jpg" alt="" class="wp-image-5289" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_5-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_5-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_5-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_5-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_5-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_5.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ดังนั้นแล้ว เราจะได้ Array ที่เรียงข้อมูลเสร็จเรียบร้อยตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_6-1024x576.jpg" alt="" class="wp-image-5290" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_6-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_6-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_6-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_6-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_6-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/selection_sort_6.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def selection_sort(arr):
+    for i in range(0, len(arr) - 1):
+        minimum = -1
+        for j in range(i, len(arr)):
+            if j == i:
+                minimum = j
+
+            if arr&#91;j] &lt; arr&#91;minimum]:
+                minimum = j
+
+        if arr&#91;minimum] &lt; arr&#91;i]:
+            arr&#91;minimum], arr&#91;i] = arr&#91;i], arr&#91;minimum]
+
+    return arr</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) เท่ากับ <strong>O(N^2)</strong> และมี <strong>Space Complexity</strong> เท่ากับ <strong>O(1)</strong> </p>
+
+<p>จากการวิเคราะห์ Time Complexity แล้ว Algorithm นี้ที่เป็น Algorithm ที่ใช้เวลามาก ไม่เหมาะกับข้อมูลที่มีขนาดใหญ่ แต่ Algorithm นี้่มีข้อดี ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>เป็น Algorithm ที่เข้าใจได้ง่าย</li>
+
+
+
+<li>และทำงานได้ดีกับข้อมูลที่มีขนาดเล็ก</li>
+</ul>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="bubble-sort">Bubble Sort</h3>
+
+<p><strong>Bubble Sort</strong> [14, 16] เป็นเทคนิคการเรียงข้อมูลอย่างง่ายที่สุด โดยเปรียบเทียบข้อมูลสองตำแหน่งที่ติดกัน</p>
+
+<p>กรณีที่ข้อมูลทีอยู่ทางด้านซ้ายมีค่ามากกว่า ให้เราสลับค่ากัน โดยย้ายข้อมูลที่มีค่ามากกว่าไปทางขวา จากนั้น เราเปรียบเทียบ และสลับค่าที่อยู่ด้านขวานั้น ไปเรื่อย ๆ จนถึงคู่สุดท้าย</p>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน</h4>
+
+<p>เราแสดงได้ตามขั้นตอนตามด้านล่างนี้</p>
+
+<p><strong>ขั้นตอนแรก</strong> เรานำข้อมูลคู่แรก ระหว่าง 64 กับ 25 มาเปรียบเทียบ ว่าค่าไหนที่มีค่ามากกว่ากัน โดยเราจะพบว่าค่า 64 มากกว่า 25 ให้เราสลับค่าเพื่อย้ายค่า 64 ไปทางขวา</p>
+
+<p>เมื่อย้ายไปแล้ว ให้เราจับคู่กับเลขที่อยู่ข้างขวาแบบเดียวกันกับขั้นตอนก่อนหน้า เพื่อดูว่าตัวไหนมากกว่ากันแล้วให้สลับค่าที่มากกว่าไปอยู่ด้านขวา เราทำแบบนี้ไปเรื่อย ๆ จนกว่าจะถึงคู่สุดท้ายที่</p>
+
+<ul class="wp-block-list">
+<li>ค่าที่เราสลับมามีค่าน้อยกว่า</li>
+
+
+
+<li>หรืออยู่ขอบทางด้านขวาของ Array</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort7-1024x576.jpg" alt="" class="wp-image-5291" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort7-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort7-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort7-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort7-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort7-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort7.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อเราจับคู่ และสลับค่าในรอบแรกเสร็จแล้ว</p>
+
+<p><strong>ต่อมา</strong> เราให้เราทำค่าในคู่ที่สองระหว่าง 25 กับ 12 มาเปรียบเทียบดูว่าตัวไหนมากกว่ากัน แล้วสลับค่าที่มากกว่าไปด้านขวา</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort8-1024x576.jpg" alt="" class="wp-image-5292" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort8-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort8-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort8-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort8-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort8-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort8.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>หลังจากนั้น ให้เราทำซ้ำแบบเดิมไปจนกว่าจะเรียงข้อมูลสำเร็จเรียบร้อย</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort9-1024x576.jpg" alt="" class="wp-image-5293" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort9-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort9-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort9-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort9-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort9-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort9.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort10-1024x576.jpg" alt="" class="wp-image-5294" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort10-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort10-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort10-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort10-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort10-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/bubble_sort10.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def bubble_sort(arr):
+    for i in range(len(arr)):
+        for j in range(len(arr) - i - 1):
+            if arr&#91;j] &gt; arr&#91;j+1]:
+                arr&#91;j+1], arr&#91;j] = arr&#91;j], arr&#91;j+1]
+
+    return arr</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) เท่ากับ <strong>O(N^2)</strong> และมี <strong>Auxiliary Space</strong> เท่ากับ <strong>O(1)</strong></p>
+
+<p>จากการวิเคราะห์ Time Complexity แล้ว เราจะพบว่าเทคนิคนี้ใช้เวลามาก ไม่เหมาะกับข้อมูลที่มีขนาดใหญ่</p>
+
+<p>อย่างไรก็ดี Algorithm นี้มีข้อดี คือ เป็น Algorithm ที่เข้าใจได้ง่าย และไม่ต้องการ RAM เพิ่มเติม</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="insertion-sort">Insertion Sort</h3>
+
+<p><strong>Insertion Sort</strong> [14, 17] เป็นเทคนิคการเรียงข้อมูลอย่างง่ายที่มีลักษณะคล้ายกับการเรียงไพ่ในมือ โดยจะแบ่งระหว่าง Array ที่เรียงข้อมูลแล้ว และ Array ที่ไม่ได้เรียงข้อมูล โดยเรานำค่าจากข้อมูลที่ยังไม่ได้เรียงข้อมูลตามลำดับ (Sorted) มาแทรกไว้ในตำแหน่งที่ถูกต้อง</p>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน</h4>
+
+<p>เราแสดงได้ตามขั้นตอนตามด้านล่างนี้</p>
+
+<p><strong>ขั้นตอนแรก</strong> เรามองหาตัวเลขที่อยู่ตำแหน่งที่ไม่ถูกต้อง โดยเปรียบเทียบระหว่างตัวเลขในลำดับ <strong>Array ปัจจุบัน (25)</strong> กับ <strong>Array ในลำดับก่อนหน้า (64)</strong> ว่าค่าใน Array ปัจจุบันมีค่าน้อยกว่าค่าก่อนหน้าหรือไม่ เราจะพบว่า 25 มีค่าน้อยกว่า 64 ให้เราสลับค่า นำ 25 ไปอยู่ทางด้านหน้าของค่า 64</p>
+
+<p><strong>ต่อมา</strong> เรามองหาตัวเลขที่อยู่ในตำแหน่งที่ไม่ถูกต้องต่อมาคือเลข <strong>12</strong> ค่านี้เราจะเปรียบเทียบกับ <strong>Array ในลำดับก่อนหน้า (64 และ 25)</strong> ว่ามีค่าน้อยกว่าหรือไม่ เราจะพบว่าค่า 12 มีค่าน้อยกว่าทั้ง 64 และ 25 ให้เราสลับค่าไปจนถึงทางด้านหน้าสุดของ Array</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort12-1024x576.jpg" alt="" class="wp-image-5296" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort12-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort12-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort12-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort12-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort12-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort12.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>ขั้นตอนที่สาม </strong>เรามองหาค่าที่ไม่ถูกต้องอีกเช่นกัน <strong>คือ 22</strong> โดยเปรียบเทียบกับ<strong>ค่าก่อนหน้า (64, 25 และ 12)</strong> แล้วเราจะพบว่าค่า 22 น้อยกว่า 64 และ 25 แต่ไม่น้อยกว่า 12</p>
+
+<p>ดังนั้น เราจะสลับค่ากันกับ 64 และ 25 เพื่อให้ค่า 22 อยู่ด้านหน้าสองค่านี้ แต่อยู่หลัง 12</p>
+
+<p><strong>ขั้นตอนที่สี่</strong> เรามองหาค่าที่ไม่ถูกเช่นกัน คือ <strong>11</strong> โดยเปรียบเทียบกับ<strong>ค่าก่อนหน้า (64, 25, 22 และ 12)</strong> แล้วเราพบว่าค่า 11 น้อยกว่าทุกตัว</p>
+
+<p>ดังนั้น เราจะสลับกับ 64, 25, 22 และ 12 เพื่อให้ค่า 11 อยู่ด้านซ้ายสุด</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort13-1024x576.jpg" alt="" class="wp-image-5297" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort13-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort13-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort13-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort13-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort13-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort13.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>เมื่อทำเสร็จแล้ว</strong> ค่าตัวเลขที่อยู่ใน Array จะเรียงลำดับจากน้อยไปมากตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort14-1024x576.jpg" alt="" class="wp-image-5298" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort14-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort14-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort14-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort14-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort14-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/insertion_sort14.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def insertion_sort(arr):
+    size = len(arr)
+    for i in range(size):
+        if arr&#91;i] &gt;= arr&#91;i-1]:
+            continue
+
+        for j in range(i, 0, -1):
+            if arr&#91;j] &lt; arr&#91;j-1]:
+                arr&#91;j-1], arr&#91;j] = arr&#91;j], arr&#91;j-1]
+
+    return arr</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) ในกรณีที่เป็น</p>
+
+<ul class="wp-block-list">
+<li>Worst Case กับ Average Case จะมีค่าเท่ากับ <strong>O(N^2)</strong></li>
+
+
+
+<li>Best Case มีค่าเท่ากับ O(N)</li>
+</ul>
+
+<p>และมี <strong>Auxiliary Space</strong> เท่ากับ O(1)</p>
+
+<p>Algorithm นี้มีข้อดีคือใช้ง่าย เหมาะกับข้อมูลที่มีขนาดเล็ก และผ่านการเรียงลำดับมาก่อนหน้าแล้ว</p>
+
+<p>อย่างไรก็ดี Algorithm นี้ใช้เวลามาก ไม่เหมาะกับข้อมูลที่มีขนาดใหญ่ ตามที่วิเคราะห์ใน Time Complexity</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="heap-sort">Heap Sort</h3>
+
+<p><strong>Heap Sort</strong> [14, 18] เป็นการเรียงข้อมูลใน Array โดยอาศัยหลักฐานของ Binary Heap [19] มาเป็นกระบวนการหลักในการทำงาน</p>
+
+<p>ข้อดีของการใช้ Binary Heap คือทำงานได้เร็วกว่าการใช้ Vector หรือการเก็บข้อมูลแบบ Array ยาว ๆ ที่ต้องใช้ระยะเวลาในการจัดการข้อมูลมาก โดย Binary Heap มีส่วนประกอบทั้งหมด 3 ส่วน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Root </strong>ที่เป็นโหนดที่อยู่ชั้นบนสุด</li>
+
+
+
+<li><strong>Parent </strong>คือโหนดที่อยู่เหนือกว่าโหนดที่อยู่ด้านล่าง</li>
+
+
+
+<li>และ <strong>Child </strong>เป็นโหนดที่อยู่ด้านล่าง</li>
+</ul>
+
+<p>โดยโหนดในแต่ละระดับของ Binary Heap จะแตกเป็นสองสาขา ซ้าย และขวา โดยเราจะต้องเติมจากทางซ้ายก่อน แล้วไปเติมทางขวาจนเติม จากนั้นค่อยเพิ่มระดับใหม่ลงไปอีกระดับหนึ่ง</p>
+
+<p>การแบ่งประเภทของ Binary Heap มีสองประเภท ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Max Heap</strong> ที่ให้โหนด Parent มีค่ามากกว่าโหนด Child และโหนดที่อยู่ระดับ Root มีค่ามากที่สุด</li>
+
+
+
+<li><strong>Min Heap</strong> ที่ให้โหนด Parent มีค่าน้อยกว่าโหนด Child และโหนดที่อยู่ระดับ Root มีค่าน้อยที่สุด</li>
+</ul>
+
+<p>การจัดข้อมูลใน Binary Heap เราทำได้โดยการเก็บข้อมูลใน Array ที่มีข้อแตกต่างกับการเก็บใน Array ปกติ โดยโหนด Child ของ Parent จะเก็บที่ <strong>2 x (parent index) + 1</strong> กับ <strong>2 x (parent index) + 2</strong> ทางด้าน<strong>ซ้าย</strong> และ<strong>ขวา</strong> ตามลำดับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="399" height="378" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-8.png" alt="" class="wp-image-5431" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-8-300x284.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/image-8.png 399w" sizes="auto, (max-width: 399px) 100vw, 399px" /><figcaption class="wp-element-caption">Binary Heap ที่เป็น Max Heap (รูปบน) และการเก็บข้อมูล Heap ในรูปแบบ Array (รูปล่าง) (ภาพจาก: <a href="http://www.cse.hut.fi/en/research/SVG/TRAKLA2/tutorials/heap_tutorial/taulukkona.html">Array Representation of Binary Heap (hut.fi)</a>)</figcaption></figure></div>
+
+<p>ต่อมา เรามาเข้าเรื่อง Heap Sort</p>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน</h4>
+
+<p>เราแสดงได้ตามขั้นตอนตามด้านล่างนี้</p>
+
+<p><strong>ขั้นแรก</strong> เราแปลงข้อมูลจาก Array ให้เป็น Binary Heap ที่เป็น Max Heap เสียก่อน แต่จากภาพ ข้อมูลเป็นไปตาม Max Heap อยู่แล้ว เราจึงไม่ต้องทำอะไรเพิ่ม</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_15-1024x576.jpg" alt="" class="wp-image-5299" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_15-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_15-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_15-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_15-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_15-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_15.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ขั้นต่อมา เราสลับเอาโหนดที่อยู่บนสุด (Root Element) ย้ายไปทางขวาสุดของ Array แล้วนำโหนดที่อยู่ตำแหน่งสุดท้ายของ Heap (= 11) ไปไว้บริเวณโหนด Root ที่เสมือนกับการนำข้อมูลออกจากโหนดใน Binary Heap</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_16-1024x576.jpg" alt="" class="wp-image-5300" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_16-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_16-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_16-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_16-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_16-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_16.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ถัดจากนั้น เรานำข้อมูลใน Root มาเปรียบเทียบกับค่าในโหนด Child (25, 12, และ 22) แล้วสลับค่า ให้ค่าที่มากกว่าย้ายมาอยู่บนโหนด Parent กับ Root แทน จนกระทั่งกลายเป็น Max Heap</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_17-1024x576.jpg" alt="" class="wp-image-5301" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_17-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_17-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_17-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_17-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_17-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_17.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_18-1024x576.jpg" alt="" class="wp-image-5302" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_18-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_18-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_18-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_18-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_18-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_18.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อทำเสร็จแล้ว ให้เรานำค่าที่อยู่บน Root (= 25) ย้ายออกจาก Heap โดยย้ายไปอยู่ทางด้านขวาสุดของ Array แล้วนำค่าที่อยู่โหนดสุดท้าย (= 11) ไปไว้ที่ Root</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_19-1024x576.jpg" alt="" class="wp-image-5303" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_19-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_19-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_19-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_19-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_19-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_19.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>จากภาพ เราจะเหลือข้อมูลที่นำมาทำ Max Heap ทั้งหมด 3 อัน ได้แก่ 11, 22 และ 12 ให้เรานำค่าใน Root มาเปรียบเทียบกับที่เหลือ โดยให้ค่าที่มากกว่าอยู่ระดับเหนือกว่าค่าที่น้อยกว่า</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_20-1024x576.jpg" alt="" class="wp-image-5304" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_20-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_20-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_20-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_20-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_20-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_20.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อสลับเสร็จแล้ว เรานำค่าที่อยู่บน Root (22) ออกจาก Heap โดยย้ายไปทางด้านหลังของ Array เพื่อสลับกันระหว่าง 22 กับ 12</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_21-1024x576.jpg" alt="" class="wp-image-5305" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_21-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_21-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_21-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_21-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_21-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_21.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ตอนนี้จะเหลืออยู่ 2 ค่า ได้แก่ 12 กับ 11 โดยจากภาพเป็น Max Heap เนื่องมาจากค่าที่มากกว่า (12) อยู่ระดับบน ส่วนค่าที่น้อยกว่า (11) อยู่ระดับล่าง </p>
+
+<p>เราไม่จำเป็นต้องย้ายข้อมูลเพิ่ม เพียงแค่นำค่าที่อยู่บน Root (= 12) ออกจาก Heap แล้วย้ายไปทางด้านหลังของ Array โดยสลับกับค่าที่อยู่โหนดสุดท้ายของ Heap (= 11)</p>
+
+<p>เมื่อย้ายเสร็จแล้ว เราจะเหลือข้อมูล 1 ค่า คือ 11 ซึ่งไม่มีค่าอื่นให้เปรียบเทียบแล้ว</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_22-1024x576.jpg" alt="" class="wp-image-5306" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_22-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_22-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_22-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_22-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_22-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_22.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ผลลัพธ์ที่ได้คือ Array ที่ผ่านการเรียงข้อมูลเรียบร้อย</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_23-1024x576.jpg" alt="" class="wp-image-5307" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_23-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_23-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_23-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_23-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_23-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/heap_sort_23.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def heapify(arr, low, high, i = 0):
+    largest = i
+    left   = 2 * i + 1
+    right = 2 * i + 2
+
+    if left &lt; high and arr&#91;left] &gt; arr&#91;i]:
+        largest = left
+
+    if right &lt; high and arr&#91;right] &gt; arr&#91;largest]:
+        largest = right
+
+    if largest != i:
+        arr&#91;largest], arr&#91;i] = arr&#91;i], arr&#91;largest]
+        arr = heapify(arr, 0, high, largest)
+
+    return arr
+
+def heap_sort(arr):
+    size = len(arr)
+
+    # build a heap
+    start = size // 2 - 1
+    for i in range(start, -1, -1):
+        arr = heapify(arr, 0, size, i)
+
+    # Swap inside heap
+    for i in range(size-1, -1, -1):
+        arr&#91;i], arr&#91;0] = arr&#91;0], arr&#91;i]
+        arr = heapify(arr, 0, i)
+
+    return arr</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) เท่ากับ O(n log n) และมี <strong>Auxiliary Space</strong> เท่ากับ O(1) ในกรณีที่ใช้วนลูป แต่ถ้าเป็นแบบ Recursion จะมีค่าเท่ากับ O(log n)</p>
+
+<p>Algorithm นี้มีข้อดีคือทำงานได้เร็ว มีประสิทธิภาพ ใช้หน่วยความจำน้อย และเรียบง่าย อย่างไรก็ดี เทคนิคนี้ทำงานไม่ดีนักในกรณีที่ข้อมูลใน Array ซับซ้อน</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="merge-sort">Merge Sort</h3>
+
+<p><strong>Merge Sort</strong> [14, 20, 21] เป็นเทคนิคการเรียงข้อมูลโดยแบ่ง Array เป็น Array ที่มีขนาดเล็ก แล้วนำ Array ที่มีขนาดเล็กมาเรียงข้อมูล จากนั้นนำ Array มารวมกันให้เป็น Array เดียวที่ผ่านการเรียงข้อมูลแล้ว</p>
+
+<p>ฟังดูไม่เห็นภาพ เรามาดูขั้นตอนการทำงานจะดีกว่า</p>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน</h4>
+
+<p>เราแสดงได้ตามขั้นตอนตามด้านล่างนี้ โดยในตัวอย่างนี้เราจะใช้ Array ที่มีข้อมูลทั้งหมด 4 ข้อมูล ได้แก่ 64, 25, 12 และ 22</p>
+
+<p>ขั้นตอนแรก เราแบ่งข้อมูลออกเป็นครึ่งหนึ่งเสียก่อน โดยแบ่งเป็น Array ละ 2 ข้อมูล</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_24-1024x576.jpg" alt="" class="wp-image-5308" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_24-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_24-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_24-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_24-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_24-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_24.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>จากนั้น เราก็แบ่งข้อมูลไปอีกครึ่งหนึ่ง ให้เหลือ Array ละ 1 ข้อมูล</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_25-1024x576.jpg" alt="" class="wp-image-5309" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_25-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_25-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_25-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_25-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_25-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_25.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อเราแบ่งข้อมูลจนเหลือ Array 1 ข้อมูลแล้ว ให้เรารวม Array</p>
+
+<p>เวลาที่เรารวมข้อมูลลงไปใน Array เดียวกันให้เราเทียบข้อมูลระหว่าง 2 Array โดยให้ค่าที่น้อยกว่าอยู่ก่อน และค่าที่มากกว่าอยู่หลัง จนกว่าจะรวมถึงเป็น Array เดียว</p>
+
+<p>ผลลัพธ์ที่ได้ก็จะได้เป็น Array ที่ผ่านการเรียงข้อมูลเรียบร้อยแล้ว</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_26-1024x576.jpg" alt="" class="wp-image-5310" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_26-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_26-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_26-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_26-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_26-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_26.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_27-1024x576.jpg" alt="" class="wp-image-5311" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_27-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_27-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_27-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_27-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_27-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/merge_sort_27.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def merge_sort(arr):
+    overall_size = len(arr)
+    if overall_size == 1:
+        return arr
+
+    mid_arr = (overall_size) // 2
+
+    left = merge_sort(arr&#91;:mid_arr])
+    right = merge_sort(arr&#91;mid_arr:])
+    size_left, size_right = len(left), len(right)
+
+    i, j = 0, 0
+    target_arr = &#91;]
+    while i &lt; size_left and j &lt; size_right:
+        if left&#91;i] &lt;= right&#91;j]:
+            target_arr.append(left&#91;i])
+            i += 1
+        else:
+            target_arr.append(right&#91;j])
+            j += 1
+
+    for i_left in range(i, size_left):
+        target_arr.append(left&#91;i_left])
+
+    for i_left in range(j, size_right):
+        target_arr.append(right&#91;i_left])
+
+    return target_arr</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) เท่ากับ <strong>O(n log n)</strong></p>
+
+<p>และมี <strong>Auxiliary Space</strong> เท่ากับ <strong>O(N)</strong> เนื่องมาจากขั้นตอนการเรียงข้อมูลใน Merge Sort จำเป็นต้องก็อบปี้ข้อมูลลงไปใน Array ที่ช่วยสำหรับการเรียงข้อมูล (Auxiliary Array) ที่ต้องใช้หน่วยความจำในการเก็บตัวแปรดังกล่าว</p>
+
+<p>Algorithm นี้มี<strong>ข้อดี</strong>ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ทำงานได้เร็ว</li>
+
+
+
+<li>การันตีประสิทธิภาพเมื่อเกิด Worst Case ที่ O(n log n)</li>
+
+
+
+<li>เหมาะสมต่อการเรียงข้อมูลใน Dataset ที่มีขนาดใหญ่</li>
+
+
+
+<li>ทำงานแบบ Parallel ได้</li>
+</ul>
+
+<p>อย่างไรก็ดี เทคนิคนี้มี<strong>ข้อด้อย</strong> ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ต้องใช้หน่วยความจำเพิ่มเติมสำหรับการเก็บข้อมูล Auxiliary Array ในขั้นตอนการเรียงข้อมูล</li>
+
+
+
+<li>ไม่ได้แทนที่ค่าลงไปใน Array นั้น ๆ เลย (ไม่เป็น in-place)</li>
+
+
+
+<li>ทำงานได้ช้าในกรณีที่ Array มีขนาดเล็กเมื่อเทียบกับ Insertion Sort</li>
+</ul>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<h3 class="wp-block-heading" id="quick-sort">Quick Sort</h3>
+
+<p><strong>Quick Sort</strong> [14, 22, 23] เป็นเทคนิคการเรียงข้อมูลโดยการเลือกข้อมูลใน Array ข้อมูลหนึ่งเป็น Pivot แล้วจัดข้อมูลที่มีค่าน้อยกว่าอยู่ทางซ้าย และค่ามากกว่าอยู่ทางขวา แล้วแบ่ง Array รอบ ๆ ค่า Pivot นั้น</p>
+
+<h4 class="wp-block-heading">ขั้นตอนการทำงาน</h4>
+
+<p>เราแสดงได้ตามขั้นตอนตามด้านล่างนี้</p>
+
+<p><strong>ขั้นแรก</strong> เราเลือกค่าใดค่าหนึ่งใน Array ให้เป็นค่า Pivot เสียก่อน โดยเราสามารถเลือกค่า Pivot จาก</p>
+
+<ul class="wp-block-list">
+<li>ข้อมูลแรกใน Array</li>
+
+
+
+<li>ข้อมูลในตำแหน่งหลังสุดของ Array</li>
+
+
+
+<li>การเลือกแบบสุ่ม</li>
+
+
+
+<li>เลือกตรงกลางของ Array</li>
+</ul>
+
+<p>ในที่นี้เราเลือกข้อมูลที่อยู่ทางขวาสุด </p>
+
+<p>ต่อมา เรากำหนดค่า i ที่เป็นค่าตำแหน่งข้อมูลใน Array สำหรับการสลับตำแหน่งกับข้อมูลที่มีค่าน้อยกว่าหรือเท่ากับ Pivot โดยเรากำหนดค่าเริ่มต้นที่ -1 (ก็คือตำแหน่งถัดจากตำแหน่งซ้ายสุดของ Array)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_29-1024x576.jpg" alt="" class="wp-image-5313" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_29-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_29-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_29-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_29-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_29-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_29.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>จากนั้นวนลูปใน Array เพื่อเช็คว่ามีค่าไหนที่มีค่าน้อยกว่าค่า Pivot จนถึงตำแหน่งสุดท้ายก่อนถึง Pivot ถ้ามีให้ย้ายข้อมูลไปตำแหน่ง i ของ Array </p>
+
+<p>อย่างไรก็ดีค่า Pivot ที่เลือกนี้มีค่าน้อยที่สุดแล้ว ทำให้ไม่มีค่าไหนใน Array ที่ได้รับการย้ายข้อมูลไปทางซ้ายสุด พอวนลูปครบ เราย้ายค่า Pivot ไปยังตำแหน่งใน Array ที่ i + 1 (โดยค่า i เท่ากับ -1 แล้วเราจะได้ตำแหน่ง Array ที่ 0 ก็คือตำแหน่งด้านซ้ายสุด)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_30-1024x576.jpg" alt="" class="wp-image-5314" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_30-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_30-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_30-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_30-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_30-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_30.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_31-1024x576.jpg" alt="" class="wp-image-5315" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_31-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_31-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_31-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_31-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_31-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_31.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_32-1024x576.jpg" alt="" class="wp-image-5316" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_32-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_32-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_32-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_32-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_32-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_32.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ต่อมา ให้เราแบ่งข้อมูลตาม Pivot โดยแบ่งเป็น</p>
+
+<ul class="wp-block-list">
+<li>ข้อมูลที่มีค่าน้อยกว่า</li>
+
+
+
+<li>กับข้อมูลที่มีค่ามากกว่า Pivot</li>
+</ul>
+
+<p>โดยในตอนนี้ค่า 11 เป็นค่าที่<strong>น้อยที่สุด</strong>ใน Array ทำให้ไม่มี Array ที่มีค่าน้อยกว่า มีแต่ Array ที่มีค่าที่<strong>มากกว่า</strong>เท่านั้น</p>
+
+<p>ให้เราเลือก Array หลัง จากนั้นให้เราเลือก Pivot ที่ตำแหน่งสุดท้ายของ Array อีกเช่นเคย ร่วมกับกำหนดตำแหน่ง i ให้เท่ากับ 0 (ก็คือตำแหน่งถัดจากตำแหน่งซ้ายสุดของ Array ที่เราแบ่งออกมา)</p>
+
+<p>ต่อมา วนลูปใน Array เพื่อนำค่าที่วนลูปมาเทียบกับ Pivot ถ้ามีค่าน้อยกว่าค่า Pivot ให้เพิ่มค่า i ทีละ 1 แล้วนำค่าใน Array นั้นสลับกับ Array ที่ตำแหน่ง i</p>
+
+<p>วนลูปทำแบบเดิมไปเรื่อย ๆ จนกว่าจะถึงตำแหน่งสุดท้ายก่อนถึง Pivot</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_33-1024x576.jpg" alt="" class="wp-image-5317" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_33-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_33-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_33-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_33-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_33-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_33.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_34-1024x576.jpg" alt="" class="wp-image-5318" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_34-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_34-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_34-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_34-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_34-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_34.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อถึงตำแหน่งสุดท้ายในการวนลูปแล้ว ให้เราย้ายค่า Pivot ไปยังตำแหน่งใน Array ที่ i + 1 ซึ่งมีค่าเท่ากับ 4 นั่นก็คือตำแหน่งเดิมของค่า Pivot นั้น</p>
+
+<p>ถัดจากนั้น เราแบ่งข้อมูลตามค่า Pivot อีกเช่นเคย แต่ข้อมูลที่มีค่า 64 นี้เป็นข้อมูลที่มีค่ามากที่สุด ทำให้ไม่มี Array ที่มีค่ามากกว่า แต่มี Array ที่มีค่าน้อยกว่าเพียงอย่างเดียว</p>
+
+<p>ให้เราเลือก Array ที่มีค่าที่<strong>น้อยกว่า</strong> จากนั้นเลือกข้อมูลอันสุดท้ายของ Array ที่แบ่งออกมา (= 22) เป็น Pivot และกำหนดตำแหน่ง i ให้เท่ากับ 0</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_35-1024x576.jpg" alt="" class="wp-image-5319" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_35-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_35-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_35-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_35-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_35-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_35.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อเลือกค่า Pivot และกำหนดตำแหน่ง i แล้ว ให้เราวนลูปใน Array ที่แบ่งออกมา</p>
+
+<p>เมื่อพบค่าที่น้อยกว่าค่า Pivot (ตัวอย่างเช่น 12) แล้ว ให้ขยับ i จาก 0 เป็น 1 แล้วสลับค่าระหว่างค่าที่น้อยที่สุดกับค่าที่ตำแหน่ง i เท่ากับ 1 (= 25)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_36-1024x576.jpg" alt="" class="wp-image-5320" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_36-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_36-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_36-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_36-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_36-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_36.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อวนลูปครบแล้ว ให้เราสลับค่า Pivot (= 22) กับค่าใน Array ตำแหน่งที่ i + 1 หรือเท่ากับ 1 + 1 = 2 (= 25)</p>
+
+<p>เราแบ่งข้อมูลตามค่า Pivot อีกรอบ โดยเราจะได้ Array ทั้งหมด 2 Array ได้แก่ Array ที่มีค่ามากกว่า Pivot และน้อยกว่า Pivot ในแต่ละ Array มีข้อมูลทั้งหมด 1 ข้อมูล ซึ่งเราจะหาค่า Pivot และเรียงข้อมูลไม่ได้ ทำให้การเรียงอันดับข้อมูลด้วย Quick Sort ก็เสร็จเรียบร้อย</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_37-1024x576.jpg" alt="" class="wp-image-5321" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_37-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_37-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_37-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_37-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_37-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_37.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ผลลัพธ์ของการเรียงข้อมูลแสดงตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_38-1024x576.jpg" alt="" class="wp-image-5322" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_38-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_38-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_38-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_38-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_38-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/02/quick_sort_38.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def quicksort(arr, low, high):
+    if high - low &gt;= 2:
+        # After that, we make a quick sort.
+        mid_idx = partition(arr, low, high)
+        quicksort(arr, low, mid_idx - 1)
+        quicksort(arr, mid_idx + 1, high)
+
+    return arr
+
+def partition(arr, low, high):
+    pivot = arr&#91;high]
+    i = low - 1
+
+    for j in range(low, high):
+        if arr&#91;j] &lt;= pivot:
+            i += 1
+            arr&#91;i], arr&#91;j] = arr&#91;j], arr&#91;i]
+
+    # Save pivot and the last movable index
+    arr&#91;i + 1], arr&#91;high] = arr&#91;high], arr&#91;i + 1]
+
+    return i + 1</code></pre>
+
+<p>Algorithm นี้มีประสิทธิภาพการทำงานตามระยะเวลาการทำงาน (<strong>Time Complexity</strong>) ในกรณีที่เป็น Average Case มีค่าเท่ากับ <strong>O(n log n)</strong> แต่กรณีที่เป็น Worst Case* มีค่าเท่ากับ <strong>O(n^2)</strong></p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>*Worst Case จะเกิดขึ้นในกรณีที่แบ่งข้อมูลใน Array แล้วได้ข้อมูลที่ไม่ Balanced กัน (Unbalanced Partitions)</p>
+</blockquote>
+
+<p>และมี <strong>Auxiliary Space</strong> เท่ากับ <strong>O(1)</strong> ในกรณีที่ไม่ทำ Recursion แต่ถ้าทำจะมีค่าเท่ากับ O(n)</p>
+
+<p>Algorithm นี้มี<strong>ข้อดี</strong>ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>เป็นเทคนิคแบบ Divide and Conquer ทำให้ง่ายต่อการแก้ปัญหา</li>
+
+
+
+<li>เหมาะสมต่อการเรียงข้อมูลใน Dataset ที่มีขนาดใหญ่</li>
+
+
+
+<li>ใช้หน่วยความจำน้อย และมี Overhead ที่ต่ำ</li>
+</ul>
+
+<p>อย่างไรก็ดี เทคนิคนี้มี<strong>ข้อด้อย</strong> ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>กรณีที่เกิด Worst Case เทคนิคนี้ให้ Time Complexity ที่มีค่าเท่ากับ O(N^2) กรณีที่เลือก Pivot ได้ไม่ดี</li>
+
+
+
+<li>ไม่เหมาะกับข้อมูลที่มีขนาดเล็ก</li>
+</ul>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="summary">สรุป</h2>
+
+<p>Algorithms เป็นวิธีการแก้ไขปัญหาเป็นขั้นตอน 1 2 3 4 เพื่อให้เราแก้ไขปัญหาได้อย่างมีประสิทธิภาพมากที่สุด โดยเราจำเป็นต้องเลือกวิธีการเก็บข้อมูลที่มีโครงสร้างข้อมูล (Data Structures) ที่เหมาะสม</p>
+
+<p>สองสิ่งนี้ที่เรียกว่า Data Structures กับ Algorithms เกี่ยวกับงานทางด้าน Data Engineer (หรืองาน Data) โดยเขียนโค้ดทำ Data Pipeline และเขียนโค้ดจัดการกับ Data ได้อย่างมีประสิทธิภาพ แถมยังนำไปใช้งานในด้าน Distributed Computing ได้อีก</p>
+
+<p>โดยในบทความนี้เรานำเสนอวิธีการวิเคราะห์ประสิทธิภาพ Algorithm (Asymptotic Analysis) ร่วมกับนำเสนอ Big-O Notation</p>
+
+<p>และยังนำเสนอ Searching และ Sorting Algorithms ได้แก่ Linear Search, Binary Search, Fibonacci Search, Selection Sort, Bubble Sort, Insertion Sort, Heap Sort, Merge Sort และ Quick Sort ครับ</p>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน <a title="Linkedin" href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noopener">Linkedin</a> หรือ <a title="X (หรือ Twitter)" href="https://twitter.com/nicknznick" target="_blank" rel="noopener">X (หรือ Twitter)</a> ได้ครับ</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">แก้ไข</h2>
+
+<p>*แก้ไข ข้อผิดพลาดของรูปภาพในขั้นตอนการทำ Binary Search</p>
+
+<h2 class="wp-block-heading" id="reference">อ้างอิง</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://www.saladpuk.com/beginner-1/data-structure-and-algorithm" target="_blank" rel="noopener" title="">Algorithm &#8211; Saladpuk.com</a></li>
+
+
+
+<li><a href="https://www.codecademy.com/article/why-data-structures" target="_blank" rel="noopener" title="">Why Data Structures? | Codecademy</a></li>
+
+
+
+<li><a href="https://www.borntodev.com/2020/06/25/data-structure-%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%83%E0%B8%99%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B9%84%E0%B8%AB%E0%B8%99%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%87/" target="_blank" rel="noopener" title="">เราเอา Data Structure ไปใช้กันในส่วนไหนบ้าง ? – BorntoDev เริ่มต้นเรียน เขียนโปรแกรม ขั้นเทพ !</a></li>
+
+
+
+<li><a href="https://medium.com/towards-data-engineering/must-do-dsa-topics-for-data-engineers-ab6f50358ca1" target="_blank" rel="noopener" title="">Must-do DSA topics for Data Engineers | by Vishal Barvaliya | Towards Data Engineering | Medium</a></li>
+
+
+
+<li><a href="https://www.programiz.com/dsa/asymptotic-notations" target="_blank" rel="noopener" title="">Big-O Notation, Omega Notation and Big-O Notation (Asymptotic Analysis) (programiz.com)</a></li>
+
+
+
+<li><a href="https://thatthapalgorithmanalysis.blogspot.com/2017/07/asymptotic-notation.html">Asymptotic notation (thatthapalgorithmanalysis.blogspot.com)</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/analysis-algorithms-big-o-analysis/" target="_blank" rel="noopener" title="">Analysis of Algorithms | Big-O analysis &#8211; GeeksforGeeks</a></li>
+
+
+
+<li><a href="https://rayriffy.com/blog/big-o-notation" target="_blank" rel="noopener" title="">เข้าใจ Big O Notation แบบไฟลุกตีนไหม้ · rayriffy</a></li>
+
+
+
+<li><a href="https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/" target="_blank" rel="noopener" title="">What is Big O Notation Explained: Space and Time Complexity (freecodecamp.org)</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/linear-search/" target="_blank" rel="noopener" title="Linear Search - Data Structure and Algorithm Tutorials - Geeks for Geeks">Linear Search &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a> </li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/binary-search/" target="_blank" rel="noopener" title="Binary Search - Data Structure and Algorithm Tutorials - Geeks for Geeks">Binary Search &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a> </li>
+
+
+
+<li><a href="https://www.programiz.com/dsa/binary-search">Binary Search (With Code) (programiz.com)</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/fibonacci-search/" target="_blank" rel="noopener" title="Fibonacci Search - Data Structure and Algorithm Tutorials - Geeks for Geeks">Fibonacci Search &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a></li>
+
+
+
+<li><a href="https://www.freecodecamp.org/news/sorting-algorithms-explained-with-examples-in-python-java-and-c/">Sorting Algorithms Explained with Examples in JavaScript, Python, Java, and C++ (freecodecamp.org)</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/selection-sort/" target="_blank" rel="noopener" title="Selection Sort - Data Structure and Algorithm Tutorials - Geeks for Geeks">Selection Sort &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/bubble-sort/" target="_blank" rel="noopener" title="Bubble Sort - Data Structure and Algorithm Tutorials - Geeks for Geeks">Bubble Sort &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/insertion-sort/" target="_blank" rel="noopener" title="Insertion Sort - Data Structure and Algorithm Tutorials - Geeks for Geeks">Insertion Sort &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/heap-sort/" target="_blank" rel="noopener" title="Heap Sort - Data Structure and Algorithm Tutorials - Geeks for Geeks">Heap Sort &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a></li>
+
+
+
+<li><a href="https://medium.com/@vachirachat.saw/binary-heap-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3-280d7b8e5111">Binary Heap คืออะไร. สวัสดีครับวันนี้เราจะมาพูดกันถึง binary… | by Net vachirachat sawadditwat | Medium</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/merge-sort/" target="_blank" rel="noopener" title="Merge Sort - Data Structure and Algorithm Tutorials - Geeks for Geeks">Merge Sort &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a></li>
+
+
+
+<li><a href="https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/overview-of-merge-sort">Merge sort algorithm overview (article) | Khan Academy</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/quick-sort/" target="_blank" rel="noopener" title="Quick Sort - Data Structure and Algorithm Tutorials - Geeks for Geeks">Quick Sort &#8211; Data Structure and Algorithm Tutorials &#8211; Geeks for Geeks</a></li>
+
+
+
+<li><a href="https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/overview-of-quicksort">Quicksort algorithm overview | Quick sort (article) | Khan Academy</a></li>
+
+
+
+<li><a title="Time and Space Complexity Analysis of Quick Sort - Data Structure and Algorithm tutorials - Geeks for Geeks" href="https://www.geeksforgeeks.org/time-and-space-complexity-analysis-of-quick-sort/" target="_blank" rel="noopener">Time and Space Complexity Analysis of Quick Sort &#8211; Data Structure and Algorithm tutorials &#8211; Geeks for Geeks</a></li>
+</ol>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด ↑</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

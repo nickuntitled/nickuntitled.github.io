@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/01/26/13-create-datapipeline-get-tuition-cost/" />
+<meta property="og:url" content="http://localhost:4000/2024/01/26/13-create-datapipeline-get-tuition-cost/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/13_make_data_pipeline_get_training_cost_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-26T07:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/13_make_data_pipeline_get_training_cost_cover.jpg" />
+<meta property="twitter:title" content="#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-02-20T00:15:58+07:00","datePublished":"2024-01-26T07:00:00+07:00","description":"None","headline":"#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/13_make_data_pipeline_get_training_cost_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/01/26/13-create-datapipeline-get-tuition-cost/"},"url":"http://localhost:4000/2024/01/26/13-create-datapipeline-get-tuition-cost/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-01-26 07:00:00 +0700">2024-01-26</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/13_make_data_pipeline_get_training_cost_cover.jpg' />
+  </figure>
+  
+
+  <p><strong>Data Pipeline</strong> คือกระบวนการลำเลียงข้อมูลจากแหล่งข้อมูล (Data Source) มายังจุดหมาย (Destination)</p>
+
+<p>ข้อดีของการทำ Data Pipeline ตามกระบวนการนี้ ได้แก่ รวบรวมข้อมูลให้เป็นหนึ่งเดียว (Locality) กับไม่จำเป็นต้องต่อท่อตรงจาก Data Source ไปยัง Destination (Decoupling) และสามารถทำซ้ำได้ (Reproducible) เพื่อให้เราเก็บข้อมูลไว้สำหรับการนำข้อมูลไปประมวลผลใหม่อีกกี่รอบก็ได้ [1]</p>
+
+<!--more-->
+
+<p>Data Pipeline มีทั้งหมด 4 ขั้นตอน [2] ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>การนำเข้าข้อมูล (Ingestion) ที่เป็นการดึงข้อมูลจากแหล่งที่มาข้อมูลโดยมาได้หลายแหล่ง ตัวอย่างเช่น ไฟล์ Database และอื่น ๆ</li>
+
+
+
+<li>การเปลี่ยนแปลงข้อมูล (Transformation) เป็นกระบวนการ Extract Transform Load ที่เป็นการนำข้อมูลเข้ามาทำความสะอาดข้อมูล (Data Cleansing) เพื่อทำให้ข้อมูลที่มีอยู่พร้อมใช้งานมากขึ้น</li>
+
+
+
+<li>การเก็บข้อมูล (Storage) เป็นการนำข้อมูลไปเก็บอยู่ใน
+<ul class="wp-block-list">
+<li>คลังข้อมูล (Data Warehouse) ที่เป็นโกดังเก็บข้อมูลแบบ Structured Data ที่ผ่านการเปลี่ยนแปลงข้อมูลเรียบร้อยแล้วสำหรับการนำไปใช้งานต่อสำหรับการวิเคราะห์ข้อมูลทางด้านการทำธุรกิจต่อไป</li>
+
+
+
+<li>Data Lake เป็นที่เก็บข้อมูลอะไรก็ได้ ไม่ว่าจะเป็น Structured Data, Semi-structured Data และ Unstructured Data</li>
+</ul>
+</li>
+
+
+
+<li>และปลายทางคือการวิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis) ที่นำข้อมูลที่ผ่านการรวบรวม แปลงสภาพและเก็บข้อมูลไว้ในที่เหมาะสมแล้วมาวิเคราะห์และรายงานผล หรือนำข้อมูลไปสร้าง และเทรนตัว Model สำหรับการนำไปตอบโจทย์ทางด้านธุรกิจ</li>
+</ul>
+
+<p>ในบทความนี้จะสร้าง Project โดยตั้งโจทย์เพื่อต้องการดูข้อมูลต้นทุนค่าใช้จ่ายในการผลิตนักศึกษาต่อหัวต่อปีของแต่ละหลักสูตร ในแต่ละมหาวิทยาลัยที่ตั้งอยู่ในแต่ละจังหวัด</p>
+
+<p>โจทย์นี้จะเป็นการนำข้อมูลจากเว็บไซต์ <a href="https://data.go.th" target="_blank" rel="noreferrer noopener">Open Government Data of Thailand</a> ที่เป็นข้อมูลจากหน่วยงานสำนักงานปลัดกระทรวงการอุดมศึกษา วิทยาศาสตร์วิจัย และนวัตกรรม (MHESI) ที่เกี่ยวกับ</p>
+
+<ul class="wp-block-list">
+<li>ข้อมูล<a href="https://data.go.th/dataset/dqe_11_03" target="_blank" rel="noreferrer noopener">ต้นทุนค่าใช้จ่ายในการผลิตนักศึกษาต่อหัวต่อปีของแต่ละหลักสูตร</a></li>
+
+
+
+<li><a href="https://data.go.th/dataset/univ_uni_11_03" target="_blank" rel="noreferrer noopener">รายชื่อสถาบันอุดมศึกษาจำแนกตามจังหวัด </a>ที่ตัวเว็บไซต์เผยแพร่ข้อมูลตามปีการศึกษา 2563 และ 2564</li>
+</ul>
+
+<p>ต่อมา เรามาเริ่มสร้าง Data Pipeline กันเถอะ โดยเราสามารถสรุปทุกขั้นตอนได้ตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2243676&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="304" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/data_pipeline_summary-1024x536.jpg" alt="" class="wp-image-4245" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/data_pipeline_summary-300x157.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/data_pipeline_summary-1024x536.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/data_pipeline_summary-768x402.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/data_pipeline_summary-1536x804.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/data_pipeline_summary-1200x628.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/data_pipeline_summary.jpg 1864w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">สรุป Data Pipeline ที่จะสร้างขึ้นใน Project นี้</figcaption></figure></div>
+
+<p>ส่วนเครื่องมือทั้งหมดที่ใช้ เราใช้ผ่าน <a href="http://cloud.google.com" target="_blank" rel="noopener" title="Google Cloud Platform (GCP)">Google Cloud Platform (GCP)</a> ที่เป็นบริการคลาวด์ที่เราเช่าใช้ส่วนหนึ่งของ Data Center ผ่านระบบอินเตอร์เน็ตที่ให้ผู้ใช้สามารถใช้งานได้สะดวกโดยไม่จำเป็นต้องติดตั้งเซิร์ฟเวอร์ ติดตั้งเครื่องมือด้วยตัวเองแบบเดียวกันกับ On-Premise</p>
+
+<p>แถมยังคิดค่าบริการการใช้งานตามจริง (pay as you go) ที่เราเรียนว่า OpEx หรือ Operational Expenditure (ซึ่งต่างกับ On-Premise ที่เป็นค่าใช้จ่ายแบบ CapEx หรือ Capital Expenditure)</p>
+
+<p>เรื่อง Region ในบทความนี้กำหนดเป็น <strong>us-central1</strong> ทั้งหมด</p>
+
+<h2 class="wp-block-heading">การนำเข้าข้อมูล (Ingestion)</h2>
+
+<p>ในขั้นตอนนี้เป็นการนำเข้าข้อมูลจากแหล่งข้อมูลที่ได้แจ้งตามหัวข้อข้างบนนี้ ตัวไฟล์ในแหล่งข้อมูลจะมีมาให้ 3 ประเภท ได้แก่ไฟล์แบบ XLSX, CSV (Comma-separated Values) และการใช้ API เพื่อดึงไฟล์แบบ JSON (JavaScript Object Notation)</p>
+
+<p>จากการดาวน์โหลดข้อมูลมาใช้พบว่าตัวข้อมูลเป็นภาษาไทย มีปัญหาที่ตัว Encoding ที่ไม่ใช่ UTF-8 จากการดึงข้อมูลในไฟล์แบบ CSV และจากการใช้ตัว API ร่วมกับมีปัญหาเรื่องการเชื่อมต่ออินเตอร์เน็ตไปยังเซิร์ฟเวอร์สำหรับไฟล์ต้นทาง ในตัวอย่างนี้เราจะดาวน์โหลดไฟล์ XLSX</p>
+
+<p>ตัวไฟล์ XLSX ที่ดาวน์โหลดมานี้เป็นข้อมูลแบบ Structured Data ที่เป็นข้อมูลที่มีลักษณะโครงสร้างที่แน่นอน สามารถแสดงผลในรูปแบบตารางได้ ซึ่งจะแตกต่างกับข้อมูลแบบ Semi-structured Data ที่เป็นข้อมูลที่มีความยืดหยุ่น สามารถปรับโครงสร้างได้ในอนาคต (เช่น JSON, XML) และแตกต่างกับ Unstructured Data ที่ไม่มีโครงสร้างเลย (เช่น ภาพ ไฟล์ ​วิดีโอ และเสียง)</p>
+
+<p>ขั้นตอนนี้เราจะใช้เครื่องมือที่มีชื่อว่า <a href="https://airflow.apache.org" target="_blank" rel="noopener" title="Apache Airflow">Apache Airflow</a> โดยตัวเครื่องมือนี้เป็นเครื่องมือ Data Pipeline Orchestration ที่พัฒนาโดยบริษัท Airbnb ที่เป็นเครื่องมือที่นิยม ใช้ง่าย และมี Community ที่มีขนาดใหญ่ โดยเราจะใช้ผ่านเครื่องมือบน Google Cloud Platform ที่มีชื่อว่า Google Cloud Composer</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="362" height="139" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow.png" alt="" class="wp-image-4275" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-300x115.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow.png 362w" sizes="auto, (max-width: 362px) 100vw, 362px" /><figcaption class="wp-element-caption">Apache Airflow</figcaption></figure></div>
+
+<p><a href="https://cloud.google.com/composer" target="_blank" rel="noopener" title="Google Cloud Composer">Google Cloud Composer</a> เป็นบริการ Managed Apache Airflow ของ Google ที่อนุญาตให้เราใช้งานร่วมกับบริการอื่นของ GCP ผ่านการใช้งาน Google Cloud SDK กับให้เราใช้งานร่วมกับบริการนอก GCP เช่น AWS, Azure, Databricks, Slack, Hive, MongoDB, MySQL หรืออื่น ๆ และปลอดภัยมากด้วยการจำกัดการล็อคอินด้วย Cloud Identity Access Management (Cloud IAM)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-medium"><img data-recalc-dims="1" loading="lazy" decoding="async" width="300" height="158" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cloud_composer.webp" alt="" class="wp-image-4277" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cloud_composer-300x158.webp 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cloud_composer-768x403.webp 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/cloud_composer.webp 960w" sizes="auto, (max-width: 300px) 100vw, 300px" /><figcaption class="wp-element-caption">Cloud Composer</figcaption></figure></div>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>นอกจากการใช้งาน Apache Airflow แล้ว เราจำเป็นต้องสร้าง Bucket ไว้ใน Google Cloud Storage สำหรับการเก็บไฟล์ที่เราดาวน์โหลด Dataset ไว้ใน Data Lake</p>
+</blockquote>
+
+<p>การเข้าไปใช้งาน Google Cloud Composer นี้เราสามารถเข้าไปสร้างผ่าน Google Cloud Console ได้ครับ ต่อมาเรามาเขียนโค้ดสำหรับการใช้งานผ่าน Apache Airflow โดยโค้ดที่เราจะเขียนเป็นตัวไฟล์สำหรับการทำ DAG (Directed Acyclic Graph) ที่เป็นกราฟวิ่งทางเดียว ไม่มีการย้อนกลับ ไม่มีการวนรอบ ผ่านการนำ Task มาเชื่อมต่อกัน</p>
+
+<p>ตัวลักษณะไฟล์ DAG แบ่งออกเป็น 5 ส่วน ได้แก่</p>
+
+<ol class="wp-block-list">
+<li>Import modules ที่เป็นการนำเข้าโมดูลที่จำเป็นต่อการใช้งานใน DAG</li>
+
+
+
+<li>Default arguments (args) ที่เป็นการกำหนด config เริ่มต้นของ DAG และแต่ละ Task ถ้าไม่ถูกเขียนทับ (Override) โดยแต่ละ Task โดยส่วนนี้เราสามารถตั้งค่าให้ทำงานแบบทุกวัน ทุกชม ทุกเดือน ทุกปี ได้โดยการเขียน schedule_interval ที่สามารถเขียนแบบ Preset (เช่น @hourly, @daily, @weekly) หรือเขียนแบบ Cron (0 * * * *, 0 0 * * *, 0 0 * * 0) (สำหรับคนสนใจ Cron ผู้อ่านเข้าไปดูได้ที่ <a href="https://crontab.guru" target="_blank" rel="noopener" title="crontab.guru">crontab.guru</a>)</li>
+
+
+
+<li>Instantiate a DAG เป็นการสร้าง DAGโดยกำหนด dag_id ที่ไม่ซ้ำกับอันอื่น และกำหนดพารามิเตอร์ของตัว DAG</li>
+
+
+
+<li>Tasks เป็นการสร้าง Operator ขึ้นมา โดยต้องกำหนด task_id ไม่ซ้ำกับอันอื่น โดย Operator ที่ใช้กันบ่อย ได้แก่ BashOperator (ที่ใช้คำสั่ง Bash ผ่าน bash_command) และ PythonOperator (ที่ใช้คำสั่ง Pythonผ่าน python_callable)</li>
+
+
+
+<li>Setting up dependencies ที่เราสามารถกำหนดทิศทางของการทำงานในแต่ละ Operator ได้โดยเราสามารถกำหนดได้ว่าจะไหลแบบ Sequential, Fan-in หรือ Fan-out</li>
+</ol>
+
+<p>ในตัวอย่างนี้ เราเขียนไฟล์ DAG ในแต่ละขั้นตอนได้ตามด้านล่างนี้ครับ</p>
+
+<h3 class="wp-block-heading">Import modules</h3>
+
+<p>ขั้นตอนนี้เป็นการนำเข้าโมดูลที่จำเป็นต่อการใช้งานใน DAG โดยเราจะใช้โมดูลได้แก่</p>
+
+<ul class="wp-block-list">
+<li>โมดูล requests</li>
+
+
+
+<li>คลาส Client ในโมดูล google.cloud.storage</li>
+
+
+
+<li>คลาส DAG ในโมดูล airflow.models สำหรับใช้ในขั้นตอน Instantiate a DAG</li>
+
+
+
+<li>คลาส Operator ได้แก่ PythonOperator, BashOperator และ DataprocSubmitJobOperator ในโมดูล airflow.operators.python, airflow.operators.bash และ airflow.providers.google.cloud.operators.dataproc ตามลำดับ โดย DtaprocSubmitJobOperator เราจะใช้สำหรับการสั่งให้ Google Cloud Dataproc ประมวลผล</li>
+
+
+
+<li>และ days_ago ที่นำเข้าจากโมดูล airflow.utils.dates สำหรับการกำหนดให้ DAG นี้เริ่มต้นตั้งแต่เมื่อวาน และมีผลให้รันทันทีวันนี้เมื่อถึงเวลา</li>
+</ul>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>import requests, os
+
+# Google Cloud Storage
+from google.cloud.storage import Client
+
+# Airflow DAG
+from airflow.models import DAG
+from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
+from airflow.utils.dates import days_ago
+from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator</code></pre>
+
+<h3 class="wp-block-heading">Default Arguments</h3>
+
+<p>ส่วนนี้เป็นการกำหนดค่าเริ่มต้นของ DAG และในแต่ละ Task ถ้าไม่ถูกแทนที่โดยแต่ละ Task ไปก่อน โดยเรากำหนด</p>
+
+<ul class="wp-block-list">
+<li>owner กำหนดเจ้าของ DAG</li>
+
+
+
+<li>start_date กำหนดวันเริ่มต้นของ DAG</li>
+
+
+
+<li>schedule_interval กำหนดว่า DAG ทำงานทุกวัน ทุกชั่วโมง ทุกเดือน ทุกสัปดาห์หรือไม่</li>
+
+
+
+<li>dag_id กำหนดชื่อของ DAG</li>
+
+
+
+<li>email กำหนด E-mail สำหรับการส่งข้อมูลเมื่อ DAG มีปัญหา</li>
+
+
+
+<li>email_on_failure ส่ง E-Mail กรณีที่รัน DAG ไม่สำร็จ</li>
+
+
+
+<li>emailon_retry ส่ง E-Mail กรณีที่ทดลองรันใหม่อีกครั้ง</li>
+</ul>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>default_args = {
+    'owner': 'owner',
+    'start_date': days_ago(1),
+    'schedule_interval': None,
+    'dag_id': 'dag_id',
+    'retries': 1,
+
+    # To email on failure or retry set "email" arg to your
+    # email and enable
+    "email": "email&#91;at]email.com",
+    "email_on_failure": True,
+    "email_on_retry": True,
+}</code></pre>
+
+<p>นอกจากนี้ตัว DAG เราจะกำหนดให้สั่งไปยัง Google Cloud Dataproc ให้รันไฟล์ Python ที่ใช้งานผ่านโมดูล PySpark โดยเรากำหนดค่าเริ่มต้นได้ตามด้านล่างนี้ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>reference เราจำกำหนดชื่อ project_id ตามที่เราใช้งาน Project นั้น ๆ อยู๋</li>
+
+
+
+<li>placement กำหนดชื่อ cluster_name ที่เราเปิดใน Google Cloud Dataproc</li>
+
+
+
+<li>pyspark_job กำหนดไฟล์ไพทอนที่เราต้องการให้รันบน Google Cloud Dataproc ด้วยการกำหนดใน main_python_file_uri กรณีที่เก็บใน Google Cloud Storage เราเขียนที่อยู่ไฟล์โดยขึ้นต้นด้วย gs:// ตามด้านชื่อ Bucket และตำแหน่งไฟล์ที่เก็บ</li>
+</ul>
+
+<p>ส่วนนี้เราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>PYSPARK_JOB = {
+    "reference": {"project_id": "&lt; project_id &gt;"},
+    "placement": {"cluster_name": "&lt; defined cluster name &gt;"},
+    "pyspark_job": {"main_python_file_uri": "gs://&lt; bucket name &gt;/&lt; python file path &gt;"},
+}</code></pre>
+
+<h3 class="wp-block-heading">Instantiate a DAG</h3>
+
+<p>ส่วนนี้จะเป็นการสร้าง DAG พร้อมกับกำหนดพารามิเตอร์ของ DAG ตามที่เรากำหนดไว้แล้วในขั้นตอนที่แล้ว โดยเราสามารถเขียนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>with DAG(
+    default_args&#91;'dag_id'],
+    start_date = default_args&#91;'start_date'],
+    schedule_interval = default_args&#91;'schedule_interval'],
+    tags = &#91;'exercise']
+) as dag:</code></pre>
+
+<p>นอกจากนี้ เราเขียนคำอธิบาย DAG ได้โดยเก็บไว้ในตัวแปร dag.doc_md ผ่านการเขียนโค้ดแล้วใส่คำอธิบายแบบ Markdown ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>dag.doc_md = """
+        # Tuition cost per year airflow
+
+        This is the DAG (Directed Acyclic Graph) on downloading the related datasets, and storing in Google Cloud Storage.
+"""</code></pre>
+
+<h3 class="wp-block-heading">Tasks</h3>
+
+<p>ส่วนนี้เป็นการสร้าง Operator ขึ้นมาสำหรับกำหนดการทำงานภายใน DAG โดยในไฟล์นี้จะเป็นการดาวน์โหลดข้อมูลจาก Dataset ที่ระบุไว้ในส่วนต้นของบทความที่นำข้อมูลจากเว็บ Open Government Data of Thailand</p>
+
+<p>ส่วนแรกเป็นการดาวน์โหลด Dataset ต้นทุนค่าใช้จ่ายในการผลิตนักศึกษาต่อหัวต่อปีของแต่ละหลักสูตร</p>
+
+<pre class="wp-block-code"><code>def download_datasets():
+    request_tuition = requests.get("https://data.mhesi.go.th/dataset/7fa12569-ce54-44bc-b12f-2f551fd5d722/resource/bef1aff7-738d-4fc4-bdb5-6976b66674ce/download/dqe_11_03.xlsx")
+    with open('tuition.xlsx', 'wb') as f:
+        f.write(request_tuition.content)</code></pre>
+
+<p>ส่วนต่อมาเป็นการดาวน์โหลด Dataset รายชื่อสถาบันในแต่ละจังหวัดที่เก็บข้อมูลตามปีการศึกษา 2563 และ 2564</p>
+
+<pre class="wp-block-code"><code>def download_province_dataset(year):
+    request_univ_type = requests.get(f"https://data.mhesi.go.th/dataset/5d5c4958-9e36-41ae-a637-1b31148a1143/resource/45c26094-3a3d-45f8-832c-00b07572bd25/download/univ_uni_11_03_{ year }.xlsx")
+
+    with open(f"temp_{ year }_univ_province.xlsx", "wb") as f:
+        f.write(request_univ_type.content)</code></pre>
+
+<p>ส่วนต่อมาเป็นการกำหนดให้อัพโหลดไฟล์ที่ดาวน์โหลดแล้วจากสองฟังก์ชันข้างบนให้เก็บไว้ใน Google Cloud Storage เพื่อกำหนดให้เป็น Data Lake</p>
+
+<pre class="wp-block-code"><code>def upload_blob(bucket_name, source_filenames, target_blob_names):
+    client = Client()
+    bucket = client.bucket(bucket_name)
+
+    for source_filename, target_blob_name in zip(source_filenames, target_blob_names):
+        blob = bucket.blob(target_blob_name)
+        generation_match_precondition = None
+        blob.upload_from_filename(source_filename,
+            if_generation_match=generation_match_precondition)
+
+        print("&#91;*] Uploaded")
+
+def upload_datasets_to_gcs():
+    univ_type = &#91;f"temp_{ year }_univ_province.xlsx" for year in &#91;2563, 2564]]
+    upload_blob("bucket_name", &#91;"tuition.xlsx", *univ_type], &#91;"tuition.xlsx", *univ_type])</code></pre>
+
+<p>โค้ดฟังก์ชันทั้ง 3 ฟังก์ชันข้างบน เราสามารถเขียนโดยใช้ PythonOperator ได้โดย</p>
+
+<pre class="wp-block-code"><code>t1 = PythonOperator(
+    task_id = 'download_datasets',
+    python_callable = download_datasets,
+)
+
+t2 = &#91;
+    PythonOperator(
+        task_id = f"download_datasets_yr_{ year }",
+        python_callable = download_province_dataset,
+        op_kwargs = { "year": year }
+    ) for year in &#91;2563, 2564]
+]
+
+t3 = PythonOperator(
+    task_id = 'upload_to_gcs',
+    python_callable = upload_datasets_to_gcs
+)</code></pre>
+
+<p>ต่อมา เมื่อเขียนฟังก์ชันสำหรับการดาวน์โหลด Dataset และเก็บข้อมูลไว้ใน Dataset บน Google Cloud Storage แล้วส่วนนี้เป็นการสั่งให้ Google Dataproc ที่เราสร้าง Cluster ขึ้นมาประมวลผล โดยสร้าง Job ขึ้นมาใหม่ ผ่านการใช้งาน DataprocSubmitJobOperator</p>
+
+<pre class="wp-block-code"><code>t4 = DataprocSubmitJobOperator(
+    task_id="pyspark_task", 
+    job=PYSPARK_JOB, 
+    region='us-central1',
+    project_id= "project_name"
+)</code></pre>
+
+<h3 class="wp-block-heading">Setting up dependencies</h3>
+
+<p>ส่วนสุดท้ายจะเป็นการกำหนดทิศทางการทำงานของแต่ละ Operator ที่เราสร้างขึ้นมาในขั้นตอนที่ 4 (Tasks) โดยเราจะกำหนดให้เป็น Fan-in เนื่องจากเรากำหนดให้ดาวน์โหลด Dataset ก่อน จากนั้นอัพโหลดไปยัง Google Cloud Storage ทีเดียว แล้วสั่งให้ Google Dataproc ประมวลผล</p>
+
+<p>การเขียนโค้ดเขียนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>&#91;t1, *t2] &gt;&gt; t3 &gt;&gt; t4</code></pre>
+
+<p>เมื่อเขียนโค้ด DAG แล้ว ให้เรานำตัวโค้ดนี้เก็บไว้ที่ Google Cloud Storage bucket ที่ Google Cloud Composer สร้างขึ้น โดยเก็บในโฟลเดอร์ dags ซึ่งเมื่อมองจากตัว Composer เองจะเขียนที่อยู่โฟลเดอร์ได้เป็น /home/airflow/gcs/dags</p>
+
+<p>ส่วนอีกโฟลเดอร์หนึ่งที่มีชื่อว่า data (ที่เมื่อมองจากตัว Composer เองจะมีที่อยู่โฟลเดอร์เป็น /home/airflow/gcs/data) อันนี้มีหน้าที่เก็บข้อมูลที่ DAG สร้างขึ้น แต่ในบทความนี้เราไม่ได้เก็บอะไรไว้ในนั้น </p>
+
+<h2 class="wp-block-heading">การเปลี่ยนแปลงข้อมูล (Transformation)</h2>
+
+<p>ขั้นตอนนี้ เป็นการนำข้อมูลที่เก็บไว้ใน Data Lake มาผ่านขั้นตอนการเปลี่ยนแปลงข้อมูล <a href="https://blog.datath.com/etl-คืออะไร/" target="_blank" rel="noopener" title="Extract Transform Load (ETL)">Extract Transform Load (ETL)</a> ที่ประกอบไปด้วย</p>
+
+<ul class="wp-block-list">
+<li><strong>E = Extract</strong> ที่เป็นขั้นตอนการดึงข้อมูลจากแหล่งข้อมูล (Data Source) ต่างๆ โดยในตัวอย่างจะดึงข้อมูลจาก Dataset มาเก็บไว้ใน Data Lake สำหรับการประมวลผลซึ่งทำไปแล้วในขั้นตอนก่อนหน้า</li>
+
+
+
+<li><strong>T = Transform</strong> เป็นขั้นตอนการเปลี่ยนแปลงข้อมูลให้เป็นไปตามที่ต้องการ รวมถึงการทำความสะอาดข้อมูลที่ได้จากขั้นตอน Extract</li>
+
+
+
+<li><strong>L = Load</strong> เป็นการนำข้อมูลไปเก็บไว้ในระบบปลายทาง โดยในบทความนี้จะนำข้อมูลไปเก็บไว้ใน Google Cloud BigQuery ที่เป็น Data Warehouse ที่เก็บข้อมูลประเภท Structured Data ที่มีข้อมูลเป็นจำนวนมาก โดยเก็บข้อมูลในอดีต (Historical Data) ที่ไม่มีการเปลี่ยนแปลง สำหรับการนำข้อมูลไปทำ Dashboard / Report กับนำไปวิเคราะห์ข้อมูล</li>
+</ul>
+
+<p>การเขียนโค้ด เราจะเขียนโค้ดโดยนำข้อมูลที่เก็บไว้ใน Google Cloud Storage มาประมวลผลเพื่อทำความสะอาดข้อมูล (Data Cleansing)</p>
+
+<p>การทำความสะอาดข้อมูล (Data Cleansing) เป็นขั้นตอนทำพัฒนาคุณภาพของข้อมูล โดยค้นหาและแก้ไขความผิดพลาดของข้อมูล ได้แก่ ข้อมูลไม่ถูกต้องตาม Format ที่ได้กำหนดไว้ ข้อมูลสูญหาย (Missing Data) รวมถึงข้อมูลสูง หรือต่ำกว่าปกติ (Outliers)</p>
+
+<p>เหตุผลการทำความสะอาดของข้อมูล ทำเพื่อป้องกันการเกิด Garbage in, Garbage out ที่เราได้ข้อมูลที่ไม่มีคุณภาพ ส่งผลให้วิเคราะห์ผิดพลาด กับทำโมเดล ML ผิดพลาด สุดท้ายเสียรายได้ และเสียลูกค้า จนส่งผลต่อธุรกิจ</p>
+
+<p>อย่างไรก็ตาม ขั้นตอนนี้เป็นขั้นตอนที่ยาก เนื่องมาจากเป็นกระบวนการที่ไม่มีวันจบสิ้น ต้องทำตลอด ยากที่รจะรู้ว่ามาจากอะไรเนื่องจากคนละหน่วยงาน คนละทีมก็มีโครงสร้างที่ต่างกัน และข้อมูลแต่ละแหล่งมีโครงสร้างที่แตกต่างกัน</p>
+
+<p>โดยก่อนจะทำ Data Cleansing เราจำเป็นต้องเข้าไปดูลักษณะข้อมูลข้างในเสียก่อน โดยผ่านการทำ Exploratory Data Analysis (EDA) โดย</p>
+
+<ul class="wp-block-list">
+<li>สามารถแสดงได้โดยการใช้ตัวเลขทางสถิติ (เช่น Min, Max, Mean) กับการใช้กราฟฟิก (เช่นการพล็อตกราฟ (Data Visualization) ได้แก่ Boxplot, Histogram)</li>
+
+
+
+<li>หรือดูรายละเอียดตัวแปรว่ามีทั้งหมดกี่ตัว ได้แก่ Univariate ที่ดูคอลัมม์เดียว เช่นดูค่าเฉลี่ย หรือ Multivariate โดยการคำนวณ Covariance หรือการใช้ Scatter Plot เพื่อดูความสัมพันธ์ระหว่าง 2 ตัวแปร</li>
+</ul>
+
+<p>นอกจากนี้ เราจำเป็นต้องเข้าไปดูความผิดปกติของข้อมูล (Data Anomaly) ที่เกิดจากการเก็บข้อมูล จากการดึงข้อมูลเข้ามาใช้งานทำให้ข้อมูลมีค่าที่ไม่สมบูรณ์ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>Syntactical Anomalies (กรอกข้อมูลไม่ถูกต้อง เช่น Spelling Mistake, Domain Format Error, Syntactical Error และ Irregularity)</li>
+
+
+
+<li>Semantic Anomalies (คือความผิดพลาดการเก็บข้อมูล ได้แก่ Duplication และ Integrity Constraint Violation)</li>
+
+
+
+<li>Coverage Anomalies (เช่น Missing Data)</li>
+
+
+
+<li>และ Outliers</li>
+</ul>
+
+<p>เครื่องมือที่เราจะใช้ในการทำความสะอาดข้อมูลในบทความนี้คือเครื่องมือที่มีชื่อว่า <a href="http://spark.apache.org" target="_blank" rel="noopener" title="Apache Spark">Apache Spark</a></p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-medium"><img data-recalc-dims="1" loading="lazy" decoding="async" width="300" height="177" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/spark-300x177.jpg" alt="" class="wp-image-4279" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/spark-300x177.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/spark-1024x603.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/spark-768x452.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/spark-1536x905.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/spark-1200x707.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/spark.jpg 1640w" sizes="auto, (max-width: 300px) 100vw, 300px" /><figcaption class="wp-element-caption">Apache Spark</figcaption></figure></div>
+
+<p>Apache Spark เป็นเครื่องมือสำหรับการประมวลผลแบบ Distributed Data Processing ที่ประมวลผลด้วยคอมพิวเตอร์หลายเครื่องผ่าน Cluster ที่สามารถกระจายงานเพื่อช่วยกันทำได้ โดยเครื่องมือนี้</p>
+
+<ul class="wp-block-list">
+<li>ประมวลผลข้อมูลใน Memory</li>
+
+
+
+<li>เก็บการเปลี่ยนแปลงของข้อมูล แทนที่เก็บข้อมูลที่เปลี่ยนแล้ว</li>
+
+
+
+<li>ทนต่อการล่ม (Fault Tolerant) ด้วย RDD (Resilient Distributed Dataset)</li>
+
+
+
+<li>รองรับหลายภาษา ได้แก่ Python, R, Java และ Scala</li>
+
+
+
+<li>และมีเครื่องมือให้ใช้งานได้เยอะ เช่น Spark SQL ที่เขียน SQL เพื่อทำงานข้อมูลบน Spark แบบ SQL, Spark Streaming รองรับข้อมูลที่ไหลมาอย่างรวดเร็ว, MLlib ที่สร้างโมเดล Machine Learning สำหรับ Big Data และ GraphX รองรับข้อมูลแบบกราฟ</li>
+</ul>
+
+<p>สำหรับประเภทของข้อมูลที่รองรับ ได้แก่ RDD, Spark DataFrame/Spark SQL ที่รองรับการทำงานแบบ Relational Database และ Dataset</p>
+
+<p>ในบทความนี้เราใช้งาน Apache Spark ผ่านการเขียนโค้ดด้วย Pythonที่ใช้ไลบรารี PySpark ร่วมกับการเก็บข้อมูลที่เราดาวน์โหลดมาให้เป็นแบบ Spark DataFrame</p>
+
+<h3 class="wp-block-heading">การเปิดใช้งาน Google Dataproc</h3>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="156" height="250" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_dataproc.png" alt="" class="wp-image-4282" /><figcaption class="wp-element-caption">Google Dataproc</figcaption></figure></div>
+
+<p>การใช้งานไลบรารีนี้ เราใช้งานผ่านบริการบน GCP ที่มีชื่อว่า <a href="https://cloud.google.com/dataproc" target="_blank" rel="noopener" title="Google Dataproc">Google Dataproc</a> ที่เป็นบริการ Managed สำหรับการรันเครื่องมือ Apache Hadoop, Apache Spark, Apache FLink และอื่น ๆ โดยมีข้อดีที่</p>
+
+<ul class="wp-block-list">
+<li>รองรับการรันแบบ Serverless</li>
+
+
+
+<li>รองรับการรันบน Cluster ผ่านการใช้งาน Google Compute และ Kubernetes</li>
+
+
+
+<li>รองรับการใช้งานกับบริการ Vertex AI, BigQuery และ Dataplex </li>
+
+
+
+<li>และปลอดภัยต่อการใช้งาน</li>
+</ul>
+
+<p>การเริ่มต้นใช้งาน เราสามารถเริ่มต้นใช้งานโดยเข้าไปใน Cloud Console เพื่อสร้าง Google Dataproc Cluster โดยเบื้องต้นเราจะสร้างบน Google Compute Engine</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="453" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0035-1024x800.jpeg" alt="" class="wp-image-3969" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0035-300x234.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0035-1024x800.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0035-768x600.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0035-1536x1200.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0035-1200x937.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0035.jpeg 1640w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">สร้าง Dataproc Cluster</figcaption></figure></div>
+
+<p>เมื่อเลือกแล้ว เรามาตั้งค่ารายละเอียดชื่อ Cluster กำหนด Region และตั้งค่าระบบปฏิบัติการ โดยกำหนด Single Node กับกำหนด Region เป็น us-central1 และใช้ระบบปฏิบัติการ Ubuntu</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ส่วนนี้ผู้อ่านสามารถเลือกใช้ Debian ก็ได้ ไม่มีปัญหาอะไรเนื่องจาก Google จะเลือกมาให้เป็นค่าเริ่มต้น</p>
+</blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="605" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0036-981x1024.jpeg" alt="" class="wp-image-3970" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0036-287x300.jpeg 287w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0036-981x1024.jpeg 981w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0036-768x802.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0036-1471x1536.jpeg 1471w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0036-1200x1253.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0036.jpeg 1640w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">การตั้งค่าใน Cluster</figcaption></figure></div>
+
+<p>ต่อมา เรากำหนดสเปคของ Dataproc cluster ที่ใช้ เราจะใช้ตัว n2-standard-2 ที่มีแรม 8GB</p>
+
+<p>จากนั้น เราตั้งค่าให้ Dataproc Cluster นี้ติดตั้งแพคเกจ Python เพิ่มเติมด้วยการใช้งาน pip โดยเราเข้ามาที่แท็บ Customized Cluster แล้วเลือกไปที่ Initialization Actions</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ก่อนที่เราจะเลือกส่วนนี้ เราจำเป็นต้องอัพโหลดไฟล์ pip-install.sh เก็บไว้ใน Google Cloud Storage เสียก่อน โดยไฟล์นี้สามารถดาวน์โหลดได้จากเว็บ <a href="https://github.com/GoogleCloudDataproc/initialization-actions/blob/master/python/pip-install.sh" target="_blank" rel="noopener" title="GitHub">GitHub</a></p>
+</blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="449" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0037-1024x793.jpeg" alt="" class="wp-image-3971" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0037-300x232.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0037-1024x793.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0037-768x595.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0037-1536x1189.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0037-1200x929.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0037.jpeg 1640w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ตั้งค่าเพื่อให้รันคำสั่ง pip ตอนสร้าง Cluster</figcaption></figure></div>
+
+<p>จากนั้น เรากดไปที่ Add Initialization Action จากนั้นเลือกไฟล์ pip-install.sh ต่อมา เราเลื่อนหน้าจอลงมาที่ Custom Cluster Metadata </p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="511" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0038.jpeg" alt="" class="wp-image-3972" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0038-300x264.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0038-768x677.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0038.jpeg 851w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">เพิ่มโค้ด initial-pip.sh</figcaption></figure></div>
+
+<p>จากนั้นกำหนดกด Add Metadata ให้ใส่ชื่อ Key 1 เป็น <strong>PIP_PACKAGES</strong> และตรง Value 1 ให้พิมพ์ <strong>numpy, pandas, openpyxl และ fsspec</strong> เพื่อติดตั้งไลบรารีเพิ่มเติมตามที่เราระบุ</p>
+
+<p>เหตุผลที่เราติดตั้ง openpyxl เพื่อให้ตัว pandas เปิดไฟล์ XLSX ที่เราเก็บไว้ใน Google Cloud Storage ในขั้นตอนก่อนหน้าได้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="276" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0039.jpeg" alt="" class="wp-image-3974" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0039-300x143.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0039-768x366.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0039.jpeg 836w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ตั้งค่าไลบรารีที่จะติดตั้งด้วยตัวแปร PIP_PACKAGES</figcaption></figure></div>
+
+<p>เมื่อทำเสร็จแล้ว กดปุ่ม Create เราต้องใช้ระยะเวลาซักพักหนึ่งจนกว่าตัว Dataproc จะสร้าง Cluster เรียบร้อยครับ เมื่อสร้างเสร็จแล้วจะปรากฏหน้าจอตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2245b47&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="269" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_dataproc-1024x475.png" alt="" class="wp-image-4200" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_dataproc-300x139.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_dataproc-1024x475.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_dataproc-768x356.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_dataproc-1536x713.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_dataproc-1200x557.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_dataproc.png 1549w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">หน้าจอการรัน Google Dataproc</figcaption></figure></div>
+
+<h3 class="wp-block-heading">เขียนโค้ด</h3>
+
+<p>เมื่อเราสร้าง Cluster บน Google Dataproc เรียบร้อย เรามาเขียนโค้ดเพื่อใช้งานกับ Google Dataproc สำหรับการทำ Data Cleansing ครับ</p>
+
+<p>ก่อนอื่นเลย เราเขียนโค้ดสำหรับการนำเข้าไลบรารีก่อน</p>
+
+<h3 class="wp-block-heading">นำเข้าไลบรารี</h3>
+
+<p>ส่วนแรกของการเขียนโค้ดคือนำเข้าไลบรารีเสียก่อน ไลบรารีที่เราจะใช้งานกับ Google Dataproc มีดังนี้ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>โมดูล pandas, numpy และ requests</li>
+
+
+
+<li>นำเข้า SparkContext จากไลบรารี pyspark</li>
+
+
+
+<li>นำเข้า SparkSession จากไลบรารี pyspark.sql</li>
+
+
+
+<li>นำเข้าชนิดตัวแปรใน Spark DataFrame จากไลบรารี pyspark.sql.types</li>
+
+
+
+<li>นำเข้าฟังก์ชันสำหรับประมวลผลใน DataFrame ได้แก่ col เพื่อเลือกคอลัมน์, split เพื่อแยกข้อมูลที่เป็น String, when ตั้งเงื่อนไขในกรณีที่ข้อมูลตรงกับเงื่อนไขนั้นให้เปลี่ยนเป็นค่าตามที่ต้องการ, regexp_replace ให้แทนที่ข้อความส่วนหนึ่งให้เป็นข้อความตามที่ต้องการโดยการใช้ Regular Expression และ trim ให้ตัดช่องว่างระหว่างข้อความหน้า-หลัง</li>
+
+
+
+<li>และนำเข้า storage จากไลบรารี googe.cloud เพื่อนำเข้าเครื่องมือสำหรับเชื่อมต่อกับ Google Cloud Storage</li>
+</ul>
+
+<pre class="wp-block-code"><code>import pandas as pd
+import numpy as np
+import requests
+
+# Spark-related libraries
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql.types import *
+from pyspark.sql.functions import col, split, when, regexp_replace, trim
+
+# Google Cloud Storage
+from google.cloud import storage</code></pre>
+
+<p>บรรทัดต่อมา เรากำหนดค่าเริ่มต้นสำหรับการเรียกข้อมูลใน Google Cloud Storage โดยกำหนดชื่อ bucket_name สำหรับการดาวน์โหลดข้อมูลมาใช้</p>
+
+<pre class="wp-block-code"><code># Define Variables
+bucket_name = "bucket_name"</code></pre>
+
+<p>หลังจากนั้น เราเขียนไลบรารีเพื่อเชื่อมต่อกับ Google Cloud Storage สำหรับดาวน์โหลดข้อมูลมาใช้งาน ร่วมกันกับเขียนฟังก์ชันสำหรับการเริ่มต้นการทำงาน PySpark ด้วยการกำหนด SparkContext และ SparkSession ตามโค้ดด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Initialize Spark
+def initial_spark():
+    # Create Spark Session
+    sc = SparkContext()
+    spark = SparkSession(sc)
+    print(f"The current spark version = { spark.version }.")
+    return spark
+
+# Download File
+storage_client = storage.Client()
+bucket = storage_client.bucket(bucket_name)
+
+# Create Spark Session
+spark = initial_spark()</code></pre>
+
+<h3 class="wp-block-heading">ดาวน์โหลดไฟล์จาก Google Cloud Storage</h3>
+
+<p>ขั้นตอนก่อนที่จะเริ่มทำ Data Cleansing เราจำเป็นต้องดาวน์โหลดไฟล์ข้อมูลที่เราได้เตรียมไว้บน Google Cloud Storage ในขั้นตอนการนำเข้าข้อมูล (Ingestion) มาใช้านบน Dataproc</p>
+
+<p>การเขียนโค้ดสำหรับดาวน์โหลดข้อมูลจาก Google Cloud Storage ทำได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Download File
+def download_file(bucket, filename):
+    source = filename
+    target_name = filename
+    blob = bucket.blob(source)
+    blob.download_to_filename(target_name)
+    print("&#91;*] Downloaded")</code></pre>
+
+<p>เมื่อเรามีฟังก์ชันสำหรับการดาวน์โหลดข้อมูลแล้ว เรามาเขียนฟังก์ชันสำหรับการดาวน์โหลดชุดข้อมูลที่มี 2 ชุด ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ข้อมูลรายชื่อสถาบันอุดมศึกษาตามปีการศึกษา 2563 และ 2564</li>
+
+
+
+<li>ข้อมูลต้นทุนค่าใช้จ่ายการผลิตนักศึกษาต่อหัวต่อปี ในแต่ละหลักสูตร</li>
+</ul>
+
+<h4 class="wp-block-heading"><strong>ข้อมูลรายชื่อสถาบันอุดมศึกษาตามปีการศึกษา 2563 และ 2564</strong></h4>
+
+<p>ข้อมูลชุดแรก มีรายละเอียดแต่ละคอลัมน์ตามภาพด้านล่างนี้</p>
+
+<figure class="wp-block-table aligncenter"><table><tbody><tr><td><strong>ชื่อคอลัมน์</strong></td><td><strong>รายละเอียด</strong></td></tr><tr><td>ACADEMIC_YEAR</td><td>ปีการศึกษา</td></tr><tr><td>UNIV_NAME</td><td>ชื่อมหาวิทยาลัย</td></tr><tr><td>PROVINCE_UNIV_NAME_TH</td><td>ชื่อจังหวัด</td></tr></tbody></table></figure>
+
+<p>การนำข้อมูลชุดนี้มาใช้งาน เราจำเป็นต้องดาวน์โหลดจาก Google Cloud Storage มาลง Dataproc พร้อมกับแปลงข้อมูลให้เป็น Spark DataFrame ได้โดยกำหนดฟังก์ชันเสียก่อน</p>
+
+<pre class="wp-block-code"><code><strong>def download_univ_class_by_province(spark, bucket):
+    pass</strong></code></pre>
+
+<p>ต่อมา เราแทนที่ pass ให้กำหนดตัวแปร total_univ สำหรับการเก็บตัวแปร Pandas DataFrame ที่เราจะสร้างขึ้นหลังจากเปิดไฟล์ XLSX</p>
+
+<pre class="wp-block-code"><code>def download_univ_class_by_province(spark, bucket):
+    <strong>total_univ = &#91;]</strong></code></pre>
+
+<p>เมื่อเราสร้างตัวแปรมาเรียบร้อย เราเขียนส่วนดาวน์โหลดไฟล์แบบวนลูปตามปี 2563 และ 2564 ร่วมกับเปิดไฟล์ XLSX ด้วยการใช้ read_excel และเพิ่มเข้าไปอาเรย์ total_univ</p>
+
+<pre class="wp-block-code"><code>def download_univ_class_by_province(spark, bucket):
+    total_univ = &#91;]
+    <strong>for year in &#91;2563, 2564]:
+        download_file(bucket, f"temp_{ year }_univ_province.xlsx")
+
+        temp_univ = pd.read_excel(f"temp_{ year }_univ_province.xlsx", f"univ_uni_11_03_2563")
+        total_univ.append(temp_univ)</strong></code></pre>
+
+<p>หลังจากนั้น เราเชื่อมระหว่าง Pandas DataFrame 2 ตัวแปรด้วยกันด้วยการใช้ฟังก์ชัน concat</p>
+
+<pre class="wp-block-code"><code>def download_univ_class_by_province(spark, bucket):
+    total_univ = &#91;]
+    for year in &#91;2563, 2564]:
+        download_file(bucket, f"temp_{ year }_univ_province.xlsx")
+
+        temp_univ = pd.read_excel(f"temp_{ year }_univ_province.xlsx", f"univ_uni_11_03_2563")
+        total_univ.append(temp_univ)
+
+    <strong>result = pd.concat(total_univ)</strong></code></pre>
+
+<p>จากนั้น เราลบข้อมูลชื่อมหาวิทยาลัยที่ซ้ำกันด้วยการใช้ฟังก์ชัน drop_duplicates และเลือกคอลัมน์ UNIV_NAME เพื่อลบข้อมูลที่ซ้ำ</p>
+
+<pre class="wp-block-code"><code>def download_univ_class_by_province(spark, bucket):
+    total_univ = &#91;]
+    for year in &#91;2563, 2564]:
+        download_file(bucket, f"temp_{ year }_univ_province.xlsx")
+
+        temp_univ = pd.read_excel(f"temp_{ year }_univ_province.xlsx", f"univ_uni_11_03_2563")
+        total_univ.append(temp_univ)
+
+    result = pd.concat(total_univ)
+    <strong>result = result.drop_duplicates(subset = &#91;'UNIV_NAME'])</strong></code></pre>
+
+<p>ต่อมา เรามาดูในข้อมูลนี้ก่อน โดยเราสามารถใช้งานฟังก์ชัน info() เพื่อดูรายละเอียดของ Pandas DataFrame ได้</p>
+
+<pre class="wp-block-code"><code>result.info()
+
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 390 entries, 0 to 389
+Data columns (total 3 columns):
+ #   Column                 Non-Null Count  Dtype 
+---  ------                 --------------  ----- 
+ 0   ACADEMIC_YEAR          390 non-null    int64 
+ 1   UNIV_NAME              390 non-null    object
+ 2   PROVINCE_UNIV_NAME_TH  <strong><span style="text-decoration: underline;">388</span></strong> non-null    object
+dtypes: int64(1), object(2)
+memory usage: 12.2+ KB</code></pre>
+
+<p>จากข้อมูลพบว่ามีคอลัมน์ PROVINCE_UNIV_NAME_TH ที่มีจำนวนแถวไม่เท่ากับจำนวนแถวที่มีในชุดข้อมูลนี้ เราสามารถเข้าไปดูในคอลัมน์นี้ได้ว่ามีข้อมูลหายไปหรือไม่ โดยการกรองข้อมูลด้วยการใช้เงื่อนไข isnull()</p>
+
+<pre class="wp-block-code"><code>result&#91;result&#91;'PROVINCE_UNIV_NAME_TH'].isnull()]</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22468d5&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="120" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0042-1024x212.jpeg" alt="" class="wp-image-4009" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0042-300x62.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0042-1024x212.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0042-768x159.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0042-1200x248.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0042.jpeg 1470w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูล Missing Data บริเวณคอลัมน์ PROVINCE_UNIV_NAME_TH</figcaption></figure></div>
+
+<p>ผลลัพธ์แสดงให้เห็นว่า มี 2 แถวที่ไม่มีชื่อจังหวัด จุดนี้เราตัดทิ้งด้วยการกรองเฉพาะข้อมูลที่มีชื่อจังหวัดเท่านั้น ด้วยการเขียนโค้ด</p>
+
+<pre class="wp-block-code"><code>def download_univ_class_by_province(spark, bucket):
+    total_univ = &#91;]
+    for year in &#91;2563, 2564]:
+        download_file(bucket, f"temp_{ year }_univ_province.xlsx")
+
+        temp_univ = pd.read_excel(f"temp_{ year }_univ_province.xlsx", f"univ_uni_11_03_2563")
+        total_univ.append(temp_univ)
+
+    result = pd.concat(total_univ)
+    result = result.drop_duplicates(subset = &#91;'UNIV_NAME'])
+
+    <strong># Drop missing data.
+    df_province_data = result&#91;result&#91;'PROVINCE_UNIV_NAME_TH'].notnull()]</strong></code></pre>
+
+<p>จากนั้น เราแปลงข้อมูลให้อยู่ในตัวแปร Spark DataFrame เพื่อใช้งานกับ DataProc</p>
+
+<p>การแปลง เราจำเป็นต้องกำหนด Schema เสียก่อน โดยเรากำหนดให้ทุกคอลัมน์เป็นตัวแปร String โดยใช้ฟังก์ชัน StructField(&lt; ชื่อคอลัมน์ &gt;, StringType(), True) โดย True ข้างหลังเป็นการกำหนดว่าคอลัมน์นั้น ๆ อนุญาตให้เว้นว่างได้ (nullable)</p>
+
+<pre class="wp-block-code"><code>def download_univ_class_by_province(spark, bucket):
+    total_univ = &#91;]
+    for year in &#91;2563, 2564]:
+        download_file(bucket, f"temp_{ year }_univ_province.xlsx")
+
+        temp_univ = pd.read_excel(f"temp_{ year }_univ_province.xlsx", f"univ_uni_11_03_2563")
+        total_univ.append(temp_univ)
+
+    result = pd.concat(total_univ)
+    result = result.drop_duplicates(subset = &#91;'UNIV_NAME'])
+
+    # Drop missing data.
+    df_province_data = result&#91;result&#91;'PROVINCE_UNIV_NAME_TH'].notnull()]
+
+    <strong># Import into Apache Spark
+    fields = &#91;StructField(field_name, StringType(), True) for field_name in df_province_data.columns]
+    province_schema = StructType(fields)</strong></code></pre>
+
+<p>สุดท้าย เราแปลงข้อมูลให้อยู่ใน Spark DataFrame ได้โดยการใช้ฟังก์ชัน spark.createDataFrame(&lt; ตัวแปร Pandas DataFrame &gt;,&lt; Schema ที่เรากำหนดขึ้น &gt;) แล้วคืนค่าให้เราสามารถเรียกใช้ฟังก์ชันนี้ได้</p>
+
+<pre class="wp-block-code"><code>def download_univ_class_by_province(spark, bucket):
+    total_univ = &#91;]
+    for year in &#91;2563, 2564]:
+        download_file(bucket, f"temp_{ year }_univ_province.xlsx")
+
+        temp_univ = pd.read_excel(f"temp_{ year }_univ_province.xlsx", f"univ_uni_11_03_2563")
+        total_univ.append(temp_univ)
+
+    result = pd.concat(total_univ)
+    result = result.drop_duplicates(subset = &#91;'UNIV_NAME'])
+
+    # Drop missing data.
+    df_province_data = result&#91;result&#91;'PROVINCE_UNIV_NAME_TH'].notnull()]
+
+    # Import into Apache Spark
+    fields = &#91;StructField(field_name, StringType(), True) for field_name in df_province_data.columns]
+    province_schema = StructType(fields)
+    <strong>df_province_data = spark.createDataFrame(df_province_data, province_schema)
+
+    return df_province_data</strong></code></pre>
+
+<p>การใช้งาน ทำได้โดยการเรียกใช้ฟังก์ชัน พร้อมกับส่งค่าตัวแปร spark ที่เราเริ่มใช้งาน PySpark และตัวแปร bucket ที่เรากำหนดชื่อ Bucket สำหรับการดาวน์โหลดข้อมูลจาก Google Cloud Storage</p>
+
+<pre class="wp-block-code"><code># Download Dataset
+df_province_data = download_univ_class_by_province(spark, bucket)</code></pre>
+
+<h4 class="wp-block-heading">ข้อมูลต้นทุนค่าใช้จ่ายผลิตนักศึกษาต่อหัวต่อปี</h4>
+
+<p>ข้อมูลชุดสอง มีรายละเอียดแต่ละคอลัมน์ตามภาพด้านล่างนี้</p>
+
+<figure class="wp-block-table aligncenter"><table><tbody><tr><td><strong>ชื่อคอลัมน์</strong></td><td><strong>รายละเอียด</strong></td></tr><tr><td>CURR_ID</td><td>ID ของแต่ละหลักสูตร</td></tr><tr><td>CURR_NAME</td><td>ชื่อหลักสูตร</td></tr><tr><td>CURR_NAME_EN</td><td>ชื่อหลักสูตรภาษาอังกฤษ</td></tr><tr><td>UNIV_NAME_TH</td><td>ชื่อมหาวิทยาลัย</td></tr><tr><td>LEV_NAME_TH</td><td>ชื่อปริญญา</td></tr><tr><td>COST_PER_YEAR</td><td>ต้นทุนค่าใช้จ่ายผลิตนักศึกษาต่อหัวต่อปี</td></tr></tbody></table></figure>
+
+<p>การนำข้อมูลชุดนี้มาใช้งาน เราจำเป็นต้องดาวน์โหลดจาก Google Cloud Storage มาลง Dataproc พร้อมกับแปลงข้อมูลให้เป็น Spark DataFrame ได้โดยกำหนดฟังก์ชันเสียก่อน แบบเดียวกันกับข้อมูลชุดก่อนหน้า</p>
+
+<pre class="wp-block-code"><code><strong>def download_univ_tuition(spark, bucket):</strong>
+    pass</code></pre>
+
+<p>ต่อมา เราแทนที่ pass ด้วยการดาวน์โหลดข้อมูลที่เราเก็บไว้ใน Google Cloud Storage เพื่อเปิดไฟล์ XLSX ให้เก็บเป็นตัวแปร Pandas DataFrame</p>
+
+<pre class="wp-block-code"><code>def download_univ_tuition(spark, bucket):
+    <strong># Download the dataset
+    download_file(bucket, f"tuition.xlsx")
+    df = pd.read_excel(f'tuition.xlsx', sheet_name = 'Sheet2')</strong></code></pre>
+
+<p>ต่อมา เรามาดูข้อมูลในตารางนี้เสียก่อนด้วยการใช้ฟังก์ชัน info()</p>
+
+<pre class="wp-block-code"><code>def download_univ_tuition(spark, bucket):
+    # Download the dataset
+    download_file(bucket, f"tuition.xlsx")
+    df = pd.read_excel(f'tuition.xlsx', sheet_name = 'Sheet2')
+
+    <strong># Get the information of this dataset
+    print("Get information on this dataset.")
+    print(df.info())</strong></code></pre>
+
+<p>เมื่อเราดูใน info() ผลลัพธ์จะแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>print(df.info())
+
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 15897 entries, 0 to 15896
+Data columns (total 6 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   CURR_ID        <strong><span style="text-decoration: underline;">15861</span></strong> non-null  object 
+ 1   CURR_NAME      15897 non-null  object 
+ 2   CURR_NAME_EN   <strong><span style="text-decoration: underline;">15893</span></strong> non-null  object 
+ 3   UNIV_NAME_TH   15897 non-null  object 
+ 4   LEV_NAME_TH    <strong><span style="text-decoration: underline;">15861</span></strong> non-null  object 
+ 5   COST_PER_YEAR  <strong><span style="text-decoration: underline;">15893</span></strong> non-null  float64
+dtypes: float64(1), object(5)
+memory usage: 745.3+ KB</code></pre>
+
+<p>จากผลลัพธ์ เราจะพบว่าข้อมูลบริเวณคอลัมน์ CURR_ID, CURR_NAME_EN, LEV_NAME_TH และ COST_PER_YEAR มีจำนวนข้อมูลไม่เท่ากับจำนวนข้อมูลทั้งหมดที่มีในชุดข้อมูลนี้</p>
+
+<p>กรณีนี้ เราสามารถคัดกรองข้อมูลที่ว่างได้โดยการเขียนโค้ดตามด้านล่างนี้. ด้วยการใช้ฟังก์ชัน isnull()</p>
+
+<pre class="wp-block-code"><code>pandas_dataframe&#91;pandas_dataframe&#91;'&lt; column name &gt;'].<strong><span style="text-decoration: underline;">isnull()</span></strong>]</code></pre>
+
+<p>เราเอาฟังก์ชันข้างบนนี้มาใช้งานในแต่ละคอลัมน์ ผลลัพธ์แสดงตามภาพ โดยเริ่มจาก<strong>คอลัมน์ CURR_ID</strong></p>
+
+<pre class="wp-block-code"><code>df&#91;df&#91;'CURR_ID'].isnull()]</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22472fd&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="243" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_id-1024x429.png" alt="" class="wp-image-4127" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_id-300x126.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_id-1024x429.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_id-768x321.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_id-1200x502.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_id.png 1388w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลบริเวณคอลัมน์ CURR_ID ที่เป็น Missing Data</figcaption></figure></div>
+
+<p>จากผลลัพธ์เราจะพบว่าข้อมูลนี้มีความสัมพันธ์กับคอลัมน์ LEV_NAME_TH</p>
+
+<p>คอลัมน์ที่ 2 <strong>คอลัมน์ CURR_NAME_EN</strong></p>
+
+<pre class="wp-block-code"><code>df&#91;df&#91;'CURR_NAME_EN'].isnull()]</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2247839&quot;}" data-wp-interactive="core/image" class="aligncenter size-full wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="100" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_name_en.png" alt="" class="wp-image-4130" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_name_en-300x52.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_name_en-768x132.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_curr_name_en.png 989w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลบริเวณคอลัมน์ CURR_NAME_EN ที่เป็น Missing Data</figcaption></figure></div>
+
+<p>จากผลลัพธ์เราจะพบว่าข้อมูลนี้มีความสัมพันธ์กับคอลัมน์ COST_PER_YEAR</p>
+
+<p>คอลัมน์ที่ 3 <strong>คอลัมน์ LEV_NAME_TH</strong></p>
+
+<pre class="wp-block-code"><code>df&#91;df&#91;'LEV_NAME_TH'].isnull()]</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2247d86&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="205" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_lev_name_th-1024x362.png" alt="" class="wp-image-4135" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_lev_name_th-300x106.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_lev_name_th-1024x362.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_lev_name_th-768x272.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_lev_name_th-1200x425.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_lev_name_th.png 1325w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลบริเวณคอลัมน์ LEV_NAME_TH ที่เป็น Missing Data</figcaption></figure></div>
+
+<p>สุดท้าย ดูที่<strong>คอลัมน์ COST_PER_YEAR</strong></p>
+
+<pre class="wp-block-code"><code>df&#91;df&#91;'COST_PER_YEAR'].isnull()]</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2248275&quot;}" data-wp-interactive="core/image" class="aligncenter size-full wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="94" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_cost_per_year.png" alt="" class="wp-image-4136" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_cost_per_year-300x48.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_cost_per_year-768x124.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/missing_cost_per_year.png 1023w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลบริเวณคอลัมน์ COST_PER_YEAR ที่เป็น Missing Data</figcaption></figure></div>
+
+<p>เมื่อทราบข้อมูลแล้ว ส่วนนี้เราจะจัดการในส่วนต่อไปคือการทำ Data Cleansing</p>
+
+<p>ในตอนนี้ เรามาแปลงตัวแปร Pandas DataFrame ให้เป็นตัวแปร Spark DataFrame เสียก่อน โดยการกำหนด Schema ให้ทุกคอลัมน์เป็นตัวแปรแบบ String ด้วยการใช้ฟังก์ชัน StringType() ยกเว้นคอลัมน์ COST_PER_YEAR ที่กำหนดให้เป็นตัวแปรแบบ Double ด้วยการใช้ฟังก์ชัน DoubleType()</p>
+
+<pre class="wp-block-code"><code>def download_univ_tuition(spark, bucket):
+    # Download the dataset
+    download_file(bucket, f"tuition.xlsx")
+    df = pd.read_excel(f'tuition.xlsx', sheet_name = 'Sheet2')
+
+    # Get the information of this dataset
+    print("Get information on this dataset.")
+    print(df.info())
+
+    <strong>fields = &#91;StructField(field_name, StringType(), True) if field_name != 'COST_PER_YEAR' else StructField(field_name, DoubleType(), True) for field_name in df.columns]
+    schema = StructType(fields)</strong></code></pre>
+
+<p>เมื่อกำหนด Schema แล้ว เราแปลงตัวแปรให้เป็น Spark DataFrame ร่วมกับคืนค่าออกมา</p>
+
+<pre class="wp-block-code"><code>def download_univ_tuition(spark, bucket):
+    # Download the dataset
+    download_file(bucket, f"tuition.xlsx")
+    df = pd.read_excel(f'tuition.xlsx', sheet_name = 'Sheet2')
+
+    # Get the information of this dataset
+    print("Get information on this dataset.")
+    print(df.info())
+
+    fields = &#91;StructField(field_name, StringType(), True) if field_name != 'COST_PER_YEAR' else StructField(field_name, DoubleType(), True) for field_name in df.columns]
+    schema = StructType(fields)
+
+    <strong>df = spark.createDataFrame(df, schema)
+    return df</strong></code></pre>
+
+<p>จากนั้น เรียกใช้งานฟังก์ชันนี้โดยการส่งค่า spark ที่เป็นตัวแปรที่ได้จากการเริ่มต้นการทำงาน PySpark และ bucket ที่เป็นตัวแปรที่ได้จากการกำหนด Bucket</p>
+
+<pre class="wp-block-code"><code>df = download_univ_tuition(spark, bucket)</code></pre>
+
+<h3 class="wp-block-heading">Join ระหว่าง 2 ชุดข้อมูล</h3>
+
+<p>เมื่อได้ Spark DataFrame ทั้งสองชุดข้อมูลแล้ว ขั้นตอนนี้เราต้องนำข้อมูลทั้ง 2 ชุดมาเชื่อมกันด้วยการทำ Inner Join</p>
+
+<p>การทำ InnerJoin เป็นการเชื่อมข้อมูลระหว่าง 2 ชุดที่มีค่าเหมือนกันทั้งคู่ตามแผนภาพด้านล่างนี้ หรือจำง่าย ๆ ว่า เอาที่มีทั้งคู่เท่านั้นมาแสดง [3]</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="301" height="167" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0044.png" alt="" class="wp-image-4017" style="width:297px;height:auto" /><figcaption class="wp-element-caption">ภาพ Inner Join เอามาจาก <a href="https://commons.wikimedia.org/wiki/File:Inner_JOIN.png" target="_blank" rel="noopener" title="Wikipedia">Wikipedia</a></figcaption></figure></div>
+
+<p>เราสามารถเชื่อมระหว่าง 2 DataFrame ได้โดยการเขียนฟังก์ชัน join ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>joined_DF = A.<strong>join</strong>(B, &lt; join condition &gt;, 'inner')</code></pre>
+
+<p>การเขียนโค้ด เราเขียนโดยการกำหนดฟังก์ชันเสียก่อนเพื่อรับค่า DataFrame ทั้งสองตัวแปร</p>
+
+<pre class="wp-block-code"><code><strong>def join_two_db(temp_df, df_province_data):</strong>
+    pass</code></pre>
+
+<p>จากนั้นทำ Inner Join</p>
+
+<pre class="wp-block-code"><code>def join_two_db(temp_df, df_province_data):
+    <strong>df = df_province_data.join(temp_df, temp_df&#91;'UNIV_NAME_TH'] == df_province_data&#91;'UNIV_NAME'], 'inner')</strong></code></pre>
+
+<p>เมื่อทำ Inner Join แล้ว เราลบคอลัมน์ที่เราไม่ใช้ออกได้แก่</p>
+
+<ul class="wp-block-list">
+<li>UNIV_NAME ที่เป็นชื่อมหาวิทยาลัยที่ซ้ำกับอีกคอลัมน์หนึ่งที่มีชื่อว่า UNIV_NAME_TH</li>
+
+
+
+<li>ACADEMIC_YEAR ที่เป็นปีการศึกษาที่เราไม่ได้ใช้</li>
+</ul>
+
+<p>เราลบได้โดยการใช้ฟังก์ชัน drop</p>
+
+<pre class="wp-block-code"><code>def join_two_db(temp_df, df_province_data):
+    df = df_province_data.join(temp_df, temp_df&#91;'UNIV_NAME_TH'] == df_province_data&#91;'UNIV_NAME'], 'inner')
+    <strong>df = df.drop("UNIV_NAME")
+    df = df.drop("ACADEMIC_YEAR")</strong></code></pre>
+
+<p>สุดท้าย คืนค่าเป็น DataFrame ที่ Inner Join เรียบร้อย</p>
+
+<pre class="wp-block-code"><code>def join_two_db(temp_df, df_province_data):
+    df = df_province_data.join(temp_df, temp_df&#91;'UNIV_NAME_TH'] == df_province_data&#91;'UNIV_NAME'], 'inner')
+    df = df.drop("UNIV_NAME")
+    df = df.drop("ACADEMIC_YEAR")
+    return df</code></pre>
+
+<p>การเรียกใช้งาน ทำได้โดยการส่งค่า DataFrame ทั้ง 2 ชุดไปยังฟังก์ชันนี้เพื่อรับตัวแปร DataFrame ที่ Join แล้ว</p>
+
+<pre class="wp-block-code"><code>df = join_two_db(df, df_province_data)</code></pre>
+
+<p>ผลลัพธ์ของการ Join แสดงได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>df.show()</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2248ebb&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="236" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-1024x416.jpeg" alt="" class="wp-image-4021" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-300x122.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-1024x416.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-768x312.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-1536x623.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-2048x831.jpeg 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-1200x487.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0046-1980x804.jpeg 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ผลลัพธ์การ Join</figcaption></figure></div>
+
+<h3 class="wp-block-heading">หา Data Anomalies</h3>
+
+<p>หลังจากที่ Join แล้ว เราจะพบว่า Data Anomalies ที่เราแสดงให้เห็นในชุดข้อมูลที่ 2 ที่เป็นข้อมูลต้นทุนค่าใช้จ่ายผลิตนักศึกษาต่อหัวต่อปี ยังไม่ได้รับการทำ Data Cleansing</p>
+
+<p>ถ้าต้องการดูข้อมูลก็ทำได้เช่นกัน โดยสามารถดูคอลัมน์ที่เป็น Missing Data ได้จากการเขียนฟังก์ชัน filter เพื่อคัดกรองข้อมูล ร่วมกับการใช้ฟังก์ชัน col สำหรับการเลือกคอลัมน์ และใช้ตัวแปร np.nan ที่เป็นตัวแปรของ NaN หรือเรียกอีกอย่างว่า Not a Number โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>spark_dataframe.filter(col('&lt; selected column &gt;') == np.nan)</code></pre>
+
+<p>ตัวอย่างเช่น คอลัมน์ CURR_NAME_EN ที่เราดูได้ว่ามีค่าไหนที่เป็น NaN หรือไม่โดยการพิมพ์ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>df.filter(col('CURR_NAME_EN') == np.nan).show()</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e22494e4&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="76" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0048-1024x134.jpeg" alt="" class="wp-image-4025" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0048-300x39.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0048-1024x134.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0048-768x100.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0048-1536x201.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0048-1200x157.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0048.jpeg 1919w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลคอลัมน์ CURR_NAME_EN ที่เป็น Missing Data</figcaption></figure></div>
+
+<p>ต่อมา คอลัมน์ LEV_NAME_TH เราสามารถดูว่ามีค่าไหนที่เป็น NaN เช่นกัน</p>
+
+<pre class="wp-block-code"><code>df.filter(col('LEV_NAME_TH') == np.nan).show()</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2249a10&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="257" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-1024x454.jpeg" alt="" class="wp-image-4026" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-300x133.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-1024x454.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-768x340.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-1536x681.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-2048x908.jpeg 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-1200x532.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0049-1980x878.jpeg 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">ข้อมูลคอลัมน์ LEV_NAME_TH ที่เป็น Missing Data</figcaption></figure></div>
+
+<p>และคอลัมน์สุดท้าย COST_PER_YEAR เราก็ยังดูได้ว่ามีค่า NaN หรือไม่</p>
+
+<pre class="wp-block-code"><code>df.filter(col('COST_PER_YEAR') == np.nan).show()</code></pre>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e2249f05&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="83" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0050-1024x146.jpeg" alt="" class="wp-image-4028" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0050-300x43.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0050-1024x146.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0050-768x110.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0050-1536x220.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0050-1200x172.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0050.jpeg 1924w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption"><span style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: -webkit-standard; font-size: medium; letter-spacing: normal; text-align: start; white-space: normal;">ข้อมูลคอลัมน์ COST_PER_YEAR ที่เป็น Missing Data</span></figcaption></figure></div>
+
+<h3 class="wp-block-heading">ทำ Data Cleansing</h3>
+
+<p>อันนี้ เรามาทำ Data Cleansing กันแบบจริงจังกันแล้วครับ ต่อจากข้างบนที่เราดูแล้วพบว่ามี Missing Data หลายคอลัมน์ และมี Syntactical Anomalies จากการสะกดผิดที่คอลัมน์หลักสูตร (หรือ CURR_NAME)</p>
+
+<p>เราจะทำ Cleansing Data ตามขั้นตอนดังนี้</p>
+
+<ol class="wp-block-list">
+<li>ลบคอลัมน์ CURR_ID เนื่องจากเราไม่ได้ใช้คอลัมน์นี้</li>
+
+
+
+<li>ลบข้อมูลที่เป็น Missing Data ในคอลัมน์ COST_PER_YEAR</li>
+
+
+
+<li>จัดการกับ Missing Data ในคอลัมน์ LEV_NAME_TH โดยนำข้อมูลจากคอลัมน์ CURR_NAME_EN มาใช้</li>
+
+
+
+<li>คัดกรองข้อมูลเฉพาะหลักสูตรระดับปริญญาตรี ปริญญาโท และปริญญาเอก</li>
+
+
+
+<li>แก้ตัวสะกดในชื่อหลักสูตรภาษาไทยในคอลัมน์ CURR_NAME</li>
+</ol>
+
+<p>ส่วนแรก เป็นการกำหนดฟังก์ชันเสียก่อน</p>
+
+<pre class="wp-block-code"><code><strong>def clean_data(df):</strong>
+    pass</code></pre>
+
+<p><strong>ลบคอลัมน์ CURR_ID</strong></p>
+
+<p>ต่อมา ลบคอลัมน์ CURR_ID เนื่องจากเราไม่ได้ใช้ด้วยการใช้ฟังก์ชัน drop()</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    <strong># Drop the CURR_ID
+    df = df.drop('CURR_ID')</strong></code></pre>
+
+<p><strong>ลบข้อมูลที่เป็น Missing Data ในคอลัมน์ COST_PER_YEAR</strong></p>
+
+<p>หลังจากลบคอลัมน์ CURR_ID แล้ว เรามาลบข้อมูลที่เป็น Missing Data ในคอลัมน์ COST_PER_YEAR ด้วยการใช้คำสั่ง na.drop การใช้งานทำได้โดย</p>
+
+<pre class="wp-block-code"><code>spark_dataframe.na.drop(subset = &lt; array ของ column ที่เราต้องการลบ &gt;)</code></pre>
+
+<p>เราลบข้อมูลในคอลัมน์ COST_PER_YEAR ที่เป็นค่า NaN ได้โดย</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    # Drop the CURR_ID
+    df = df.drop('CURR_ID')
+
+    <strong># Drop the data that does not have COST_PER_YEAR
+    first_clean_data = df.na.drop(subset = &#91;'COST_PER_YEAR'])</strong></code></pre>
+
+<p><strong>จัดการกับ Missing Data ในคอลัมน์ LEV_NAME_TH</strong></p>
+
+<p>หลังจากที่ลบคอลัมน์ CURR_ID ลบข้อมูลที่เป็น Missing Data ใน COST_PER_YEAR แล้ว เรามาจัดการกับข้อมูล Missing Data ในคอลัมน์ LEV_NAME_TH</p>
+
+<p>ก่อนอื่น เรานำข้อมูลที่มีในคอลัมน์ CURR_NAME_EN มาแบ่งออกมาโดยการใช้ฟังก์ชัน split เพื่อแยกข้อความ String ตามช่องว่างเพื่อที่จะเอาข้อมูลชื่อปริญญาตรี ปริญญาโท และปริญญาเอก ที่เป็นภาษาอังกฤษได้แก่ Bachelor, Master และ Doctor</p>
+
+<p>การใช้งานฟังก์ชันนี้ทำได้โดย</p>
+
+<pre class="wp-block-code"><code>split('&lt; desired column name &gt;', '&lt; separator &gt;')</code></pre>
+
+<p>ต่อมา เมื่อแยกข้อความแล้ว เราต้องการใช้ข้อมูลอันไหนล่ะ ข้อมูลอันแรก อันที่สอง หรืออันอื่น ๆ เราทำได้โดยการใช้ฟังก์ชัน getItem</p>
+
+<pre class="wp-block-code"><code>split('&lt; desired column name &gt;', '&lt; separator &gt;')<strong>.getItem(&lt; desired position &gt;)</strong></code></pre>
+
+<p>หลังจากที่ได้ข้อมูลแล้ว เรานำข้อมูลนั้นมาสร้างเป็นคอลัมน์ใหม่ได้โดยการใข้ฟังก์ชัน withColumn</p>
+
+<pre class="wp-block-code"><code>spark_dataframe.withColumn("&lt; desired column name &gt;", &lt; Spark column data &gt;)</code></pre>
+
+<p>ในตัวอย่างนี้ เราต้องการแยกข้อมูลใน CURR_NAME_EN โดยใช้ช่องว่างในการแบ่ง และเลือกข้อมูลอันแรก เราเขียนโค้ดได้โดย</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    # Drop the CURR_ID
+    df = df.drop('CURR_ID')
+
+    # Drop the data that does not have COST_PER_YEAR
+    first_clean_data = df.na.drop(subset = &#91;'COST_PER_YEAR'])
+
+    <strong># Then, we split the text data inside CURR_NAME_EN to acquire Bachelor, Master, and Doctor
+    first_clean_data = first_clean_data.withColumn('SPLIT_CURR_NAME_EN', split('CURR_NAME_EN', ' ').getItem(0))</strong></code></pre>
+
+<p>เมื่อแยกข้อมูลออกมาแล้ว เรามาแปลงข้อมูลจากภาษาอังกฤษให้เป็นภาษาไทย ด้วยการใช้งานฟังก์ชัน when ฟังก์ชันนี้จะเปลี่ยนค่าก็ต่อเมื่อค่าในแถวนั้น ๆ มีเงื่อนไขที่เป็นจริง การเรียกใช้งานทำได้โดย</p>
+
+<pre class="wp-block-code"><code>when(&lt; spark_desired_column condition that you define &gt;, &lt; desired change value when the condition is met. &gt;)</code></pre>
+
+<p>หลังจากนั้น กรณีที่ค่าในแถวนั้น ๆ มีเงื่อนไขที่ไม่ต้องกับ when เลย เราสามารถใช้งานฟังก์ชันที่มีชื่อว่า otherwise ที่เหมือนกับ Else การใช้งานทำได้โดย</p>
+
+<pre class="wp-block-code"><code>spark_dataframe.otherwise(&lt; desired change value when no condition is met. &gt;)</code></pre>
+
+<p>ในตัวอย่างนี้จะเป็นการเปลี่ยนชื่อปริญญาจากภาษาอังกฤษเป็นภาษาไทยที่เราสามารถเขียนโค้ดได้โดย</p>
+
+<pre class="wp-block-code"><code># This is the function to translate from English degree names into Thai.
+def change_degree_name_entoth(column, otherwise_column):
+    output = None
+    degree = {
+        'Bachelor': 'ปริญญาตรี',
+        'Master': 'ปริญญาโท',
+        'Doctor': 'ปริญญาเอก'
+    }
+
+    for i, (k,v) in enumerate(degree.items()):
+        if i == 0:
+            output = <strong>when</strong>(column == k, v)
+        else:
+            output = <strong>output.when</strong>(column == k, v)
+
+    output = <strong>output.otherwise</strong>(otherwise_column)
+    return output</code></pre>
+
+<p>จากนั้น เราเรียกใช้งานฟังก์ชัน change_degree_name_entoth พร้อมกับสร้างคอลัมน์ใหม่ที่มีชื่อว่า LEV_NAME_TH_TEMP กับลบคอลัมน์ LEV_NAME_TH ลง แล้วเปลี่ยนชื่อกลับจาก LEV_NAME_TH_TEMP เป็น LEV_NAME_TH ร่วมกับลบคอลัมน์ SPLIT_CURR_NAME_EN โดยเราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    # Drop the CURR_ID
+    df = df.drop('CURR_ID')
+
+    # Drop the data that does not have COST_PER_YEAR
+    first_clean_data = df.na.drop(subset = &#91;'COST_PER_YEAR'])
+
+    # Then, we split the text data inside CURR_NAME_EN to acquire Bachelor, Master, and Doctor
+    first_clean_data = first_clean_data.withColumn('SPLIT_CURR_NAME_EN', split('CURR_NAME_EN', ' ').getItem(0))
+
+    <strong># convert from SPLIT_CURR_NAME_EN to translate from English to Thai language of degree names.abs
+    first_clean_data = first_clean_data.withColumn("LEV_NAME_TH_TEMP", change_degree_name_entoth(first_clean_data&#91;'SPLIT_CURR_NAME_EN'], first_clean_data&#91;'LEV_NAME_TH']))
+    second_clean_data = first_clean_data.drop('LEV_NAME_TH')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH_TEMP', 'LEV_NAME_TH')
+    second_clean_data = second_clean_data.drop('SPLIT_CURR_NAME_EN')</strong></code></pre>
+
+<p><strong>คัดกรองข้อมูลเฉพาะหลักสูตรระดับปริญญาตรี ปริญญาโท และปริญญาเอก</strong></p>
+
+<p>เมื่อทำเสร็จแล้ว เราคัดกรองข้อมูลในชุดข้อมูลนี้เพื่อเลือกข้อมูลเฉพาะหลักสูตรระดับปริญญาตรี ปริญญาโท และปริญญาเอก แต่ก่อนอื่น เราเปลี่ยนจากชื่อคอลัมน์ที่มี _TH ให้เอาส่วนนี้ออกไปได้โดย</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    # Drop the CURR_ID
+    df = df.drop('CURR_ID')
+
+    # Drop the data that does not have COST_PER_YEAR
+    first_clean_data = df.na.drop(subset = &#91;'COST_PER_YEAR'])
+
+    # Then, we split the text data inside CURR_NAME_EN to acquire Bachelor, Master, and Doctor
+    first_clean_data = first_clean_data.withColumn('SPLIT_CURR_NAME_EN', split('CURR_NAME_EN', ' ').getItem(0))
+
+    # convert from SPLIT_CURR_NAME_EN to translate from English to Thai language of degree names.abs
+    first_clean_data = first_clean_data.withColumn("LEV_NAME_TH_TEMP", change_degree_name_entoth(first_clean_data&#91;'SPLIT_CURR_NAME_EN'], first_clean_data&#91;'LEV_NAME_TH']))
+    second_clean_data = first_clean_data.drop('LEV_NAME_TH')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH_TEMP', 'LEV_NAME_TH')
+    second_clean_data = second_clean_data.drop('SPLIT_CURR_NAME_EN')
+
+    <strong># Change UNIV_NAME_TH to UNIV_NAME, and LEV_NAME_TH to LEV_NAME
+    second_clean_data = second_clean_data.withColumnRenamed('UNIV_NAME_TH', 'UNIV_NAME')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH', 'LEV_NAME')</strong></code></pre>
+
+<p>ต่อมา เรามาเลือกข้อมูลที่เป็นชั้นระดับปริญญาได้โดยการใช้ฟังก์ชัน filter</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    # Drop the CURR_ID
+    df = df.drop('CURR_ID')
+
+    # Drop the data that does not have COST_PER_YEAR
+    first_clean_data = df.na.drop(subset = &#91;'COST_PER_YEAR'])
+
+    # Then, we split the text data inside CURR_NAME_EN to acquire Bachelor, Master, and Doctor
+    first_clean_data = first_clean_data.withColumn('SPLIT_CURR_NAME_EN', split('CURR_NAME_EN', ' ').getItem(0))
+
+    # convert from SPLIT_CURR_NAME_EN to translate from English to Thai language of degree names.abs
+    first_clean_data = first_clean_data.withColumn("LEV_NAME_TH_TEMP", change_degree_name_entoth(first_clean_data&#91;'SPLIT_CURR_NAME_EN'], first_clean_data&#91;'LEV_NAME_TH']))
+    second_clean_data = first_clean_data.drop('LEV_NAME_TH')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH_TEMP', 'LEV_NAME_TH')
+    second_clean_data = second_clean_data.drop('SPLIT_CURR_NAME_EN')
+
+    # Change UNIV_NAME_TH to UNIV_NAME, and LEV_NAME_TH to LEV_NAME
+    second_clean_data = second_clean_data.withColumnRenamed('UNIV_NAME_TH', 'UNIV_NAME')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH', 'LEV_NAME')
+
+    <strong># Then, we filer to get the tuition costs only in university degree
+    cleaned_data = second_clean_data.filter((col('LEV_NAME') == 'ปริญญาตรี') |  (col('LEV_NAME') == 'ปริญญาโท') | (col('LEV_NAME') == 'ปริญญาเอก'))</strong></code></pre>
+
+<p>แก้ตัวสะกดในชื่อหลักสูตรภาษาไทยในคอลัมน์ CURR_NAME</p>
+
+<p>ส่วนนี้จะเป็นการแก้ไขข้อผิดพลาดแบบ Syntactical Error ที่เกิดจากการสะกดผิด ส่วนนี้ทำได้โดยการแทนค่าของข้อมูลด้วยการใช้ฟังก์ชัน regexp_replace การใช้งานทำได้โดย</p>
+
+<pre class="wp-block-code"><code>&lt; return spark column &gt; = regexp_replace(&lt; spark column desired to be replaced &gt;, &lt; value or pattern you want to be replaced &gt;, &lt; replaced value &gt;)</code></pre>
+
+<p>เราสามารถประยุกต์การใช้งานได้โดยการเขียนฟังก์ชันสำหรับการแก้ไขตัวสะกดใน CURR_NAME</p>
+
+<pre class="wp-block-code"><code># This is the function to correct spelling, and to get the curriculum name in Thai languages.
+def correct_spelling_and_get_th_curr_name(x):
+    replace_list = &#91;
+        ('บันฑิต', 'บัณฑิต'),
+        ('อนุปริญา', 'อนุปริญญา'),
+        ('หลักสูตร', ''),
+        ('หลักสุตร', ''),
+        ('หลักสตร', ''),
+        ('ครุศาสตร์บัณฑิต', 'ครุศาสตรบัณฑิต'),
+        ('ครุศาสตรอุตสาหกรรม', 'ครุศาสตร์อุตสาหกรรม'),
+        ('ศึกษาศาสตร์บัณฑิต', 'ศึกษาศาสตรบัณฑิต')
+    ]
+
+    output = x&#91;'CURR_NAME_TH']
+    for replace_each in replace_list:
+        <strong>output = regexp_replace(output, replace_each&#91;0], replace_each&#91;1])</strong>
+
+    output = trim(output)
+    output = split(output, ' ').getItem(0)
+    return output</code></pre>
+
+<p>โดยฟังก์ชัน trim เป็นการลบช่องว่างทั้งด้านหน้า และด้านหลังออก ร่วมกับใช้ฟังก์ชัน split สำหรับการแยกข้อความออกมาโดยเลือกข้อความที่แยกออกมาอันแรกโดยการใช้ getItem(0)</p>
+
+<p>ต่อมา เราเรียกใช้งานฟังก์ชันตามข้างบนพร้อมกับสร้างคอลัมน์ใหม่ CURR_NAME ส่วนคอลัมน์ CURR_NAME เปลี่ยนชื่อเป็น CURR_NAME_TH</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    # Drop the CURR_ID
+    df = df.drop('CURR_ID')
+
+    # Drop the data that does not have COST_PER_YEAR
+    first_clean_data = df.na.drop(subset = &#91;'COST_PER_YEAR'])
+
+    # Then, we split the text data inside CURR_NAME_EN to acquire Bachelor, Master, and Doctor
+    first_clean_data = first_clean_data.withColumn('SPLIT_CURR_NAME_EN', split('CURR_NAME_EN', ' ').getItem(0))
+
+    # convert from SPLIT_CURR_NAME_EN to translate from English to Thai language of degree names.abs
+    first_clean_data = first_clean_data.withColumn("LEV_NAME_TH_TEMP", change_degree_name_entoth(first_clean_data&#91;'SPLIT_CURR_NAME_EN'], first_clean_data&#91;'LEV_NAME_TH']))
+    second_clean_data = first_clean_data.drop('LEV_NAME_TH')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH_TEMP', 'LEV_NAME_TH')
+    second_clean_data = second_clean_data.drop('SPLIT_CURR_NAME_EN')
+
+    # Change UNIV_NAME_TH to UNIV_NAME, and LEV_NAME_TH to LEV_NAME
+    second_clean_data = second_clean_data.withColumnRenamed('UNIV_NAME_TH', 'UNIV_NAME')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH', 'LEV_NAME')
+
+    # Then, we filer to get the tuition costs only in university degrees
+    cleaned_data = second_clean_data.filter((col('LEV_NAME') == 'ปริญญาตรี') |  (col('LEV_NAME') == 'ปริญญาโท') | (col('LEV_NAME') == 'ปริญญาเอก'))
+
+    <strong>cleaned_data = cleaned_data.withColumnRenamed('CURR_NAME', 'CURR_NAME_TH')
+    cleaned_data = cleaned_data.withColumn('CURR_NAME', correct_spelling_and_get_th_curr_name(cleaned_data))</strong></code></pre>
+
+<p>สุดท้าย เราคืนค่าออกมาเพื่อแสดงให้เห็นว่าเราทำ Data Cleansing เสร็จเรียบร้อย</p>
+
+<pre class="wp-block-code"><code>def clean_data(df):
+    # Drop the CURR_ID
+    df = df.drop('CURR_ID')
+
+    # Drop the data that does not have COST_PER_YEAR
+    first_clean_data = df.na.drop(subset = &#91;'COST_PER_YEAR'])
+
+    # Then, we split the text data inside CURR_NAME_EN to acquire Bachelor, Master, and Doctor
+    first_clean_data = first_clean_data.withColumn('SPLIT_CURR_NAME_EN', split('CURR_NAME_EN', ' ').getItem(0))
+
+    # convert from SPLIT_CURR_NAME_EN to translate from English to Thai language of degree names.abs
+    first_clean_data = first_clean_data.withColumn("LEV_NAME_TH_TEMP", change_degree_name_entoth(first_clean_data&#91;'SPLIT_CURR_NAME_EN'], first_clean_data&#91;'LEV_NAME_TH']))
+    second_clean_data = first_clean_data.drop('LEV_NAME_TH')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH_TEMP', 'LEV_NAME_TH')
+    second_clean_data = second_clean_data.drop('SPLIT_CURR_NAME_EN')
+
+    # Change UNIV_NAME_TH to UNIV_NAME, and LEV_NAME_TH to LEV_NAME
+    second_clean_data = second_clean_data.withColumnRenamed('UNIV_NAME_TH', 'UNIV_NAME')
+    second_clean_data = second_clean_data.withColumnRenamed('LEV_NAME_TH', 'LEV_NAME')
+
+    # Then, we filer to get the tuition costs only in university degrees
+    cleaned_data = second_clean_data.filter((col('LEV_NAME') == 'ปริญญาตรี') |  (col('LEV_NAME') == 'ปริญญาโท') | (col('LEV_NAME') == 'ปริญญาเอก'))
+
+    cleaned_data = cleaned_data.withColumnRenamed('CURR_NAME', 'CURR_NAME_TH')
+    cleaned_data = cleaned_data.withColumn('CURR_NAME', correct_spelling_and_get_th_curr_name(cleaned_data))
+
+    return cleaned_data</code></pre>
+
+<p>เราเรียกใช้งานฟังก์ชันนี้ได้โดย</p>
+
+<pre class="wp-block-code"><code># Clean Data
+cleaned_data = clean_data(df)</code></pre>
+
+<h2 class="wp-block-heading">การเก็บข้อมูล (Storage)</h2>
+
+<p>ในขั้นตอนนี้จะเป็นขั้นตอนถัดมาจากการเปลี่ยนแปลงข้อมูล (Transformation) ที่จะเป็นขั้นตอนการ Load ข้อมูลที่ผ่านการทำ Data Cleansing แล้วไปเก็บไว้ใน Data Warehouse หรือ Data Lake โดยเรามาเขียนอีกครั้งถึงความแตกต่างของ Data Warehouse กับ Data Lake</p>
+
+<ul class="wp-block-list">
+<li>Data Warehouse เป็นโกดังเก็บข้อมูลแบบ Structured Data ที่ผ่านการเปลี่ยนแปลงข้อมูลเรียบร้อยแล้วสำหรับการนำไปใช้งานต่อสำหรับการวิเคราะห์ข้อมูลทางด้านการทำธุรกิจต่อไป</li>
+
+
+
+<li>Data Lake เป็นที่เก็บข้อมูลอะไรก็ได้ ไม่ว่าจะเป็น Structured Data, Semi-structured Data และ Unstructured Data</li>
+</ul>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>ส่วน Data Mart ล่ะ?</strong></p>
+
+
+
+<p>อันนี้จะแตกต่างจาก Data Warehouse ที่ Data Mart จะเก็บข้อมูลสำหรับแต่ละธุรกิจ (Business Unit) นั้น ๆ</p>
+</blockquote>
+
+<p>ในบทความนี้จะเลือกเก็บข้อมูลที่ผ่านการทำ Transform ตามขั้นตอน Extract Transform Load (หรือ ETL) ที่เราจะเก็บข้อมูลทุกอย่างไว้ใน Data Warehouse ที่เป็นตารางเดียว หรือเรียกอีกอย่างว่า Denormalization</p>
+
+<p>เหตุผลของการทำ Denormalization คือการอ่านข้อมูลที่เน้นการ Join ระหว่าง Table ให้น้อยที่สุดเพื่อให้ได้ความเร็วสูงสุด ร่วมกับการเก็บข้อมูลลักษณะนี้เหมาะสมกับการเก็บใน Data Warehouse ที่ต้องอ่านข้อมูลอยู่บ่ยอ ๆ</p>
+
+<p>จุดนี้จะแตกต่างกับการเก็บข้อมูลอีกแบบที่นิยมทำกันใน Database คือการทำ Normalization ที่แบ่งออกเป็นหลายตารางโดยไม่ให้ข้อมูลซ้ำซ้อนกันเพื่อประหยัดพื้นที่เก็บ ร่วมกับเพื่อให้การเขียน การแก้ไข หรือลบข้อมูลทำได้อย่างรวดเร็วขึ้นจาก Table ที่มีขนาดเล็ก แต่จะอ่านได้ช้าเนื่องจากต้อง Join อยู่บ่อย ๆ</p>
+
+<p>สำหรับเครื่องมือที่เราจะใช้งานสำหรับการทำเป็น Data Warehouse คือ Google BigQuery ที่เป็น Serverless Datawarehouse ของ GCP ที่รองรับข้อมูลจำนวนมากได้ ร่วมกับเขียน SQL query ได้ทันที และเริ่มต้นได้ง่ายในราคาที่ไม่แพง</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="440" height="220" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery.png" alt="" class="wp-image-4284" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery-300x150.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery.png 440w" sizes="auto, (max-width: 440px) 100vw, 440px" /><figcaption class="wp-element-caption">Google BigQuery</figcaption></figure></div>
+
+<p>ข้อดีของการใช้ Google BigQuery คือ</p>
+
+<ul class="wp-block-list">
+<li>เป็น Severless ที่ไม่ต้องสร้างหรือดูแลทางฝั่ง Intrastructure เลย </li>
+
+
+
+<li>รองรับข้อมูลได้ในระดับหลาย Petabyte</li>
+
+
+
+<li>ใช้งานไดัทั้งผ่าน UI, Command-line และไลบรารีจากภาษาเขียนโปรแกรมต่าง ๆ เช่น Python, Java, Go เป็นต้น</li>
+
+
+
+<li>เริ่มต้นใช้ได้ง่าย</li>
+
+
+
+<li>ใช้เชื่อมต่อกับโปรแกรมทาง Business Intelligence (BI) ได้ง่าย</li>
+
+
+
+<li>ใช้งานร่วมกับ Machine Learning ได้</li>
+</ul>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>Business Intelligence (หรือ BI) </strong>เป็นการใช้การนำกลยุทธ์ และเทคโนโลยีที่ทันสมัยเข้ามาสรุปภาพรวม เพื่อช่วยเพิ่มประสิทธิภาพในการตัดสินใจทางธุรกิจ โดยธุรกิจไหนที่นำข้อมูลในมือมาช่วยการตัดสินใจก็จะได้เปรียบมากกว่าธุรกิจอื่น และนำหน้าธุรกิจอื่นไปมากกว่าหนึ่งก้าวเสมอ [4]</p>
+
+
+
+<p>เครื่องมือตัวอย่างที่ทำ BI ได้แก่ Microsoft Power BI, Tableau, Looker Studio เป็นต้น [5]</p>
+</blockquote>
+
+<p>ในตัวอย่าง จะเป็นการเขียนโค้ดต่อการพาร์ทที่แล้วในไฟล์เดียวกัน ส่วนนี้เราจะเขียนโค้ดเพื่อนำข้อมูลจากตัวแปร Spark DataFrame เพื่อเข้าไปยัง Google BigQuery การใช้งานทำได้โดยการใช้ฟังก์ชัน write ซึ่งทำได้โดย</p>
+
+<pre class="wp-block-code"><code>spark_dataframe.<strong>write.format('bigquery') \
+    .option('table', '&lt; project_name &gt;.&lt; dataset_name &gt;.&lt; table_name &gt;')
+    .option('temporaryGcsBucket', '&lt; temporary bucket name &gt;')
+    .save()</strong></code></pre>
+
+<p>โดยการเขียนชื่อ table (ใน table_name) จะต้องไม่ซ้ำกับข้อมูลที่มีใน Google BigQuery</p>
+
+<p>ส่วนนี้เรานำมาประยุกต์ใช้กับงานของเราได้โดยการเขียนฟังก์ชันตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def write_output(cleaned_data):
+    print("Write to BigQuery")
+    <strong>cleaned_data.write.format('bigquery') \
+        .option("table", "infra-tempo-410705.tuition_cost.univ_tuition_cost") \
+        .option("temporaryGcsBucket", bucket_name) \</strong>
+        <strong>.mode("overwrite") \
+        .save()</strong>
+    print("Finished writing to BigQuery.")</code></pre>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>อัพเดทโค้ดส่วนนี้เนื่องมาจากมีคนแจ้งว่าเวลาที่บันทึกลง BigQuery แล้วเกิด Error เนื่องมาจากมี Table ในนั้นอยู่แล้ว ส่วนนี้แก้ได้โดยให้</p>
+
+
+
+<ul class="wp-block-list">
+<li>เพิ่ม .mode(&#8220;append&#8221;) กรณีที่ต้องการเขียนต่อ</li>
+
+
+
+<li>หรือเพิ่ม .mode(&#8220;overwrite&#8221;) กรณีที่ต้องการเขียนทับ</li>
+</ul>
+</blockquote>
+
+<p>เราเรียกใช้งานฟังก์ชันนี้ได้โดย</p>
+
+<pre class="wp-block-code"><code># Write to BigQuery
+write_output(cleaned_data)</code></pre>
+
+<p>เมื่อเขียนโค้ดเสร็จแล้ว ให้เซฟไฟล์ที่มีชื่อตามที่กำหนดในไฟล์ DAG ที่ระบุไว้ในส่วน Default Argument ที่เขียนขึ้นในขั้นตอนการนำเข้าข้อมูล (Ingestion) ในตัวแปร PYSPARK_JOB ที่ตำแหน่ง Key pyspark_job -&gt; main_python_file_uri</p>
+
+<pre class="wp-block-code"><code>PYSPARK_JOB = {
+    "reference": {"project_id": "&lt; project_id &gt;"},
+    "placement": {"cluster_name": "&lt; defined cluster name &gt;"},
+    <strong>"pyspark_job": {"main_python_file_uri": "gs://&lt; bucket name &gt;/&lt; python file path &gt;"},</strong>
+}</code></pre>
+
+<p>เมื่อเซฟไฟล์แล้ว เรานำโค้ดไปอัพโหลดลง Google Cloud Storage จากนั้นสั่งงานผ่าน Google Composer เพื่อเรียกใช้งาน DAG ที่สร้างขึ้นในขั้นตอนการนำเข้าข้อมูล (Ingestion) โดยเข้าไปที่หน้าจอ Google Cloud Composer</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e224b922&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="118" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_composer-1-1024x208.png" alt="" class="wp-image-4204" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_composer-1-300x61.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_composer-1-1024x208.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_composer-1-768x156.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_composer-1-1200x243.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/running_composer-1.png 1351w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">หน้าจอแสดงรายการ Environments ใน Google Cloud Composer</figcaption></figure></div>
+
+<p>เลือก Environment ที่เราสร้างขึ้น โดยกดที่ปุ่ม DAG จะปรากฏหน้าจอพร้อมกับ DAG ที่เราได้สร้างขึ้น</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="185" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_list-1024x326.png" alt="" class="wp-image-4205" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_list-300x96.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_list-1024x326.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_list-768x245.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_list-1200x383.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_list.png 1308w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงรายการ DAG ที่มีใน Environment นั้น</figcaption></figure></div>
+
+<p>เลือก DAG ที่เราได้อัพโหลดไว้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="314" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dag.png" alt="" class="wp-image-4206" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dag-300x162.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dag-768x416.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dag.png 796w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงข้อมูล DAG</figcaption></figure></div>
+
+<p>จากนั้นกดปุ่ม Trigger DAG เพื่อเริ่มต้นการทำงานของ DAG</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="351" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_running_dag-1024x620.png" alt="" class="wp-image-4207" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_running_dag-300x182.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_running_dag-1024x620.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_running_dag-768x465.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_running_dag-1536x930.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_running_dag-1200x727.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_running_dag.png 1678w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงข้อมูล DAG ที่รันอยู่ในระบบ</figcaption></figure></div>
+
+<p>เมื่อกดปุ่มแล้ว ระบบจะเริ่มขั้นตอนการรัน Data Pipeline จากการดาวน์โหลดข้อมูลใน Dataset แปลงข้อมูลร่วมกับทำ Data Cleansing แล้วนำข้อมูลทีผ่านการทำ Data Cleansing ไปเก็บไว้ใน Google BigQuery</p>
+
+<p>หน้าจอการรันในส่วน Google Dataproc จะแสดงตามภาพ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="459" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dataproc-1024x810.png" alt="" class="wp-image-4208" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dataproc-300x237.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dataproc-1024x810.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dataproc-768x608.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dataproc-1200x949.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_dataproc.png 1273w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงสถานะ Job ของ Google Dataproc ที่ DAG ใน Google Cloud Composer สั่ง</figcaption></figure></div>
+
+<p>เมื่อรัน DAG เสร็จแล้ว ระบบจะแจ้งตามหน้าจอ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="232" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_finished_dag-1024x410.png" alt="" class="wp-image-4209" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_finished_dag-300x120.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_finished_dag-1024x410.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_finished_dag-768x308.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_finished_dag-1536x615.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_finished_dag-1200x481.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/current_finished_dag.png 1747w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอเมื่อรัน DAG เสร็จเรียบร้อย</figcaption></figure></div>
+
+<p>ผลลัพธ์ของการเก็บข้อมูลใน Google BigQuery เป็นไปตามหน้าจอ โดยหน้าจอด้านล่างนี้จะแสดงรายละเอียดของแต่ละคอลัมน์ในตารางว่ามีอะไรบ้าง</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="292" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_schema-1-1024x516.png" alt="" class="wp-image-4216" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_schema-1-300x151.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_schema-1-1024x516.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_schema-1-768x387.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_schema-1-1200x605.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_schema-1.png 1326w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">แสดงรายละเอียด Schema</figcaption></figure></div>
+
+<p>กรณีที่ต้องการดูข้อมูลแบบคร่าว ๆ แบบฟรี เราทำได้โดยการกดปุ่มที่แท็บ Preview</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="255" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_preview-1-1024x451.png" alt="" class="wp-image-4217" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_preview-1-300x132.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_preview-1-1024x451.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_preview-1-768x339.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_preview-1-1536x677.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_preview-1-1200x529.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_preview-1.png 1749w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงรายละเอียดข้อมูลที่มีใน BigQuery</figcaption></figure></div>
+
+<p>ในขั้นตอนนี้ เราจะได้ Table เข้ามาในระบบ</p>
+
+<p>อย่างไรก็ตามเราต้องการนำข้อมูลใน Table มาให้คนอื่นอ่าน (SELECT) ได้อย่างเดียว เราไม่ได้ต้องการให้ผู้ใช้แก้ไข หรือเข้าไปลบข้อมูลได้ ส่วนนี้เราจะสร้าง View ขึ้นมา โดยจุดนี้ไม่ต้องใช้พื้นที่จัดเก็บเลย เราทำได้โดยการใช้คำสั่ง SQL อย่าง SELECT จาก Table ที่ต้องการ โดยเราจะได้ข้อมูลสดใหม่อยู่เสมอ</p>
+
+<p>อย่างไรก็ดี การสร้าง View ขึ้นมาทุกครั้งก็มีข้อเสีย เนื่องมาจากกรณีที่ข้อมูลมีขนาดใหญ่มากขึ้น การประมวลผลจะใช้เวลามากกว่าปกติ ใน Data Warehouse เจ้าดัง ๆ มักจะมี Materialized View เพื่อแปลง View ให้เป็น Table โดยไม่ต้องคำนวณใหม่ ทำให้เรียกได้เร็ว แต่ข้อมูลไม่อัพเดทเท่า และเสียพื้นที่จัดเก็บ</p>
+
+<p>ในตัวอย่างนี้ เราจะสร้าง View ขึ้นมา โดยการเขียนคำสั่ง SQL ตามด้านล่างนี้ใน BigQuery</p>
+
+<pre class="wp-block-code"><code>CREATE VIEW `&lt; project name &gt;.&lt; dataset &gt;.&lt; view name &gt;` AS
+SELECT `LEV_NAME`, `CURR_NAME_TH`, `CURR_NAME`,`UNIV_NAME`, `PROVINCE_UNIV_NAME_TH` AS `PROVINCE`,`COST_PER_YEAR` FROM `&lt; project name &gt;.&lt; dataset &gt;.&lt; table name &gt;`;</code></pre>
+
+<p>จากนั้นกดปุ่ม RUN ผลลัพธ์ที่ได้ เราจะได้ View ตามภาพ สำหรับการนำไปใช้วิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis) แล้ว</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="300" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_view-1024x530.png" alt="" class="wp-image-4231" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_view-300x155.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_view-1024x530.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_view-768x397.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_view-1200x621.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/bigquery_view.png 1237w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงรายละเอียดใน View ของ BigQuery</figcaption></figure></div>
+
+<h2 class="wp-block-heading">การวิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis)</h2>
+
+<p>ส่วนนี้เป็นขั้นตอนสุดท้ายนั่นคือ ปลายทางคือการวิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis) ขั้นตอนนี้เป็นขั้นตอนที่นำข้อมูลที่ผ่านการรวบรวม แปลงสภาพและเก็บข้อมูลไว้ในที่เหมาะสมแล้วมาวิเคราะห์และรายงานผล หรือนำข้อมูลไปสร้าง และเทรนตัว Model สำหรับการนำไปตอบโจทย์ทางด้านธุรกิจ</p>
+
+<p>ข้อมูลที่เราเก็บนั้นอยู่ใน Data Warehouse ที่มีชื่อว่า Google BigQuery เราจะนำข้อมูลเหล่านี้มีทำ Data Visualization เพื่อทำ Dashboard หรือ Report เพื่อแปลงข้อมูลให้อยู่ในรูปแบบกราฟเพื่อให้เข้าใจข้อมูลที่มีอยู่ได้ง่ายขึ้น โดยส่วนนี้เรียกว่า “Analytics/Report/BI” (การวิเคราะห์และรายงานผล) [2]</p>
+
+<p>วัตถุประสงค์ของการทำ Data Visualization มีสองวัตถุประสงค์</p>
+
+<ul class="wp-block-list">
+<li>สำหรับคนทำงานกับฝั่งบริหาร ส่วนนี้ใช้เพื่อนำเสนอข้อมูลเพื่อให้ทีมการตลาด หรือผู้บริหารในบริษัทเข้าใจเหตุการณ์ได้ดีขึ้น และตัดสินใจเหตุการณ์ต่าง ๆ ได้ง่ายขึ้น</li>
+
+
+
+<li>และส่วนสำหรับคนทำงานกับข้อมูล ส่วนนี้ใ้ช้ค้นหาสิ่งที่น่าสนใจเพื่อช่วยค้นหาความผิดปกติของข้อมูล (Data Checking &amp; Data Cleaning) และช่วยในการสำรวจข้อมูลเพื่อวิเคราะห์ (Exploratory Data Analysis)</li>
+</ul>
+
+<p>สำหรับโปรแกรมที่ใช้ทำ Data Visualization มีตั้งแต่ใช้ Excel เพื่อทำ Data Visualization เบื้องต้นได้ อย่างไรก็ตามกรณีที่ข้อมูลซับซ้อนมากขึ้น ข้อมูลมีขนาดใหญ่มากขึ้น การใช้งาน Excel จะเป็นวิธีที่ไม่ค่อยเหมาะเท่าไร</p>
+
+<p>ทางบริษัทจะนิยมใช้งานเครื่องมือประเภท Business Intelligence (BI Tools) หรือเขียนโค้ดเอง</p>
+
+<p>สำหรับเครื่องมือ BI จะช่วยอำนวยความสะดวกทางด้าน Data Visualization ได้ ได้แก่ Tableau, PowerBI, Google Looker Studio และอื่น ๆ</p>
+
+<p>ส่วนเขียนโค้ดเอง เราสามารถใช้งานไลบรารีแบบ Matplotlib ใน Python, ggplot2 ใน R, D3.js ใน JavaScript หรือ Plotly สำหรับใช้งานในหลายแพลตฟอร์ม</p>
+
+<p>ในตัวอย่างนี้เราจะใช้งาน Google Looker Studio (ก่อนหน้านี้เรียกว่า Google Data Studio ก่อนที่จะซื้อ Looker Studio ไป) ที่</p>
+
+<ul class="wp-block-list">
+<li>สามารถทำ Report &amp; Dashboard ออนไลน์ได้โดยไม่ต้องติดตั้งโปรแกรม</li>
+
+
+
+<li>แชร์ไฟล์ได้แบบ Google Docs เพื่อร่วมแก้ไข หรือมาดูได้</li>
+
+
+
+<li>เชื่อมได้กับแทบทุกอย่างบนโลกตั้งแต่บริการ Google ไปจนถึง MySQL, PostgreSQL หรือใช้งานร่วมกับบริษัทอื่นแบบ FaceBook Insights, QuickBooks, Safesforce และอื่น ๆ ผ่านการใช้งาน Connector (อย่างไรก็ตามการใช้ Connector ทาง Google ไม่ได้เขียนและ Support เอง ใช้แล้วอาจจะมีปัญหาได้)</li>
+
+
+
+<li>มี Chart ให้เลือกได้หลายประเภท</li>
+
+
+
+<li>แถม เราสามารถเขียนสมการเอง (Calculated Fields) ได้ และยังทำให้ผู้ใช้กรอกข้อมูลเพิ่มเข้ามาในระบบเป็น Parameter ได้อีก</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="515" height="289" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/looker_studio_logo.png" alt="" class="wp-image-4287" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/looker_studio_logo-300x168.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/looker_studio_logo.png 515w" sizes="auto, (max-width: 515px) 100vw, 515px" /><figcaption class="wp-element-caption">Looker Studio</figcaption></figure></div>
+
+<p>การใช้งาน Google Looker Studio เราจะสร้างเป็น Report ที่เป็น Interactive Dashboard โดยในตัว Report มีได้มากกว่า 1 หน้า ที่เราสามารถเลือกได้ Chart ได้หลายประเภท แถม</p>
+
+<p>ส่วนข้อมูลที่ใช้ เราจะดึงข้อมูลตัวจริง (Dataset) จาก BigQuery มาก็อปปี้ไว้ใน Google Looker Studio ไว้เป็น Data Source ที่สามารถปรับแต่งได้ โดย</p>
+
+<ul class="wp-block-list">
+<li>เลือกได้ง่ายเอาคอลัมน์ไหนไปใช้บ้าง</li>
+
+
+
+<li>เปลี่ยนชื่อคอลัมน์ และประเภทข้อมูลได้อิสระ</li>
+
+
+
+<li>เลือกให้ใครเห็นได้บ้าง</li>
+
+
+
+<li>และปลายทางไม่เห็นข้อมูลจริง (Dataset)</li>
+</ul>
+
+<p>การสร้าง Dashboard เราทำได้โดยการเข้าไปในหน้าเว็บของ <a href="https://lookerstudio.google.com/" target="_blank" rel="noopener" title="Google Looker Studio">Google Looker Studio</a> เมื่อเข้ามาแล้ว หน้าจอจะปรากฏประมาณนี้</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="288" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_studio-1024x508.png" alt="" class="wp-image-4227" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_studio-300x149.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_studio-1024x508.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_studio-768x381.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_studio-1200x596.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_studio.png 1265w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>เมื่อเข้ามาหน้านี้ ให้เรากดปุ่ม สร้าง (Create) จากนั้นเลือกที่รายงาน (Report) หรือกดไปที่รายงานว่างเปล่า (Blank Report)</p>
+
+<p>เมื่อกดสร้างตัวรายงานแล้ว ระบบจะแสดงหน้าจอให้เลือก Connector จากนั้นให้เลือก Google BigQuery เมื่อเลือกแล้วให้เราเลือก View ที่เราได้สร้างขึ้น จากนั้นเราก็เริ่มทำ Data Visualization ได้เลย</p>
+
+<p>โดยของเรา เราทำหน้า Dashboard ได้ตามภาพตามโจทย์ที่ตั้งไว้ที่ต้องการดูข้อมูลต้นทุนค่าใช้จ่ายในการผลิตนักศึกษาต่อหัวต่อปีของแต่ละหลักสูตร ในแต่ละมหาวิทยาลัยที่ตั้งอยู่ในแต่ละจังหวัด ที่เราทำไว้ 2 หน้า</p>
+
+<p>หน้าแรกที่แสดงต้นทุนการผลิตนักศึกษาต่อหัว ต่อหลักสูตร (Curriculum) ต่อปี ในหน้านี้จะแสดง</p>
+
+<ul class="wp-block-list">
+<li>แสดงจังหวัดที่มีมหาวิทยาลัยที่มีหลักสูตรในระดับชั้นอุดมศึกษา เช่น ปริญญาตรี ปริญญาโท และปริญญาเอก โดยแสดงที่มุมบนซ้าย (Preview provinces on the map)</li>
+
+
+
+<li>แสดงจำนวนหลักสูตรระดับอุดมศึกษาในแต่ละจังหวัดในรูปแบบกราฟ (No. of curriculum by province)</li>
+
+
+
+<li>แสดงต้นทุนการผลิตนักศึกษาสูงสุดต่อปีในแต่ละมหาวิทยาลัย (Maximum Training cost per year by universities)</li>
+
+
+
+<li>และแสดงต้นทุนเฉลี่ยของการผลิตนักศึกษาต่อปีในแต่ละระดับชั้น (Average Training cost per year by degrees and universities)</li>
+
+
+
+<li>นอกจากนี้ ผู้ใช้สามารถคัดกรองข้อมูลได้โดยการเลือกที่มุมบนขวาด้วยการคัดกรองตามจังหวัด (Filter by province), คัดกรองตามระดับชั้นปริญญาตรี โท และเอก (Filter by degree) และคัดกรองตามแต่ละมหาวิทยาลัย (Filter by university)</li>
+</ul>
+
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e224ce16&quot;}" data-wp-interactive="core/image" class="wp-block-image size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="435" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_1-1-1024x768.png" alt="" class="wp-image-4236" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_1-1-300x225.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_1-1-1024x768.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_1-1-768x576.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_1-1-1200x900.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_1-1.png 1242w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure>
+
+<p>หน้าที่สองแสดงรายละเอียดต้นทุนการผลิตนักศึกษาต่อปีในแต่ละหลักสูตร โดยผู้ใช้สามารถคัดกรองข้อมูลได้โดยการปรับค่าต้นทุนขั้นต่ำที่มุมบนขวา (Minimum Training Cost)</p>
+
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e224d2a5&quot;}" data-wp-interactive="core/image" class="wp-block-image size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="442" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_2-1-1024x781.png" alt="" class="wp-image-4237" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_2-1-300x229.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_2-1-1024x781.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_2-1-768x586.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_2-1-1200x915.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_looker_report_2-1.png 1238w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure>
+
+<p>โดยเราได้เพิ่ม</p>
+
+<ul class="wp-block-list">
+<li>Parameter ที่กำหนดต้นทุนการผลิตนศ ขั้นต่ำ (Minimum Training Cost)</li>
+
+
+
+<li>และ Calculated Field ที่เป็นการคัดกรองข้อมูลตามต้นทุนขั้นต่ำที่เราได้ระบุ (More than minimum training cost) โดยการเขียน SQL เพื่อคัดกรองตามเงื่อนไขโดยใช้คำสั่ง CASE WHEN การใช้งานแสดงตามด้านล่างนี้</li>
+</ul>
+
+<pre class="wp-block-code"><code>CASE
+WHEN &lt; condition &gt;
+THEN &lt; when condition is true &gt;
+ELSE &lt; when no condition is met &gt;
+END</code></pre>
+
+<p>โดยเราสามารถกำหนดเงื่อนไขได้หลายข้อ โดยการเขียน WHEN &lt; เงื่อนไข &gt; THEN &lt; ทำเมื่อเงื่อนไขเป็นจริง &gt; ต่อไปเรื่อย ๆ ตามตัวอย่างด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>CASE WHEN &lt; condition 1 &gt; THEN &lt; command 1 &gt;
+WHEN &lt; condition 2 &gt; THEN &lt; command 2 &gt;
+WHEN &lt; condition 3 &gt; THEN &lt; command 3 &gt;
+….
+ELSE &lt; when no condition is met &gt;
+END</code></pre>
+
+<p>ในบทความนี้ เราจะเขียนเงื่อนไขสำหรับการคัดกรองตามต้นทุนขั้นต่ำด้วยการเขียนโด้ดคำสั่งตามด้านล่างนี้ เมื่อหลักสูตรนั้น ๆ มีค่ามากกว่าหรือเท่ากับต้นทุนขั้นต่ำ ตัวโค้ดจะคืนค่า 1 และกรณีที่ไม่ตรงกับเงื่อนไข โค้ดจะคืนค่าเท่ากับ 0</p>
+
+<pre class="wp-block-code"><code>CASE
+WHEN COST_PER_YEAR &gt;= Minimum Training Cost
+THEN 1
+ELSE 0
+END</code></pre>
+
+<p>จากนั้น เราไปปรับใน Calculated Field ให้ทำงานในตารางหน้าที่สอง โดยกดเข้าไปที่เพิ่มตัวกรอง (Add a Filter) แล้วเลือก Calculated Field More than minimum training cost โดยให้แสดงเมื่อหลักสูตรมีค่ามากกว่าหรือเท่ากับขั้นต่ำ</p>
+
+<h2 class="wp-block-heading"><strong>ที่มา</strong></h2>
+
+<p>[1] <a href="https://www.thedataengineeringbook.online/docs/data-pipelines" target="_blank" rel="noopener" title="">https://www.thedataengineeringbook.online/docs/data-pipelines</a></p>
+
+<p>[2] <a href="https://davoy.tech/th/data-pipeline-and-data-architecture/" target="_blank" rel="noopener" title="">https://davoy.tech/th/data-pipeline-and-data-architecture/</a></p>
+
+<p>[3] <a href="https://iamgique.medium.com/การใช้-join-ใน-sql-แบบอ๋องี้นี่เอง-479ce75f33b1" target="_blank" rel="noopener" title="">https://iamgique.medium.com/การใช้-join-ใน-sql-แบบอ๋องี้นี่เอง-479ce75f33b1</a></p>
+
+<p>[4] <a href="https://blog.datath.com/bi-developer-career/" target="_blank" rel="noopener" title="">https://blog.datath.com/bi-developer-career/</a></p>
+
+<p>[5] <a href="https://www.datacamp.com/blog/top-business-intelligence-tools?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaignid=19589720824&amp;utm_adgroupid=157098106255&amp;utm_device=c&amp;utm_keyword=&amp;utm_matchtype=&amp;utm_network=g&amp;utm_adpostion=&amp;utm_creative=684753665161&amp;utm_targetid=dsa-2264919292469&amp;utm_loc_interest_ms=&amp;utm_loc_physical_ms=1012728&amp;utm_content=DSA~blog~Artificial-Intelligence&amp;utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-na_10-na_11-na-jan24&amp;gad_source=1&amp;gclid=Cj0KCQiAqsitBhDlARIsAGMR1Rh5lVTy0xwJLuoCA7RqKGW82_5LUyv6StvcvJfWBm5YgwHq6LtPYNsaAivWEALw_wcB" target="_blank" rel="noopener" title="">https://www.datacamp.com/blog/top-business-intelligence-tools?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaignid=19589720824&amp;utm_adgroupid=157098106255&amp;utm_device=c&amp;utm_keyword=&amp;utm_matchtype=&amp;utm_network=g&amp;utm_adpostion=&amp;utm_creative=684753665161&amp;utm_targetid=dsa-2264919292469&amp;utm_loc_interest_ms=&amp;utm_loc_physical_ms=1012728&amp;utm_content=DSA~blog~Artificial-Intelligence&amp;utm_campaign=230119_1-sea~dsa~tofu_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-na_10-na_11-na-jan24&amp;gad_source=1&amp;gclid=Cj0KCQiAqsitBhDlARIsAGMR1Rh5lVTy0xwJLuoCA7RqKGW82_5LUyv6StvcvJfWBm5YgwHq6LtPYNsaAivWEALw_wcB</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

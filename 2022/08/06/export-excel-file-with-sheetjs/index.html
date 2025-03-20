@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>วิธีการสร้างไฟล์ Excel ด้วย SheetJS</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="วิธีการสร้างไฟล์ Excel ด้วย SheetJS" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2022/08/06/export-excel-file-with-sheetjs/" />
+<meta property="og:url" content="http://localhost:4000/2022/08/06/export-excel-file-with-sheetjs/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/export_excel_javascript_sheetJS.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-08-06T07:08:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/export_excel_javascript_sheetJS.jpg" />
+<meta property="twitter:title" content="วิธีการสร้างไฟล์ Excel ด้วย SheetJS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:43:29+07:00","datePublished":"2022-08-06T07:08:00+07:00","description":"None","headline":"วิธีการสร้างไฟล์ Excel ด้วย SheetJS","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/export_excel_javascript_sheetJS.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/08/06/export-excel-file-with-sheetjs/"},"url":"http://localhost:4000/2022/08/06/export-excel-file-with-sheetjs/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>วิธีการสร้างไฟล์ Excel ด้วย SheetJS</h1>
+
+  <p class="post-meta">
+    <time datetime="2022-08-06 07:08:00 +0700">2022-08-06</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/08/export_excel_javascript_sheetJS.jpg' />
+  </figure>
+  
+
+  <p>การส่งออกไฟล์ในรูปแบบ Excel เดิมถ้าจะเอาวิธีแบบง่าย ๆ เลยคือการส่งออกไฟล์ในรูปแบบ CSV ที่เป็นไฟล์ข้อความที่แบ่งข้อมูลระหว่างคอลัมภ์ด้วยการใช้ตัวอักษรคอมมา (,) เพื่อแบ่งข้อมูล โดยการส่งออกไฟล์ในลักษณะนี้เราส่งออกไฟล์ได้ด้วยการพิมพ์คำสั่ง</p>
+
+<!--more-->
+
+<pre class="wp-block-code"><code>let csvfile = '&lt; ข้อมูลในไฟล์ csv &gt;';
+let blob = new Blob(&#91;csvfile], { type: 'text/csv;charset=utf-8;' });
+let link = document.createElement('a');
+link.href = URL.createObjectURL(blob);
+link.download = 'download.csv';
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);</code></pre>
+
+<p>เมื่อส่งออกไฟล์มาแล้ว ไฟล์จะอยู่ในรูปแบบ CSV ที่สามารถเปิดออกมาได้ด้วย Excel อย่างไรก็ดี การส่งออกไฟล์ในกรณีนี้จะมีปัญหากับภาษาไทยเนื่องมาจากตอนส่งออกและเปิดอ่านไฟล์แล้ว ข้อความจะอยู่ในรูปแบบภาษาต่างดาว ซึ่งเราก็ไม่อยากเห็นใช่ไหมครับ </p>
+
+<p>ในบทความนี้ เราจะแนะนำไลบรารีหนึ่งทีสามารถส่งออกไฟล์ Excel ที่เป็นไฟล์ xlsx ที่เปิดอ่านด้วยโปรแกรมนี้ได้สบาย โดยไลบรารีนี้มีชื่อว่า SheetJS</p>
+
+<h2 class="wp-block-heading">SheetJS</h2>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/08/sheetjs.png?w=580&#038;ssl=1" alt="" /><figcaption>SheetJS</figcaption></figure></div>
+
+<p>SheetJS เป็นไลบรารีภาษาจาวาสคริปที่อนุญาตให้เราอ่านและเขียนไฟล์ Excel เพื่อนำไปใช้งานต่อได้อย่างสะดวก โดยไลบรารีนี้แบ่งออกเป็น SheetJS Community Edition และ SheetJS Professional Edition ในบทความนี้เราจะกล่าวถึง Community Edition</p>
+
+<p>SheetJS Community Edition เป็นไลบรารีที่อนุญาตให้เราใช้งานได้ฟรี ด้วยลิขสิทธิ์แบบ Apache 2.0 โดยผู้ใช้สามารถดาวน์โหลดมาได้ในเว็บนี้ครับ การติดตั้งไลบรารีนี้ทำได้ไม่ยาก เราสามารถใช้งานบนเว็บเบราวเซอร์ และใช้งานบน Node.js ก็ได้ อย่างไรก็ดี ตัวอย่างนี้เราจะกล่าวถึงบนเว็บเบราวเซอร์</p>
+
+<h3 class="wp-block-heading">การติดตั้ง</h3>
+
+<p>การติดตั้งเพื่อใช้งานบนเว็บเบราวเซอร์เราทำได้โดยสองแบบ แบบแรกเป็นการใช้งานผ่าน &lt;script&gt; ที่ทำได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>&lt;!-- This loads the shim from the CDN --&gt;
+&lt;script src="https://cdn.sheetjs.com/xlsx-0.18.10/package/dist/shim.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- This loads the standalone build from the CDN --&gt;
+&lt;script src="https://cdn.sheetjs.com/xlsx-0.18.10/package/dist/xlsx.full.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>ไลบรารีที่เราใช้งานผ่าน &lt;script&gt; นั้น เราจะสังเกตว่า นอกจากการดาวนืโหลดไบรารี SheetJS (xlsx.full.minjs) แล้ว เรายังดาวน์โหลดไบรารี shim ร่วมด้วยเพื่ออนุญาตให้เราใช้งานบนเว็บเบราวเซอร์รุ่นเก่าอย่าง Internet Explorer 11</p>
+
+<p>นอกจากการใช้ &lt;script&gt; เราใช้งานไลบรารีบน React, Angular หรือใช้งานบน VanillaJS ด้วยการนำเข้าไลบรารีด้วยคำสั่ง import ได้โดยการติดตั้งไบรารีผ่านการใช้งานคำสั่ง npm ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>npm i --save https://cdn.sheetjs.com/xlsx-0.18.10/xlsx-0.18.10.tgz</code></pre>
+
+<p>ส่วน yarn เราสามารถติดตั้งไลบรารีนี้ได้โดย</p>
+
+<pre class="wp-block-code"><code>yarn add https://cdn.sheetjs.com/xlsx-0.18.10/xlsx-0.18.10.tgz
+</code></pre>
+
+<p>ติดตั้งไบรารีเสร็จแล้ว เรานำเข้าไลบรารีด้วยคำสั่ง import ได้โดย</p>
+
+<pre class="wp-block-code"><code>import * as XLSX from "xlsx";</code></pre>
+
+<p>ส่วนกรณีที่ไม่ได้ใช้ทั้ง npm และ yarn เราสามารถนำเข้าไลบรารีนี้ได้โดย</p>
+
+<pre class="wp-block-code"><code>import * as XLSX from https://cdn.sheetjs.com/xlsx-0.18.10/package/xlsx.mjs</code></pre>
+
+<h3 class="wp-block-heading">การส่งออกไฟล์ในรูปแบบ Excel</h3>
+
+<p>หลังจากที่ติดตั้งแล้ว เราสามารถส่งออกข้อมูลในรูปแบบ Excel ได้ครับ ขั้นตอนการทำงานของไลบรารีนี้สำหรับการส่งออกไฟล์แบ่งออกเป็นสี่ขั้นตอนได้แก่</p>
+
+<p><strong>สร้างไฟล์ Workbook</strong></p>
+
+<p>เราสามารถสร้างไฟล์ Workbook ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>let wb = XLSX.utils.book_new();</code></pre>
+
+<p><strong>แปลงข้อมูลให้อยู่ในรูปแบบที่เหมาะสมต่อการสร้าง Worksheet</strong></p>
+
+<p>เราสามารถฃ แปลงข้อมูลให้อยู่ในรูปแบบที่เหมาะสมต่อการสร้าง Worksheet ได้ โดยข้อมูลที่สามารถแปลงได้ ได้แก่ </p>
+
+<ul class="wp-block-list"><li>JSON (JavaScript Object Notation)</li><li>อาเรย์ซ้อนอาเรย์ (Array of array)</li><li>ข้อมูลที่อยู่ในตารางของ HTML (HTML Table)</li></ul>
+
+<p>ตัวอย่างแรกเป็น JSON โดยเราสามารถสร้างข้อมูลได้ตามด้านล่างนี้ โดยให้เป็นอาเรย์ของตัวแปรประเภท Object</p>
+
+<pre class="wp-block-code"><code>let json = &#91;];
+for(let index = 0; index &lt; 100; index++) {
+  let data = {
+    "index": index,
+    "multiplier": 2,
+    "result": 2 * index
+  }
+    
+  json.push(data);
+}</code></pre>
+
+<p>เมื่อสร้างข้อมูลเสร็จแล้ว เรานำข้อมูลนี้แปลงอยู่ในรูปแบบที่พร้อมสำหรับการสร้าง Worksheet ได้โดย</p>
+
+<pre class="wp-block-code"><code>let ws = XLSX.utils.json_to_sheet(json);</code></pre>
+
+<p>วิธีต่อมา เป็นวิธีที่ใช้งานกับอาเรย์ซ้อนอาเรย์ (Array of array) วิธีนี้เราสร้างข้อมูลขึ้นมาก่อนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>let aoa = &#91;&#91;'index', 'multiplier', 'result']];
+for(let index = 0; index &lt; 100; index++) {
+  let data = &#91;index, 2, 2*index]
+  aoa.push(data);
+}</code></pre>
+
+<p>เมื่อสร้างข้อมูลเสร็จแล้ว เรานำข้อมูลนี้แปลงอยู่ในรูปแบบที่พร้อมสำหรับการสร้าง Worksheet ได้โดย</p>
+
+<pre class="wp-block-code"><code>let ws = XLSX.utils.aoa_to_sheet(aoa);</code></pre>
+
+<p>วิธีที่สาม เป็นการนำข้อมูลที่อยู่ในตารางของ HTML (HTML Table) มาอยู่ในรูปแบบที่เหมาะกับสร้าง Worksheet จุดนี้เราเขียนโค้ดได้โดย</p>
+
+<pre class="wp-block-code"><code>let table = document.createElement('table');
+let tr = document.createElement('tr');
+let header = &#91;'index', 'multiplier', 'result'];
+header.forEach((name) =&gt; {
+  let th = document.createElement('td');
+  th.innerText = name;
+  tr.appendChild(th);
+});
+
+table.appendChild(tr);
+
+for(let index = 0; index &lt; 100; index++) {
+  let tr = document.createElement('tr');
+  let data = &#91;index, 2, 2*index];
+  data.forEach((data_each) =&gt; {
+    let td = document.createElement('td');
+    td.innerText = data_each;
+    tr.appendChild(td);
+  });
+
+  table.appendChild(tr);
+}</code></pre>
+
+<p>หรือกรณีที่เรามีตารางอยู่แล้ว เราสามารถใช้งานผ่านคำสั่ง document.getElementById, document.querySelector ได้เลยครับ</p>
+
+<p>ต่อมา เราแปลงให้อยู่ในรูปแบบที่พร้อมสำหรับการสร้าง Worksheet ได้โดยพิมพ์โค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>let ws = XLSX.utils.table_to_sheet(table);</code></pre>
+
+<p><strong>สร้าง Worksheet</strong></p>
+
+<p>เราสามารถสร้าง Worksheet โดยนำข้อมูลที่ผ่านการแปลงให้อยู่ในรูปแบบที่เหมาะสมตามขั้นตอนที่สองได้โดยการพิมพ์โค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>XLSX.utils.book_append_sheet(&lt; workbook &gt;, &lt; worksheet &gt;, &lt; ชื่อของ worksheet &gt;);</code></pre>
+
+<p>ในตัวอย่างจะใช้ตัวแปร wb สำหรับ Workbook กับ ws สำหรับ Worksheet เราสามารถพิมพ์โค้ดได้ตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>XLSX.utils.book_append_sheet(wb, ws, `Multiply by 2`);</code></pre>
+
+<p>หมายเหตุ: การสร้าง Worksheet นั้น เราสามารถสร้างได้มากกว่า 1 Worksheet โดยเราทำตามขั้นตอนที่สอง และสามได้ครับ</p>
+
+<p><strong>ส่งออกไฟล์ในรูปแบบ Excel</strong></p>
+
+<p>เราสามารถส่งออกไฟล์ Excel ได้สามวิธีได้แก่</p>
+
+<ul class="wp-block-list"><li>XLSX.write</li><li>XLSX.writeFile</li><li>XLSX.writeFileAsync</li></ul>
+
+<p>หนึ่ง ส่งออกไฟล์ผ่านคำสั่ง XLSX.write คำสั่งนี้เป็นคำสั่งที่ให้เราส่งออกไฟล์ได้ โดยเราสามารถส่งออกได้ผ่านการพิมพ์คำสั่งตามด้านล่างนี้ </p>
+
+<pre class="wp-block-code"><code>let ret = XLSX.write(wb, { type: "file" });</code></pre>
+
+<p>โดยตัวแปรที่เขียนด้วย { type: &#8220;file&#8221; } ในส่วนนี้เป็นการตั้งค่าการส่งออกของไฟล์ครับให้อยู่ในรูปที่อยู่ไฟล์ blob (ในรูปแบบ URL) ที่พร้อมสำหรับการดาวน์โหลดไฟล์</p>
+
+<p>นอกจากการพิมพ์ { type: &#8220;file&#8221; } แล้ว ผู้ใช้สามารถกำหนดชนิดของข้อมูลที่ส่งออกได้ตามด้านล่างครับ</p>
+
+<figure class="wp-block-table is-style-stripes"><table><thead><tr><th>type</th><th>output</th></tr></thead><tbody><tr><td>&#8220;base64&#8221;</td><td>string: ข้อความที่เข้ารหัสในรูปแบบ Base64</td></tr><tr><td>&#8220;binary&#8221;</td><td>string: ข้อความที่อยู่ในรูปแบบ Binary</td></tr><tr><td>&#8220;string&#8221;</td><td>string: ก็เป็น string ที่เข้ารหัส UTF8</td></tr><tr><td>&#8220;buffer&#8221;</td><td>Node.js Buffer</td></tr><tr><td>&#8220;array&#8221;</td><td>ArrayBuffer</td></tr><tr><td>&#8220;file&#8221;</td><td>ที่อยู่ของไฟล์ที่เราสร้างขึ้น (ปกติจะใช้ใน Node.js)</td></tr></tbody></table></figure>
+
+<p>ส่วนรายละเอียดการตั้งค่าเพิ่มเติม ผู้ใช้สามารถอ่านได้ที่ตารางด้านล่างข้อความ &#8220;The write functions accept an options argument:&#8221; ใน<a href="https://docs.sheetjs.com/docs/api/write-options" target="_blank" rel="noopener" title="หน้า Writing Files">หน้า Writing Files</a></p>
+
+<p>เมื่อเราใช้งานคำสั่งนี้ตามตัวอย่าง ไฟล์จะยังไม่ได้ดาวน์โหลดทันที เราสามารถดาวน์โหลดไฟล์ได้โดยการพิมพ์คำสั่ง</p>
+
+<pre class="wp-block-code"><code>let a = document.createElement('a');
+a.href = ret;
+a.download = 'download.xlsx';
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);</code></pre>
+
+<p>แล้วเว็บเบราวเซอร์จะดาวน์โหลดไฟล์ให้เอง</p>
+
+<p>สอง เขียนผ่านการใช้คำสั่ง XLSX.writeFile คำสั่งนี้จะเป็นการส่งออกไฟล์ Excel เช่นกัน โดยผู้ใช้สามารถใช้งานผ่านการพิมพ์ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>let ret = XLSX.writeFile(wb, 'multiply.xlsx', { type: "file" });</code></pre>
+
+<p>โดยการตั้งค่าใน { type: &#8220;file&#8221; } ผู้ใช้สามารถอ่านได้ในวิธีแรกที่ส่งออกไฟล์โดยการใช้คำสั่ง XLSX.write</p>
+
+<p>เมื่อใช้คำสั่งนี้แล้ว ตัวเว็บพยายามดาวน์โหลดไฟล์ลงเครื่องของผู้ใช้ได้เลย ทำให้เราไม่จำเป็นต้องสร้างลิ้งค์เพื่อกดแล้วให้ดาวน์โหลดอีกที</p>
+
+<p>อีกวิธีหนึ่งคือ writeFileAsync อันนี้ก็เขียนไฟล์เช่นกัน แต่ฟังก์ชันนี้จะใช้งานได้บน Node.js เท่านั้น โดยผู้ใช้สามารถใช้งานได้โดยการพิมพ์คำสั่งตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>XLSX.writeFileAsync(&lt; ชื่อไฟล์ที่ต้องการส่งออก &gt;, &lt; ตัวแปร workbook &gt;, &lt; การตั้งค่า อันนี้ดูได้ที่วิธีที่ 1 ตรงส่วนการใช้งานคำสั่ง XSLX.write &gt;, &lt; ฟังก์ชัน callback ในภาษาจาวาสคริป &gt;)</code></pre>
+
+<h2 class="wp-block-heading">ผลจากการใช้คำสั่งนี้</h2>
+
+<p>เมื่อใช้งานคำสั่งนี้แล้ว พบว่าการใช้งานผ่าน SheetJS ดีกว่าการส่งออกไฟล์ในรูปแบบ CSV ได้แก่</p>
+
+<ul class="wp-block-list"><li>ส่งออกได้หลาย Worksheet ผิดกับไฟล์ CSV ที่มีข้อจำกัดที่สามารถส่งออกได้ 1 Worksheet เท่านั้น </li><li>เราสามารถส่งออกไฟล์ Excel ที่มีข้อความเป็นภาษาไทย แล้วเปิดในโปรแกรม Excel แล้วข้อความไม่กลายเป็นภาษาต่างดาวแบบที่เปิดบน CSV</li></ul>
+
+<p>สำหรับผู้อ่านแล้ว เราแนะนำไลบรารีนี้ครับ ส่วนรายละเอียดเพิ่มเติม ผู้อ่านสามารถอ่านได้ใน<a href="https://docs.sheetjs.com/" target="_blank" rel="noopener" title="เว็บของผู้ผลิตไลบรารีนี้">เว็บของผู้ผลิตไลบรารีนี้</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

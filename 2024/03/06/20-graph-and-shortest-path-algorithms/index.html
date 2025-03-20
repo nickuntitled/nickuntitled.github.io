@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#20 - Graph และ Shortest Path Algorithms</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#20 - Graph และ Shortest Path Algorithms" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/03/06/20-graph-and-shortest-path-algorithms/" />
+<meta property="og:url" content="http://localhost:4000/2024/03/06/20-graph-and-shortest-path-algorithms/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/20_graph_bellmanford_dijkstra_algorithms-2.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-06T22:23:28+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/20_graph_bellmanford_dijkstra_algorithms-2.jpg" />
+<meta property="twitter:title" content="#20 - Graph และ Shortest Path Algorithms" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T17:53:20+07:00","datePublished":"2024-03-06T22:23:28+07:00","description":"None","headline":"#20 - Graph และ Shortest Path Algorithms","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/20_graph_bellmanford_dijkstra_algorithms-2.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/03/06/20-graph-and-shortest-path-algorithms/"},"url":"http://localhost:4000/2024/03/06/20-graph-and-shortest-path-algorithms/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#20 - Graph และ Shortest Path Algorithms</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-03-06 22:23:28 +0700">2024-03-06</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/20_graph_bellmanford_dijkstra_algorithms-2.jpg' />
+  </figure>
+  
+
+  <p><strong>เทคนิคการหาเส้นทางที่สั้นที่สุด (Shortest Path Algorithms)</strong> เป็นวิธีการหาเส้นเชื่อมระหว่างโหนดเริ่มต้น และโหนดสิ้นสุดในกราฟที่ให้ผลรวมของค่าน้ำหนักของเส้น (Edge Weight) ที่ต่ำที่สุด</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>For English, please follow <a href="https://medium.nickuntitled.com/the-graph-and-the-shortest-path-algorithms-dijkstra-and-bellman-ford-2f820325d8d9" target="_blank" rel="noopener" title="this article on Medium">this article on Medium</a>.</p>
+</blockquote>
+
+<!--more-->
+
+<p>เทคนิคเหล่านี้นำไปใช้งานทางด้าน</p>
+
+<ul class="wp-block-list">
+<li>การเชื่อมต่อเครือข่าย Network</li>
+
+
+
+<li>การเดินทาง และการจัดการจราจร</li>
+
+
+
+<li>การหาเส้นทางการบิน</li>
+
+
+
+<li>การออกแบบอุปกรณ์ Electronic กับการออกแบบชิบ VLSI (Very-large-scale integration)</li>
+
+
+
+<li>เครือข่ายสังคมออนไลน์ (Social Network)</li>
+</ul>
+
+<p>เทคนิคที่ค้นหา Shortest Path ในบทความนี้เราจะกล่าวถึง 2 เทคนิค ได้แก่ Dijkstra และ Bellman-Ford Algorithms</p>
+
+<p>แต่ก่อนที่เราจะเข้าไปยังรายละเอียดของแต่ละเทคนิค เรามาเริ่มต้นด้วยข้อมูลเบื้องต้นของกราฟว่ากราฟมันคืออะไร?</p>
+
+<h2 class="wp-block-heading" id="table-of-contents">สารบัญ</h2>
+
+<ul class="wp-block-list">
+<li><a href="#graph">กราฟ (Graph)</a></li>
+
+
+
+<li><a href="#dijkstra">Dijkstra&#8217;s Algorithm</a></li>
+
+
+
+<li><a href="#bellman-ford">Bellman-Ford Algorithm</a></li>
+
+
+
+<li><a href="#summary">สรุป</a></li>
+
+
+
+<li><a href="#reference">แหล่งข้อมูลอ้างอิง</a></li>
+</ul>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="graph">กราฟ (Graph)</h2>
+
+<p>กราฟ [1] เป็นโครงสร้างข้อมูลที่ไม่เป็นเชิงส้น (Non-linear) ที่ประกอบไปด้วยโหนด (Node หรือ Vertex (<em>V</em>)) และเส้น (Line หรือ Edge (<em>E</em>)) ที่เชื่อมระหว่างโหนดสองโหนด</p>
+
+<p>กราฟสามารถแบ่งประเภทได้ตาม<strong>ค่าน้ำหนัก (Weight)</strong> กับตาม<strong>ทิศทาง (Direction)</strong> และตาม<strong> Graph Representation</strong></p>
+
+<h3 class="wp-block-heading">แบ่งตาม Weight</h3>
+
+<p>การแบ่งประเภทกราฟตาม Weight นั้นมีทั้งหมด 2 ประเภท</p>
+
+<ol class="wp-block-list">
+<li><strong>กราฟที่ไม่ระบุค่าน้ำหนัก (Unweighted Graph)</strong> ที่สามารถแทนได้ด้วย <em>G(V, E)</em> กราฟในลักษณะนี้จะไม่มีค่า Weight ที่กำหนดไว้บนเส้นของกราฟ</li>
+
+
+
+<li><strong>กราฟที่ระบุค่าน้ำหนัก (Weighted Graph) </strong>ที่แทนได้ด้วย <em>G(V, E, W)</em> กราฟในลักษณะนี้จะได้รบการกำหนดค่า Weight (ค่า <em>W</em>) ไว้บนเส้นของกราฟ</li>
+</ol>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-1.png" alt="" class="wp-image-5665" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-1-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-1.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">กราฟที่ไม่ได้ระบุ และระบุค่าน้ำหนัก (Unweighted และ Weighted graphs)</figcaption></figure></div>
+
+<h3 class="wp-block-heading">แบ่งตาม Direction</h3>
+
+<p>การแบ่งประเภทกราฟตาม Direction นั้นมีทั้งหมด 2 ประเภท</p>
+
+<ol class="wp-block-list">
+<li><strong>กราฟที่ไม่ระบุทิศทาง (Undirected Graph) </strong>กราฟประเภทนี้จะอนุญาตให้ตัว Algorithm สามารถเดินทางไป-กลับบนเส้นของกราฟได้</li>
+
+
+
+<li><strong>กราฟที่ระบุทิศทาง (Directed Graph)</strong> กราฟชนิดนี้จะระบุทิศทางไว้บนกราฟเพื่อกำหนดทิศทางการเดินของเส้นของกราฟ</li>
+</ol>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-2.png" alt="" class="wp-image-5672" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-2-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-2.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">กราฟที่ระบุ และไม่ระบุทิศทาง (Undirected กับ Directed Graphs) การของเดินบนเส้นในฟราก</figcaption></figure></div>
+
+<h3 class="wp-block-heading">แบ่งตาม Graph Representation</h3>
+
+<p>กราฟสามารถแทนได้ด้วยการใช้ Adjacency Matrix กับ Adjacency List</p>
+
+<p><strong>Adjacency Matrix</strong> เป็นการกำหนดตัวแปรให้อยู่ในรูป Array ซ้อน Array (Nested Array) ที่เป็นตัวแปรประเภท Integer หรือ Boolean โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>กราฟที่ไม่ได้ระบุค่า Weight (Unweighted Graph)</strong>: เราจะกำหนดให้ในกรณีที่โหนดไม่ได้เชื่อมไปยังโหนดอื่นนั้นมีค่าเท่ากับ 0 แต่กรณีที่ได้เชื่อมไปยังอีกโหนด เราจะกำหนดให้มีค่าเท่ากับ 1</li>
+
+
+
+<li><strong>กราฟที่ระบุค่า Weight (Weighted Graph)</strong>: เราจะกำหนดให้ในกรณีที่โหนดไม่ได้เชื่อมไปยังโหนดอื่นมีค่าเท่ากับ 0 แต่กรณีที่เชื่อมไปยังโหนดอื่น เราจะกำหนดให้มีค่าบนเส้นนั้นมีค่ามากกว่า 0 (หรือน้อยกว่า 0 ก็ได้) ขึ้นกับว่าเราจะกำหนดค่าน้ำหนัก (Weight) ของเส้นนั้นมีค่าเท่าไร</li>
+</ul>
+
+<p>เราสามารถดูตัวอย่างได้ตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-3.png" alt="" class="wp-image-5674" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-3-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-3.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">การกำหนด Adjacency Matrix ในกรณีที่กราฟไม่ได้ระบุค่า Weight (Unweighted Graph)</figcaption></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-4.png" alt="" class="wp-image-5675" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-4-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-4.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">การกำหนด Adjacency Matrix ในกรณีที่กราฟระบุค่า Weight (Weighted Graph)</figcaption></figure></div>
+
+<p><strong>Adjacency List</strong> เป็นการกำหนดตัวแปรให้อยู่ในรูป Array ที่มี Linked List เพื่อกำหนดว่าโหนดนั้นเชื่อมไปยังโหนดอื่นหรือไม่ โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>กราฟที่ไม่ได้ระบุค่า Weight (Unweighted Graph)</strong>: เราจะไม่ได้กำหนด Weight ลงไปใน Node ของ Linked List</li>
+
+
+
+<li><strong>กราฟที่ระบุค่า Weight (Weighted Graph)</strong>: เราจะกำหนดค่า Weight ลงไปใน Node ของ Linked List นั้น ๆ</li>
+</ul>
+
+<p>เราสามารถดูตัวอย่างได้ตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-5.png" alt="" class="wp-image-5678" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-5-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-5.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">การกำหนด Adjacency List ในกรณีที่กราฟไม่ได้ระบุค่า Weight (Unweighted Graph)</figcaption></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-6.png" alt="" class="wp-image-5679" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-6-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-6.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">การกำหนด Adjacency List ในกรณีที่กราฟระบุค่า Weight (Weighted Graph)</figcaption></figure></div>
+
+<p>หลังจากที่ทราบข้อมูลเบื้องต้นที่เกี่ยวกับกราฟแล้ว เรามาดูเทคนิคที่เกี่ยวข้องกับการหา Shortest Path ได้แก่ Dijkstra’s and Bellman-Ford’s algorithms</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="dijkstra">Dijkstra&#8217;s Algorithm</h2>
+
+<p><strong>Dijkstra&#8217;s algorithm</strong> [2, 3] เป็นเทคนิคการหา Shortest Path ที่มีประโยชน์ และได้รับความนิยมสำหรับการหาเส้นทางที่สั้นที่สุดจากโหนดเริ่มต้นไปยังโหนดปลายทางโดยใช้สำหรับกราฟที่ไม่มีค่าน้ำหนักบนเส้น Edge ที่มีค่าเป็นลบ (Negative Edge Weight)</p>
+
+<p>เทคนิคนี้ได้รับการตั้งชื่อตามนักวิจัยชาว Dutch ที่มีชื่อว่า Edsger W. Dijkstra</p>
+
+<h3 class="wp-block-heading">ขั้นตอนการทำงาน</h3>
+
+<p><strong>ขั้นตอนแรก</strong> เรากำหนดให้</p>
+
+<ul class="wp-block-list">
+<li>โหนดเริ่มต้นเป็นโหนดที่ 1</li>
+
+
+
+<li>ระยะทาง (distance) ในโหนดที่ 1 มีค่าเท่ากับ 0 ส่วนโหนดอื่นกำหนดให้มีค่าเท่ากับ Infinity</li>
+
+
+
+<li>ตัวแปรเพื่อแสดงว่าเราไปยังโหนดนั้น ๆ แล้ว (Visited) มีค่าเท่ากับ False</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-7.png" alt="" class="wp-image-5684" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-7-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-7.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>ขั้นตอนที่สอง</strong> เราพิจารณาจากโหนดปัจจุบัน เพื่อดูโหนดข้างเคียงตามเส้นเชื่อมทุกโหนดที่ยังไม่ได้ไปเยือน และคำนวณหาระยะทางต่อเชื่อมจากเส้นเชื่อม เพื่อดูว่าค่าที่ได้มีค่าน้อยที่สุดหรือไม่ ในกรณีที่ค่านั้นมีค่าน้อยที่สุด ให้เราอัพเดทระยะทางใหม่ด้วยค่าที่เราคำนวณได้</p>
+
+<p>หลังจากนั้น เรากำหนดให้โหนดปัจจุบันที่เราเข้าไปแล้วให้มีค่า Visited เท่ากับ True เพื่อแสดงให้เห็นว่าเราไปเยือนโหนดนั้น ๆ เรียบร้อย</p>
+
+<p>เราแสดงตัวอย่างการพิจารณาในแต่ละโหนดได้ตามขั้นตอนตามด้านล่างนี้</p>
+
+<p><strong>หนึ่ง </strong>เราพิจารณาในโหนดที่ 1 ด้วยการคำนวณระยะทาง (Distance) จากโหนดที่ 1 ไปยังโหนดข้างเคียง ได้แก่โหนดที่ 2 และ 3 โดยคำนวณได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 2 = (Distance of 1) + (Weight from 1 to 2) = 0 + 3 = 3</li>
+
+
+
+<li>Distance of 3 = (Distance of 1) + (Weight from 1 to 3) = 0 + 2 = 2</li>
+</ul>
+
+<p id="6517">ผลลัพธ์การคำนวณระยะทางจากโหนดที่ 1 ไปโหนดที่ 2 และ 3 มีค่าเท่ากับ 3 และ 2 ตามลำดับ ซึ่งมีค่าน้อยกว่า infinity ให้เรานำค่านั้นไปอัพเดทในตาราง และกำหนดให้โหนดที่ 1 ได้รับการเยือนเรียบร้อย (ด้วยกำหนด Visited ให้เป็น True)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-8.png" alt="" class="wp-image-5686" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-8-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-8.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>สอง </strong>เราพิจารณาในโหนดข้างเคียงที่เชื่อมจากโหนดที่ 1 โดยเราพิจารณาในโหนดที่ 2 ก่อน</p>
+
+<p>โหนดนี้จะมีโหนดที่เชื่อมต่อจากโหนดที่ 2 เพียงโหนดเดียว คือโหนดที่ 3 ให้เราคำนวณหาระยะทางโดยการนำค่าที่ได้จากขั้นตอนก่อนหน้า มาบวกกับระยะทางระหว่างระหว่างโหนดที่ 2 และ 3</p>
+
+<p>การคำนวณแสดงได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 3 = (Distance of 2) + (Weight from 2 to 3) = 3 + 2 = 5</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้จะมีค่าเท่ากับ 5 ซึ่งมีค่ามากกว่าผลลัพธ์ที่ได้จากการคำนวณในขั้นตอนก่อนหน้าที่หาระยะทางระหว่างโหนดที่ 1 และโหนดที่ 3 ดังนั้นแล้ว เราจะไม่อัพเดทค่านี้ในตาราง</p>
+
+<p>ต่อมาเรากำหนดให้โหนดที่ 2 ได้รับการเยือนเรียบร้อย (ด้วยกำหนด Visited ให้เป็น True)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-9.png" alt="" class="wp-image-5688" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-9-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-9.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>สาม </strong>เราพิจารณาในโหนดข้างเคียงที่เชื่อมจากโหนดที่ 1 อีกโหนดหนึ่ง คือโหนดที่ 3</p>
+
+<p>โหนดนี้จะมีโหนดที่เชื่อมต่อจากโหนดที่ 3 เพียง 2 โหนด คือโหนดที่ 4 และโหนดที่ 5 ให้เราคำนวณหาระยะทางโดยการนำค่าที่ได้จากขั้นตอนก่อนหน้า มาบวกกับระยะทางระหว่างระหว่างโหนดที่ 3 กับโหนดที่เชื่อมต่อกัน</p>
+
+<p>การคำนวณแสดงได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 4 = (Distance of 3) + (Weight from 3 to 4) = 2 + 4 = 6</li>
+
+
+
+<li>Distance of 5 = (Distance of 3) + (Weight from 3 to 5) = 2 + 3 = 5</li>
+</ul>
+
+<p id="6517">ผลลัพธ์การคำนวณระยะทางจากโหนดที่ 3 ไปโหนดที่ 4 และ 5 มีค่าเท่ากับ 6 และ 5 ตามลำดับ ซึ่งมีค่าน้อยกว่า infinity ให้เรานำค่านั้นไปอัพเดทในตาราง และกำหนดให้โหนดที่ 3 ได้รับการเยือนเรียบร้อย (กำหนด Visited ให้เป็น True)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-10.png" alt="" class="wp-image-5689" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-10-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-10.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>สี่ </strong>เราพิจารณาในโหนดข้างเคียงที่เชื่อมจากโหนดที่ 3 โดยเราพิจารณาในโหนดที่ 4 ก่อน</p>
+
+<p>โหนดนี้จะมีโหนดที่เชื่อมต่อจากโหนดที่ 4 เพียงโหนดเดียว คือโหนดที่ 5 ให้เราคำนวณหาระยะทางโดยการนำค่าที่ได้จากขั้นตอนก่อนหน้า มาบวกกับระยะทางระหว่างระหว่างโหนดที่ 4 และ 5</p>
+
+<p>การคำนวณแสดงได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 5 = (Distance of 4) + (Weight from 4 to 5) = 6 + 3 = 9</li>
+</ul>
+
+<p>ผลลัพธ์ที่ได้จะมีค่าเท่ากับ 9 ซึ่งมีค่ามากกว่าผลลัพธ์ที่ได้จากการคำนวณในขั้นตอนก่อนหน้าที่หาระยะทางระหว่างโหนดที่ 3 และโหนดที่ 5 ดังนั้นแล้ว เราจะไม่อัพเดทค่านี้ในตาราง</p>
+
+<p>ต่อมาเรากำหนดให้โหนดที่ 4 ได้รับการเยือนเรียบร้อย (Visited เท่ากับ True)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-11.png" alt="" class="wp-image-5692" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-11-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-11.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>ห้า </strong>เราพิจารณาในโหนดข้างเคียงที่เชื่อมจากโหนดที่ 3 อีกโหนดหนึ่ง คือโหนดที่ 5</p>
+
+<p>โหนดนี้จะไม่มีโหนดที่เชื่อมต่อจากโหนดที่ 5 เลย ดังนั้น เราไม่จำเป็นต้องคำนวณอะไรในโหนดนี้อีก</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-12.png" alt="" class="wp-image-5695" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-12-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-12.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>สุดท้าย เราจะได้ Shortest Path โดยเดินจากโหนดที่ 1 ผ่านโหนดที่ 3 ไปยังโหนดที่ 5 โดยการแสดงภาพตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-13.png" alt="" class="wp-image-5696" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-13-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-13.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<h3 class="wp-block-heading">เขียนโค้ดด้วย Python</h3>
+
+<pre class="wp-block-code"><code>def djikstra_algorithm(distance, start = 0, final = 5):
+    visited, dist_table = &#91;], &#91;]
+    for i in range(final + 1):
+        visited.append(False)
+        dist_table.append(&#91;float('inf'), None])
+
+    queue = &#91;start]
+    dist_table&#91;start]&#91;0] = 0
+    while len(queue) &gt; 0:
+        vertex = queue.pop(0)
+        visited&#91;vertex] = True
+        dist_previous, parent_previous = dist_table&#91;vertex]
+        for idx, dist_each in enumerate(distance&#91;vertex]):
+            if visited&#91;idx] or dist_each == 0:
+                continue
+
+            if (dist_each + dist_previous) &lt; dist_table&#91;idx]&#91;0]:
+                dist_table&#91;idx]&#91;0] = dist_each + dist_previous
+                dist_table&#91;idx]&#91;1] = vertex
+                queue.append(idx)
+
+    vertex = dist_table&#91;final]
+    path = &#91;final]
+    distance = vertex&#91;0]
+    parent = vertex&#91;1]
+    while parent is not None:
+        vertex = dist_table&#91;parent]
+        path.append(parent)
+        parent = vertex&#91;1]
+
+    return path</code></pre>
+
+<h3 class="wp-block-heading">เขียนโค้ดด้วย JavaScript</h3>
+
+<pre class="wp-block-code"><code>function djikstra_algorithm(distance, start = 0, final = 5)
+{
+  let dist_table = &#91;], visited = &#91;];
+  for(let i = start; i &lt;= final; i++) {
+    dist_table.push(&#91;Infinity, null]);
+    visited.push(false);
+  }
+  
+  let queue = &#91;start]
+  dist_table&#91;start] = &#91;0, null];
+  
+  while(queue.length &gt; 0) {
+    let vertex = queue.shift();
+    let &#91;dist_current, parent] = dist_table&#91;vertex];
+    visited&#91;vertex] = true;
+    
+    for(let target = 0; target &lt; distance.length; target++) {
+      let weight = distance&#91;vertex]&#91;target];
+      if((!visited&#91;target] &amp;&amp; weight &gt; 0) &amp;&amp; (dist_current + weight &lt; dist_table&#91;target]&#91;0]) ) {
+        dist_table&#91;target] = &#91;
+          dist_current + weight, vertex
+        ];
+        
+        queue.push(target);
+      }
+    }
+  }
+  
+  let &#91;dist, prev] = dist_table&#91;final];
+  let path = &#91;final];
+  while(prev != null) {
+    path.push(prev);
+    &#91;dist, prev] = dist_table&#91;prev];
+  }
+  
+  return path;
+}</code></pre>
+
+<h3 class="wp-block-heading">Computational Complexity</h3>
+
+<p><strong>Time Complexity</strong> ของ Algorithm นี้ด้วย</p>
+
+<ul class="wp-block-list">
+<li>การใช้ Adjacency Matrix มีค่าเท่ากับ <em>O(V^2)</em></li>
+
+
+
+<li>การใช้ Adjacency List มีค่าเทา่กับ <em>O(E log V)</em></li>
+</ul>
+
+<p>ส่วน <strong>Space Complexity</strong> ของ Algorithm นี้มีค่าเท่ากับ <em>O(V)</em></p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>สำหรับรายละเอียดเกี่ยวกับ Time Complexity, Space Complexity และตัว Big-O อ่านได้ที่<a href="https://nickuntitled.com/2024/02/28/big-o-search-and-sort-in-data-engineering/#big-o" data-type="link" data-id="https://nickuntitled.com/2024/02/28/big-o-search-and-sort-in-data-engineering/#big-o">บทความที่แล้ว</a></p>
+</blockquote>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="bellman-ford">Bellman-Ford Algorithm</h2>
+
+<p><strong>Bellman-Ford Algorithm</strong> [4] เป็นเทคนิคในการหา Shortest Path อีกเทคนิคหนึ่งที่มีลักษณะการทำงานคล้ายกันกับ Dijkstra&#8217;s Algorithm แต่มีข้อแตกต่างอยู่ โดย Bellman-Ford Algorithm รองรับ</p>
+
+<ul class="wp-block-list">
+<li>กราฟที่เป็น Unweighted กับ Weighted graphs</li>
+
+
+
+<li>การตรวจสอบว่ากราฟเป็นมี Negative Cycle หรือไม่ ถ้ามีผลลัพธ์การคำนวณจะมีค่าลดลงไปเรื่อย ๆ จนเกิดเป็นการวนลูปไม่มีที่สิ้นสุด (Indefinite Loop)</li>
+</ul>
+
+<h3 class="wp-block-heading">ขั้นตอนการทำงาน</h3>
+
+<p><strong>ขั้นตอนแรก</strong> เรากำหนดให้โหนดเริ่มต้น (Source ที่แสดงเป็นวงกลมสีเขียวตามภาพด้านล่างนี้) มีค่าระยะทาง (Distance) เท่ากับ 0 ส่วนโหนดอื่นมีค่าเท่ากับ Infinity</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-14.png" alt="" class="wp-image-5701" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-14-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-14.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ต่อมา เราหา Shortest Path ในกราฟ โดยกราฟมีโหนดทั้งหมด N โหนด ให้เราคำนวณ Distance บริเวณโหนดเริ่มต้นเสียก่อน จากนั้นประมวลผลในทุกโหนด <strong><em>[edges(u, v, weight)]</em></strong> เพื่อหา Shortest Path ทั้งหมด <em>N-1 </em>ครั้ง ด้วยการคำนวณตามฟังก์ชัน <strong><em>dist[v] = minimum(dist[v], distance[u] + weight)</em></strong></p>
+
+<p>ขั้นตอนการประมวลผลแสดงรายละเอียดตามด้านล่างนี้</p>
+
+<p><strong>หนึ่ง </strong>คำนวณ Distance ในโหนดที่ 1 โดยในโหนดนี้จะเชื่อมต่อไปอีก 2 โหนด ได้แก่ โหนดที่ 2 และโหนดที่ 3</p>
+
+<p>เราสามารถคำนวณหาระยะทางระหว่างโหนดปัจจุบันกับโหนดที่เชื่อมต่อกันได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 2 = (Distance of 1) + (Weight from 1 to 2) = 0 + 3 = 3</li>
+
+
+
+<li>Distance of 3 = (Distance of 1) + (Weight from 1 to 3) = 0 + 2 = 2</li>
+</ul>
+
+<p>ค่าที่ได้จากการคำนวณจากโหนดที่ 1 ไปโหนดที่ 2 และ 3 มีค่าน้อยกว่า Infinity ดังนั้น เราจะอัพเดท Distance ลงไปในตาราง</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-15.png" alt="" class="wp-image-5702" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-15-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-15.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>สอง </strong>คำนวณ Distance ในโหนดที่ 2 โดยในโหนดนี้จะเชื่อมต่อไปอีก 1 โหนด คือโหนดที่ 3</p>
+
+<p>การคำนวณระยะทางของโหนดนี้เราทำได้โดยเอาค่าการคำนวณระยะทางจากจากโหนดเริ่มต้น มายังโหนดปัจจุบัน (โหนดที่ 1 มายังโหนดที่ 2) มาบวกกับระยะทางระหว่างโหนดปัจจุบันกับโหนดที่เชื่อมกันอยู่</p>
+
+<p>การคำนวณทำได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 3 = (Distance of 2) + (Weight from 2 to 3) = 3 + 2 = 5</li>
+</ul>
+
+<p>ค่าที่ได้จากการคำนวณจากโหนดที่ 2 ไปโหนดที่ 3 มีค่ามากกว่าการคำนวณจากข้อที่แล้ว ดังนั้นเราจะไม่อัพเดทค่านี้ลงไปในตาราง</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-16.png" alt="" class="wp-image-5703" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-16-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-16.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>สาม </strong>คำนวณ Distance ในโหนดที่ 3 โดยในโหนดนี้จะเชื่อมต่อไปอีก 2 โหนด ได้แก่โหนดที่ 4 และ 5</p>
+
+<p>การคำนวณทำได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 4 = (Distance of 3) + (Weight from 3 to 4) = 2 + 4 = 6</li>
+
+
+
+<li>Distance of 5 = (Distance of 3) + (Weight from 3 to 5) = 2 + 3 = 5</li>
+</ul>
+
+<p>ค่าที่ได้จากการคำนวณ ไปโหนดที่ 4 และ 5 มีค่าน้อยกว่า Infinity ดังนั้นเราจะอัพเดทค่าเหล่านี้ลงไปในตาราง</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-17.png" alt="" class="wp-image-5707" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-17-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-17.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p><strong>สี่</strong> คำนวณ Distance ในโหนดที่ 4 โดยในโหนดนี้จะเชื่อมต่อไปอีก 1 โหนด คือโหนดที่ 5</p>
+
+<p>การคำนวณทำได้ตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Distance of 5 = (Distance of 4) + (Weight from 4 to 5) = 6 + 3 = 9</li>
+</ul>
+
+<p>ค่าที่ได้จากการคำนวณมีค่ามากกว่าการคำนวณจากข้อที่ผ่านมา ดังนั้นเราจะไม่อัพเดทค่านี้ลงไปในตาราง</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-18.png" alt="" class="wp-image-5710" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-18-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/image-18.png 720w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>หลังจากที่วนลูปเข้าไปดูในแต่ละโหนดของกราฟตามขั้นตอนที่กล่าวมาข้างบนนี้เรียบร้อยแล้ว เรามาวนลูปอีกรอบหนึ่งเพื่อมองหา Negative Cycle ในกราฟว่ามีหรือไม่?</p>
+
+<p>เหตุผลของการวนลูปเข้าไปในกราฟอีกรอบหนึ่งเพื่อคำนวณระยะทางอีกรอบ แล้วตรวจสอบว่าระยะทางที่ผ่านการคำนวณนั้นสั้นกว่าที่เราได้บันทึกในตารางหรือไม่ ถ้าใช่ แสดงว่าเราพบ Negative Cycle ในกราฟ</p>
+
+<h3 class="wp-block-heading">เขียนโค้ดด้วย Python</h3>
+
+<pre class="wp-block-code"><code>class Graph:
+ def __init__(self, vertices):
+  self.V = vertices
+  self.graph = &#91;]
+  
+ def add(self, source, destination, weight):
+  self.graph.append(&#91;
+    source, destination, weight
+   ])
+   
+ def bellmanford(self, source):
+  distance = &#91;float('inf') for i in range(self.V)]
+  previous = &#91;None for i in range(self.V)]
+  distance&#91;source] = 0
+  
+  for _ in range(self.V - 1):
+   for s, d, w in self.graph:
+    if distance&#91;s] != float('inf') and distance&#91;s] + w &lt; distance&#91;d]:
+     distance&#91;d] = distance&#91;s] + w
+     previous&#91;d] = s
+     
+  for s, d, w in self.graph:
+   if distance&#91;s] + w &lt; distance&#91;d]:
+    print("Error: Negative Cycle Exists")
+    return None, None
+    
+  return distance, previous
+  
+if __name__ == '__main__':
+ g = Graph(5)
+ g.add(0, 1, 5)
+ g.add(0, 2, 4)
+ g.add(1, 3, 3)
+ g.add(2, 1, 6)
+ g.add(3, 2, 2)
+ 
+ distance, previous = g.bellmanford(0)
+ 
+ for i, (d, p) in enumerate(zip(distance, previous)):
+  print(i, d, p)</code></pre>
+
+<h3 class="wp-block-heading">เขียนโค้ดด้วย JavaScript</h3>
+
+<pre class="wp-block-code"><code>class Graph
+{
+  constructor(vertex)
+  {
+    this.vertex = vertex;
+    this.graph = &#91;];
+  }
+  
+  add(source, destination, value)
+  {
+    this.graph.push(&#91;
+      source, destination, value
+    ]);
+  }
+  
+  bellmanford(source)
+  {
+    let distance = &#91;], previous = &#91;];
+    for(let i = 0;  i &lt; this.vertex; i++) {
+      distance.push(Infinity);
+      previous.push(null);
+    }
+    
+    distance&#91;source] = 0;
+    
+    let target_loop_range = this.vertex - 1;
+    for(let i = 0; i &lt; target_loop_range; i++) {
+      for(let &#91;s, d, weight] of this.graph) {
+        if(distance&#91;s] != Infinity &amp;&amp; 
+     distance&#91;s] + weight &lt; distance&#91;d]) {
+          distance&#91;d] = distance&#91;s] + weight;
+          previous&#91;d] = s;
+        }
+      }
+    }
+    
+    for(let &#91;s, d, weight] of this.graph) {
+      if(distance&#91;s] + weight &lt; distance&#91;d]) {
+        console.error("Error: Negative Cycle Exists");
+        return &#91;null, null];
+      }
+    }
+    
+    return &#91;distance, previous];
+  }
+}
+
+g = new Graph(5);
+g.add(0, 1, 5);
+g.add(0, 2, 4);
+g.add(1, 3, 3);
+g.add(2, 1, 6);
+g.add(3, 2, 2);
+
+let &#91;distance, previous] = g.bellmanford(0);
+
+if(distance &amp;&amp; previous) {
+  for(let i = 0; i &lt; distance.length; i++) {
+    let d = distance&#91;i],
+        p = previous&#91;i];
+    console.log(`${ i }: ${ d }, ${ p }`);
+  }
+}</code></pre>
+
+<h3 class="wp-block-heading">Computational Complexity</h3>
+
+<p><strong>Time Complexity</strong> ของ Algorithm นี้ในกรณีที่เป็น</p>
+
+<ul class="wp-block-list">
+<li><strong>Best case</strong>: เมื่อค่าระยะทางที่คำนวณได้หลังจากที่วนลูปที่ 1 และ 2 มีค่าเท่ากันแล้ว  เราจะได้ค่าเท่ากับ <em>O(E)</em></li>
+
+
+
+<li><strong>Average กับ Worst Case:</strong> มีค่าเท่ากับ <em>O(VE)</em></li>
+</ul>
+
+<p>ส่วน <strong>Space Complexity</strong> ของ Algorithm นี้มีค่าเท่ากับ <em>O(V)</em></p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="summary">สรุป</h2>
+
+<p>เทคนิคการหาเส้นทางที่สั้นที่สุด (Shortest Path Algorithms) เป็นวิธีการหาเส้นเชื่อมระหว่างโหนดเริ่มต้น และโหนดสิ้นสุดในกราฟที่ให้ผลรวมของค่าน้ำหนักของเส้น (Edge Weight) ที่ต่ำที่สุด</p>
+
+<p>เทคนิคที่เราได้กล่าวถึงในบทความนี้ก็ได้แก่ Dijkstra กับ Bellman-Ford Algorithms ที่มีความคล้ายคลึงกัน แต่ Bellman-Ford Algorithm รองรับการจัดการกับกราฟที่มี Negative Edge Weight และ Negative Cycle ครับ</p>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="reference">ที่มา</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://www.geeksforgeeks.org/introduction-to-graphs-data-structure-and-algorithm-tutorials/" rel="noreferrer noopener" target="_blank">https://www.geeksforgeeks.org/introduction-to-graphs-data-structure-and-algorithm-tutorials/</a></li>
+
+
+
+<li>Grok AI</li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/introduction-to-dijkstras-shortest-path-algorithm/#dijkstras-algorithm" rel="noreferrer noopener" target="_blank">https://www.geeksforgeeks.org/introduction-to-dijkstras-shortest-path-algorithm/#dijkstras-algorithm</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/" target="_blank" rel="noreferrer noopener">https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/</a></li>
+</ol>
+
+<p><a href="#table-of-contents" data-type="internal" data-id="#top">เลื่อนขึ้นไปข้างบนสุด&nbsp;↑</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

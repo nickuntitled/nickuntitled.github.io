@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#12 - รู้จัก Apple MLX และเขียนโค้ด Linear Regression</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#12 - รู้จัก Apple MLX และเขียนโค้ด Linear Regression" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/01/17/12-coding-apple-mlx-and-linear-regression/" />
+<meta property="og:url" content="http://localhost:4000/2024/01/17/12-coding-apple-mlx-and-linear-regression/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/12_applemlx_and_linear_regression_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-17T01:56:46+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/12_applemlx_and_linear_regression_cover.jpg" />
+<meta property="twitter:title" content="#12 - รู้จัก Apple MLX และเขียนโค้ด Linear Regression" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-01-17T01:56:49+07:00","datePublished":"2024-01-17T01:56:46+07:00","description":"None","headline":"#12 - รู้จัก Apple MLX และเขียนโค้ด Linear Regression","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/12_applemlx_and_linear_regression_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/01/17/12-coding-apple-mlx-and-linear-regression/"},"url":"http://localhost:4000/2024/01/17/12-coding-apple-mlx-and-linear-regression/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#12 - รู้จัก Apple MLX และเขียนโค้ด Linear Regression</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-01-17 01:56:46 +0700">2024-01-17</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/12_applemlx_and_linear_regression_cover.jpg' />
+  </figure>
+  
+
+  <p><strong><a href="https://github.com/ml-explore/mlx" target="_blank" rel="noopener" title="Apple MLX">Apple MLX</a></strong> เป็นไลบรารีสำหรับงานทางด้าน Machine Learning ที่พัฒนาโดยทีมงาน Apple Machine Learning Research ที่ออกแบบมาเพื่อ Apple Silicon (ชิปแบบ M2, M3) โดยเฉพาะ โดยไลบรารีนี้มีฟีเจอร์ที่เด่น ๆ ได้แก่</p>
+
+<!--more-->
+
+<ul class="wp-block-list">
+<li><strong>Familiar APIs</strong> MLX เป็น API ที่มีเขียนขึ้นมาให้มีลักษณะ API ที่คล้ายกันกับ NumPy และ PyTorch ร่วมกับเป็น API ที่พัฒนาโดยใช้ C++ API ส่งผลให้ MLX เป็น API ที่เขียนขึ้นมาเพื่อให้ผู้ใช้ที่ใช้ NumPy และ PyTorch สามารถใช้งานได้ง่ายขึ้น</li>
+
+
+
+<li><strong>Composable function transformations</strong> MLX สามารถคำนวณ Differentiate, Vectorization และ Graph Optimization ได้อัตโนมัติ</li>
+
+
+
+<li><strong>Lazy computation</strong> การประมวลผล Array ใน MLX จะถูกเรียกใช้งานเพื่อประมวลผลเท่าที่จำเป็น</li>
+
+
+
+<li><strong>Dynamic graph construction</strong> การประมวลผล Graph ใน MLX จะถูกสร้างโดยอัตโนมัติ การเปลี่ยนแปลง Shape ของ Function ไม่ส่งผลต่อการประมวลผล Graph และการ Debug ทำได้ง่าย</li>
+
+
+
+<li><strong>Multi-device</strong> รองรับการทำงาน CPU และ GPU</li>
+
+
+
+<li><strong>Unified memory</strong> จุดนี้เป็นจุดสำคัญที่แตกต่างกับไลบรารีอื่นที่เป็น Unified Memory Model (หน่วยควาจำแบบรวม) ที่ Array ในหน่วยความจำจะถูกแชร์ระหว่าง CPU และ GPU โดยผู้ใช้สามารถประมวลผล Array ได้โดยไม่จำเป็นต้องย้ายข้อมูลระหว่าง CPU และ GPU ซึ่งจะแตกต่างกับ PyTorch และ Tensorflow</li>
+</ul>
+
+<p>ไลบรารีนี้ได้รับการพัฒนาโดยทีมวิจัยทางด้าน Machine Learning ที่ออกแบบมาเพื่อให้ผู้ใช้สามารถใช้งานได้ง่าย แต่มีประสิทธิภาพที่ดีสำหรับการ Train และการ Deploy โมเดล</p>
+
+<p>การออกแบบไลบรารีนี้ออกแบบตามแนวทางของ <a href="https://numpy.org/doc/stable/index.html">NumPy</a>, <a href="https://pytorch.org/">PyTorch</a>, <a href="https://github.com/google/jax">Jax</a>, และ <a href="https://arrayfire.org/">ArrayFire</a>.</p>
+
+<h2 class="wp-block-heading">การติดตั้ง</h2>
+
+<p>ผู้ใช้สามารถติดตั้งไลบรารีนี้ได้ง่าย เพียงแค่พิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>pip install mlx</code></pre>
+
+<h2 class="wp-block-heading">การใช้คำสั่งพื้นฐานของ MLX</h2>
+
+<p>เมื่อนำเข้าไลบรารีเรียบร้อยแล้ว ผู้ใช้สามารถใช้งาน MLX ได้ตามรายละเอียดที่มีในคู่มือที่มีในเว็บ โดยตัวอย่างนี้จะเป็นการใช้คำสั่งพื้นฐานที่มีใน MLX ได้แก่ การสร้าง และจัดการ Array การคำนวณทางคณิตศาสตร์ และการคำนวณ Gradient ของ Array โดยการทำ Differentiate</p>
+
+<h4 class="wp-block-heading">การสร้างและจัดการ Array</h4>
+
+<p>ก่อนอื่น ผู้ใช้สร้าง Array ของ MLX ได้โดย</p>
+
+<pre class="wp-block-code"><code>&gt;&gt;&gt; test = mx.array(&#91;1,2,3,4])
+&gt;&gt;&gt; test
+array(&#91;1, 2, 3, 4], dtype=int32)</code></pre>
+
+<p>ต่อมา ผู้ใช้สามารถดูรายละเอียด และจัดการ Array ได้โดยการพิมพ์คำสั่งตามตัวอย่างด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>&gt;&gt;&gt; test.dtype
+int32
+&gt;&gt;&gt; test.shape
+&#91;4]
+&gt;&gt;&gt; test.reshape((2,2))
+array(&#91;&#91;1, 2],
+       &#91;3, 4]], dtype=int32)
+&gt;&gt;&gt; test = test.reshape((2,2))
+&gt;&gt;&gt; test
+array(&#91;&#91;1, 2],
+       &#91;3, 4]], dtype=int32)
+&gt;&gt;&gt; test = test.T
+&gt;&gt;&gt; test
+array(&#91;&#91;1, 3],
+       &#91;2, 4]], dtype=int32)
+&gt;&gt;&gt; test = test.tolist()
+&gt;&gt;&gt; test
+&#91;&#91;1, 3], &#91;2, 4]]</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>test.dtype เป็นการแสดงชนิด Array ของ MLX ในที่นี่แสดงว่า Array นี้เป็น Array int32</li>
+
+
+
+<li>test.shape แสดงขนาดของ Array</li>
+
+
+
+<li>test.reshape เปลี่ยน Shape ของ Array ให้เป็นไปตามที่ต้องการ โดยจำเป็นต้องมีขนาดที่รวมกันแล้วเท่ากับ Array เดิม</li>
+
+
+
+<li>test.T เป็นการทำ Transpose</li>
+
+
+
+<li>test.tolist() เป็นการแปลงจาก Array ของ MLX ให้เป็น List ของไพทอน</li>
+</ul>
+
+<p>นอกจากนี้ ผู้ใช้ยังสามารถใช้คำสั่งตามด้านล่างนี้เพื่อสร้าง Array ในรูปแบบต่าง ๆ ได้</p>
+
+<pre class="wp-block-code"><code>&gt;&gt;&gt; mx.arange(0, 10, 1)
+array(&#91;0, 1, 2, ..., 7, 8, 9], dtype=int32)
+&gt;&gt;&gt; mx.linspace(0, 10, 50)
+array(&#91;0, 0.204082, 0.408163, ..., 9.59184, 9.79592, 10], dtype=float32)
+
+&gt;&gt;&gt; mx.ones((3,3))
+array(&#91;&#91;1, 1, 1],
+       &#91;1, 1, 1],
+       &#91;1, 1, 1]], dtype=float32)
+&gt;&gt;&gt; mx.flatten(mx.ones((3,3)))
+array(&#91;1, 1, 1, ..., 1, 1, 1], dtype=float32)
+
+&gt;&gt;&gt; mx.zeros((3,3))
+array(&#91;&#91;0, 0, 0],
+       &#91;0, 0, 0],
+       &#91;0, 0, 0]], dtype=float32)
+&gt;&gt;&gt; mx.ones_like(mx.zeros((3,3)))
+array(&#91;&#91;1, 1, 1],
+       &#91;1, 1, 1],
+       &#91;1, 1, 1]], dtype=float32)
+
+&gt;&gt;&gt; mx.identity(3)
+array(&#91;&#91;1, 0, 0],
+       &#91;0, 1, 0],
+       &#91;0, 0, 1]], dtype=float32)
+
+&gt;&gt;&gt; test = mx.zeros((5, 3))
+&gt;&gt;&gt; test = mx.pad(test, (1,1), 5)
+&gt;&gt;&gt; test
+array(&#91;&#91;5, 5, 5, 5, 5],
+       &#91;5, 0, 0, 0, 5],
+       &#91;5, 0, 0, 0, 5],
+       ...,
+       &#91;5, 0, 0, 0, 5],
+       &#91;5, 0, 0, 0, 5],
+       &#91;5, 5, 5, 5, 5]], dtype=float32)
+
+&gt;&gt;&gt; mx.concatenate(&#91;mx.ones((3,3)), mx.zeros((3,3))], axis = 0)
+array(&#91;&#91;1, 1, 1],
+       &#91;1, 1, 1],
+       &#91;1, 1, 1],
+       &#91;0, 0, 0],
+       &#91;0, 0, 0],
+       &#91;0, 0, 0]], dtype=float32)
+
+&gt;&gt;&gt; mx.random.normal(&#91;3,3])
+array(&#91;&#91;-0.388126, -0.0448715, -2.04272],
+       &#91;0.0793233, -0.0461703, 0.795998],
+       &#91;-1.4412, -1.693, -0.373692]], dtype=float32)</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>mx.arange สร้าง Array ที่มีค่าเริ่มต้นและสิ้นสุด ร่วมกับระบุค่าเพิ่มขึ้นในแต่ละ Element ใน Array โดยผลลัพธ์แสดงเป็น int32</li>
+
+
+
+<li>mx.linspace สร้าง Array ที่มีค่าเริ่มต้นและสิ้นสุด โดยระบุจำนวนตัวเลขที่มีใน Array เพื่อให้ค่าที่เพิ่มขึ้นในแต่ละ Element ใน Array มีค่าเท่า ๆ กันหมด โดยผลลัพธ์แสดงเป็น Array แบบ float32</li>
+
+
+
+<li>mx.ones สร้าง Array ที่ทุกค่าเท่ากับ 1</li>
+
+
+
+<li>mx.ones_like สร้าง Array ที่ทุกค่าเท่ากับ 1 โดยมีขนาด Array เท่ากับ Array ที่ระบุ</li>
+
+
+
+<li>mx.zeros สร้าง Array ที่ทุกค่าเท่ากับ 0</li>
+
+
+
+<li>mx.flatten เปลี่ยนขนาด Array ให้เป็น 1 มิติ</li>
+
+
+
+<li>mx.identity สร้าง Array ที่เป็น Identity Matrix</li>
+
+
+
+<li>mx.pad ปรับแต่ง Array ให้เพิ่ม Padding รอบ ๆ Array โดยผู้ใช้สามารถระบุขนาด Padding ที่ต้องการได้ ในตัวอย่างระบุให้สร้าง Padding ที่มีขนาด 1 เท่ากันทุกด้าน</li>
+
+
+
+<li>mx.concatenate เชื่อม Array เข้าด้วยกันโดยผู้ใช้สามารถระบุ Axis ที่ต้องการเชื่อมได้</li>
+
+
+
+<li>mx.random.normal สร้างตัวแปรโดยสุ่มค่าแบบ Random Distribution</li>
+</ul>
+
+<p>จากคำสั่งตัวอย่างทางด้านบนจะเขียนคล้ายกันกับใน NumPy มาก สำหรับผู้ที่เขียนด้วย NumPy อยู่แล้้ว ผู้อ่านสามารถใช้งานฟังก์ชันเหล่านี้ได้เลย</p>
+
+<p>กรณีที่ต้องการอ่านเพิ่มเติม ผู้อ่านสามารถอ่านได้ใน<a href="https://ml-explore.github.io/mlx/build/html/index.html" target="_blank" rel="noopener" title="คู่มือของ MLX">คู่มือของ MLX</a></p>
+
+<h4 class="wp-block-heading">การคำนวณทางคณิตศาสตร์</h4>
+
+<p>ผู้ใช้สามารถคำนวณทางคณิตศาสตร์สำหรับ Array ของ MLX ด้วยคำสั่งที่ส่วนใหญ่เหมือนกันกับ NumPy ได้โดยตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>&gt;&gt;&gt; A = mx.array(&#91;1,2,3,4])
+&gt;&gt;&gt; B = mx.array(&#91;1,1,1,1])
+
+&gt;&gt;&gt; A + B
+array(&#91;2, 3, 4, 5], dtype=int32)
+&gt;&gt;&gt; A - B
+array(&#91;0, 1, 2, 3], dtype=int32)
+&gt;&gt;&gt; A * B
+array(&#91;1, 2, 3, 4], dtype=int32)
+&gt;&gt;&gt; A / B
+array(&#91;1, 2, 3, 4], dtype=float32)
+&gt;&gt;&gt; A + 1
+array(&#91;2, 3, 4, 5], dtype=int32)
+&gt;&gt;&gt; A - 1
+array(&#91;0, 1, 2, 3], dtype=int32)
+&gt;&gt;&gt; A * 2
+array(&#91;2, 4, 6, 8], dtype=int32)
+&gt;&gt;&gt; A / 2
+array(&#91;0.5, 1, 1.5, 2], dtype=float32)
+&gt;&gt;&gt; A ** 2
+array(&#91;1, 4, 9, 16], dtype=int32)
+&gt;&gt;&gt; mx.matmul(mx.arange(0,9,1).reshape((3,3)), mx.ones((3,3)))
+array(&#91;&#91;3, 3, 3],
+       &#91;12, 12, 12],
+       &#91;21, 21, 21]], dtype=float32)
+
+&gt;&gt;&gt; mx.square(A)
+array(&#91;1, 4, 9, 16], dtype=int32)
+&gt;&gt;&gt; mx.sqrt(A)
+array(&#91;1, 1.41421, 1.73205, 2], dtype=float32)
+&gt;&gt;&gt; mx.clip(A, 0, 1)
+array(&#91;1, 1, 1, 1], dtype=int32)
+&gt;&gt;&gt; mx.sum(A)
+array(10, dtype=int32)
+&gt;&gt;&gt; mx.mean(A)
+array(2.5, dtype=float32)
+
+&gt;&gt;&gt; mx.sin(A * mx.pi / 180)
+array(&#91;0.0174524, 0.0348995, 0.052336, 0.0697565], dtype=float32)
+&gt;&gt;&gt; mx.cos(A * mx.pi / 180)
+array(&#91;0.999848, 0.999391, 0.99863, 0.997564], dtype=float32)
+&gt;&gt;&gt; mx.tan(A * mx.pi / 180)
+array(&#91;0.0174551, 0.0349208, 0.0524078, 0.0699268], dtype=float32)
+
+&gt;&gt;&gt; mx.arcsin(A)
+array(&#91;1.5708, nan, nan, nan], dtype=float32)
+&gt;&gt;&gt; mx.arccos(A)
+array(&#91;0, nan, nan, nan], dtype=float32)
+&gt;&gt;&gt; mx.arctan(A)
+array(&#91;0.785398, 1.10715, 1.24905, 1.32582], dtype=float32)
+
+&gt;&gt;&gt; mx.min(A)
+array(1, dtype=int32)
+&gt;&gt;&gt; mx.max(A)
+array(4, dtype=int32)
+&gt;&gt;&gt; mx.exp(A)
+array(&#91;2.71828, 7.38906, 20.0855, 54.5981], dtype=float32)
+&gt;&gt;&gt; mx.sigmoid(A)
+array(&#91;0.731059, 0.880797, 0.952574, 0.982014], dtype=float32)</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>+, -, *, /, ** เป็นการบวก ลบ คูณ หาร ยกกำลัง (รวมถึง mx.square) แบบการประมวลผลที่ละ Element ใน Array (Element-wise)</li>
+
+
+
+<li>mx.matmul เป็นการทำ Matrix Multiplication</li>
+
+
+
+<li>mx.sqrt เป็นการหา Square Root ของแต่ละ Element ใน Array (Element-wise)</li>
+
+
+
+<li>mx.clip จำกัดค่าใน Array โดยผู้ใช้สามารถกำหนดค่าต่ำสุด และสูงสุด</li>
+
+
+
+<li>mx.sum หาผลรวมของทุก Element ใน Array</li>
+
+
+
+<li>mx.mean หาค่าเฉลี่ยโดยคำนวณจากทุก Element ใน Array</li>
+
+
+
+<li>mx.sin, mx.cos, mx.tan หาค่า sin, cos, tan ของแต่ละ Element ใน Array โดยใช้หน่วยเรเดียน (Radian)</li>
+
+
+
+<li>mx.arcsin, mx.arccos, mx.arctan หาค่าองศาของแต่ละ Element ใน Array</li>
+
+
+
+<li>mx.min, mx.max หาค่าต่ำสุดและสูงสุดจาก Array</li>
+
+
+
+<li>mx.exp หาค่า Exponential ของตัวแปร e</li>
+
+
+
+<li>mx.sigmoid ใช้คำสั่ง Sigmoid กับแต่ละ Element ใน Array โดยฟังก์ชันนี้สามารถเขียนได้ตามด้านล่างนี้ โดยผลลัพธ์มีค่าระหว่าง 0 และ 1</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="182" height="99" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sigmoid_function.png" alt="" class="wp-image-3884" /></figure></div>
+
+<p>การคำนวณในแต่ละฟังก์ขัน กรณีที่เขียนฟังก์ชันแบบตามด้านล่างนี้ ตัว MLX ยังไม่ประมวลผลทันที ตัวไลบรารีจะประมวลผลก็ต่อเมื่อใช้งานร่วมกันฟังก์ชัน mx.eval หรือใช้งานร่วมกับฟังก์ชันอื่นที่ไม่ใช่ไลบรารีของ MLX เช่น print, np.array หรืออื่น ๆ</p>
+
+<p>ผู้ใช้สามารถอ่านเพิ่มเติมได้ในเรื่อง <a href="https://ml-explore.github.io/mlx/build/html/usage/lazy_evaluation.html#lazy-eval" target="_blank" rel="noopener" title="Lazy Evaluation">Lazy Evaluation</a></p>
+
+<pre class="wp-block-code"><code>&gt;&gt; c = a + b    # c not yet evaluated
+&gt;&gt; mx.eval(c)  # evaluates c
+&gt;&gt; c = a + b
+&gt;&gt; print(c)     # Also evaluates c
+array(&#91;2, 4, 6, 8], dtype=float32)
+&gt;&gt; c = a + b
+&gt;&gt; import numpy as np
+&gt;&gt; np.array(c)   # Also evaluates c
+array(&#91;2., 4., 6., 8.], dtype=float32)</code></pre>
+
+<p>จากคำสั่งตัวอย่างทางด้านบนจะเขียนคล้ายกันกับใน NumPy มากอีกเช่นกัน กรณีที่ต้องการอ่านเพิ่มเติม ผู้อ่านสามารถอ่านได้ใน<a href="https://ml-explore.github.io/mlx/build/html/index.html" target="_blank" rel="noopener" title="คู่มือของ MLX">คู่มือของ MLX</a></p>
+
+<h4 class="wp-block-heading">การคำนวณ Gradient</h4>
+
+<p>ไลบรารี MLX มีฟังก์ชันสำหรับการคำนวณ Gradient โดยการทำ Differentiate ได้อัตโนมัติโดยไม่จำเป็นต้องคำนวณเองเลยด้วยการใช้ฟังก์ชันแบบ mx.grad, mx.value_and_grad เป็นต้น ที่เหลือสามารถอ่านได้ใน<a href="https://ml-explore.github.io/mlx/build/html/python/transforms.html" target="_blank" rel="noopener" title="คู่มือ MLX ให้หน้า Transforms">คู่มือ MLX ให้หน้า Transforms</a></p>
+
+<p>การใช้งาน ผู้ใช้สามารถเขียนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>&gt;&gt; x = mx.array(0.0)
+&gt;&gt; mx.sin(x)
+array(0, dtype=float32)
+&gt;&gt; mx.grad(mx.sin)(x)
+array(1, dtype=float32)
+
+&gt;&gt;&gt; mx.value_and_grad(mx.sin)(mx.array(0.0))
+(array(0, dtype=float32), array(1, dtype=float32))</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>mx.grad ประมวลผลค่าในฟังก์ชันแล้วคืนค่าผลการทำ Differentiate</li>
+
+
+
+<li>mx.value_and_grad ประมวลผลค่าในฟังก์ชันแล้วคืนค่าผลลัพธ์ของฟังก์ชัน และคืนค่าผลการทำ Differentiate</li>
+</ul>
+
+<p>ในตัวอย่างเป็นการคำนวณ sin โดย Differentaite ของ sin คือ cos ผู้อ่านสามารถอ่าน<a href="https://www.eeweb.com/tools/calculus-derivatives-and-limits-reference-sheet/" target="_blank" rel="noopener" title="การคำนวณ Calculus ได้ตามลิ้งค์นี้">การคำนวณ Calculus ได้ตามลิ้งค์นี้</a></p>
+
+<p>ต่อมาเมื่อทราบคำสั่งพื้นฐานที่มีมาให้ในไลบรารี MLX แล้ว เรามาลองเขียนโค้ดสำหรับการทำ Linear Regression โดยรายละเอียดและสมการของ Linear Regression ผู้ใช้สามารถอ่านเพิ่มเติมได้ที่<a href="https://nickuntitled.com/2024/01/14/11-linear-regression-hands-on/" title="#11 – Linear Regression แบบเขียนมือ">บทความที่แล้ว</a></p>
+
+<h2 class="wp-block-heading">เขียนโค้ด Linear Regression</h2>
+
+<h4 class="wp-block-heading">นำเข้าไลบรารี</h4>
+
+<p>ก่อนอื่นเลย เราจำเป็นต้องนำเข้าไลบรารีเสียก่อนด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from sklearn.model_selection import train_test_split
+import mlx.core as mx
+import numpy as np</code></pre>
+
+<h4 class="wp-block-heading">นำเข้าข้อมูล Dataset และแบ่งข้อมูลเป็น Train และ Test Subset</h4>
+
+<p>ต่อมา เรานำเข้าข้อมูลจาก Dataset ซึ่งผู้อ่านสามารถเขียนโค้ดแบบอื่นได้ แต่ในตัวอย่างจะเป็นการโหลดไฟล์จาก CSV มาใช้ ร่วมกับแบ่งข้อมูล Dataset ให้เป็น Train:Test ในอัตราส่วน 80:20</p>
+
+<pre class="wp-block-code"><code>X, Y = &#91;], &#91;]
+with open("CSV path", "r") as f:
+    line_idx = 0
+    for line in f:
+        if line_idx == 0:
+            line_idx += 1
+            continue
+            
+        line_idx += 1
+        line_split = line.strip().split(',')
+        X.append(&#91;float(x) for x in line_split&#91;:-1]])
+        Y.append(float(line_split&#91;-1]))
+
+X, Y = np.array(X), np.array(Y)
+
+X_train, X_test, Y_train, Y_test = train_test_split(
+    X, Y, test_size=0.2, random_state=1234
+)</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>test_size = 0.2 คือการกำหนดว่าขนาดข้อมูล Test  subset มีค่าเท่ากับ 20% ของข้อมูลทั้งหมด</li>
+
+
+
+<li>random_state = 1234 เป็นการกำหนด Random Seed โดยค่า Random Seed เป็นการกำหนดค่าเริ่มต้นของการสุ่ม เพื่อให้โปรแกรมสุ่มตัวเลขแบบเดิมเสมอ</li>
+
+
+
+<li>X_train, Y_train คือตัวแปร X และ Y ของ Train subset ที่แบ่งออกมาจาก Dataset ในสัดส่วน 80% แรก</li>
+
+
+
+<li>X_test, Y_test คือตัวแปร X และ Y ของ Test subset ที่แบ่งออกมา 20% ของ Dataset ทั้งหมด</li>
+</ul>
+
+<p>ต่อมา เราแปลงข้อมูล Train และ Test subset ให้อยู่ในตัวแปร Array ของ Apple MLX ด้วยการใช้ฟังก์ชัน mx.array (ซึ่งจะเหมือนกับ NumPy ที่แปลงข้อมูลจาก List ให้เป็น Array ของ NumPy ด้วย np.array)</p>
+
+<pre class="wp-block-code"><code>X_train, X_test, Y_train, Y_test = &#91;mx.array(x) for x in &#91;X_train, X_test, Y_train, Y_test]</code></pre>
+
+<h4 class="wp-block-heading">สร้างคลาส Linear Regression</h4>
+
+<p>จากนั้นเรามาสร้างคลาสสำหรับ Linear Regression ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>class LinearRegression:
+    def __init__(self, n_features = 8, learning_rate = 0.01, n_epochs = 100):
+        self.n_features = n_features
+        self.n_epochs = n_epochs
+        self.lr = learning_rate
+        self.Wb = None
+
+    def forward_propagation(self, X, W, b):
+        pass
+
+    def cost_function(self, y_hat, y):
+        pass
+
+    def predict(self, X):
+        pass
+    
+    def fit(self, X_t, Y_t):
+        pass</code></pre>
+
+<p>โดยส่วนนี้จะเหมือนกับบทความก่อนตรงส่วน</p>
+
+<ul class="wp-block-list">
+<li>n_features คือจำนวน Features ที่ต้องการคำนวณ</li>
+
+
+
+<li>n_epochs คือจำนวน Epoch ที่ต้องการ</li>
+
+
+
+<li>lr คือ Learning Rate</li>
+</ul>
+
+<p>แต่มีส่วนนึงแตกต่างกับบทความก่อนก็คือ weights และ bias จะรวมไว้ในตัวแปรเดียวคือ Wb ที่ประกอบไปด้วย Weights ทีเขียนได้ด้วย Wb[:n_features, 1] และ bias ที่เขียนได้ด้วย Wb[n_features, 1] </p>
+
+<p>เหตุผลที่เขียนเป็นตัวแปร Wb ไปเลยเพื่อใช้งานสำหรับฟังก์ชัน mx.value_and_grad สำหรับการประมวลผลในโมเดล Linear Regression เพื่อให้ไลบรารีคำนวณ Gradient สำหรับการอัพเดทพารามิเตอร์ทั้ง Weight และ bias ในครั้งเดียว</p>
+
+<h4 class="wp-block-heading">Forward Propagation</h4>
+
+<p>เราเขียนฟังก์ชันสำหรับการคำนวณ Linear Regression ได้โดยการเขียนตามข้างล่างนี้</p>
+
+<pre class="wp-block-code"><code># Forward Propagation
+def forward_propagation(self, X, W, b):
+    return mx.matmul(X, W) + b</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>W คือ Weights</li>
+
+
+
+<li>b คือ bias</li>
+
+
+
+<li>mx.matmul คือฟังก์ชันการคำนวณ Matrix Multiplication</li>
+</ul>
+
+<h4 class="wp-block-heading">Cost Function</h4>
+
+<p>ต่อมา เรามาเขียนโค้ดส่วนฟังก์ชัน cost_function เพื่อคำนวณ Cost Function ของโมเดล Linear Regression ที่เราใช้ Mean Square Error (MSE)</p>
+
+<pre class="wp-block-code"><code>def cost_function(self, y_hat, y):
+    return (mx.square(y_hat - y)).mean()</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>y_hat คือค่าที่โมเดลทำนายได้</li>
+
+
+
+<li>y คือ Ground Truth</li>
+</ul>
+
+<h4 class="wp-block-heading">Training</h4>
+
+<p>เราสามารถเขียนโค้ดในฟังก์ชัน fit ที่ใช้สำหรับเทรนตัวโมเดลได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>def fit(self, X_t, Y_t):
+    cache = &#91;]
+    N_train, n_features = X_t.shape
+
+    # Put inside function to allow Apple MLX set up for gradient calculation
+    def update(Wb):
+        y_hat = self.forward_propagation(X_t, Wb&#91;:n_features, :], Wb&#91;n_features, :])
+        cost = self.cost_function(y_hat, Y_t)
+        return cost
+
+    # Initialize Parameters W and b
+    # in Apple MLX, the gradient calculation should be from one variable. Then, we have to concatenate between W and b together.
+    W = mx.random.normal(&#91;n_features, 1])
+    b = mx.zeros(&#91;1, 1])
+    self.Wb = mx.concatenate(&#91;W, b], axis = 0)
+
+    # Set the update function to forward propagation and cost function calculation to automatically calculate gradient.
+    grads_fn = mx.value_and_grad(update)
+
+    for i in range(self.n_epochs):
+        # Forward Propagation with Calculation of Cost Function and Gradient
+        L, grads = grads_fn(self.Wb)
+
+        # Update Parameters
+        self.Wb = self.Wb - self.lr * grads
+            
+        # Save as cache
+        L = np.array(L).tolist()
+        cache.append(L)
+        
+        print(f"&#91;*] Epoch {i+1}/{self.n_epochs} : Loss\t{L:.4f}")
+
+    return cache</code></pre>
+
+<p>โดย ส่วนแรกเป็นการกำหนดค่าพารามิเตอร์ weight และ bias (ที่รวมในตัวแปร Wb) ของตัวโมเดล</p>
+
+<pre class="wp-block-code"><code>W = mx.random.normal(&#91;n_features, 1])
+b = mx.zeros(&#91;1, 1])
+self.Wb = mx.concatenate(&#91;W, b], axis = 0)</code></pre>
+
+<p>ส่วนต่อมาที่ใช้ฟังก์ชัน mx.value_and_grad</p>
+
+<p>ฟังก์ชันนี้เป็นการกำหนดให้ไลบรารี MLX ประมวลผลในฟังก์ชัน update ที่เป็นการประมวลผลในฟังก์ชัน forward_propagation และ cost_function เพื่อหาค่า Cost Function ร่วมกับคำนวณค่า Gradient สำหรับการอัพเดทพารามิเตอร์ self.Wb (weights กับ bias)</p>
+
+<pre class="wp-block-code"><code>grads_fn = mx.value_and_grad(update)</code></pre>
+
+<p>ต่อมา เรานำฟังก์ชันที่ผ่านฟังก์ชัน mx.value_and_grad มาประมวลผลวนลูปเพื่อให้ได้ค่า Cost Function และค่า Gradient สำหรับการอัพเดทพารามิเตอร์</p>
+
+<pre class="wp-block-code"><code>L, grads = grads_fn(self.Wb)</code></pre>
+
+<p>จากนั้นอัพเดทพารามิเตอร์ Weights และ bias</p>
+
+<pre class="wp-block-code"><code>self.Wb = self.Wb - self.lr * grads</code></pre>
+
+<p>เมื่ออัพเดทพารามิเตอร์แล้ว เราก็จะให้วนลูปจนกว่าจะครบรอบตามที่กำหนดจากตัวแปร n_epochs</p>
+
+<p>จุดนี้จะสะดวกกว่า NumPy ที่เขียนในบทความก่อนที่เราไม่จำเป็นต้องเขียนโค้ดสำหรับการคำนวณ Gradient เอง ตัวไลบรารีนี้จะคำนวณให้อัตโนมัติ</p>
+
+<h3 class="wp-block-heading">Predict</h3>
+
+<p>เมื่อเราเทรนโมเดลเสร็จเรียบร้อย เราก็ต้องนำโมเดลมาใช้ทำนายค่าด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Prediction
+def predict(self, X):
+    _, n_features = X.shape
+    return self.forward_propagation(X, self.Wb&#91;:n_features, :], self.Wb&#91;n_features, :])</code></pre>
+
+<p>เมื่อเขียนโค้ดเสร็จแล้ว โค้ดจะมีหน้าตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>class LinearRegression:
+    def __init__(self, n_features = 8, learning_rate = 0.01, n_epochs = 100):
+        self.n_features = n_features
+        self.n_epochs = n_epochs
+        self.lr = learning_rate
+        self.W = None
+        self.b = None
+        self.Wb = None
+
+    # Forward Propagation
+    def forward_propagation(self, X, W, b):
+        return mx.matmul(X, W) + b
+
+    # Cost Function
+    def cost_function(self, y_hat, y):
+        cost = (mx.square(y_hat - y)).mean()
+        return cost
+
+    # Prediction
+    def predict(self, X):
+        _, n_features = X.shape
+        return self.forward_propagation(X, self.Wb&#91;:n_features, :], self.Wb&#91;n_features, :])
+    
+    def fit(self, X_t, Y_t):
+        cache = &#91;]
+        N_train, n_features = X_t.shape
+
+        # Put inside function to allow Apple MLX set up for gradient calculation
+        def update(Wb):
+            y_hat = self.forward_propagation(X_t, Wb&#91;:n_features, :], Wb&#91;n_features, :])
+            cost = self.cost_function(y_hat, Y_t)
+            return cost
+
+        # Initialize Parameters W and b
+        # in Apple MLX, the gradient calculation should be from one variable. Then, we have to concatenate between W and b together.
+        W = mx.random.normal(&#91;n_features, 1])
+        b = mx.zeros(&#91;1, 1])
+        self.Wb = mx.concatenate(&#91;W, b], axis = 0)
+
+        # Set the update function to forward propagation and cost function calculation to automatically calculate gradient.
+        grads_fn = mx.value_and_grad(update)
+
+        for i in range(self.n_epochs):
+            # Forward Propagation with Calculation of Cost Function and Gradient
+            L, grads = grads_fn(self.Wb)
+
+            # Update Parameters
+            self.Wb = self.Wb - self.lr * grads
+                
+            # Save as cache
+            L = np.array(L).tolist()
+            cache.append(L)
+            
+            print(f"&#91;*] Epoch {i+1}/{self.n_epochs} : Loss\t{L:.4f}")
+
+        return cache</code></pre>
+
+<h2 class="wp-block-heading">ผลลัพธ์</h2>
+
+<p>เมื่อเขียนโค้ดเสร็จแล้ว เราสามารถฝึกโมเดล และทดสอบโมเดลด้วยการเขียนโค้ดตามด้านล่างนี้ โดยเรากำหนดให้เทรนทั้งหมด 500 รอบ ด้วย Learning Rate เท่ากับ 0.005</p>
+
+<pre class="wp-block-code"><code>learing_rate = 0.005
+num_epoch = 500
+model = LinearRegression(X_train.shape&#91;-1], learning_rate, num_epoch)
+cost = model.fit(X_train, Y_train)</code></pre>
+
+<p>และเขียนโค้ดสำหรับการทดสอบตามด้านล่างนี้ โดยในตัวอย่างจะใช้การประเมินผลการทำนายจากโมเดล Linear Regression ด้วย Root Mean Square Error (RMSE)</p>
+
+<pre class="wp-block-code"><code># RMSE
+def root_mean_square_error(y_hat, y):
+    error = (mx.square(y_hat - y)).mean()
+    error = mx.sqrt(error)
+    return np.array(error).tolist()
+    
+out = linear.predict(X_test)
+rmse = root_mean_square_error(out, Y_test)
+print("Root Mean Square Error", rmse)</code></pre>
+
+<p>ผลที่ได้จากการ Train และ Test แสดงตามด้านล่างนี้ โดยเราใช้ Dataset การทำนายน้ำหนักของสมอง ตามในเว็บ <a href="https://towardsdatascience.com/linear-regression-from-scratch-cd0dee067f72" target="_blank" rel="noopener" title="TowardsDataScience">TowardsDataScience</a></p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="386" height="278" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph.png" alt="" class="wp-image-3905" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph-300x216.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/mlx_training_graph.png 386w" sizes="auto, (max-width: 386px) 100vw, 386px" /></figure></div>
+
+<p>ส่วนต่อมาเป็นผลการทดสอบ พบว่าโมเดลสามารถทำนายด้วยค่า RMSE เท่ากับ 0.1075 ซึ่งจากกราฟการ Train และผลของการ Test เราสามารถปรับแต่งโมเดล ปรับพารามิเตอร์ ปรับแต่งการโหลด Dataset กันได้ทีหลัง</p>
+
+<p>จากการเขียนโค้ดพบว่าคนที่เคยเขียน NumPy ก็สามารถใช้ไลบรารี Apple MLX เพื่อเขียนโค้ดได้เช่นกัน</p>
+
+<p>อย่างไรก็ดีไลบรารีนี้เพิ่งปล่อยออกมาไม่นานนัก (ไม่นานเท่า PyTorch หรือ Tensorflow) ส่วนตัวคิดว่ารอให้ไลบรารีพัฒนามากกว่านี้อีกหน่อยน่าจะดีกว่า เนื่องมาจากยังขาดฟังก์ชันหลายฟังก์ชันที่จำเป็นเช่น Max Pooling, Average Pooling, Adaptive Average Pooling เป็นต้น</p>
+
+<p>นอกจาก Linear Regression ที่เขียนตามข้างบนนี้แล้ว เรายังนำไลบรารี MLX มาเขียนเพื่อใช้งานกับ Deep Learning เพื่อทำ Head Pose Estimation โดยใช้เทคนิค <a href="https://github.com/natanielruiz/deep-head-pose" target="_blank" rel="noopener" title="HopeNet ที่พัฒนาโดย Nataniel Ruiz">HopeNet ที่พัฒนาโดย Nataniel Ruiz</a> ร่วมกับทำ Transfer Learning จากโมเดล ResNet-50 ของ PyTorch มาใช้ ส่วนนี้จะไม่ได้อธิบายในบทความนี้ ผู้อ่านสามารถ<a href="https://github.com/nickuntitled/hopenet_mlx" target="_blank" rel="noopener" title="เข้าไปดูเพิ่มเติมได้ใน GitHub นี้ครับ">เข้าไปดูเพิ่มเติมได้ใน GitHub นี้ครับ</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

@@ -1,459 +1,165 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต - Nick Untitled</title>
-		<meta name="description" content="<!-- wp:paragraph -->
-<p>อั<strong>พเดท: </strong>ตัวไลบรารีได้รับการพัฒนาต่อแล้วครับ อ่านได้ในรายละเอียดหัวข้ออัพเดทด้านล่างของบทความครับ</p>
-<!-- /wp:paragraph -->
-">
-		<meta name="keywords" content="AI,artificial intelligence,coding,computing,deep learning,javascript,machine learning,ONNX,ONNX.js,programming,Tensorflow.js,จาวาสคริป,ปัญญาประดิษฐ์,เขียนโค้ด,เขียนโปรแกรม,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-03-06T23:18:12+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/03/06/how-to-install-coding-onnx-js-observations/"/>
-		<meta property="og:title" content="การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต - Nick Untitled" />
-		<meta property="og:description" content="<!-- wp:paragraph -->
-<p>อั<strong>พเดท: </strong>ตัวไลบรารีได้รับการพัฒนาต่อแล้วครับ อ่านได้ในรายละเอียดหัวข้ออัพเดทด้านล่างของบทความครับ</p>
-<!-- /wp:paragraph -->
- " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/03/1564d343-1f0d-4c31-b7bb-6383071b3eec-1.png"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต - Nick Untitled" />
-		<meta property="twitter:description" content="<!-- wp:paragraph -->
-<p>อั<strong>พเดท: </strong>ตัวไลบรารีได้รับการพัฒนาต่อแล้วครับ อ่านได้ในรายละเอียดหัวข้ออัพเดทด้านล่างของบทความครับ</p>
-<!-- /wp:paragraph -->
- " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/03/1564d343-1f0d-4c31-b7bb-6383071b3eec-1.png" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/03/06/how-to-install-coding-onnx-js-observations/" />
+<meta property="og:url" content="http://localhost:4000/2021/03/06/how-to-install-coding-onnx-js-observations/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/1564d343-1f0d-4c31-b7bb-6383071b3eec-1.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-06T23:18:12+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/1564d343-1f0d-4c31-b7bb-6383071b3eec-1.png" />
+<meta property="twitter:title" content="การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:47:51+07:00","datePublished":"2021-03-06T23:18:12+07:00","description":"None","headline":"การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/1564d343-1f0d-4c31-b7bb-6383071b3eec-1.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/03/06/how-to-install-coding-onnx-js-observations/"},"url":"http://localhost:4000/2021/03/06/how-to-install-coding-onnx-js-observations/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-03-06 23:18:12 +0700">2021-03-06</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/1564d343-1f0d-4c31-b7bb-6383071b3eec-1.png' />
+  </figure>
+  
 
-	
+  <p><strong>อัพเดท: </strong>ตัวไลบรารีได้รับการพัฒนาต่อแล้วครับ อ่านได้ในรายละเอียดหัวข้ออัพเดทด้านล่างของบทความครับ</p>
 
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/03/1564d343-1f0d-4c31-b7bb-6383071b3eec-1.png' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>06 March 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/how-to-install-coding-onnx-js-observations" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/how-to-install-coding-onnx-js-observations&amp;text=การติดตั้ง เขียนโค้ดเพื่อใช้งาน ONNX.js และข้อสังเกต - https://nickuntitled.com/how-to-install-coding-onnx-js-observations" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p>อั<strong>พเดท: </strong>ตัวไลบรารีได้รับการพัฒนาต่อแล้วครับ อ่านได้ในรายละเอียดหัวข้ออัพเดทด้านล่างของบทความครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>การนำโมเดลที่ได้รับการเรียนรู้แล้วมาทำงานบนเว็บเบราว์เซอร์ไม่ได้เป็นเรื่องใหม่นัก เพราะบริษัทกูเกิ้ลพัฒนาไลบรารีชื่อ Tensorflow.js โดยเรานำโมเดลที่ได้รับการเรียนรู้แล้วมาทำนาย หรือเรียนรู้ข้อมูลใหม่บนเว็บไซต์ได้เลยโดยไม่จำเป็นต้องส่งข้อมูลไปทำนายบนเซิร์ฟเวอร์</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:more -->
 <!--more-->
-<!-- /wp:more -->
 
-<!-- wp:paragraph -->
-<p>ส่วนไลบรารี <a href="https://github.com/microsoft/onnxjs" target="_blank" rel="noreferrer noopener">ONNX.js</a> เป็นส่วนหนึ่งของไลบรารี <a href="https://onnx.ai/" target="_blank" rel="noreferrer noopener">ONNX (Open Neural Network Exchange)</a> ที่ได้รับการพัฒนาโดยบริษัทไมโครซอฟท์ เพื่อให้นำโมเดลที่ได้รับการเรียนรู้จากไลบรารี Deep learning ต่าง ๆ ได้แก่ PyTorch, Mxnet, Scikit learn เป็นต้น มาแปลงเพื่อนำไปใช้กันกับไลบรารีอื่นได้เลย หรือนำโมเดลที่เรียนรู้มาทำนายข้อมูล (Inference) ได้ โดยไลบรารี ONNX.js นี้ เปิดให้นักพัฒนาที่เทรนข้อมูลมาแล้ว เอามาทำนายข้อมูลที่มีอยู่บนเว็บเบราวเซอร์ (หรือบนคอมพิวเตอร์ผ่าน Node.js) ได้โดยไม่จำเป็นต้องมาเรียนรู้ใหม่อีก</p>
-<!-- /wp:paragraph -->
+<p>ส่วนไลบรารี <a href="https://github.com/microsoft/onnxjs" rel="noreferrer noopener">ONNX.js</a> เป็นส่วนหนึ่งของไลบรารี <a href="https://onnx.ai/" rel="noreferrer noopener">ONNX (Open Neural Network Exchange)</a> ที่ได้รับการพัฒนาโดยบริษัทไมโครซอฟท์ เพื่อให้นำโมเดลที่ได้รับการเรียนรู้จากไลบรารี Deep learning ต่าง ๆ ได้แก่ PyTorch, Mxnet, Scikit learn เป็นต้น มาแปลงเพื่อนำไปใช้กันกับไลบรารีอื่นได้เลย หรือนำโมเดลที่เรียนรู้มาทำนายข้อมูล (Inference) ได้ โดยไลบรารี ONNX.js นี้ เปิดให้นักพัฒนาที่เทรนข้อมูลมาแล้ว เอามาทำนายข้อมูลที่มีอยู่บนเว็บเบราวเซอร์ (หรือบนคอมพิวเตอร์ผ่าน Node.js) ได้โดยไม่จำเป็นต้องมาเรียนรู้ใหม่อีก</p>
 
-<!-- wp:image {"align":"wide","id":1783,"sizeSlug":"large","linkDestination":"media"} -->
-<figure class="wp-block-image alignwide size-large"><a href="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.52.39.png"><img src="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.52.39.png?w=1024" alt="" class="wp-image-1783" /></a><figcaption>ไลบรารี ONNX</figcaption></figure>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/screen-shot-2564-03-06-at-22.52.39.png?w=580&#038;ssl=1" alt="" /><figcaption>ไลบรารี ONNX</figcaption></figure>
 
-<!-- wp:paragraph -->
 <p>ข้อดีของการนำโมเดลที่ได้รับการเรียนรู้มาทำงานบนเว็บเบราวเซอร์โดยการใช้ไลบรารี ONNX.js หรือ Tensorflow.js เมื่อเปรียบเทียบกับการส่งข้อมูลไปทำงานบนเซิร์ฟเวอร์ มี 3 ข้อ ได้แก่</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list {"ordered":true} -->
-<ol><li>ความเป็นส่วนตัว (Privacy) ที่เหนือกว่าการส่งข้อมูลไปยังเซิร์ฟเวอร์ เพราะเราไม่ต้องส่งข้อมูลส่วนตัว ข้อมูลที่ sensitive ไปให้เซิร์ฟเวอร์อ่าน</li><li>ระยะเวลาที่ทำงานโมเดลน้อยกว่าเนื่องจากมีค่า Latency ที่ต่ำกว่า เพราะเราไม่ต้องส่งข้อมูลไป และนำข้อมูลที่มีอยู่ในคอมของลูกค้ามาทำนายในเว็บเบราวเซอร์ได้เลย</li><li>สามารทำงานข้ามแพลตฟอร์ม (Cross-platform) ได้เลยโดยไม่ต้องคอมไพล์ใหม่ หรือไม่ต้องมาลงไลบรารีใหม่แบบที่เคยพัฒนา และทำนายโดยใช้ภาษาไพทอน</li></ol>
-<!-- /wp:list -->
+<ol class="wp-block-list"><li>ความเป็นส่วนตัว (Privacy) ที่เหนือกว่าการส่งข้อมูลไปยังเซิร์ฟเวอร์ เพราะเราไม่ต้องส่งข้อมูลส่วนตัว ข้อมูลที่ sensitive ไปให้เซิร์ฟเวอร์อ่าน</li><li>ระยะเวลาที่ทำงานโมเดลน้อยกว่าเนื่องจากมีค่า Latency ที่ต่ำกว่า เพราะเราไม่ต้องส่งข้อมูลไป และนำข้อมูลที่มีอยู่ในคอมของลูกค้ามาทำนายในเว็บเบราวเซอร์ได้เลย</li><li>สามารทำงานข้ามแพลตฟอร์ม (Cross-platform) ได้เลยโดยไม่ต้องคอมไพล์ใหม่ หรือไม่ต้องมาลงไลบรารีใหม่แบบที่เคยพัฒนา และทำนายโดยใช้ภาษาไพทอน</li></ol>
 
-<!-- wp:paragraph -->
 <p>เมื่อเห็นข้อดีการใช้ไลบรารีขนาดนี้แล้ว จะรอช้าอยู่ไรล่ะ เรามาติดตั้ง พร้อมกับเขียนโปรแกรมเพื่อใช้งาน ONNX.js กันดีกว่า</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2>การติดตั้งและใช้ไลบรารี ONNX.js</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="-onnx-js">การติดตั้งและใช้ไลบรารี ONNX.js</h2>
 
-<!-- wp:paragraph -->
 <p><strong>การติดตั้งไลบรารี ONNX.js</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p>ของเราเดิมทีมีตัวจับภาพใบหน้า (Face detection) ที่นำอัลกอริทีม RetinaFace ที่ผ่านการเรียนรู้โดย PyTorch มาแปลงเก็บไว้ในรูปแบบไฟล์ที่ ONNX อ่านได้เพื่อนำมาใช้งานกับธีสิสที่ต้องการทำนายบนเว็บแทน เนื่องจากโค้ดได้รับการพัฒนาโดย JavaScript วิธีการทำนายข้อมูลนี้ทำได้โดย</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>การติดตั้งไลบรารี ONNX.js ทำได้โดยกรณีที่ต้องการทำงานบนเบราวเซอร์แบบที่ไม่ได้ใช้ไลบรารีอื่นอย่าง React, Angular, Vue.js ทำได้โดยดาวน์โหลดจาก<a href="https://cdn.jsdelivr.net/npm/onnxjs/dist/" target="_blank" rel="noreferrer noopener">ลิ้งค์นี้</a>ได้เลยครับ เมื่อดาวน์โหลดมาแล้ว นำไฟล์ของไลบรารีเข้าไปในตัวเว็บไซต์โดยผ่านการใช้ &lt;script&gt; ตามด้านล่างนี้</p>
-<!-- /wp:paragraph -->
+<p>การติดตั้งไลบรารี ONNX.js ทำได้โดยกรณีที่ต้องการทำงานบนเบราวเซอร์แบบที่ไม่ได้ใช้ไลบรารีอื่นอย่าง React, Angular, Vue.js ทำได้โดยดาวน์โหลดจาก<a href="https://cdn.jsdelivr.net/npm/onnxjs/dist/" rel="noreferrer noopener">ลิ้งค์นี้</a>ได้เลยครับ เมื่อดาวน์โหลดมาแล้ว นำไฟล์ของไลบรารีเข้าไปในตัวเว็บไซต์โดยผ่านการใช้ &lt;script&gt; ตามด้านล่างนี้</p>
 
-<!-- wp:syntaxhighlighter/code {"language":"xml"} -->
-<pre class="wp-block-syntaxhighlighter-code">&lt;script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"&gt;&lt;/script&gt;</pre>
-<!-- /wp:syntaxhighlighter/code -->
+<p><code>&lt;script src="<a href="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js&quot;&gt;&lt;/script&amp;gt">https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"&gt;&lt;/script&gt;</a>;</code></p>
 
-<!-- wp:paragraph -->
 <p>ส่วนคนที่ใช้ไลบรารีตามที่กล่าวไว้ข้างต้น หรือไลบรารีอื่นใด เราสามารถนำเข้า ONNX.js ผ่านการติดตั้งจาก NPM โดยใช้คำสั่ง npm install หรือ yarn add ได้ตามสะดวก จากนั้นใช้คำสั่ง import เข้ามาครับตามด้านล่างนี้</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-<pre class="wp-block-syntaxhighlighter-code">import { Tensor, InferenceSession } from "onnxjs";</pre>
-<!-- /wp:syntaxhighlighter/code -->
+<p><code>import { Tensor, InferenceSession } from "onnxjs";</code></p>
 
-<!-- wp:paragraph -->
 <p><strong>การเขียนโค้ดเพื่ออินพอร์ทโมเดล</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p>เมื่อเรานำเข้าไลบรารีมาแล้ว ขั้นตอนต่อไปคือเขียนโค้ดด้วยภาษา JavaScript เพื่ออิมพอร์ทตัวโมเดลเพื่อที่จะทำนายข้อมูลที่เรามีอยู่ ทำได้โดย</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-<pre class="wp-block-syntaxhighlighter-code">const onnxsession = new onnx.InferenceSession({ backendHint: 'webgl' });
-await onnxsession.loadModel("model path in http:// form");</pre>
-<!-- /wp:syntaxhighlighter/code -->
+<p><code>const onnxsession = new onnx.InferenceSession({ backendHint: 'webgl' }); </code></p>
 
-<!-- wp:paragraph -->
-<p>โดยในตัวโค้ดจะใช้คำสั่ง await (เรียกการใช้งานแบบนี้ว่า <a href="https://www.borntodev.com/2020/03/06/เข้าใจ-await-async-ใน-5-นาที/" target="_blank" rel="noreferrer noopener">async await</a>) แต่ถ้าจะใช้ <a href="https://www.borntodev.com/2020/03/06/เข้าใจ-promise-ใน-5-นาที/" target="_blank" rel="noreferrer noopener">Promise</a> ก็ใช้ได้เช่นกัน ส่วนสำหรับคนที่ไม่ทราบเรื่อง async await กับ Promise ผู้อ่านสามารถตามได้ที่ลิ้งค์ข้างบน</p>
-<!-- /wp:paragraph -->
+<p><code>await onnxsession.loadModel("model path in http:// form");</code></p>
 
-<!-- wp:paragraph -->
+<p>โดยในตัวโค้ดจะใช้คำสั่ง await (เรียกการใช้งานแบบนี้ว่า <a href="https://www.borntodev.com/2020/03/06/เข้าใจ-await-async-ใน-5-นาที/" rel="noreferrer noopener">async await</a>) แต่ถ้าจะใช้ <a href="https://www.borntodev.com/2020/03/06/เข้าใจ-promise-ใน-5-นาที/" rel="noreferrer noopener">Promise</a> ก็ใช้ได้เช่นกัน ส่วนสำหรับคนที่ไม่ทราบเรื่อง async await กับ Promise ผู้อ่านสามารถตามได้ที่ลิ้งค์ข้างบน</p>
+
 <p><strong>ทำข้อมูลมาทำนาย (Inference)</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p>อินพอร์ทตัวโมเดลแล้วก็ต้องนำข้อมูลที่มีอยู่มาทำนายใช่ไหมครับ ก่อนอื่นเราต้องนำข้อมูลที่มีอยู่แล้วมาแปลงในรูปแบบที่ตัวไลบรารีเข้าใจด้วยการแปลงเป็น Tensor ในตัวยอย่างจะเป็นการนำข้อมูลที่เป็นรูปภาพมาแปลงได้โดย</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-<pre class="wp-block-syntaxhighlighter-code">var inputTensor = new onnx.Tensor(preprocessedimg, 'float32', [batch_size, channels, imgwidth, imgheight]);</pre>
-<!-- /wp:syntaxhighlighter/code -->
+<p><code>var inputTensor = new onnx.Tensor(preprocessedimg, 'float32', [batch_size, channels, imgwidth, imgheight]);</code></p>
 
-<!-- wp:paragraph -->
 <p>ข้อมูลที่ได้จะอยู่ในรูป Tensor จากนั้นนำมาทำนายโดยพิมพ์ว่า</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:syntaxhighlighter/code {"language":"jscript"} -->
-<pre class="wp-block-syntaxhighlighter-code">var output = await onnx_session.run([inputTensor]);</pre>
-<!-- /wp:syntaxhighlighter/code -->
+<p><code>var output = await onnx_session.run([inputTensor]);</code></p>
 
-<!-- wp:paragraph -->
 <p>ข้อมูลนั้นจะถูกทำนายโดยโมเดลที่เราเรียนรู้ไว้</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p><strong>ผลลัพธ์</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"align":"center"} -->
-<p class="has-text-align-center"><img class="wp-image-1555 size-full" src="https://asset.nickuntitled.com/2021/02/2021-02-06.png" alt="" /> ผลการนำข้อมูลมาทำนาย</p>
-<!-- /wp:paragraph -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/02/2021-02-06.png?w=580&#038;ssl=1" alt="" /></figure>
 
-<!-- wp:heading -->
-<h2><strong>ประสิทธิภาพในการทำงาน</strong></h2>
-<!-- /wp:heading -->
+<p>ผลการนำข้อมูลมาทำนาย</p>
 
-<!-- wp:paragraph -->
+<h2 class="wp-block-heading" id="-"><strong>ประสิทธิภาพในการทำงาน</strong></h2>
+
 <p>ความเร็วในการทำงานขึ้นกับว่าเราใช้ Backend ของอะไรตั้งแต่การเขียนโค้ดเพื่ออินพอร์ทโมเดลในหัวข้อก่อนหน้า โดย Backend เราเลือกได้ 3 รูปแบบได้แก่ cpu ซึ่งทำงานได้ช้าที่สุด, wasm ทำงานโดยใช้ Webassembly ซึ่งตัวโค้ดผ่านการคอมไพล์จะทำงานได้เร็วกว่าตัวเลือก cpu ส่วน webgl ทำงานโดยใช้การ์ดจอซึ่งโดยปกติจะทำงานได้เร็วที่สุด ตามที่ไมโครซอฟท์ได้ทดสอบจะแสดงผลตามกราฟด้านล่างนี้ (เอามาจากในเว็บ GitHub ครับ)</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:image {"align":"wide"} -->
-<figure class="wp-block-image alignwide"><img src="https://github.com/microsoft/onnxjs/raw/master/docs/perf-resnet50.png" alt="alt text" /><figcaption>กราฟแสดงผลการทดสอบของ ONNX.js (เอามาจาก Github นะ)</figcaption></figure>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://i0.wp.com/github.com/microsoft/onnxjs/raw/master/docs/perf-resnet50.png?w=580&#038;ssl=1" alt="alt text" /><figcaption>กราฟแสดงผลการทดสอบของ ONNX.js (เอามาจาก Github นะ)</figcaption></figure>
 
-<!-- wp:heading -->
-<h2><strong>ข้อสังเกต</strong></h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="--1"><strong>ข้อสังเกต</strong></h2>
 
-<!-- wp:paragraph -->
 <p>หลังจากที่นำไลบรารีตัวนี้มาใช้งานแล้ว เราสังเกตได้ว่า</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p><strong>ตัวโค้ดมีบัคจากการรันโมเดล</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p>จากการนำตัวโมเดลเพื่อนำไปทดสอบบนเว็บเบราวเซอร์จะขึ้น error ประมาณว่าไม่รองรับ operation บางอย่างในโมเดล deep learning ที่เรานำเข้ามา ซึ่งของเราเป็นโมเดล RetinaFace ที่มี backbone ResNet-50 กับ MobileNetV2 ครับ เท่าที่อ่านใน Issue ของ Github ไลบรารีนี้จะพบว่ามีคนรายงานตัวไลบรารีไม่รองรับ operation Shape แล้วไม่มีทีมงานตอบกลับ แต่ของคนอื่นถ้านำโมเดลมาทดสอบอาจจะไม่พบข้อผิดพลาดข้อนี้ได้ครับ</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:image {"id":1777,"sizeSlug":"large","linkDestination":"media"} -->
-<figure class="wp-block-image size-large"><a href="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.46.04.png"><img src="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.46.04-edited.png" alt="" class="wp-image-1777" /></a><figcaption>ข้อผิดพลาดระหว่างการอิมพอร์ตโมเดลครับ</figcaption></figure>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/screen-shot-2564-03-06-at-22.46.04-edited.png?w=580&#038;ssl=1" alt="" /><figcaption>ข้อผิดพลาดระหว่างการอิมพอร์ตโมเดลครับ</figcaption></figure>
 
-<!-- wp:paragraph -->
 <p>เราเลยแก้ปัญหาเปลี่ยนไฟล์ JavaScript จากที่โหลดผ่าน CDN เป็นไฟล์ที่ผ่านการคอมไพล์ร่วมกันกับแก้ไข backend ให้รันบน Webasm (Webassembly) แทน ซึ่งก็ทำงานได้ แต่ทำงานช้ามาก (ก หลายตัว) กว่าจะเสร็จก็ไปเติมน้ำรอบนึงงานก็ยังไม่เสร็จอยู่ดี ส่วน WebGL ก็ยังเจอปัญหาเดิมอยู่ดี</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p><strong>ไลบรารีนี้มีแนวโน้มไม่ได้รับการพัฒนาต่อ</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p>ถ้าไปดูในตัวไลบรารีใน Github เราจะพบว่าตัวไลบรารีนี้ไม่ได้มีการพัฒนา แก้ไข ดีบัคอย่างต่อเนื่องเลย ไลบรารีนี้ปล่อยออกมาในเวอร์ชันล่าสุด (เวอร์ชัน 0.18) เมื่อเดือนสิงหาคมปีที่แล้ว ซึ่งคิดว่าทีมงานคงไม่ได้พัฒนาต่อ แต่ถ้าเปลี่ยนไปใช้ Tensorflow.js จะดีกว่า เพราะกูเกิ้ลพัฒนาอยู่ตลอด จนตอนนี้อยู่ที่เวอร์ชัน 3 ไปแล้ว และซัพพอร์ตการทำงาน WebGL ได้ดี เพียงแต่ฟังก์ชันอาจจะไม่ครบครันเท่ากับ Tensorflow ที่ทำงานบนไพทอน</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:image {"align":"wide","id":1780,"sizeSlug":"large","linkDestination":"media"} -->
-<figure class="wp-block-image alignwide size-large"><a href="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.49.12-2.png"><img src="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.49.12-2-edited.png" alt="" class="wp-image-1780" /></a><figcaption>ไลบรารีนี้ Commit ล่าสุดก็ 2 ปีไปแล้ว ดูแนวโน้มน่าจะไม่ได้พัฒนาต่อ</figcaption></figure>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/screen-shot-2564-03-06-at-22.49.12-2-edited.png?w=580&#038;ssl=1" alt="" /><figcaption>ไลบรารีนี้ Commit ล่าสุดก็ 2 ปีไปแล้ว ดูแนวโน้มน่าจะไม่ได้พัฒนาต่อ</figcaption></figure>
 
-<!-- wp:paragraph -->
 <p><strong>ทีมงานที่ดูแลไม่ได้ซัพพอร์ต</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p>จากที่สังเกตในเว็บ Github ของไลบรารีจะพบคนรายงานใน Issue เยอะ แต่ไม่มีทีมงาน และไม่มีคนอื่นมาตอบเลย เลยคิดว่าไลบรารีนี้ไม่น่าจะได้รับการซัพพอร์ตแล้ว ผิดกับ Tensorflow.js ครับ</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:image {"align":"wide","id":1781,"sizeSlug":"large","linkDestination":"media"} -->
-<figure class="wp-block-image alignwide size-large"><a href="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.50.37.png"><img src="https://asset.nickuntitled.com/2021/03/screen-shot-2564-03-06-at-22.50.37.png?w=1024" alt="" class="wp-image-1781" /></a><figcaption>ใน Issue เจอปัญหาแบบที่เราเจอเลยหลายคน แต่ไม่มีคนมาตอบ</figcaption></figure>
-<!-- /wp:image -->
+<figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/screen-shot-2564-03-06-at-22.50.37.png?w=580&#038;ssl=1" alt="" /><figcaption>ใน Issue เจอปัญหาแบบที่เราเจอเลยหลายคน แต่ไม่มีคนมาตอบ</figcaption></figure>
 
-<!-- wp:heading -->
-<h2>อัพเดท</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="--2">อัพเดท</h2>
 
-<!-- wp:paragraph -->
-<p>ตัวไลบรารี ONNX.js ได้รับการพัฒนาแล้ว ตามที่มีคนตอบไว้ใน<a href="https://github.com/microsoft/onnxruntime/issues/3290" target="_blank" rel="noreferrer noopener" title="https://github.com/microsoft/onnxruntime/issues/3290">หน้า Github Issue</a> โดยเปลี่ยนชื่อเป็น onnxruntime ที่ใช้ชื่อแบบเดียวกันกับที่ใช้ในรูปแบบภาษาไพทอน อย่างไรก็ดี ยังมีปัญหาตอนรันโมเดลที่ไลบรารีแจ้งว่า ไม่รองรับ Operation บางอย่างในโมเดลที่เรานำเข้ามาใช้</p>
-<!-- /wp:paragraph -->
+<p>ตัวไลบรารี ONNX.js ได้รับการพัฒนาแล้ว ตามที่มีคนตอบไว้ใน<a href="https://github.com/microsoft/onnxruntime/issues/3290" rel="noreferrer noopener">หน้า Github Issue</a> โดยเปลี่ยนชื่อเป็น onnxruntime ที่ใช้ชื่อแบบเดียวกันกับที่ใช้ในรูปแบบภาษาไพทอน อย่างไรก็ดี ยังมีปัญหาตอนรันโมเดลที่ไลบรารีแจ้งว่า ไม่รองรับ Operation บางอย่างในโมเดลที่เรานำเข้ามาใช้</p>
 
-<!-- wp:paragraph -->
-<p>ส่วนรายละเอียดเพิ่มเติม สามารถ<a href="https://onnxruntime.ai/docs/reference/api/js-api.html" target="_blank" rel="noreferrer noopener" title="https://onnxruntime.ai/docs/reference/api/js-api.html">อ่านได้ในหน้าเว็บนี้</a></p>
-<!-- /wp:paragraph -->
+<p>ส่วนรายละเอียดเพิ่มเติม สามารถ<a href="https://onnxruntime.ai/docs/reference/api/js-api.html" rel="noreferrer noopener">อ่านได้ในหน้าเว็บนี้</a></p>
 
-<!-- wp:heading -->
-<h2>โดยสรุป</h2>
-<!-- /wp:heading -->
+<h2 class="wp-block-heading" id="--3">โดยสรุป</h2>
 
-<!-- wp:paragraph -->
 <p>ไลบรารี ONNX.js เป็นไลบรารีที่ได้รับการพัฒนาขึ้นจากไมโครซอฟท์ที่ต้องการให้นำโมเดลที่ผ่านการเรียนรู้มาทำงานบนเว็บบราวเซอร์ เรียกใช้งานได้ง่าย แต่ติดปัญหาที่สำคัญ ได้แก่ ไลบรารีไม่ซัพพอร์ตบาง operation โครงการดูไม่ได้รับการพัฒนาต่อ และทีมงานไม่ได้ซัพพอร์ต</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p>เลยมีความเห็นกับไลบรารีตัวนี้ว่าไม่ควรใช้ฮะ แนะนำให้ไปใช้งาน Tensorflow.js ไปใช้งานจะทำให้ชีวิตผู้อ่านดีกว่ามาก เพราะเป็นไลบรารีที่พัฒนาโดยกูเกิ้ล ที่ได้รับการซัพพอร์ตอย่างต่อเนื่อง และมีการพัฒนาอยู่ตลอด นอกเหนือจากนี้ไลบรารีเป็นไลบรารีที่ได้รับการแนะนำให้ใช้งานในงาน Production ได้เลย</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p><strong>สรุปคือ</strong> ไปใช้งาน Tensorflow.js ดีกว่า</p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">AI</span>
-			
-				<span class="post-tag">artificial intelligence</span>
-			
-				<span class="post-tag">coding</span>
-			
-				<span class="post-tag">computing</span>
-			
-				<span class="post-tag">deep learning</span>
-			
-				<span class="post-tag">javascript</span>
-			
-				<span class="post-tag">machine learning</span>
-			
-				<span class="post-tag">ONNX</span>
-			
-				<span class="post-tag">ONNX.js</span>
-			
-				<span class="post-tag">programming</span>
-			
-				<span class="post-tag">Tensorflow.js</span>
-			
-				<span class="post-tag">จาวาสคริป</span>
-			
-				<span class="post-tag">ปัญญาประดิษฐ์</span>
-			
-				<span class="post-tag">เขียนโค้ด</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/03/06/after-watching-raya-and-the-last-dragon/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								พูดถึงหนัง Raya and The Last Dragon  หลังจากไปดูในโรงแล้ว
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/03/12/running-tensorflow-savedmodel-node-js-without-converter/">
-							<span class = 'mr-1'>
-								เทคนิคการนำโมเดล Tensorflow มารันบน Node.js โดยไม่ต้องใช้ tfjs-converter
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

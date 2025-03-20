@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#23 - แนะนำ Cloud GPU สำหรับเทรน และทดสอบ AI</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#23 - แนะนำ Cloud GPU สำหรับเทรน และทดสอบ AI" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/03/25/23-recommend-chap-cloud-gpu/" />
+<meta property="og:url" content="http://localhost:4000/2024/03/25/23-recommend-chap-cloud-gpu/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/23_cloud_gpu_for_ai_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-25T11:58:32+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/23_cloud_gpu_for_ai_cover.jpg" />
+<meta property="twitter:title" content="#23 - แนะนำ Cloud GPU สำหรับเทรน และทดสอบ AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-27T16:15:26+07:00","datePublished":"2024-03-25T11:58:32+07:00","description":"None","headline":"#23 - แนะนำ Cloud GPU สำหรับเทรน และทดสอบ AI","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/23_cloud_gpu_for_ai_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/03/25/23-recommend-chap-cloud-gpu/"},"url":"http://localhost:4000/2024/03/25/23-recommend-chap-cloud-gpu/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#23 - แนะนำ Cloud GPU สำหรับเทรน และทดสอบ AI</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-03-25 11:58:32 +0700">2024-03-25</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/23_cloud_gpu_for_ai_cover.jpg' />
+  </figure>
+  
+
+  <p>งานหนึ่งที่คนทำทางด้าน Data ต้องเจอคือการเทรนตัวโมเดล AI</p>
+
+<p>ในปัจจุบันโมเดลที่ใช้งานสำหรับงานภาพ (Computer Vision) หรืองานข้อความ (Natural Language Processing) ก็เป็นโมเดล Deep Learning ที่มีขนาดโมเดลที่ใหญ่แบบโมเดลอย่าง Vision Transformer, GPT, BERT หรืออื่น ๆ</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">GPU</h2>
+
+<p>การเทรนโมเดลที่มีขนาดใหญ่เหล่านี้จำเป็นต้องใช้งานอุปกรณ์อย่าง <strong>GPU (Graphical Processing Unit)</strong> ที่มีสเปคสูงเพียงพอต่อการเทรน และการทดสอบโดยใช้ระยะเวลาที่น้อยที่สุดตามที่เราต้องการ ซึ่งเราก็มีคอมที่มี GPU อยู่ เสียแต่การ์ดจอนั้นสเปคต่ำไปหน่อย</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>GPU </strong>เป็นอุปกรณ์หนึ่งที่ใช้งานสำหรับการเล่นเกม การคำนวณทางวิทยาศาสตร์ การเรนเดอร์งาน 3D รวมถึงการใช้งานทางด้าน Artificial Intelligence/Machine Learning</p>
+<cite><a href="https://www.kdnuggets.com/building-a-gpu-machine-vs-using-the-gpu-cloud" data-type="link" data-id="https://www.kdnuggets.com/building-a-gpu-machine-vs-using-the-gpu-cloud" target="_blank" rel="noreferrer noopener">Building a GPU Machine vs. Using the GPU Cloud</a> &#8211; <strong>KDnuggets</strong></cite></blockquote>
+
+<p>เมื่อมีการ์ดจอสเปคต่ำแล้ว ต้องทำอย่างไร? วิธีหนึ่งที่คนทำกันก็คือ</p>
+
+<ul class="wp-block-list">
+<li>ซื้อการ์ดจอที่มีสเปคสูงขึ้น</li>
+
+
+
+<li>ประกอบคอมมาใหม่ในกรณีที่การ์ดจอนั้นใช้กับคอมเครื่องเก่าไม่ได้</li>
+</ul>
+
+<p>ทั้งสองวิธีมีข้อเสีย นั่นก็คือเราจำเป็นต้องใช้เงินเยอะ แถมใช้ไฟมากกว่าเดิม ซึ่งเราไม่ได้ต้องการแบบนั้น แล้วจะทำอย่างไร?</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">Cloud GPU</h2>
+
+<p>วิธีหนึ่งเลยคือ เช่าใช้บริการอย่าง <strong>Cloud GPU (Cloud Graphical Processing Unit)</strong> [1]</p>
+
+<p>Cloud GPU เป็นบริการ GPU ที่ตั้งอยู่ใน Datacenter ต่าง ๆ ตามแต่ละแห่งในโลกที่อนุญาตให้ผู้ใช้เข้ามาเช่าใช้งานผ่านทางอินเตอร์เน็ต ซึ่งบริการเหล่านี้มีเจ้าหน้าที่ดูแลให้ตลอด (Fully Managed)</p>
+
+<p>บริการ Cloud GPU เหล่านี้ได้รับความนิยมมากกว่าเดิมเนื่องมาจากการมาถึงของโมเดล <strong>Large Language Model (LLM) </strong>อย่าง Mistral เป็นต้น</p>
+
+<p>ข้อดีของการใช้งานเหล่านี้นอกจากใช้งานได้ง่ายแล้วยัง</p>
+
+<ul class="wp-block-list">
+<li><strong>ประหยัดค่าใช้จ่าย:</strong> โดยค่าใช้จ่ายของการใช้งาน Cloud GPU คิดเป็นต่อชั่วโมง ทำให้เราไม่จำเป็นต้องลงทุนด้วยงบจำนวนมากเพื่อซื้อการ์ดจอมาใช้งาน</li>
+
+
+
+<li><strong>ประสิทธิภาพดี: </strong>บริการเหล่านี้มีตัวเลือกให้เลือกได้ว่าเราต้องการใช้งานการ์ดจอกี่ตัว มีหน่วยความจำเท่าไร แลมีซีพียูเป็นอย่างไร โดยในแต่ละองค์กรสามารถเช่าใช้งานการ์ดจอหลายใบเพื่อรองรับการทำงานของแต่ละ Workload ได้</li>
+
+
+
+<li><strong>ไม่ต้องดูแลด้วยตัวเอง:</strong> บริการ Cloud GPU นี้เราไม่จำเป็นต้องดูแลด้วยตัวเอง บริการเหล่านี้จะมีทีมวิศวกรที่สามารถดูแลคอมพิวเตอร์ที่ให้บริการ และสามารถแก้ไขปัญหา รวมถึงให้การสนับสนุนด้านเทคนิคได้อีก ซึ่งแตกต่างกับการซื้อคอมที่มีการ์ดจอมาติดตั้งไว้ในบริษัท หรือในห้อง (On-Premises) ที่ต้องดูแลด้วยตัวเอง หรือจ้างทีมงานมาดูแลอีกทีหนึ่งทางด้าน Network, Software, Power, Disk Space และอื่น ๆ ดังนั้นแล้วทางองค์กรสามารถเปลี่ยนมาโฟกัสเป้าหมายทางธุรกิจได้</li>
+</ul>
+
+<p>บริการเหล่านี้ก็มีหลายเจ้า ตั้งแต่เจ้าใหญ่ ๆ ที่คนรู้จักกันอย่าง</p>
+
+<ul class="wp-block-list">
+<li><strong>Amazon Web Services:</strong> ที่มี <a href="https://aws.amazon.com/ec2" data-type="link" data-id="https://aws.amazon.com/ec2" target="_blank" rel="noreferrer noopener">Amazon EC2</a> (Elastic Compute Cloud) ที่เป็น IaaS ที่ให้เช่าใช้คอมที่มีการ์ดจอ หรือใช้บริการ <a href="https://aws.amazon.com/sagemaker" data-type="link" data-id="https://aws.amazon.com/sagemaker" target="_blank" rel="noreferrer noopener">Amazon Sagemaker</a> ที่รองรับการสร้าง เทรนตัวโมเดล พร้อมกับนำโมเดลไปใช้งานบน Production โดยเราไม่จำเป็นต้องดูแล Infrastructure เองเนื่องจากมีทีมงานดูแล (หรือ Fully Managed)</li>
+
+
+
+<li><strong>Google Cloud Platform</strong>: ที่มี <a href="https://cloud.google.com/products/compute" data-type="link" data-id="https://cloud.google.com/products/compute" target="_blank" rel="noreferrer noopener">Compute Engine</a> ซึ่งเป็น IaaS ที่มีบริการให้เช่าคอมที่มีการ์ดจอใช้อยู่ หรือใช้บริการอีกอย่างก็คือ <a href="https://cloud.google.com/vertex-ai" data-type="link" data-id="https://cloud.google.com/vertex-ai" target="_blank" rel="noreferrer noopener">Vertex AI</a> ที่รองรับการเทรน และการทดสอบตัวโมเดลเพื่อนำไปใช้งานบน Production</li>
+
+
+
+<li><strong>Microsoft Azure:</strong> ที่มีให้บริการใน <a href="https://azure.microsoft.com/en-us/products/virtual-machines" data-type="link" data-id="https://azure.microsoft.com/en-us/products/virtual-machines" target="_blank" rel="noreferrer noopener">Virtual Machine</a> ซึ่งเป็น IaaS ที่มีให้เช่าคอมที่มีการ์ดจอใช้งานอยู่ หรือใช้บริการ <a href="https://azure.microsoft.com/en-us/products/machine-learning/" data-type="link" data-id="https://azure.microsoft.com/en-us/products/machine-learning/" target="_blank" rel="noreferrer noopener">Azure Machine Learning</a> ที่สามารถเทรน ทดสอบตัวโมเดล พร้อมกับรองรับการนำโมเดลไปใช้งานบน Production</li>
+</ul>
+
+<p>ข้างบนนี้เป็นตัวอย่างบริการที่ให้เช่าการ์ดจอสำหรับการนำมาใช้งานทางด้าน AI แต่ถ้าดูราคาแล้ว สำหรับคนทั่วไปที่ไม่ได้ต้องการใช้งานการ์ดจอระดับบนขนาดนั้น มันจะมีบริการ Cloud GPU ที่มีราคาถูกกว่าอย่าง</p>
+
+<ul class="wp-block-list">
+<li><a href="https://www.paperspace.com/" data-type="link" data-id="https://www.paperspace.com/" target="_blank" rel="noreferrer noopener"><strong>Paperspace</strong></a> ที่เป็นบริการให้เช่าการ์ดจอที่ถูกทางบริษัทคลาวด์อย่าง DigitalOcean ซื้อไป ที่รองรับการสร้าง เทรนโมเดล แถมยังนำโมเดลไปใช้งานบน Production โดยให้ใช้เป็น API ได้อีก</li>
+
+
+
+<li><strong>Vultr </strong>ที่เป็นผู้ให้บริการคลาวด์เช่นกัน โดยจะมีบริการ <a href="https://www.vultr.com/products/cloud-gpu/" data-type="link" data-id="https://www.vultr.com/products/cloud-gpu/" target="_blank" rel="noreferrer noopener">Cloud GPU</a> ให้ใช้งาน โดยรองรับการใช้งานทางด้าน AI/ML แถมยังรองรับการนำไปใช้ทาง AR/VR, VDI, CAD ได้อีก</li>
+
+
+
+<li><strong><a href="https://runpod.io" target="_blank" rel="noreferrer noopener">Runpod</a> </strong>ที่เป็นบริการคลาวด์ที่รองรับการใช้งานทางด้าน AI/ML ที่ให้เช่าการ์ดจอสำหรับการสร้างกับเทรนโมเดล และมีบริการ Serverless สำหรับการนำไปใช้งานบน Production</li>
+
+
+
+<li>นอกจากนี้ก็มีบริการอย่าง <a href="https://vast.ai/" data-type="link" data-id="https://vast.ai/" target="_blank" rel="noreferrer noopener">Vast.ai</a>, <a href="https://lambdalabs.com/service/gpu-cloud" data-type="link" data-id="https://lambdalabs.com/service/gpu-cloud" target="_blank" rel="noreferrer noopener">Lambda</a> และอื่น ๆ</li>
+</ul>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">Runpod</h2>
+
+<p>ตัวอย่างที่เรานำมาใช้งานคือ Runpod [2] ที่มีเซิร์ฟเวอร์ที่มีการ์ดจอให้ผู้ใช้สามารถใช้งานได้ โดยผ่านการให้บริการใน Container ที่มีชื่อเรียกว่า Pods</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="281" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod-1024x496.png" alt="" class="wp-image-6406" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod-300x145.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod-1024x496.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod-768x372.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod-1536x744.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod-1200x581.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod.png 1866w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">RunPod</figcaption></figure></div>
+
+<p>การเริ่มเข้าไปใช้งาน ก่อนอื่นผู้ใช้จำเป็นต้องสมัครสมาชิกก่อน เมื่อสมัครสมาชิกแล้ว ผู้ใช้เลือกวิธีการจ่ายเงินได้ว่าจะเติมเงินเข้าไปในระบบ หรือจะผูกกับบัตรเครดิตเข้าไป</p>
+
+<p>เมื่อทำเสร็จแล้ว เราเริ่มเข้าไปใช้งาน โดยหน้าหลักของบริการจะแสดงตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="311" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_login_home-1024x549.png" alt="" class="wp-image-6404" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_login_home-300x161.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_login_home-1024x549.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_login_home-768x412.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_login_home-1536x824.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_login_home-1200x644.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_login_home.png 1851w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอหลักของ RunPod หลัง Login</figcaption></figure></div>
+
+<p>ต่อมาให้เราเลือกไปที่ GPU Cloud เพื่อเช่าใช้งานการ์ดจอ กดเข้าไปแล้วจะเจอหน้าจอเพื่อให้เลือกการ์ดจอตามที่เราต้องการ โดยแบ่งการให้เช่าออกเป็นสองประเภท ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Secure Cloud</strong> ที่ให้ใช้บริการบนเซิร์ฟเวอร์ที่ตั้งอยู่ใน Tier 3/Tier 4 Data Center ที่ให้ Reliability และ Security ที่ดีกว่า แถมยังให้การ์ดจอที่ดีแบบ RTX A4000 ไปจนถึง H100 รวมถึงการ์ดเกมอย่าง RTX 3090 กับ 4090</li>
+
+
+
+<li><strong>Community Cloud</strong> ที่ให้ใช้บริการบนคอมพิวเตอร์ส่วนบุคคลที่เชื่อมต่อบน Peer-to-peer ที่ปลอดภัยที่มีการ์ดจอตั้งแต่ RTX A2000 ไปจนถึง H100 รวมถึงมีการ์ดเกมให้ใช้แบบ RTX 3070, 3080, 3080 Ti, 3090</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="313" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_secure_cloud-1024x552.png" alt="" class="wp-image-6408" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_secure_cloud-300x162.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_secure_cloud-1024x552.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_secure_cloud-768x414.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_secure_cloud-1536x828.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_secure_cloud-1200x647.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_secure_cloud.png 1849w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Secure Cloud</figcaption></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="319" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_community_cloud-1024x563.png" alt="" class="wp-image-6409" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_community_cloud-300x165.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_community_cloud-1024x563.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_community_cloud-768x423.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_community_cloud-1536x845.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_community_cloud-1200x660.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_community_cloud.png 1812w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Community Cloud</figcaption></figure></div>
+
+<p>ผู้ใช้สามารถเลือกใช้งานเพื่อเช่าใช้การ์ดจอได้ แต่ถ้า</p>
+
+<ul class="wp-block-list">
+<li>ต้องการใช้งานการ์ดจอจริงจังแนะนำ <strong>Secure Cloud</strong></li>
+
+
+
+<li>ไม่ต้องการจ่ายเงินเยอะ และต้องการใช้งานแปบ ๆ จบงานก็ลบ ก็ใช้แบบ <strong>Community Cloud</strong> ไปเลยก็ได้ (ซึ่งเราก็ใช้ เพราะมันถูกกว่า) โดยมีราคาเริ่มต้นประมาณ 5-6 บาทต่อชั่วโมง (ถูกกว่าร้านเกมอีก)</li>
+</ul>
+
+<p>ต่อมา เมื่อเลือกเรียบร้อยแล้ว เราสามารถเลือก Container ที่เราต้องการใช้งานได้ โดยผู้ใช้สามารถเลือกใช้ Container ที่มีมาให้อยู่แล้วอย่าง</p>
+
+<ul class="wp-block-list">
+<li><strong>RunPod PyTorch</strong></li>
+
+
+
+<li><strong>RunPod Desktop</strong> ที่มีหน้าจอ Linux Desktop ที่ให้เข้าไปใช้งานรีโหมดผ่านโปรโตคอล VNC</li>
+
+
+
+<li><strong>RunPod Stable Diffusion</strong></li>
+
+
+
+<li><strong>RunPod Tensorflow</strong></li>
+
+
+
+<li>เป็นต้น</li>
+</ul>
+
+<p>หรือผู้ใช้จะดึง Container มาจาก Container Registry อย่าง Docker Hub, GitHub Container Registry, Amazon Elastic Container Registry และอื่น ๆ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="262" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_container-1024x463.png" alt="" class="wp-image-6396" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_container-300x136.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_container-1024x463.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_container-768x347.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_container-1536x695.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_container-1200x543.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_container.png 1906w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอการตั้งค่าเพื่อสร้าง Pod สำหรับการเช่าใช้การ์ดจอบน RunPod</figcaption></figure></div>
+
+<p>นอกจากนี้ ผู้ใช้สามารถตั้งค่าเพิ่มเติมที่เกี่ยวกับ Pod นั้น ๆ ได้อีกโดยผู้ใช้กดปุ่มไปที่ Customize Deployment แล้วตั้งค่า</p>
+
+<ul class="wp-block-list">
+<li><strong>Container Disk</strong> ที่ตั้งค่าขนาดพื้นที่สำหรับการใช้งานแบบชั่วคราว (Temporary) กับแบบถาวร (Persistent)</li>
+
+
+
+<li><strong>Volume Mount Path</strong> ที่ตั้งค่าตำแหน่งที่เราต้องการ Mount บน Disk</li>
+
+
+
+<li><strong>Expose HTTP กับ TCP Ports</strong> ตั้งค่าพอร์ตที่ต้องการให้เข้าถึงได้จากภายนอก</li>
+
+
+
+<li><strong>Environment Variables</strong> ตั้งค่าตัวแปร Environment อื่น ๆ ที่ขึ้นอยู่กับ Container ที่เลือก</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="321" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_configuration-1024x566.png" alt="" class="wp-image-6399" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_configuration-300x166.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_configuration-1024x566.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_configuration-768x425.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_configuration-1200x664.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_configuration.png 1515w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอการตั้งค่า Pod เพิ่มเติม (Customize Deployment)</figcaption></figure></div>
+
+<p>เมื่อตั้งค่าทุกอย่างเรียบร้อยแล้ว ให้กด Continue ระบบจะแสดงหน้าจอรายละเอียดของ Pod ที่เราจะสร้างขึ้นเพื่อใช้งาน แถมระบุ</p>
+
+<ul class="wp-block-list">
+<li>ราคาต่อชั่วโมงของเซิร์ฟเวอร์</li>
+
+
+
+<li>ราคาต่อชั่วโมงของ Disk</li>
+</ul>
+
+<p>เมื่อต้องการใช้งานแล้ว ให้กด Deploy</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="198" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deploy-1024x349.png" alt="" class="wp-image-6401" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deploy-300x102.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deploy-1024x349.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deploy-768x261.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deploy-1536x523.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deploy-1200x408.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deploy.png 1854w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอการ Deploy Pod</figcaption></figure></div>
+
+<p>เมื่อเรากด Deploy แล้ว ระบบจะสร้าง Pod สำหรับการใช้งานการ์ดจอนั้น ๆ </p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="587" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_building.png" alt="" class="wp-image-6413" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_building-296x300.png 296w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_building-768x778.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_building.png 967w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอขณะที่ระบบกำลังสร้าง Pod</figcaption></figure></div>
+
+<p>เมื่อสร้างเสร็จแล้ว ระบบจะแสดง Pod ตามด้านล่างนี้ (ในตัวอย่างเราใช้การ์ดจอ RTX 3080 x 1 ที่ใช้ Container RunPod Desktop)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="276" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deployment_detail-1024x488.png" alt="" class="wp-image-6419" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deployment_detail-300x143.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deployment_detail-1024x488.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deployment_detail-768x366.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deployment_detail-1536x732.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deployment_detail-1200x572.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_deployment_detail.png 1834w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงรายละเอียด Pod ที่เราสร้างขึ้น</figcaption></figure></div>
+
+<p>ผู้ใช้สามารถเข้าถึงได้ผ่าน SSH, VNC หรืออื่น ๆ โดยกดปุ่มที่ Connect เมื่อกดเข้าไปแล้ว ระบบจะแสดงหน้าจอตามด้านล่างนี้ (โดยหน้าจออาจจะแตกต่างกันออกไปขึ้นอยู่กับ Container ที่เราเลือก)</p>
+
+<p>ตัวอย่างนี้เรากดเข้าไปใน Pod ที่ใช้ Container อย่าง RunPod Desktop เมื่อกดเข้าไปแล้ว ระบบจะแสดงรายละเอียดตามภาพ โดยตัว Container นี้อนุญาตให้ผู้ใช้เข้าไปใช้งานได้ผ่านโปรโตคอลรีโหมดด้วยการใช้ HTTP Service (Port 6901) ให้เรากดเข้าไปที่ปุ่มนั้น</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="425" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote.png" alt="" class="wp-image-6421" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote-300x220.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote-768x562.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote.png 981w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอการเชื่อมต่อเข้ากับตัว Pod ที่สร้างขึ้น</figcaption></figure></div>
+
+<p>เมื่อกดเข้าไปแล้ว ให้ใส่ Username (kasm_user) กับ Password ที่เราตั้งค่าไว้ใน Environment Variable ที่ตั้งไว้ในหน้าจอการตั้งค่า Pod เพิ่มเติม (Customize Deployment)</p>
+
+<p>เมื่อใส่ข้อมูลเรียบร้อยแล้ว กดปุ่ม Login แล้วระบบจะแสดงหน้าจอตามด้านล่างนี้ ผู้ใช้สามารถเข้าไปทำอะไรก็ได้ตามที่ต้องการ รวมถึงสร้างกับเทรนโมเดล AI ได้ครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="310" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote_vnc-1024x547.png" alt="" class="wp-image-6424" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote_vnc-300x160.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote_vnc-1024x547.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote_vnc-768x410.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote_vnc-1536x820.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote_vnc-1200x641.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_remote_vnc.png 1912w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอรีโหมดเข้าไปในตัว Pod ที่ใช้ Container RunPod Desktop ผ่าน HTTP Service (Port 6901)</figcaption></figure></div>
+
+<p>เมื่อเราใช้งานเสร็จเรียบร้อยแล้ว ให้กดปุ่มเครื่องหมายหยุดที่มุมล่างซ้าย (Stop)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="447" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stop.png" alt="" class="wp-image-6425" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stop-300x231.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stop-768x592.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stop.png 900w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">กดปุ่มที่ Stop เพื่อหยุดการใช้ Pod</figcaption></figure></div>
+
+<p>เมื่อกดแล้ว ระบบจะแสดงรายละเอียดว่าเมื่อหยุด Pod แล้ว</p>
+
+<ul class="wp-block-list">
+<li>เราสามารถเริ่มต้นการใช้งาน Pod อีกครั้งหนึ่ง แต่ไม่ได้การันตีว่าจะมีเซิร์ฟเวอร์นั้น ๆ ให้ใช้ในขณะนั้นขึ้นอย่กับว่ามีผู้ใช้ใช้งานเยอะหรือไม่</li>
+
+
+
+<li>ข้อมูลที่ไม่ได้เก็บไว้ใน /workspace จะถูกลบ</li>
+
+
+
+<li>คุณจะถูกเก็บเงิน XXX ต่อชั่วโมงสำหรับ Disk</li>
+</ul>
+
+<p>ดังนั้นแล้ว ให้เรากด Stop Pod</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="335" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stoppod.png" alt="" class="wp-image-6426" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stoppod-300x173.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stoppod-768x443.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_stoppod.png 946w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอปรากฏขึ้นเมื่อเรากดปุ่ม Stop</figcaption></figure></div>
+
+<p>หลังกด Stop ระบบจะแสดงหน้าจอตามด้านล่างนี้ ให้เรากดปุ่มที่รูปถังขยะ (Terminate)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="121" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_already_stop-1024x214.png" alt="" class="wp-image-6427" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_already_stop-300x63.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_already_stop-1024x214.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_already_stop-768x161.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_already_stop-1536x321.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_already_stop-1200x251.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_already_stop.png 1849w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงเมื่อ Pod นั้นถูกกดปุ่ม Stop เรียบร้อย</figcaption></figure></div>
+
+<p>เมื่อเรากด Terminate แล้ว ระบบจะแสดงหน้าจอตามด้านล่างนี้ โดยกล่าวว่า</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>เมื่อเราลบ Pod นั้น ระบบจะลบการตั้งค่า Pod รวมถึง Disk ที่เราสร้างขึ้นไว้ การลบครั้งนี้เราจะกู้ข้อมูลกลับมาไม่ได้ คุณต้องการที่จะลบหรือไม่?</p>
+<cite>แปลจากหน้าจอ Terminate Pod</cite></blockquote>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="294" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_terminate_pod.png" alt="" class="wp-image-6428" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_terminate_pod-300x152.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_terminate_pod-768x389.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/03/runpod_terminate_pod.png 949w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>ให้เรากดปุ่ม Yes เพื่อยืนยันการลบ Pod นั้น ๆ ระบบจะลบ Pod ที่เราสร้างขึ้นครับ</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">สรุป</h2>
+
+<p>งานหนึ่งที่คนทำทางด้าน Data ต้องเจอคือการเทรนตัวโมเดล AI ที่ในปัจจุบันตัวโมเดลสำหรับงานทางด้านภาพ กับข้อความมีขนาดใหญ่ขึ้นมากกว่าเดิม ทำให้เราต้องการใช้งาน GPU</p>
+
+<p>อย่างไรก็ดี การซื้อคอมที่มี GPU แรงขนาดนั้น เราจำเป็นต้องใช้เงินเยอะ แถมใช้ไฟมากกว่าเดิม ซึ่งเราไม่ได้ต้องการแบบนั้น</p>
+
+<p>ในปัจจุบันมีบริการ Cloud GPU เจ้าดังแบบ Amazon Web Service, Google Cloud Platform, Microsoft Azure  ที่รองรับการสร้างกับเทรนโมเดล และนำไปใช้งานบน Production</p>
+
+<p>อย่างไรก็ดี สำหรับคนทั่วไปที่ไม่ได้ต้องการใช้งานการ์ดจอระดับบนขนาดนั้น มันจะมีบริการ Cloud GPU ที่มีราคาถูกกว่าอย่าง Paperspace, Vultr, Runpod, Vast.ai, Lambda และอื่น ๆ</p>
+
+<p>ในบทความนี้เราจะยกตัวอย่างการใช้งานบน Runpod โดยมีราคาต่อชั่วโมงถูกมากประมาณ 5-6 บาทต่อชั่วโมง (ถูกกว่าร้านเกมอีก)</p>
+
+<h2 class="wp-block-heading" id="ending">ส่งท้าย</h2>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
+
+<h2 class="wp-block-heading">ที่มา</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://www.kdnuggets.com/building-a-gpu-machine-vs-using-the-gpu-cloud" target="_blank" rel="noreferrer noopener">https://www.kdnuggets.com/building-a-gpu-machine-vs-using-the-gpu-cloud</a></li>
+
+
+
+<li><a href="https://runpod.io" target="_blank" rel="noreferrer noopener">https://runpod.io</a></li>
+</ol>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

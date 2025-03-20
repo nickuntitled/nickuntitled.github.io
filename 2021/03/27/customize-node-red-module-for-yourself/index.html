@@ -1,397 +1,113 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ - Nick Untitled</title>
-		<meta name="description" content="Node-RED เป็นเครื่องมือที่ช่วยให้เราพัฒนาโปรแกรมสามารถทำงานให้เครื่องมือ IoT ทำตามที่เราต้องการได้ง่าย แต่ปัญหาคือเครื่องมือที่มีเก่าเกิน จนต้องเขียนโค้ดมาใช้เอง แต่จะทำอย่างไร ติดตามได้ในโพสนี้">
-		<meta name="keywords" content="flow,flow-based,internet of things,IoT,javascript,node-red,Node.js,programming,raspberry pi,จาวาสคริป,อินเทอร์เน็ตของสรรพสิ่ง,อิเล็กทรอนิกส์,เขียนโปรแกรม,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-03-27T01:09:26+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/03/27/customize-node-red-module-for-yourself/"/>
-		<meta property="og:title" content="เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ - Nick Untitled" />
-		<meta property="og:description" content="Node-RED เป็นเครื่องมือที่ช่วยให้เราพัฒนาโปรแกรมสามารถทำงานให้เครื่องมือ IoT ทำตามที่เราต้องการได้ง่าย แต่ปัญหาคือเครื่องมือที่มีเก่าเกิน จนต้องเขียนโค้ดมาใช้เอง แต่จะทำอย่างไร ติดตามได้ในโพสนี้ " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ - Nick Untitled" />
-		<meta property="twitter:description" content="Node-RED เป็นเครื่องมือที่ช่วยให้เราพัฒนาโปรแกรมสามารถทำงานให้เครื่องมือ IoT ทำตามที่เราต้องการได้ง่าย แต่ปัญหาคือเครื่องมือที่มีเก่าเกิน จนต้องเขียนโค้ดมาใช้เอง แต่จะทำอย่างไร ติดตามได้ในโพสนี้ " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/03/27/customize-node-red-module-for-yourself/" />
+<meta property="og:url" content="http://localhost:4000/2021/03/27/customize-node-red-module-for-yourself/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-27T18:09:26+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png" />
+<meta property="twitter:title" content="เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:47:34+07:00","datePublished":"2021-03-27T18:09:26+07:00","description":"None","headline":"เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/03/27/customize-node-red-module-for-yourself/"},"url":"http://localhost:4000/2021/03/27/customize-node-red-module-for-yourself/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-03-27 18:09:26 +0700">2021-03-27</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png' />
+  </figure>
+  
 
-	
-
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/03/EECE824E-2F43-4C5D-93DD-3EECC9EB3C69.png' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>27 March 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/customize-node-red-module-for-yourself" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/customize-node-red-module-for-yourself&amp;text=เทคนิคสร้าง Node เพื่อใช้งานกับ Node-RED ให้ทำตามที่เราต้องการ - https://nickuntitled.com/customize-node-red-module-for-yourself" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p>Node-RED เป็นเครื่องมือที่ช่วยให้เราทำงานแบบ <a href="https://en.wikipedia.org/wiki/Flow-based_programming" target="_blank" rel="noreferrer noopener" title="https://en.wikipedia.org/wiki/Flow-based_programming">Flow-based programming</a> ซึ่งเป็นอุปกรณ์ที่ช่วยให้นักพัฒนาโปรแกรมสามารถทำงานให้เครื่องมือ <a href="https://www.ops.go.th/main/index.php/knowledge-base/article-pr/655-iot-%E0%B8%81%E0%B8%B3%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B0%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%A5%E0%B8%81#:~:text=IoT%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%20Internet%20of%20Things,%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94%E0%B9%89%20%E0%B8%AD%E0%B8%B5%E0%B8%81%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%20%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96" target="_blank" rel="noreferrer noopener" title="https://www.ops.go.th/main/index.php/knowledge-base/article-pr/655-iot-%E0%B8%81%E0%B8%B3%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B0%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%A5%E0%B8%81#:~:text=IoT%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%20Internet%20of%20Things,%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94%E0%B9%89%20%E0%B8%AD%E0%B8%B5%E0%B8%81%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%20%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96">IoT (Internet of Things)</a> ทำงานได้ตามที่เราต้องการได้ง่ายโดยทำผ่านเว็บเบราวเซอร์ ตัวอย่างของอุปกรณ์ที่จะมาพัฒนาที่มีชื่อก็ได้แก่ Raspberry Pi ที่วางขายมานานแล้ว จนตอนนี้ออกเป็นรุ่น Raspberry Pi 4 Model B ออกมาครับ เรามาเข้าเรื่องกันดีกว่า</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:more -->
-<!--more-->
-<!-- /wp:more -->
-
-<!-- wp:paragraph -->
-<p>ข้อดีของการใช้งานเครื่องมืออย่าง Node-RED เครื่องมือนี้คืออะไร ข้อดีเท่าที่ใช้มาแล้วคือใช้ง่าย แค่ลากลงมาบนหน้าจอแล้วตั้งค่านิดหน่อยก็ใช้ได้แล้ว แต่ปัญหาที่เราเจอจากการใช้งานคือ ตัวแพคเกจบางอย่างมันเก่าไปแล้ว อัพเดทล่าสุดก็ประมาณ 6 เดือนขึ้นไป จนถึง 2-3 ปีมาแล้ว แถมอีกอย่างตัวไลบรารีที่ใช้ (ตัวอย่างที่ใช้ก็เช่น <a href="https://www.apollographql.com/docs/react/" target="_blank" rel="noreferrer noopener" title="https://www.apollographql.com/docs/react/">Apollo Client</a> ที่เชื่อมต่อเซิร์ฟเวอร์ผ่าน GraphQL) ในนั้นก็ล้าสมัยจนเกิดไป จุดนี้แหละคือปัญหาที่ทำให้เราต้องสร้าง Node เพื่อให้เราใช้งานได้ตามที่เราต้องการ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>วิธีการทำโดยละเอียดสามารถเข้าไปอ่านได้ในเว็บของผู้ผลิต <a href="https://nodered.org/" target="_blank" rel="noreferrer noopener" title="https://nodered.org/">Node-RED</a> ครับแต่ของเราจะเป็นแบบคร่าว ๆ เพื่อให้เราใช้งานได้โดยง่าย เริ่มต้นโดยสร้างโฟลเดอร์ใหม่ก่อน จากนั้นเริ่มการทำงาน <a href="https://nodejs.org/" target="_blank" rel="noreferrer noopener" title="https://nodejs.org/">Node.js</a> ได้โดยสั่งคำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":1994,"width":219,"height":207,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/03/carbon-1.png" alt="" class="wp-image-1994" /><figcaption>npm init</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+  <p>Node-RED เป็นเครื่องมือที่ช่วยให้เราทำงานแบบ <a href="https://en.wikipedia.org/wiki/Flow-based_programming" rel="noreferrer noopener">Flow-based programming</a> ซึ่งเป็นอุปกรณ์ที่ช่วยให้นักพัฒนาโปรแกรมสามารถทำงานให้เครื่องมือ <a href="https://www.ops.go.th/main/index.php/knowledge-base/article-pr/655-iot-%E0%B8%81%E0%B8%B3%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B0%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%E0%B9%82%E0%B8%A5%E0%B8%81#:~:text=IoT%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%20Internet%20of%20Things,%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%84%E0%B8%94%E0%B9%89%20%E0%B8%AD%E0%B8%B5%E0%B8%81%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87%20%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%B2%E0%B8%A3%E0%B8%96" rel="noreferrer noopener">IoT (Internet of Things)</a> ทำงานได้ตามที่เราต้องการได้ง่ายโดยทำผ่านเว็บเบราวเซอร์ ตัวอย่างของอุปกรณ์ที่จะมาพัฒนาที่มีชื่อก็ได้แก่ Raspberry Pi ที่วางขายมานานแล้ว จนตอนนี้ออกเป็นรุ่น Raspberry Pi 4 Model B ออกมาครับ เรามาเข้าเรื่องกันดีกว่า</p>
+<p>ข้อดีของการใช้งานเครื่องมืออย่าง Node-RED เครื่องมือนี้คืออะไร ข้อดีเท่าที่ใช้มาแล้วคือใช้ง่าย แค่ลากลงมาบนหน้าจอแล้วตั้งค่านิดหน่อยก็ใช้ได้แล้ว แต่ปัญหาที่เราเจอจากการใช้งานคือ ตัวแพคเกจบางอย่างมันเก่าไปแล้ว อัพเดทล่าสุดก็ประมาณ 6 เดือนขึ้นไป จนถึง 2-3 ปีมาแล้ว แถมอีกอย่างตัวไลบรารีที่ใช้ (ตัวอย่างที่ใช้ก็เช่น <a href="https://www.apollographql.com/docs/react/" rel="noreferrer noopener">Apollo Client</a> ที่เชื่อมต่อเซิร์ฟเวอร์ผ่าน GraphQL) ในนั้นก็ล้าสมัยจนเกิดไป จุดนี้แหละคือปัญหาที่ทำให้เราต้องสร้าง Node เพื่อให้เราใช้งานได้ตามที่เราต้องการ</p>
+<p><!--more--></p>
+<p>วิธีการทำโดยละเอียดสามารถเข้าไปอ่านได้ในเว็บของผู้ผลิต <a href="https://nodered.org/" rel="noreferrer noopener">Node-RED</a> ครับแต่ของเราจะเป็นแบบคร่าว ๆ เพื่อให้เราใช้งานได้โดยง่าย เริ่มต้นโดยสร้างโฟลเดอร์ใหม่ก่อน จากนั้นเริ่มการทำงาน <a href="https://nodejs.org/" rel="noreferrer noopener">Node.js</a> ได้โดยสั่งคำสั่ง</p>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-1.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>npm init</figcaption></figure>
 <p>จากนั้นก็ตามคำถามตามที่โปรแกรมต้องการ แล้วเราลงมือเขียนโปรแกรมกัน เริ่มต้นได้โดยตั้งค่าใน package.json ก่อน โดยตั้งค่าให้เป็นตามนี้</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":1995,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/03/carbon-1-1.png" alt="" class="wp-image-1995" /><figcaption>package.json</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>ตัวอย่างการตั้งค่าสามารถเข้าไปดูได้ที่เว็บของ Node-RED ซึ่งใน<a href="https://nodered.org/docs/creating-nodes/first-node" target="_blank" rel="noreferrer noopener" title="https://nodered.org/docs/creating-nodes/first-node">ตัวอย่าง</a>จะทำ Node สำหรับการเปลี่ยนตัวอักษรตัวใหญ่เป็นตัวเล็ก และตัวอย่างด้านล่างก็เป็นตัวอย่างจากลิ้งค์ข้างในนั้นเช่นกัน แต่ก่อนที่จะลงมือเขียนโค้ด ใน Node แต่ละNode ที่เราต้องการสร้างขึ้นจะประกอบไปด้วย 2 ไฟล์ ได้แก่ ไฟล์ JavaScript ที่กำหนดการทำงานของตัว Node และไฟล์ HTML ที่กำหนดหน้าตาของการตั้งค่า Node เวลาสร้างขึ้นใน Flow ของ Node-RED</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Flow คืออะไร ไปอ่านต่อได้ใน<a href="https://nodered.org/docs/tutorials/first-flow" target="_blank" rel="noreferrer noopener" title="https://nodered.org/docs/tutorials/first-flow">เว็บของ Node-RED</a> เองครับ เราจะไม่อธิบายในนี้เกรงว่ามันจะยาวไป แต่ถ้าสรุปสั้น ๆ ก็ประมาณว่าเป็นพื้นที่ที่เรากำหนดการทำงานของอุปกรณ์ตามที่เราต้องการ แค่ลาก ๆ Node ลงไปก็กำหนดได้ว่าจะให้มันทำงานอย่างไรครับ ต่อมาเรามาแนะนำการเขียนโค้ดลงในไฟล์แต่ละไฟล์ทั้งสองไฟล์กันดีกว่า</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>JavaScript</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-1-1.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>package.json</figcaption></figure>
+<p>ตัวอย่างการตั้งค่าสามารถเข้าไปดูได้ที่เว็บของ Node-RED ซึ่งใน<a href="https://nodered.org/docs/creating-nodes/first-node" rel="noreferrer noopener">ตัวอย่าง</a>จะทำ Node สำหรับการเปลี่ยนตัวอักษรตัวใหญ่เป็นตัวเล็ก และตัวอย่างด้านล่างก็เป็นตัวอย่างจากลิ้งค์ข้างในนั้นเช่นกัน แต่ก่อนที่จะลงมือเขียนโค้ด ใน Node แต่ละNode ที่เราต้องการสร้างขึ้นจะประกอบไปด้วย 2 ไฟล์ ได้แก่ ไฟล์ JavaScript ที่กำหนดการทำงานของตัว Node และไฟล์ HTML ที่กำหนดหน้าตาของการตั้งค่า Node เวลาสร้างขึ้นใน Flow ของ Node-RED</p>
+<p>Flow คืออะไร ไปอ่านต่อได้ใน<a href="https://nodered.org/docs/tutorials/first-flow" rel="noreferrer noopener">เว็บของ Node-RED</a> เองครับ เราจะไม่อธิบายในนี้เกรงว่ามันจะยาวไป แต่ถ้าสรุปสั้น ๆ ก็ประมาณว่าเป็นพื้นที่ที่เรากำหนดการทำงานของอุปกรณ์ตามที่เราต้องการ แค่ลาก ๆ Node ลงไปก็กำหนดได้ว่าจะให้มันทำงานอย่างไรครับ ต่อมาเรามาแนะนำการเขียนโค้ดลงในไฟล์แต่ละไฟล์ทั้งสองไฟล์กันดีกว่า</p>
+<h2 id="javascript">JavaScript</h2>
 <p>เมื่อตั้งค่าใน package.json เสร็จแล้ว หลังจากนั้นเรามาเริ่มต้นเขียนโปรแกรมกันเถอะ ในแต่ละ Node ของ Node-RED จะประกอบไปด้วยไฟล์ JavaScript เพื่อกำหนดการทำงานของ Node และไฟล์ HTML จะระบุหน้าตา และการทำงานของตัวแก้ไข Node เรามาเริ่มต้นตัว JavaScript ก่อนโดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":1996,"width":624,"height":417,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/03/carbon-2.png" alt="" class="wp-image-1996" /><figcaption>JavaScript</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-2.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>JavaScript</figcaption></figure>
 <p>ข้างบนที่เห็นเป็นตัวอย่างโค้ดที่ใช้กำหนดการทำงานของตัว Node ที่เราสร้างขึ้น แต่อย่างไรก็ดี ผู้อ่านเห็นคำสั่งในนั้นแล้วอาจจะไม่เข้าใจนัก เดี๋ยวจะอธิบายบางส่วนให้นะครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>คำสั่ง RED.nodes.createNode เป็นคำสั่งที่มีหน้าที่เริ่มต้นการทำงานของ Node ที่เราสร้างขึ้น หรือเรียกประมาณว่า Constructor โดยค่าที่ส่งเข้าไปจะเป็นค่าเกี่ยวกับการตั้งค่าของ Node ที่เราสร้างขึ้นนั้น ๆ </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>ส่วนต่อมาจะพูดถึง node.on('input', function(msg) {...} ฟังก์ชันนี้เป็นฟังก์ชันที่ทำหน้าที่เวลาที่ได้รับข้อมูลจาก Node อื่น ๆ แล้วจะให้ตัว Node นี้ประมวลผลอย่างไร ในฟังก์ชันข้างในนั้นเราสามารถกำหนด argument ที่เกี่ยวข้องได้แก่ msg, send, done โดย </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>msg จะเป็นข้อมูลที่ได้รับเช่น msg.payload </li><li>send เป็นคำสั่งส่งค่าให้กับ node ต่อไป </li><li>done ใช้แจ้งให้กับตัว Node-RED เวลาที่ฟังก์ชันนี้เสร็จแล้ว</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
+<p>คำสั่ง RED.nodes.createNode เป็นคำสั่งที่มีหน้าที่เริ่มต้นการทำงานของ Node ที่เราสร้างขึ้น หรือเรียกประมาณว่า Constructor โดยค่าที่ส่งเข้าไปจะเป็นค่าเกี่ยวกับการตั้งค่าของ Node ที่เราสร้างขึ้นนั้น ๆ</p>
+<p>ส่วนต่อมาจะพูดถึง node.on(&#8216;input&#8217;, function(msg) {&#8230;} ฟังก์ชันนี้เป็นฟังก์ชันที่ทำหน้าที่เวลาที่ได้รับข้อมูลจาก Node อื่น ๆ แล้วจะให้ตัว Node นี้ประมวลผลอย่างไร ในฟังก์ชันข้างในนั้นเราสามารถกำหนด argument ที่เกี่ยวข้องได้แก่ msg, send, done โดย</p>
+<ul>
+<li>msg จะเป็นข้อมูลที่ได้รับเช่น msg.payload</li>
+<li>send เป็นคำสั่งส่งค่าให้กับ node ต่อไป</li>
+<li>done ใช้แจ้งให้กับตัว Node-RED เวลาที่ฟังก์ชันนี้เสร็จแล้ว</li>
+</ul>
 <p>ส่วน RED.nodes.registerType ใช้กำหนดตั้งค่า Node ที่เราได้สร้างขึ้นเพิ่มเริ่มต้นการทำงานของ Node ชื่อเลียนแบบใน nodes ที่กล่าวถึงไปแล้วช่วง package.json และอีกช่องเป็นชื่อฟังก์ชันที่เรากำหนดขึ้นมา</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>ผู้อ่านสามารถอ่านเพิ่มเติมได้ที่<a href="https://nodered.org/docs/creating-nodes/node-js" target="_blank" rel="noreferrer noopener" title="https://nodered.org/docs/creating-nodes/node-js">หน้าของ Node-RED</a> ได้เลย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>HTML</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<p>ผู้อ่านสามารถอ่านเพิ่มเติมได้ที่<a href="https://nodered.org/docs/creating-nodes/node-js" rel="noreferrer noopener">หน้าของ Node-RED</a> ได้เลย</p>
+<h2 id="html">HTML</h2>
 <p>เมื่อเขียนเสร็จแล้ว เรามาจัดการที่ไฟล์ HTML ก่อนที่จะติดตั้งเข้าไปใช้งานใน Node-RED เราสามารถเขียนส่วนแรกที่เป็นส่วน JavaScript ได้โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":1997,"width":520,"height":501,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/03/carbon-3.png" alt="" class="wp-image-1997" /><figcaption>ส่วนแรกของไฟล์ HTML ครับ</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-3.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ส่วนแรกของไฟล์ HTML ครับ</figcaption></figure>
 <p>คำสั่ง RED.nodes.registerType เป็นการกำหนดว่า node ที่เราสร้างขึ้นมีการตั้งค่าเป็นอย่างไร การตั้งค่าที่ปรากฏบนนั้นก็บอกรายละเอียดได้ตามด้านล่างนี้</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>category เป็นหมวดหมู่ของ node ที่เราสร้างขึ้นว่าอยู่ในหมวดไหน ตามที่เขียนไว้ข้างบนก็อยู่ในหมวด function </li><li>color ก็เป็นสีแบคกราวน์ที่จะให้ปรากฏในหน้าการใส่เข้าไปใน flow ใน Node-RED </li><li>defaults เป็นการตั้งค่าเริ่มต้นให้กับตัวแปรที่เราต้องการให้กรอกข้อมูลเข้าไปใน node ที่เราสร้างขึ้น ในที่นี่ค่าเริ่มต้นของตัวแปร name คือค่าว่าง ๆ ไม่มีข้อความอะไร</li><li>inputs บอกจำนวนข้อมูลที่ส่งเข้ามาใน node ที่เราสร้างขึ้น เรากำหนดข้อมูลที่เข้าได้ระหว่าง 0 ก็คือไม่มีข้อมูลที่เข้ามาใน node  นั้น และ 1 มีข้อมูลเข้ามาใน node เพียงอันเดียว</li><li>outputs บอกจำนวนข้อมูลที่ออกจาก node ที่สร้างขึ้น จะกำหนดตั้งแต่ 0 ไปจนถึงไม่จำกัด ขึ้นกับคนฮะ</li><li>icon เป็นไฟล์ภาพที่เราต้องการแสดงใน node ที่เราต้องการ</li><li>label เป็นข้อมูลที่เราต้องการให้แสดงบน node ใน flow ที่เราได้ใส่ขึ้นไป</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-<p>สำหรับรายละเอียดเพิ่มเติมอ่านต่อได้ใน<a href="https://nodered.org/docs/creating-nodes/node-html" target="_blank" rel="noreferrer noopener" title="https://nodered.org/docs/creating-nodes/node-html">เว็บของ Node-RED</a> เอง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<ul>
+<li>category เป็นหมวดหมู่ของ node ที่เราสร้างขึ้นว่าอยู่ในหมวดไหน ตามที่เขียนไว้ข้างบนก็อยู่ในหมวด function</li>
+<li>color ก็เป็นสีแบคกราวน์ที่จะให้ปรากฏในหน้าการใส่เข้าไปใน flow ใน Node-RED</li>
+<li>defaults เป็นการตั้งค่าเริ่มต้นให้กับตัวแปรที่เราต้องการให้กรอกข้อมูลเข้าไปใน node ที่เราสร้างขึ้น ในที่นี่ค่าเริ่มต้นของตัวแปร name คือค่าว่าง ๆ ไม่มีข้อความอะไร</li>
+<li>inputs บอกจำนวนข้อมูลที่ส่งเข้ามาใน node ที่เราสร้างขึ้น เรากำหนดข้อมูลที่เข้าได้ระหว่าง 0 ก็คือไม่มีข้อมูลที่เข้ามาใน node &nbsp;นั้น และ 1 มีข้อมูลเข้ามาใน node เพียงอันเดียว</li>
+<li>outputs บอกจำนวนข้อมูลที่ออกจาก node ที่สร้างขึ้น จะกำหนดตั้งแต่ 0 ไปจนถึงไม่จำกัด ขึ้นกับคนฮะ</li>
+<li>icon เป็นไฟล์ภาพที่เราต้องการแสดงใน node ที่เราต้องการ</li>
+<li>label เป็นข้อมูลที่เราต้องการให้แสดงบน node ใน flow ที่เราได้ใส่ขึ้นไป</li>
+</ul>
+<p>สำหรับรายละเอียดเพิ่มเติมอ่านต่อได้ใน<a href="https://nodered.org/docs/creating-nodes/node-html" rel="noreferrer noopener">เว็บของ Node-RED</a> เอง</p>
 <p>ต่อมาเป็นส่วน HTML ที่ต่อมาจากแท็ก &lt;script&gt; เขียนได้โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1998,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://asset.nickuntitled.com/2021/03/carbon-5.png" alt="" class="wp-image-1998" /><figcaption>พาร์ทที่สอง</figcaption></figure>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-5.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>พาร์ทที่สอง</figcaption></figure>
 <p>ตัวโค้ดข้างบนจะกำหนดที่เราต้องการในหน้าแก้ไขของ node ที่เราสร้างขึ้น ส่วนด้านล่างจะกำหนดข้อความที่เราต้องการแสดงในหน้าที่แสดงข้อมูลของ node นั้น ๆ ว่าทำงานอย่างไร</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"id":1999,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="https://asset.nickuntitled.com/2021/03/carbon-6.png" alt="" class="wp-image-1999" /><figcaption>พาร์ทที่สาม</figcaption></figure>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>สำหรับรายละเอียดเพิ่มเติมอ่านต่อได้ใน<a href="https://nodered.org/docs/creating-nodes/node-html" target="_blank" rel="noreferrer noopener">เว็บของ Node-RED</a> เองเช่นเดียวกัน (หน้าเดียวกันกับลิ้งค์ก่อนหน้าครับ)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-6.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>พาร์ทที่สาม</figcaption></figure>
+<p>สำหรับรายละเอียดเพิ่มเติมอ่านต่อได้ใน<a href="https://nodered.org/docs/creating-nodes/node-html" rel="noreferrer noopener">เว็บของ Node-RED</a> เองเช่นเดียวกัน (หน้าเดียวกันกับลิ้งค์ก่อนหน้าครับ)</p>
 <p>พอเขียนเสร็จทั้งหมดแล้ว เราติดตั้งตัวแพคเกจได้โดยพิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2000,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/03/carbon-7.png" alt="" class="wp-image-2000" /><figcaption>การติดตั้งแพคเกจ</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-7.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>การติดตั้งแพคเกจ</figcaption></figure>
 <p>เมื่อติดตั้งเสร็จแล้ว เราสามารถใช้งานได้เลย หรือกรณีที่เราเปิด Node-RED ไว้อยู่ เราสามารถนำเข้าแพคเกจได้โดยไม่ต้องปิด Node-RED เพียงแค่พิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2001,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/03/carbon-8.png" alt="" class="wp-image-2001" /><figcaption>การแพคแพคเกจเป็นไฟล์ tgz</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-8.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>การแพคแพคเกจเป็นไฟล์ tgz</figcaption></figure>
 <p>ตัวโปรแกรมจะแพคไฟล์ที่เราพัฒนา node ขึ้นมาเป็นไฟล์ tgz แล้วเราเปิดหน้าเว็บไปยังหน้า Node-RED เพียงพิมพ์ที่อยู่</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2002,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/03/carbon-9.png" alt="" class="wp-image-2002" /><figcaption>ที่อยู๋หน้าเว็บที่เราเปิดเข้าไปจัดการใน Node-RED</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>จะขึ้นหน้า Node-RED นำเข้าแพคเกจได้โดยเลือกที่ Manage palette แล้วเลือก Install กดปุ่ม Upload module tgz file บริเวณข้างปุ่ม sort จะขึ้นที่อยู่ไฟล์ เราเลือกไฟล์นั้น โปรแกรมจะอัพโหลดไฟล์เพื่อติดตั้ง หลังจากนั้นก็ใช้งานได้แล้ว (แต่ถ้าใช้ไม่ได้ ก็รีสตาร์ทตัว Node-RED จะพบความเปลี่ยนแปลงครับผม) สำหรับวิธีการติดตั้งอย่างละเอียด ไปตามได้ใน<a href="https://nodered.org/docs/user-guide/runtime/adding-nodes" target="_blank" rel="noreferrer noopener" title="https://nodered.org/docs/user-guide/runtime/adding-nodes">ลิ้งค์ของ Node-RED</a> เองครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เอาล่ะครับ อันนี้เป็นตัวอย่างการสร้าง Node ขึ้นมาใช้เอง โค้ดในบทความเอามาจากเว็บ Node-RED เอง แต่สำหรับผู้อ่านที่ต้องการอ่านข้อมูลเพิ่มเติม <a href="https://nodered.org/docs/creating-nodes/" target="_blank" rel="noreferrer noopener" title="https://nodered.org/docs/creating-nodes/">เว็บของผู้ผลิตอย่าง Node-RED เอง</a>จะพูดถึงการเขียนอย่างละเอียด (ระดับนึง) เพื่อให้ผู้อ่านสร้าง Node ไปใช้งานต่อได้เองครับผม</p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">flow</span>
-			
-				<span class="post-tag">flow-based</span>
-			
-				<span class="post-tag">internet of things</span>
-			
-				<span class="post-tag">IoT</span>
-			
-				<span class="post-tag">javascript</span>
-			
-				<span class="post-tag">node-red</span>
-			
-				<span class="post-tag">Node.js</span>
-			
-				<span class="post-tag">programming</span>
-			
-				<span class="post-tag">raspberry pi</span>
-			
-				<span class="post-tag">จาวาสคริป</span>
-			
-				<span class="post-tag">อินเทอร์เน็ตของสรรพสิ่ง</span>
-			
-				<span class="post-tag">อิเล็กทรอนิกส์</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/03/20/update-asus-vivobook-x512-harddisk-1tb/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								นำโน้ตบุ๊ค ASUS Vivobook ไปเพิ่ม Harddisk เป็น SSD 1TB
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/04/02/power-supply-wattage-calculation/">
-							<span class = 'mr-1'>
-								Power Supply Wattage Calculation &#8211; การคำนวณวัตต์ที่ต้องการ
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/03/carbon-9.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ที่อยู๋หน้าเว็บที่เราเปิดเข้าไปจัดการใน Node-RED</figcaption></figure>
+<p>จะขึ้นหน้า Node-RED นำเข้าแพคเกจได้โดยเลือกที่ Manage palette แล้วเลือก Install กดปุ่ม Upload module tgz file บริเวณข้างปุ่ม sort จะขึ้นที่อยู่ไฟล์ เราเลือกไฟล์นั้น โปรแกรมจะอัพโหลดไฟล์เพื่อติดตั้ง หลังจากนั้นก็ใช้งานได้แล้ว (แต่ถ้าใช้ไม่ได้ ก็รีสตาร์ทตัว Node-RED จะพบความเปลี่ยนแปลงครับผม) สำหรับวิธีการติดตั้งอย่างละเอียด ไปตามได้ใน<a href="https://nodered.org/docs/user-guide/runtime/adding-nodes" rel="noreferrer noopener">ลิ้งค์ของ Node-RED</a> เองครับ</p>
+<p>เอาล่ะครับ อันนี้เป็นตัวอย่างการสร้าง Node ขึ้นมาใช้เอง โค้ดในบทความเอามาจากเว็บ Node-RED เอง แต่สำหรับผู้อ่านที่ต้องการอ่านข้อมูลเพิ่มเติม <a href="https://nodered.org/docs/creating-nodes/" rel="noreferrer noopener">เว็บของผู้ผลิตอย่าง Node-RED เอง</a>จะพูดถึงการเขียนอย่างละเอียด (ระดับนึง) เพื่อให้ผู้อ่านสร้าง Node ไปใช้งานต่อได้เองครับผม</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#25 - Blockchain + CBDC ที่จะใช้ใน Digital Wallet</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#25 - Blockchain + CBDC ที่จะใช้ใน Digital Wallet" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/04/23/25-blockchain-and-cbdc-that-uses-for-digital-wallet/" />
+<meta property="og:url" content="http://localhost:4000/2024/04/23/25-blockchain-and-cbdc-that-uses-for-digital-wallet/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/25_blockchain_and_CBDC_for_Pheu_Thai_Digital_Wallet.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-04-23T11:21:04+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/25_blockchain_and_CBDC_for_Pheu_Thai_Digital_Wallet.jpg" />
+<meta property="twitter:title" content="#25 - Blockchain + CBDC ที่จะใช้ใน Digital Wallet" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-04-29T14:41:49+07:00","datePublished":"2024-04-23T11:21:04+07:00","description":"None","headline":"#25 - Blockchain + CBDC ที่จะใช้ใน Digital Wallet","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/25_blockchain_and_CBDC_for_Pheu_Thai_Digital_Wallet.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/04/23/25-blockchain-and-cbdc-that-uses-for-digital-wallet/"},"url":"http://localhost:4000/2024/04/23/25-blockchain-and-cbdc-that-uses-for-digital-wallet/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#25 - Blockchain + CBDC ที่จะใช้ใน Digital Wallet</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-04-23 11:21:04 +0700">2024-04-23</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/25_blockchain_and_CBDC_for_Pheu_Thai_Digital_Wallet.jpg' />
+  </figure>
+  
+
+  <p>วันก่อนที่รัฐบาลเพื่อไทยประกาศถึง Digital Wallet ที่จะแจกจ่ายด้วยจำนวนเงิน 10,000 บาทให้แก่ประชาชนผ่านระบบ Blockchain</p>
+
+<p>พอเราฟังแล้ว เราเลยค้นหาข้อมูล (รวมถึงจากเปเปอร์) เรื่องที่เกี่ยวข้อง ได้แก่ Blockchain และเหรียญสกุลเงินดิจิทัล CBDC (Central Bank Digital Currency) แล้วได้รายละเอียดแบบคร่าว ๆ ตามด้านล่างนี้</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">สารบัญ</h2>
+
+<ul class="wp-block-list">
+<li><a href="#blockchain" data-type="internal" data-id="#blockchain">Blockchain</a>
+<ul class="wp-block-list">
+<li><a href="#background-blockchain" data-type="internal" data-id="#background-blockchain">ที่มาของ Blockchain</a></li>
+
+
+
+<li><a href="#type-blockchain" data-type="internal" data-id="#type-blockchain">ชนิดของ Blockchain</a></li>
+
+
+
+<li><a href="#process-blockchain" data-type="internal" data-id="#process-blockchain">ขั้นตอนการทำงานของ Blockchain</a></li>
+
+
+
+<li><a href="#coding-blockchain" data-type="internal" data-id="#coding-blockchain">เขียนโค้ด</a></li>
+
+
+
+<li><a href="#merkel-tree" data-type="internal" data-id="#merkel-tree">Merkel Tree</a></li>
+
+
+
+<li><a href="#property-blockchain" data-type="internal" data-id="#property-blockchain">คุณสมบัติของ Blockchain</a></li>
+
+
+
+<li><a href="#observation-blockchain" data-type="internal" data-id="#observation-blockchain">ข้อสังเกต</a></li>
+</ul>
+</li>
+
+
+
+<li><a href="#cbdc" data-type="internal" data-id="#cbdc">Central Bank Digital Currency</a>
+<ul class="wp-block-list">
+<li><a href="#background-cbdc" data-type="internal" data-id="#background-cbdc">ที่มา CBDC</a></li>
+
+
+
+<li><a href="#type-cbdc" data-type="internal" data-id="#type-cbdc">ประเภทของเหรียญ CBDC</a></li>
+
+
+
+<li><a href="#design-requirement-cbdc" data-type="internal" data-id="#design-requirement-cbdc">การออกแบบเหรียญ CBDC</a></li>
+
+
+
+<li><a href="#example-cbdc" data-type="internal" data-id="#example-cbdc">ตัวอย่างเหรียญ CBDC</a></li>
+
+
+
+<li><a href="#advantage-cbdc" data-type="internal" data-id="#advantage-cbdc">ข้อดี</a></li>
+
+
+
+<li><a href="#observation-cbdc" data-type="internal" data-id="#observation-cbdc">ข้อสังเกต</a></li>
+</ul>
+</li>
+
+
+
+<li><a href="#smart-contract" data-type="internal" data-id="#smart-contract">Smart Contract</a></li>
+
+
+
+<li><a href="#reference" data-type="internal" data-id="#reference">ข้อมูลอ้างอิง</a></li>
+</ul>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="blockchain">Blockchain</h2>
+
+<p><strong>Blockchain</strong> [1-3] เป็นชนิดการเก็บข้อมูลกระจายศูนย์ (Distributed Ledger Technology หรือ DLT) แบบ Chain-based data structure ที่มีข้อมูลที่เข้ารหัสในนั้น โดยข้อมูลที่นำมาเชื่อมต่อกันจะเรียงลำดับตามวัน และเวลาที่ประทับลงไป (Timestamp) ส่งผลให้ข้อมูลนั้นไม่สามารถเข้าไปแก้ไข และดัดแปลงได้</p>
+
+<h3 class="wp-block-heading" id="background-blockchain">ที่มาของ Blockchain</h3>
+
+<p>จุดเริ่มต้นของ Blockchain นั้นเรื่องมันยาว แต่เอาว่าจุดเริ่มต้นแรก ๆ มาจากตัวเปเปอร์ <a href="https://link.springer.com/article/10.1007/BF00196791" data-type="link" data-id="https://link.springer.com/article/10.1007/BF00196791" target="_blank" rel="noreferrer noopener">How to Time-Stamp a Digital Document</a> และ <a href="https://ieeexplore.ieee.org/document/1055638" data-type="link" data-id="https://ieeexplore.ieee.org/document/1055638" target="_blank" rel="noreferrer noopener">New Directions to Cryptography</a> ที่กล่าวถึงการทำ Timestamp (การประทับเวลา) กับการเข้ารหัสตามลำดับ</p>
+
+<p>จากเปเปอร์ทั้งสองอันที่กล่าวตามข้างบนนี้ ทำให้มีผู้พัฒนาเหรียญดิจิทัลแรก ๆ ก็เป็น <strong>Hashcash</strong> [4] ที่เดิมนำมาใช้ป้องกัน Spam E-mail กับป้องกัน Distributed Denial-of-Service (DDoS) แต่คราวนี้ผู้พัฒนานำมาต่อยอดสำหรับการคำนวณ Token สำหรับการทำ <a href="https://en.wikipedia.org/wiki/Proof_of_work" data-type="link" data-id="https://en.wikipedia.org/wiki/Proof_of_work" target="_blank" rel="noreferrer noopener">Proof-of-work</a> โดยใช้ฟังก์ชันอย่าง</p>
+
+<ul class="wp-block-list">
+<li><strong>MINT(x)</strong> เป็นฟังก์ชันสำหรับการเข้ารหัสด้วย Hash function โดยฟังก์ชันนี้มีที่มาจากการทำ Minting เงินขึ้นมา</li>
+
+
+
+<li><strong>VALUE(x)</strong> เป็นฟังก์ชันสำหรับการประเมิน Token ที่สร้างขึ้นโดยฟังก์ชันนี้จะผ่านก็ต่อเมื่อ Token ที่สร้างขึ้นมานั้นมีค่าตามที่ต้องการ ตัวอย่างเช่น ค่า 0 ที่บ่งบอกถึงความปลอดภัยที่มากขึ้นในกรณีที่มีค่า 0 ติดต่อกันหลายหลัก เนื่องมาจากการโจมตีนี้จำเป็นต้องใช้คอมพิวเตอร์ที่มีประสิทธิภาพสูงมาก (High Computational Complexity)</li>
+</ul>
+
+<p>หลักการ Proof-of-work ที่ใช้งานใน Hashcash นั้นเป็นที่มาของการสร้างเหรียญ Cryptocurrency เหรียญแรกขึ้นมา นั่นคือ <strong>Bitcoin</strong> [5]</p>
+
+<p>Bitcoin นี้ได้รับการนำเสนอโดย Satoshi Nakamoto ในเปเปอร์ <a href="https://bitcoin.org/en/bitcoin-paper" data-type="link" data-id="https://bitcoin.org/en/bitcoin-paper" target="_blank" rel="noreferrer noopener">Bitcoin: A Peer-to-peer Electronic Cash System</a> ที่เป็นการนำเสนอ Data-structure ที่เป็น Blockchain ที่เก็บธุรกรรมแบบเข้ารหัส Hash ไว้ ร่วมกับนำเสนอวิธีการเข้ารหัส และเก็บข้อมูลการทำธุรกรรมโดยใช้ Markel Tree</p>
+
+<p>หลังจากที่มีคนเสนอ Bitcoin แล้ว มีผู้พัฒนา พัฒนาเหรียญ Cryptocurrency ใหม่ภายใต้ชื่อ <strong>Ethereum</strong> [6] ที่นำเสนอการโปรแกรมเหรียญผ่าน <strong>Smart Contract</strong> ที่เป็นพื้นฐานการพัฒนาโปรแกรมอย่าง Decentralized app (Dapp)</p>
+
+<p>ภายหลังจากการพัฒนา Bitcoin และ Ethereum ก็มีผู้พัฒนา พัฒนาเหรียญต่าง ๆ ออกมา โดยเหรียญเหล่านี้อยู่ในกลุ่มที่เรียกว่า Altcoins</p>
+
+<h3 class="wp-block-heading" id="type-blockchain">ชนิดของ Blockchain</h3>
+
+<p>Blockchain แบ่งออกได้เป็น 3 ประเภท ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Public</strong> (หรือ Permissionless Blockchain)</li>
+
+
+
+<li><strong>Private</strong> (หรือ Permissioned Blockchain)</li>
+
+
+
+<li>และ <strong>Hybrid</strong> (หรือ Consortium Blockchain)</li>
+</ul>
+
+<h4 class="wp-block-heading">Public Chain</h4>
+
+<p><strong>Public Chain</strong> เป็น Blockchain ที่มีลักษณะเป็นไร้ศูนย์กลาง (Decentralized) ที่ใคร ๆ ก็เอาคอมพิวเตอร์เป็นโหนด (Node) สำหรับการร่วมอ่าน เขียน ตรวจสอบ โหวต แล้วได้รับรางวัลเป็นแรงจูงใจสำหรับการขุด (Incentive)</p>
+
+<p>ตัวอย่างของเหรียญที่จัดในหมวดนี้คือ Bitcoin กับ Ethereum</p>
+
+<h4 class="wp-block-heading">Private Chain</h4>
+
+<p><strong>Private Chain</strong> เป็น Blockchain ที่มีศูนย์กลาง (Centralized) ที่ควบคุมโดยหน่วยงาน บุคคล บริษัทแห่งใดแห่งหนึ่ง ถึงสิทธิ์การเข้าร่วมอ่าน เขียน ตรวจสอบ และโหวตภายใน Blockchain ที่จำกัดการเข้าถึงเฉพาะหน่วยงานนั้น ๆ</p>
+
+<p>อย่างไรก็ดีหน่วยงานนั้นอาจจะเปิดให้ผู้ใช้จากหน่วยงานภายนอกบางแห่งเข้ามาดูข้อมูลใน Blockchain ได้บางส่วนเพื่อที่จะ Audit ข้อมูล</p>
+
+<h4 class="wp-block-heading">Hybrid Chain</h4>
+
+<p><strong>Hybrid Chain</strong> เป็น Blockchain ที่อยู่ระหว่าง Public กับ Private Chain ที่ทางหน่วยงานเจ้าของ Blockchain นั้นเปิดให้ผู้ใช้ภายนอกเข้ามาดู Blockchain ได้ แต่ไม่ได้เปิดให้ผู้ใช้ทุกรายเข้าร่วมเขียน ตรวจสอบ และโหวตมีหน่วยงาน หรือผู้ใช้บางรายเท่านั้นที่ทำได้</p>
+
+<h3 class="wp-block-heading" id="process-blockchain">หลักการทำงาน</h3>
+
+<p>หลักการทำงานพื้นฐานของบล็อกเชนแบบออกได้เป็น 5 ขั้นตอน</p>
+
+<ol class="wp-block-list">
+<li>ก่อนอื่นเราต้องมี Block แรกสุด (Genesis Block) เสียก่อน สำหรับการเป็นพื้นฐานให้กับ Block ที่จะเพิ่มเข้ามาเพื่อที่จะทำเป็น Blockchain</li>
+
+
+
+<li>เมื่อที่เกิดการทำธุรกรรม (Transaction) เกิดขึ้น ระบบจะสร้างข้อมูลขึ้น โดยตัวอย่างข้อมูล Transaction ที่สร้างขึ้นก็มี
+<ul class="wp-block-list">
+<li>ลำดับที่ Block (Block index)</li>
+
+
+
+<li>Timestamp</li>
+
+
+
+<li>รหัส Hash ของ Block ก่อนหน้า (Previous Hash)</li>
+
+
+
+<li>และข้อมูลที่เราต้องการใส่ (ตัวอย่างของ Bitcoin ก็เป็น Nonce (Number use only once) ที่เป็นข้อมูลตัวเลขที่เป็น 32-bit (4 byte) แบบสุ่ม และข้อมูล Transaction*)</li>
+</ul>
+</li>
+
+
+
+<li>เมื่อสร้างข้อมูลขึ้นมาแล้ว ข้อมูลนั้นจะได้รับการเข้ารหัส Hash อย่าง SHA-256 แล้วจะได้รับการประกาศไปทุกโหนดเพื่อที่จะให้แต่ละโหนดตรวจสอบความถูกต้องของ Transaction โดย Bitcoin จะได้เทคนิค Proof-of-work เพื่อดูว่ามีรหัส Hash ตรงตามที่ต้องการหรือไม่</li>
+
+
+
+<li>เมื่อแต่ละโหนดตรวจสอบแล้วโหนดส่วนใหญ่พบว่า Transaction นั้นถูกต้อง ระบบจะนำข้อมูลที่สร้างขึ้นในขั้นตอนที่ 2 รวมถึง Hash ในขั้นตอนที่ 3 มาสร้างเป็น Block ใหม่ โดยอ้างอิงกับ Block ก่อนหน้านั้น</li>
+
+
+
+<li>ทำไปเรื่อย ๆ จนเกิดเป็นสาย Blockchain</li>
+</ol>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="154" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/bitcoin_blockchain.png" alt="" class="wp-image-6612" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/bitcoin_blockchain-300x80.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/bitcoin_blockchain.png 750w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ตัวอย่างของข้อมูลในแต่ละ Block ที่ใช้ใน Bitcoin (Prev Hash คือ Hash ของ Block ก่อนหน้า, Tx คือ Transaction และ Nonce ที่ได้กล่าวไปแล้วในขั้นตอนที่ 2) (ภาพจากเปเปอร์ <a href="https://bitcoin.org/bitcoin.pdf" data-type="link" data-id="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noreferrer noopener">Bitcoin: A Peer-to-Peer Electronic Cash System</a>)</figcaption></figure></div>
+
+<p>เราสามารถเขียนโค้ด Python เพื่อสร้าง Blockchain แบบง่าย โดยที่ใช้เพียงโหนดเดียวได้ตามด้านล่างนี้</p>
+
+<h3 class="wp-block-heading" id="coding-blockchain">เขียนโค้ด</h3>
+
+<p>ก่อนอื่น เราต้องนำเข้าไลบรารีสำหรับการเข้ารหัส และการลงวันที่และเวลาสำหรับการทำ Timestamp</p>
+
+<pre class="wp-block-code"><code>import hashlib, datetime</code></pre>
+
+<p>ต่อมาสร้าง Class สำหรับการสร้าง Block ขึ้นมาใช้งานใน Blockchain</p>
+
+<pre class="wp-block-code"><code>class Block:
+    def __init__(self, index, timestamp, data, previous_hash):
+        self.index = index
+        self.data = {
+            "timestamp": timestamp,
+            "data": data,
+            "previous_hash": previous_hash
+        }
+
+        self.hash = self.calculate_hash()
+        self.prev = None
+
+    def calculate_hash(self):
+        hash_string = str(self.index)
+
+        for data in self.data.values():
+            hash_string += str(data)
+
+        return hashlib.sha256(hash_string.encode()) \ 
+                      .hexdigest()</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li>ฟังก์ชัน <strong>hashlib.sha256</strong> เป็นฟังก์ชันสำหรับการเข้ารหัสข้อความให้อยู่ในรูป SHA-256</li>
+
+
+
+<li>ฟังก์ชัน <strong>hexdigest</strong> เป็นฟังก์ชันสำหรับการแสดงออกข้อมูลให้อยู่ในรูป String</li>
+</ul>
+
+<p>จากนั้น เราสร้าง Class สำหรับการสร้าง กับตรวจสอบ Blockchain รวมถึงแสดงผลข้อมูลข้างใน Blockchain ที่สร้างขึ้น ในตัวอย่างนี้เราจะใช้โครงสร้างข้อมูลแบบ Linked List โดยอ้างอิงกับข้อมูลก่อนหน้านั้น</p>
+
+<pre class="wp-block-code"><code>class Blockchain:
+    # Start with Genesis Block
+    def __init__(self):
+        self.chain = Block(0, datetime.datetime.now(), \
+                           "Genesis", "0")
+
+    # Add the block to the latest
+    def add_block(self, value):
+        block = Block(self.chain.index + 1, \
+                      datetime.datetime.now(), value, \
+                      self.chain.hash)
+        block.prev = self.chain
+        self.chain = block
+
+    def output(self, block):
+        print("index", block.index)
+        print("Hash", block.hash)
+
+        for k,v in block.data.items():
+            print(f"{ k }: { v }")
+
+        print("=============")
+
+    def display(self):
+        block = self.chain
+        while block.prev is not None:
+            self.output(block)
+            block = block.prev
+
+        self.output(block)
+
+    def isvalid(self):
+        if self.chain.prev is None:
+            return True
+
+        block = self.chain
+        while block.prev is not None:
+            previous = block.prev
+
+            if block.hash != block.calculate_hash():
+                return False
+
+            if block.data&#91;'previous_hash'] != previous.hash:
+                return False
+
+            block = block.prev
+
+        return True</code></pre>
+
+<p>เมื่อสร้าง Class เสร็จแล้ว ให้ทดลองเขียนโค้ดสำหรับการเพิ่มข้อมูลเข้าไปใน Blockchain ครับ</p>
+
+<pre class="wp-block-code"><code>blockchain = Blockchain()
+blockchain.add_block("Transaction 1")
+blockchain.add_block("Transaction 2")
+blockchain.add_block("Transaction 3")</code></pre>
+
+<p>จากนั้น เขียนโค้ดสำหรับการแสดงผล</p>
+
+<pre class="wp-block-code"><code>blockchain.display()</code></pre>
+
+<p>ผลลัพธ์ที่ได้จะแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>index 3
+Hash 4cb806c8994d15bbc48f028a3cd02fc9c2a0332d52bf504eb0830c7c2d1bf1dc
+timestamp: 2024-04-20 11:19:07.650991
+data: Transaction 3
+previous_hash: 4e36eb1459bd0d5b7cefdd096e4e5ffe1e4dd5885b50086c79cb48cc91a33d0a
+=============
+index 2
+Hash 4e36eb1459bd0d5b7cefdd096e4e5ffe1e4dd5885b50086c79cb48cc91a33d0a
+timestamp: 2024-04-20 11:19:07.650935
+data: Transaction 2
+previous_hash: 0380d1be543800dfd97cfd0e8f68f6585fa3dffe2ff08853626ec70b8222f2d5
+=============
+index 1
+Hash 0380d1be543800dfd97cfd0e8f68f6585fa3dffe2ff08853626ec70b8222f2d5
+timestamp: 2024-04-20 11:19:07.650893
+data: Transaction 1
+previous_hash: aae1d58e7c6d044d1c7aa4a56d444688740ff5b5e32399094d5230637e77f77a
+=============
+index 0
+Hash aae1d58e7c6d044d1c7aa4a56d444688740ff5b5e32399094d5230637e77f77a
+timestamp: 2024-04-20 11:19:07.650819
+data: Genesis
+previous_hash: 0
+=============</code></pre>
+
+<p><strong>*หมายเหตุ</strong></p>
+
+<p>รายละเอียด Transaction ใน Bitcoin นั้น ถ้าเราเก็บข้อมูล Transaction ทั้งหมดจะทำให้ข้อมูลมีขนาดใหญ่มาก ราวหลายร้อย GB ไปจนถึง TB ส่งผลให้การตรวจสอบ Transaction ใช้ระยะเวลานาน</p>
+
+<p>ผู้พัฒนาจึงใช้ Data structure อย่าง Merkel Tree มาจัดการเรื่องนี้</p>
+
+<h3 class="wp-block-heading" id="merkel-tree">Merkel Tree</h3>
+
+<p><strong>Merkel Tree</strong> [5] เป็น Hash-based data structure ที่มีลักษณะการเก้บข้อมูลคล้ายกันกับ Binary Tree โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>Leaf node</strong> เก็บข้อมูล Transaction แต่ละ Transaction ที่ได้รับการเข้ารหัส Hash</li>
+
+
+
+<li><strong>Node ระดับที่เหนือกว่านั้น</strong> จะนำข้อมูลที่ได้จากการเข้ารหัส Hash ของข้อมูลระดับที่ต่ำกว่ามาประกอบกัน</li>
+
+
+
+<li>สร้าง Node ไล่ขึ้นไปในแต่ละระดับจนถึง <strong>Root Node</strong> โดยค่าที่ได้ใน Root Node จะเก็บค่า Hash ที่เป็นตัวแทนของค่า Hash ของทุก Transaction</li>
+</ul>
+
+<p>การเก็บข้อมูลในลักษณะนี้ทำให้โหนดแต่ละโหนดสามารถตรวจสอบ Transaction ได้โดยการตรวจสอบค่า Hash ของ Root Node เท่านั้น เราไม่จำเป็นต้องไปตรวจสอบทุก Transaction</p>
+
+<p>แถมอีกอย่าง เราสามารถตัดข้อมูลบางส่วน (Pruning) ออกจาก Merkel Tree ได้ ส่งผลให้่เราประหยัดพื้นที่มากกว่าเดิม</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/bitcoin_merkel_tree.png" alt="" class="wp-image-6618" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/bitcoin_merkel_tree-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/bitcoin_merkel_tree-768x432.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/bitcoin_merkel_tree.png 941w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Merkel Tree ที่นำมาใช้งานในแต่ละ Block (ภาพจากเปเปอร์ <a href="https://bitcoin.org/bitcoin.pdf" data-type="link" data-id="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noreferrer noopener">Bitcoin: A Peer-to-Peer Electronic Cash System</a>)</figcaption></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="320" height="208" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/320px-Binary_tree_simplified.png" alt="" class="wp-image-6753" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/320px-Binary_tree_simplified-300x195.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/320px-Binary_tree_simplified.png 320w" sizes="auto, (max-width: 320px) 100vw, 320px" /><figcaption class="wp-element-caption">Binary Tree (จาก <a href="https://commons.wikimedia.org/wiki/File:Binary_tree_simplified.svg">Wikimedia Commons</a>)</figcaption></figure></div>
+
+<h3 class="wp-block-heading" id="property-blockchain">คุณลักษณะของ Blockchain</h3>
+
+<p>ตัว Blockchain [3] นั้นมีคุณลักษณะที่ทำงานได้โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>ไม่จำเป็นต้องมีศูนย์กลาง (Decentralization)</strong> ตามพื้นฐานของ Blockchain ที่ข้อมูลของ Block จะกระจายไปตามแต่ละโหนดในเครือข่ายนั้น ๆ </li>
+
+
+
+<li><strong>ไม่ไว้วางใจ (Detrusting)</strong> ตามพื้นฐานของ Blockchain ที่ไม่จำเป็นต้องให้โหนดแต่ละโหนดที่เข้าร่วมในเครือข่ายเดียวกันไว้วางไว้ โดยแต่ละโหนดจะตรวจสอบการทำ Transaction นั้น ๆ แล้วจะใช้เทคนิคการเข้ารหัสข้อมูล และการตรวจสอบโดยส่วนใหญ่ว่า Transaction นั้นถูกต้องหรือไม่</li>
+
+
+
+<li><strong>โปร่งใส (Transparency)</strong> โดยในแต่ละโหนดของ Blockchain นั้นจะแชร์ข้อมูล Transaction เพื่อที่จะให้แต่ละโหนดทราบ และให้แต่ละโหนดมีข้อมูลเป็นแบบเดียวกันหมด (Consistent)</li>
+
+
+
+<li><strong>ติดตามได้ และลืม Transaction นั้นไม่ได้ (Traceable and Unforgeable)</strong> โดย
+<ul class="wp-block-list">
+<li>ตัว Blockchain จะใช้เทคนิคการทำ Timestamp เพื่อลงวันที่และเวลาไว้ในแต่ละ Transaction เพื่อยืนยันว่าเป็นข้อมูลที่ถูกต้อง และเป็นต้นฉบับ</li>
+
+
+
+<li>และตัว Blockchain จะไม่อนุญาตให้เปลี่ยนแปลงข้อมูลเมื่อ Transaction นั้นได้รับการตรวจสอบว่าถูกต้อง กับได้รับการเพิ่ม Block เข้าไปใน Blockchain เรียบร้อยแล้ว</li>
+
+
+
+<li>ส่งผลให้ป้องกันการเกิดธุรกรรมซ้ำซ้อน (Double Spending) และป้องกันการโจมตีของ Hacker ที่ถึงแม้ว่าจะมีคอมพิวเตอร์ที่มีประสิทธิภาพสูง (ยกเว้นแต่ Hacker จะครอบครองโหนด 51% จากทั้งหมด ซึ่งเป็นไปได้ยาก)</li>
+</ul>
+</li>
+</ul>
+
+<h3 class="wp-block-heading" id="observation-blockchain"><strong>ข้อสังเกต</strong></h3>
+
+<p>จากการสังเกตโครงสร้างของตัว Blockchain แล้ว เราจะพบว่ามันคล้ายกับ <strong>Linked List</strong> [7]</p>
+
+<p><strong>Linked List</strong> เป็นโครงสร้างข้อมูลพื้นฐานที่ใช้งานในงานทางด้าน Computer Science ที่ประกอบไปด้วย Block ที่มี</p>
+
+<ul class="wp-block-list">
+<li>ข้อมูล (Data)</li>
+
+
+
+<li>และการอ้างอิง (Reference) ตามตำแหน่งที่เก็บไว้ในหน่วยความจำ (Address) ของข้อมูลถัดไป (Next) หรือก่อนหน้า (Prev)</li>
+</ul>
+
+<p>การเก็บข้อมูลในลักษณะนี้เป็นการเก็บข้อมูลแบบ Dynamic Memory Allocation ที่เราสามารถเพิ่ม แทรกกับลบ Block ได้</p>
+
+<p>อย่างไรก็ดี การเก็บข้อมูลลักษณะนี้มีข้อเสียเรื่องการค้นหา และเข้าถึงข้อมูลที่ทำได้ช้า เนื่องจากต้องค้นหาข้อมูลโดยการใช้ Linear Search</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="249" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/image.png" alt="" class="wp-image-6627" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/image-300x129.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/image.png 673w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ภาพ Linked List ที่ประกอบไปด้วย Data กับ Next ที่เป็น Reference ที่อ้างอิงถึงตำแหน่งข้อมูลที่อยู่ถัดจากข้อมูลปัจจุบัน (ภาพจาก <a href="https://commons.wikimedia.org/wiki/File:C_language_linked_list_adding_a_link_step_1.png" data-type="link" data-id="https://commons.wikimedia.org/wiki/File:C_language_linked_list_adding_a_link_step_1.png" target="_blank" rel="noreferrer noopener">Wikimedia Commons</a>)</figcaption></figure></div>
+
+<p>นอกจากตัวโครงสร้างที่คล้ายกันกับ Blockchain แล้ว ตัว Blockchain [3] จะมีข้อสังเกตอื่น ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>การออกแบบขั้นตอนการเช็คความถูกต้องจากโหนดส่วนใหญ่ (Concensus Mechanism)</strong> โดยขั้นตอนการตรวจสอบใช้ทรัพยากรคอมพิวเตอร์ที่สูงมาก ส่งผลให้เกิด Latency ขึ้นมาในระบบ ดังนั้นแล้วการออกแบบระบบที่ใช้งานกับ Blockchain นี้จำเป็นต้องออกแบบ Protocol การสื่อสารระหว่างโหนดให้เหมาะสม เพื่อที่จะลด Latency</li>
+
+
+
+<li><strong>การออกแบบเพื่อขยายระบบให้รองรับข้อมูลที่มากขึ้น (Scalability)</strong> โดยที่ข้อมูลของ Blockchain จำเป็นต้องสำรองไว้ในแต่ละโหนดซึ่งจะเกิดปัญหาขึ้นเมื่อข้อมูล Blockchain มีขนาดใหญ่มากขึ้น ตัวระบบจำเป็นต้องออกแบบให้รองรับการ Scale ของพื้นที่จัดเก็บข้อมูล และออกแบบตัวโครงสร้าง Blockchain ให้ใช้พื้นที่ได้อย่งามีประสิทธิภาพ</li>
+
+
+
+<li><strong>โครงสร้าง Blockchain (Chain Structures)</strong> ที่การออกแบบ Blockchain เส้นเดียว (Single-chain) จะจำกัดประสิทธิภาพของการประมวลผล จุดนี้มีการออกแบบ Blockchain ในรูปแบบต่าง ๆ เช่น
+<ul class="wp-block-list">
+<li>Multi-chain เพื่อกระจายให้ข้อมูลไม่ได้อยู่โหนดใดโหนดหนึ่งเพื่อออกแบบให้รองรับการ Scale ระบบs</li>
+
+
+
+<li>Side-chain เพื่อแตกสาย Blockchain นั้นออกมาเพื่อใช้กับงานใดงานหนึ่งโดยเฉพาะ (ตัวอย่างเช่น Smart Contract) โดยที่ยังคงเชื่อมต่อกับ Blockchain หลัก ๆ อยู่</li>
+</ul>
+</li>
+
+
+
+<li><strong>การบังคับใช้กฏหมาย (Law &amp; Regulations)</strong> การออกแบบ Blockchain จำเป็นต้องพิจารณาเรื่องกฏหมาย ข้อบังคับ ความเป็นส่วนตัว และการออกแบบให้ไม่ระบุตัวตน (Anonymization)</li>
+</ul>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading" id="cbdc">Central Bank Digital Currency (CBDC)</h2>
+
+<p>หลังจากที่รู้เรื่องของ Blockchain กันมาแล้ว เรามาเข้าเรื่องจริง ๆ แล้ว นั่นก็คือเหรียญ CBDC [8-10]</p>
+
+<p>เหรียญ CBDC เป็นสกุลเงินดิจิทัลที่มีหน่วยเท่ากันกับสกุลเงินปกติที่ออกโดยธนาคารกลางในแต่ละประเทศ เหรียญประเภทนี้มีคุณสมบัติเป็นสื่อกลางที่สามารถจ่ายเงินซื้อสินค้า และบริการได้เหมือนเงินปกติ เพียงแต่อยู่ในรูปแบบดิจิทัล</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>ส่วนของไทย เหรียญ CBDC เหมือนกับเงินบาทที่ออกโดยธนาคารแห่งประเทศไทย (ธปท.) ที่นำไปใช้จ่ายได้ตามปกติ</p>
+</blockquote>
+
+<p>เหรียญประเภทนี้นำไปใช้งานภายใต้ระบบ Blockchain ที่มีลักษณะที่เป็น Centralized ที่จำกัดอยู่ที่ธนาคารกลางและหน่วยงานที่เกี่ยวข้อง ผิดกันกับเหรียญ Cryptocurrency ที่ให้ใคร ๆ เข้ามาร่วมได้ครับ</p>
+
+<h3 class="wp-block-heading" id="background-cbdc">ที่มา</h3>
+
+<p>ที่มาของ CBDC มาจากการพัฒนา Cryptocurrency อย่าง Bitcoin และ Ethereum รวมถึง Altcoins อื่น ๆ นั้น ตัว Cryptocurrency ถูกมองว่าเป็นทรัพย์สิน (Asset) เนื่องมาจาก</p>
+
+<ul class="wp-block-list">
+<li>ค่าเงินและอัตราแลกเปลี่ยนมันผันผวนสุด ๆ ทำให้ไม่เหมาะต่อการนำมาใช้จ่ายเงินจริง ๆ</li>
+
+
+
+<li>กับเหรียญ Cryptocurrency ถูกนำมาใช้งานในการฟอกเงินสำหรับวงการสีเทา</li>
+
+
+
+<li>และเปลืองทรัพยากรเนื่องมาจากการนำคอมพิวเตอร์มาประมวลผลเพื่อทำ Proof-of-work ที่ต้องใช้ทรัพยากรจำนวนมาก</li>
+</ul>
+
+<p>ต่อมา นอกจากตัว Cryptocurrency ตามที่กล่าวไว้ข้างบนแล้ว ยังมีการพัฒนาเหรียญ Cryptocurrency อีกแบบคือ Stablecoins ที่เป็นเหรียญที่ต้องการให้อัตราแลกเปลี่ยนคงที่โดยใช้</p>
+
+<ul class="wp-block-list">
+<li>ตัวทรัพย์สินรองรับ (Asset-backed) อย่างเงินทั่วไป (Fiat Money)</li>
+
+
+
+<li>กับการใช้เหรียญ Cryptocurrency รองรับ (Crypto-backed)</li>
+
+
+
+<li>และไม่ใช้อะไรรองรับเลย ใช้แต่การเขียนอัลกอริทึมออกมา (Algorithm-backed)</li>
+</ul>
+
+<p>การพัฒนาเหรียญ Stablecoins ฟังดูดี อย่างไรก็ตามมันติดปัญหาในเรื่องของการควบคุม จากเดิมที่ธนาคารกลางกับรัฐดูแล ตอนนี้ทางบริษัทที่ออกเหรียญนั้นดูแลแทน ก็จะติดปัญหาเรื่องกฏหมายอะไรพวกนี้</p>
+
+<p>ถัดมา ก็มีการมาของ Big Tech อย่าง Meta (หรือ Facebook) ที่พัฒนาเหรียญ Libra (ที่ปัจจุบันเป็น Diem ที่ขายไปแล้ว) นำมาใช้ อย่างไรก็ตามมันก็จะติดปัญหาเลยคือ</p>
+
+<ul class="wp-block-list">
+<li>Transaction จะถูกเก็บในบริษัทนั้น ๆ จนเป็น Data-silo</li>
+
+
+
+<li>Privacy/Governance ที่ต้องระวังเรื่องของความปลอดภัย และระวังต่อการนำไปใช้งานทางด้านการฟอกเงิน</li>
+
+
+
+<li>Market Dominance Abuse จากบริษัท Big Tech</li>
+</ul>
+
+<p>สุดท้าย การมาของ COVID ที่ส่งผลให้ทางธนาคารกลางสนใจที่พัฒนา วิจัย และต่อยอดทางด้านเหรียญ Central Back Digital Currency (CBDC)</p>
+
+<h3 class="wp-block-heading" id="type-cbdc">ประเภทของ CBDC</h3>
+
+<p>เหรียญ CBDC แบ่งประเภทได้ออกเป็น 2 ประเภท ตามลักษณะการใช้งาน ได้แก่ Wholesale CBDC และ Retail CBDC [10]</p>
+
+<p><strong>Wholesale CBDC</strong> ที่เป็นเหรียญ CBDC สำหรับการนำไปใช้งานการทำธุรกรรมระหว่างธนาคาร กับสถาบันทางการเงินต่าง ๆ ทั้งในประเทศ และระหว่างประเทศ ที่ช่วยลดความเสี่ยง ลดต้นทุน และลดระยะเวลาในการโอนเงินระหว่างประเทศ จากหลักวันเหลือหลักวินาที</p>
+
+<p><strong>Retail CBDC</strong> ที่เป็นเงินสดในรูปแบบดิจิทัลที่ใช้จ่ายกับบุคคล ห้างร้าน และร้านค้าออนไลน์ (e-commerce) นอกจากนี้เหรียญนี้ยังนำไปใช้กับการจ่ายเงินระหว่างประเทศ (Cross-border payment) อีกด้วย โดยเหรียญประเภทนี้ช่วยให้</p>
+
+<ul class="wp-block-list">
+<li>ลดระยะเวลาการโอนเงิน โดยผู้ใช้สามารถรับเงินได้ตามเวลาจริง</li>
+
+
+
+<li>ลดต้นทุนค่าบริการ CBDC โดยต้นทุนการทำธุรรมมีมูลค่าน้อยจนแทบจะไม่มีค่า แถมยังช่วยเอกชนที่ให้บริการการชำระเงินลดอัตราค่าธรรมเนียม</li>
+
+
+
+<li>ทำธุรกรรมระหว่างประเทศได้สะดวกขึ้น โดยสามารถตรวจสอบการทำธุรกรรม กับช่วยลดต้นทุน และช่วยลดระยะเวลาในการโอน</li>
+
+
+
+<li>ช่วยเข้าสู่ระบบการเงินดิจิทัล</li>
+
+
+
+<li>ลดต้นทุนการพิมพ์และผลิตเงินตรา เนื่องมาจากมันเป็นระบบดิจิทัลหมด เลยไม่มีต้นทุนการผลิต และการขนส่ง</li>
+
+
+
+<li>เพิ่มบทบาทธนาคารกลาง นอกจากการผลิตเงินแล้ว ยังติดต่อกับลูกค้ารายย่อยโดยตรง ช่วยเรื่องเศรษฐกิจฐานราก</li>
+
+
+
+<li>เป็นต้น</li>
+</ul>
+
+<h3 class="wp-block-heading" id="design-requirement-cbdc">การออกแบบเหรียญ CBDC</h3>
+
+<p>เหรียญ CBDC ได้รับการออกแบบเพื่อที่จะเป็นสกุลเงินดิจิทัลที่ทำหน้าที่ได้เหมือนกับเงินสด (Fiat money) นั้น เหรียญ CBDC จำเป็นต้องออกแบบให้ทำธุรกรรมได้ฉับไว มีต้นทุนที่ต่ำ และมีความปลอดภัย ทั้งทางด้านการโอนเงินภาวในประเทศ และระหว่างประเทศ</p>
+
+<p>นอกจากนี้ CBDC จำเป็นต้องมีฟีเจอร์ [11] อย่าง</p>
+
+<ul class="wp-block-list">
+<li><strong>การโอนเงินแบบ Offline กับโอนเงินได้ทันที (Offline and instant payment)</strong> เหมือนกับที่เราจ่ายด้วยเงินสด</li>
+
+
+
+<li><strong>ความเป็นส่วนตัว และการปิดบังตัวตน (Anonymity and privacy) </strong>เหมือนกับการจ่ายเงินสดระหว่างกัน ที่เราจำเป็นต้องป้องกันไม่ให้ทราบถึงข้อมูลที่บ่งบอกตัวตนของเจ้าของเงิน และไม่ให้ทราบถึงข้อมูลส่วนตัวที่ Sensitive</li>
+
+
+
+<li><strong>ความปลอดภัย (Security) </strong>โดยความปลอดภัยเป็นสิ่งสำคัญต่อการพัฒนาเหรียญ CBDC ที่ควรจะป้องกันมิจฉาชีพ ป้องกันการจ่ายเงินซ้ำ (Double Spending) ป้องกันการปลอมแปลงธุรกรรม กับป้องกันการโอนแฮค และทุกธุรกรรมนั้นสามารถตรวจสอบได้</li>
+
+
+
+<li><strong>ความเป็นมิตรต่อผู้ใช้ และความสะดวก (Convenience and User friendliness)</strong> ที่เหรียญ CBDC ควรที่จะให้คนทุกเพศ ทุกวัยสามารถเข้ามาใช้งานได้ ถึงแม้จะมีหรือไม่มี Smartphone ก็ตาม</li>
+
+
+
+<li><strong>การเปิดให้ทำธุรกรรมได้ 24/7 (Availability)</strong> โดยที่ไม่มีการปิดระบบ (No plan downtime)</li>
+
+
+
+<li><strong>กฏหมาย และการบังคับใช้ (Regulation)</strong> โดยขึ้นอยู่กับธนาคารกลาง และหน่วยงานรัฐในแต่ละประเทศ</li>
+</ul>
+
+<h3 class="wp-block-heading" id="example-cbdc">ตัวอย่างของเหรียญ CBDC</h3>
+
+<p>ตัวอย่างของเหรียญ CBDC ที่ทางธนาคารกลางแต่ละประเภทกำลังวิจัยอยู่ ก็ยกตัวอย่างตามด้านล่างนี้ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>จีน</strong> ที่เปิดให้ใช้งานเป็น<a href="https://nickuntitled.com/2023/10/09/9-digital-currency-and-digital-yuan-commentary/" data-type="post" data-id="3689">เงินสกุลหยวนดิจิทัล</a> (e-CNY หรือ China DCEP)</li>
+
+
+
+<li><strong>ไทย</strong> [12] ที่ธนาคารมี<a href="https://www.bot.or.th/th/financial-innovation/digital-finance/central-bank-digital-currency/benefitofCBDC/progressofcbdc.html" data-type="link" data-id="https://www.bot.or.th/th/financial-innovation/digital-finance/central-bank-digital-currency/benefitofCBDC/progressofcbdc.html" target="_blank" rel="noreferrer noopener">โครงการอินทนนท์</a>ที่เป็นรากฐานของการพัฒนาเหรียญ CBDC ที่เป็น Wholesale CBDC ภายใต้โครงการ mBridge และ Retail CBDC</li>
+
+
+
+<li>เป็นต้น</li>
+</ul>
+
+<h3 class="wp-block-heading" id="advantage-cbdc">ข้อดี</h3>
+
+<p>เหรียญ CBDC มีข้อดีที่</p>
+
+<ol class="wp-block-list">
+<li>อนุญาตให้บุคคลทั่วไปที่มีโทรศัพท์สมาร์ทโฟนเข้าถึงระบบการจ่ายเงินผ่านทางดิจิทัลได้ โดยไม่จำเป็นต้องมีบัญชีธนาคาร</li>
+
+
+
+<li>เราสามารถตั้งโปรแกรมเงินดิจิทัลได้โดยการใช้งานผ่านทาง <strong>Smart Contract</strong>*</li>
+
+
+
+<li>ธนาคารกลางของแต่ละประเทศสามารถควบคุม และดูแลสกุลเงินดิจิทัลประเทศตัวเองได้โดยที่ไม่ตกอยู่ในการดูแลของบริษัทใดบริษัทหนึ่ง</li>
+</ol>
+
+<h3 class="wp-block-heading" id="observation-cbdc">ข้อสังเกต</h3>
+
+<p>การนำเหรียญสกุลเงินดิจิทัล CBDC เข้ามาใช้งาน นอกจากข้อดีตามที่ระบุไว้ก่อนหน้านี้แล้ว ยังมีข้อสังเกตอยู่ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>ความจำเป็นต่อการใช้ Blockchain</strong> ที่เราสามารถใช้วิธีการทำธุรกรรมดิจิทัลที่ธนาคารใช้อยู่ได้เลย</li>
+
+
+
+<li><strong>การตรวจสอบธุรกรรม</strong> ที่ปกติ Bitcoin จะนำคอมพิวเตอร์เครื่องไหนก็ได้มาใช้ แต่เหรียญดิจิทัล CBDC นี้จะต้องเป็นระบบกลางของธนาคารกลางในแต่ละประเทศนั้น ๆ ที่จำเป็นต้องออกแบบให้รับการธุรกรรมที่เกิดขึ้นได้โดยไม่มีการล่ม หรือหยุดทำงาน</li>
+
+
+
+<li><strong>ความเป็นส่วนตัว และความปลอดภัย</strong></li>
+
+
+
+<li><strong>ประสิทธิภาพ</strong> ข้อเสียจุดหนึ่งของการใช้งาน Blockchain ตามที่เขียนถึงวิธีการทำงานตามข้างบนนี้แล้ว นั่นคือทำงานได้ช้า โดยเหรียญ Bitcoin จะใช้เวลา 10 นาทีในการยืนยันการทำธุรกรรม ส่วน Ethereum จะใช้เวลา 1 วินาทีในการยืนยัน ซึ่งเหรียญสกุลเงินดิจิทัลจำเป็นต้องใช้เวลาน้อยกว่านั้น</li>
+
+
+
+<li><strong>ความปลอดภัย</strong></li>
+
+
+
+<li><strong>กฏหมาย และการบังคับใช้</strong></li>
+
+
+
+<li>เป็นต้น</li>
+</ul>
+
+<h2 class="wp-block-heading" id="smart-contract">(เพิ่มเติม) Smart Contract</h2>
+
+<p>*<strong>Smart Contract</strong> [12] เป็นโปรแกรมหนึ่งที่ทำงานอยู่บน Blockchain ที่อนุญาตให้ผู้ใช้เขียนโปรแกรมเพื่อให้ทำงานเมื่อมี Transaction ของเหรียญที่เข้ากันได้กับเงื่อนไขที่ผู้ใช้กำหนดไว้ เมื่อทำงานเสร็จแล้ว Transaction นี้จะย้อนกลับไม่ได้ ซึ่งเป็นไปตามคุณสมบัติของ Blockchain ที่ไม่อนุญาตให้ผู้ใช้เปลี่ยนแปลงธุรกรรมที่เกิดขึ้นมาแล้ว</p>
+
+<p>ที่มาของ Smart Contract มาจากปัญหาความไว้วางใจต่อบุคคลที่เกี่ยวข้องกับการทำสัญญา ที่ถึงแม้ว่ามันจะตรงตามสัญญาทั้งหมดแล้ว เราจำเป็นต้องไว้วางไว้บุคคลที่เราทำสัญญาด้วย การพัฒนา Smart Contract นี้ออกแบบมาแก้ปัญหาเรื่องความไว้วางใจต่อบุคคลโดยตัดตัวกลางออก เพื่อให้โปรแกรมมาจัดการให้อัตโนมัติแทน</p>
+
+<p>การทำงานของ Smart Contract เรายกตัวอย่างกับตู้กดสินค้า (Vending Machine) เมื่อผู้ใช้ใส่ Input ที่เหมาะสม (เงิน และสินค้าที่เลือก) ตู้กดจะให้สินค้าตามที่ต้องการ โดยเราสามารถเขียนเงื่อนไขได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>money + snack selection = snack dispensed</code></pre>
+
+<p>เงื่อนไขตามข้างบนนี้ เราจะเขียนโปรแกรมไปยังตู้กดสินค้า ซึ่งจุดนี้เปรียบได้กับการเขียน Smart Contract ที่มีเงื่อนไขที่ได้รับการโปรแกรมไว้ให้ทำงานอัตโนมัติ และให้ผลลัพธ์เป็นไปตามที่ระบุในสัญญานั้น ๆ แบบเดียวกันตลอด โดยที่ไม่จำเป็นต้องมีปัจจัยเรื่องคนเข้ามาเกี่ยวข้องที่จะส่งผลต่อผลลัพธ์ของสัญญานั้น ๆ</p>
+
+<p>การนำ Smart Contract มาใช้งานนอกจากมีข้อดีเรื่องผลลัพธ์แล้ว ยังมีข้อดีทางด้านความเป็นส่วนตัวที่ตัว Smart Contract จะไม่ได้นำข้อมูลนอกเหนือจากตัว Transaction เหรียญอะไรพวกนี้ไปใช้งาน ดังนั้นแล้วเราไม่ต้องกังวลว่าข้อมูลส่วนตัวจะถูกเอาไปใช้งาน กับถูกโชว์ให้คนภายนอกเห็น</p>
+
+<p>ตัวอย่างการนำ Smart Contract ไปใช้งานก็ได้แก่ Stablecoins, Gaming, Currency Exchange และอื่น ๆ</p>
+
+<p>ผู้ที่สนใจพัฒนา Smart Contract สามารถศึกษาได้จาก<a href="https://ethereum.org/en/developers/docs/smart-contracts/" data-type="link" data-id="https://ethereum.org/en/developers/docs/smart-contracts/" target="_blank" rel="noreferrer noopener">เว็บของ Ethereum</a> เองครับ</p>
+
+<h2 class="wp-block-heading">ส่งท้าย</h2>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
+
+<h2 class="wp-block-heading" id="reference">ที่มา</h2>
+
+<ol class="wp-block-list">
+<li><a href="http://article.sapub.org/10.5923.j.computer.20180802.02.html" data-type="link" data-id="http://article.sapub.org/10.5923.j.computer.20180802.02.html">Understanding </a><a href="http://article.sapub.org/10.5923.j.computer.20180802.02.html" data-type="link" data-id="http://article.sapub.org/10.5923.j.computer.20180802.02.html" target="_blank" rel="noreferrer noopener">Blockchain</a><a href="http://article.sapub.org/10.5923.j.computer.20180802.02.html" data-type="link" data-id="http://article.sapub.org/10.5923.j.computer.20180802.02.html"> Technology</a></li>
+
+
+
+<li><a href="https://www.computer.org/csdl/journal/tk/2018/07/08246573/13rRUxD9gYf" data-type="link" data-id="https://www.computer.org/csdl/journal/tk/2018/07/08246573/13rRUxD9gYf" target="_blank" rel="noreferrer noopener">Untangling Blockchain: A Data Processing View of Blockchain Systems</a></li>
+
+
+
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S2452414X19300019" data-type="link" data-id="https://www.sciencedirect.com/science/article/abs/pii/S2452414X19300019" target="_blank" rel="noreferrer noopener">The blockchain: State-of-the-art and research challenges</a></li>
+
+
+
+<li><a href="http://www.hashcash.org/papers/hashcash.pdf" data-type="link" data-id="http://www.hashcash.org/papers/hashcash.pdf" target="_blank" rel="noreferrer noopener">Hashcash &#8211; A Denial of Service Counter-Measure</a></li>
+
+
+
+<li><a href="https://bitcoin.org/bitcoin.pdf" data-type="link" data-id="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noreferrer noopener">Bitcoin: A Peer-to-Peer Electronic Cash System</a></li>
+
+
+
+<li><a href="https://ethereum.org/en/whitepaper/" data-type="link" data-id="https://ethereum.org/en/whitepaper/" target="_blank" rel="noreferrer noopener">Ethereum &#8211; Whitepaper</a></li>
+
+
+
+<li><a href="https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/" data-type="link" data-id="https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/" target="_blank" rel="noreferrer noopener">Introduction to Linked List – Data Structure and Algorithm Tutorials &#8211; GeeksforGeeks</a></li>
+
+
+
+<li><a href="https://www.bis.org/publ/work976.pdf" data-type="link" data-id="https://www.bis.org/publ/work976.pdf" target="_blank" rel="noreferrer noopener">Central bank digital currencies: motives, economic implications and the research frontier &#8211; BIS Working Papers</a></li>
+
+
+
+<li><a href="https://link.springer.com/article/10.1007/s10586-022-03962-z" data-type="link" data-id="https://link.springer.com/article/10.1007/s10586-022-03962-z" target="_blank" rel="noreferrer noopener">Blockchain application for central bank digital currencies (CBDC) &#8211; Cluster Computing</a></li>
+
+
+
+<li><a href="https://www.krungsri.com/th/research/research-intelligence/cbdc-2022" data-type="link" data-id="https://www.krungsri.com/th/research/research-intelligence/cbdc-2022" target="_blank" rel="noreferrer noopener">เงินสกุลดิจิทัลของธนาคารกลาง: ความท้าทายใหม่ของธนาคารพาณิชย์ &#8211; ธนาคารกรุงศรีอยุธยา</a></li>
+
+
+
+<li><a href="https://www.sciencedirect.com/science/article/pii/S2405959521001399?via%3Dihub" data-type="link" data-id="https://www.sciencedirect.com/science/article/pii/S2405959521001399?via%3Dihub" target="_blank" rel="noreferrer noopener">Blockchain and central bank digital currency &#8211; ICT Express</a></li>
+
+
+
+<li><a href="https://www.bot.or.th/th/financial-innovation/digital-finance/central-bank-digital-currency/benefitofCBDC/progressofcbdc.html" data-type="link" data-id="https://www.bot.or.th/th/financial-innovation/digital-finance/central-bank-digital-currency/benefitofCBDC/progressofcbdc.html" target="_blank" rel="noreferrer noopener">ความเป็นมาของโครงการ CBDC ธปท. &#8211; ธนาคารแห่งประเทศไทย</a></li>
+
+
+
+<li><a href="https://ethereum.org/en/developers/docs/smart-contracts/" data-type="link" data-id="https://ethereum.org/en/developers/docs/smart-contracts/" target="_blank" rel="noreferrer noopener">Introduction to Smart contracts &#8211; Ethereum</a></li>
+</ol>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

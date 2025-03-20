@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#24 - คัสตอม Template บน iA Writer ใช้เองด้วย HTML และ CSS</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#24 - คัสตอม Template บน iA Writer ใช้เองด้วย HTML และ CSS" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/04/04/24-custom-iawriter-template-with-html-and-css/" />
+<meta property="og:url" content="http://localhost:4000/2024/04/04/24-custom-iawriter-template-with-html-and-css/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/24_custom_template_for_iAWriter_HTML_CSS_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-04-04T06:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/24_custom_template_for_iAWriter_HTML_CSS_cover.jpg" />
+<meta property="twitter:title" content="#24 - คัสตอม Template บน iA Writer ใช้เองด้วย HTML และ CSS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-04-05T16:08:44+07:00","datePublished":"2024-04-04T06:00:00+07:00","description":"None","headline":"#24 - คัสตอม Template บน iA Writer ใช้เองด้วย HTML และ CSS","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/24_custom_template_for_iAWriter_HTML_CSS_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/04/04/24-custom-iawriter-template-with-html-and-css/"},"url":"http://localhost:4000/2024/04/04/24-custom-iawriter-template-with-html-and-css/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#24 - คัสตอม Template บน iA Writer ใช้เองด้วย HTML และ CSS</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-04-04 06:00:00 +0700">2024-04-04</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/24_custom_template_for_iAWriter_HTML_CSS_cover.jpg' />
+  </figure>
+  
+
+  <p>ส่วนหนึ่งของงานทางด้าน Programming กับงานทางด้าน Data และอื่น ๆ คือการทำเอกสาร ส่วนใหญ่ที่เราทำงานทางด้านเอกสารที่เราใช้กันก็เป็นโปรแกรมแบบ Microsoft Word อะไรแนวนี้ ทีนี้ถ้าเราอยากได้โปรแกรมที่มันไม่ซับซ้อน ใช้งานไม่ยาก แถมหน้าจอยังคลีนอีก อันนี้เราจะใช้แอพอะไร</p>
+
+<p>จากที่เราใช้ แอพหนึ่งที่เหมาะสมกับงานนี้คือ <strong>iA Writer</strong></p>
+
+<p>The English version is available on <a href="https://medium.nickuntitled.com/customize-an-ia-writer-template-for-writing-data-related-documentation-61f1e1d4a275" data-type="link" data-id="https://medium.nickuntitled.com/customize-an-ia-writer-template-for-writing-data-related-documentation-61f1e1d4a275">Medium</a>.</p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">iA Writer</h2>
+
+<p><strong>IA Writer</strong> เป็นโปรแกรมแก้ไขข้อความ (หรือเรียกว่า Text Editor) ที่ได้รับการพัฒนาโดยบริษัท Information Architects ที่พัฒนามานานมากตั้งแต่ปี 2010 โปรแกรมนี้ผู้ใช้สามารถใช้งานได้บนระบบปฏิบัติการ Apple iOS, macOS กับ Windows และ Android</p>
+
+<p>ข้อดีของการใช้งานโปรแกรมนี้คือ</p>
+
+<ul class="wp-block-list">
+<li>หน้าจอที่คลีนมาก ไม่มีสิ่งรบกวน</li>
+
+
+
+<li>ผู้ใช้สามารถพิมพ์ข้อความด้วยการใช้ Markdown ที่รองรับการปรับแต่งข้อความได้หลากหลาย ตั้งแต่เน้นข้อความ ทำเป็นหัวข้อ สร้างตาราง และอื่น ๆ</li>
+
+
+
+<li>รองรับการเผยแพร่โพสลงบน WordPress กับ Medium</li>
+
+
+
+<li>รองรับการปรับแต่งหน้าแสดงผล (Preview) ด้วยการใช้ Template</li>
+</ul>
+
+<p>การใช้งาน Template นั้น ทำให้เราปรับแต่งลักษณะเอกสารที่แสดงผลทางเว็บ กับแสดงผลเป็น PDF และปริ้นท์ออกมาได้ตามใจชอบ โดยปกติตัวโปรแกรมนี้มี Template ให้ใช้หลายอัน ตัวอย่างเช่น Template Modern กับ Manuscript ซึ่งมันก็ใช้ได้ในระดับหนึ่ง แต่มันไม่ได้ตรงตามความต้องการของทุกคนขนาดนั้น</p>
+
+<p>ทางผู้พัฒนาโปรแกรมเลยใส่ฟีเจอร์นี้เข้ามาเพื่ออนุญาตให้สร้าง Template ขึ้นมาใช้เอง โดยโครงสร้างของตัว Template แสดงตามแผนภาพทางด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Example.iatemplate/
+    Contents/
+        Info.plist
+        Resources/
+            document.html
+            title.html
+            header.html
+            footer.html
+            style.css</code></pre>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>Example.iatemplate</strong> เป็นวิธีการเก็บข้อมูลไฟล์ Template ให้อยู่ในรูปแบบ Bundles ที่ระบบปฏิบัติการอย่าง macOS กับ iOS รองรับมาแต่แรกอยู่แล้ว โดยผู้ใช้สามารถเข้าไปดูรายละเอียดในนั้นได้โดยการคลิกขวา แล้วเลือกที่ Show Bundle Contents</li>
+
+
+
+<li><strong>Contents</strong> เป็นโฟลเดอร์เก็บไฟล์ของ Template</li>
+
+
+
+<li><strong>Info.plist</strong> เป็นไฟล์ตั้งค่าลักษณะตัว Template ที่จะแสดงรายละเอียดของไฟล์นี้ในหัวข้อถัดไป (หรือเรียกอีกอย่างว่า Template Properties)</li>
+
+
+
+<li><strong>Resources</strong> เก็บไฟล์ HTML, CSS, Font และอื่น ๆ โดยในตัวอย่างเก็บไฟล์ <strong>title.html</strong>, <strong>document.html</strong>, <strong>header.html</strong>, <strong>footer.html</strong> และ <strong>style.css</strong></li>
+</ul>
+
+<h4 class="wp-block-heading">รายละเอียดในไฟล์ Info.plist (Template Properties)</h4>
+
+<p>ไฟล์นี้เป็นไฟล์ที่กำหนดลักษณะของตัว Template ที่เราต้องการปรับแต่ง โดยโครงสร้างของไฟล์นี้มีลักษณะเป็น XML (Extensible Markup Language) ที่ผู้ใช้สามารถปรับแต่งได้ง่ายโดยใช้โปรแกรม Text Editor ทั่ว ๆ ไป</p>
+
+<p>รายละเอียดโครงสร้างเอกสารแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;CFBundleIdentifier&lt;/key&gt;
+    &lt;string&gt;net.ia.modern&lt;/string&gt;
+    &lt;key&gt;CFBundleName&lt;/key&gt;
+    &lt;string&gt;Template Name&lt;/string&gt;
+    &lt;key&gt;IATemplateTitleFile&lt;/key&gt;
+    &lt;string&gt;title&lt;/string&gt;
+    &lt;key&gt;IATemplateDocumentFile&lt;/key&gt;
+    &lt;string&gt;document&lt;/string&gt;
+    &lt;key&gt;IATemplateFooterFile&lt;/key&gt;
+    &lt;string&gt;footer&lt;/string&gt;
+    &lt;key&gt;IATemplateFooterHeight&lt;/key&gt;
+    &lt;integer&gt;90&lt;/integer&gt;
+    &lt;key&gt;IATemplateHeaderHeight&lt;/key&gt;
+    &lt;integer&gt;90&lt;/integer&gt;
+    &lt;key&gt;IATemplateDescription&lt;/key&gt;
+    &lt;string&gt;Template Description&lt;/string&gt;
+    &lt;key&gt;IATemplateAuthor&lt;/key&gt;
+    &lt;string&gt;Template Author&lt;/string&gt;
+    &lt;key&gt;IATemplateAuthorURL&lt;/key&gt;
+    &lt;string&gt;Author URL&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</code></pre>
+
+<p>โดยแสดงรายละเอียดตามตารางด้านล่างนี้</p>
+
+<figure class="wp-block-table aligncenter"><table><tbody><tr><td class="has-text-align-left" data-align="left"><strong>ชื่อตัวแปร</strong></td><td class="has-text-align-center" data-align="center"><strong>ต้องมี</strong></td><td class="has-text-align-center" data-align="center"><strong>ชนิดตัวแปร</strong></td><td class="has-text-align-center" data-align="center"><strong>รายละเอียด</strong></td></tr><tr><td class="has-text-align-left" data-align="left"><strong>CFBundleName</strong></td><td class="has-text-align-center" data-align="center">ต้องมี</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">กำหนดชื่อ Template ที่จะให้แสดงในโปรแกรม</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>CFBundleIdentifier</strong></td><td class="has-text-align-center" data-align="center">ต้องมี</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">กำหนด <strong>Bundle Identifier</strong> ที่ระบุถึง Template นั้น ๆ โดยมีค่าไม่ซ้ำกับตัวอื่น*</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateDescription</strong></td><td class="has-text-align-center" data-align="center">แนะนำ</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">ใส่คำอธิบายของตัว Template นั้น ๆ</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateAuthor</strong></td><td class="has-text-align-center" data-align="center">แนะนำ</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">ใส่ชื่อของผู้ทำ Template</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateAuthorURL</strong></td><td class="has-text-align-center" data-align="center">แนะนำ</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">ใส่ที่อยู่เว็บไซต์ของผู้ทำ Template</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateSuportsSmartTables</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">Boolean</td><td class="has-text-align-center" data-align="center">ระบุว่าต้องการให้ประมวลผลตารางลงไปในเอกสารนั้น ๆ หรือไม่ (Smart Table) โดยค่าเริ่มต้นคือ YES</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateSupportsMath</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">Boolean</td><td class="has-text-align-center" data-align="center">กำหนดให้โปรแกรมรองรับการพิมพ์คำสั่ง TeX math expression เพื่อแสดงสมการลงในไฟล์เอกสารหรือไม่ โดยค่าเริ่มต้นคือ YES</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateTitleUsesHeaderAndFooterHeight</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">Boolean</td><td class="has-text-align-center" data-align="center">ตั้งค่าให้ใช่ค่าความสูงของ Header และ Footer ลงไปในหน้า Title Page โดยค่าเริ่มต้นคือ Yes (แต่ถ้าใส่ No ค่าความสูงจะถูกกำหนดเป็น 0)</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateTitleFile</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">กำหนดที่อยู่ไฟล์ HTML ที่เป็นหน้าแรก (Title Page)**/***</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateDocumentFile</strong></td><td class="has-text-align-center" data-align="center">จำเป็น</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">กำหนดที่อยู่ไฟล์ HTML ที่เป็นส่วนข้อความในหน้าหลัก (Document)**/***</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateHeaderFile</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">กำหนดที่อยู่ไฟล์ HTML ที่เป็นส่วนหัวกระดาษในหน้าหลัก (Header)**/***</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateFooterFile</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">String</td><td class="has-text-align-center" data-align="center">กำหนดที่อยู่ไฟล์ HTML ที่เป็นส่วนท้ายกระดาษในหน้าหลัก (Footer)**/***</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateHeaderHeight</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">Number</td><td class="has-text-align-center" data-align="center">กำหนดความสูงหัวกระดาษ***</td></tr><tr><td class="has-text-align-left" data-align="left"><strong>IATemplateFooterHeight</strong></td><td class="has-text-align-center" data-align="center">ไม่จำเป็น</td><td class="has-text-align-center" data-align="center">Number</td><td class="has-text-align-center" data-align="center">กำหนดความสูงของท้ายประกาศ***</td></tr></tbody></table></figure>
+
+<p>*การระบุค่า <strong>Bundle Indentifier</strong> จะต้องใช้ตัวเลข 0-9 ตัวอักษร A-Z กับ a-z ร่วมกับใช้สัญลักษณะขีดเส้นใต้ (_) และจุด (.) เท่านั้น โดยมีลักษณะที่เป็น Reverse DNS (ตัวอย่างเช่นเราใช้โดเมน <a class="autolink" href="https://example.com">example.com</a> ก็ให้ใช้เป็น com.example แทน)</p>
+
+<p>**ระบุตำแหน่งของไฟล์ในโฟลเดอร์ Resources โดยไม่ต้องมี .html ลงท้าย</p>
+
+<p>***จากตารางที่มีการระบุตัวแปร IATemplateTitleFile, IATemplateHeaderFile, IATemplateDocumentFile, IATemplateFooterFile กับ IATemplateHeaderHeight และ IATemplateFooterHeight นั้น เราสามารถสรุปได้ตามภาพด้านล่างนี้ โดย</p>
+
+<ul class="wp-block-list">
+<li>ภาพทางด้านซ้ายเป็นภาพเอกสารหน้า Title Page</li>
+
+
+
+<li>ภาพขวาเป็นภาพหน้าหลักที่ประกอบไปด้วย 3 ส่วน ได้แก่ Header, Document และ Footer ที่ผู้ใช้สามารถกำหนดความสูงของ Header และ Footer ด้วยการใช้ตัวแปร IATemplateHeaderHeight และ IATemplateFooterHeight</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/A3CC2E43-D2C6-4514-B913-881EB6553084-1024x576.png" alt="" class="wp-image-6444" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/A3CC2E43-D2C6-4514-B913-881EB6553084-300x169.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/A3CC2E43-D2C6-4514-B913-881EB6553084-1024x576.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/A3CC2E43-D2C6-4514-B913-881EB6553084-768x432.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/A3CC2E43-D2C6-4514-B913-881EB6553084-1536x864.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/A3CC2E43-D2C6-4514-B913-881EB6553084-1200x675.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/A3CC2E43-D2C6-4514-B913-881EB6553084.png 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ภาพสรุปโครงสร้างของเอกสารโดยภาพซ้ายเป็นภาพเอกสารหน้าหลักที่ระบุชื่อไฟล์ HTML ลงไปในตัวแปร IATemplateTitleFile และภาพขวาเป็นภาพเอกสารหลักที่แบ่งเป็นสามส่วน ได้แก่ Header, Document และ Footer ที่เป็นตัวแปร IATemplateHeaderFile, IATemplateDocumentFile และ IATemplateFooterFile</figcaption></figure></div>
+
+<p>ด้านล่างนี้เป็นตัวอย่างของการตั้งค่าไฟล์ Info.plist โดยกำหนดให้ Template มีเฉพาะส่วน <strong>Document</strong> และ <strong>Footer</strong> ที่มีชื่อไฟล์ <code>document.html</code> และ <code>footer.html</code> ร่วมกับมีความสูงของ Header และ Footer เท่ากับ 70</p>
+
+<pre class="wp-block-code"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+	&lt;key&gt;CFBundleIdentifier&lt;/key&gt;
+	&lt;string&gt;com.nickuntitled.template.document&lt;/string&gt;
+	&lt;key&gt;CFBundleName&lt;/key&gt;
+	&lt;string&gt;Thai Document (Nick)&lt;/string&gt;
+	&lt;key&gt;IATemplateDocumentFile&lt;/key&gt;
+	&lt;string&gt;document&lt;/string&gt;
+	&lt;key&gt;IATemplateFooterFile&lt;/key&gt;
+	&lt;string&gt;footer&lt;/string&gt;
+	&lt;key&gt;IATemplateFooterHeight&lt;/key&gt;
+	&lt;integer&gt;70&lt;/integer&gt;
+	&lt;key&gt;IATemplateHeaderHeight&lt;/key&gt;
+	&lt;integer&gt;70&lt;/integer&gt;
+	&lt;key&gt;IATemplateDescription&lt;/key&gt;
+	&lt;string&gt;NickTH_Document&lt;/string&gt;
+	&lt;key&gt;IATemplateAuthor&lt;/key&gt;
+	&lt;string&gt;Nick Untitled&lt;/string&gt;
+	&lt;key&gt;IATemplateAuthorURL&lt;/key&gt;
+	&lt;string&gt;https://nickuntitled.com&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</code></pre>
+
+<h3 class="wp-block-heading">การแปลงข้อความให้เป็นหน้าเว็บ และ PDF ตาม Template ที่เราใช้</h3>
+
+<p>โปรแกรมนี้จะใส่เนื้อหาลงไปใน HTML ที่เราได้จัดทำขึ้นด้วยการใช้ JavaScript ที่ใส่ค่าแทนที่ลงไปใน Element ที่ระบุด้วยการใช้ attribute data-* ด้วยการใช้ Property <code>innerHTML</code></p>
+
+<p>ตัวอย่างเช่น เราใช้ HTML <code>&lt;span data-date&gt;&lt;/span&gt;</code> ตัวระบบจะแทนค่าลงไปได้เป็น <code>&lt;span&gt;April 3, 2024&lt;/span&gt;</code> เมื่อที่เราแสดงผลบนหน้าเว็บ กับส่งออกเป็นไฟล์ PDF</p>
+
+<p>นอกจากนี้ตัวโปรแกรมจะเรียก Event อย่าง <code>ia-writer-change</code> ในกรณีที่อัพเดทข้อความในไฟล์เอกสารในโปรแกรมนี้</p>
+
+<h3 class="wp-block-heading">การระบุ attribute data-*</h3>
+
+<p>การระบุ attribute <code>data-*</code> นั้น ตัว attribute (<code>data-title, data-author</code> และ <code>data-date</code>) สามารถใช้กับไฟล์ Template ได้ทุกอัน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>data-title</strong> แสดงชื่อเอกสาร โดยดึงมาจากชื่อไฟล์เอกสารนั้น ๆ</li>
+
+
+
+<li><strong>data-author</strong> แสดงชื่อผู้จัดทำ โดยกำหนดได้ในหน้า Preferences</li>
+
+
+
+<li><strong>data-date</strong> แสดงวันที่ปัจจุบันขึ้นกับว่าเราจะกำหนดให้แสดงใน Locale ไหน</li>
+</ul>
+
+<p>แต่บาง attribute data (<code>data-document, data-page-count</code> และ <code>data-page-number</code>) ที่จำเพาะต่อไฟล์ Template นั้น ๆ โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>data-document</strong> กำหนดให้ใช้ได้เฉพาะหน้า Document ที่เราสามารถกำหนดข้อความว่าจะให้อยู่ใน HTML Element ไหน โดยตัวโปรแกรมจะได้ <a href="https://github.com/fletcher/MultiMarkdown-5">MultiMarkdown</a> เพื่อแปลงออกมาเป็น HTML</li>
+
+
+
+<li><strong>data-page-count และ data-page-number</strong> กำหนดให้ใช้เฉพาะหน้า Document กับหน้า Title Page, Header และ Footer เพื่อแสดงจำนวนหน้าทั้งหมดที่มีในเอกสาร และเลขหน้าปัจจุบัน ตามลำดับ โดย data-page-number จะไม่แสดงในหน้า Title</li>
+</ul>
+
+<p>หลังจากที่ทราบรายละเอียดของ attribute <code>data-*</code> แล้ว ข้างล่างนี้เป็นตัวอย่างของการเขียนโค้ด HTML ของ <strong>Document</strong> (document.html)</p>
+
+<pre class="wp-block-code"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+  	&lt;link rel="stylesheet" media="all" href="normalize.css" /&gt;
+  	&lt;link rel="stylesheet" media="all" href="style.css" /&gt;
+  	&lt;meta name="viewport" content="initial-scale=1, viewport-fit=cover"&gt;
+&lt;/head&gt;
+&lt;body class="markdown-body" data-document&gt;&amp;nbsp;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>และอันนี้เป็นโค้ด HTML หน้า<strong> Footer</strong> (footer.html)</p>
+
+<pre class="wp-block-code"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;link rel="stylesheet" media="all" href="normalize.css"&gt;
+        &lt;link rel="stylesheet" media="all" href="style.css"&gt;
+        &lt;meta name="viewport" content="initial-scale=1, viewport-fit=cover"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+		&lt;div class = 'footer'&gt;
+			&lt;span data-page-number&gt;&amp;nbsp;&lt;/span&gt;
+		&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>โดยทั้งสองไฟล์ใช้</p>
+
+<ul class="wp-block-list">
+<li><code>&lt;!doctype html&gt;</code> ที่เป็นการกำหนดให้ใช้งาน <a href="https://www.w3schools.com/tags/tag_doctype.ASP" data-type="link" data-id="https://www.w3schools.com/tags/tag_doctype.ASP" target="_blank" rel="noreferrer noopener">HTML5</a></li>
+
+
+
+<li><code>&lt;meta charset = ‘utf-8’&gt;</code> เป็นการกำหนดให้ใช้งาน <a href="https://www.w3schools.com/tags/att_meta_charset.asp" data-type="link" data-id="https://www.w3schools.com/tags/att_meta_charset.asp" target="_blank" rel="noreferrer noopener">Encoding UTF-8</a></li>
+
+
+
+<li><code>&lt;meta name="viewport" content="initial-scale=1, viewport-fit=cover"&gt;</code> ที่เป็นการกำหนดขนาดหน้าจอของเว็บเพจที่แสดง ให้แสดงเต็มหน้าจอ เพื่อ<a href="https://www.w3schools.com/css/css_rwd_viewport.asp" target="_blank" rel="noreferrer noopener">รองรับ Responsive Web Design</a></li>
+
+
+
+<li>การกำหนด CSS File ที่เราใช้ <a href="https://necolas.github.io/normalize.css/" data-type="link" data-id="https://necolas.github.io/normalize.css/" target="_blank" rel="noreferrer noopener">normalize.css</a> ที่ช่วยปรับแต่งให้หน้าเว็บไซต์แสดงเหมือนกันหมด ถึงแม้ว่าจะใช้เว็บเบราวเซอร์ที่แตกต่างกัน และ style.css ที่เป็นการกำหนดสไตล์ด้วยตัวเอง (ซึ่งเรากำหนดให้ใช้ selector ที่อ้างอิงถึง HTML element แต่ละอัน ซึ่งสามารถอ้างอิงจาก <a href="https://daringfireball.net/projects/markdown/" data-type="link" data-id="https://daringfireball.net/projects/markdown/">Markdown</a> กับ <a href="https://github.com/fletcher/MultiMarkdown-5" data-type="link" data-id="https://github.com/fletcher/MultiMarkdown-5">MultiMarkdown</a> มาใช้ได้)</li>
+</ul>
+
+<h3 class="wp-block-heading">การปรับแต่งหน้าตาด้วย CSS</h3>
+
+<p>ต่อมาเมื่อเรากำหนด attribute data ลงไปใน Template แต่ละหน้าแล้ว ผู้ใช้สามารถกำหนดหน้าตาของ Template นั้นได้โดยการเขียนโค้ด CSS ได้เลย โดยผู้อ่านสามารถค้นหาได้ในอินเตอร์เน็ต (เช่น <a href="https://web.dev/learn/css" data-type="link" data-id="https://web.dev/learn/css" target="_blank" rel="noreferrer noopener">web.dev</a>)</p>
+
+<p>ผู้ใช้จำเป็นต้องเขียน CSS ให้รองรับ <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design" data-type="link" data-id="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design" target="_blank" rel="noreferrer noopener">Responsive Web Design</a> (โดย <code>@media</code> queries) ร่วมกับรองรับการแสดงหน้าเว็บเมื่อพิมพ์เอกสาร และเซฟเป็น PDF (โดย <code>@media print</code>)</p>
+
+<p>อย่างไรก็ดี ทางโปรแกรม iA Writer จะใส่ชื่อ class บางส่วนลงไปใน Tag <code>&lt;html&gt;</code> อยู่แล้ว ผู้ใช้จำเป็นต้องระบุชื่อ class ไม่ให้ซ้ำกับ class ที่มีมาให้ใน html tag นั้น ๆ ยกเว้นแต่บาง class ที่ทางโปรแกรมแนะนำให้ผู้ใช้กำหนดสไตล์ของหน้ากระดาษด้วยการใช้</p>
+
+<ul class="wp-block-list">
+<li><strong>night-mode</strong> ที่กำหนดลักษณะหน้าที่แสดงผลทางหน้าเว็บในกรณีที่แสดงผลเป็น night mode</li>
+
+
+
+<li><strong>ios</strong> กำหนดลักษณะหน้ากระดาษเมื่อแสดงผลบน iOS</li>
+
+
+
+<li><strong>mac</strong> กำหนดลักษณะหน้ากระดาษเมื่อแสดงผลบน macOS</li>
+</ul>
+
+<p>นอกจากนี้ ผู้ใช้สามารถใส่ไฟล์ Font ไฟล์ภาพและอื่น ๆ ลงไปในโฟลเดอร์ Resources ได้อีก ขึ้นกับว่าไฟล์ CSS กับ HTML นั้นจำเป็นต้องเรียกใช้หรือไม่</p>
+
+<h3 class="wp-block-heading">รายละเอียดการปรับแต่งเพิ่มเติม</h3>
+
+<p>รายละเอียดการปรับแต่งเพิ่มเติม ส่วนนี้ผู้อ่านสามารถศึกษาได้ใน<a href="https://ia.net/writer/support/preview/custom-templates" data-type="link" data-id="https://ia.net/writer/support/preview/custom-templates" target="_blank" rel="noreferrer noopener">หน้าเว็บของ iA Writer</a> ครับ</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">การแพคไฟล์เป็น .iatemplate</h2>
+
+<p>เมื่อทำ Template เสร็จแล้ว ผู้ใช้จัดระเบียบให้ได้ตามด้านล่างนี้ก่อน</p>
+
+<pre class="wp-block-code"><code>Folder/
+    Contents/
+        Info.plist
+        Resources/
+            document.html
+            title.html
+            header.html
+            footer.html
+            &lt; css file, javascript, font, image, etc. &gt;</code></pre>
+
+<p>เมื่อจัดระเบียบเรียบร้อยแล้ว ให้ผู้ใช้เปลี่ยนชื่อโฟลเดอร์จาก Folder ให้เป็นชื่อ Template ตามด้วย .iatemplate แค่นี้เราก็สามารถแพคไฟล์ Template เพื่อให้เปิดใช้งานด้วย iA Writer ได้แล้ว</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">วิธีการติดตั้ง Template</h2>
+
+<p>การเปิดไฟล์นี้ในแต่ละระบบปฏิบัติการมีวิธีที่แตกต่างกัน โดยแสดงวิธีทำตามด้านล่างนี้</p>
+
+<h3 class="wp-block-heading">iOS</h3>
+
+<p>การเปิดไฟล์บนระบบปฏิบัติการนี้ นอกจากเปิดไฟล์ .iatemplate ได้แล้ว เราสามารถเปิดไฟล์ ZIP ได้อีก โดย</p>
+
+<ul class="wp-block-list">
+<li>รับไฟล์ที่ส่งมาทาง Airdrop แล้วเลือกให้เปิดด้วย iA Writer</li>
+
+
+
+<li>เลือกไฟล์ใน Files แล้วเลือกให้เปิดด้วย iA Writer</li>
+</ul>
+
+<h3 class="wp-block-heading">macOS</h3>
+
+<p>เราสามารถเปิดไฟล์ .iatemplate ได้โดย Double click ที่ไฟล์ Template หรือลากเข้าไปในโปรแกรม iA Writer หรือเพิ่มในหน้า Settings แล้วเข้าไปที่ Templates</p>
+
+<h3 class="wp-block-heading">Windows (รองรับเฉพาะ version 1.2 ขึ้นไป)</h3>
+
+<p>ผู้ใช้สามารถนำเข้ามาได้ด้วยการกดที่เมนู File แล้วเลือกที่ Install Template จากนั้นเลือกไฟล์ Template นั้น ๆ</p>
+
+<p>เมื่อติดตั้งเสร็จเรียบร้อยแล้ว ผู้ใช้สามารถเปิดใช้ Template ที่เราได้ทำขึ้นในโปรแกรม iA Writer ได้เลย โดยข้างล่างนี้เป็นตัวอย่างของการใช้ Template ที่เราสร้างขึ้นครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-1024x712.png" alt="" class="wp-image-6553" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/iAwriter_template_result-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ตัวอย่าง Template ที่เราสร้างขึ้นมา โดยในหน้าจอนี้เป็นหน้าจอแสดงผลในกรณีที่ปริ้นท์ออกมาเป็น PDF หรือปริ้นท์เป็นกระดาษ</figcaption></figure></div>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">สรุป</h2>
+
+<p>ส่วนหนึ่งของงานทางด้าน Programming กับงานทางด้าน Data และอื่น ๆ คือการทำเอกสาร ที่ส่วนใหญ่เราจะใช้ Microsoft Word อะไรแนวนี้</p>
+
+<p>อย่างไรก็ดี เราต้องการใช้เครื่องมือที่มันใช้ง่าย ไม่ซับซ้อนนัก อันนี้เราแนะนำแอพ iA Writer</p>
+
+<p>ข้อดีของการใช้งานโปรแกรมนี้นอกจากแอพมันคลีนแล้ว ตัวแอพรองรับ Markdown กับรองรับการเผยแพร่ลง WordPress กับ Medium และรองรับการปรับแต่งหน้าแสดงผลโดยการใช้ Template</p>
+
+<p>ซึ่ง Template นั้น ตัวโปรแกรมนี้รองรับการปรับแต่งหน้าตาได้ตามใจสะดวก โดยการกำหนดโครงสร้างโฟลเดอร์ตามที่กำหนด กับตั้งค่าไฟล์ Info.plist และเขียนโค้ด HTML กับ CSS ตามที่ต้องการ ร่วมกับใส่ไฟล์อื่นที่จำเป็น จากนั้นแพคเป็นไฟล์ .iatemplate แล้วนำไปใช้งานในแอพ iA Writer ได้เลย สะดวกมาก</p>
+
+<h2 class="wp-block-heading">ส่งท้าย</h2>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

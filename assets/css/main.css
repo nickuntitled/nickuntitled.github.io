@@ -1,0 +1,243 @@
+body[a="dark"] {
+    filter: invert(1)
+}
+
+body[a="dark"] img {
+    filter: invert(1)
+}
+
+body[a="dark"] img.ioda {
+    filter: invert(0)
+}
+
+body[a="dark"] .emoji {
+    filter: invert(1)
+}
+
+body[a="dark"] iframe {
+    filter: invert(1)
+}
+
+@media (prefers-color-scheme: dark) {
+    body[a="auto"] {
+        filter:invert(1)
+    }
+
+    body[a="auto"] img {
+        filter: invert(1)
+    }
+
+    body[a="auto"] img.ioda {
+        filter: invert(0)
+    }
+
+    body[a="auto"] .emoji {
+        filter: invert(1)
+    }
+
+    body[a="auto"] iframe {
+        filter: invert(1)
+    }
+}
+
+html,body {
+    background: white
+}
+
+html {
+    height: 100%;
+    scroll-behavior: smooth
+}
+
+body {
+    color: black;
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0;
+    min-height: 100%;
+    overflow-wrap: break-word
+}
+
+hr {
+    margin: 2rem 0
+}
+
+p {
+    margin: 1rem 0;
+    text-align: justify;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+li {
+    margin: 0.4rem 0;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main-page .date {
+    font-family: monospace;
+}
+
+ul {
+    list-style-type: circle;
+    margin-left: 2em;
+}
+
+ol {
+    list-style-type: decimal;
+    margin-left: 2em;
+}
+
+*:target {
+    background: yellow
+}
+
+.w {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 4rem 2rem
+}
+
+hr {
+    text-align: center;
+    border: 0
+}
+
+hr:before {
+    content: "/////"
+}
+
+hr:after {
+    content: attr(data-content) "/////"
+}
+
+table {
+    width: 100%
+}
+
+table,th,td {
+    border: thin solid black;
+    border-collapse: collapse;
+    padding: 0.4rem
+}
+
+pre {
+    color: white;
+    background: black;
+    padding: 1em;
+    overflow-x: scroll;
+    margin: 1em 0;
+    font-family: monospace;
+}
+
+code {
+    color: white;
+    background: black;
+}
+
+div.highlighter-rouge code {
+    display: block;
+    overflow-x: scroll;
+    white-space: pre-wrap;
+    padding: 1rem
+}
+
+blockquote {
+    font-style: italic;
+    border: thin solid black;
+    padding: 1rem;
+    margin: 1em 0;
+}
+
+blockquote p {
+    margin: 0;
+    font-style: italic;
+}
+
+/* Link */
+.back-meta {
+    text-align: left;
+    font-family: monospace;
+}
+
+.post-meta {
+    text-align: left;
+}
+
+/* Image */
+img {
+    max-width: 100%;
+    display: block;
+    margin: 0.5em auto
+}
+
+figure figcaption {
+    text-align: center;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.9em;
+    margin: 1em 0 0 0;
+}
+
+
+/* Header */
+h2,h3,h4,h5,h6 {
+    margin-top: 1.5rem
+}
+
+h1 {
+    font-size: 1.6em;
+    font-weight: bold;
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+h2 { 
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+h4 {
+    font-size: 1em;
+    font-weight: bold;
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+h5 {
+    font-size: 0.9em;
+    font-weight: bold;
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+h6 {
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+.post-title {
+    text-align: justify;
+    text-decoration: underline;
+}
+
+/* Footer */
+.license {
+    margin-top: 1em;
+}
+
+.license p {
+    margin-top: 3em;
+    text-align: center;
+    font-family: monospace;
+}

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#27 Web Scraping ดึง 20 ข่าวล่าสุดจากเว็บข่าวด้วย Selenium</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#27 Web Scraping ดึง 20 ข่าวล่าสุดจากเว็บข่าวด้วย Selenium" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/05/13/27-web-scraping-acquire-latest-20-articles-via-selenium/" />
+<meta property="og:url" content="http://localhost:4000/2024/05/13/27-web-scraping-acquire-latest-20-articles-via-selenium/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-13T13:40:19+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" />
+<meta property="twitter:title" content="#27 Web Scraping ดึง 20 ข่าวล่าสุดจากเว็บข่าวด้วย Selenium" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-06-08T18:54:06+07:00","datePublished":"2024-05-13T13:40:19+07:00","description":"None","headline":"#27 Web Scraping ดึง 20 ข่าวล่าสุดจากเว็บข่าวด้วย Selenium","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/05/13/27-web-scraping-acquire-latest-20-articles-via-selenium/"},"url":"http://localhost:4000/2024/05/13/27-web-scraping-acquire-latest-20-articles-via-selenium/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#27 Web Scraping ดึง 20 ข่าวล่าสุดจากเว็บข่าวด้วย Selenium</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-05-13 13:40:19 +0700">2024-05-13</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg' />
+  </figure>
+  
+
+  <p>ปกติการดึงข่าวล่าสุด อันนี้เราใช้ <strong>RSS (Really Simple Syndication)</strong> หรือ <strong>Feedly </strong>ได้เลย อย่างไรก็ดี ไม่ใช่ทุกเว็บไซต์ที่จะรองรับวิธีนี้ได้ อาจจะเป็นเพราะทางนั้นไม่ได้ให้ลิ้งค์สำหรับ RSS ไว้ครับ</p>
+
+<p>เมื่อเจอปัญหานี้แล้ว ในบทความนี้เราแนะนำวิธีหนึ่งที่คนใช้กัน วิธีนี้เรียกว่า <strong>Web Scraping</strong></p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">Web Scraping</h2>
+
+<p>การทำ <strong>Web Scraping</strong> [1, 2] เป็นวิธีการดึงข้อมูลจากหน้าเว็บไซต์ตาม HTML Element และ CSS Selector ตามที่เราได้กำหนดไว้ โดยในแต่ละเว็บไซต์ที่เราเข้าดูผ่านการใช้งานอินเตอร์เน็ตนั้น มันจะมีข้อมูลที่เก็บไว้ข้างใน</p>
+
+<p>ข้อมูลในนั้นแหละเป็นแหล่งข้อมูลที่ดีสำหรับการนำไปใช้งานต่อ โดยตัวอย่างสำหรับการนำไปใช้งานต่อก็เป็นทางด้าน</p>
+
+<ol class="wp-block-list">
+<li>ติดตามการเปลี่ยนแปลงของข้อมูล (Data Monitoring)</li>
+
+
+
+<li>เป็นตัวช่วยสำหรับการตัดสินใจ (Decision Making)</li>
+
+
+
+<li>และวิเคราะห์การตลาด (Marketing)</li>
+</ol>
+
+<p>การทำ Web Scraping นั้น ถ้าข้อมูลมีจำนวนไม่มาก เราก็ทำแบบ Manual เพื่อดึงข้อมูลมาทีละนิดก็ได้ อย่างไรก็ดี ข้อมูลของเว็บไซต์มีจำนวนหลักพัน ไปจนถึงหลักล้าน การทำ Manual ทีละหน้าก็เสียเวลาเกินไปหน่อย ไม่ทันกิน</p>
+
+<p>ดังนั้นแล้ว เราจำเป็นต้องทำเครื่องมือสำหรับการดึงข้อมูลแบบอัตโนมัติขึ้นมาครับ</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>อย่างไรก็ดี การทำ <strong>Web Scraping</strong> นั้นจำเป็นต้องพิจารณาว่าหน้าไหนที่เราทำได้ เพื่อไม่ให้ไปขัดกับเรื่องทางกฏหมาย และข้อมูลส่วนบุคคล โดยสามารถดูได้จาก</p>
+
+
+
+<ul class="wp-block-list">
+<li>เว็บไซต์ที่มีข้อกำหนดในการให้บริการ (Terms and Services)</li>
+
+
+
+<li>เว็บไซต์ที่ใช้ CAPTCHA</li>
+
+
+
+<li>เว็บไซต์ที่ต้องยืนยันตัวตน</li>
+
+
+
+<li>เป้นต้น</li>
+</ul>
+
+
+
+<p>โดยข้อมูลที่เราจะดึงนั้น เราได้ดู Terms and Services แล้วว่าไม่ได้ระบุ และตัวเว็บไม่มี CAPTCHA กับการยืนยันตัวตน นอกจากนี้เราดึงข้อมูลมาใช้เองครับ</p>
+<cite>เอามาจาก: <a href="https://devhub.in.th/blog/web-scraping-python" data-type="link" data-id="https://devhub.in.th/blog/web-scraping-python" target="_blank" rel="noreferrer noopener">สอนทำ Web Scraping ด้วย Python เพื่อดึงข้อมูลจากเว็บไซต์ &#8211; Devhub</a></cite></blockquote>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">ขั้นตอนการทำ Web Scraping</h2>
+
+<p>แต่ก่อนอื่น เราจำเป็นต้องรู้ขั้นตอนการทำ Web Scraping เสียก่อน โดยเริ่มตั้งแต่</p>
+
+<ol class="wp-block-list">
+<li>เข้าเว็บไซต์ไปยังหน้าที่เราต้องการ</li>
+
+
+
+<li>เก็บข้อมูลดิบ</li>
+
+
+
+<li>ดึงข้อมูลออกมา</li>
+
+
+
+<li>จัดเก็บข้อมูลให้อยู่ในรูปแบบตามที่ต้องการ</li>
+
+
+
+<li>และเก็บไว้ในที่เหมาะสม</li>
+</ol>
+
+<p>เมื่อเราดูขั้นตอนแล้วนี่ยังกับขั้นตอนการทำ <strong>ELT (Extract Load Transform)</strong> ที่เราทำไปในวงการของ Data Engineer (ใครสนใจก็ไปเรียนในคอร์ส R2DE 3.0 ที่ DataTH โดย<a href="https://pages.datath.com/r2de3-early-bird" data-type="link" data-id="https://pages.datath.com/r2de3-early-bird" target="_blank" rel="noreferrer noopener">สมัครแบบ Early Bird</a>) โดยเหตุผลการทำ ELT แทนที่เราจะทำ ETL (Extract Transform Load) นั้น ก็เพื่อป้องกันปัญหา</p>
+
+<ul class="wp-block-list">
+<li>เครื่องมือ Web Scraping ทำงานไม่สำเร็จ (<strong>Scraper Fail</strong>) โดยเราแค่ให้เครื่องมือดึงข้อมูลเฉพาะจุดที่มีปัญหา</li>
+
+
+
+<li>แปลงข้อมูลไม่ได้ (<strong>Unable to transform on-the-fly</strong>) เนื่องจากมันไม่มีข้อมูลในบางหน้า</li>
+
+
+
+<li>ข้อมูลหาย (<strong>Data Loss</strong>) ด้วยการ Backup ข้อมูลเสียก่อน</li>
+</ul>
+
+<p>เมื่อทราบขั้นตอนแบบคร่าว ๆ แล้ว เรามีโจทย์ที่อยากจะดึงข้อมูลข่าวล่าสุดจากเว็บไซต์อย่าง Voice TV ครับ ซึ่งเว็บนี้ตัวเว็บไม่ได้ให้ลิ้งค์กดไปยัง RSS Feed ดังนั้นแล้วเราจะมาใช้วิธีนี้</p>
+
+<p>จากโจทย์นั้น เราจำเป็นต้องดึงข้อมูลจากหน้าที่<a href="https://voicetv.co.th/news" data-type="link" data-id="https://voicetv.co.th/news" target="_blank" rel="noreferrer noopener">รวบรวมข่าวทั้งหมดของเว็บไซต์</a></p>
+
+<h3 class="wp-block-heading">หน้าที่รวบรวมข่าวทั้งหมด</h3>
+
+<p>หน้านี้เป็นหน้าที่รวบรวมข่าวทั้งหมดที่มีในเว็บ ตั้งแต่ข่าวล่าสุด ไปจนถึงข่าวเก่าสุดที่มีเก็บไว้ในเว็บนี้ โดยหน้าที่กล่าวถึงแสดงตามด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="306" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1024x540.png" alt="" class="wp-image-6970" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-300x158.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1024x540.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-768x405.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1536x810.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-2048x1079.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1200x632.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1980x1044.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าที่รวบรวมข่าวทั้งหมดที่มีในหน้าเว็บ (แคปเมื่อวันที่ 11/5/2024)</figcaption></figure></div>
+
+<p>เรามาวิเคราะห์โดยใช้เครื่องมืออย่าง Inspect Element ที่มีมาให้ใน Microsoft Edge กับ Google Chrome เป็นต้น</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="338" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1024x596.png" alt="" class="wp-image-6972" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-300x175.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1024x596.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-768x447.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1536x894.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-2048x1192.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1200x698.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1980x1152.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้า Inspect Element (แคปเมื่อวันที่ 11/5/2024)</figcaption></figure></div>
+
+<p>เราจะพบว่า ตัวหัวข้อข่าวที่ต้องการนั้น อยู่ใน CSS Class ที่แสดงรายละเอียดเป็นแผนภาพตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1024x576.jpg" alt="" class="wp-image-6975" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>รายการข่าวล่าสุดทุกข่าว (Latest News)</strong> อยู่ใน CSS Class ที่มีชื่อ contents</li>
+
+
+
+<li><strong>ข่าวแต่ละข่าว</strong> อยู่ใน CSS Class ที่มีชื่อ column และ is-4</li>
+
+
+
+<li><strong>รูปพาดหัวข่าว</strong> อยู่ใน CSS Class image ที่มี HTML tag img<strong> </strong>อยู่ข้างใน</li>
+
+
+
+<li><strong>ข้อความพาดหัวข่าว กับประเภทข่าว</strong> อยู่ใน CSS Class info โดยสามารถระบุ HTML Element ได้ตามด้านล่างนี้
+<ul class="wp-block-list">
+<li>ข้อความพาดหัวข่าวอยู่ใน HTML tag a ที่อยู่ใน CSS Class title</li>
+
+
+
+<li>ประเภทข่าวอยู่ใน HTML tag a ที่อยู่ใน CSS Class topic</li>
+</ul>
+</li>
+</ul>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">วิธีทำ Web Scraping</h2>
+
+<p>การนำ Web Scraping นั้น โดยทั่วไปจะมี 2 วิธี ได้แก่</p>
+
+<ol class="wp-block-list">
+<li><strong>ใช้เครื่องมือสำเร็จรูป:</strong> วิธีนี้เราสามารถใช้โปรแกรมที่มีผู้พัฒนาได้พัฒนาไว้ มาดึงข้อมูลได้โดยไม่จำเป็นต้องเขียนโค้ด ตัวอย่างเช่น
+<ul class="wp-block-list">
+<li><a href="https://chromewebstore.google.com/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn" data-type="link" data-id="https://chromewebstore.google.com/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn" target="_blank" rel="noreferrer noopener"><strong>Web Scraper</strong></a> ที่เป็นส่วนเสริมใน Google Chrome</li>
+
+
+
+<li>กับ <strong><a href="https://www.octoparse.com/" data-type="link" data-id="https://www.octoparse.com/" target="_blank" rel="noreferrer noopener">Octoparse</a> </strong>ที่เป็นเครื่องมือสำหรับการดึงข้อมูลที่ทำได้ง่ายโดยการคลิกตำแหน่งที่ต้องการ</li>
+
+
+
+<li>เป็นต้น</li>
+</ul>
+</li>
+
+
+
+<li><strong>เขียนโค้ด: </strong>เราสามารถเขียนโค้ดเพื่อดึงข้อมูลที่ต้องการได้ โดยเทคนิคนี้เป็นวิธีที่นิยม เนื่องมาจากเราสามารถดึงข้อมูลได้ตามที่ต้องการ และกำหนดรูปแบบการดึงข้อมูลได้ โดยมีไลบรารีรองรับหลายอัน ได้แก่ <strong><a href="https://pypi.org/project/beautifulsoup4/" data-type="link" data-id="https://pypi.org/project/beautifulsoup4/" target="_blank" rel="noreferrer noopener">BeautifulSoup4</a></strong> กับ <strong><a href="https://www.selenium.dev/" data-type="link" data-id="https://www.selenium.dev/" target="_blank" rel="noreferrer noopener">Selenium</a></strong> เป็นต้น</li>
+</ol>
+
+<p>ในตัวอย่างนี้เราจะใช้การเขียนโค้ดด้วย Python และการใช้ไลบรารีอย่าง Selenium</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">Selenium</h2>
+
+<p><strong>Selenium </strong>[4] เป็นเครื่องมือ และไลบรารีสำหรับการควบคุม Web Browser อัตโนมัติ โดยนำไปใช้สำหรับ</p>
+
+<ul class="wp-block-list">
+<li>การทดสอบเว็บไซต์แบบอัตโนมัติ (Automated Web Testing)</li>
+
+
+
+<li>การทำเครื่องมือเป็น Bot สำหรับการทำงานแทนคน (Robot Process Automation)</li>
+
+
+
+<li>และทำเครื่องมือเก็บข้อมูลจากหน้าเว็บไซต์ (Web Scraping)</li>
+</ul>
+
+<p>ไลบรารีนี้รองรับการเขียนโปรแกรมได้หลากหลายภาษา ได้แก่ Python, Java, JavaScript, C#, Ruby และ PHP ผู้ใช้สามารถเลือกใช้ภาษาที่ถนัดได้สำหรับการใช้เครื่องมือนี้</p>
+
+<p>อย่างไรก็ดี ในบทความนี้เราจะใช้ Python เพื่อทำ Web Scraping โดยเราจะดึงรายการข่าวที่มีในเว็บไซต์ล่าสุดทั้งหมด 20 ข่าว</p>
+
+<h3 class="wp-block-heading">เขียนโค้ดดึงรายการข่าว</h3>
+
+<p>ส่วนนี้เป็นการดึงรายการข่าวในเว็บไซต์ โดยเราจะดึงข้อมูลทั้งหมด 5 ข้อมูล ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ชื่อพาดหัวข่าว</li>
+
+
+
+<li>ประเภทของข่าว</li>
+
+
+
+<li>วันที่ที่ข่าวนั้น ๆ เผยแพร่</li>
+
+
+
+<li>ลิ้งค์สำหรับภาพพาดหัวข่าว</li>
+
+
+
+<li>ลิ้งค์สำหรับการเข้าไปอ่าน</li>
+</ul>
+
+<p>ขั้นตอนแรก ก่อนอื่น เราจำเป็นต้องติดตั้งแพคเกจสำหรับการดึงข้อมูล</p>
+
+<pre class="wp-block-code"><code>pip install selenium requests</code></pre>
+
+<p>ต่อมา เราจำเป็นต้องนำเข้าไลบรารีเสียก่อน ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+from datetime import datetime</code></pre>
+
+<p>ร่วมกับการตั้งค่าจำกัดให้โหลดเพียง 20 ข่าวล่าสุด</p>
+
+<pre class="wp-block-code"><code>LIMIT_NEWS = 20</code></pre>
+
+<p>หลังจากนั้น เราจะสร้างไฟล์สำหรับการเก้บข้อมูลที่เราดึงมาได้เพื่อให้เก็บในรูปแบบ <strong>CSV </strong>(<strong>Comma Separated Value</strong> ที่เป็นฟอร์แมตที่ Excel อ่านได้)</p>
+
+<pre class="wp-block-code"><code>f = open("output.csv", "w+", encoding = 'utf-8')
+f.write("date,topic,title,link,thumbnail\n")</code></pre>
+
+<p>ถัดจากนั้น เราจะเขียนฟังก์ชันสำหรับการดึงรายการข่าวล่าสุดที่มีในเว็บไซต์โดยใช้ไลบรารี <strong>Selenium </strong>ที่จำเป็นต้องเปิด Web Browser เสียก่อน โดยในบทความนี้เราจะใช้ Google Chrome</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>การนำ Google Chrome มาใช้งานกับ Selenium เราจำเป็นต้องติดตั้งเครื่องมืออย่าง <strong><a href="https://chromedriver.chromium.org/home" data-type="link" data-id="https://chromedriver.chromium.org/home" target="_blank" rel="noreferrer noopener">chromedriver</a> </strong>เสียก่อน โดยเครื่องมือนี้มีไว้สำหรับการทดสอบหน้าเว็บแบบอัตโนมัติ (Automated testing) ที่รองรับการขยับหน้าจอ การกรอกข้อความ การรันโค้ดจาวาสคริป และอื่น ๆ โดยเป็นเครื่องมือที่ใช้มาตรฐานอย่าง W3C และเป็นเครื่องมือที่รองรับ Windows, Linux, macOS และ ChromeOS</p>
+</blockquote>
+
+<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>driver = webdriver.Chrome()</code></pre>
+
+<p>จากนั้น เปิดหน้าเว็บที่แสดงรายการข่าวทั้งหมด</p>
+
+<pre class="wp-block-code"><code>driver.get('https://voicetv.co.th/news')</code></pre>
+
+<p>เมื่อเปิดหน้าเว็บแล้ว เราจำเป็นต้องให้ตัวโค้ดที่เราเขียนรอให้เว็บบราวเซอร์ปรากฏหน้าเพจที่เราต้องการ วิธีการทำทำได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Explicit Wait
+wait = WebDriverWait(driver, 30)
+
+# <strong>EC.visibility_of_all_elements_located</strong> กำหนดให้รอจนกว่า CSS Class column is-4 (ก็คือ Class สำหรับแสดงข่าวแต่ละข่าวในหน้าเพจ) ปรากฏบนหน้าจอเรียบร้อย
+# <strong>EC.element_to_be_clickable</strong> กำหนดให้รอปุ่ม More (ที่ใช้ CSS Class more) ปรากฏบนหน้าเพจ ร่วมกับผู้ใช้สามารถกดปุ่มนั้นได้
+try:
+    wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".column .is-4")))
+    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".contents .more")))
+except Exception as e:
+    # ถ้ามี Error ให้ออกจากโปรแกรม
+    print(f"&#91;*] Error =&gt; { e }")
+    exit(1)</code></pre>
+
+<p>เมื่อเขียนโค้ดส่วนการกำหนดให้เว็บบราวเซอร์รอการโหลดหน้าเพจนั้นเรียบร้อยแล้ว เรามาเขียนโค้ดส่วนที่</p>
+
+<ul class="wp-block-list">
+<li>ดึงข้อมูลข่าวทั้งหมดที่มีในเว็บไซต์</li>
+
+
+
+<li>คลิกปุ่ม More เพื่อดูข่าวเพิ่มเติม (ตามภาพด้านล่างตัวโค้ดนี้)</li>
+
+
+
+<li>และลบรายการข่าวเก่าที่ดึงข้อมูลเรียบร้อย</li>
+</ul>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>โดยในโค้ด เราจะดึงข่าวมาบางส่วน (<strong>20 ข่าว</strong>) เพื่อป้องกันไม่ให้เซิร์ฟเวอร์ทำงานหนักจนเกินไป</p>
+</blockquote>
+
+<pre class="wp-block-code"><code># More Button
+end = 0
+news_count = 0
+
+# จำกัดการดึงข่าวทั้งหมด 20 ข่าว
+while news_count &lt; LIMIT_NEWS:
+    try:
+        # ดึงข้อมูลแต่ละข่าวในหน้าเพจ
+        news_count += pull_data(f, driver, news_count, LIMIT_NEWS)
+
+        # ค้นหา CSS Class contents ด้วย <strong>driver.find_elements</strong>
+        contents = driver.find_elements(By.CSS_SELECTOR, ".contents")
+
+        # ค้นหาปุ่ม More โดยใช้ CSS Class more ที่อยู่ข้างใน CSS Class contents
+        more_button = contents&#91;0].find_elements(By.CSS_SELECTOR, ".more")
+
+        # ลบข่าวเก่าที่โหลดมาแล้ว ด้วยการสั่งโค้ด JavaScript ผ่าน <strong>driver.execute_script</strong>
+        driver.execute_script("document.querySelectorAll('.contents')&#91;0].querySelectorAll('.is-4').forEach(element =&gt; element.remove())")
+
+        # กดปุ่ม More ด้วยการสั่งโค้ด JavaScript ผ่าน <strong>driver.execute_script</strong>
+        driver.execute_script("document.querySelectorAll('.contents')&#91;0].querySelector('.more').click()")
+
+        # กำหนดให้รอจนกว่าจะโหลดข่าวเพิ่มเสร็จเรียบร้อย ด้วย <strong>EC.visibility_of_all_elements_located</strong>
+        wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".contents .is-4")))
+    except Exception as e:
+        # เมื่อเกิด Error ขึ้นเช่นหาปุ่ม More ไม่เจอ หรือ สาเหตุอื่น
+        # ตัวโค้ดจะหยุดการวนลูป
+        print(f"&#91;*] Error =&gt; { e }")
+        break</code></pre>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="305" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more.png" alt="" class="wp-image-7002" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more-300x158.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more-768x403.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more.png 891w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ปุ่ม More สำหรับการโหลดข่าวเพิ่มเติม</figcaption></figure></div>
+
+<p>ต่อมา เรามาดูในฟังก์ชัน <strong>pull_data </strong>เป็นฟังก์ชันสำหรับการดึงข้อมูลรายการข่าวล่าสุดที่ปรากฏในหน้าเพจ หลังจากการโหลดหน้าเพจนั้น หรือหลังจากการกดปุ่ม More</p>
+
+<pre class="wp-block-code"><code>def pull_data(f, driver, previous_news_count, limit_news = 20):
+    # ค้นหาข่าวแต่ละข่าวใน CSS Class is-4 ที่อยู่ใน CSS Class contents
+    contents = driver.find_elements(By.CSS_SELECTOR, ".contents")
+    news = contents&#91;0].find_elements(By.CSS_SELECTOR, ".is-4")
+
+    # Status
+    print(f"&#91;*] Scraping")
+
+    # ดึงข่าวแต่ละข่าวที่ปรากฏบนหน้าเพจ
+    news_count = len(news)
+
+    # จำกัดข่าวที่ดึงให้ไม่เกิน 20 ข่าว
+    limit_news = news_count + previous_news_count - limit_news
+    limit_loop = news_count if limit_news &lt;= 0 else news_count - limit_news
+    for i in range(limit_loop):
+        new = news&#91;i]
+
+        # ค้นหา CSS Class image เพื่อดึงรูปภาพพาดหัวข่าว
+        img_path = new.find_element(By.CSS_SELECTOR, ".image img").get_attribute('src')
+
+        # ค้นหา CSS Class topic เพื่อดึงหมวดของข่าวนั้น ๆ
+        topic = new.find_element(By.CSS_SELECTOR, ".info .topic").text
+
+        # ค้นหา CSS Class title เพื่อดึงพาดหัวข่าว
+        title = new.find_element(By.CSS_SELECTOR, ".info .title").text
+        
+        # ค้นหาตำแหน่งลิ้งค์ที่อยู่ข้างใน CSS Class title เพื่อดึงลิ้งค์ข่าว
+        url = new.find_element(By.CSS_SELECTOR, ".info .title a").get_attribute('href')
+
+        # ค้นหา CSS Class date เพื่อดึงวันที่เผยแพร่ข่าว ร่วมกับลบตัว comma (,) ออก
+        date = new.find_element(By.CSS_SELECTOR, ".info .writer .date").text
+        date = date.replace(',', '')
+
+        # บันทึกข่าวที่ดึงมาลงในไฟล์ CSV
+        f.write(f"{ date },{ topic },{ title },{ url },{ img_path }\n")
+
+    return limit_loop</code></pre>
+
+<p>เมื่อดึงข้อมูลเสร็จแล้ว ให้ปิดการเขียนไฟล์ และปิดหน้าบราวเซอร์</p>
+
+<pre class="wp-block-code"><code># Quit Web Browser
+driver.quit()
+f.close()</code></pre>
+
+<h3 class="wp-block-heading">รันตัวโค้ด</h3>
+
+<p>เขียนโค้ดเสร็จแล้ว เราทดลองรันดู จะพบว่าตัวโค้ดจะเปิดหน้าเว็บบราวเซอร์เพื่อดึงข้อมูลรายการข่าวที่มีในหน้าเว็บ ผลลัพธ์ที่ได้จะเก็บไว้ในไฟล์ CSV ที่แสดงตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="298" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-1024x526.png" alt="" class="wp-image-7162" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-300x154.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-1024x526.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-768x394.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header.png 1042w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ตัวอย่างผลลัพธ์ของข่าวที่ดึงมาได้ (ดึงวันที่ 13/5/2024)</figcaption></figure></div>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">สรุป</h2>
+
+<p>การทำ <strong>Web Scraping</strong> เป็นวิธีการดึงข้อมูลจากหน้าเว็บไซต์ตาม HTML Element และ CSS Selector ตามที่เราได้กำหนดไว้ โดยมีวัตถุประสงค์เพื่อ </p>
+
+<ol class="wp-block-list">
+<li>ติดตามการเปลี่ยนแปลงของข้อมูล (Data Monitoring)</li>
+
+
+
+<li>เป็นตัวช่วยสำหรับการตัดสินใจ (Decision Making)</li>
+
+
+
+<li>และวิเคราะห์การตลาด (Marketing)</li>
+</ol>
+
+<p>ในบทความนี้ เราดึงพาดหัวข่าวจากทางเว็บ Voice TV (ที่มี<a href="https://thestandard.co/voice-tv-ceases-operations/" data-type="link" data-id="https://thestandard.co/voice-tv-ceases-operations/" target="_blank" rel="noreferrer noopener">ข่าวประกาศปิดตัวลง</a>) ทั้งหมด 20 ข่าวล่าสุดสำหรับการเป็นตัวอย่างของการทำ Web Scraping ครับ</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">ส่งท้าย</h2>
+
+<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+<h2 class="wp-block-heading">แหล่งข้อมูลอ้างอิง</h2>
+
+<ol class="wp-block-list">
+<li><a href="https://digi.data.go.th/blog/what-is-web-scraping/" data-type="link" data-id="https://digi.data.go.th/blog/what-is-web-scraping/" target="_blank" rel="noreferrer noopener">Web Scraping เทคนิคดึงข้อมูลบนเว็บไซต์แบบจัดเต็ม!! &#8211; DIGI</a></li>
+
+
+
+<li><a href="https://punsiriboonyakiat.medium.com/%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B9%83%E0%B8%88%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3-web-scraping-%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%96%E0%B8%AD%E0%B8%B0-e703f668f2c7" data-type="link" data-id="https://punsiriboonyakiat.medium.com/%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B9%83%E0%B8%88%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3-web-scraping-%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%96%E0%B8%AD%E0%B8%B0-e703f668f2c7" target="_blank" rel="noreferrer noopener">มาเข้าใจภาพรวมการทำ Web scraping กันเถอะ !! | by Punsiri Boonyakiat | Medium</a></li>
+
+
+
+<li><a href="https://codinggun.com/automated-testing/selenium/" data-type="link" data-id="https://codinggun.com/automated-testing/selenium/" target="_blank" rel="noreferrer noopener">ทำ Test Automation ด้วย Selenium &#8211; Coding Gun</a></li>
+
+
+
+<li><a href="https://www.selenium.dev/" data-type="link" data-id="https://www.selenium.dev/" target="_blank" rel="noreferrer noopener">Selenium</a></li>
+</ol>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

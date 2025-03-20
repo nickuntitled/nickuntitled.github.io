@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#14 ดึงข้อมูลจาก Database มาโชว์ใน Dashboard</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#14 ดึงข้อมูลจาก Database มาโชว์ใน Dashboard" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/01/31/14-get-database-data-to-show-dashboard/" />
+<meta property="og:url" content="http://localhost:4000/2024/01/31/14-get-database-data-to-show-dashboard/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/14-pipeline-database-cloudsql.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-31T15:33:11+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/14-pipeline-database-cloudsql.jpg" />
+<meta property="twitter:title" content="#14 ดึงข้อมูลจาก Database มาโชว์ใน Dashboard" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:41:52+07:00","datePublished":"2024-01-31T15:33:11+07:00","description":"None","headline":"#14 ดึงข้อมูลจาก Database มาโชว์ใน Dashboard","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/14-pipeline-database-cloudsql.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/01/31/14-get-database-data-to-show-dashboard/"},"url":"http://localhost:4000/2024/01/31/14-get-database-data-to-show-dashboard/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#14 ดึงข้อมูลจาก Database มาโชว์ใน Dashboard</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-01-31 15:33:11 +0700">2024-01-31</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/14-pipeline-database-cloudsql.jpg' />
+  </figure>
+  
+
+  <p>ต่อมาโปรเจคก่อนหน้าที่ทำ Data Pipeline ที่ดึงข้อมูลไฟล์ Excel จากเว็บไซต์ของกระทรวงอว. (กระทรวงการอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม) คราวนี้เรามาทำอีกโปรเจคหนึ่งที่สร้าง Data Pipeline มาดึงข้อมูลจากฐานข้อมูล (Database) เพื่อนำมาทำ Dashboard</p>
+
+<!--more-->
+
+<p>แต่ก่อนจะไปทำถึง Data Pipeline เรามาพูดถึง Database กันเสียก่อน</p>
+
+<h2 class="wp-block-heading">Database</h2>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="387" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/pexels-photo-6549358.jpeg" alt="a person standing near data base wooden drawer" class="wp-image-4527" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/pexels-photo-6549358-300x200.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/pexels-photo-6549358-1024x682.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/pexels-photo-6549358-768x512.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/pexels-photo-6549358-1536x1024.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/pexels-photo-6549358-1200x800.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/pexels-photo-6549358.jpeg 1880w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">รูปโดย Tima Miroshnichenko จากเว็บ <a href="https://www.pexels.com/photo/a-person-standing-near-data-base-wooden-drawer-6549358/" rel="nofollow">Pexels.com</a></figcaption></figure></div>
+
+<p><strong>ฐานข้อมูล (Database)</strong> คือเป็นพื้นที่เก็บข้อมูลสำหรับ Structured Data หรือ Semi-structured Data ที่ต้องการเข้าถึงข้อมูลอย่างรวดเร็ว ได้แก่ เว็บไซต์ หรือแอปมือถือ หรือระบบต่าง ๆ ที่มีผู้ใช้</p>
+
+<p>โดย Database จัดอยู่ในหมวดหมู่ <strong>OLTP (Online Transaction Processing)</strong> ที่แตกต่างกับ <strong>OLAP (Online Analytical Processing)</strong> ที่ Data Warehouse อยู่ในหมวดหมู่นั้น ที่ออกแบบมาเพื่ออ่านข้อมูลเยอะ เพื่อนำไปวิเคราะห์ หรือทำ Data Visualization ที่เหมาะกับผู้ใช้อย่าง Data Analyst และ Data Scientist</p>
+
+<p><strong>Database </strong>สามารถแบ่งออกได้สองประเภทใหญ่ ๆ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>SQL Database</strong> (หรือ RDBMS &#8211; Relational Database Management System) ที่เป็น Database สำหรับการเก็บข้อมูลลักษณะ Structured Data ที่ดึงข้อมูลได้โดย SQL</li>
+
+
+
+<li><strong>NoSQL Database</strong> เป็น Database อีกประเภทหนึ่งที่เป็น Semi-Structured Data ตัวอย่างฐานข้อมูลลักษณะนี้ได้แก่
+<ul class="wp-block-list">
+<li>MongoDB ที่เป็น Document stores ตัวอย่างเว็บที่ใช้ Database นี้คือเว็บ Pantip</li>
+
+
+
+<li>Redis ที่เป็น Key-value stores</li>
+
+
+
+<li>Cassandra ที่เป็น Wide column stores ตัวอย่างเว็บที่ใช้ Database นี้คือ FaceBook</li>
+
+
+
+<li>และ Neo4j ที่เป็น Graph DBMS</li>
+</ul>
+</li>
+</ul>
+
+<p>ในบทความนี้เราจะพูดถึง Database ที่เป็น SQL (หรือ RDBMS) ที่มี Database ที่ดัง ๆ ก็ได้แก่ MySQL, PostgreSQL, MariaDB, Microsoft SQL Server, และ Oracle Database [1]</p>
+
+<h3 class="wp-block-heading">แนะนำ Database ประเภท SQL (หรือ RDBMS)</h3>
+
+<p><strong>SQL Database</strong> (หรือ RDBMS &#8211; Relational Database Management System ที่เรียกเป็นภาษาไทยได้ว่าระบบจัดการฐานข้อมูลเชิงสัมพันธ์) เป็น Database สำหรับการเก็บข้อมูลลักษณะ Structured Data ที่ดึงข้อมูลได้โดย SQL ที่คิดค้นโดย E.F. Codd จากบริษัท IBM ช่วงปี 1970s</p>
+
+<p>Database ชนิดนี้ ประกอบไปด้วย<strong>ตาราง (Table)</strong> ที่เราสามารถมีได้หลาย Table โดยวิธีการเก็บข้อมูลมีลักษณะคล้ายกันกับเอกสาร Spreadsheet (เช่น Excel) ที่ช่วยธุรกิจในการเก็บ จัดการ และเชื่อมโยงข้อมูล โดยแต่ละ Table ประกอบไปด้วย</p>
+
+<ul class="wp-block-list">
+<li><strong>คอลัมน์ (Columns)</strong> เก็บข้อมูลคุณลักษณะ (Attributes) ร่วมกับระบุถึงชื่อคอลัมน์และชนิดข้อมูล</li>
+
+
+
+<li><strong>แถว (Rows หรือเรียกอีกอย่างว่า Record)</strong> เก็บข้อมูลค่าแต่ละค่าที่จำเพาะต่อชนิดข้อมูลที่กำหนดในแต่ละคอลัมน์</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1-edited.jpg" alt="" class="wp-image-4530" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1-edited-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1-edited-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1-edited-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1-edited-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1-edited-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1-edited.jpg 1588w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ส่วนประกอบของ Table</figcaption></figure></div>
+
+<p>นอกจาก <strong>Columns และ Rows</strong> แล้ว ทุกตารางที่เก็บใน Database ประเภท RDBMS จะมีคอลัมน์หนึ่งที่เรียกว่า <strong>Primary Key</strong> ที่เป็นคีย์ที่ไม่ซ้ำกัน และไม่เป็นค่าช่องว่าง (Null) เพื่อใช้อ้างอิงในแต่ละแถว โดยเราสามารถนำคอลัมน์ Primary Key นี้ไปสร้างความสัมพันธ์ (Relation) กับตารางอื่น ๆ ผ่านการกำหนดคอลัมน์ที่เรียกว่า <strong>Foreign Key</strong> เพื่อให้ตารางที่มี Primary Key สามารถเชื่อมข้อมูลกับตารางอื่น และทำให้ข้อมูลใน Database สอดคล้องกัน [2]</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="230" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/primary_and_foreign_key-1024x406.jpg" alt="" class="wp-image-4444" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/primary_and_foreign_key-300x119.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/primary_and_foreign_key-1024x406.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/primary_and_foreign_key-768x305.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/primary_and_foreign_key-1536x610.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/primary_and_foreign_key-1200x476.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/primary_and_foreign_key.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Primary Key และ Foreign Key</figcaption></figure></div>
+
+<p>ตัวอย่างการสร้าง Database ที่ใช้ Database ประเภทนี้ก็ทำได้โดย มีตารางอยู่ 2 ตาราง ได้แก่ ตาราง Customer และ ตาราง Order</p>
+
+<p><strong>ตาราง Customer</strong> เก็บข้อมูล ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>Customer ID (primary key)</li>
+
+
+
+<li>Customer name</li>
+
+
+
+<li>Billing address</li>
+
+
+
+<li>Shipping address&nbsp;</li>
+</ul>
+
+<p>ในตาราง Customer ตัว Primary Key ของตารางนี้คือ Customer ID ที่เป็นค่าที่ระบุถึงลูกค้าใน Database โดยลูกค้าแต่ละท่านจะมีรหัสนี้เหมือนกันไม่ได้</p>
+
+<p><strong>ส่วนตาราง Order</strong> เก็บข้อมูลการซื้อ-ขายสินค้าที่ประกอบไปด้วย</p>
+
+<ul class="wp-block-list">
+<li>Order ID (primary key)</li>
+
+
+
+<li>Customer ID (foreign key)</li>
+
+
+
+<li>Order date&nbsp;</li>
+
+
+
+<li>Shipping date</li>
+
+
+
+<li>Order status</li>
+</ul>
+
+<p>ตารางนี้เก็บ Primary Key สำหรับรหัสการซื้อ-ขายสินค้า (Order ID) โดยสามารถเชื่อมโยงถึงลูกค้าแต่ละท่านได้โดยการกำหนด Foreign Key เพื่อเชื่อมไปยังตาราง Customer</p>
+
+<p>จากรายละเอียดข้างบนนี้ เราจะพบว่าทั้งสองตารางมีความสัมพันธ์กับโดยใช้ Customer ID ซึ่งหมายความว่าเราสามารถเรียกข้อมูลจากทั้ง 2 ตารางเพื่อสร้างรายการ หรือเพื่อนำข้อมูลไปใช้ประยุกต์กับงานอื่น ๆ ได้</p>
+
+<p>ตัวอย่างเช่น ผู้บริหารร้านค้าสามารถสร้างรายงานถึงลูกค้าทุกคนที่ซื้อสินค้าในวันที่ระบุไว้ หรือสามารถดูข้อมูลลูกค้าที่สั่งสินค้าแล้วได้สินค้าล่าช้ากว่ากำหนดในเดือนที่แล้ว</p>
+
+<p>จากตัวอย่างการสร้างตาราง Customer และตาราง Order นี้เป็นแบบง่าย แต่ในความเป็นจริง Database ซับซ้อนมากกว่านั้น แต่ยังมี Relation ระหว่างตารางเพื่อเชื่อมโยงข้อมูลระหว่างตารางกันได้ ทำให้เราสามารถอ้างอิงได้หลายตารางเลย ตราบใดที่ยังเข้ากันได้กับรูปแบบของ Relation ของ Database ของเราเองที่ได้ระบุไว้</p>
+
+<p>เมื่อตารางถูกจัดเก็บแบบที่มีการระบุ Relation มาก่อนแล้ว เราสามารถเรียกดู (Query) ข้อมูลได้โดยการเขียนโค้ดด้วยภาษา SQL (Structured Query Language) [1]</p>
+
+<h3 class="wp-block-heading">ภาษา SQL (Structured Query Language)</h3>
+
+<p><strong>ภาษา SQL (Structured Query Language) </strong>เป็นภาษาสำหรับการดึงข้อมูลจาก Database แบบ Structured Data โดย</p>
+
+<ul class="wp-block-list">
+<li>ตัว Syntax ของภาษาเป็นภาษาอังกฤษที่คนใช้กันทั่วโลก</li>
+
+
+
+<li>เป็นภาษาที่ใช้ในงานของ Data Analyst, Data Scientist และ Data Engineer </li>
+
+
+
+<li>ถูกใช้งานใน Database และ Data Warehouse แทบทุกแบรนด์ รวมถึง NoSQL บางตัว</li>
+</ul>
+
+<p>อย่างไรก็ดี ภาษา SQL มีหลายเวอร์ชันขึ้นกับผู้พัฒนาฐานข้อมูลนั้น ๆ ตัวอย่างเช่น Transact-SQL (หรือ T-SQL) ที่ถูกใช้งานในฐานข้อมูล Microsoft SQL (หรือ MSSQL)</p>
+
+<p>ต่อมา นอกจากเรื่องเวอร์ชันของภาษา SQL แล้ว เรามาดูคำสั่งที่ใช้ SQL กันดีกว่า คำสั่งใน SQL สามารถจัดแบ่งเป็นหมวดหมู่ได้ทั้งหมด 4 หมวดหมู่ โดยสรุปได้ตามภาพด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sql_command_classification-1024x576.jpg" alt="" class="wp-image-4379" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sql_command_classification-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sql_command_classification-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sql_command_classification-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sql_command_classification-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sql_command_classification-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/sql_command_classification.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Chart สรุปคำสั่ง SQL ตามหมวดหมู่</figcaption></figure></div>
+
+<p>โดย</p>
+
+<ul class="wp-block-list">
+<li><strong>DDL </strong>ย่อมาจาก Data Definition Language</li>
+
+
+
+<li><strong>DML </strong>ย่อมาจาก Data Manipulation Language</li>
+
+
+
+<li><strong>DCL </strong>ย่อมาจาก Data Control Language</li>
+
+
+
+<li><strong>TCL </strong>ย่อมาจาก Transaction Control Language</li>
+</ul>
+
+<p>อย่างไรก็ดี บางเว็บก็จะแยกคำสั่ง SELECT ไปอยู่ในหมวด DQL (Data Query Language) ครับ</p>
+
+<h3 class="wp-block-heading">เครื่องมือสำหรับการ Database SQL (หรือ RDBMS) บนคลาวด์</h3>
+
+<p>ในปัจจุบันข้อมูล Big Data ที่สร้างขึ้นมีขนาดใหญ่ขึ้นมากหลายเท่าตัวเมื่อเทียบกับ 10 ปีก่อน ข้อมูลที่สร้างขึ้นเหล่านี้</p>
+
+<ul class="wp-block-list">
+<li>เติบโตมากขึ้นทุกนาที</li>
+
+
+
+<li>กระจัดกระจายไปตาม Server ที่ิติดตั้งแบบ On-Premise และบนคลาวด์ ส่งผลให้การนำข้อมูลมาใช้เป็นไปได้ยาก</li>
+
+
+
+<li>นำไปประมวลผลได้ล่าช้า</li>
+</ul>
+
+<p>จุดนี้ส่งผลให้ธุรกิจเสียหายได้ ตัว Cloud Database ได้รับการออกแบบมาเพื่อแก้ปัญหาเหล่านี้</p>
+
+<h3 class="wp-block-heading">Cloud Database</h3>
+
+<p><strong>Cloud Database</strong> เป็น Database ที่วางอยู่บนผู้ให้บริการคลาวด์ (Cloud Provider) ที่ทำหน้าที่เหมือนกันกับ Database แบบ SQL ทั่ว ๆ ไป อย่างไรก็ตาม บริการ Cloud Database จะแตกต่างกับทั่วไปตรงที่บริการนี้เป็นแบบ Managed database-as-a-service (DBaaS) ที่ผู้ให้บริการ Cloud นั้น ๆ จะเป็นคนดูแล [1]</p>
+
+<p>จุดนี้จะผิดกับบริการ Unmanaged ที่ผู้ใช้จะต้องจัดการ และดูแลฐานข้อมูลเอาเองภายในทีมของบริษัท หรือบุคคลนั้น ๆ</p>
+
+<p>ตัวอย่างของเครื่องมือ Cloud Database ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>Amazon RDS (Amazon Relational Database Service)</li>
+
+
+
+<li>Azure SQL Database</li>
+
+
+
+<li>Google Cloud SQL</li>
+</ul>
+
+<p>มาถึงจุดนี้ก็คงจะมีคำถามแล้วว่า &#8220;เพราะอะไรถึงต้องมาใช้บริการพวกนี้ แล้วมันแตกต่างกันตรงไหน?&#8221; เหตุผลของการใช้บริการ Cloud Database ก็ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>ยืดหยุ่น (Flexible)</strong> สามารถปรับตั้งค่าสเปคเครื่องได้เลยตามความต้องการ แถมถ้า Database เกิดล่มขึ้นมา เราก็เปิดใช้ High Availability เพื่อให้บริการ Cloud SQL ก็สลับไปใช้ฐานข้อมูลตัวก็อปปี้ที่วางอยู่ในคนละที่แบบอัตโนมัติ [3]</li>
+
+
+
+<li><strong>เสถียร (Reliable)</strong> มีการรับประกันว่าจะไม่ล่มบ่อยโดยใช้ SLA (Service Level Agreement) แถมยังมีบริการสำรองข้อมูล (Backup) อัตโนมัติ</li>
+
+
+
+<li><strong>ปลอดภัย (Secure)</strong> ไม่ต้องจ้างยาม ติดตั้งระบบความปลอดภัยเองแบบ On-Premises</li>
+
+
+
+<li><strong>ประหยัด (Affordable)</strong></li>
+
+
+
+<li>และอื่น ๆ</li>
+</ul>
+
+<p>ในบทความนี้จะใช้บริการของ Google Cloud Platform ที่มีชื่อว่า <strong>Google Cloud SQL</strong></p>
+
+<h3 class="wp-block-heading">Google Cloud SQL</h3>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-medium"><img data-recalc-dims="1" loading="lazy" decoding="async" width="300" height="158" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_cloud_sql.webp" alt="" class="wp-image-4392" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_cloud_sql-300x158.webp 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_cloud_sql-1024x538.webp 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_cloud_sql-768x403.webp 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/google_cloud_sql.webp 1200w" sizes="auto, (max-width: 300px) 100vw, 300px" /><figcaption class="wp-element-caption">Google Cloud SQL</figcaption></figure></div>
+
+<p><strong>Google Cloud SQL</strong> เป็นบริการ SQL Database ที่ให้บริการในรูปแบบ Fully Managed ที่ให้ผู้ใช้สามารถติดตั้ง สร้าง ดูแล จัดการฐานข้อมูลได้สะดวกบน Infrastructure ของ Google Cloud Platform โดยเราไม่จำเป็นต้องมาวุ่นวายพวกนี้เลย เราแค่ไปโฟกัสกับการทำฐานข้อมูลเพื่อสร้าง Applications มาใช้ ตามสโลแกนของเว็บ Google ที่กล่าวไว้ว่า</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>Focus on your application, and leave the database to us</p>
+<cite><a href="https://cloud.google.com/sql/">Cloud SQL for MySQL, PostgreSQL, and SQL Server | Google Cloud</a></cite></blockquote>
+
+<p>บริการนี้เป็นบริการที่นิยมมาก โดยลูกค้าของ Google Cloud Platform 100 ราย ใช้บริการนี้มากกว่า 95% อีกด้วย แถมยังเครื่องมือสำหรับการจัดการ Database ทั้ง 3 เจ้าดัง ได้แก่ MySQL, PostgreSQL และ Microsoft SQL Server</p>
+
+<p>การย้ายมาใช้บริการ Cloud SQL ก็ทำได้ง่ายมาก เราไม่ต้องเขียนโค้ดอะไรเพิ่มเลย ตัวเครื่องมือ Database ใช้ตัวเดิม (MySQL, PostgreSQL และ Microsoft SQL Server) ได้เลย ไม่ต้องทำอะไรเพิ่มเลย [4]</p>
+
+<p>นอกจากนี้บริการ Cloud SQL ยังมีคุณสมบัติสำหรับการสำรองข้อมูลแบบอัตโนมัติ การทำซ้ำ (replication) และการป้องกันระบบคอมพิวเตอร์ล่มเหลว (failover) คุณยังสามารถรวมเข้ากับบริการอื่น ๆ ของ Google Cloud ได้ด้วย เช่น Google Kubernetes Engine และ BigQuery [5]</p>
+
+<h2 class="wp-block-heading">โจทย์</h2>
+
+<p>โจทย์ที่ได้จะเป็นโจทย์ที่นำมาจากคอร์สของ <strong>Road to Data Engineer (หรือ R2DE)</strong>  ที่เป็นคอร์สที่ผู้อ่านสามารถซื้อได้จากเว็บไซต์ <a href="https://school.datath.com/" target="_blank" rel="noopener" title="DataTH">DataTH</a> ผู้สอนของคอร์สเป็นบุคคลที่ทำงานทางด้าน Data Engineer มาก่อนตัวคอร์สสอนตั้งแต่พื้นฐานการเขียนโปรแกรม ไปถึงระดับที่สามารถสมัครงานในตำแหน่ง Junior Data Engineer ได้ ในทุกบทเรียนจะมี Workshop ให้ผู้เรียนได้ลองทำจริง</p>
+
+<p>ตัวโจทย์ที่จะทำนี้ทางฝ่ายผลิตภัณฑ์และการตลาดอยากทราบว่าสินค้าชิ้นไหนขายดี เพื่อหาสินค้าที่ถูกใจลูกค้ามาวางขาย และจัดโปรได้เหมาะสม โดยเก็บข้อมูลไว้ในฐานข้อมูล (Database) และต้องการให้ทีมวิศวกรเตรียมข้อมูลให้ทางฝ่ายวิเคราะห์ข้อมูลเพื่อจะสร้าง Report หรือ Dashboard</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="387" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-1024x683.jpg" alt="" class="wp-image-4448" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-300x200.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-1024x683.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-768x512.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-1536x1024.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-2048x1365.jpg 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-1200x800.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/vnwayne-fan-unsplash-1-1980x1320.jpg 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ร้านค้า ภาพถ่ายโดย <a href="https://unsplash.com/@vnwayne?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">vnwayne fan</a> บน <a href="https://unsplash.com/photos/brown-wooden-shelf-with-books-and-boxes-lzHYLfNI89A?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Unsplash</a></figcaption></figure></div>
+
+<p>เมื่อทราบตัวโจทย์แล้ว เราก็วางแผนทำ Data Pipeline เลย นิยามและรายละเอียดแบบคร่าว ๆ ของ Data Pipeline ที่เอามาจาก<a href="https://nickuntitled.com/2024/01/26/13-create-datapipeline-get-tuition-cost/" target="_blank" rel="noopener" title="#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี">บทความก่อนหน้า</a>คือกระบวนการลำเลียงข้อมูลจากแหล่งข้อมูล (Data Source) มายังจุดหมาย (Destination) โดยมีทั้งหมด 4 ขั้นตอน ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>การนำเข้าข้อมูล (Ingestion)</li>
+
+
+
+<li>การเปลี่ยนแปลงข้อมูล (Transformation)</li>
+
+
+
+<li>การเก็บข้อมูล (Storage) ที่แบ่งได้เป็น Data Warehouse และ Data Lake</li>
+
+
+
+<li>และปลายทางคือการวิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis)</li>
+</ul>
+
+<p>โดยเราสามารถสรุปขั้นตอนได้ตามข้างล่างนี้</p>
+
+<div class="wp-block-image">
+<figure data-wp-context="{&quot;imageId&quot;:&quot;67d97e226eac0&quot;}" data-wp-interactive="core/image" class="aligncenter size-large wp-lightbox-container"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="326" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on-async--click="actions.showLightbox" data-wp-on-async--load="callbacks.setButtonStyles" data-wp-on-async-window--resize="callbacks.setButtonStyles" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1024x576.jpg" alt="" class="wp-image-4415" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/project_2_database.jpg 1920w" sizes="auto, (max-width: 580px) 100vw, 580px" /><button class="lightbox-trigger" type="button" aria-haspopup="dialog" aria-label="Enlarge image" data-wp-init="callbacks.initTriggerButton" data-wp-on-async--click="actions.showLightbox" data-wp-style--right="state.imageButtonRight" data-wp-style--top="state.imageButtonTop">
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button><figcaption class="wp-element-caption">สรุป Data Pipeline</figcaption></figure></div>
+
+<p>ส่วนเครื่องมือทั้งหมดที่ใช้ เราใช้ผ่าน <a href="http://cloud.google.com" target="_blank" rel="noopener" title="Google Cloud Platform (GCP)">Google Cloud Platform (GCP)</a> ที่เป็นบริการคลาวด์ที่เราเช่าใช้ส่วนหนึ่งของ Data Center ผ่านระบบอินเตอร์เน็ต โดยไม่ต้องติดตั้งคอมพิวเตอร์เองแบบ On-Premises และคิดค่าใช้บริการตามจริง (OpEx หรือ Operational Expenditure) ที่เป็น Pay-as-you-go.</p>
+
+<p>เรื่อง Region ในบทความนี้กำหนดเป็น <strong>us-central1</strong> ทั้งหมด</p>
+
+<h3 class="wp-block-heading">การนำเข้าข้อมูล (Ingestion)</h3>
+
+<p>ในขั้นตอนนี้เป็นการนำเข้าข้อมูลจาก Database และ API ตามที่ได้แจ้งในโจทย์ข้างบนนี้ โดยตัว Database ที่ใช้เป็นแบบ SQL ที่แสดงรายการสินค้าที่ขาย และแสดงรายการสั่งซื้อ ส่วน API ที่ดึงข้อมูลมาจะเป็นการดึงข้อมูลอัตราแลกเปลี่ยนระหว่างเงินสกุลดอลลาร์สหรัฐฯ และสกุลเงินบาท</p>
+
+<p>ข้อมูลของตัว Database ที่มีมาให้เป็นข้อมูลที่มีลักษณะเป็น Structured Data ที่เป็นข้อมูลที่มีลักษณะโครงสร้างที่แน่นอน สามารถแสดงผลในรูปแบบตารางได้ ส่วน API ที่ดาวน์โหลดมาเป็นข้อมูล JSON ที่มีลักษณะเป็น Semi-structured Data ที่มีความยืดหยุ่น และปรับโครงสร้างได้ในอนาคต</p>
+
+<p>ขั้นตอนนี้เราจะใช้</p>
+
+<ul class="wp-block-list">
+<li>MySQL ผ่านการใช้บริการ Google Cloud SQL</li>
+
+
+
+<li>Apache Airflow ที่ใช้งานผ่าน Google Cloud Composer</li>
+
+
+
+<li>และใช้ Google Cloud Storage เพื่อสร้าง Bucket สำหรับการทำ Data Lake</li>
+</ul>
+
+<p><a href="https://www.mysql.com/" target="_blank" rel="noopener" title="MySQL">MySQL</a> เป็นเครื่องมือจัดการ Database ที่เป็น Open Source ที่เดิมถูกพัฒนาโดย MySQL AB ต่อมาถูกซื้อโดย Oracle ที่รองรับคำสั่งภาษา SQL  ร่วมกับรองรับภาษาเขียนโปรแกรมได้หลากหลาย ได้แก่ C, C++, Python, Java, PHP เป็นต้น</p>
+
+<p>นอกจากนี้ เครื่องมือนี้ยังได้รับการออกแบบและปรับให้เหมาะสมต่อการพัฒนาโปรแกรม และเว็บ ที่รองรับการทำงานทุกแพลตฟอร์ม ร่วมกับใช้งานได้หลายผู้ใช้ (Multi-user) </p>
+
+<h3 class="wp-block-heading">สร้าง Instance บน Cloud SQL</h3>
+
+<p>การสร้าง Instance สำหรับการรัน MySQL บนบริการ Google Cloud SQL ทำได้ไม่กี่ขั้นตอน</p>
+
+<p>ขั้นตอนแรก เข้าไปที่หน้า Google Cloud ก่อน จากนั้นเข้าไปที่หน้า Console แล้วเลือกไปยัง Cloud SQL เมื่อเลือกเข้าไปที่หน้า Cloud SQL แล้ว จะปรากฏหน้าจอเพื่อให้สร้าง Instance บน Google Cloud SQL จากนั้นกดปุ่ม Create Instance with Your Free Credits</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="351" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0128-1024x620.jpeg" alt="" class="wp-image-4434" style="width:606px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0128-300x182.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0128-1024x620.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0128-768x465.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0128-1200x727.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0128.jpeg 1316w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแรกของบริการ Cloud SQL</figcaption></figure></div>
+
+<p>กดปุ่ม Create Instance แล้วให้เลือกชนิดเครื่องมือ SQL Database ที่ต้องการ โดยมีให้เลือกเป็น MySQL, PostgreSQL และ SQL Server ในตัวอย่างนี้เราเลือก MySQL.</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="296" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-1024x523.jpeg" alt="" class="wp-image-4435" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-300x153.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-1024x523.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-768x392.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-1536x785.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-2048x1047.jpeg 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-1200x613.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0129-1980x1012.jpeg 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอให้เลือก SQLDatabase ที่ต้องการ</figcaption></figure></div>
+
+<p>เมื่อกดปุ่มเลือก MySQL แล้ว เรามาตั้งค่า Instance ของ Cloud SQL โดยให้</p>
+
+<ul class="wp-block-list">
+<li>กำหนดชื่อ Instance ID</li>
+
+
+
+<li>กำหนดรหัสผ่านของ user Root</li>
+
+
+
+<li>เลือก Cloud SQL Edition ที่ต้องการโดยมีให้เลือกเป็น Enterprise Plus กับ Enterprise จุดนี้จะแตกต่างกันเรื่อง SLA, ประสิทธิภาพ, สเปค กับการสำรองข้อมูล และการกู้คืนข้อมูล โดยดูได้ตามภาพด้านล่างนี้</li>
+
+
+
+<li>เลือก Preset สำหรับสเปคของเซิร์ฟเวอร์ที่ต้องการ โดยมีให้เลือกเป็น Production, Development และ Sandbox โดยแตกต่างกันตามภาพด้านล่างนี้เช่นกัน ในตัวอย่างให้เลือกที่ Sandbox</li>
+
+
+
+<li>เลือก Region และ Zone โดยในตัวอย่างนี้เลือก us-central1 และเลือก Zone เป็น Single Zone</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="262" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-1024x463.jpeg" alt="" class="wp-image-4437" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-300x136.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-1024x463.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-768x347.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-1536x694.jpeg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-2048x925.jpeg 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-1200x542.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0131-1980x894.jpeg 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอให้เลือก Cloud SQL Edition</figcaption></figure></div>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="508" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0132-1024x897.jpeg" alt="" class="wp-image-4438" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0132-300x263.jpeg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0132-1024x897.jpeg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0132-768x673.jpeg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0132-1200x1051.jpeg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/IMG_0132.jpeg 1208w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอให้เลือก Preset เลือกสเปคของเซิร์ฟเวอร์ตามที่ต้องการ</figcaption></figure></div>
+
+<p>เมื่อตั้งค่าเสร็จเรียบร้อย กดปุ่ม Create Instance เพื่อสร้าง Instance ของ Cloud SQL ครับ ขั้นตอนนี้จะใช้ระยะเวลานานหน่อยครับ ก็ออกไปทำธุระอย่างอื่นก่อนได้เลย</p>
+
+<p>เมื่อสร้าง Instance ของ Google Cloud SQL สำเร็จแล้ว หน้าจอจะแสดงตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="283" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_sql-1024x499.png" alt="" class="wp-image-4452" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_sql-300x146.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_sql-1024x499.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_sql-768x374.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_sql-1536x749.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_sql-1200x585.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_sql.png 1918w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดง Instance ของ Google Cloud SQL</figcaption></figure></div>
+
+<p>หลังจากนั้น ให้เราสร้าง User เพื่อจัดการกับ Database ในตัว Instance ของ Google Cloud SQL โดยดูที่แท็บด้านซ้าย ให้เลือกไปที่ Users</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="365" height="661" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-135745.png" alt="" class="wp-image-4454" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-135745-166x300.png 166w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-135745.png 365w" sizes="auto, (max-width: 365px) 100vw, 365px" /><figcaption class="wp-element-caption">แท็บแมนูในหน้า Instance ของ Google Cloud SQL</figcaption></figure></div>
+
+<p>เมื่อเข้ามาที่หน้า Users แล้ว ให้กดไปที่ Add User Account จากนั้นหน้าต่าง Add a user account to instance &lt;instance name&gt; ก็จะปรากฏขึ้น โดยจะมีตัวเลือกสองตัวเลือกของการทำ Authentication ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><strong>Built-in authentication</strong> อันนี้จะสร้าง User account ที่พิมพ์ Username และ Password ได้ตามปกติ โดยจะมีสิทธิการใช้งานแบบเดียวกันกับ root อย่างไรก็ตาม จุดนี้เราปรับได้ในภาพหลัง</li>
+
+
+
+<li><strong>Cloud IAM (Cloud Identity Access Management)</strong> อันนี้เรานำ Google Account หรือ Service Account ที่เกี่ยวข้องมาใช้ โดยเราจะต้องกำหนด Role ให้สามารถจัดการกับ Instance ได้ รายละเอียดเพิ่มเติมอ่านได้ใน<a href="https://cloud.google.com/iam/docs/overview" target="_blank" rel="noopener" title="เอกสารของ Google Cloud">เอกสารของ Google Cloud</a></li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="664" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-135914.png" alt="" class="wp-image-4456" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-135914-262x300.png 262w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-135914.png 755w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอสร้าง User Account ใน Google Cloud SQL</figcaption></figure></div>
+
+<p>ในตัวอย่างนี้ เราเลือก Built-in authentication แล้วกำหนด username และ password ตามที่ต้องการ จากนั้นกดปุ่ม Add</p>
+
+<p>เมื่อเพิ่ม User แล้ว เราเข้าถึง Instance ได้ โดยพิมพ์คำสั่งใน Cloud Shell ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>gcloud sql connect &lt; instance that you want to connect &gt; --user=&lt;username&gt; --quiet</code></pre>
+
+<p>กดปุ่ม Enter แล้วจะมีหน้าต่างสอบถามว่าเราต้องการอนุญาตให้บัญชี Google Account นี้เข้าถึงคำสั่งนี้ได้หรือไม่ ให้เรากดที่ Authorize จากนั้นก็พิมพ์รหัสผ่านของผู้ใช้ที่เราสร้างขึ้น</p>
+
+<p>เมื่อสร้างเสร็จแล้วจะปรากฏหน้าจอ MySQL ขึ้นมาตามด้านล่างนี้ โดยเราสามารถพิมพ์คำสั่ง SQL ได้ตามที่ต้องการ</p>
+
+<pre class="wp-block-code"><code>Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2147
+Server version: 8.0.31-google (Google)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql&gt; </code></pre>
+
+<p>โดยตัวอย่างนี้ให้เราพิมพ์คำสั่ง CREATE DATABASE &lt; preferred database name &gt; ลงใน Prompt แล้วกด Enter เพื่อสร้าง Database เมื่อสร้างเสร็จแล้วให้พิมพ์คำสั่ง SHOW DATABASES ระบบจะแสดง Database ที่มีในระบบ</p>
+
+<pre class="wp-block-code"><code>mysql&gt; CREATE DATABASE &lt; preferred database name &gt;;
+Query OK, 1 row affected (0.22 sec)
+
+mysql&gt; SHOW DATABASES;
++-----------------------------+
+| Database                    |
++-----------------------------+
+| information_schema          |
+| mysql                       |
+| performance_schema          |
+| &lt; preferred database name &gt; |
+| sys                         |
++-----------------------------+
+5 rows in set (0.21 sec)</code></pre>
+
+<p>เมื่อสร้างฐานข้อมูลเสร็จแล้ว ให้เรา Dump ข้อมูลจาก Database เก่ามานำเข้าไปยัง Database ใหม่ที่เราสร้างขึ้นบน Google Cloud SQL</p>
+
+<h3 class="wp-block-heading">การ Dump SQL Database เพื่อเซฟเป็นไฟล์ SQL</h3>
+
+<p>ต่อมา เรามาพูดถึงการสร้าง Database และ Table บน Google Cloud SQL แต่ก่อนอื่น เราจะต้องนำข้อมูลจาก Database ที่มีมาให้ใน <strong>Workshop 1 ของคอร์ส R2DE </strong>เสียก่อน โดยข้อมูล Host, Username, Password, และชื่อ Database อันนี้นี้เข้าไปดูได้ในคอร์ส</p>
+
+<p>ส่วนเครื่องมือที่ใช้เป็น Client ของ SQL Database ก็มีหลายตัว ได้แก่ <a href="https://www.mysql.com/products/workbench/" target="_blank" rel="noopener" title="MySQL Workbench">MySQL Workbench</a>, <a href="https://dbeaver.io/" target="_blank" rel="noopener" title="DBeaver">DBeaver</a> กับ <a href="https://www.heidisql.com/" target="_blank" rel="noopener" title="HeidiSQL">HeidiSQL</a> เป็นต้น เครื่องมือตามข้างบนนี้ เราสามารถดาวน์โหลดเพื่อมาติดตั้งได้จากลิ้งค์ที่ให้ได้ครับ</p>
+
+<p>เมื่อดาวน์โหลดและติดตั้งเสร็จแล้ว ให้เชื่อมต่อกับฐานข้อมูล แล้ว Dump Database ออกมาเป็นไฟล์ sql</p>
+
+<h3 class="wp-block-heading">การอัพโหลดไฟล์ไปยัง Google Cloud Storage</h3>
+
+<p>ต่อมา อัพโหลดไฟล์ไปยัง Google Cloud Storage การอัพโหลดไฟล์เข้าไปยัง Cloud Storage ทำได้โดย</p>
+
+<ul class="wp-block-list">
+<li>กดเข้าไปที่หน้า Cloud Storage แล้วเลือก Bucket ตามที่ต้องการ จากนั้นกดปุ่มอัพโหลด</li>
+
+
+
+<li>หรืออัพโหลดไฟล์เข้า Cloud Shell ก่อน จากนั้นพิมพ์คำสั่ง gs util cp &lt; preferred_upload_file &gt; gs://&lt; preferred_upload_bucket &gt;/&lt; target_path &gt;</li>
+
+
+
+<li>อีกวิธีก็เป็นการเขียนโค้ดเพื่ออัพโหลดไฟล์ อันนี้เราสามารถเขียนได้หลายภาษา แต่ในบทความนี้เราจะเขียนโค้ดด้วยภาษาไพทอน</li>
+</ul>
+
+<p>การเขียนโค้ดด้วยภาษาไพทอน ทำได้โดยการเข้าไปยังหน้า Cloud Shell แล้วกดที่ปุ่ม Open Editor เพื่อเปิดหน้าแก้ไขโค้ด ต่อมา เรามาเริ่มเขียนโค้ดกัน</p>
+
+<p>ขั้นตอนแรกของการเขียนโค้ดคือนำเข้าไลบรารีที่เกี่ยวข้องเสียก่อน โดยไลบรารีสำหรับการอัพโหลดไฟล์ไปยัง Google Cloud Storage หรือดาวน์โหลดไฟล์จาก Cloud Storage อยู่ในไลบรารีของ google.cloud.storage การเขียนโค้ดทำได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code><strong>from google.cloud.storage import Client</strong></code></pre>
+
+<p>ขั้นตอนต่อมา เราเรียกใช้คลาส Client ร่วมกับการเลือก Bucket ตามที่เราต้องการ</p>
+
+<pre class="wp-block-code"><code>from google.cloud.storage import Client
+
+<strong>client = Client()
+bucket = client.bucket(bucket_name)</strong></code></pre>
+
+<p>เมื่อเลือก Bucket ตามที่เราต้องการแล้ว จากนั้นพิมพ์ตำแหน่งที่อยู่ไฟล์ที่เราต้องการให้ปรากฏที่ปลายทาง ด้วยการเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from google.cloud.storage import Client
+
+client = Client()
+bucket = client.bucket(bucket_name)
+<strong>blob = bucket.blob(“&lt; target path &gt;”)</strong></code></pre>
+
+<p>จากนั้นสั่งให้ตัวโค้ดอัพโหลดไฟล์จากตำแหน่งที่มีอยู่ใน Google Cloud Shell ด้วยคำสั่ง upload_from_filename โดยการโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from google.cloud.storage import Client
+
+client = Client()
+bucket = client.bucket(bucket_name)
+blob = bucket.blob(“&lt; target path &gt;”)
+
+<strong>generation_match_precondition = None
+blob.upload_from_filename(source_filenames,
+    if_generation_match=generation_match_precondition)</strong></code></pre>
+
+<p>ตัวอาร์กิวเมนต์ <a href="https://cloud.google.com/python/docs/reference/storage/latest/generation_metageneration#using-ifgenerationmatch" target="_blank" rel="noopener" title="if_generation_match">if_generation_match</a> จะกำหนดไว้ในกรณีที่ไฟล์ที่มีชื่อเดียวกันอยู่บน Cloud Storage Bucket นั้น ๆ ว่ามีไพล์อยู่แล้วหรือไม่ ถ้าเรากำหนดค่านี้ไว้เท่ากับ 0 ตัวคำสั่ง upload_from_filename จะทำงานได้โดยไม่มีข้อผิดพลาดก็ต่อเมื่อไม่มีไฟล์นั้น ๆ อยู่บน Bucket แต่ถ้าเราต้องการเขียนทับไฟล์ไปเลย ไม่สนใจว่ามีไฟล์อยู่หรือไม่ ให้ใส่ว่า None</p>
+
+<p>จากน้น พิมพ์ Command Line เพื่อรันคำสั่ง เมื่อรันเสร็จแล้ว ตัวโค้ดจะอัพโหลดไฟล์เพื่อเก็บไว้บน Bucket</p>
+
+<h3 class="wp-block-heading">อัพโหลดไฟล์จาก Bucket ไปยัง Cloud SQL</h3>
+
+<p>การอัพโหลดไฟล์จาก Bucket ขึ้นไปยัง Google Cloud SQL ทำได้หลายวิธี ในบทความนี้จะยกตัวอย่าง 2 วิธี ได้แก่</p>
+
+<p>วิธีแรก เป็นการอัพโหลดไฟล์ผ่านทางหน้าเว็บของ Google Cloud SQL วิธีนี้ทำได้ไม่ยาก โดยให้เราเข้าไปที่ Instance ของ Google Cloud SQL ที่สร้างขึ้น แล้วกดไปปุ่ม Import เลือกไฟล์ใน Bucket ที่เราได้อัพโหลดไว้ แล้วเลือกตำแหน่ง Database ที่เราได้สร้างขึ้น จากนั้นกดปุ่ม Import เพื่อนำเข้าไฟล์ไปยัง Database</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="654" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_cloud_storage_cloud_sql.png" alt="" class="wp-image-4462" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_cloud_storage_cloud_sql-266x300.png 266w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_cloud_storage_cloud_sql-768x867.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/import_cloud_storage_cloud_sql.png 818w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">นำเข้าไฟล์ผ่านหน้าเว็บ</figcaption></figure></div>
+
+<p>อีกวิธี เป็นการอัพโหลดไฟล์ผ่านการพิมพ์คำสั่ง อันนี้เราทำผ่าน Google Cloud Shell ได้เลย โดยการพิมพ์คำสั่งตามด้านล่างนี้ เมื่อพิมพ์เสร็จแล้วกด Enter</p>
+
+<pre class="wp-block-code"><code>gcloud sql import sql &lt; instance that you want to connect &gt; &lt; sql file path on Bucket on Google Cloud Storage &gt; &#91;--database=&lt; database name&gt;, -d &lt;database name&gt;] &#91;--user=&lt;username&gt;]</code></pre>
+
+<p>ตัวไฟล์ก็จะนำเข้าไปยังฐานข้อมูลได้เช่นกัน</p>
+
+<h3 class="wp-block-heading">สร้าง Instance บน Google Cloud Composer</h3>
+
+<p>ขั้นตอนนี้ ให้เราสร้าง Instance บน Google Cloud Composer เพื่อใช้งานเครื่องมือ Apache Airflow สำหรับการทำ Data Pipeline Orchestration โดยให้เราสร้าง Environment เสียก่อน ด้วยการเลือก Composer 1 หรือ 2 ก็ได้</p>
+
+<p>ในตัวอย่างนี้เราจะเลือกที่ Composer 2 เมื่อเลือกแล้ว ให้เรากรอกข้อมูลให้เรียบร้อย โดยเลือก Environment resources เป็น Small แล้วกดปุ่ม  Create ขั้นตอนนี้จะใช้เวลานานจนกว่าจะเสร็จ</p>
+
+<p>เมื่อสร้างเสร็จแล้ว ให้เราScale ส่วน Worker ขึ้นมาหน่อย จากเดิมที่ให้แรม 2GB เป็น <strong>3.25GB</strong> เพื่อให้มีแรมใช้เพียงพอต่องานที่จะทำขึ้น ไม่อย่างนั้นจะขึ้นประมาณว่า Process นั้นโดย Killed เนื่องจากแรมไม่พอ วิธีการ Scale ทำได้โดยเข้าไปที่ Environment ที่สร้างขึ้น เลือกแท็บ Environment Configuration จากนั้นเลื่อนมาที่ Workloads Configuration แล้วกด Edit</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="273" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/scaling_composer.png" alt="" class="wp-image-4523" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/scaling_composer-300x141.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/scaling_composer-768x361.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/scaling_composer.png 985w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดง Workloads Configuration</figcaption></figure></div>
+
+<p>จากนั้นหน้าจอ Workloads Configuration จะปรากฏทางด้านขวา</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="619" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/workloads_configuration.png" alt="" class="wp-image-4524" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/workloads_configuration-281x300.png 281w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/workloads_configuration.png 764w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอ Workloads Configuration</figcaption></figure></div>
+
+<p>ให้เลือกตรงส่วน Worker โดยเพิ่มแรมจาก 2 GB เป็น 3.25 GB จากนั้นกดปุ่ม Save แล้วรอให้ Composer จัดการซึ่งใช้เวลานานครับ 😀</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="369" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/workloads_configuration_2.png" alt="" class="wp-image-4525" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/workloads_configuration_2-300x191.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/workloads_configuration_2.png 752w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">เปลี่ยนจาก 2 GB เป็น 3.25 GB</figcaption></figure></div>
+
+<p>นอกจากนี้ เราจะใช้แพคเกจ Pandas และ Requests ดังนั้นแล้ว เราจะติดตั้งแพคเกจ numpy pandas และ requests ที่แท็บ PYPI Packages จากนั้นก็รอเวลาให้มันติดตั้ง ซึ่งก็นานอีกเช่นกัน</p>
+
+<h3 class="wp-block-heading">เปิดใช้งาน Cloud SQL Auth Proxy</h3>
+
+<p><strong>Cloud SQL Auth Proxy</strong> เป็นเครื่องมือเชื่อมต่อกับบริการ Cloud SQL โดยอนุญาตให้เราเชื่อมต่อเข้ากับ Instance อย่างปลอดภัยโดยไม่ต้องไปตั้งค่า Authorized networks หรือตั้งค่า SSL</p>
+
+<p>ข้อดีของการใช้บริการนี้ ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ตัว Proxy ทำให้การเชื่อมต่อเข้ากับ Instance ปลอดภัยมากขึ้นโดยเข้ารหัสการเชื่อมต่อ่เข้า และออกจาก Database โดยใช้ TLS 1.3 ร่วมกับการเข้ารหัสแบบ 256-bit AES cipher นอกจากนี้ยังมีการใช้ SSL certificate เพื่อยืนยันตัวตนระหว่าง server และ client ที่ไม่ขึ้นกับตัว Protocol การเชื่อมต่อ Database ส่งผลให้เราไม่ต้องตั้งค่า SSL certificate เลย</li>
+
+
+
+<li>บริการนี้ทำให้เราเชื่อมต่อได้ง่ายโดยใช้ IAM permission เพื่อควบคุมการเชื่อมต่อเข้ากันกับ Cloud SQL instance</li>
+
+
+
+<li>ไม่ต้องใช้ static IP address เพื่อเชื่อมต่อเข้ากับ Cloud SQL</li>
+</ul>
+
+<p>บริการ Cloud SQL Auth Proxy ไม่จำเป็นต้องกำหนดวิธีการเชื่อมต่อแบบใหม่เลย เพียงแต่ใช้การเชื่อมต่อ IP แบบเดิมบนเครือข่าย VPC network (Virtual Private Cloud network) ก็ใช้ได้แล้ว [6]</p>
+
+<p>วิธีการติดตั้ง Cloud SQL Auth Proxy ทำได้หลายวิธี โดยอาจจะติดตั้งเครื่องมือบนคอมพิวเตอร์ หรือบนเซิร์ฟเวอร์ใช้เองก็ได้ตามในเว็บ อย่างไรก็ตาม ในบทความนี้เราจะนำมาใช้งานกับ Google Cloud Composer ที่รันอยู่บนเครื่องมือ Kubernetes เราจำเป็นต้องสร้าง Auth Proxy บนระบบนี้</p>
+
+<h4 class="wp-block-heading">ตั้งค่า Kubernetes Engine API และอัพเดทการตั้งค่า</h4>
+
+<p>ขั้นตอนการติดตั้งทำได้โดยเริ่มจากการเปิดใช้งาน <a href="https://console.cloud.google.com/flows/enableapi?apiid=container.googleapis.com" target="_blank" rel="noopener" title="Kubernetes Engine API">Kubernetes Engine API</a> แล้วอัพเดทการตั้งค่า kubectl เพื่อให้ใช้งานกับ Kubernetes Cluster ที่สร้างโดย Google Cloud Composer ด้วยการพิมพ์คำสั่ง</p>
+
+<pre class="wp-block-code"><code>gcloud container clusters get-credentials &lt; Kubernetes Cluster Name &gt; \
+    --region=&lt; region &gt;</code></pre>
+
+<p>โดย kubectl เป็นฟังก์ชันสำหรับการติดต่อกับ Kubernetes Cluster เพื่อที่จะติดตั้ง และจัดการ Deployment, Pod และ Container</p>
+
+<p>การดูชื่อ Kubernetes Cluster ทำได้โดยเข้าไปที่ Google Cloud Composer Environment ที่เราสร้างขึ้น ต่อมากดที่แท็บ Environment Configuration แล้วดูที่ GKE cluster</p>
+
+<p>เราจะพบชื่อ Cluster ตรงบริเวณที่ขีดเส้นใต้สีส้มที่อยู่หลัง / อันหลังสุด อันนี้คือชื่อที่เราจะนำมาใช้กับคำสั่งข้างบนเพื่อตั้งค่าสำหรับ kubectl</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="291" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/gke_cluster_configuration-1-1024x514.png" alt="" class="wp-image-4480" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/gke_cluster_configuration-1-300x151.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/gke_cluster_configuration-1-1024x514.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/gke_cluster_configuration-1-768x385.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/gke_cluster_configuration-1.png 1030w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ดูรายละเอียดของ Kubernetes Cluster ได้ที่บริเวณ GKE cluster</figcaption></figure></div>
+
+<p>เมื่อพิมพ์คำสั่งเสร็จแล้ว หน้าจอจะปรากฏด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>gcloud container clusters get-credentials &lt; Kubernetes Cluster Name &gt; --region=&lt; Region &gt;
+
+<strong>Fetching cluster endpoint and auth data.
+kubeconfig entry generated for &lt; Kubernetes Cluster Name &gt;</strong></code></pre>
+
+<h4 class="wp-block-heading">สร้าง Google Service Account</h4>
+
+<p>ขั้นตอนที่สอง จะเป็นสร้าง Google Service Account สำหรับการใช้งานกับ Kubernetes Cluster เพื่อติดตั้งกับ SQL Database ที่สร้างขึ้นบน Google Cloud SQL</p>
+
+<p>วิธีสร้าง Google Service Account ทำได้โดยการใช้คำสั่ง</p>
+
+<pre class="wp-block-code"><code>gcloud iam service-accounts create &lt; service_account_name &gt;</code></pre>
+
+<p>ต่อมากำหนด Permission ให้กับ Service Account ที่สร้างขึ้น</p>
+
+<pre class="wp-block-code"><code>gcloud projects add-iam-policy-binding &lt; project_id &gt; \
+      --member serviceAccount:&lt; service_account_name &gt;@&lt; project_id &gt;.iam.gserviceaccount.com \
+      --role roles/cloudsql.client --condition None</code></pre>
+
+<p>ระบบจะขึ้นหน้าจอตามด้านล่างนี้เป็นอันว่าเราตั้งค่า Permission เรียบร้อย</p>
+
+<pre class="wp-block-code"><code>Updated IAM policy for project &#91;infra-tempo-410705].
+bindings:
+. . .</code></pre>
+
+<h4 class="wp-block-heading">สร้าง service_account.yaml</h4>
+
+<p>ขั้นตอนที่สาม เราจะสร้างไฟล์ Service Account ในรูปแบบ yaml สำหรับการใช้งานผ่าน kubectl เพื่อเก็บข้อมูล Kubernetes Service Account</p>
+
+<pre class="wp-block-code"><code>apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: &lt; ksa_account_name &gt;</code></pre>
+
+<p>เขียนเสร็จแล้ว ให้บันทึกไฟล์เป็น service_account.yaml แล้วพิมพ์คำสั่ง</p>
+
+<pre class="wp-block-code"><code>kubectl apply -f service_account.yaml</code></pre>
+
+<h4 class="wp-block-heading">สร้าง Workload Identity</h4>
+
+<p>ขั้นตอนที่สี่ เรามาสร้าง Workload Identity ที่เป็นขั้นตอนการสร้าง Kubernetes Service Account (KMS)</p>
+
+<pre class="wp-block-code"><code>gcloud container clusters update \
+            --region &lt; Region &gt; &lt; Kubernetes Cluster Name &gt;  \
+            --workload-pool &lt; project_id &gt;.svc.id.goog</code></pre>
+
+<p>เมื่อพิมพ์แล้ว กด Enter ผลลัพธ์จะแสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Updating us-central1-test-9c7bf836-gke...done.                                                                                                                                                
+Updated &#91;https://container.googleapis.com/v1/projects/&lt; project_id &gt;/zones/&lt; Region &gt;/clusters/&lt; Kubernetes Cluster Name &gt;].
+
+To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/&lt; Region &gt;/&lt; Kubernetes Cluster Name &gt;?project=&lt; project_id &gt;</code></pre>
+
+<h4 class="wp-block-heading">เพิ่ม Role ให้กับ Service Account และเชื่อมบัญชีไปยัง KSA Account</h4>
+
+<p>ขั้นตอนที่ห้า เรานำ Service Account ที่สร้างขึ้นมา</p>
+
+<ul class="wp-block-list">
+<li>ตั้งค่า Role โดยให้พิมพ์ Role <strong>iam.workloadIdentityUser</strong></li>
+
+
+
+<li>เชื่อมต่อบัญชี Kubernetes Service Account (KSA) เข้ากันกับ Google Service Account (GSA) โดยบัญชี GSA จะอนุญาตให้เข้าถึงจาก Workload Identity ที่เราระบุ KSA ไว้ในระบบ</li>
+</ul>
+
+<pre class="wp-block-code"><code>gcloud iam service-accounts add-iam-policy-binding \
+            --role roles/iam.workloadIdentityUser \
+            --member serviceAccount:&lt; project_id &gt;.svc.id.goog&#91;default/&lt; ksa_account_name &gt;] &lt; service_account_name &gt;@&lt; project_id &gt;.iam.gserviceaccount.com</code></pre>
+
+<p>พิมพ์เสร็จแล้ว กดปุ่ม Enter แล้วผลลัพธ์แสดงตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>Updated IAM policy for serviceAccount &#91;&lt; service_account_name &gt;@&lt; project_id &gt;.iam.gserviceaccount.com].
+bindings:
+- members:
+  - serviceAccount:&lt; project_id &gt;.svc.id.goog&#91;default/&lt; ksa_account_name &gt;]
+  role: roles/iam.workloadIdentityUser
+etag: 
+version: 1</code></pre>
+
+<h4 class="wp-block-heading">Annotate Service Account กับ KSA Account</h4>
+
+<p>ขั้นตอนที่หก ทำ Annotate Google Service Account โดยเชื่อมเข้ากับ KSA Account ที่ได้สร้างขึ้นในขั้นตอนที่สาม</p>
+
+<pre class="wp-block-code"><code>kubectl annotate serviceaccount &lt; ksa_account_name &gt; \
+            iam.gke.io/gcp-service-account=&lt; service_account_name &gt;@&lt; project_id &gt;.iam.gserviceaccount.com</code></pre>
+
+<p>ทำเสร็จแล้ว กดปุ่ม Enter แล้วจะปรากฏตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>serviceaccount/&lt; KSA Service Account &gt; annotated</code></pre>
+
+<h4 class="wp-block-heading">สร้าง Kubernetes Cluster เพื่อใช้ Cloud SQL Auth Proxy ผ่าน Sidecar pattern</h4>
+
+<p>ขั้นตอนที่เจ็ด สร้างไฟล์ yaml สำหรับการสร้าง Cloud SQL Auth Proxy บน Kubernetes cluster ผ่าน Sidecar pattern ที่เป็นการเพิ่ม Kubernetes Pod เข้าไปใน Cluster ที่มีอยู่แล้ว เพื่อที่จะ</p>
+
+<ul class="wp-block-list">
+<li>ป้องกันไม่ให้ Cloud SQL เข้าถึงได้จากภายนอก ร่วมกับเข้ารหัสการเชื่อมต่อไปยัง Cloud SQL ทำให้ปลอดภัยมากขึ้น</li>
+
+
+
+<li>ป้องกัน Single point of failure การติดต่อเข้าถึง Database จะไม่ขึ้นกับการติดต่อของแอพอื่น ทำให้ Database Cloud SQL เสถียรมากขึ้น</li>
+
+
+
+<li>จำกัดการเข้าถึง Cloud SQL Auth Proxy ทำให้เรากำหนด IAM permissions รายแอพได้</li>
+
+
+
+<li>กำหนด scope ของการเข้าถึง Database [7]</li>
+</ul>
+
+<p>วิธีการเขียนไฟล์ yaml สำหรับการใช้งาน Kubernetes ทำได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &lt; deployment name &gt;
+spec:
+  selector:
+    matchLabels:
+      app: &lt; Kubernetes Cluster Name &gt;
+  template:
+    metadata:
+      labels:
+        app: &lt; Kubernetes Cluster Name &gt;
+    spec:
+      containers:
+      - args:
+        - --structured-logs
+        - --address=0.0.0.0
+        - --port=3306
+        - &lt; Cloud SQL Connection Name &gt;
+        image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.1.0
+        name: cloud-sql-proxy
+        resources:
+          requests:
+            cpu: '1'
+            memory: 2Gi
+        securityContext:
+          runAsNonRoot: true
+      serviceAccountName: &lt; KSA Name &gt;</code></pre>
+
+<p>บันทึกไฟล์ในชื่อ proxy_with_workload_identity.yaml จากนั้นใช้คำสั่ง kubectl apply -f  proxy_with_workload_identity.yaml</p>
+
+<h4 class="wp-block-heading">สร้าง service.yaml</h4>
+
+<p>ขั้นตอนสุดท้าย สร้าง Service สำหรับการรัน Kubernetes ขึ้นมา โดยพิมพ์การตั้งค่าตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: &lt; deployment name &gt;-service
+  name: &lt; deployment name &gt;-service
+spec:
+  ports:
+  - port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    app: &lt; Kubernetes Cluster Name &gt;
+  type: ClusterIP
+</code></pre>
+
+<p>จากนั้นบันทึกไฟล์เป็น service.yaml แล้วใช้คำสั่ง kubectl apply -f service.yaml จากนั้นเราสามารถใช้ Google Cloud Composer เพื่อเชื่อมต่อฐานข้อมูลได้โดยใช้ชื่อตามด้านล่างนี้เป็นชื่อ Host</p>
+
+<pre class="wp-block-code"><code>&lt; deployment name &gt;-service.default.svc.cluster.local</code></pre>
+
+<p>ขั้นตอนตามข้างบนนี้ เราสามารถใช้เครื่องมือสำเร็จรูปอย่าง <a href="https://github.com/paulhtremblay/Google-Cloud-SQL-Composer-Proxy" target="_blank" rel="noopener" title="Google-Cloud-SQL-Composer-Proxy ">Google-Cloud-SQL-Composer-Proxy </a>ที่มีบน GitHub มาใช้ได้โดยการ Clone ตัว Repository นี้มาใช้ โดยเครื่องมือนี้ใช้ง่ายและสะดวกกว่าตามที่เขียนไว้ข้างบนมาก เพียงแค่ตั้งค่าลงในไฟล์ ini แล้วสั่งให้ scripts/create.py &lt; config name &gt;.ini ก็ทำได้แล้ว</p>
+
+<h3 class="wp-block-heading">การเชื่อมต่อ Google Cloud Composer เข้ากับ Cloud SQL ผ่าน Cloud SQL Auth Proxy</h3>
+
+<p>ทำได้โดยการเข้าไปที่หน้า Google Cloud Composer เราจะพบหน้าจอตามด้านล่างนี้ ให้กดที่ Airflow ตามที่ได้ไฮไลค์ไว้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="85" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-1024x150.png" alt="" class="wp-image-4513" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-300x44.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-1024x150.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-768x112.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-1536x224.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-1200x175.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui.png 1677w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอ Google Cloud Composer</figcaption></figure></div>
+
+<p>จากนั้น ให้เลือกไปที่เมนู Admin แล้วเลือกที่ Connections</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="345" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-connection.png" alt="" class="wp-image-4514" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-connection-300x179.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-connection-768x457.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/airflow-ui-connection.png 927w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอ Airflow</figcaption></figure></div>
+
+<p>เลื่อนลงมาจนกว่าจะพบ mysql_default (คนละอันกับ mssql_default) ให้กด Edit record แล้วพิมพ์การตั้งค่าตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>Host &#8211; &lt; deployment name &gt;-service.default.svc.cluster.local ตามที่เขียนไปข้างบน</li>
+
+
+
+<li>Schema &#8211; ชื่อฐานข้อมูลที่เราต้องการ</li>
+
+
+
+<li>Login &#8211; ชื่อผู้ใช้</li>
+
+
+
+<li>Password &#8211; รหัสผ่าน</li>
+
+
+
+<li>Port &#8211; 3306</li>
+</ul>
+
+<p>จากนั้นกดปุ่ม Test เพื่อทดสอบ กรณีทดสอบผ่านจะปรากฏหน้าจอตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="170" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-165829-1024x301.png" alt="" class="wp-image-4517" style="width:610px;height:auto" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-165829-300x88.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-165829-1024x301.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-165829-768x226.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-165829.png 1126w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดงเมื่อการทดสอบการเชื่อมต่อระหว่าง Cloud Composer กับ Cloud SQL สำเร็จ</figcaption></figure></div>
+
+<p>กดปุ่ม Save แค่นี้ เราก็พร้อมสำหรับการสร้าง Data Pipeline แล้ว</p>
+
+<h3 class="wp-block-heading">เขียน Data Pipeline ผ่านการใช้ Google Airflow</h3>
+
+<p>การเข้าไปใช้งาน Google Cloud Composer นี้เราสามารถเข้าไปสร้างผ่าน Google Cloud Console ได้ครับ ต่อมาเรามาเขียนโค้ดสำหรับการใช้งานผ่าน Apache Airflow โดยโค้ดที่เราจะเขียนเป็นตัวไฟล์สำหรับการทำ DAG (Directed Acyclic Graph)</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>สำหรับส่วนประกอบ และรายละเอียดเบื้องต้นของ DAG สามารถอ่านได้ใน<a href="https://nickuntitled.com/2024/01/26/13-create-datapipeline-get-tuition-cost/" target="_blank" rel="noopener" title="#13 ทำ Data Pipeline ดึง Data ต้นทุนนศ.ต่อปี">บทความที่แล้ว</a></p>
+</blockquote>
+
+<h4 class="wp-block-heading">เชื่อมต่อกับ MySQL</h4>
+
+<p>การเขียนโค้ดเพื่อเชื่อมต่อกับฐานข้อมูล MySQL ทำได้ไม่ยาก เพียงแค่</p>
+
+<p>หนึ่ง นำเข้าคำสั่ง MySqlHook จากไลบรารี airflow.providers.mysql.hooks.mysql ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code><strong>from airflow.providers.mysql.hooks.mysql import MySqlHook</strong></code></pre>
+
+<p>จากนั้น เรียกใช้ MySqlHook เพื่อเรียกใช้การเชื่อมต่อที่เราตั้งค่าไว้ใน Airflow เราทำได้โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>
+from airflow.providers.mysql.hooks.mysql import MySqlHook
+
+. . .
+
+def function_name():
+<strong>    mysqlserver = MySqlHook("&lt; configured MySQL connection name &gt;")</strong></code></pre>
+
+<p>ต่อมา เราเรียกดูข้อมูลใน Table แล้วเก็บไว้ใน Pandas DataFrame ได้โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from airflow.providers.mysql.hooks.mysql import MySqlHook
+
+. . .
+
+def function_name():
+<strong>    </strong>mysqlserver = MySqlHook("&lt; configured MySQL connection name &gt;")
+    <strong>pandas_dataframe = mysqlserver.get_pandas_df(sql = "SELECT * FROM &lt; table_name &gt;")</strong></code></pre>
+
+<p>แค่นี้ เราก็เรียกข้อมูลจาก Table ใน SQL Database ได้แล้ว</p>
+
+<h4 class="wp-block-heading">เขียนโค้ด</h4>
+
+<p>ต่อมา เรามาพิมพ์โค้ดแบบจริง ๆ จัง ๆ กันแล้ว โดยในไฟล์ DAG มีส่วนประกอบทั้งหมด 5 ส่วน ได้แก่</p>
+
+<ol class="wp-block-list">
+<li>Import modules</li>
+
+
+
+<li>Default arguments (args)</li>
+
+
+
+<li>Instantiate a DAG</li>
+
+
+
+<li>Tasks ที่เป็นการสร้าง Operator</li>
+
+
+
+<li>Setting up dependencies ที่เราสามารถกำหนดทิศทางของการทำงานในแต่ละ Operator</li>
+</ol>
+
+<h5 class="wp-block-heading">Import modules</h5>
+
+<p>เรานำเข้าไลบรารีที่จำเป็นต่อการใช้งานได้โดย</p>
+
+<ul class="wp-block-list">
+<li>คลาส Client ในโมดูล google.cloud.storage</li>
+
+
+
+<li>นำเข้าโมดูล requests และ pandas</li>
+
+
+
+<li>คลาส DAG ในโมดูล airflow.models สำหรับใช้ในขั้นตอน Instantiate a DAG</li>
+
+
+
+<li>คลาส Operator ได้แก่ PythonOperator, DataprocSubmitJobOperator และ GCSToBigQueryOperator ในโมดูล airflow.operators.python, airflow.providers.google.cloud.operators.dataproc และ airflow.providers.google.cloud.transfers.gcs_to_bigquery ตามลำดับ</li>
+
+
+
+<li>และ days_ago ที่นำเข้าจากโมดูล airflow.utils.dates สำหรับการกำหนดให้ DAG นี้เริ่มต้นตั้งแต่เมื่อวาน และมีผลให้รันทันทีวันนี้เมื่อถึงเวลา</li>
+</ul>
+
+<pre class="wp-block-code"><code># Google Cloud Storage
+from google.cloud.storage import Client
+
+# Airflow
+from airflow.models import DAG
+from airflow.operators.python import PythonOperator
+from airflow.providers.mysql.hooks.mysql import MySqlHook
+from airflow.utils.dates import days_ago
+from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
+from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
+
+# Pandas and requests
+import pandas as pd
+import requests</code></pre>
+
+<h5 class="wp-block-heading">Default Arguments</h5>
+
+<p>กำหนดค่าเริ่มต้นของโมดูล รวมถึงกำหนดค่าตัวแปรต่าง ๆ โดย</p>
+
+<ul class="wp-block-list">
+<li>กำหนดชื่อ MySQL Connection ที่จะให้เชื่อมต่อจาก Cloud Composer ไปยัง Cloud SQL ตามที่ตั้งค่าไว้ในขั้นตอนก่อนหน้า</li>
+
+
+
+<li>กำหนดที่อยู่ URL สำหรับการโหลดข้อมูล Currency Exchange API โดยที่อยู่ลิ้งค์สามารถดูได้ใน Workshop 1 ของคอร์ส R2DE</li>
+
+
+
+<li>กำหนดชื่อไฟล์ที่ต้องการเก็บข้อมูลจากฐานข้อมูลแสดงรายการสินค้าที่ขาย (audible) และรายการซื้อสินค้า (audible_transaction) รวมถึงกำหนดชื่อไฟล์สำหรับการเก็บค่าอัตราแลกเปลี่ยน และเก็บไฟล์ผลลัพธ์สุดท้ายก่อนนำเข้าไปยัง Google BigQuery</li>
+</ul>
+
+<pre class="wp-block-code"><code># Pandas and requests
+import pandas as pd
+import requests
+
+MYSQL_CONNECTION = "mysql_default"
+CONVERSION_RATE_URL = "&lt; currency conversion rate api &gt;"
+
+# path ที่จะใช้
+mysql_output_path = "audible_data_merged.csv"
+conversion_rate_output_path = "conversion_rate.csv"
+final_output_path = "audible_output.csv"</code></pre>
+
+<p>ร่วมกับกำหนดพารามิเตอร์สำหรับการส่งคำสั่งไปยัง Dataproc</p>
+
+<ul class="wp-block-list">
+<li>reference เราจำกำหนดชื่อ project_id ตามที่เราใช้งาน Project นั้น ๆ อยู๋</li>
+
+
+
+<li>placement กำหนดชื่อ cluster_name ที่เราเปิดใน Google Cloud Dataproc</li>
+
+
+
+<li>pyspark_job กำหนดไฟล์ไพทอนที่เราต้องการให้รันบน Google Cloud Dataproc ด้วยการกำหนดใน main_python_file_uri กรณีที่เก็บใน Google Cloud Storage เราเขียนที่อยู่ไฟล์โดยขึ้นต้นด้วย gs:// ตามด้านชื่อ Bucket และตำแหน่งไฟล์ที่เก็บ</li>
+</ul>
+
+<pre class="wp-block-code"><code># pyspark
+PYSPARK_JOB = {
+    "reference": {"project_id": "&lt; project_id &gt;"},
+    "placement": {"cluster_name": "&lt; dataproc cluster name &gt;"},
+    "pyspark_job": {"main_python_file_uri": "gs://&lt; bucket name &gt;/&lt; pyspark path &gt;"},
+}</code></pre>
+
+<h5 class="wp-block-heading">Instantiate a DAG</h5>
+
+<p>กำหนดค่าสำหรับการสร้าง DAG ร่วมกับเขียนคำอธิบายของ DAG ด้วย Markdown ผ่าน doc_md</p>
+
+<pre class="wp-block-code"><code>with DAG(
+    "&lt; dag_name &gt;",
+    start_date=days_ago(1),
+    schedule_interval="@once",
+    tags=&#91;"workshop"]
+) as dag:
+
+    dag.doc_md = """
+        &lt; dag markdown description &gt;
+    """</code></pre>
+
+<h4 class="wp-block-heading">Tasks</h4>
+
+<p>ส่วนนี้เป็นการสร้าง Operator ขึ้นมาสำหรับกำหนดการทำงานภายใน DAG โดยในไฟล์นี้จะเป็นการดาวน์โหลดข้อมูลจาก Dataset ที่ระบุไว้ในส่วนต้นของบทความที่นำข้อมูลจาก Database และ API</p>
+
+<p>ส่วนแรกเป็นการนำข้อมูลจาก Database</p>
+
+<pre class="wp-block-code"><code>def get_data_from_mysql(transaction_path):
+    # รับ transaction_path มาจาก task ที่เรียกใช้
+
+    # เรียกใช้ MySqlHook เพื่อต่อไปยัง MySQL จาก connection ที่สร้างไว้ใน Airflow
+    mysqlserver = MySqlHook(MYSQL_CONNECTION)
+    
+    # Query จาก database โดยใช้ Hook ที่สร้าง ผลลัพธ์ได้ pandas DataFrame
+    audible_data = mysqlserver.get_pandas_df(sql="SELECT * FROM audible_data")
+    audible_transaction = mysqlserver.get_pandas_df(sql="SELECT * FROM audible_transaction")
+
+    # Merge data จาก 2 DataFrame เหมือนใน workshop1
+    df = audible_transaction.merge(audible_data, how="left", left_on="book_id", right_on="Book_ID")
+
+    # Save ไฟล์ CSV ไปที่ transaction_path
+    df.to_csv(transaction_path, index=False)
+    print(f"Output to {transaction_path}")</code></pre>
+
+<p>ส่วนต่อมาเป็นการนำข้อมูลจาก API</p>
+
+<pre class="wp-block-code"><code>def get_conversion_rate(conversion_rate_path):
+    r = requests.get(CONVERSION_RATE_URL)
+    result_conversion_rate = r.json()
+    df = pd.DataFrame(result_conversion_rate)
+
+    # เปลี่ยนจาก index ที่เป็น date ให้เป็น column ชื่อ date แทน แล้วเซฟไฟล์ CSV
+    df = df.reset_index().rename(columns={"index": "date"})
+    df.to_csv(conversion_rate_path, index=False)
+    print(f"Output to {conversion_rate_path}")</code></pre>
+
+<p>สุดท้ายเป็นโค้ดการอัพโหลดไฟล์ที่ทำเสร็จแล้ว ไว้บน Google Cloud Storage เพื่อกำหนดให้เป็น Data Lake</p>
+
+<pre class="wp-block-code"><code>def upload_blob(bucket_name, source_filenames, target_blob_names):
+    client = Client()
+    bucket = client.bucket(bucket_name)
+
+    for source_filename, target_blob_name in zip(source_filenames, target_blob_names):
+        blob = bucket.blob(target_blob_name)
+        generation_match_precondition = None
+        blob.upload_from_filename(source_filename,
+            if_generation_match=generation_match_precondition)
+
+        print("&#91;*] Uploaded")
+
+def upload_output(bucket_name, output_path):
+    upload_blob(bucket_name, output_path, output_path)
+    print("Uploaded")</code></pre>
+
+<p>โค้ดฟังก์ชันทั้ง 3 ฟังก์ชันข้างบน เราสามารถเขียนโดยใช้ PythonOperator ได้โดย โดย python_callable เป็นการกำหนดฟังก์ชันที่เราต้องการเรียกใช้ และ op_kwargs เป็นการกำหนด Argument ให้กับฟังก์ชัน</p>
+
+<pre class="wp-block-code"><code>t1 = PythonOperator(
+    task_id = "get_data_mysql",
+    python_callable = get_data_from_mysql,
+    op_kwargs = {"transaction_path": mysql_output_path }
+)
+
+t2 = PythonOperator(
+    task_id = "get_conversion_rate",
+    python_callable = get_conversion_rate,
+    op_kwargs = {"conversion_rate_path": conversion_rate_output_path }
+)
+
+# bucket_name, output_path
+t3 = PythonOperator(
+    task_id = "upload_to_bucket",
+    python_callable = upload_output,
+    op_kwargs = {
+        "bucket_name": "&lt; bucket name &gt;",
+        "output_path": &#91;mysql_output_path, conversion_rate_output_path]
+    }
+)</code></pre>
+
+<p>หลังจากที่เขียน PythonOperator สำหรับการดาวน์โหลด Dataset และเก็บไว้ใน Google Cloud Storage แล้ว ส่วนนี้เป็นการสั่งให้ Google Dataproc ที่เราสร้าง Cluster ขึ้นมาประมวลผล โดยสร้าง Job ขึ้นมาใหม่ ผ่านการใช้งาน DataprocSubmitJobOperator</p>
+
+<pre class="wp-block-code"><code># Run Dataproc
+t4 = DataprocSubmitJobOperator(
+    task_id="pyspark_task", 
+    job=PYSPARK_JOB, 
+    region='&lt; Region &gt;',
+    project_id= "&lt; project_id &gt;"
+)</code></pre>
+
+<p>ถัดจากนี้ เมื่อสั่งให้ Dataproc ทำงานเสร็จเรียบร้อยแล้ว ตัว Dataproc จะนำข้อมูลผลลัพธ์เก็บไว้ใน Data Lake อย่าง Google Cloud Storage เราก็นำผลลัพธ์ที่ได้ในฟอร์แมต Parquet ไปอัพโหลดเข้าไปเก็บใน Data Warehouse อย่าง Google BigQuery ผ่านการใช้งาน GCSToBigQueryOperator</p>
+
+<pre class="wp-block-code"><code>t5 = GCSToBigQueryOperator(
+    task_id = "gcs_to_bigquery",
+    bucket = "&lt; bucket &gt;",
+    source_objects = &#91;'audible_output.parquet/*.parquet'],
+    source_format = 'PARQUET',
+    destination_project_dataset_table = "&lt; bigquery dataset &gt;.&lt; table &gt;",
+    write_disposition = 'WRITE_TRUNCATE'
+)</code></pre>
+
+<p>โดยการกำหนด <strong>WRITE_TRUNCATE </strong>มีไว้เมื่อกรณีที่มีตารางอยู่แล้ว ตัว BigQuery จะเขียนทับไปเลย ซึ่งจะแตกต่างกับ </p>
+
+<ul class="wp-block-list">
+<li><strong>WRITE_APPEND </strong>ที่เขียนต่อจากตารางเดิมไปเลยกรณีที่มีตารางนี้อยู่ใน BigQuery</li>
+
+
+
+<li><strong>WRITE_EMPTY </strong>ที่สร้างตารางใหม่ และเขียนข้อมูลในนั้น กรณีที่มีข้อมูลอยู่แล้ว จะขึ้น Error แทน</li>
+</ul>
+
+<h4 class="wp-block-heading">Setting up dependencies</h4>
+
+<p>ส่วนสุดท้ายจะเป็นการกำหนดทิศทางการทำงานของแต่ละ Operator ที่เราสร้างขึ้นมาในขั้นตอนที่ 4 (Tasks) โดยเราจะกำหนดให้เป็น Fan-in เนื่องจากเรากำหนดให้ดาวน์โหลด Dataset ก่อน จากนั้นอัพโหลดไปยัง Google Cloud Storage ทีเดียว จากนั้นสั่งให้ Google Dataproc ประมวลผล แล้วนำข้อมูลผลลัพธ์ที่ได้อัพโหลดเข้า Google BigQuery</p>
+
+<p>การเขียนโค้ดเขียนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>&#91;t1, t2] &gt;&gt; t3 &gt;&gt; t4 &gt;&gt; t5</code></pre>
+
+<p>เมื่อเขียนโค้ด DAG แล้ว ให้เรานำตัวโค้ดนี้เก็บไว้ที่ Google Cloud Storage bucket ที่ Google Cloud Composer สร้างขึ้น โดยเก็บในโฟลเดอร์ dags ซึ่งเมื่อมองจากตัว Composer เองจะเขียนที่อยู่โฟลเดอร์ได้เป็น /home/airflow/gcs/dags</p>
+
+<h2 class="wp-block-heading">การเปลี่ยนแปลงข้อมูล (Transformation)</h2>
+
+<p>ขั้นตอนนี้ เป็นการนำข้อมูลที่เก็บไว้ใน Data Lake มาผ่านขั้นตอนการเปลี่ยนแปลงข้อมูล <a href="https://nickuntitled.com/2024/01/26/13-create-datapipeline-get-tuition-cost/" title="Extract Transform Load (ETL)">Extract Transform Load (ETL)</a> เพื่อที่จะนำข้อมูลที่เก็บไว้ใน Google Cloud Storage มาประมวลผลเพื่อทำความสะอาดข้อมูล (Data Cleansing) โดยกระบวนการที่ทำเป็นขั้นตอนการทำ Transform เพื่อที่จะให้ข้อมูลมีคุณภาพมากขึ้น และเพื่อป้องกันการเกิด Garbage in, Garbage out</p>
+
+<h3 class="wp-block-heading">เครื่องมือ และการสร้าง Instance บน Dataproc</h3>
+
+<p>เครื่องมือที่เราจะใช้คือ Apache Spark ที่ใช้งานผ่าน Google Dataproc โดยให้เราเปิดใช้งาน Instance นี้เสียก่อน ด้วย</p>
+
+<ul class="wp-block-list">
+<li>การสร้าง Instance บน Google Compute Engine แล้วเลือกเป็น Single Node ที่ใช้สเปคแบบ n2-standard-4 ที่ให้แรม 16 GB เนื่องมาจากขั้นตอนการทำ Data Cleansing ใช้แรมเยอะ การกำหนดแรมที่ไม่เพียงพอต่อการใช้งานจะทำให้ Job ถูก Killed ได้</li>
+
+
+
+<li>ระหว่างการสร้าง Instance เรากำหนดให้ใช้โค้ด pip-install.sh เพื่อติดตั้งแพคเกจ numpy กับ pandas ผ่านการพิมพ์ metadata PIP_PACKAGES</li>
+</ul>
+
+<p>เมื่อกำหนดเสร็จแล้ว กด Create เพื่อสร้าง Instance</p>
+
+<h3 class="wp-block-heading">เขียนโค้ด</h3>
+
+<p>เมื่อเราสร้าง Cluster บน Google Dataproc เรียบร้อย เรามาเขียนโค้ดเพื่อใช้งานกับ Google Dataproc สำหรับการทำ Data Cleansing ครับ</p>
+
+<h4 class="wp-block-heading">นำเข้าไลบรารี</h4>
+
+<p>ก่อนอื่นเลย เราเขียนโค้ดสำหรับการนำเข้าไลบรารีก่อน โดยนำเข้าไลบรารีตามด้านล่างนี้</p>
+
+<ul class="wp-block-list">
+<li>ไลบรารี numpy และ pandas</li>
+
+
+
+<li>นำเข้า SparkContext จากไลบรารี pyspark</li>
+
+
+
+<li>นำเข้า SparkSession จากไลบรารี pyspark.sql</li>
+
+
+
+<li>นำเข้าชนิดตัวแปรใน Spark DataFrame จากไลบรารี pyspark.sql.types</li>
+
+
+
+<li>นำเข้าฟังก์ชันสำหรับประมวลผลใน DataFrame ด้วยการนำเข้าโมดูล functions จากไลบรารี pyspark.sql</li>
+
+
+
+<li>และนำเข้า storage จากไลบรารี googe.cloud เพื่อนำเข้าเครื่องมือสำหรับเชื่อมต่อกับ Google Cloud Storage</li>
+</ul>
+
+<pre class="wp-block-code"><code>import pandas as pd
+import numpy as np
+
+# Spark-related libraries
+from pyspark import SparkContext
+from pyspark.sql import SparkSession
+from pyspark.sql.types import *
+from pyspark.sql import functions as f
+
+# Google Cloud Storage
+from google.cloud import storage</code></pre>
+
+<h4 class="wp-block-heading">กำหนดค่าเริ่มต้น</h4>
+
+<p>กำหนดค่าเริ่มต้น โดยการกำหนดชื่อ Bucket บน Google Cloud Storage ด้วยการดาวน์โหลดไฟล์ตามชื่อกำหนด และอัพโหลดไฟล์ตามชื่อที่กำหนดเช่นกัน</p>
+
+<pre class="wp-block-code"><code># Define Variables
+bucket_name = "&lt; google cloud storage bucket &gt;"
+mysql_output_path = "audible_data_merged.csv"
+conversion_rate_output_path = "conversion_rate.csv"</code></pre>
+
+<h4 class="wp-block-heading">ดาวน์โหลดไฟล์จาก Data Lake</h4>
+
+<p>ขั้นตอนก่อนที่จะเริ่มทำ Data Cleansing เราจำเป็นต้องดาวน์โหลดไฟล์ข้อมูลที่เราได้เตรียมไว้บน Google Cloud Storage ในขั้นตอนการนำเข้าข้อมูล (Ingestion) มาใช้านบน Dataproc</p>
+
+<p>การเขียนโค้ดสำหรับดาวน์โหลดข้อมูลจาก Google Cloud Storage ทำได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Download File
+def download_file(bucket, filename):
+    source = filename
+    target_name = filename
+    blob = bucket.blob(source)
+    blob.download_to_filename(target_name)
+    print("&#91;*] Downloaded")</code></pre>
+
+<h4 class="wp-block-heading">ข้อมูล Dataset การซื้อขายสินค้า</h4>
+
+<p>ข้อมูลนี้มีรายละเอียดแต่ละคอลัมน์ตามด้านล่างนี้</p>
+
+<figure class="wp-block-table aligncenter"><table><tbody><tr><td><span style="font-weight: 600;">ชื่อคอลัมน์</span></td><td class="has-text-align-left" data-align="left"><span style="font-weight: 600;">รายละเอียด</span></td></tr><tr><td>timestamp</td><td class="has-text-align-left" data-align="left">เวลาที่ซื้อสินค้า</td></tr><tr><td>user_id</td><td class="has-text-align-left" data-align="left">รหัสผู้ใช้</td></tr><tr><td>book_id</td><td class="has-text-align-left" data-align="left">รหัสหนังสือ</td></tr><tr><td>country</td><td class="has-text-align-left" data-align="left">ประเทศ</td></tr><tr><td>Book Title</td><td class="has-text-align-left" data-align="left">ชื่อหนังสือ</td></tr><tr><td>Book Subtitle</td><td class="has-text-align-left" data-align="left">&#8211;</td></tr><tr><td>Book Author</td><td class="has-text-align-left" data-align="left">ชื่อผู้แต่ง</td></tr><tr><td>Book Narrator</td><td class="has-text-align-left" data-align="left">ชื่อผู้พูดให้กับหนังสือเล่มนั้น</td></tr><tr><td>Audio Runtime</td><td class="has-text-align-left" data-align="left">ระยะเวลาของไฟล์เสียง</td></tr><tr><td>Audiobook Type</td><td class="has-text-align-left" data-align="left">ชนิดของหนังสือเสียง</td></tr><tr><td>Categories</td><td class="has-text-align-left" data-align="left">หมวดหมู่</td></tr><tr><td>Rating</td><td class="has-text-align-left" data-align="left">เรตติ้งหนังสือ</td></tr><tr><td>Total No. of Ratings</td><td class="has-text-align-left" data-align="left">จำนวนของเรตติ้ง</td></tr><tr><td>Price</td><td class="has-text-align-left" data-align="left">ราคา</td></tr></tbody></table><figcaption class="wp-element-caption">รายละเอียด Dataset การซื้อสินค้า</figcaption></figure>
+
+<h4 class="wp-block-heading">ข้อมูล Dataset อัตราแลกเปลี่ยน</h4>
+
+<p>ข้อมูลอัตราการแลกเปลี่ยนมีรายละเอียดแต่ละคอลัมน์ตามด้านล่างนี้</p>
+
+<figure class="wp-block-table aligncenter"><table><tbody><tr><td><strong>ชื่อคอลัมน์</strong></td><td><strong>รายละเอียด</strong></td></tr><tr><td>date</td><td>วันที่</td></tr><tr><td>conversion_rate</td><td>อัตราแลกเปลี่ยน</td></tr></tbody></table><figcaption class="wp-element-caption">รายละเอียด Dataset อัตราแลกเปลี่ยน</figcaption></figure>
+
+<h4 class="wp-block-heading">รวม Dataset ทั้งสอง Dataset</h4>
+
+<p>หลังจากที่ทราบรายละเอียดของแต่ละ Dataset แล้ว เรามาเขียนโค้ดตามด้านล่างนี้เพื่อรวมทั้งสอง Dataset โดย</p>
+
+<ul class="wp-block-list">
+<li>ใช้คอลัมน์ date เพื่อทำ Left Join</li>
+
+
+
+<li>แปลงราคาเอาสัญลักษณ์ $ ออก</li>
+
+
+
+<li>แปลงหน่วยเป็น float ต่อมาคำนวณเงินโดยแปลงอัตราแลกเปลี่ยนจากหน่วยดอลลาร์สหรัฐฯ เป็นหน่วยเงินบาท (THBPrice)</li>
+
+
+
+<li>ลบคอลัมน์ date และ book_id</li>
+</ul>
+
+<p>รายละเอียดของโค้ดส่วนนี้ เอามาจากใน Workshop 1 ของคอร์ส R2DE ผู้อ่านสามารถเอาโค้ดจากในนั้นมาใส่ได้เลย</p>
+
+<pre class="wp-block-code"><code>def download_and_merge(bucket, transaction_path, conversion_rate_path):
+    # Download files
+    download_file(bucket, transaction_path)
+    download_file(bucket, conversion_rate_path)
+
+    # Read file from CSV and convert to Pandas DataFrame
+    transaction = pd.read_csv(transaction_path)
+    conversion_rate = pd.read_csv(conversion_rate_path)
+
+    # Join by using date
+    <strong># &lt; This part is based on Google Colab of Workshop 1 from R2DE course &gt;</strong>
+
+    # Return value
+    return final_df</code></pre>
+
+<p>เมื่อเขียนโค้ดเสร็จแล้ว ก็เขียนคำสั่งเพื่อเริ่มต้นการทำงานของ Google Cloud Storage Client แล้วดาวน์โหลด Dataset จาก Data Lake</p>
+
+<pre class="wp-block-code"><code># Download File
+storage_client = storage.Client()
+bucket = storage_client.bucket(bucket_name)
+pandas_df = download_and_merge(bucket, mysql_output_path, conversion_rate_output_path)</code></pre>
+
+<h4 class="wp-block-heading">เริ่มต้นการทำงาน PySpark</h4>
+
+<p>ส่วนนี้เริ่มต้นการทำงานของ PySpark กับเริ่มต้นการทำงานของ Google Cloud Storage Client จากนั้นดาวน์โหลดไฟล์ Dataset จาก Google Cloud Storage</p>
+
+<pre class="wp-block-code"><code># Create Spark Session
+sc = SparkContext()
+spark = SparkSession(sc)
+print(f"The current spark version = { spark.version }.")</code></pre>
+
+<h4 class="wp-block-heading">ทำ Data Cleansing</h4>
+
+<p>ต่อมา เรานำข้อมูลที่ได้ดาวน์โหลดและรวม Dataset มาเรียบร้อย หลังจากนั้นเราแปลงตัวแปรให้อยู่ในรูปแบบ Spark DataFrame โดยกำหนดให้แต่ละคอลัมน์เป็น String ยกเว้นคอลัมน์ Price และ THBPrice เป็น Double</p>
+
+<pre class="wp-block-code"><code># From the StackOverflow issues on this problem, I copied the corrected code on the latest version of Pandas. 
+# Source: https://stackoverflow.com/questions/76404811/attributeerror-dataframe-object-has-no-attribute-iteritems
+pd.DataFrame.iteritems = pd.DataFrame.items
+
+# Load Data
+fields = &#91;]
+for field_name in pandas_df.columns:
+    if field_name == 'Price' or field_name == 'THBPrice':
+        fields.append(StructField(field_name, DoubleType(), True))
+    else:
+        fields.append(StructField(field_name, StringType(), True))
+        
+schema = StructType(fields)
+
+dt = spark.createDataFrame(pandas_df, schema)</code></pre>
+
+<p>ต่อมา เมื่อตัวแปรเป็น Spark DataFrame เรียบร้อย เรามาทำ Data Cleansing โดย</p>
+
+<ul class="wp-block-list">
+<li>แปลงคอลัมน์ timestamp ให้เป็นตัวแปร Timestamp</li>
+
+
+
+<li>พบว่ามีการเขียนชื่อประเทศผิดจาก Japan เป็น Japane</li>
+
+
+
+<li>มีชื่อ user_id ที่เขียนเลข 0 เกิด จาก ca86d172 เป็น ca86d17200</li>
+
+
+
+<li>แปลง Missing Value ใน user_id เป็นค่า 00000000</li>
+
+
+
+<li>เปลี่ยนชื่อคอลัมน์จาก Total No. of Ratings เป็น Total No of Ratings เนื่องมาจากเวลานำเข้าข้อมูลไปยัง Google BigQuery ตัวโค้ดจะแจ้งว่าเกิดความผิดพลาดเนื่องมาจากมีสัญลักษณ์จุด (.)</li>
+</ul>
+
+<p>ตัวโค้ดเขียนได้ตามด้านล่างนี้ โค้ดบางส่วนผู้อ่านสามารถดูได้ใน Workshop 2 จากคอร์ส R2DE</p>
+
+<pre class="wp-block-code"><code># Preview Data
+print("Preview Data")
+print(dt.show())
+
+<strong>&lt; This part is based on Workshop 2 (Data Cleansing) of R2DE to convert to timestamp, to correct Japane to Japan, to correct user_id, to fill Null to be 00000000&gt;</strong>
+
+# We have a problem on loading to Google BigQuery, so we change.
+print("Rename the column Total No. of Ratings")
+dt_clean = dt_clean.withColumnRenamed('Total No. of Ratings', "Total No of Ratings")</code></pre>
+
+<h2 class="wp-block-heading">การเก็บข้อมูล (Storage)</h2>
+
+<p>ในขั้นตอนนี้จะเป็นขั้นตอนถัดมาจากการเปลี่ยนแปลงข้อมูล (Transformation) ที่จะเป็นขั้นตอนการ Load ข้อมูลที่ผ่านการทำ Data Cleansing แล้วไปเก็บไว้ใน Data Lake ก่อน จากนั้นนำเข้าข้อมูลไปยัง Data Warehouse</p>
+
+<p>ในบทความนี้จะเลือกเก็บข้อมูลที่ผ่านการทำ Transform ตามขั้นตอน Extract Transform Load (หรือ ETL) ที่เราจะเก็บข้อมูลทุกอย่างไว้ใน Data Lake ก่อนที่จะนำไปเก็บใน Data Warehouse โดยเก็บใน Google Cloud Storage จากนั้นนำไปเก็บใน Google BigQuery</p>
+
+<p>การเก็บข้อมูลลงใน Data Lake โดยเก็บไว้ใน Google Cloud Storage ทำได้โดยการเขียนโค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Upload
+def upload_blob(bucket, source_filenames, target_blob_names):
+    for source_filename, target_blob_name in zip(source_filenames, target_blob_names):
+        blob = bucket.blob(target_blob_name)
+        blob.upload_from_filename(source_filename,
+            if_generation_match=None)
+
+        print("&#91;*] Uploaded")
+
+def write_output(bucket_name, cleaned_data):
+    print("Write to Parquet") 
+    cleaned_data.coalesce(1).write.mode('overwrite').parquet(f"gs://{ bucket_name }/audible_output.parquet/")
+    print("Finished writing")
+
+# Write File
+write_output(bucket_name, dt_clean)
+spark.stop()
+print("PySpark is stopped.")</code></pre>
+
+<p>โดยการเขียนไฟล์ในโค้ดจะเป็นการเขียนไฟล์ด้วยฟอร์แมต <a href="https://parquet.apache.org" target="_blank" rel="noopener" title="Parquet">Parquet</a> ที่เป็นการเก็บข้อมูลที่เป็น Columnar Storage ที่ช่วยให้ใช้พื้นที่น้อยลง เก็บข้อมูลได้มากขึ้น และมีการเก็บ metadata เอาไว้ในไฟล์ ฟอร์แมตนี้นิยมใช้งานใน Apache Hadoop หรือ Apache Spark และสามารถใช้ร่วมกับภาษาเขียนโปรแกรมได้หลายภาษา</p>
+
+<p>ฟอร์แมต <strong>Parquet </strong>จะดีกว่าการใช้ CSV เนื่องมาจากไฟล์ฟอร์แมต CSV มีข้อเสีย ได้แก่</p>
+
+<ul class="wp-block-list">
+<li>ไม่มีการบีบอัดข้อมูลทำให้ไฟล์ขนาดใหญ่</li>
+
+
+
+<li>ไม่มีการกำหนด structure หรือ schema ของข้อมูล</li>
+
+
+
+<li>ข้อมูลบาง row อาจจะมีความผิดพลาดหรือผิดประเภทได้</li>
+
+
+
+<li>การเก็บเป็น row ไม่สะดวกต่อการใช้กับระบบที่เป็น Columnar</li>
+
+
+
+<li>ต้องกำหนด Schema เองเวลานำเข้าข้อมูลไปยัง Google BigQuery ซึ่งผิดกับ Parquet ที่ตัว BigQuery ทราบว่าข้อมูลแต่ละคอลัมน์เป็นอย่างไร และพยายามแปลงชนิดตัวแปรให้อัตโนมัติ โดยแสดงตามตารางด้านล่างนี้</li>
+</ul>
+
+<figure class="wp-block-table"><table><thead><tr><td>ชนิดตัวแปรใน Parquet</td><td>คำอธิบายชนิดตัวแปร</td><td><strong>ชนิดตัวแปรใน BigQuery</strong></td></tr></thead><tbody><tr><td>BOOLEAN</td><td>&#8211;</td><td>BOOLEAN</td></tr><tr><td>INT32</td><td>INTEGER (UINT_8*,&nbsp;UINT_16,&nbsp;UINT_32,&nbsp;INT_8,&nbsp;INT_16,&nbsp;INT_32)</td><td>INT64</td></tr><tr><td>INT32</td><td><a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#decimal_logical_type">DECIMAL</a></td><td>NUMERIC, BIGNUMERIC, or STRING</td></tr><tr><td>INT32</td><td>DATE</td><td>DATE</td></tr><tr><td>INT64</td><td>None,&nbsp;INTEGER&nbsp;(UINT_64,&nbsp;INT_64)</td><td>INT64</td></tr><tr><td>INT64</td><td><a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#decimal_logical_type">DECIMAL</a></td><td>NUMERIC, BIGNUMERIC, or STRING</td></tr><tr><td>INT64</td><td>TIMESTAMP,&nbsp;precision=MILLIS&nbsp;(TIMESTAMP_MILLIS)</td><td>TIMESTAMP</td></tr><tr><td>INT64</td><td>TIMESTAMP,&nbsp;precision=MICROS&nbsp;(TIMESTAMP_MICROS)</td><td>TIMESTAMP</td></tr><tr><td>INT96</td><td>None</td><td>TIMESTAMP</td></tr><tr><td>FLOAT</td><td>None</td><td>FLOAT64</td></tr><tr><td>DOUBLE</td><td>None</td><td>FLOAT64</td></tr><tr><td>BYTE_ARRAY</td><td>None</td><td>BYTES</td></tr><tr><td>BYTE_ARRAY</td><td>STRING&nbsp;(UTF8)</td><td>STRING</td></tr><tr><td>FIXED_LEN_BYTE_ARRAY</td><td><a href="https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#decimal_logical_type">DECIMAL</a></td><td>NUMERIC, BIGNUMERIC, or STRING</td></tr><tr><td>FIXED_LEN_BYTE_ARRAY</td><td>None</td><td>BYTES</td></tr></tbody></table></figure>
+
+<p>*U_INT คือ Unsigned Int</p>
+
+<p>นอกจากนี้ การเก็บข้อมูลประเภท <strong>Columnar Storage </strong>มีข้อดี คือถ้าค่าในคอลัมน์เหมือนกันก็ไม่ต้องเก็บค่าซ้ำ ตัวโปรแกรมจะใช้วิธีอ่านจากค่าที่เคยเก็บแล้วได้เลย อย่างไรก็ดี บาง Database อาจจะมีการแอบทำ Normalization เบื้องหลังแต่ไอเดียเหมือนกัน</p>
+
+<p>เมื่อเขียนโค้ดเสร็จแล้ว ให้เซฟไฟล์ที่มีชื่อตามที่กำหนดในไฟล์ DAG ที่ระบุไว้ในส่วน Default Argument ที่เขียนขึ้นในขั้นตอนการนำเข้าข้อมูล (Ingestion) ในตัวแปร PYSPARK_JOB ที่ตำแหน่ง Key pyspark_job -&gt; main_python_file_uri</p>
+
+<pre class="wp-block-code"><code># pyspark
+PYSPARK_JOB = {
+    "reference": {"project_id": "&lt; project_id &gt;"},
+    "placement": {"cluster_name": "&lt; dataproc cluster name &gt;"},
+    <strong>"pyspark_job": {"main_python_file_uri": "gs://&lt; bucket name &gt;/&lt; pyspark path &gt;"},</strong>
+}</code></pre>
+
+<p>เมื่อเซฟไฟล์แล้ว เรานำโค้ดไปอัพโหลดลง Google Cloud Storage จากนั้นสั่งงานผ่าน Google Composer เพื่อเรียกใช้งาน DAG ที่สร้างขึ้นในขั้นตอนการนำเข้าข้อมูล (Ingestion) โดยเข้าไปที่หน้าจอ Google Cloud Composer เลือก DAG ที่สร้างขึ้น จากนั้นกดปุ่ม Trigger DAG เพื่อเริ่มต้นการทำงานของ DAG</p>
+
+<p>เมื่อกดปุ่มแล้ว ระบบจะเริ่มขั้นตอนการรัน Data Pipeline จาก</p>
+
+<ul class="wp-block-list">
+<li>การดาวน์โหลดข้อมูลใน Dataset</li>
+
+
+
+<li>แปลงข้อมูลร่วมกับทำ Data Cleansing โดยเก็บข้อมูลชั่วคราวไว้ใน Data Lake</li>
+
+
+
+<li>แล้วนำข้อมูลทีผ่านการทำ Data Cleansing ที่อยู่ใน Data Lake ไปเก็บไว้ใน Google BigQuery</li>
+</ul>
+
+<p>เมื่อทำเสร็จแล้ว มาเปิดดูที่หน้าจอ Google Cloud Composer จะปรากฏตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="263" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_complete_db-1024x465.png" alt="" class="wp-image-4614" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_complete_db-300x136.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_complete_db-1024x465.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_complete_db-768x349.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_complete_db-1536x697.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_complete_db-1200x545.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dag_complete_db.png 1912w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ผลลัพธ์ของการรัน Data Pipeline ใน Google Composer</figcaption></figure></div>
+
+<p>และ Google BigQuery ที่เป็น Data Warehouse ก็จะปรากฏตามด้านล่างนี้เช่นกัน</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="376" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-173539-1024x664.png" alt="" class="wp-image-4535" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-173539-300x195.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-173539-1024x664.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-173539-768x498.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/Screenshot-2024-01-30-173539.png 1158w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ผลลัพธ์ของการรัน Data Pipeline ใน Google BigQuery</figcaption></figure></div>
+
+<p>ต่อมา เราต้องการนำข้อมูลใน Table มาให้คนอื่นอ่าน (SELECT) ได้อย่างเดียว เราไม่ได้ต้องการให้ผู้ใช้แก้ไข หรือเข้าไปลบข้อมูลได้</p>
+
+<p>ส่วนนี้เราจะสร้าง View ขึ้นมา โดยจุดนี้ไม่ต้องใช้พื้นที่จัดเก็บเลย เราทำได้โดยการใช้คำสั่ง SQL อย่าง SELECT จาก Table ที่ต้องการ โดยเราจะได้ข้อมูลสดใหม่อยู่เสมอ ขั้นตอนนี้ เราเขียนคำสั่ง SQL ได้ตามด้านล่างนี้ใน BigQuery</p>
+
+<pre class="wp-block-code"><code>CREATE VIEW `&lt; project_id &gt;`.`&lt; dataset &gt;`.`&lt; table &gt;`
+AS
+SELECT `user_id`, `timestamp`, `Book_ID`, `Book_Title`, `Categories`, `country`, `THBPrice` FROM `&lt; dataset &gt;`.`&lt; table &gt;`;</code></pre>
+
+<p>เขียนโค้ดเสร็จแล้ว กดปุ่ม Run ตัว BigQuery จะสร้าง View ขึ้นมาใหม่ตามที่ต้องการครับ</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="283" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/created_view-1024x500.png" alt="" class="wp-image-4575" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/created_view-300x146.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/created_view-1024x500.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/created_view-768x375.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/created_view-1200x586.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/created_view.png 1368w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">หน้าจอแสดง View ที่สร้างขึ้น</figcaption></figure></div>
+
+<h2 class="wp-block-heading">วิเคราะห์ หรือนำข้อมูลไปใช้ประโยชน์ (Analysis)</h2>
+
+<p>ส่วนสุดท้ายเป็นขั้นตอนการวิเคราะห์ข้อมูล หรือการทำนข้อมูลไปใช้ประโยชน์ (Analysis) ส่วนนี้เป็นการนำข้อมูลที่ผ่านการแปลงสภาพมาเก็บไว้ในที่เหมาะสมเพื่อวิเคราะห์ข้อมูลต่อไป</p>
+
+<p>ข้อมูลที่เราเก็บอยู่ใน Data Warehouse อย่าง Google BigQuery เรานำข้อมูลที่เก็บมาทำ Dashboard ที่เป็นขั้นตอนการทำ Data Visualization เพื่อแปลงข้อมูลให้อยู่ในรูปแบบกราฟเพื่อให้เข้าใจข้อมูลที่มีอยู่ได้ง่ายขึ้น</p>
+
+<p>ในตัวอย่างนี้เราจะใช้งาน Google Looker Studio ทำ Interactive Dashboard ของเราทำหน้า Dashboard ได้ตามภาพตามโจทย์ที่ตั้งไว้ที่ต้องการทราบว่าสินค้าชิ้นไหนขายดี เพื่อหาสินค้าที่ถูกใจลูกค้ามาวางขาย และจัดโปรได้เหมาะสม โดยเก็บข้อมูลไว้ในฐานข้อมูล (Database) และต้องการให้ทีมวิศวกรเตรียมข้อมูลให้ทางฝ่ายวิเคราะห์ข้อมูลเพื่อจะสร้าง Report หรือ Dashboard</p>
+
+<p>แต่ก่อนอื่น ทางทีมงาน Business Analyst (BA) จะไปคุยกับผู้ใช้ (ตัวอย่างเช่นทีมงาน Product และ Marketing) ว่าต้องการอะไรบ้าง จากนั้นทางทีมงานวาดแผนภาพ Wireframe ก่อนเพื่อเช็คดว่า Dashboard ตรงกับความต้องการหรือไม่ เพราะการปรับแก้ไขใน Wireframe ทำได้ง่ายกว่า โดยตัวอย่างภาพ Wireframe แสดงตามด้านล่างนี้</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="442" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dashboard_first_page.png" alt="" class="wp-image-4591" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dashboard_first_page-300x229.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/dashboard_first_page.png 634w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">ภาพ Wireframe ของ Dashboard (ตัวภาพนำมาจากคอร์ส R2DE)</figcaption></figure></div>
+
+<p>เมื่อทราบโจทย์ และตัว Wireframe แล้ว เรามาวาดไว้ 2 หน้า หน้าแรกที่แสดงยอดขายสินค้าตามโจทย์ที่ตั้งไว้ โดย</p>
+
+<ul class="wp-block-list">
+<li>แสดงรายได้ทั้งหมด (Total Revenue)</li>
+
+
+
+<li>แสดงจำนวนลูกค้า (Total Customer)</li>
+
+
+
+<li>แสดงยอดการซื้อหนังสือตามประเทศ (Transaction by country)</li>
+
+
+
+<li>แสดงหนังสือที่ขายดีที่สุด (Best-selling books)</li>
+
+
+
+<li>และแสดงหมวดหนังสือที่ขายดี (Best-selling categories)</li>
+</ul>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="437" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_1-1024x772.png" alt="" class="wp-image-4536" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_1-300x226.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_1-1024x772.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_1-768x579.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_1-1200x904.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_1.png 1225w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Dashboard หน้าแรก</figcaption></figure></div>
+
+<p>หน้าต่อมาแสดงรายการสินค้าตามยอดขาย โดยผู้ใช้สามารถคัดกรองตามยอดขายขั้นต่ำได้ (Min Revenue)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="438" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_2-1024x773.png" alt="" class="wp-image-4537" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_2-300x227.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_2-1024x773.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_2-768x580.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_2-1200x906.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/01/audible_dashboard_2.png 1221w" sizes="auto, (max-width: 580px) 100vw, 580px" /><figcaption class="wp-element-caption">Dashboard หน้าที่สอง</figcaption></figure></div>
+
+<p>โดยเราได้เพิ่ม</p>
+
+<ul class="wp-block-list">
+<li>Parameter ที่กำหนดต้นทุนการผลิตนศ ขั้นต่ำ (Min Revenue)</li>
+
+
+
+<li>และ Calculated Field ที่เป็นการคัดกรองข้อมูลตามต้นทุนขั้นต่ำที่เราได้ระบุ (More than min rev) โดยการเขียน SQL เพื่อคัดกรองตามเงื่อนไขโดยใช้คำสั่ง CASE WHEN การใช้งานแสดงตามด้านล่างนี้ เมื่อสินค้ามียอดขายมากกว่าขั้นต่ำ ตัวโค้ดจะคืนค่า 1 และกรณีที่ไม่ตรงกับเงื่อนไข โค้ดจะคืนค่าเท่ากับ 0</li>
+</ul>
+
+<pre class="wp-block-code"><code>CASE
+WHEN SUM(THBPrice) &gt; Min_Revenue
+THEN 1
+ELSE 0
+END </code></pre>
+
+<p>จากนั้น เราไปปรับใน Calculated Field ให้ทำงานในตารางหน้าที่สอง โดยกดเข้าไปที่เพิ่มตัวกรอง (Add a Filter) แล้วเลือก Calculated Field More than min rev โดยให้แสดงเฉพาะสินค้าที่มียอดขายมากกว่าขั้นต่ำ</p>
+
+<h2 class="wp-block-heading"><strong>ที่มา</strong></h2>
+
+<p>[1] <a href="https://cloud.google.com/learn/what-is-a-relational-database" target="_blank" rel="noopener" title="">What Is A Relational Database (RDBMS)? &nbsp;|&nbsp; Google Cloud</a></p>
+
+<p>[2] <a href="https://www.borntodev.com/2021/06/11/%E0%B8%A1%E0%B8%B2%E0%B8%94%E0%B8%B9%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%81%E0%B8%95%E0%B8%81%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%82%E0%B8%AD%E0%B8%87-primary-key-%E0%B9%81%E0%B8%A5/" target="_blank" rel="noopener" title="">มาดูความแตกต่างของ Primary Key และ Foreign Key กันเถอะ!! – BorntoDev เริ่มต้นเรียน เขียนโปรแกรม ขั้นเทพ !</a></p>
+
+<p>[3] <a href="https://blog.datath.com/google-cloud-platform-2-storage-database/#Cloud_SQL_brikar_Relational_Database_bn_Cloud" target="_blank" rel="noopener" title="">สรุป Google Cloud Platform สำหรับทำ Big Data และ Machine Learning: ตอน 2) Storage &amp; Database &#8211; เข้าใจ Data ง่าย ๆ กับ DataTH</a></p>
+
+<p>[4] <a href="https://cloud.google.com/sql-server?hl=en"></a><a href="https://cloud.google.com/sql/docs/" target="_blank" rel="noopener" title="">Cloud SQL documentation &nbsp;|&nbsp; Cloud SQL Documentation &nbsp;|&nbsp; Google Cloud</a></p>
+
+<p>[5] <a href="https://monsterconnect.co.th/database-sql-azure-vs-google-cloud/" target="_blank" rel="noopener" title="">Monster Connect | เจาะลึกบริการ Database SQL ของสองแบรนด์เจ้าใหญ่ Azure vs Google Cloud</a></p>
+
+<p>[6] <a href="https://cloud.google.com/sql/docs/mysql/sql-proxy" target="_blank" rel="noopener" title="About the Cloud SQL Auth Proxy | Cloud SQL for MySQL | Google Cloud">About the Cloud SQL Auth Proxy | Cloud SQL for MySQL | Google Cloud</a></p>
+
+<p>[7] <a href="https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine" target="_blank" rel="noopener" title="Connect to Cloud SQL from Google Kubernetes Engine | Cloud SQL for MySQL | Google Cloud">Connect to Cloud SQL from Google Kubernetes Engine | Cloud SQL for MySQL | Google Cloud</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

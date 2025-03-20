@@ -1,432 +1,283 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>วิธีให้ไพทอนแสดงเวลาตาม Time zone - Nick Untitled</title>
-		<meta name="description" content="สิ่งที่เราใช้บ่อยคือการแสดงเวลาในปัจจุบัน สำหรับไพทอน การโชว์เวลาในไลบรารี datetime ให้เวลาไม่ตรงเป๊ะ
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-ในบทความ เราจะแนะวิธีตั้งค่าแสดงเวลาตาม Time zone
-">
-		<meta name="keywords" content="datetime,library,programming,python,pytz,strfttime,time,timezone,zone,ภาษาไพทอน,เขตเวลา,เขียนโปรแกรม,เวลา,โปรแกรมมิ่ง,ไพทอน,ไลบรารี,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-09-09T00:47:04+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/09/09/how-to-display-timezone-aware-time-python/"/>
-		<meta property="og:title" content="วิธีให้ไพทอนแสดงเวลาตาม Time zone - Nick Untitled" />
-		<meta property="og:description" content="สิ่งที่เราใช้บ่อยคือการแสดงเวลาในปัจจุบัน สำหรับไพทอน การโชว์เวลาในไลบรารี datetime ให้เวลาไม่ตรงเป๊ะ
+  <title>วิธีให้ไพทอนแสดงเวลาตาม Time zone</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="วิธีให้ไพทอนแสดงเวลาตาม Time zone" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/09/09/how-to-display-timezone-aware-time-python/" />
+<meta property="og:url" content="http://localhost:4000/2021/09/09/how-to-display-timezone-aware-time-python/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/09/Display-nowtime-in-Time-zone.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-10T00:47:04+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/09/Display-nowtime-in-Time-zone.jpg" />
+<meta property="twitter:title" content="วิธีให้ไพทอนแสดงเวลาตาม Time zone" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:45:32+07:00","datePublished":"2021-09-10T00:47:04+07:00","description":"None","headline":"วิธีให้ไพทอนแสดงเวลาตาม Time zone","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/09/Display-nowtime-in-Time-zone.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/09/09/how-to-display-timezone-aware-time-python/"},"url":"http://localhost:4000/2021/09/09/how-to-display-timezone-aware-time-python/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>วิธีให้ไพทอนแสดงเวลาตาม Time zone</h1>
 
-ในบทความ เราจะแนะวิธีตั้งค่าแสดงเวลาตาม Time zone
- " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/09/Display-nowtime-in-Time-zone.jpg"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="วิธีให้ไพทอนแสดงเวลาตาม Time zone - Nick Untitled" />
-		<meta property="twitter:description" content="สิ่งที่เราใช้บ่อยคือการแสดงเวลาในปัจจุบัน สำหรับไพทอน การโชว์เวลาในไลบรารี datetime ให้เวลาไม่ตรงเป๊ะ
+  <p class="post-meta">
+    <time datetime="2021-09-10 00:47:04 +0700">2021-09-10</time>
+  </p>
 
-ในบทความ เราจะแนะวิธีตั้งค่าแสดงเวลาตาม Time zone
- " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/09/Display-nowtime-in-Time-zone.jpg" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/09/Display-nowtime-in-Time-zone.jpg' />
+  </figure>
+  
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
-
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
-
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
-
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				วิธีให้ไพทอนแสดงเวลาตาม Time zone
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/09/Display-nowtime-in-Time-zone.jpg' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>09 September 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/how-to-display-timezone-aware-time-python" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/how-to-display-timezone-aware-time-python&amp;text=วิธีให้ไพทอนแสดงเวลาตาม Time zone - https://nickuntitled.com/how-to-display-timezone-aware-time-python" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p>เวลาที่เขียนโปรแกรมหลายโปรแกรม จะมีสิ่งหนึ่งที่เราเรียกใช้กันอยู่บ่อย ๆ นั่นก็คือการแสดงเวลาปัจจุบันในขณะนั้น สำหรับคนที่เขียนด้วยภาษาไพทอน คำสั่งการแสดงว่าปัจจุบันจะอยู่ในไลบรารี datetime ที่ติดมากับภาษาไพทอนเลย ไม่ต้องติดตั้งเพิ่ม อย่างไรก็ดีเวลาที่แสดงจะไม่ตรงกับที่เราอยู่ เราจำเป็นต้องตั้งค่า Time zone ให้เรียบร้อยที่จะใช้ฟังก์ชันในไลบรารี datetime</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+  <p>เวลาที่เขียนโปรแกรมหลายโปรแกรม จะมีสิ่งหนึ่งที่เราเรียกใช้กันอยู่บ่อย ๆ นั่นก็คือการแสดงเวลาปัจจุบันในขณะนั้น สำหรับคนที่เขียนด้วยภาษาไพทอน คำสั่งการแสดงว่าปัจจุบันจะอยู่ในไลบรารี datetime ที่ติดมากับภาษาไพทอนเลย ไม่ต้องติดตั้งเพิ่ม อย่างไรก็ดีเวลาที่แสดงจะไม่ตรงกับที่เราอยู่ เราจำเป็นต้องตั้งค่า Time zone ให้เรียบร้อยที่จะใช้ฟังก์ชันในไลบรารี datetime</p>
 <p>แต่ก่อนที่จะไปถึงจุดนั้น เราจะมาแนะนำไลบรารี datetime ที่จะให้เราแสดงเวลาในปัจจุบันแบบที่ไม่ตรงกับ Time zone ที่เราอยู่ก่อน</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:more -->
-<!--more-->
-<!-- /wp:more -->
-
-<!-- wp:heading {"level":3} -->
-<h3>การใช้งานไลบรารี datetime</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<p><!--more--></p>
+<h3 id="-datetime">การใช้งานไลบรารี datetime</h3>
 <p>การเรียกใช้งานไลบรารีให้แสดงเวลาปัจจุบันทำได้โดยพิมพ์คำสั่งตามภาพด้านล่างนี้ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/09/datetime.png" alt="" /><figcaption>แสดงว่าโดยใช้ไลบรารี datetime</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/09/datetime.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>แสดงว่าโดยใช้ไลบรารี datetime</figcaption></figure>
 <p>อธิบายตามภาพก่อนครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>datetime.now()</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<h4 id="datetime-now-">datetime.now()</h4>
 <p>คำสั่งนี้มีหน้าที่อะไร? คำสั่งนี้มีหน้าที่แสดงวันและเวลาในขณะนั้นเองว่าเป็นวันที่เท่าไร และเวลากี่โมง กี่นาที กี่วินาที แล้ว คำสั่งนี้รูปแบบที่เราเรียกใช้งานได้โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/09/datetime_now.png" alt="" /><figcaption>รูปแบบคำสั่ง datetime.now</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>หลังจากพิมพ์คำสั่งตามข้างบนนี้ ตัวคำสั่งจะคืนค่าวัน และเวลาที่อยู่ในปัจจุบัน โดยเราสามารถใช้คำสั่ง print เพื่อให้แสดงเวลาในรูปแบบที่คนอ่านแล้วเข้าใจได้ครับ [1] </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>strfttime()</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/09/datetime_now.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>รูปแบบคำสั่ง datetime.now</figcaption></figure>
+<p>หลังจากพิมพ์คำสั่งตามข้างบนนี้ ตัวคำสั่งจะคืนค่าวัน และเวลาที่อยู่ในปัจจุบัน โดยเราสามารถใช้คำสั่ง print เพื่อให้แสดงเวลาในรูปแบบที่คนอ่านแล้วเข้าใจได้ครับ [1]</p>
+<h4 id="strfttime-">strfttime()</h4>
 <p>กรณีที่เราต้องการกำหนดเองว่าจะให้แสดงผลอย่างไร เราสามารถทำได้โดยพิมพ์คำสั่ง strfttime นี้ตามภาพด้านล่าง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/09/strfttime.png" alt="" /><figcaption>คำสั่ง strfttime ที่เราสามารถกำหนด Format ของเวลาที่แสดงได้</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/09/strfttime.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>คำสั่ง strfttime ที่เราสามารถกำหนด Format ของเวลาที่แสดงได้</figcaption></figure>
 <p>เมื่อเราพิมพ์คำสั่งนี้แล้ว ตัวคำสั่งจะคืนค่าเป็น string ในรูปแบบที่คนอ่านแล้วเข้าใจได้ดีกว่าเดิมครับ ส่วนตัว % ที่อยู่ในคำสั่งนั่นคืออะไรล่ะ? ตัวนี้ทำให้เรานึกถึงภาษาซีครับ ตัว % จะกำหนดว่าสิ่งที่เราต้องการให้แสดงนั่นคืออะไร เราสามารถสรุปได้ตามด้านล่างนี้ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:table {"align":"center","className":"is-style-stripes"} -->
-<figure class="wp-block-table aligncenter is-style-stripes"><table><thead><tr><td class="has-text-align-left" data-align="left"><strong>สัญลักษณ์  </strong>                     </td><td class="has-text-align-left" data-align="left"><strong>ความหมาย</strong></td><td class="has-text-align-left" data-align="left"><strong>ตัวอย่าง</strong></td></tr></thead><tbody><tr><td class="has-text-align-left" data-align="left">%a</td><td class="has-text-align-left" data-align="left">3 ตัวอักษรแรกของคำของวันในสัปดาห์</td><td class="has-text-align-left" data-align="left">Sun, Mon, ...</td></tr><tr><td class="has-text-align-left" data-align="left">%A</td><td class="has-text-align-left" data-align="left">วันของสัปดาห์ในรูปแบบเต็ม ๆ</td><td class="has-text-align-left" data-align="left">Sunday, Monday, ...</td></tr><tr><td class="has-text-align-left" data-align="left">%w</td><td class="has-text-align-left" data-align="left">วันของสัปดาห์ที่แสดงในรูปแบบตัวเลขตั้งแต่ 0 คือวันอาทิตย์ จนถึง 6 คือวันเสาร์</td><td class="has-text-align-left" data-align="left">0, 1, ..., 6</td></tr><tr><td class="has-text-align-left" data-align="left">%d</td><td class="has-text-align-left" data-align="left">วันที่ของเดือน แสดงในรูปเลขสองหลัก (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)</td><td class="has-text-align-left" data-align="left">01, 02, ..., 31</td></tr><tr><td class="has-text-align-left" data-align="left">%-d </td><td class="has-text-align-left" data-align="left">วันที่ของเดือน</td><td class="has-text-align-left" data-align="left">1, 2, ..., 30</td></tr><tr><td class="has-text-align-left" data-align="left">%b</td><td class="has-text-align-left" data-align="left">3 ตัวอักษรแรกของเดือน</td><td class="has-text-align-left" data-align="left">Jan, Feb, ..., Dec</td></tr><tr><td class="has-text-align-left" data-align="left">%B</td><td class="has-text-align-left" data-align="left">ชื่อเดือนแบบเต็ม ๆ</td><td class="has-text-align-left" data-align="left">January, February, ...</td></tr><tr><td class="has-text-align-left" data-align="left">%m</td><td class="has-text-align-left" data-align="left">เดือนที่แสดงอยู่ในรูปเลขสองหลัก  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า) </td><td class="has-text-align-left" data-align="left">01, 02, ..., 12</td></tr><tr><td class="has-text-align-left" data-align="left">%-m  </td><td class="has-text-align-left" data-align="left">เดือน</td><td class="has-text-align-left" data-align="left">1, 2, ..., 12</td></tr><tr><td class="has-text-align-left" data-align="left">%y</td><td class="has-text-align-left" data-align="left">ปีที่แสดงอยู่ในรูปเลขสองหลัก  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า และในที่นี้แสดงเป็นปีศริสต์ศักราช) </td><td class="has-text-align-left" data-align="left">00, 01, ..., 99</td></tr><tr><td class="has-text-align-left" data-align="left">%-y </td><td class="has-text-align-left" data-align="left">ปีที่แสดงอยู่ในรูปเลขสองหลัก ตั้งแต่ 0 - 99  (ในที่นี้แสดงเป็นปีศริสต์ศักราช) </td><td class="has-text-align-left" data-align="left">0, 1, ..., 99</td></tr><tr><td class="has-text-align-left" data-align="left">%Y</td><td class="has-text-align-left" data-align="left">ปีแบบเต็ม ๆ (ในที่นี้แสดงเป็นปีศริสต์ศักราช)</td><td class="has-text-align-left" data-align="left">2013, 2019 etc.</td></tr><tr><td class="has-text-align-left" data-align="left">%H</td><td class="has-text-align-left" data-align="left">เวลาที่แสดงอยู่ในรูปเลขสองหลักตั้งแต่ 0 - 23 นาฬิกา  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)  </td><td class="has-text-align-left" data-align="left">00, 01, ..., 23</td></tr><tr><td class="has-text-align-left" data-align="left">%-H  </td><td class="has-text-align-left" data-align="left">เวลาตั้งแต่ 0 - 23 นาฬิกา</td><td class="has-text-align-left" data-align="left">0, 1, ..., 23</td></tr><tr><td class="has-text-align-left" data-align="left">%I</td><td class="has-text-align-left" data-align="left">เวลาที่แสดงอยู่ในรูปเลขสองหลัก ตั้งแต่ 0 - 12 นาฬิกา  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)  ตัวนี้จำเป็นต้องระบุว่าเป็น AM หรือ PM</td><td class="has-text-align-left" data-align="left">01, 02, ..., 12</td></tr><tr><td class="has-text-align-left" data-align="left">%-I </td><td class="has-text-align-left" data-align="left">เวลาตั้งแต่ 1 - 12 นาฬิกา</td><td class="has-text-align-left" data-align="left">1, 2, ... 12</td></tr><tr><td class="has-text-align-left" data-align="left">%p</td><td class="has-text-align-left" data-align="left">AM หรือ PM</td><td class="has-text-align-left" data-align="left">AM, PM</td></tr><tr><td class="has-text-align-left" data-align="left">%M</td><td class="has-text-align-left" data-align="left">นาทีที่แสดงอยู่ในรูปเลขสองหลักตั้งแต่ 0 - 59 นาที  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)   </td><td class="has-text-align-left" data-align="left">00, 01, ..., 59</td></tr><tr><td class="has-text-align-left" data-align="left">%-M  </td><td class="has-text-align-left" data-align="left">นาทีตั้งแต่ 0-59 นาที</td><td class="has-text-align-left" data-align="left">0, 1, ..., 59</td></tr><tr><td class="has-text-align-left" data-align="left">%S</td><td class="has-text-align-left" data-align="left">วินาทีที่แสดงอยู่ในรูปเลขสองหลักตั้งแต่ 0 - 59 วินาที (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)</td><td class="has-text-align-left" data-align="left">00, 01, ..., 59</td></tr><tr><td class="has-text-align-left" data-align="left">%-S  </td><td class="has-text-align-left" data-align="left"> วินาทีตั้งแต่ 0 - 59 วินาที </td><td class="has-text-align-left" data-align="left">0, 1, ..., 59</td></tr><tr><td class="has-text-align-left" data-align="left">%f</td><td class="has-text-align-left" data-align="left">ไมโครวินาที ที่แสดงอยู่ในรูปเลขหกหลัก กรณีที่เลขน้อยกว่า 6 หลัก ตัวนี้จะเติม 0 ข้างหน้าให้ครบ 6 หลัก</td><td class="has-text-align-left" data-align="left">000000 - 999999</td></tr><tr><td class="has-text-align-left" data-align="left">%z</td><td class="has-text-align-left" data-align="left">ความแตกต่างระหว่างเวลาใน Time zone นั้น ๆ กับเวลาตาม UTC โดยจะแสดงเป็น +HHMM หรือ -HHMM.</td><td class="has-text-align-left" data-align="left">&nbsp;</td></tr><tr><td class="has-text-align-left" data-align="left">%Z</td><td class="has-text-align-left" data-align="left">ชื่อเขตเวลา (Time zone)</td><td class="has-text-align-left" data-align="left">&nbsp;</td></tr><tr><td class="has-text-align-left" data-align="left">%j</td><td class="has-text-align-left" data-align="left">วันที่ของปีในรูปแบบเลข 3 หลัก กรณีที่เลขน้อยกว่าสามหลัก ตัวนี้จะเติม 0 ข้างหน้าให้ครบ</td><td class="has-text-align-left" data-align="left">001, 002, ..., 366</td></tr><tr><td class="has-text-align-left" data-align="left">%-j  </td><td class="has-text-align-left" data-align="left">วันที่ของปี</td><td class="has-text-align-left" data-align="left">1, 2, ..., 366</td></tr><tr><td class="has-text-align-left" data-align="left">%U</td><td class="has-text-align-left" data-align="left">สัปดาห์ที่ของปี สัปดาห์แรกหลังปีใหม่จะเริ่มที่ 0 และวันแรกของสัปดาห์คือวันอาทิตย์</td><td class="has-text-align-left" data-align="left">00, 01, ..., 53</td></tr><tr><td class="has-text-align-left" data-align="left">%W</td><td class="has-text-align-left" data-align="left">สัปดาห์ที่ของปี สัปดาห์แรกหลังปีใหม่จะเริ่มที่ 0 และวันแรกของสัปดาห์คือวันจันทร์</td><td class="has-text-align-left" data-align="left">00, 01, ..., 53</td></tr><tr><td class="has-text-align-left" data-align="left">%c</td><td class="has-text-align-left" data-align="left">เวลาและวันที่ที่แสดงในรูปที่เข้ากันได้กับแต่ละเมือง/ประเทศ (Locale) </td><td class="has-text-align-left" data-align="left">Mon Sep 30 07:06:05 2013</td></tr><tr><td class="has-text-align-left" data-align="left">%x</td><td class="has-text-align-left" data-align="left">วันที่ที่แสดงในรูปที่เข้ากันได้กับแต่ละเมือง/ประเทศ (Locale)</td><td class="has-text-align-left" data-align="left">09/30/13</td></tr><tr><td class="has-text-align-left" data-align="left">%X</td><td class="has-text-align-left" data-align="left">เวลาที่แสดงในรูปที่เข้ากันได้กับแต่ละเมือง/ประเทศ (Locale) </td><td class="has-text-align-left" data-align="left">07:06:05</td></tr><tr><td class="has-text-align-left" data-align="left">%%</td><td class="has-text-align-left" data-align="left">สัญลักษณ์ %</td><td class="has-text-align-left" data-align="left">%</td></tr></tbody></table><figcaption>ตารางการตั้งค่าฟอร์แมตของฟังก์ชัน strfttime [2]</figcaption></figure>
-<!-- /wp:table -->
-
-<!-- wp:paragraph -->
+<p><!--kg-card-begin: html--></p>
+<table>
+<thead>
+<tr>
+<td class="has-text-align-left" data-align="left"><strong>สัญลักษณ์  </strong></td>
+<td class="has-text-align-left" data-align="left"><strong>ความหมาย</strong></td>
+<td class="has-text-align-left" data-align="left"><strong>ตัวอย่าง</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="has-text-align-left" data-align="left">%a</td>
+<td class="has-text-align-left" data-align="left">3 ตัวอักษรแรกของคำของวันในสัปดาห์</td>
+<td class="has-text-align-left" data-align="left">Sun, Mon, &#8230;</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%A</td>
+<td class="has-text-align-left" data-align="left">วันของสัปดาห์ในรูปแบบเต็ม ๆ</td>
+<td class="has-text-align-left" data-align="left">Sunday, Monday, &#8230;</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%w</td>
+<td class="has-text-align-left" data-align="left">วันของสัปดาห์ที่แสดงในรูปแบบตัวเลขตั้งแต่ 0 คือวันอาทิตย์ จนถึง 6 คือวันเสาร์</td>
+<td class="has-text-align-left" data-align="left">0, 1, &#8230;, 6</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%d</td>
+<td class="has-text-align-left" data-align="left">วันที่ของเดือน แสดงในรูปเลขสองหลัก (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)</td>
+<td class="has-text-align-left" data-align="left">01, 02, &#8230;, 31</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-d</td>
+<td class="has-text-align-left" data-align="left">วันที่ของเดือน</td>
+<td class="has-text-align-left" data-align="left">1, 2, &#8230;, 30</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%b</td>
+<td class="has-text-align-left" data-align="left">3 ตัวอักษรแรกของเดือน</td>
+<td class="has-text-align-left" data-align="left">Jan, Feb, &#8230;, Dec</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%B</td>
+<td class="has-text-align-left" data-align="left">ชื่อเดือนแบบเต็ม ๆ</td>
+<td class="has-text-align-left" data-align="left">January, February, &#8230;</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%m</td>
+<td class="has-text-align-left" data-align="left">เดือนที่แสดงอยู่ในรูปเลขสองหลัก  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)</td>
+<td class="has-text-align-left" data-align="left">01, 02, &#8230;, 12</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-m</td>
+<td class="has-text-align-left" data-align="left">เดือน</td>
+<td class="has-text-align-left" data-align="left">1, 2, &#8230;, 12</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%y</td>
+<td class="has-text-align-left" data-align="left">ปีที่แสดงอยู่ในรูปเลขสองหลัก  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า และในที่นี้แสดงเป็นปีศริสต์ศักราช)</td>
+<td class="has-text-align-left" data-align="left">00, 01, &#8230;, 99</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-y</td>
+<td class="has-text-align-left" data-align="left">ปีที่แสดงอยู่ในรูปเลขสองหลัก ตั้งแต่ 0 &#8211; 99  (ในที่นี้แสดงเป็นปีศริสต์ศักราช)</td>
+<td class="has-text-align-left" data-align="left">0, 1, &#8230;, 99</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%Y</td>
+<td class="has-text-align-left" data-align="left">ปีแบบเต็ม ๆ (ในที่นี้แสดงเป็นปีศริสต์ศักราช)</td>
+<td class="has-text-align-left" data-align="left">2013, 2019 etc.</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%H</td>
+<td class="has-text-align-left" data-align="left">เวลาที่แสดงอยู่ในรูปเลขสองหลักตั้งแต่ 0 &#8211; 23 นาฬิกา  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)</td>
+<td class="has-text-align-left" data-align="left">00, 01, &#8230;, 23</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-H</td>
+<td class="has-text-align-left" data-align="left">เวลาตั้งแต่ 0 &#8211; 23 นาฬิกา</td>
+<td class="has-text-align-left" data-align="left">0, 1, &#8230;, 23</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%I</td>
+<td class="has-text-align-left" data-align="left">เวลาที่แสดงอยู่ในรูปเลขสองหลัก ตั้งแต่ 0 &#8211; 12 นาฬิกา  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)  ตัวนี้จำเป็นต้องระบุว่าเป็น AM หรือ PM</td>
+<td class="has-text-align-left" data-align="left">01, 02, &#8230;, 12</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-I</td>
+<td class="has-text-align-left" data-align="left">เวลาตั้งแต่ 1 &#8211; 12 นาฬิกา</td>
+<td class="has-text-align-left" data-align="left">1, 2, &#8230; 12</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%p</td>
+<td class="has-text-align-left" data-align="left">AM หรือ PM</td>
+<td class="has-text-align-left" data-align="left">AM, PM</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%M</td>
+<td class="has-text-align-left" data-align="left">นาทีที่แสดงอยู่ในรูปเลขสองหลักตั้งแต่ 0 &#8211; 59 นาที  (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)</td>
+<td class="has-text-align-left" data-align="left">00, 01, &#8230;, 59</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-M</td>
+<td class="has-text-align-left" data-align="left">นาทีตั้งแต่ 0-59 นาที</td>
+<td class="has-text-align-left" data-align="left">0, 1, &#8230;, 59</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%S</td>
+<td class="has-text-align-left" data-align="left">วินาทีที่แสดงอยู่ในรูปเลขสองหลักตั้งแต่ 0 &#8211; 59 วินาที (กรณีที่มีค่าน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า)</td>
+<td class="has-text-align-left" data-align="left">00, 01, &#8230;, 59</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-S</td>
+<td class="has-text-align-left" data-align="left"> วินาทีตั้งแต่ 0 &#8211; 59 วินาที</td>
+<td class="has-text-align-left" data-align="left">0, 1, &#8230;, 59</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%f</td>
+<td class="has-text-align-left" data-align="left">ไมโครวินาที ที่แสดงอยู่ในรูปเลขหกหลัก กรณีที่เลขน้อยกว่า 6 หลัก ตัวนี้จะเติม 0 ข้างหน้าให้ครบ 6 หลัก</td>
+<td class="has-text-align-left" data-align="left">000000 &#8211; 999999</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%z</td>
+<td class="has-text-align-left" data-align="left">ความแตกต่างระหว่างเวลาใน Time zone นั้น ๆ กับเวลาตาม UTC โดยจะแสดงเป็น +HHMM หรือ -HHMM.</td>
+<td class="has-text-align-left" data-align="left">&nbsp;</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%Z</td>
+<td class="has-text-align-left" data-align="left">ชื่อเขตเวลา (Time zone)</td>
+<td class="has-text-align-left" data-align="left">&nbsp;</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%j</td>
+<td class="has-text-align-left" data-align="left">วันที่ของปีในรูปแบบเลข 3 หลัก กรณีที่เลขน้อยกว่าสามหลัก ตัวนี้จะเติม 0 ข้างหน้าให้ครบ</td>
+<td class="has-text-align-left" data-align="left">001, 002, &#8230;, 366</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%-j</td>
+<td class="has-text-align-left" data-align="left">วันที่ของปี</td>
+<td class="has-text-align-left" data-align="left">1, 2, &#8230;, 366</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%U</td>
+<td class="has-text-align-left" data-align="left">สัปดาห์ที่ของปี สัปดาห์แรกหลังปีใหม่จะเริ่มที่ 0 และวันแรกของสัปดาห์คือวันอาทิตย์</td>
+<td class="has-text-align-left" data-align="left">00, 01, &#8230;, 53</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%W</td>
+<td class="has-text-align-left" data-align="left">สัปดาห์ที่ของปี สัปดาห์แรกหลังปีใหม่จะเริ่มที่ 0 และวันแรกของสัปดาห์คือวันจันทร์</td>
+<td class="has-text-align-left" data-align="left">00, 01, &#8230;, 53</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%c</td>
+<td class="has-text-align-left" data-align="left">เวลาและวันที่ที่แสดงในรูปที่เข้ากันได้กับแต่ละเมือง/ประเทศ (Locale)</td>
+<td class="has-text-align-left" data-align="left">Mon Sep 30 07:06:05 2013</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%x</td>
+<td class="has-text-align-left" data-align="left">วันที่ที่แสดงในรูปที่เข้ากันได้กับแต่ละเมือง/ประเทศ (Locale)</td>
+<td class="has-text-align-left" data-align="left">09/30/13</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%X</td>
+<td class="has-text-align-left" data-align="left">เวลาที่แสดงในรูปที่เข้ากันได้กับแต่ละเมือง/ประเทศ (Locale)</td>
+<td class="has-text-align-left" data-align="left">07:06:05</td>
+</tr>
+<tr>
+<td class="has-text-align-left" data-align="left">%%</td>
+<td class="has-text-align-left" data-align="left">สัญลักษณ์ %</td>
+<td class="has-text-align-left" data-align="left">%</td>
+</tr>
+</tbody>
+</table>
+<p><!--kg-card-end: html--></p>
+<p>ตารางการตั้งค่าฟอร์แมตของฟังก์ชัน strfttime [2]</p>
 <p>จากที่เราสังเกตในตารางข้างบนนี้ เมื่อเราเอาไปใช้กับรูปตัวอย่างโค้ดด้านบน โค้ดด้านบนกำหนดให้แสดงเวลา และวันที่ในรูปแบบ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>วัน และเดือนที่แสดงอยู่ในรูปแบบเลขสองหลัก กรณีที่เลขน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า</li><li>ปีคริสต์ศักราช</li><li>ชั่วโมง นาที และวินาทีที่แสดงอยู่ในรูปแบบสองหลัก กรณีที่เลขน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า โดยตัวชั่วโมงจะแสดงตั้งแต่ 0 - 23 นาฬิกา</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
+<ul>
+<li>วัน และเดือนที่แสดงอยู่ในรูปแบบเลขสองหลัก กรณีที่เลขน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า</li>
+<li>ปีคริสต์ศักราช</li>
+<li>ชั่วโมง นาที และวินาทีที่แสดงอยู่ในรูปแบบสองหลัก กรณีที่เลขน้อยกว่า 10 ตัวนี้จะเติม 0 ข้างหน้า โดยตัวชั่วโมงจะแสดงตั้งแต่ 0 &#8211; 23 นาฬิกา</li>
+</ul>
 <p>ตัวอย่างเช่น เราต้องการแสดงเวลา 23:24 ของวันที่ 8/9/2564 เมื่อเราพิมพ์ตัวสัญลักษณ์ลงในวงเล็บของ strfttime เราสามารถแสดงวันและเวลาได้เป็น 08/09/2021 23:24 ครับ [2]</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>อย่างไรก็ดี เมื่อเราใช้คำสั่งตามด้านบนนี้ เวลาที่แสดงจะไม่ตรงกันกับเวลาจริงตาม Time zone ดังนั้นแล้ว เราจำเป็นต้องตั้งค่า Time zone ให้ตรงกับสถานที่ที่เราต้องการ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3>การตั้งค่า Time zone</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<h3 id="-time-zone">การตั้งค่า Time zone</h3>
 <p>การตั้งค่า Time zone ของสถานที่นั้น ๆ เพื่อให้ฟังก์ชันแสดงเวลาตรงกับสถานที่ที่เราอยู่ครับ เราสามารถตั้งค่าได้โดย</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>ใช้ไลบรารี time</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<h4 id="-time">ใช้ไลบรารี time</h4>
 <p>ไลบรารีนี้เป็นไลบรารีที่มีอยู่แล้วในไพทอน เราสามารถตั้งค่าให้แสดงวันและเวลาตาม Time zone นั้น ๆ ได้โดยพิมพ์โค้ดตามด้านล่างนี้ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/09/timezone-setting.png" alt="" /><figcaption>ตั้งค่า Time zone โดยใช้ไลบรารี time</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>จากโค้ดที่ปรากฏด้านบน เราสามารถเปลี่ยน Time zone ได้โดยการตั้งค่าที่ os.environ['TZ'] แล้วพิมพ์ Time zone ตามที่เราต้องการ ในตัวอย่างจะใช้ Asia/Bangkok ครับ [3]</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เทคนิคนี้มีข้อด้อยอย่างนึงก็คือการตั้งค่า Time zone เราจำเป็นต้องไปยุ่งกับ Environment Variable ซึ่งจะส่งผลต่อการใช้งานในฟังก์ชัน หรือในโปรแกรมอื่นด้วย และการตั้งค่าเรื่องเวลามันจะมี Daylight saving หรืออื่น ๆ ฟังดูยุ่งยากไปหน่อย วิธีนี้เราไม่ค่อยแนะนำ </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/09/timezone-setting.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ตั้งค่า Time zone โดยใช้ไลบรารี time</figcaption></figure>
+<p>จากโค้ดที่ปรากฏด้านบน เราสามารถเปลี่ยน Time zone ได้โดยการตั้งค่าที่ os.environ[&#8216;TZ&#8217;] แล้วพิมพ์ Time zone ตามที่เราต้องการ ในตัวอย่างจะใช้ Asia/Bangkok ครับ [3]</p>
+<p>เทคนิคนี้มีข้อด้อยอย่างนึงก็คือการตั้งค่า Time zone เราจำเป็นต้องไปยุ่งกับ Environment Variable ซึ่งจะส่งผลต่อการใช้งานในฟังก์ชัน หรือในโปรแกรมอื่นด้วย และการตั้งค่าเรื่องเวลามันจะมี Daylight saving หรืออื่น ๆ ฟังดูยุ่งยากไปหน่อย วิธีนี้เราไม่ค่อยแนะนำ</p>
 <p>เราแนะนำอีกวิธีครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>ใช้ไลบรารี pytz</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<h4 id="-pytz">ใช้ไลบรารี pytz</h4>
 <p>ไลบรารี pytz เป็นไลบรารีที่อนุญาตให้เราปรับ Time zone ได้ตามสะดวก ร่วมกันกับแก้ปัญหาเรื่อง Daylight saving ด้วย ทำให้ผู้ใช้สามารถใช้งานฟังก์ชันได้สะดวกมากกว่าเดิม [3] อย่างไรก็ดี ก่อนที่จะเริ่มใช้งาน เราจำเป็นต้องติดตั้งฟังก์ชันนี้ก่อน ทำได้โดยพิมพ์คำสั่ง</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/09/pytz-installation.png" alt="" /><figcaption>ติดตั้งไลบรารี pytz</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/09/pytz-installation.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ติดตั้งไลบรารี pytz</figcaption></figure>
 <p>กดปุ่ม Enter แล้ว เรารอไพทอนติดตั้งไลบรารีให้ เมื่อติดตั้งเสร็จแล้ว เราสามารถปรับ Time zone โดยการใช้ไลบรารีได้ โดยพิมพ์ตามด้านล่างนี้ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/09/pytz-usage.png" alt="" /><figcaption>การใช้ pytz เพื่อตั้งค่า Time zone ให้เป็นตามเวลากรุงเทพฯ</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/09/pytz-usage.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>การใช้ pytz เพื่อตั้งค่า Time zone ให้เป็นตามเวลากรุงเทพฯ</figcaption></figure>
 <p>ตัวฟังก์ชัน timezone จะตั้งค่าตามเวลากรุงเทพฯ ให้เรา หลังจากนั้น เราใช้คำสั่ง datetime.now(timezone) เพื่อแสดงเวลาปัจจุบันตามเวลาของกรุงเทพฯ เอง ซึ่งเวลาตรงตามเวลาที่ที่ผู้เขียนเขียนอยู่</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
 <p>สำหรับผู้ใช้ที่ต้องการแสดงเวลาตาม Time zone ที่อื่น เราสามารถเปลี่ยนตรง Asia/Bangkok เป็นที่อื่นได้ครับผม [4]</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>สรุป</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
+<h4 id="-">สรุป</h4>
 <p>การใช้งานฟังก์ชัน datetime.now() จะแสดงว่าที่ไม่ขึ้นกับ Time zone ปัจจุบันที่เราอยู่ ดังนั้นแล้วกรณีที่ต้องการแสดงเวลาปัจจุบันตามสถานที่ที่เราอยู่ เราจำเป็นต้องตั้งค่า Time zone ก่อน ซึ่งสามารถตั้งค่าได้ง่ายโดยใช้ไลบรารี pytz ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>แหล่งอ้างอิง</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>[1] datetime — Basic date and time types — Python 3.9.7 documentation [Internet]. Docs.python.org. 2021 [cited 8 September 2021]. Available from: <a href="https://docs.python.org/3/library/datetime.html#module-datetime" target="_blank" rel="noreferrer noopener">https://docs.python.org/3/library/datetime.html#module-datetime</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>[2] Python strftime() - datetime to string [Internet]. Programiz.com. 2021 [cited 8 September 2021]. Available from: <a href="https://www.programiz.com/python-programming/datetime/strftime" target="_blank" rel="noreferrer noopener">https://www.programiz.com/python-programming/datetime/strftime</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>[3] time — Time access and conversions — Python 3.9.7 documentation [Internet]. Docs.python.org. 2021 [cited 8 September 2021]. Available from: <a href="https://docs.python.org/3/library/time.html#time.strftime" target="_blank" rel="noreferrer noopener">https://docs.python.org/3/library/time.html#time.strftime</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>[4] Working With TimeZones in Python [Internet]. Pynative Python Programming. 2021 [cited 8 September 2021]. Available from: <a href="https://pynative.com/python-timezone/" target="_blank" rel="noreferrer noopener">https://pynative.com/python-timezone/</a></p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">datetime</span>
-			
-				<span class="post-tag">library</span>
-			
-				<span class="post-tag">programming</span>
-			
-				<span class="post-tag">python</span>
-			
-				<span class="post-tag">pytz</span>
-			
-				<span class="post-tag">strfttime</span>
-			
-				<span class="post-tag">time</span>
-			
-				<span class="post-tag">timezone</span>
-			
-				<span class="post-tag">zone</span>
-			
-				<span class="post-tag">ภาษาไพทอน</span>
-			
-				<span class="post-tag">เขตเวลา</span>
-			
-				<span class="post-tag">เขียนโปรแกรม</span>
-			
-				<span class="post-tag">เวลา</span>
-			
-				<span class="post-tag">โปรแกรมมิ่ง</span>
-			
-				<span class="post-tag">ไพทอน</span>
-			
-				<span class="post-tag">ไลบรารี</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/09/04/usb-c-docking-station-with-surface/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								USB-C docking station ที่ใช้อยู่กับ Surface
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/09/11/usb-c-adapter-for-surface-pro-x/">
-							<span class = 'mr-1'>
-								อะแดปเตอร์ชาร์จไฟที่เหมาะกับ Surface Pro X
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<h4 id="--1">แหล่งอ้างอิง</h4>
+<p>[1] datetime — Basic date and time types — Python 3.9.7 documentation [Internet]. Docs.python.org. 2021 [cited 8 September 2021]. Available from: <a href="https://docs.python.org/3/library/datetime.html#module-datetime" rel="noreferrer noopener">https://docs.python.org/3/library/datetime.html#module-datetime</a></p>
+<p>[2] Python strftime() &#8211; datetime to string [Internet]. Programiz.com. 2021 [cited 8 September 2021]. Available from: <a href="https://www.programiz.com/python-programming/datetime/strftime" rel="noreferrer noopener">https://www.programiz.com/python-programming/datetime/strftime</a></p>
+<p>[3] time — Time access and conversions — Python 3.9.7 documentation [Internet]. Docs.python.org. 2021 [cited 8 September 2021]. Available from: <a href="https://docs.python.org/3/library/time.html#time.strftime" rel="noreferrer noopener">https://docs.python.org/3/library/time.html#time.strftime</a></p>
+<p>[4] Working With TimeZones in Python [Internet]. Pynative Python Programming. 2021 [cited 8 September 2021]. Available from: <a href="https://pynative.com/python-timezone/" rel="noreferrer noopener">https://pynative.com/python-timezone/</a></p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

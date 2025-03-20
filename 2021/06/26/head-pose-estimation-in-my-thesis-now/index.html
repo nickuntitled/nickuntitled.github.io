@@ -1,369 +1,95 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="light">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้ - Nick Untitled</title>
-		<meta name="description" content="เทคนิคการจับภาพการเคลื่อนไหวศีรษะได้รับการพัฒนาตั้งแต่อดีตจนถึงปัจจุบันส่งผลให้ความแม่นยำเพิ่มขึ้นตลอด ในบทความนี้เราจะพูดถึงเทคนิคที่นำใช้อยู่่ในขณะนี้ครับ">
-		<meta name="keywords" content="3DDFA,3DDFA_V2,alignment,artificial intelligence,cervical,deep learning,detection,face,FAN,head,Head Pose Estimation,Hopenet,keypoints,landmark,machine learning,measurement,movement,pose,range of motion,">
-		<base href="https://nickuntitled.com" />
-		
-    	<meta content="2021-06-26T00:21:34+07:00" property="article:published_time">
-    	<meta content="https://nickuntitled.com/about/" property="article:author">
-  		
-		<meta property="og:site_name" content="Nick Untitled">
-		<meta property="og:type" content="article" />
-		<meta property="og:url" content="https://nickuntitled.com/2021/06/26/head-pose-estimation-in-my-thesis-now/"/>
-		<meta property="og:title" content="พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้ - Nick Untitled" />
-		<meta property="og:description" content="เทคนิคการจับภาพการเคลื่อนไหวศีรษะได้รับการพัฒนาตั้งแต่อดีตจนถึงปัจจุบันส่งผลให้ความแม่นยำเพิ่มขึ้นตลอด ในบทความนี้เราจะพูดถึงเทคนิคที่นำใช้อยู่่ในขณะนี้ครับ " />
-		<meta property="og:image" content="https://asset.nickuntitled.com/2021/06/Head-Pose-in-Thesis.jpg"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta property="twitter:title" content="พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้ - Nick Untitled" />
-		<meta property="twitter:description" content="เทคนิคการจับภาพการเคลื่อนไหวศีรษะได้รับการพัฒนาตั้งแต่อดีตจนถึงปัจจุบันส่งผลให้ความแม่นยำเพิ่มขึ้นตลอด ในบทความนี้เราจะพูดถึงเทคนิคที่นำใช้อยู่่ในขณะนี้ครับ " />
-		<meta property="twitter:image" content="https://asset.nickuntitled.com/2021/06/Head-Pose-in-Thesis.jpg" />
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" href="assets/css/highlight.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-		<link rel="shortcut icon" href="assets/images/favicon.png" />
-		<link rel="alternate" type="application/atom+xml" title="Nick Untitled" href="https://nickuntitled.com/atom.xml">
-		<link rel="alternate" type="application/json" title="Nick Untitled" href="https://nickuntitled.com/feed.json" />
-		<link rel="sitemap" type="application/xml" title="sitemap" href="https://nickuntitled.com/sitemap.xml" />
-		<meta name="google-site-verification" content="XXX" />
-		<meta name="facebook-domain-verification" content="zjykrcwf7cljpxppixh5ior67ehtw2" />
-	</head>
-<body>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div>
-	<div class="profile">
-		<div>
-			<div class = 'px-4 py-4 w-full shadow-md'>
-				<div class = 'container mx-auto max-w-screen-md'>
-					<div class = 'float-none md:float-left'>
-						<div class = 'mb-3 md:mb-0'>
-							<h2 class = 'font-sans font-bold block md:inline text-xl mb-1 md:mb-0 md:mr-4 align-baseline'>
-								<a href = '/' class = 'hover:underline'>Nick Untitled</a>
-							</h2>
-							<div class = 'font-sans text-base inline align-baseline'>
-								Writing as my personal diary
-							</div>
-						</div>
-					</div>
-					
-					<div class = 'float-none md:float-right'>
-						<div class = 'place-content-start mb-2 md:mb-0 md:place-content-end'>
-							<div class = 'mx-0 my-0 py-0 pr-0 flex space-x-2 text-left md:text-right'>
-								<a href = 'feed.xml' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-rss-fill"></i>
-									</div>
-								</a>
-								
-								<a href = 'about' 
-									class = 'font-bold text-center align-baseline text-xl'>
-									<div class = "social-button">
-										<i class="bi-file-person-fill"></i>
-									</div>
-								</a>
+  <title>พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2021/06/26/head-pose-estimation-in-my-thesis-now/" />
+<meta property="og:url" content="http://localhost:4000/2021/06/26/head-pose-estimation-in-my-thesis-now/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/Head-Pose-in-Thesis-1200x675.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-26T17:21:34+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/Head-Pose-in-Thesis-1200x675.jpg" />
+<meta property="twitter:title" content="พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:46:27+07:00","datePublished":"2021-06-26T17:21:34+07:00","description":"None","headline":"พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/Head-Pose-in-Thesis-1200x675.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/06/26/head-pose-estimation-in-my-thesis-now/"},"url":"http://localhost:4000/2021/06/26/head-pose-estimation-in-my-thesis-now/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้</h1>
 
-								
-								
-									<a href = 'https://twitter.com/nicknznick' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-twitter"></i>
-										</div>
-									</a>
-								
-								
-								
-								
-									<a href = 'https://github.com/nickuntitled' 
-										class = 'font-bold text-center align-baseline text-xl'
-										target="_blank">
-										<div class = "social-button">
-											<i class="bi-github"></i>
-										</div>
-									</a>
-								
-							</div>
-						</div>
-					</div>
+  <p class="post-meta">
+    <time datetime="2021-06-26 17:21:34 +0700">2021-06-26</time>
+  </p>
 
-					<div class = 'clear-both'></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2021/06/Head-Pose-in-Thesis-1200x675.jpg' />
+  </figure>
+  
 
-	
-
-<div class = 'px-4'>
-	<div class = 'container mx-auto max-w-screen-md'>
-		<div class="blog-post-header my-6">
-			<h1>
-				พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้
-			</h1>
-		</div>
-
-		
-			<figure class = "max-w-full">
-				<img src = 'https://asset.nickuntitled.com/2021/06/Head-Pose-in-Thesis.jpg' 
-					class = "w-full"/>
-			</figure>
-			
-
-		<div class="post-header">
-			<div class="header-date">
-				<span class = 'mr-1'>Published:</span>
-				<span>26 June 2021</span>
-			</div>
-			<div class="post-share">
-				<span class = 'mr-1'>Share:</span>
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https://nickuntitled.com/head-pose-estimation-in-my-thesis-now" target="_blank">
-					<div class = "share-button">
-						<i class="bi-facebook"></i>
-					</div>
-				</a>
-				<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://nickuntitled.com/head-pose-estimation-in-my-thesis-now&amp;text=พูดถึง Head Pose Estimation ที่ใช้ในขณะนี้ - https://nickuntitled.com/head-pose-estimation-in-my-thesis-now" target="_blank">
-					<div class = "share-button">
-						<i class="bi-twitter"></i>
-					</div>
-				</a>
-			</div>
-			<div class = "clear-both"></div>
-		</div>
-
-		<div class="blog-post-content my-6 mx-auto">
-			<!-- wp:paragraph -->
-<p><strong>Head Pose Estimation</strong> คือเทคนิคการจับภาพการเคลื่อนไหวของศีรษะเมื่อเทียบกับมุมกล้องที่ถ่ายอยู่ในขณะที่จับภาพ โดยนำภาพใบหน้าของบุคคลที่จับภาพได้จากเทคนิคการจับภาพใบหน้าที่ได้กล่าวถึงในบทความก่อนหน้านี้มาประมวลผลผ่านเทคนิคหนึ่งแล้วระบุเป็นองศาการเคลื่อนไหวของศีรษะใน 3 ทิศทางได้แก่ หันศีรษะซ้าย-ขวา (Yaw), ก้ม-เงยศีรษะ (Pitch) และเอนศีรษะซ้าย-ขวา (Roll)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:more -->
-<!--more-->
-<!-- /wp:more -->
-
-<!-- wp:image {"align":"center","id":2488,"width":464,"height":302,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/head-pose-survey.png" alt="" class="wp-image-2488" /><figcaption>ทิคทางการหันศีรษะ Yaw, Pitch และ Roll จากเอกสาร Head Pose Estimation in Computer Vision : A Survey</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>ซึ่งในอดีตจนมาถึงปัจจุบันมีการพัฒนาเทคนิคมาเรื่อย ๆ จนกระทั่งมาถึงปัจจุบันที่นำเทคนิคการเรียนรู้เชิงลึก (Deep Learning) มาใช้งานร่วมด้วย หลังจากการพัฒนาเทคนิค <a href="https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf" target="_blank" rel="noreferrer noopener" title="https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">AlexNet ที่ได้ความแม่นยำจากการทดสอบกับฐานข้อมูล ImageNet</a> เนื่องมาจากได้ความแม่นยำ (Accuracy) ที่มากกว่าเทคนิคอื่น กับสามารถจับลักษณะภาพได้โดยอัตโนมัติ (Automatic Feature Extraction) โดยในงานวิจัยที่ทำอยู่นำเทคนิคเหล่านี้มาใช้งาน</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เทคนิคหนึ่งที่เรานำมาใช้คือ Hopenet </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>Hopenet</h2>
-<!-- /wp:heading -->
-
-<!-- wp:image {"align":"center","id":2475,"width":1027,"height":418,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/hopenet-architecture.png" alt="" class="wp-image-2475" /><figcaption>เทคนิค Hopenet จากเอกสาร Fine-Grained Head Pose Estimation Without Keypoints</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>เทคนิค Hopenet (เผยแพร่ในเอกสารงานวิจัยที่มีหัวข้อว่า <a href="https://arxiv.org/abs/1710.00925" target="_blank" rel="noreferrer noopener">Fine-Grained Head Pose Estimation Without Keypoints</a>) นี้ที่นำภาพใบหน้าผ่านกระบวนการการเรียนรู้เชิงลึก (Deep Learning) ที่ใช้โครงการเครือข่ายประสาท (Neural Network Architecture) แบบ <a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noreferrer noopener" title="https://arxiv.org/abs/1512.03385">ResNet-50</a> แล้วให้ประเมินออกมาเป็นการเคลื่อนไหวของศีรษะและลำคอ 3 ทิศทาง </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เราเลยนำเทคนิคนี้จากเว็บ <a href="https://github.com/natanielruiz/deep-head-pose" target="_blank" rel="noreferrer noopener">Github</a> มาทดสอบในเบื้องต้น (Preliminary Study) แล้วได้ความแม่นยำจากการทดสอบฐานข้อมูลสาธารณะอย่าง <a href="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm" target="_blank" rel="noreferrer noopener" title="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm">AFLW2000</a> และ <a href="https://www.kaggle.com/kmader/biwi-kinect-head-pose-database" target="_blank" rel="noreferrer noopener" title="https://www.kaggle.com/kmader/biwi-kinect-head-pose-database">BIWI</a> มากกว่าเทคนิคอื่นในขณะนั้น </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
+  <p><strong>Head Pose Estimation</strong> คือเทคนิคการจับภาพการเคลื่อนไหวของศีรษะเมื่อเทียบกับมุมกล้องที่ถ่ายอยู่ในขณะที่จับภาพ โดยนำภาพใบหน้าของบุคคลที่จับภาพได้จากเทคนิคการจับภาพใบหน้าที่ได้กล่าวถึงในบทความก่อนหน้านี้มาประมวลผลผ่านเทคนิคหนึ่งแล้วระบุเป็นองศาการเคลื่อนไหวของศีรษะใน 3 ทิศทางได้แก่ หันศีรษะซ้าย-ขวา (Yaw), ก้ม-เงยศีรษะ (Pitch) และเอนศีรษะซ้าย-ขวา (Roll)</p>
+<p><!--more--></p>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/head-pose-survey.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>ทิคทางการหันศีรษะ Yaw, Pitch และ Roll จากเอกสาร Head Pose Estimation in Computer Vision : A Survey</figcaption></figure>
+<p>ซึ่งในอดีตจนมาถึงปัจจุบันมีการพัฒนาเทคนิคมาเรื่อย ๆ จนกระทั่งมาถึงปัจจุบันที่นำเทคนิคการเรียนรู้เชิงลึก (Deep Learning) มาใช้งานร่วมด้วย หลังจากการพัฒนาเทคนิค <a href="https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf" rel="noreferrer noopener">AlexNet ที่ได้ความแม่นยำจากการทดสอบกับฐานข้อมูล ImageNet</a> เนื่องมาจากได้ความแม่นยำ (Accuracy) ที่มากกว่าเทคนิคอื่น กับสามารถจับลักษณะภาพได้โดยอัตโนมัติ (Automatic Feature Extraction) โดยในงานวิจัยที่ทำอยู่นำเทคนิคเหล่านี้มาใช้งาน</p>
+<p>เทคนิคหนึ่งที่เรานำมาใช้คือ Hopenet</p>
+<h2 id="hopenet">Hopenet</h2>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/hopenet-architecture.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>เทคนิค Hopenet จากเอกสาร Fine-Grained Head Pose Estimation Without Keypoints</figcaption></figure>
+<p>เทคนิค Hopenet (เผยแพร่ในเอกสารงานวิจัยที่มีหัวข้อว่า <a href="https://arxiv.org/abs/1710.00925" rel="noreferrer noopener">Fine-Grained Head Pose Estimation Without Keypoints</a>) นี้ที่นำภาพใบหน้าผ่านกระบวนการการเรียนรู้เชิงลึก (Deep Learning) ที่ใช้โครงการเครือข่ายประสาท (Neural Network Architecture) แบบ <a href="https://arxiv.org/abs/1512.03385" rel="noreferrer noopener">ResNet-50</a> แล้วให้ประเมินออกมาเป็นการเคลื่อนไหวของศีรษะและลำคอ 3 ทิศทาง</p>
+<p>เราเลยนำเทคนิคนี้จากเว็บ <a href="https://github.com/natanielruiz/deep-head-pose" rel="noreferrer noopener">Github</a> มาทดสอบในเบื้องต้น (Preliminary Study) แล้วได้ความแม่นยำจากการทดสอบฐานข้อมูลสาธารณะอย่าง <a href="http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm" rel="noreferrer noopener">AFLW2000</a> และ <a href="https://www.kaggle.com/kmader/biwi-kinect-head-pose-database" rel="noreferrer noopener">BIWI</a> มากกว่าเทคนิคอื่นในขณะนั้น</p>
 <p>อย่างไรก็ดีงานวิจัยที่ทำอยู่นี้เราต้องจับภาพบริเวณริมฝีปากร่วมด้วย ดังนั้นแล้วเทคนิคนี้เลยไม่ได้ใช้ แล้วจะต้องทำอย่างไรดีล่ะ? เรามาพูดถึงหัวข้อถัดไปดีกว่า ที่เรียกว่า Facial Landmark Detection</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>Facial Landmark Detection</h2>
-<!-- /wp:heading -->
-
-<!-- wp:image {"align":"center","id":2499,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large"><img src="https://asset.nickuntitled.com/2021/06/landmark-result.jpg" alt="" class="wp-image-2499" /><figcaption>Facial Landmark Detection</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<h2 id="facial-landmark-detection">Facial Landmark Detection</h2>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/landmark-result.jpg?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>Facial Landmark Detection</figcaption></figure>
 <p><strong>Facial Landmark Detection</strong> คือกระบวนการจับจุดแลนมาร์คตำแหน่งอวัยวะบนใบหน้าซึ่งเป็นกระบวนการที่สำคัญต่อการนำไปใช้ประมวลผลต่อในงานด้าน Computer Vision งานอื่นต่อไป ได้แก่ กระบวนการการจับภาพการเคลื่อนไหวศีรษะ (Head Pose Estimation) กับกระบวนการจับภาพอารมณ์บนใบหน้า (Facial Emotion Recognition) เป็นต้น</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เทคนิคนี้ได้รับการพัฒนามานานเกิน 20 ปีได้แล้ว โดยเทคนิคช่วงแรก ๆ จะเป็นการจับภาพทั้งภาพใบหน้า แล้วแกะลักษณะภาพบนใบหน้า (Feature) เพื่อนำไปประมวลผลผ่านเทคนิคการเรียนรู้ (Machine Learning) ได้แก่ </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>Active Shape Model, Active Appearance Model ที่แปลงภาพผ่าน PCA (Principal Component Analysis)</li><li>Constrained Local Model ที่ใช้ Point Distribution Model ร่วมกันกับใช้ตำแหน่งภาพตามอวัยวะต่าง ๆ เพื่อปรับจุดบนใบหน้าให้แม่นยำขึ้น </li><li>เป็นต้น</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-<p>จนกระทั่ง AlexNet ได้รับการพัฒนาขึ้น มีเทคนิคที่พัฒนาขึ้นจากการเรียนรู้เชิงลึก (Deep Learning) แล้วได้ความแม่นยำมากกว่าเทคนิคอื่น นอกเหนือจากนี้มีงานวิจัยบางชิ้นที่ผสมหลายเทคนิคได้แก่การจับภาพใบหน้า กับการจับภาพการเคลื่อนไหวของศีรษะ และการจับจุดอวัยวะบนใบหน้าร่วมกันเลย ได้แก่ <a href="https://arxiv.org/abs/1603.01249" target="_blank" rel="noreferrer noopener" title="https://arxiv.org/abs/1603.01249">HyperFace</a>, <a href="https://kpzhang93.github.io/MTCNN_face_detection_alignment/index.html" target="_blank" rel="noreferrer noopener" title="https://kpzhang93.github.io/MTCNN_face_detection_alignment/index.html">MTCNN</a> หรืออื่น ๆ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>อย่างไรก็ดี ปัญหาของเทคนิครุ่นเก่าคือประมวลผลนานมากกว่าปกติ (ในเอกสารงานวิจัยจะพูดถึง Computational Complexity) ไม่ทันใจวัยรุ่น ความแม่นยำก็ไม่ได้สูงไปกว่าเทคนิคที่กล่าวถึงในหัวข้อก่อนหน้านั้น แถมตอนสอบ อาจารย์ก็พูดถึงเทคนิค <a href="https://arxiv.org/pdf/1703.07332.pdf" target="_blank" rel="noreferrer noopener" title="https://arxiv.org/pdf/1703.07332.pdf">FAN (Face Alignment Network)</a> ร่วมด้วยที่มีหัวข้อว่า How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks) เลยนำเทคนิคนี้มาทดสอบก่อน โดยดาวน์โหลดโค้ดจาก <a href="https://github.com/1adrianb/face-alignment" target="_blank" rel="noreferrer noopener">Github</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2486,"width":687,"height":203,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/2021-06-25-4.png" alt="" class="wp-image-2486" /><figcaption>เทคนิค FAN จากเอกสาร How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>เทคนิค FAN เป็นเทคนิคการจับจุดอวัยวะบนใบหน้าโดยใช้ Neural Network Architecture แบบ <a href="https://arxiv.org/abs/1603.06937" target="_blank" rel="noreferrer noopener" title="https://arxiv.org/abs/1603.06937">Hourglass Network</a> ซึ่งทดสอบแล้วแม่นยำกว่าเทคนิคเก่าในอดีต แต่อย่างไรก็ดี เมื่อนำมาทดสอบจริงแล้วยังติดเรื่องความแม่นยำการจับภาพอยู่ดี</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>ระหว่างนั้นลองเทคนิคการจับภาพใบหน้าเทคนิคอื่นอย่างเช่น <a href="https://xuanyidong.com/publication/cvpr-2018-san/" target="_blank" rel="noreferrer noopener" title="https://xuanyidong.com/publication/cvpr-2018-san/">Style Aggregated Network</a>, <a href="https://xuanyidong.com/publication/cvpr-2018-sbr/" target="_blank" rel="noreferrer noopener" title="https://xuanyidong.com/publication/cvpr-2018-sbr/">Supervision-by-registraion</a>, <a href="https://openaccess.thecvf.com/content_cvpr_2014/papers/Kazemi_One_Millisecond_Face_2014_CVPR_paper.pdf" target="_blank" rel="noreferrer noopener" title="https://openaccess.thecvf.com/content_cvpr_2014/papers/Kazemi_One_Millisecond_Face_2014_CVPR_paper.pdf">dlib</a> หรืออื่น ๆ ซึ่งแม่นยำไหม ก็พอได้ระดับหนึ่ง แต่ยังไม่แม่นยำมากจนพอใจ และยังทำงานช้าไม่ทันใจ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เราค้นหาไปจนเจอเทคนิคหนึ่งที่เรียกว่า 3DDFA_V2 ตามวารสารงานวิจัยที่มีชื่อว่า <a href="https://guojianzhu.com/assets/pdfs/3162.pdf" title="https://guojianzhu.com/assets/pdfs/3162.pdf" target="_blank" rel="noreferrer noopener">Towards Fast, Accurate and Stable 3D Dense Face Alignment</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":2485,"width":488,"height":298,"sizeSlug":"large","linkDestination":"none"} -->
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img src="https://asset.nickuntitled.com/2021/06/3DDFA_V2.png" alt="" class="wp-image-2485" /><figcaption>เทคนิค 3DDFA_V2 จากเอกสารงานวิจัย Towards Fast, Accurate and Stable 3D Dense Face Alignment</figcaption></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
+<p>เทคนิคนี้ได้รับการพัฒนามานานเกิน 20 ปีได้แล้ว โดยเทคนิคช่วงแรก ๆ จะเป็นการจับภาพทั้งภาพใบหน้า แล้วแกะลักษณะภาพบนใบหน้า (Feature) เพื่อนำไปประมวลผลผ่านเทคนิคการเรียนรู้ (Machine Learning) ได้แก่</p>
+<ul>
+<li>Active Shape Model, Active Appearance Model ที่แปลงภาพผ่าน PCA (Principal Component Analysis)</li>
+<li>Constrained Local Model ที่ใช้ Point Distribution Model ร่วมกันกับใช้ตำแหน่งภาพตามอวัยวะต่าง ๆ เพื่อปรับจุดบนใบหน้าให้แม่นยำขึ้น</li>
+<li>เป็นต้น</li>
+</ul>
+<p>จนกระทั่ง AlexNet ได้รับการพัฒนาขึ้น มีเทคนิคที่พัฒนาขึ้นจากการเรียนรู้เชิงลึก (Deep Learning) แล้วได้ความแม่นยำมากกว่าเทคนิคอื่น นอกเหนือจากนี้มีงานวิจัยบางชิ้นที่ผสมหลายเทคนิคได้แก่การจับภาพใบหน้า กับการจับภาพการเคลื่อนไหวของศีรษะ และการจับจุดอวัยวะบนใบหน้าร่วมกันเลย ได้แก่ <a href="https://arxiv.org/abs/1603.01249" rel="noreferrer noopener">HyperFace</a>, <a href="https://kpzhang93.github.io/MTCNN_face_detection_alignment/index.html" rel="noreferrer noopener">MTCNN</a> หรืออื่น ๆ</p>
+<p>อย่างไรก็ดี ปัญหาของเทคนิครุ่นเก่าคือประมวลผลนานมากกว่าปกติ (ในเอกสารงานวิจัยจะพูดถึง Computational Complexity) ไม่ทันใจวัยรุ่น ความแม่นยำก็ไม่ได้สูงไปกว่าเทคนิคที่กล่าวถึงในหัวข้อก่อนหน้านั้น แถมตอนสอบ อาจารย์ก็พูดถึงเทคนิค <a href="https://arxiv.org/pdf/1703.07332.pdf" rel="noreferrer noopener">FAN (Face Alignment Network)</a> ร่วมด้วยที่มีหัวข้อว่า How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks) เลยนำเทคนิคนี้มาทดสอบก่อน โดยดาวน์โหลดโค้ดจาก <a href="https://github.com/1adrianb/face-alignment" rel="noreferrer noopener">Github</a></p>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/2021-06-25-4.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>เทคนิค FAN จากเอกสาร How far are we from solving the 2D &amp; 3D Face Alignment problem? (and a dataset of 230,000 3D facial landmarks)</figcaption></figure>
+<p>เทคนิค FAN เป็นเทคนิคการจับจุดอวัยวะบนใบหน้าโดยใช้ Neural Network Architecture แบบ <a href="https://arxiv.org/abs/1603.06937" rel="noreferrer noopener">Hourglass Network</a> ซึ่งทดสอบแล้วแม่นยำกว่าเทคนิคเก่าในอดีต แต่อย่างไรก็ดี เมื่อนำมาทดสอบจริงแล้วยังติดเรื่องความแม่นยำการจับภาพอยู่ดี</p>
+<p>ระหว่างนั้นลองเทคนิคการจับภาพใบหน้าเทคนิคอื่นอย่างเช่น <a href="https://xuanyidong.com/publication/cvpr-2018-san/" rel="noreferrer noopener">Style Aggregated Network</a>, <a href="https://xuanyidong.com/publication/cvpr-2018-sbr/" rel="noreferrer noopener">Supervision-by-registraion</a>, <a href="https://openaccess.thecvf.com/content_cvpr_2014/papers/Kazemi_One_Millisecond_Face_2014_CVPR_paper.pdf" rel="noreferrer noopener">dlib</a> หรืออื่น ๆ ซึ่งแม่นยำไหม ก็พอได้ระดับหนึ่ง แต่ยังไม่แม่นยำมากจนพอใจ และยังทำงานช้าไม่ทันใจ</p>
+<p>เราค้นหาไปจนเจอเทคนิคหนึ่งที่เรียกว่า 3DDFA_V2 ตามวารสารงานวิจัยที่มีชื่อว่า <a href="https://guojianzhu.com/assets/pdfs/3162.pdf" rel="noreferrer noopener">Towards Fast, Accurate and Stable 3D Dense Face Alignment</a></p>
+<figure class="kg-card kg-image-card kg-card-hascaption"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2021/06/3DDFA_V2.png?w=580&#038;ssl=1" class="kg-image" alt="" loading="lazy" /><figcaption>เทคนิค 3DDFA_V2 จากเอกสารงานวิจัย Towards Fast, Accurate and Stable 3D Dense Face Alignment</figcaption></figure>
 <p>เทคนิคนี้นำภาพใบหน้าที่จับภาพมาได้ ประมวลผลผ่าน Neural Network Architecture อย่าง MobileNetV2 ที่มีโครงสร้างที่มีขนาดเล็ก ทำงานได้เร็ว ใช้ทรัพยากรต่ำกว่าเทคนิคอื่นอย่าง ResNet, VGG ให้ค่าพารามิเตอร์ที่จำเป็นต่อการประมวลผลผ่าน 3D Morphable Model ให้แปลงจุด 2 มิติ เป็น 3 มิติ แล้วใช้แก้สมการผ่าน Rotation Matrix เพื่อให้ได้องศาการเคลื่อนไหวของศีรษะและลำคอ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>เมื่ออ่านเทคนิคนี้แล้ว เราโหลดมาใช้งานผ่าน <a href="https://github.com/cleardusk/3DDFA_V2" target="_blank" rel="noreferrer noopener" title="https://github.com/cleardusk/3DDFA_V2">Github</a> ทดสอบเทคนิคกับฐานข้อมูลสาธารณะ รวมถึงภาพที่จับภาพมาได้พบว่าได้ความแม่นยำมากกว่าเทคนิคอื่น เลยนำไปใช้งานจริง ก็พบว่าทำงานได้เร็ว ใช้ทรัพยากรที่ต่ำพอที่จะนำ Surface Pro X (ที่อัพเกรตจากวินโดว์ 10 เป็นวินโดว์ 11 ได้สบาย) มาประมวลผลได้โดยไม่มีปัญหาอะไร</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>สำหรับผู้อ่านที่สนใจ ผู้อ่านสามารถดาวน์โหลดโค้ดจากเว็บ <a href="https://github.com/cleardusk/3DDFA_V2" target="_blank" rel="noreferrer noopener" title="https://github.com/cleardusk/3DDFA_V2">Github</a> และอ่านเอกสารงานวิจัยได้ใน<a href="https://guojianzhu.com/assets/pdfs/3162.pdf" target="_blank" rel="noreferrer noopener" title="https://guojianzhu.com/assets/pdfs/3162.pdf">ลิ้งค์นี้</a>ครับ</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading -->
-<h2>ข้อมูลเพิ่มเติม</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>สำหรับผู้อ่านที่สนใจข้อมูลเพิ่มเติมของเทคนิคการจับภาพการเคลื่อนไหวของศีรษะ รวมถึงเทคนิคการมาร์คจุดบนใบหน้า สามารถอ่านเพิ่มเติมได้ในเอกสารงานวิจัยที่มีชื่อว่า <a href="http://cvrr.ucsd.edu/publications/2009/MurphyChutorian_Trivedi_PAMI09.pdf" target="_blank" rel="noreferrer noopener">Head Pose Estimation in Computer Vision : A Survey</a> กับ <a href="https://arxiv.org/pdf/1805.05563.pdf" target="_blank" rel="noreferrer noopener">Facial Landmark Detection: a Literature Survey</a> ครับ</p>
-<!-- /wp:paragraph -->
-
-		</div>
-
-		<div class="tags-container">
-			
-				<span class="post-tag">3DDFA</span>
-			
-				<span class="post-tag">3DDFA_V2</span>
-			
-				<span class="post-tag">alignment</span>
-			
-				<span class="post-tag">artificial intelligence</span>
-			
-				<span class="post-tag">cervical</span>
-			
-				<span class="post-tag">deep learning</span>
-			
-				<span class="post-tag">detection</span>
-			
-				<span class="post-tag">face</span>
-			
-				<span class="post-tag">FAN</span>
-			
-				<span class="post-tag">head</span>
-			
-				<span class="post-tag">Head Pose Estimation</span>
-			
-				<span class="post-tag">Hopenet</span>
-			
-				<span class="post-tag">keypoints</span>
-			
-				<span class="post-tag">landmark</span>
-			
-				<span class="post-tag">machine learning</span>
-			
-				<span class="post-tag">measurement</span>
-			
-				<span class="post-tag">movement</span>
-			
-				<span class="post-tag">pose</span>
-			
-				<span class="post-tag">range of motion</span>
-			
-		</div>
-
-		<div class = ' my-6'>
-			<div class="navigation">
-				<div class = "prev">
-					
-						<a href="/2021/06/17/remove-social-news-feed-by-eradicator/">
-							<i class = 'bi-arrow-left-square-fill'></i>
-							<span class = 'ml-1'>
-								ซ่อนฟีตบน Social โดย News Feed Eradicator
-							</span>
-						</a>
-					
-				</div>
-
-				<div class = "next">
-					
-						<a href="/2021/06/26/bring-social-post-read-rss-reader-by-rss-dot-app/">
-							<span class = 'mr-1'>
-								นำโพสโซเชียลมาอ่านบน RSS Reader โดย rss.app
-							</span>
-							<i class = 'bi-arrow-right-square-fill'></i>
-						</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div>
-
-<div class = 'bg-gray-200 mt-4'>
-	<div class = 'px-4 py-4 w-full' >
-		<div class = 'container mx-auto max-w-screen-md'>
-			<div class = 'py-4'>
-				<div class = 'font-sans mb-4 mr-0 md:mr-2 block'>
-					<p class = 'mb-2'>
-						<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-							<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
-						</a>
-					</p>
-					<p class = 'text-xs'>
-						This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" class = 'text-sky-600 font-bold hover:underline'>Creative Commons Attribution 4.0 International License</a>.
-					</p>
-				</div>
-
-				<div class = 'font-sans mb-1 mr-0 md:mr-2 block'>
-					<p class = 'text-xs'>
-						Made with <font color="red">♥</font> by <a href = 'https://nickuntitled.com' class = 'text-sky-600 font-bold hover:underline'>Nick Untitled</a> and Powered by <a href = "https://m.do.co/c/61ae5e7ddeb6" class = 'text-sky-600 font-bold hover:underline'>DigitalOcean</a> / <a href = 'privacy-policy' class = 'text-sky-600 font-bold hover:underline'>Privacy Policy</a>
-					</p>
-				</div>
-			</div>	
-		</div>
-	</div>
-</div>
-
-
-
-	<script src="assets/js/ephesus.js"></script>
-	<script type="text/javascript">
-		if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.setAttribute('data-theme', 'dark');
-			document.getElementById('mode-switcher').classList.add('active');
-		}
-	</script>
-
-	
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46662350-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-46662350-1');
-    </script>
-	
-</body>
+<p>เมื่ออ่านเทคนิคนี้แล้ว เราโหลดมาใช้งานผ่าน <a href="https://github.com/cleardusk/3DDFA_V2" rel="noreferrer noopener">Github</a> ทดสอบเทคนิคกับฐานข้อมูลสาธารณะ รวมถึงภาพที่จับภาพมาได้พบว่าได้ความแม่นยำมากกว่าเทคนิคอื่น เลยนำไปใช้งานจริง ก็พบว่าทำงานได้เร็ว ใช้ทรัพยากรที่ต่ำพอที่จะนำ Surface Pro X (ที่อัพเกรตจากวินโดว์ 10 เป็นวินโดว์ 11 ได้สบาย) มาประมวลผลได้โดยไม่มีปัญหาอะไร</p>
+<p>สำหรับผู้อ่านที่สนใจ ผู้อ่านสามารถดาวน์โหลดโค้ดจากเว็บ <a href="https://github.com/cleardusk/3DDFA_V2" rel="noreferrer noopener">Github</a> และอ่านเอกสารงานวิจัยได้ใน<a href="https://guojianzhu.com/assets/pdfs/3162.pdf" rel="noreferrer noopener">ลิ้งค์นี้</a>ครับ</p>
+<h2 id="-">ข้อมูลเพิ่มเติม</h2>
+<p>สำหรับผู้อ่านที่สนใจข้อมูลเพิ่มเติมของเทคนิคการจับภาพการเคลื่อนไหวของศีรษะ รวมถึงเทคนิคการมาร์คจุดบนใบหน้า สามารถอ่านเพิ่มเติมได้ในเอกสารงานวิจัยที่มีชื่อว่า <a href="http://cvrr.ucsd.edu/publications/2009/MurphyChutorian_Trivedi_PAMI09.pdf" rel="noreferrer noopener">Head Pose Estimation in Computer Vision : A Survey</a> กับ <a href="https://arxiv.org/pdf/1805.05563.pdf" rel="noreferrer noopener">Facial Landmark Detection: a Literature Survey</a> ครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
 </html>

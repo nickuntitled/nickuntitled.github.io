@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>วิธีเทรน Segmentation โดย mmSegmentation</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="วิธีเทรน Segmentation โดย mmSegmentation" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2022/04/10/semantic-segmentation-by-openmmlab/" />
+<meta property="og:url" content="http://localhost:4000/2022/04/10/semantic-segmentation-by-openmmlab/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/04/mmsegmentation_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-10T23:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/04/mmsegmentation_cover.jpg" />
+<meta property="twitter:title" content="วิธีเทรน Segmentation โดย mmSegmentation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-03-16T09:43:48+07:00","datePublished":"2022-04-10T23:00:00+07:00","description":"None","headline":"วิธีเทรน Segmentation โดย mmSegmentation","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/04/mmsegmentation_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/04/10/semantic-segmentation-by-openmmlab/"},"url":"http://localhost:4000/2022/04/10/semantic-segmentation-by-openmmlab/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>วิธีเทรน Segmentation โดย mmSegmentation</h1>
+
+  <p class="post-meta">
+    <time datetime="2022-04-10 23:00:00 +0700">2022-04-10</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2022/04/mmsegmentation_cover.jpg' />
+  </figure>
+  
+
+  <p>ปกติเวลาที่เราต้องการแยกวัตถุออกจากวัตถุหนึ่งโดยตาของคน อันนี้ทำได้ไม่ยาก เพราะเราแยกออกจากกันได้ง่ายอยู่แล้ว แต่จะให้คอมพิวเตอร์แยกวัตถุแต่ละอย่างออกจากภาพได้ อันนี้เราจำเป็นต้องให้คอมพิวเตอร์เรียนรู้เสียก่อน </p>
+
+<p>โดยเรื่องนี้อยู่ในหัวข้อ AI (Artificial Intelligence) อย่าง Computer Vision ที่อยู่ในเรื่องของ Semantic Segmentation</p>
+
+<!--more-->
+
+<h3 class="wp-block-heading"><a></a>Semantic Segmentation</h3>
+
+<p><a href="https://www.v7labs.com/blog/semantic-segmentation-guide" target="_blank" rel="noreferrer noopener" title="Semantic Segmentation">Semantic Segmentation</a> คือเทคนิคหนึ่งของ Computer Vision ที่มีหน้าที่ในการแยกส่วนและจำแนกวัตถุแต่ละวัตถุในภาพแยกจากกันโดยกำหนดคลาสในแต่ละจุดพิคเซลว่าเป็นคลาสอะไร ซึ่งจุดนี้จะแตกต่างกับ</p>
+
+<ul class="wp-block-list"><li><strong>Object Detection</strong> ตรงที่ Object Detection จะจับวัตถุออกมาเป็น Bounding Box</li><li><strong>Instance Segmentation</strong> ที่แยกส่วนร่วมกับจำแนกวัตถุออกจากกันโดยจำเพาะว่าวัตถุนี้เป็นวัตถุที่ 1,2,3</li></ul>
+
+<p>ถ้ายังนึกภาพไม่ออก ก็ดูตามด้านล่างนี้ได้ครับ</p>
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/difference_semantic_instance_bbox.png?w=580&#038;ssl=1" alt="" /><figcaption>ภาพแสดงความแตกต่างระหว่าง Semantic Segmentation, Object Detection และ Instance Segmentation (จากงานวิจัยของ Li, Johnson and Yeung, 2017 เรื่อง Robot-Human-Learning for Robotic Picking Processes)</figcaption></figure></div>
+
+<h3 class="wp-block-heading"><a></a>mmSegmentation</h3>
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/mmsegmentation.png?resize=462%2C92&#038;ssl=1" alt="" width="462" height="92" /><figcaption>mmSegmentation</figcaption></figure></div>
+
+<p>เครื่องมือ <a href="https://github.com/open-mmlab/mmsegmentation" target="_blank" rel="noreferrer noopener" title="mmSegmentation">mmSegmentation</a> เป็นไลบรารีหนึ่งที่ได้รับการสร้างขึ้นมาโดยทางทีมงาน OpenMMLab ที่เป็นเครื่องมือในการสร้าง การเทรน และการทดสอบโมเดลสำหรับการใช้งานทาง Computer Vision ในด้าน Semantic Segmentation ที่อยู่บนพื้นฐานของ PyTorch ที่เป็นไลบรารีสำหรับการใช้งานทางด้าน AI ในด้าน Deep Learning ครับ</p>
+
+<p>เครื่องมือ mmSegmentation จะมีโมเดลที่มีอยู่แล้วในระบบ ผู้ใช้สามารถนำโมเดลเหล่านี้ไปหยิบใช้งานได้เลยอย่างง่ายดายเพียงพิมพ์โค้ดเพิ่มเติมลงไปก็สามารถเทรน และทดสอบโมเดลได้แล้ว โดยโมเดลที่มีมาให้อยู่แล้วได้แก่</p>
+
+<ul class="wp-block-list"><li>FCN (CVPR’2015/TPAMI’2017)</li><li>ERFNet (T-ITS’2017)</li><li>UNet (MICCAI’2016/Nat. Methods’2019)</li><li>PSPNet (CVPR’2017)</li><li>DeepLabV3 (ArXiv’2017)</li><li>BiSeNetV1 (ECCV’2018)</li><li>PSANet (ECCV’2018)</li><li>DeepLabV3+ (CVPR’2018)</li><li>UPerNet (ECCV’2018)</li><li>ICNet (ECCV’2018)</li><li>NonLocal Net (CVPR’2018)</li><li>EncNet (CVPR’2018)</li><li>Semantic FPN (CVPR’2019)</li><li>DANet (CVPR’2019)</li><li>APCNet (CVPR’2019)</li><li>EMANet (ICCV’2019)</li><li>CCNet (ICCV’2019)</li><li>DMNet (ICCV’2019)</li><li>ANN (ICCV’2019)</li><li>GCNet (ICCVW’2019/TPAMI’2020)</li><li>FastFCN (ArXiv’2019)</li><li>Fast-SCNN (ArXiv’2019)</li><li>ISANet (ArXiv’2019/IJCV’2021)</li><li>OCRNet (ECCV’2020)</li><li>DNLNet (ECCV’2020)</li><li>PointRend (CVPR’2020)</li><li>CGNet (TIP’2020)</li><li>BiSeNetV2 (IJCV’2021)</li><li>STDC (CVPR’2021)</li><li>SETR (CVPR’2021)</li><li>DPT (ArXiv’2021)</li><li>Segmenter (ICCV’2021)</li><li>SegFormer (NeurIPS’2021)</li><li>และ K-Net (NeurIPS’2021)</li></ul>
+
+<p>เมื่อทราบรายการโมเดลที่รองรับแล้ว เรามาเริ่มใช้งานกันเลย อย่างแรกก็ติดตั้งไลบรารี</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>สำหรับผู้อ่านที่ไม่ต้องการติดตั้ง และเขียนโค้ดตามด้านล่างนี้ อีกวิธีหนึ่งที่ศึกษาไลบรารีนี้ได้คือเข้าไปทดลองใช้งาน <a href="https://colab.research.google.com/github/open-mmlab/mmsegmentation/blob/master/demo/MMSegmentation_Tutorial.ipynb" target="_blank" rel="noreferrer noopener" title="Google Colab นี้">Google Colab ของ mmSegmentation เอง</a>ครับ</p></blockquote>
+
+<h3 class="wp-block-heading"><a></a>การติดตั้งไลบรารี</h3>
+
+<p>ก่อนติดตั้งไลบรารี เราก็ต้องรู้ความต้องการระบบขั้นต่ำมีรายละเอียดตามด้านล่างนี้ครับ</p>
+
+<ul class="wp-block-list"><li>Linux/Mac</li><li>Python 3.6+</li><li>PyTorch 1.3+</li><li>CUDA Toolkit 9.2+</li><li>GCC 5+</li><li>MMCV โดยติดตั้งให้ตรงกับรุ่นของ CUDA และ PyTorch</li></ul>
+
+<p>เมื่อรู้ความต้องการแล้ว เราก็มาติดตั้งไลบรารีกัน โดยเราจะใช้งานบน Google Colab ครับ เนื่องมาจากเหมาะกับมือใหม่ และสามารถใช้งานได้ง่าย ไม่ยุ่งยาก แถมไม่ต้องมาติดตั้ง CUDA Toolkit เองอีก</p>
+
+<p>การติดตั้งไลบรารีลงบน Google Colab ทำได้โดย</p>
+
+<ul class="wp-block-list"><li>ติดตั้งไลบรารีของไพทอนเองได้แก่ matplotlib numpy scikit-learn scipy และ pillow</li></ul>
+
+<pre class="wp-block-code"><code>!pip3 install matplotlib numpy scikit-learn scipy pillow</code></pre>
+
+<ul class="wp-block-list"><li>ติดตั้ง pyTorch รุ่น 1.11.0 ติดตั้งได้โดยการพิมพ์คำสั่งตามด้านล่างนี้</li></ul>
+
+<pre class="wp-block-code"><code>!pip3 install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html</code></pre>
+
+<ul class="wp-block-list"><li>ติดตั้ง MMCV โดยให้เลือกไลบรารี mmcv-full รุ่นล่าสุด ที่สามารถติดตั้งได้โดย</li></ul>
+
+<pre class="wp-block-code"><code>!pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10.0/index.html</code></pre>
+
+<p>เมื่อติดตั้ง MMCV เสร็จแล้ว เราติดตั้ง mmSegmentation ได้สองวิธี วิธีแรกติดตั้งผ่านการใช้ pip โดยการพิมพ์ตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>pip install mmsegmentation</code></pre>
+
+<p>ส่วนอีกวิธี เราสามารถคอมไพล์ตัวโค้ดได้โดยการพิมพ์ตามด้านล่างนี้ครับ ซึ่งเป็นวิธีที่แนะนำ เพราะนอกจากจะได้คอมไพล์ตัวโค้ดแล้ว ยังได้ไฟล์การตั้งค่าที่เกี่ยวข้องกับโมเดลและชุดข้อมูลที่ต้องการครับ</p>
+
+<p>ในตัวอย่างนี้ เราจะใช้วิธีนี้ครับ ส่วนใครที่ใช้วิธีบน เราสามารถดาวน์โหลดไฟล์การตั้งค่าจากเว็บได้จาก<a href="https://github.com/open-mmlab/mmsegmentation/" target="_blank" rel="noreferrer noopener" title="เว็บของ mmSegmentation เอง">เว็บของ mmSegmentation เอง</a>ครับ</p>
+
+<pre class="wp-block-code"><code>git clone https://github.com/open-mmlab/mmsegmentation.git
+cd mmsegmentation
+pip install -e .  # หรือ "python setup.py develop"</code></pre>
+
+<p>เมื่อติดตั้งไลบรารีที่จำเป็นครบทุกอย่างแล้ว เราทดสอบว่าติดตั้งไลบรารีสมบูรณ์หรือไม่ได้โดยการพิมพ์โค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Check Pytorch installation
+import torch, torchvision
+print(torch.__version__, torch.cuda.is_available())
+
+# Check MMSegmentation installation
+import mmseg
+print(mmseg.__version__)</code></pre>
+
+<h3 class="wp-block-heading">เริ่มต้นการเรียกใช้โมเดลกันเถอะ</h3>
+
+<p>เราสามารถเรียกใช้งานโมเดลสำหรับการเทรนเพื่อใช้ทำ Semantic Segmentation ได้โดย</p>
+
+<ol class="wp-block-list"><li>เขียนไฟล์ Python การตั้งค่าโมเดล</li><li>เตรียมชุดข้อมูล (Dataset)</li><li>ตั้งค่าที่เกี่ยวข้องกับการเทรน</li><li>เริ่มต้นการเทรนข้อมูล</li><li>การทดสอบโมเดล</li></ol>
+
+<p>เรามากล่าวถึงขั้นตอนแรก</p>
+
+<h4 class="wp-block-heading">1.) เขียนไฟล์ Python การตั้งค่าโมเดล</h4>
+
+<p>ขั้นตอนนี้เป็นการตั้งค่าให้เรียบร้อยก่อนการเทรน โดยปกติเวลาเทรนโมเดลในแต่ละครั้งจะประกอบได้เป็นการตั้งค่าโมเดล ชุดข้อมูล และตั้งการพารามิเตอร์การเทรนที่เกี่ยวข้อง</p>
+
+<p>แต่ก่อนจะเริ่มการตั้งค่าโมเดล เราจำเป็นต้องโหลด Pretrained โมเดลสำหรับการทำ <a href="https://www.v7labs.com/blog/transfer-learning-guide" target="_blank" rel="noreferrer noopener" title="Transfer Learning">Transfer Learning</a> เสียก่อน โดยดาวน์โหลดตามด้านล่างนี้ที่เป็น<a href="https://arxiv.org/abs/1612.01105" target="_blank" rel="noreferrer noopener" title="โมเดล PSPNet">โมเดล PSPNet</a> ครับ</p>
+
+<pre class="wp-block-code"><code>!mkdir checkpoints
+!wget https://download.openmmlab.com/mmsegmentation/v0.5/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth -P checkpoints</code></pre>
+
+<p>เมื่อดาวน์โหลดเสร็จแล้ว เราสามารถทดลองใช้งานโมเดลได้โดยการพิมพ์โค้ดตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>from mmseg.apis import inference_segmentor, init_segmentor, show_result_pyplot
+from mmseg.core.evaluation import get_palette
+
+config_file = './mmsegmentation/configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py'
+checkpoint_file = './checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth'
+
+model = init_segmentor(config_file, checkpoint_file, device='cuda:0')
+
+# test a single image
+img = './mmsegmentation/demo/demo.png'
+result = inference_segmentor(model, img)
+
+# show the results
+show_result_pyplot(model, img, result, get_palette('cityscapes'))</code></pre>
+
+<p>เมื่อพิมพ์โค้ดตามด้านบนนี้แล้ว ระบบจะแสดงผลลัพธ์ออกมาเป็นภาพตามด้านล่างนี้ครับ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/cityscape_inference.png?w=580&#038;ssl=1" alt="" /><figcaption>ภาพผลลัพธ์ที่ได้จากการใช้งานโมเดลเพื่อทำ Semantic Segmentation</figcaption></figure>
+
+<h4 class="wp-block-heading">2.) เตรียมชุดข้อมูล (Dataset)</h4>
+
+<p>ขั้นตอนต่อไปหลังจากการตั้งค่าโมเดล คือตั้งค่าชุดข้อมูล (Dataset)</p>
+
+<p>เราสามารถเลือก Dataset ที่มีอยู่แล้วได้แก่ <a href="https://www.cityscapes-dataset.com/" target="_blank" rel="noreferrer noopener" title="Cityscapes">Cityscapes</a>, <a href="https://drive.grand-challenge.org/" target="_blank" rel="noreferrer noopener" title="DRIVE">DRIVE</a>, <a href="https://github.com/nightrome/cocostuff" target="_blank" rel="noreferrer noopener" title="COCO-Stuff 10k หรือ 164k">COCO-Stuff 10k หรือ 164k</a> และอื่น ๆ รวมถึงตั้งค่า Data Pipeline กับ Data Augmentation สำหรับการเทรน และทดสอบโมเดลที่เราเลือกใช้</p>
+
+<p>ในที่นี้เราจะใช้งาน Dataset อย่าง <a href="http://dags.stanford.edu/projects/scenedataset.html" target="_blank" rel="noreferrer noopener" title="Stanford Background Dataset">Stanford Background Dataset</a> ที่เป็น Dataset แบบที่เปิดให้คนใช้งานได้ทั่วไปที่เป็นภาพเกี่ยวกับฉาก Outdoor ทั้งหมด 715 ภาพ โดยดึงมาจาก Dataset อย่าง <a href="http://labelme.csail.mit.edu/" target="_blank" rel="noreferrer noopener">LabelMe</a>,&nbsp;<a href="http://research.microsoft.com/en-us/projects/objectclassrecognition" target="_blank" rel="noreferrer noopener">MSRC</a>,&nbsp;<a href="http://pascallin.ecs.soton.ac.uk/challenges/VOC" target="_blank" rel="noreferrer noopener">PASCAL VOC</a>&nbsp;and&nbsp;<a href="http://www.cs.illinois.edu/homes/dhoiem/" target="_blank" rel="noreferrer noopener">Geometric Context</a> ที่มีความละเอียดของภาพอยู่ที่ 320&#215;240 pixel</p>
+
+<p>การทำ Annotation ของ Dataset นี้จะกำหนดคลาสในแต่ละจุด Pixel ของภาพ โดยมีทั้งหมด 8 คลาสครับ ได้แก่ sky, tree, road, grass, water, building, mountain และ foreground object.</p>
+
+<p>การเริ่มต้นใช้งาน Dataset ทำได้โดย การดาวน์โหลด</p>
+
+<pre class="wp-block-code"><code># download and unzip
+!wget http://dags.stanford.edu/data/iccv09Data.tar.gz -O stanford_background.tar.gz
+!tar xf stanford_background.tar.gz</code></pre>
+
+<p>เมื่อดาวน์โหลดและแตกไฟล์เสร็จแล้ว เราสามารถเรียกดูรูปภาพได้โดยการพิมพ์โค้ดตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Let's take a look at the dataset
+import mmcv
+import matplotlib.pyplot as plt
+
+img = mmcv.imread('./iccv09Data/images/6000124.jpg')
+plt.figure(figsize=(8, 6))
+plt.imshow(mmcv.bgr2rgb(img))
+plt.show()</code></pre>
+
+<p>กดรันตัวโค้ดแล้วจะได้ภาพตามด้านล่างนี้</p>
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/stanford_dataset.png?w=580&#038;ssl=1" alt="" /><figcaption>ภาพจาก Stanford Background Dataset</figcaption></figure></div>
+
+<p>เมื่อดูรูปภาพเรียบร้อย เราจำเป็นต้องมาปรับแต่ง Dataset ให้เหมาะสมต่อการเทรน ทำได้โดยการพิมพ์โค้ดตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>import os.path as osp
+import numpy as np
+from PIL import Image
+
+# convert dataset annotation to semantic segmentation map
+data_root = 'iccv09Data'
+img_dir = 'images'
+ann_dir = 'labels'
+
+# define class and plaette for better visualization
+classes = ('sky', 'tree', 'road', 'grass', 'water', 'bldg', 'mntn', 'fg obj')
+palette = &#91;&#91;128, 128, 128], &#91;129, 127, 38], &#91;120, 69, 125], &#91;53, 125, 34], 
+           &#91;0, 11, 123], &#91;118, 20, 12], &#91;122, 81, 25], &#91;241, 134, 51]]
+
+for file in mmcv.scandir(osp.join(data_root, ann_dir), suffix='.regions.txt'):
+  seg_map = np.loadtxt(osp.join(data_root, ann_dir, file)).astype(np.uint8)
+  seg_img = Image.fromarray(seg_map).convert('P')
+  seg_img.putpalette(np.array(palette, dtype=np.uint8))
+  seg_img.save(osp.join(data_root, ann_dir, file.replace('.regions.txt', 
+                                                         '.png')))
+</code></pre>
+
+<p>จากลักษณะโค้ดตามข้างบนนี้จะเป็นการกำหนดคลาสและสีในแต่ละคลาส รวมถึงสแกนไฟล์ .regions.txt เพื่อดึงข้อมูลการกำหนดสีในแต่คลาสที่กำหนดในแต่ละพิคเซลครับ</p>
+
+<p>เมื่อกำหนดสีเสร็จแล้ว เราสามารถเรียกดูผลลัพธ์ได้โดยการพิมพ์โค้ดตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code># Let's take a look at the segmentation map we got
+import matplotlib.patches as mpatches
+
+img = Image.open('./iccv09Data/labels/6000124.png')
+plt.figure(figsize=(8, 6))
+im = plt.imshow(np.array(img.convert('RGB')))
+
+# create a patch (proxy artist) for every color 
+patches = &#91;mpatches.Patch(color=np.array(palette&#91;i])/255., 
+                          label=classes&#91;i]) for i in range(8)]
+
+# put those patched as legend-handles into the legend
+plt.legend(handles=patches, bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., 
+           fontsize='large')
+
+plt.show()</code></pre>
+
+<p>ผลลัพธ์ที่ได้จะเป็นไปตามด้านล่างนี้</p>
+
+<div class="wp-block-image"><figure class="aligncenter"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/stanford_segmentation.png?w=580&#038;ssl=1" alt="" /><figcaption>ผลลัพธ์จากการใช้คำสั่ง putpalette ของ PIL</figcaption></figure></div>
+
+<p>ต่อจากการเตรียม Dataset แล้ว เราจำเป็นต้องเตรียมไฟล์แสดงรายการไฟล์ที่แบ่ง Dataset ออกเป็น</p>
+
+<ul class="wp-block-list"><li>Dataset สำหรับการ Training</li><li>Dataset สำหรับการทำ Validation</li><li>Dataset สำหรับการทำ Testing</li></ul>
+
+<p>โดยจะมีสัดส่วนที่แตกต่างกันออกไป แต่ในตัวอย่างนี้เราจะเป็นออกเป็น Dataset สำหรับการ Training และ Validation โดยแบ่งเป็น 80:20 ครับ เราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># split train/val set randomly
+split_dir = 'splits'
+mmcv.mkdir_or_exist(osp.join(data_root, split_dir))
+filename_list = &#91;osp.splitext(filename)&#91;0] for filename in mmcv.scandir(
+    osp.join(data_root, ann_dir), suffix='.png')]
+
+with open(osp.join(data_root, split_dir, 'train.txt'), 'w') as f:
+  # select first 4/5 as train set
+  train_length = int(len(filename_list)*4/5)
+  f.writelines(line + '\n' for line in filename_list&#91;:train_length])
+
+with open(osp.join(data_root, split_dir, 'val.txt'), 'w') as f:
+  # select last 1/5 as train set
+  f.writelines(line + '\n' for line in filename_list&#91;train_length:])</code></pre>
+
+<p>เมื่อเตรียม Dataset รวมถึงเตรียมไฟล์แสดงรายการไฟล์ที่ถูกแบ่งใน Dataset เพื่อการทำ Training และ Validation แล้ว เราจำเป็นต้องสร้าง Class ในไพทอนใหม่เพื่อกำหนด Dataset ที่สร้างขึ้น เนื่องมาจาก Dataset นี้ทาง mmSegmentation ไม่ได้เตรียมไว้ เราเขียนโค้ดได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code>from mmseg.datasets.builder import DATASETS
+from mmseg.datasets.custom import CustomDataset
+
+@DATASETS.register_module()
+class StanfordBackgroundDataset(CustomDataset):
+  CLASSES = classes
+  PALETTE = palette
+  def __init__(self, split, **kwargs):
+    super().__init__(img_suffix='.jpg', seg_map_suffix='.png', 
+                     split=split, **kwargs)
+    assert osp.exists(self.img_dir) and self.split is not None</code></pre>
+
+<p>ตัวโค้ดตามด้านบนนี้จะเป็นการสร้างคลาส รวมถึงเป็นการกำหนดไฟล์ภาพที่ลงท้ายด้วย .jpg รวมถึงไฟล์ Annotation ที่ลงท้ายด้วย .png ครับ</p>
+
+<h4 class="wp-block-heading">3.)  ตั้งค่าที่เกี่ยวข้องกับการเทรน</h4>
+
+<p>เราสามารถตั้งค่าที่เกี่ยวข้องกับการเทรน โดยการตั้งค่านี้เราสามารถตั้งค่าเกี่ยวกับโมเดล, Dataset, Learning Rate และอื่น ๆ ได้ครับ อย่างไรก็ดี เราไม่จำเป็นต้องเขียนขึ้นมาเองหมด เรานำเข้าไฟล์การตั้งค่าที่มีอยู่แล้ว แล้วนำมาปรับแต่งเพิ่มได้</p>
+
+<p>ขั้นตอนแรก นำเข้าไฟล์การตั้งค่า</p>
+
+<pre class="wp-block-code"><code>from mmcv import Config
+cfg = Config.fromfile('./mmsegmentation/configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py')</code></pre>
+
+<p><strong>ตั้งค่าโมเดล</strong></p>
+
+<p>ต่อมาเป็นการตั้งค่าตัวโมเดล โดยกำหนดให้ใช้ Batch Normalization แทนที่ SyncBN เนื่องมาจากมีการ์ดจอเพียงใบเดียว</p>
+
+<pre class="wp-block-code"><code>from mmseg.apis import set_random_seed
+
+# Since we use only one GPU, BN is used instead of SyncBN
+cfg.norm_cfg = dict(type='BN', requires_grad=True)
+cfg.model.backbone.norm_cfg = cfg.norm_cfg
+cfg.model.decode_head.norm_cfg = cfg.norm_cfg
+cfg.model.auxiliary_head.norm_cfg = cfg.norm_cfg</code></pre>
+
+<p>ต่อมาเป็นการตั้งค่าจำนวนคลาส ใน Dataset นี้มี 8 คลาส เราเขียนได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># modify num classes of the model in decode/auxiliary head
+cfg.model.decode_head.num_classes = 8
+cfg.model.auxiliary_head.num_classes = 8</code></pre>
+
+<p><strong>ตั้งค่า Dataset</strong></p>
+
+<p>ขั้นตอนถัดไปจากโมเดล เป็นการตั้งค่า Dataset ที่สามารถชนิด Dataset, กำหนดจำนวน Batch size, กำหนด Data Pipeline ที่เกี่ยวข้องกับการโหลดไฟล์รวมถึงการทำ Data Augmentation และตั้งค่าที่อยู่ของไฟล์ Dataset</p>
+
+<p>อย่างแรก เป็นการกำหนดชนิด Dataset โดยกำหนดให้ชื่อตรงกับคลาสที่เราสร้างขึ้น รวมถึงกำหนดโฟลเดอร์หลักของ Dataset ได้ตามด้านล่างนี้</p>
+
+<pre class="wp-block-code"><code># Modify dataset type and path
+cfg.dataset_type = 'StanfordBackgroundDataset'
+cfg.data_root = data_root</code></pre>
+
+<p>อย่างที่สอง เป็นการกำหนดจำนวน Batch Size ในที่นี้กำหนดให้มี Batch size เท่ากับ 8</p>
+
+<pre class="wp-block-code"><code>cfg.data.samples_per_gpu = 8
+cfg.data.workers_per_gpu = 8</code></pre>
+
+<p>อย่างที่สาม กำหนด Data Pipeline เรากำหนดตั้งค่าโหลดรูปภาพ ปรับขนาดรูป </p>
+
+<pre class="wp-block-code"><code>cfg.img_norm_cfg = dict(
+    mean=&#91;123.675, 116.28, 103.53], std=&#91;58.395, 57.12, 57.375], to_rgb=True)
+cfg.crop_size = (256, 256)
+cfg.train_pipeline = &#91;
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations'),
+    dict(type='Resize', img_scale=(320, 240), ratio_range=(0.5, 2.0)),
+    dict(type='RandomCrop', crop_size=cfg.crop_size, cat_max_ratio=0.75),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(type='PhotoMetricDistortion'),
+    dict(type='Normalize', **cfg.img_norm_cfg),
+    dict(type='Pad', size=cfg.crop_size, pad_val=0, seg_pad_val=255),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=&#91;'img', 'gt_semantic_seg']),
+]</code></pre>
+
+<p>ตามด้านบนนี้เราโหลดไฟล์ภาพ รวมถึงโหลดข้อมูล Annotation (ที่ได้ Label ไว้) แล้วนำมาทำ Data Augmentation ได้แก่</p>
+
+<ol class="wp-block-list"><li>ปรับขนาดรูป</li><li>Crop รูป กับ Flip รูปแบบสุ่ม</li><li>ทำ <a href="https://github.com/open-mmlab/mmsegmentation/blob/4841933454077880198213d58760e345608878db/mmseg/datasets/pipelines/transforms.py#L861" target="_blank" rel="noreferrer noopener" title="Photometric Distortion">Photometric Distortion</a> ที่ตามเอกสารของตัวไลบรารีได้กล่าวไว้ว่า</li></ol>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>Apply photometric distortion to image sequentially, every transformation is applied with a probability of 0.5. The position of random contrast is in second or second to last.</p><p>1. random brightness</p><p>2. random contrast (mode 0)</p><p>3. convert color from BGR to HSV</p><p>4. random saturation</p><p>5. random hue</p><p>6. convert color from HSV to BGR</p><p>7. random contrast (mode 1)</p><p>8. randomly swap channels</p></blockquote>
+
+<p>นั่นก็คือเป็นการกำหนดการบิดเบือนทางแสงแบบสุ่ม โดย</p>
+
+<ul class="wp-block-list"><li>สุ่มค่า Brightness กับ Contrast</li><li>ปลี่ยนค่าสีจาก BGR เป็น HSV และเปลี่ยนกลับจาก HSV gป็น BGR</li><li>ปรับ Saturation และ Hue แบบสุ่ม</li><li>สลับ Channel ของสีในภาพ</li></ul>
+
+<p>แล้วนำมาแปลงให้อยู่ในรูปแบบที่เหมาะสำหรับการเทรน</p>
+
+<p>ต่อมาเป็นการตั้งค่า Data Pipeline สำหรับการทดสอบ เราเขียนโค้ดออกมา</p>
+
+<p>ส่วนกรณีที่ทดสอบข้อมูล เราจะเริ่มด้วยการโหลดไฟล์ แล้วนำมาปรับขนาดให้อยู่ในขนาดที่ต้องการ จากนั้นทำ Normalize ข้อมูล แล้วแปลงให้อยู่ในรูปที่เหมาะต่อการทดสอบ นั่นคือรูป Tensor</p>
+
+<p>ด้านล่างนี้จะเป็นการตั้งค่า Data Pipeline สำหรับการทดสอบชุดข้อมูล</p>
+
+<pre class="wp-block-code"><code>cfg.test_pipeline = &#91;
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(320, 240),
+        # img_ratios=&#91;0.5, 0.75, 1.0, 1.25, 1.5, 1.75],
+        flip=False,
+        transforms=&#91;
+            dict(type='Resize', keep_ratio=True),
+            dict(type='RandomFlip'),
+            dict(type='Normalize', **cfg.img_norm_cfg),
+            dict(type='ImageToTensor', keys=&#91;'img']),
+            dict(type='Collect', keys=&#91;'img']),
+        ])
+]</code></pre>
+
+<p>ต่อจาก Data Pipeline แล้ว เราจำเป็นต้องกำหนดที่อยู่ไฟล์ Dataset นี้ เราตั้งค่าได้ตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>cfg.data.train.type = cfg.dataset_type
+cfg.data.train.data_root = cfg.data_root
+cfg.data.train.img_dir = img_dir
+cfg.data.train.ann_dir = ann_dir
+cfg.data.train.pipeline = cfg.train_pipeline
+cfg.data.train.split = 'splits/train.txt'
+
+cfg.data.val.type = cfg.dataset_type
+cfg.data.val.data_root = cfg.data_root
+cfg.data.val.img_dir = img_dir
+cfg.data.val.ann_dir = ann_dir
+cfg.data.val.pipeline = cfg.test_pipeline
+cfg.data.val.split = 'splits/val.txt'
+
+cfg.data.test.type = cfg.dataset_type
+cfg.data.test.data_root = cfg.data_root
+cfg.data.test.img_dir = img_dir
+cfg.data.test.ann_dir = ann_dir
+cfg.data.test.pipeline = cfg.test_pipeline
+cfg.data.test.split = 'splits/val.txt'</code></pre>
+
+<p>จากโค้ดด้านบนจะแบ่งออกเป็น 3 ชุด ได้แก่ Training, Validation และ Testing โดยการตั้งค่า Validation และ Testing ใช้การตั้งค่าแบบเดียวกัน</p>
+
+<p>จากตัวโค้ดด้านบน เราสามารถตั้งค่า</p>
+
+<ol class="wp-block-list"><li>ชนิดของ Dataset</li><li>ที่อยู่โฟลเดอร์ของ Dataset</li><li>ที่อยู่โฟลเดอร์ของไฟล์ภาพ และไฟล์ Annotation</li><li>กำหนด Data Pipeline</li><li>ที่อยู่โฟลเดอร์ของไพล์ข้อความที่เก็บรายชื่อไฟล์ภาพสำหรับการทำ Training, Validation และ Testing</li></ol>
+
+<p><strong>กำหนดพารามิเตอร์ที่เกี่ยวข้องกับการ Training และ Validation</strong></p>
+
+<p>เราสามารถกำหนดค่าได้ตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code># We can still use the pre-trained Mask RCNN model though we do not need to
+# use the mask branch
+cfg.load_from = './checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth'
+
+# Set up working dir to save files and logs.
+cfg.work_dir = './work_dirs/tutorial'
+
+cfg.runner.max_iters = 200
+cfg.log_config.interval = 10
+cfg.evaluation.interval = 200
+cfg.checkpoint_config.interval = 200
+
+# Set seed to facitate reproducing the result
+cfg.seed = 0
+set_random_seed(0, deterministic=False)
+cfg.gpu_ids = range(1)</code></pre>
+
+<p>จากตัวโค้ดด้านบนจะเป็นการกำหนด</p>
+
+<ul class="wp-block-list"><li>Pretrained โมเดลสำหรับการทำ Transfer Learning</li><li>ที่อยู่โฟลเดอร์สำหรับการเก็บข้อมูลการ Training</li><li>กำหนดจำนวนรอบสูงสุดต่อการ Training</li><li>กำหนดความถี่ของการเขียน Log</li><li>กำหนดความถี่ของการทำ Validation และการบันทึกโมเดล (เป็น Checkpoint)</li><li>กำหนดการสุ่มของพารามิเตอร์ให้เหมือนกันทุกครั้งที่สุ่ม</li></ul>
+
+<p>เมื่อตั้งค่าเสร็จแล้ว เราสามารถดูการตั้งค่าทั้งหมดได้โดยการพิมพ์คำสั่ง</p>
+
+<pre class="wp-block-code"><code># Let's have a look at the final config used for training
+print(f'Config:\n{cfg.pretty_text}')
+print(f"img_dir = { img_dir }")
+print(f"ann_dir = { ann_dir }")</code></pre>
+
+<p>เมื่อกดรันแล้ว ระบบจะแสดงผลการตั้งค่าตามด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/config_param.png?w=580&#038;ssl=1" alt="" /><figcaption>ระบบจะแสดง Config ที่เราตั้งค่าไว้ครับ</figcaption></figure></div>
+
+<p>โดยการตั้งค่าที่กำหนดมาให้แล้วคือตัวโมเดล PSPNet ที่ใช้ Loss Function อย่าง Cross-Entropy Loss</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p><strong><a href="https://machinelearningmastery.com/cross-entropy-for-machine-learning/" target="_blank" rel="noreferrer noopener" title="Cross-Entropy Loss">Cross-Entropy Loss</a></strong>&nbsp;เป็นชนิดของ Loss Function สำหรับการใช้งานเพื่อจำแนกข้อมูลว่าอยู่ใน Class ไหน โดยคิดตามในแต่ละ Pixel ได้ผลลัพธ์ของค่าที่อยู่ระหว่าง 0 และ 1 อย่างไรก็ตามการคำนวณลักษณะนี้เราไม่รู้ว่าขอบของพื้นที่ที่ Segment ได้อยู่บริเวณไหนครับ</p></blockquote>
+
+<p>ต่อมา นอกจาก Loss Function แล้ว ตัวการตั้งค่าที่กำหนดมาให้ ยังกำหนด Optimizer อย่าง Stochastic Gradient Descent (SGD) ที่มีค่า Learning Rate เท่ากับ 0.01 ที่มี Momentum 0.9 และมี Weight Decay เท่ากับ 0.0005 </p>
+
+<p>รวมถึงการทำ Learning Policy โดยใช้ Poly ครับ</p>
+
+<h4 class="wp-block-heading">4.) เริ่มต้นการเทรนข้อมูล</h4>
+
+<p>เราเริ่มต้นการเทรนข้อมูลได้โดยการเขียนโค้ดตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>from mmseg.datasets import build_dataset
+from mmseg.models import build_segmentor
+from mmseg.apis import train_segmentor
+
+# Build the dataset
+datasets = &#91;build_dataset(cfg.data.train)]
+
+# Build the detector
+model = build_segmentor(
+    cfg.model, train_cfg=cfg.get('train_cfg'), test_cfg=cfg.get('test_cfg'))
+# Add an attribute for visualization convenience
+model.CLASSES = datasets&#91;0].CLASSES
+
+# Create work_dir
+mmcv.mkdir_or_exist(osp.abspath(cfg.work_dir))
+train_segmentor(model, datasets, cfg, distributed=False, validate=True, 
+                meta=dict())</code></pre>
+
+<p>จากตัวโค้ดด้านบนนี้ เราจะ</p>
+
+<ul class="wp-block-list"><li>เริ่มต้นการสร้าง Dataset โดย build_dataset </li><li>สร้างโมเดลโดย build_segmentor </li><li>กำหนดอาเรย์คลาสของโมเดล โดย model.CLASSES = datasets[0].CLASSES </li><li>สร้างโฟลเดอร์ที่เกี่ยวข้องกับการเทรนโมเดลโดย mmcv.mkdir_or_exist</li></ul>
+
+<p>เมื่อกำหนดทุกอย่างเสร็จแล้ว เราเริ่มต้นการเทรนได้คำสั่ง train_segmentor ระบบจะเริ่มต้นการเทรนโมเดลกับชุดข้อมูล Stanford Background Dataset</p>
+
+<p>ผลลัพธ์จะแสดงหน้าจอตามด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/training.png?resize=580%2C145&#038;ssl=1" alt="" width="580" height="145" /><figcaption>ภาพหน้าจอการเทรน</figcaption></figure></div>
+
+<p>เมื่อเทรนเสร็จแล้วระบบจะแสดงหน้าจอตามด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/finish_training.png?resize=580%2C459&#038;ssl=1" alt="" width="580" height="459" /></figure></div>
+
+<p>เราสามารถนำโมเดลนี้ไปทดสอบได้แล้วครับ</p>
+
+<h4 class="wp-block-heading">5.) การทดสอบโมเดล</h4>
+
+<p>เราสามารถทดสอบโมเดลได้โดยการเขียนโค้ดตามด้านล่างนี้ครับ</p>
+
+<pre class="wp-block-code"><code>img = mmcv.imread('./iccv09Data/images/6000124.jpg')
+
+model.cfg = cfg
+result = inference_segmentor(model, img)
+plt.figure(figsize=(8, 6))
+show_result_pyplot(model, img, result, palette)</code></pre>
+
+<p>เมื่อกดปุ่มรัน ระบบจะทดสอบโมเดลบริเวณคำสั่ง inference_segmentor แล้วผลลัพธ์จะแสดงตามคำสั่ง show_result_pyplot โดยจะแสดงสีตามคลาสที่ได้กำหนดไว้ ผลลัพธ์ที่ได้แสดงตามด้านล่างนี้ครับ</p>
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img data-recalc-dims="1" decoding="async" src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2022/04/inference_segmentor.png?w=580&#038;ssl=1" alt="" /><figcaption>ผลลัพธ์ที่ได้จากการรันโมเดล</figcaption></figure></div>
+
+<p>เมื่อทดสอบโมเดลเสร็จแล้ว เราสามารถนำโมเดลไปทดสอบเพิ่ม หรือนำไป segment แยกวัตถุในภาพเพิ่มเติมได้อีกครับ</p>
+
+<p>สำหรับผู้อ่านที่ต้องการอ่านข้อมูลเพิ่มเติม ศึกษาได้ในเว็บของ <a href="https://github.com/open-mmlab/mmsegmentation" target="_blank" rel="noreferrer noopener" title="mmSegmentation">mmSegmentation</a> ได้โดยตรงครับ</p>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="None" />
+<meta property="og:description" content="None" />
+<link rel="canonical" href="http://localhost:4000/2024/07/26/29-install-linux-on-ipad-via-utm-se/" />
+<meta property="og:url" content="http://localhost:4000/2024/07/26/29-install-linux-on-ipad-via-utm-se/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-26T16:00:12+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg" />
+<meta property="twitter:title" content="#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2024-07-30T18:14:40+07:00","datePublished":"2024-07-26T16:00:12+07:00","description":"None","headline":"#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE","image":"https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/07/26/29-install-linux-on-ipad-via-utm-se/"},"url":"http://localhost:4000/2024/07/26/29-install-linux-on-ipad-via-utm-se/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE</h1>
+
+  <p class="post-meta">
+    <time datetime="2024-07-26 16:00:12 +0700">2024-07-26</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg' />
+  </figure>
+  
+
+  <p>ก่อนหน้านี้เราใช้งาน iPad ตามปกติ ส่วนกรณีที่ต้องการเขียนโค้ดเราก็เช่าคลาวด์แล้วรีโหมดเพื่อใช้งาน หรือจะไปลงเครื่องมืออย่าง code-server หรือ openvscode-server เพื่อใช้งานหน้าจอยังกับ Visual Studio Code ผ่านเว็บเบราวเซอร์ที่มันก็ใช้ได้ตามปกติครับ แต่มันมีข้อเสียคือ</p>
+
+<ul class="wp-block-list">
+<li>เราจำเป็นต้องใช้งานอินเตอร์เน็ต</li>
+
+
+
+<li>เราติดเรื่อง Latency ที่มันช้าซะเหลือเกิน</li>
+
+
+
+<li>มันเสียเงิน</li>
+</ul>
+
+<p>ดังนั้นแล้ว เราจำเป็นต้องการเครื่องมืออื่นที่ดีกว่านี้ จนกระทั่งมาเจอเครื่องมืออย่าง <strong>UTM</strong></p>
+
+<!--more-->
+
+<h2 class="wp-block-heading">UTM</h2>
+
+<p><strong><a href="https://getutm.app/" data-type="link" data-id="https://getutm.app/" target="_blank" rel="noreferrer noopener">UTM</a> </strong>เป็นแอพที่มีพื้นฐานมาจาก QEMU ที่อนุญาตให้เรารันระบบปฏิบัติการต่าง ๆ บนเครื่องแท็บเล็ต iPad กับโทรศัพท์ iPhone โดยตัวแอพนี้เองที่อนุญาตให้เราเปิดใช้ Windows หรือ Linux ได้ครับ</p>
+
+<p>อย่างไรก็ดีตัว UTM ไม่มีบน App Store เนื่องมาจากตัวแอพจำเป็นต้องใช้ฟีเจอร์อย่าง dynamic code generation (JIT) เพื่อให้รันได้มีประสิทธิภาพที่สูงสุด แต่ทาง Apple ไม่อนุญาตให้มีฟีเจอร์นี้ครับ</p>
+
+<p>ดังนั้นแล้ว เราจะไม่ได้กล่าวถึงตัว UTM ในบทความนี้ แต่เราจะมาใช้ตัว UTM SE (Slow Edition) แทน</p>
+
+<h3 class="wp-block-heading">UTM SE</h3>
+
+<p><strong><a href="https://apps.apple.com/us/app/utm-se-retro-pc-emulator/id1564628856" data-type="link" data-id="https://apps.apple.com/us/app/utm-se-retro-pc-emulator/id1564628856" target="_blank" rel="noreferrer noopener">UTM SE (Slow Edition)</a></strong> เป็นแอพ UTM ที่ไม่ได้ใช้ตัว JIT แต่ใช้ตัว <a href="https://github.com/ktemkin/qemu/blob/with_tcti/tcg/aarch64-tcti/README.md">Threaded interpreter</a>&nbsp;แทนซึ่งทำงานได้ช้ากว่า แต่มันมีอยู่บน App Store ที่อนุญาตให้เราติดตั้งได้เลย โดยเราไม่จำเป็นต้องทำ Jailbreak </p>
+
+<p>นอกจากนี้ตัวแอพนี้อนุญาตให้เรารันระบบปฏิบัติการที่ใช้สถาปัตยกรรมอย่าง ARM, PPC, RISC-V และ x86 (ที่เป็น 32 และ 64 bit)</p>
+
+<p>ต่อมา เรามาเข้าเรื่องหลักในบทความนี้เลยก็คือลง Linux เพื่อใช้งานบน iPad</p>
+
+<h3 class="wp-block-heading">ลง Linux บน iPad</h3>
+
+<p>การลง Linux เพื่อใช้งานบน iPad ก็ทำได้ไม่ยาก แต่ก่อนอื่นเลยเราจำเป็นต้องดาวน์โหลด <a href="https://apps.apple.com/us/app/utm-se-retro-pc-emulator/id1564628856" data-type="link" data-id="https://apps.apple.com/us/app/utm-se-retro-pc-emulator/id1564628856" target="_blank" rel="noreferrer noopener">UTM SE</a> จาก App Store เสียก่อน</p>
+
+<p>เมื่อดาวน์โหลดเสร็จแล้ว เราสามารถลง Linux ได้หลายวิธี</p>
+
+<ol class="wp-block-list">
+<li>ดาวน์โหลดตัว Linux ที่สร้างไว้แล้ว โดยเข้าไปในแอพแล้วเลือกไปที่ Browse UTM Gallery</li>
+
+
+
+<li>ติดตั้ง Linux เอง (ในบทความเราจำใช้วิธีนี้)</li>
+
+
+
+<li>นำเข้าตัว Disk Image ที่สร้างจาก QEMU มาใช้</li>
+</ol>
+
+<p>ในบทความนี้ เราจะใช้วิธีที่สอง นั่นก็คือการติดตั้ง Linux เอง</p>
+
+<p>ขั้นตอนแรกให้ดาวน์โหลดตัวไฟล์ ISO ที่เป็นตัวติดตั้ง Linux เสียก่อน โดยในที่นี้เราจะใช้ Debian (ในไทยก็โหลดจาก <a href="https://mirror1.ku.ac.th/debian-cd/current/arm64/">mirror1.ku.ac.th</a> ได้ครับ โดยกดไปที่ลิ้งค์แล้วเลือกดาวน์โหลดเป็น iso-cd ครับ)</p>
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-1024x712.png" alt="" class="wp-image-7277" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/debian_download-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure></div>
+
+<p>เมื่อดาวน์โหลดเสร็จเรียบร้อย ให้กดเข้าไปที่แอพ UTM SE จากนั้นกด Create a New Virtual Machine จากนั้นกดที่ New Machine ครับ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-1024x712.png" alt="" class="wp-image-7278" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-1024x712.png" alt="" class="wp-image-7279" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_create_new_vm_dialog-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>ต่อมา ระบบจะปรากฏหน้าจอให้เลือกตัว Boot Device ในที่นี้เราจะเลือกเป็น CD/DVD Image แล้วกดปุ่ม Browse เพื่อเลือกตำแหน่งไฟล์ที่เก็บตัว ISO ที่เราดาวน์โหลดมาเก็บไว้</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-1024x712.png" alt="" class="wp-image-7282" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_select_boot_device-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>กดปุ่ม Continue ระบบจะปรากฏหน้าจอให้ปรับแต่ง Hardware ที่จะใช้กับตัว Virtual Machine นี้ ให้เราเลือก</p>
+
+<ul class="wp-block-list">
+<li>Architecture เป็น ARM64 (หรือจะเลือกอันอื่นก็ได้ถ้าเราดาวน์โหลดเป็น Architecture อื่นครับ)</li>
+
+
+
+<li>System เป็นตัว QEMU ที่มีมาให้อยู่แล้วก็ได้ หรือจะเลือกอันอื่นก็ตามสะดวกครับ</li>
+
+
+
+<li>Memory โดยปรับให้ใช้ 512MB (หรือจะมากกว่านั้นก็ได้ แต่อาจจะต้องเช็คกับ iPad นั้นอีกทีว่ามี RAM เท่าไรครับ)</li>
+
+
+
+<li>CPU โดยเลือกเป็น 1 Core (หรือมากกว่านั้น แต่ก็ต้องเช็คกับตัว iPad ที่ใช้อีกที)</li>
+</ul>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-1024x712.png" alt="" class="wp-image-7281" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_hardware-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>กดปุ่ม Continue ระบบจะแสดงหน้าจอให้ระบุพื้นที่ Storage สำหรับการเก็บข้อมูล โดยตัวอย่างนี้จะระบุเป็น 8GB แต่จะปรับเพิ่มมากกว่านี้ก็ได้ขึ้นกับว่าต้องการใช้เท่าไรครับ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-1024x712.png" alt="" class="wp-image-7280" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_storage-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>กดปุ่ม Continue ระบบจะปรากฏหน้าจอ Shared Directory โดยเราสามารถระบุโฟลเดอร์บน iPad ที่ต้องการเพื่อให้แชร์ระหว่าง iPad กับ Virtual Machine ได้ครับ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-1024x712.png" alt="" class="wp-image-7283" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_shared_directory-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>กดปุ่ม Continue ระบบจะสรุปการตั้งค่าของ Virtual Machine ที่เราจะสร้างขึ้น โดยผู้ใช้สามารถแก้ไขชื่อ Virtual Machine ที่เราต้องการจะสร้างได้โดยกดปุ่มแถว Information ข้างบนสุดครับ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-1024x712.png" alt="" class="wp-image-7284" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utm_se_summary-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>กด Save ระบบจะปรากฏหน้าจอแสดง Virtual Machine ตามภาพ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-1024x712.png" alt="" class="wp-image-7285" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_created_new_vm-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p> ให้กดปุ่มรูปเพลย์ที่อยู่ด้านขวาของหน้าจอเพิ่มเริ่มต้นการทำงานของ Virtual Machine</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-1024x712.png" alt="" class="wp-image-7286" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booting-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>เมื่อกดแล้ว ให้ทำตามหน้าจอเพื่อติดตั้ง Linux ครับ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-1024x712.png" alt="" class="wp-image-7287" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_language-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-1024x712.png" alt="" class="wp-image-7289" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_partition-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-1024x712.png" alt="" class="wp-image-7288" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_installation_installing-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<p>เมื่อติดตั้งเสร็จแล้ว ระบบจะรีสตาร์ท แล้วจะเข้าหน้าจอบูตเข้า Linux เมื่อบูตเสร็จเรียบร้อยแล้ว ผู้ใช้สามารถเข้าไปใช้งาน Linux ที่เราติดตั้งได้ตามปกติครับ</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-1024x712.png" alt="" class="wp-image-7290" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="580" height="403" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-1024x712.png" alt="" class="wp-image-7291" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-300x208.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-1024x712.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-768x534.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-1536x1067.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-2048x1423.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-1200x834.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/utmse_booted_login-1980x1376.png 1980w" sizes="auto, (max-width: 580px) 100vw, 580px" /></figure>
+
+<h2 class="wp-block-heading">ข้อสังเกต</h2>
+
+<p>เมื่อใช้งาน Linux บนแอพ UTM SE แล้วก็ใช้งานได้ตามปกติเหมือนกับที่ใช้งานบนคอมพิวเตอร์ อย่างไรก็ตามเราสังเกตได้ว่า</p>
+
+<ul class="wp-block-list">
+<li>การเขียน/อ่าน Harddisk ทำได้ช้า</li>
+
+
+
+<li>การประมวลผลอะไรพวกนี้ก็ช้าเนื่องมาจากข้อจำกัดด้านการใช้ฟีเจอร์ JIT</li>
+
+
+
+<li>ไม่สามารถ Copy &#8211; Paste ได้ตามปกติแบบ Ctrl + C กับ Ctrl + V เราจำเป็นต้องกดปุ่ม Paste บนหน้าจอคีย์บอร์ดของ iPad</li>
+
+
+
+<li>การเชื่อมต่อระหว่างโฟลเดอร์บน iPad กับตัว Virtual Machine ทำได้ไม่สะดวกนัก</li>
+</ul>
+
+<p>นอกจากข้อสังเกตแล้ว เรายังมีข้อแนะนำกรณีที่ต้องการใช้งาน UTM SE ที่เราจะแนะนำว่า</p>
+
+<ul class="wp-block-list">
+<li>ให้ใช้งานกับ Hardware Keyboard (ที่มีแถวทีเป็นปุ่ม Escape, F1-F12)</li>
+
+
+
+<li>กับใช้งานระบบปฏิบัติการที่มันใช้พลังการประมวลผลไม่เยอะ (แนะนำว่าให้ลงพวก DOS/Windows รุ่นเก่า ๆ หรือจะไปลง Linux ที่ใช้แค่หน้าจอคอมมานไลน์จะดีกว่าครับ)</li>
+</ul>
+
+<p>ส่วนถ้าต้องการใช้งานแอพอื่น อันนี้มีหลายแอพที่ใช้งานได้คล้ายกันกับ UTM SE (โดยเอามาจาก<a href="https://taoofmac.com/space/blog/2024/07/14/1430" data-type="link" data-id="https://taoofmac.com/space/blog/2024/07/14/1430" target="_blank" rel="noreferrer noopener">บทความนี้</a>) เลยก็ได้แก่</p>
+
+<ul class="wp-block-list">
+<li><a href="https://blink.sh/" data-type="link" data-id="https://blink.sh/" target="_blank" rel="noreferrer noopener">Blink Shell</a> ที่ตอนนี้สามารถเขียนโค้ด ใช้งาน Shell, SSH, เครื่องมือคอมมานไลน์ กับเครื่องมือที่มีพื้นฐานจาก Visual Sutdio Code แถมยังรวมถึงรันโค้ด Python, Go, Rust, Node.js และ Ruby ได้</li>
+
+
+
+<li><a href="https://github.com/holzschu/a-shell" data-type="link" data-id="https://github.com/holzschu/a-shell" target="_blank" rel="noreferrer noopener">A-Shell</a></li>
+
+
+
+<li><a href="https://ish.app" data-type="link" data-id="https://ish.app" target="_blank" rel="noreferrer noopener">ISH</a></li>
+
+
+
+<li>หรือจะไปใช้งาน Sidecar ที่เป็นฟีเจอร์ที่ใช้งานร่วมกับคอมแมคครับ</li>
+</ul>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div></div>
+    </main>
+  </body>
+</html>
