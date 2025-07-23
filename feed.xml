@@ -1,5 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" /><updated>2025-03-21T18:38:18+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Kittisak&apos;s journal in AI, coding and life.
-</subtitle><author><name>Kittisak Chotikkakamthorn</name></author><entry><title type="html">#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์</title><link href="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/" rel="alternate" type="text/html" title="#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์" /><published>2025-02-22T06:30:00+07:00</published><updated>2025-03-16T22:06:29+07:00</updated><id>https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc</id><content type="html" xml:base="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/"><![CDATA[<p><strong>AIS Cloud PC</strong> เป็นบริการที่อนุญาตให้ผู้ใช้เข้าไปใช้งานคอมพิวเตอร์ได้อย่างสะดวกสบาย เชื่อมต่อได้ทุกที่ทุกเวลา ส่งผลให้ลดการลงทุนในอุปกรณ์คอมพิวเตอร์ เพียงแค่เรามีคอมพิวเตอร์เครื่องเก่า อุปกรณ์แท็บเล็ตอย่าง iPad หรือ Android Tablet เราก็เข้าไปใช้งานได้แล้ว</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" /><updated>2025-07-23T16:10:33+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Kittisak&apos;s journal in AI, coding and life.
+</subtitle><author><name>Kittisak Chotikkakamthorn</name></author><entry><title type="html">#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ</title><link href="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/" rel="alternate" type="text/html" title="#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ" /><published>2025-07-23T11:30:00+07:00</published><updated>2025-07-23T11:30:00+07:00</updated><id>https://nickuntitled.com/2025/07/23/notion-usage-for-helping-preparing-examination</id><content type="html" xml:base="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/"><![CDATA[<p>เขียนต่อจากบทความ<a href="/2025/01/24/building-a-second-brain/">การสร้าง Second Brain โดยใช้เครื่องมืออย่าง Notion</a> ที่เป็นการเก็บข้อมูลความรู้ไว้ในแหล่งเก็บข้อมูลภายนอกเพื่อให้เราดึงข้อมูลมาใช้ในเวลาที่จำเป็น</p>
+
+<p>จุดนี้เป็นจุดที่ดีสำหรับการอ่านเตรียมสอบอะไรทั้งหลายแหล่ รวมถึงเตรียมสอบราชการ</p>
+
+<p>ว่าแต่ก่อนอื่นเรามาแนะนำการเตรียมสอบราชการเสียก่อน</p>
+
+<h2 id="การสอบราชการ">การสอบราชการ</h2>
+
+<p>การสอบสอบราชการ คือ การสอบคัดเลือดบุคคลเพื่อเข้ารับราชการในหน่วยงานของรัฐ โดยมีทั้งหมด 3 ขั้นตอน ได้แก่</p>
+
+<ul>
+  <li><strong>การสอบภาค ก</strong> หรือเรียกว่าการสอบความรู้ความสามารถทั่วไป เป้นขั้นตอนแรกในการเข้ารับราชการ โดยสอบวัดความรู้ความสามารถพื้นฐานทั่วไปของผู้สมัคร มีวิชาที่ต้องสอบทั้งหมด 3 วิชา ได้แก่ วิชาความสามารถในการคิดวิเคราะห์, วิชาภาษาอังกฤษ, และวิชาความรู้และลักษณะการเป็นข้าราชการที่ดี</li>
+  <li><strong>การสอบภาค ข</strong> หรือเรียกว่าความรู้ความสามารถเฉพาะตำแหน่ง เป็นขั้นตอนต่อมา ซึ่งจุดนีแต่ละหน่วยงานจะจัดสอบภาค ข ของตนเองตามความต้องการของตำแหน่ง</li>
+  <li><strong>การสอบภาค ค</strong> หรือเรียกว่าความเหมาะสมกับตำแหน่ง เป็นการสอบสัมภาษณ์เพื่อประเมินความเหมาะสมของผู้สมัครสำหรับตำแหน่งนั้น ๆ เพื่อประเมินบุคลิกภาพ ทัศนคติ และความสามารถในการทำงานร่วมกับผู้อื่น</li>
+</ul>
+
+<h2 id="การเตรียมสอบ">การเตรียมสอบ</h2>
+
+<p>ต่อมา เราจะมาพูดถึงการเตรียมสอบราชการ ซึ่งจะเน้นเฉพาะภาค ข เป็นพิเศษ</p>
+
+<p>การสอบในระดับนี้จะเป็นการประเมินความรู้ความสามารถเฉพาะตำแหน่งที่ทางแต่ละหน่วยงานเปิดสอบโดยมีเนื้อหาที่แตกต่างกันออกไปขึ้นกับว่าเป็นตำแหน่งอะไร และเป็นหน่วยงานอะไร  ผู้อ่านสามารถเข้าไปดูได้ในหัวข้อ <strong>หลักสูตรและวิธีการสอบแข่งขันเพื่อวัดความรู้ความสามารถที่ใช้เฉพาะตำแหน่ง</strong> ในไฟล์ PDF ประกาศรับสมัครของแต่ละหน่วยงาน</p>
+
+<p>ตัวอย่างด้านล่างนี้จะเป็นเนื้อหาที่ต้องอ่านสอบของนักทรัพยากรบุคคลปฏิบัติการ กรมสรรพากร [1] ครับ</p>
+
+<blockquote>
+  <p><strong>หลักสูตรและวิธีการสอบแข่งขันเพื่อวัดความรู้ความสามารถที่ใช้เฉพาะตำแหน่ง</strong></p>
+
+  <p>ทดสอบความรู้ความสามารถที่ใช้เฉพาะตำแหน่งนักทรัพยากรบุคคลปฏิบัติการ โดยวิธีการสอบข้อเขียน คะแนนเต็ม ๒๐๐ คะแนน ใช้เวลาสอบ ๓ ชั่วโมง ดังนี้</p>
+
+  <ol>
+    <li>ความรู้เบื้องต้นเกี่ยวกับประมวลรัษฎาทร</li>
+    <li>ความรู้เกี่ยวกับกรมสรรพากร วิสัยทัศน์ พันธกิจ โครงสร้าง อำนาจหน้าที่ และภารกิจ</li>
+    <li>ความรู้เกี่ยวกับการบริหารและการพัฒนาทรัพยากรบุคคลภาครัฐ การวางแผนกลยุทธ์ การจัดทำแผนยุทธศาสตร์ แผนงานโครงการ การติดตามประเมินผล</li>
+    <li>ความรู้เกี่ยวกับพระราชบัญญัดระเบียบบริหารราชการแผ่นดิน พ.ศ. ๒๕๓๔ และที่แก้ไขเพิ่มเติม</li>
+    <li>ความรู้เกี่ยวกับพระราชบัญญัติระเบียบข้าราชการพลเรือน พ.ศ. ๒๕๕๑ และที่แก้ไขเพิ่มเติม</li>
+    <li>ความรู้เกี่ยวกับพระราชกฤษฎีกาว่าด้วยหลักเกณฑ์และวิธีการบริหารกิจการบ้านเมืองที่ดีพ.ศ.๒๕๔๖ และที่แก้ไขเพิ่มเติม</li>
+    <li>ความรู้เกี่ยวกับระเบียบสำนักนายกรัฐมนตรีว่าด้วยงานสารบรรณ พ.ศ. 2526 และที่แก้ไขเพิ่มเติม</li>
+    <li>ความรู้เกี่ยวกับสภาพแวดล้อม ข่าวสารด้านเศรษฐกิจ สังคม และเทคโนโลยีของประเทศไทยและต่างประเทศในปัจจุบัน</li>
+    <li>ความรู้พื้นฐานเกี่ยวกับพระราชบัญญัติข้อมูลข่าวสารของราชการ พ.ศ. ๒๕๕๑</li>
+    <li>พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. ๒๕๖๒</li>
+  </ol>
+</blockquote>
+
+<p>เมื่อทราบเนื้อหาที่ต้องการแล้ว เราก็ไปหาพรบ. หาข้อมูลที่เกี่ยวข้องมาอ่าน โดยไฟล์ข้อมูลที่อ่านนั้นจะเซฟอยู่ในรูปแบบไฟล์ PDF ที่มันพอใช้ได้แหละ แต่มันไม่ค่อยจะสะดวกเท่าไร เนื่องจากเวลาที่เราจะอ่าน เราจำเป็นต้องเปิดไฟล์แล้วทีนี้ข้อความทั้งหมดมันเป็นภาษาไทยซึ่งมีปัญหาเวลาค้นหาข้อความในนั้นด้วย ดังนั้นแล้วไหน ๆ ก็มี Notion อยู่แล้ว เราก็เราจดบันทึกลงใน Notion เลย</p>
+
+<h2 id="notion">Notion</h2>
+
+<p>ตัวแอพ Notion เป็นแอพจดโน้ตที่ได้รับความนิยมที่มากความสามารถที่ได้รับการแนะนำจากผู้สอนในคลาส Data Science Bootcamp ของ Datarockie โดยเราจะใช้ Notion สำหรับการนำความรู้ที่ได้จากการอ่านมาเก็บไว้</p>
+
+<p>ข้อดีของการเก็บข้อมูลไว้ใน Notion [2] มากกว่าการจดลงสมุด หรือจดลงในแอพต่าง ๆ ก็คือ</p>
+<ul>
+  <li>ไม่ต้องกังวลว่าสมุดจะหาย จะโดนปลวกกิน หรือจะโดนน้ำ</li>
+  <li>แถมยังอนุญาตให้เราเก็บโน้ตไว้ได้อย่างมีระเบียบเพื่อเพิ่มความสะดวกสำหรับการดึงข้อมูล หรือความรู้ที่ต้องการได้ โดยไม่จำเป็นต้องไปนั่งหาโน้ตที่เราเคยจดไว้</li>
+  <li>อีกอย่างหนึ่ง เราสามารถเชื่อมโยงความรู้ไปยังหัวข้ออื่นได้</li>
+</ul>
+
+<p>จุดนี้ทำให้เราสามารถสร้าง Second Brain ลงในนั้นได้เลยเพื่อช่วยในการทบทวนสำหรับการเตรียมสอบราชการได้สะดวกมากขึ้น เนื่องมาจากว่าสมองของมนุษย์เก่งทางด้านประมวลผลหรือความคิดต่าง ๆ แต่ไม่เด่นทางด้านความจำ โดยเราจะอ่านเนื้อหาสำหรับการสอบราชการตามที่ทางหน่วยงานนั้น ๆ แจ้งทางไฟล์เอกสารประกาศรับสมัคร ได้แก่อ่านตัวกฏหมาย อ่านเนื้อหาฉบับเต็มก่อน จากนั้นจากนั้นจดความรู้ที่ได้จากการอ่านลงในโน้ตนั้น ๆ ตามตัวอย่างด้านล่างนี้</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/notion_capture.png" alt="สรุปความรู้ที่สำคัญลงในโน้ตนั้น ๆ" /></p>
+
+<p>เมื่อเราจดบันทึกลงไปในโน้ตแล้วเราจัดเก็บข้อมูลไว้ในนั้นเพื่อค้นหาทีหลังได้สะดวกตามด้านล่างนี้ โดย</p>
+<ul>
+  <li>เราจะเก็บข้อมูลสำหรับกฏหมายทั่ว ๆ ไปไว้ใน Folder หนึ่งที่เป็นกฏหมายที่จะต้องอ่านกันบ่อย ๆ เพราะเนื้อหาส่วนนี้จะซ้ำ ๆ กัน</li>
+  <li>กับจดความรู้เฉพาะของหน่วยงานนั้น ๆ ไว้ในอีก Folder หนึ่งที่เป็นข้อมูลของแต่ละองค์กร วิสัยทัศน์ พันธกิจ รวมถึงความรู้อื่น ๆ ที่เกี่ยวข้อง</li>
+</ul>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/notion_organized_knowledge.png" alt="จัดระเบียบโน้ตสำหรับการเตรียมสอบราชการ" /></p>
+
+<p>เมื่อเราจัดระเบียบเรียบร้อยแล้ว เราสามารถอ่านทบทวนบนอุปกรณ์ไหนก็ได้ ตั้งแต่คอมพิวเตอร์ยันโทรศัพท์มือถือ แถมอ่านซ้ำ ๆ จนทำให้เข้าใจและจำเนื้อหานั้น ๆ สำหรับการสอบได้ โดยเรานำไปใช้สอบของ</p>
+<ul>
+  <li>นักวิชาการแรงงานปฏิบัติการ สำนักงานประกันสังคม</li>
+  <li>กับนักวิชาการสิ่งแวดล้อมปฏิบัติการ กรมการเปลี่ยนแปลงสภาพภูมิอากาศและสิ่งแวดล้อม</li>
+</ul>
+
+<p>โดยผลที่ได้คือสอบผ่านเรียบร้อยและขึ้นบัญชีสำหรับการรอเรียกบรรจุ ส่วนของกรมสรรพากรนั้น สอบภาค ข ไปเรียบร้อยรอการประกาศผลอีกที</p>
+
+<h2 id="ที่มา">ที่มา</h2>
+
+<ol>
+  <li><a href="https://file.thaijobjob.com/prakad/tax202503/tax202503_2">https://file.thaijobjob.com/prakad/tax202503/tax202503_2</a></li>
+  <li><a href="https://www.facebook.com/groups/notionthai/posts/324957728876659/">https://www.facebook.com/groups/notionthai/posts/324957728876659/</a></li>
+</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="notetaking" /><category term="Notion" /><category term="Organized" /><category term="PARA" /><category term="Progressive Summarization" /><category term="second brain" /><category term="Sharing" /><category term="summary" /><category term="Writing" /><category term="Examination" /><category term="ราชการ" /><category term="สอบภาค ข" /><category term="กรมสรรพากร" /><category term="นักทรัพยากรบุคคลปฏิบัติการ" /><summary type="html"><![CDATA[แอพ Notion เป็นแอพที่นิยมสำหรับการจดบันทึก ในบทความนี้เราจะนำแอพนี้มาช่วยสำหรับการเตรียมสอบราชการ]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/36_using_notion_for_preparing_gov_examination.jpg" /><media:content medium="image" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/36_using_notion_for_preparing_gov_examination.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์</title><link href="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/" rel="alternate" type="text/html" title="#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์" /><published>2025-02-22T06:30:00+07:00</published><updated>2025-03-16T22:06:29+07:00</updated><id>https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc</id><content type="html" xml:base="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/"><![CDATA[<p><strong>AIS Cloud PC</strong> เป็นบริการที่อนุญาตให้ผู้ใช้เข้าไปใช้งานคอมพิวเตอร์ได้อย่างสะดวกสบาย เชื่อมต่อได้ทุกที่ทุกเวลา ส่งผลให้ลดการลงทุนในอุปกรณ์คอมพิวเตอร์ เพียงแค่เรามีคอมพิวเตอร์เครื่องเก่า อุปกรณ์แท็บเล็ตอย่าง iPad หรือ Android Tablet เราก็เข้าไปใช้งานได้แล้ว</p>
 
 <!--more-->
 
@@ -1840,235 +1921,4 @@ f.close()</code></pre>
 
 
 <li><a href="https://www.selenium.dev/" data-type="link" data-id="https://www.selenium.dev/" target="_blank" rel="noreferrer noopener">Selenium</a></li>
-</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Data" /><category term="Archiving" /><category term="coding" /><category term="ELT" /><category term="ETL" /><category term="Feedlyt" /><category term="news" /><category term="programming" /><category term="python" /><category term="rss" /><category term="Selenium" /><category term="Thai news" /><category term="voicetv" /><category term="web scraping" /><category term="วอยซ์ทีวี" /><category term="สนข" /><category term="สำนักข่าว" /><category term="โค้ดดิ้ง" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#26 - วิธีสมัครบัญชีคอมมู Developer/Data/AI จีนอย่าง CSDN</title><link href="https://nickuntitled.com/2024/04/29/26-how-to-register-china-software-developer-network/" rel="alternate" type="text/html" title="#26 - วิธีสมัครบัญชีคอมมู Developer/Data/AI จีนอย่าง CSDN" /><published>2024-04-29T14:37:50+07:00</published><updated>2024-04-29T14:45:30+07:00</updated><id>https://nickuntitled.com/2024/04/29/26-how-to-register-china-software-developer-network</id><content type="html" xml:base="https://nickuntitled.com/2024/04/29/26-how-to-register-china-software-developer-network/"><![CDATA[<p><strong>CSDN </strong>(ที่ย่อมาจาก <strong>Chinese Software Developer Network</strong> หรือ <strong>China Software Developer Network</strong>) เป็น Community สำหรับนักพัฒนาซอฟต์แวร์ กับคนที่ทำงานทางด้าน Data และ AI ที่ใหญ่ที่สุดแห่งหนึ่งในประเทศจีน</p>
-
-<!--more-->
-
-<p>เว็บไซต์นี้ให้บริการ</p>
-
-<ul class="wp-block-list">
-<li><strong>เว็บบอร์ด</strong> ที่จะมีนักพัฒนาซอฟต์แวร์มาโพสกระทู้ในนั้นเพื่อสอบถามปัญหาแล้วมีคนมาตอบ เนื้อหาในนั้นส่วนใหญ่จะเป็นเรื่องการเขียนโปรแกรมเป็นหลัก</li>
-
-
-
-<li><strong>เว็บบล็อกสำหรับนักพัฒนา</strong></li>
-
-
-
-<li><strong>ข่าวสาร IT กับการหางาน</strong></li>
-
-
-
-<li><strong>เผยแพร่ Source Code</strong> (แนวเดียวกันกับ GitHub)</li>
-
-
-
-<li>และให้<strong>บริการคอร์สเรียนออนไลน์</strong></li>
-</ul>
-
-<p>บริการทั้งหมดที่กล่าวมาตามข้างบนนั้นเขียนด้วยภาษาจีนตัวย่อ ส่วนภาษาจีนตัวเต็มกับภาษาอังกฤษ เราจะพบได้บ้าง แต่พบได้ไม่บ่อยครับ</p>
-
-<p>ส่วนเนื้อหาในนั้นมีหลายหัวข้อมากที่น่าสนใจ ตั้งแต่</p>
-
-<ul class="wp-block-list">
-<li>Front-end Development (前端)</li>
-
-
-
-<li>Back-end Development (后端)</li>
-
-
-
-<li>Mobile Development (移动开发)</li>
-
-
-
-<li>Java</li>
-
-
-
-<li>Python</li>
-
-
-
-<li>Artificial Intelligence (人工智能)</li>
-
-
-
-<li>AI Generative Content</li>
-
-
-
-<li>Big Data (大数据)</li>
-
-
-
-<li>Database (数据库)</li>
-
-
-
-<li>Data Structure and Algorithms (数据结构与算法)</li>
-
-
-
-<li>Cloud Platform (云平台)</li>
-
-
-
-<li>Software Engineering (软件工程)</li>
-
-
-
-<li>User Experience Design (用户体验设计)</li>
-
-
-
-<li>Game (游戏)</li>
-
-
-
-<li>Math (数学)</li>
-
-
-
-<li>เป็นต้น</li>
-</ul>
-
-<p>เนื้อหาเหล่านี้ ก็เหมาะกับนักพัฒนาที่รู้ภาษาจีนที่สนใจอ่านเนื้อหาที่เกี่ยวข้องกับการเขียนโปรแกรมในนั้น</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_pytorch_exportmodel_onnx-1024x649.png" alt="" class="wp-image-6905" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_pytorch_exportmodel_onnx-300x190.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_pytorch_exportmodel_onnx-1024x649.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_pytorch_exportmodel_onnx-768x487.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_pytorch_exportmodel_onnx.png 1028w" /><figcaption class="wp-element-caption">ภาพตัวอย่างบทความ AI ที่เกี่ยวกับการ Export Model PyTorch ร่วมกับการใช้ไลบรารี ONNX กับ ONNX Runtime</figcaption></figure></div>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/SR6q9LAo-csdn_bigdata_platform_airflow.png" alt="" class="wp-image-6908" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_bigdata_platform_airflow-300x199.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_bigdata_platform_airflow-768x509.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/SR6q9LAo-csdn_bigdata_platform_airflow.png 968w" /><figcaption class="wp-element-caption">ภาพตัวอย่างบทความ Big Data Scheduler Platform อย่าง Apache Airflow (ที่มีสอนในคอร์ส R2DE ในเว็บ <a href="https://school.datath.com/" data-type="link" data-id="https://school.datath.com/">DataTH School</a> และที่เขียนเป็น<a href="https://nickuntitled.com/2024/01/26/13-create-datapipeline-get-tuition-cost/" data-type="post" data-id="3925">บทความในเว็บนี้ที่ทำ Project นึง</a>ไปครับ)</figcaption></figure></div>
-
-<p>อย่างไรก็ดี การสมัครใช้งานเว็บไซต์นี้จำเป็นต้องมีบัญชี <strong>WeChat (微信)</strong> หรือ<strong>เบอร์โทรศัพท์ที่ขึ้นต้นด้วยเบอร์ตามที่กำหนด</strong> ได้แก่</p>
-
-<ul class="wp-block-list">
-<li>+1 สหรัฐอเมริกา และแคนาดา</li>
-
-
-
-<li>+86 จีน</li>
-
-
-
-<li>+852 อ่องกง</li>
-
-
-
-<li>+886 ไต้หวัน</li>
-
-
-
-<li>และอื่น ๆ</li>
-</ul>
-
-<p>โดยเมื่อดูในรายการนั้นก็พบว่าไม่มีประเทศไทย (ที่ใช้ +66) แต่ผู้อ่านไม่ต้องเสียใจไป ในบทความนี้เราจะแนะนำวิธีการสมัครเว็บนี้</p>
-
-<p>แต่ก่อนอื่น เราจำเป็นต้องมีเบอร์จีนเสียก่อน</p>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">การสมัครเบอร์จีน</h2>
-
-<p>การสมัครเพื่อรับเบอร์จีนนั้น โดยปกติเราจำเป็นต้องไปที่ประเทศจีนเพื่อขอเบอร์โทรศัพท์ อย่างไรก็ดี ในไทยมีเจ้าหนึ่งที่ให้บริการอยู่คือ <strong>CMLink</strong> ที่ให้บริการโดย China Mobile ที่ใช้สัญญาณไทยผ่านผู้ให้บริการ True</p>
-
-<p>ในบทความนี้เราจะมาแนะนำการซื้อซิม การสมัครใช้บริการเพื่อเชื่อมเบอร์จีนกันเสียก่อนที่ะไปสมัครใช้งานในเว็บไซต์ <strong>CSDN</strong></p>
-
-<h3 class="wp-block-heading">การซื้อซิม</h3>
-
-<p>การซื้อซิม <strong>CMLink</strong> ทำได้โดยเข้าเว็บไซต์ของ <a href="https://www.cmlink.com/th/" data-type="link" data-id="https://www.cmlink.com/th/" target="_blank" rel="noreferrer noopener">CMLink</a> เสียก่อน เมื่อเข้ามาหน้าเว็บไซต์แล้ว ให้ผู้อ่านเลือกที่สั่งซื้อซิม</p>
-
-<p>จากนั้น ระบบจะเข้ามาหน้าจอตามภาพด้านล่าง ผู้อ่านสามารถกดเลือก</p>
-
-<ul class="wp-block-list">
-<li><strong>ต้องการเบอร์ใหม่</strong> กรณีที่ต้องการเบอร์โทรศัพท์ใหม่ไปเลย</li>
-
-
-
-<li>หรือ<strong>ย้ายค่ายเบอร์เดิม</strong> กรณีที่ต้องการย้ายค่ายจากเจ้าอื่น</li>
-</ul>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_mainpage-1024x481.png" alt="" class="wp-image-6847" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_mainpage-300x141.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_mainpage-1024x481.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_mainpage-768x361.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_mainpage-1200x564.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_mainpage.png 1366w" /><figcaption class="wp-element-caption">หน้าหลักของ CMLink</figcaption></figure></div>
-
-<p>เมื่อเลือกเสร็จแล้ว ให้ผู้อ่านเลือกแพคเกจตามที่ต้องการ ตัว CMLink จะมีแพคเกจให้เลือกเป็นรายเดือน หรือรายปีก็ได้</p>
-
-<p>เมื่อเลือกเสร็จแล้ว กดยืนยันคำสั่งซื้อ จากนั้นระบบจะปรากฏหน้าจอให้กรอกข้อมูลส่วนตัว พร้อมกับอัพโหลดบัตรประชาชน/พาสพอร์ต ตามภาพด้านล่างนี้</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_personal_info-1024x615.png" alt="" class="wp-image-6851" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_personal_info-300x180.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_personal_info-1024x615.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_personal_info-768x461.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_personal_info.png 1093w" /><figcaption class="wp-element-caption">หน้าจอกรอกรายละเอียดข้อมูลส่วนตัว</figcaption></figure></div>
-
-<p>เมื่อกรอกข้อมูลเรียบร้อยแล้ว ให้กดยืนยันคำสั่งซื้ออีกรอบ ระบบจะปรากฏหน้าจอเพื่อให้ผู้อ่านจ่ายเงิน ส่วนนี้ให้ผู้อ่านทำตามหน้าจอเพื่อจ่ายเงินให้เรียบร้อย</p>
-
-<p>หลังจากจ่ายเงินเสร็จแล้ว ระบบจะตรวจสอบข้อมูล กรณีที่ข้อมูลถูกต้อง ทางบริษัทจะส่งซิมผ่านผู้ให้บริการ Best Express ที่ใช้ระยะเวลาประมาณสองสามวัน ตัวซิมก็มาถึงบ้าน</p>
-
-<p>เมื่อผู้อ่านได้ซิมมาเรียบร้อย ให้ใส่ซิมกับโทรศัพท์/แท็บเล็ตที่ต้องการ จากนั้นตัวซิมจะได้รับการเปิดใช้งาน</p>
-
-<h3 class="wp-block-heading">การเชื่อมซิมกับเบอร์โทรศัพท์ที่จีน</h3>
-
-<p>เมื่อเปิดใช้งานแล้ว ให้เข้าไปที่หน้าล็อคอินของตัว CMLink ใส่เบอร์โทรศัพท์ของซิมที่ผู้อ่านซื้อมา แล้วกดรับ OTP ตัวโค้ดจะถูกส่งมายังโทรศัพท์/แท็บเล็ตนั้น ๆ</p>
-
-<p>ให้ผู้อ่านกรอกเลขที่ได้ลงไปในช่องใต้ช่องที่ใส่เบอร์โทรศัพท์ จากนั้นกดปุ่มเข้าสู่ระบบ</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_login.png" alt="" class="wp-image-6864" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_login-300x275.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_login.png 540w" sizes="auto, (max-width: 540px) 100vw, 540px" /><figcaption class="wp-element-caption">หน้าจอล็อคอิน</figcaption></figure></div>
-
-<p>เมื่อเข้าสู่ระบบแล้ว ระบบจะปรากฏหน้าจอตามด้านล่างนี้ ให้กดปุ่ม<strong>บริการเชื่อมเบอร์จีน</strong>ที่หน้าจอด้านซ้าย</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_dashboard-1024x520.png" alt="" class="wp-image-6866" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_dashboard-300x152.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_dashboard-1024x520.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_dashboard-768x390.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_dashboard.png 1067w" /><figcaption class="wp-element-caption">หน้าจอหลักล็อคอิน</figcaption></figure></div>
-
-<p>จากนั้น ระบบจะเลื่อนหน้าจอลงมา โดยจะมีเบอร์จีนกับเบอร์ฮ่องกงให้เลือก ส่วนนี้ให้เลือกเป็นเบอร์จีน จากนั้นกดปุ่มขอเบอร์ China Mobile จีนใหม่</p>
-
-<p>เมื่อกดปุ่ม แล้วให้ผู้อ่านกรอกรายละเอียด พร้อมกับอัพโหลดภาพพาสพอร์ต และวิดีโอที่เป็นหน้าผู้อ่านพร้อมกับถือพาสพอร์ตลงไปในระบบ แล้วก็สมัครใช้บริการ</p>
-
-<p>ส่วนนี้ผู้อ่านรอไม่กี่วัน ระบบก็จะแจ้งว่าได้เปิดการใช้บริการเบอร์จีนเรียบร้อย โดยผู้อ่านสามารถล็อคอินแล้วเข้ามาดูตรงส่วนบริการเชื่อมเบอร์จีนได้ครับ</p>
-
-<p>เมื่อผู้ใช้มีเบอร์จีนแล้ว ผู้อ่านสามารถใช้รับส่ง SMS รวมถึงรับโอนสายเรียกเข้ามาที่เบอร์ไทยได้อีก ส่วนนี้ถือว่าดีมาก</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_china_mobile.png" alt="" class="wp-image-6871" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_china_mobile-300x192.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_china_mobile-768x492.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/cmlink_china_mobile.png 903w" /><figcaption class="wp-element-caption">หลังจากเปิดใช้เบอร์จีนแล้ว ระบบจะปรากฏเบอร์จีนที่เราเชื่อมต่อไว้ครับ</figcaption></figure></div>
-
-<p>ต่อมา เรามาพูดถึงการสมัครใช้บริการเว็บ CSDN</p>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">การสมัครใช้งานเว็บ CSDN</h2>
-
-<p>การสมัครใช้บริการเว็บนี้ทำได้โดยเข้ามาที่<a href="https://www.csdn.net/" data-type="link" data-id="https://www.csdn.net/" target="_blank" rel="noreferrer noopener">หน้าเว็บหลัก</a>เสียก่อน (ตามภาพ) จากนั้นให้กดทีปุ่ม 登录 (หรือเข้าสู่ระบบ) ที่มุมบนขวาของหน้าเว็บไซต์</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_main_web-1024x442.png" alt="" class="wp-image-6873" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_main_web-300x129.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_main_web-1024x442.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_main_web-768x331.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_main_web-1200x518.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_main_web.png 1323w" /><figcaption class="wp-element-caption">หน้าหลักของ CSDN</figcaption></figure></div>
-
-<p>เมื่อกดปุ่มเข้าสู่ระบบที่มุมบนขวาแล้ว ระบบจะปรากฏหน้าจอเข้าสู่ระบบที่อนุญาตให้ผู้ใช้ใช้ WeChat หรือใช้เบอร์โทรศัพท์ตามประเทศที่ระบุไว้ในนั้นได้ครับ</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-medium"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_login-263x300.png" alt="" class="wp-image-6878" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_login-263x300.png 263w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_login.png 498w" sizes="auto, (max-width: 263px) 100vw, 263px" /><figcaption class="wp-element-caption">หน้าจอเข้าสู่ระบบของ CSDN</figcaption></figure></div>
-
-<p>ในบทความนี้เราจะใช้เบอร์จีนที่เปิดผ่าน CMLink มาใช้ ทำได้โดยการพิมพ์เบอร์โทรศัพท์แล้วกดปุ่ม 获取验证码 (รับรหัสยืนยัน)</p>
-
-<p>หลังจากกดปุ่มรับรหัสยืนยันแล้ว ระบบจะส่งข้อความมาทาง SMS ให้เราพิมพ์ตัวเลขลงไปในกล่องข้อความใต้เบอร์โทร จากนั้นติ๊กถูกที่เครื่องหมายถูกด้านล่าง และกดปุ่ม 登录/注册 (เข้าสู่ระบบ/สมัครสมาชิก) เพื่อเข้าสู่ระบบ</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-medium"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_mobile-248x300.png" alt="" class="wp-image-6879" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_mobile-248x300.png 248w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_mobile.png 470w" sizes="auto, (max-width: 248px) 100vw, 248px" /><figcaption class="wp-element-caption">หน้าจอเข้าสู่ระบบโดยการใช้เบอร์โทรศัพท์</figcaption></figure></div>
-
-<p>กรณีที่ผู้ใช้ยังไม่มีบัญชี ระบบจะเข้ามาหน้าสมัครสมาชิก ให้ผู้ใช้กรอกรายละเอียดแล้วสมัครสมาชิกตามปกติครับ แต่ถ้ามีสมาชิกอยู่แล้ว ระบบจะเปลี่ยนหน้ามายังหน้าหลักของเว็บไซต์</p>
-
-<p>แค่นี้ ผู้ใช้ก็ใช้งานเว็บไซต์ CSDN ได้แล้ว</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_afterlogin-1024x500.png" alt="" class="wp-image-6885" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_afterlogin-300x147.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_afterlogin-1024x500.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_afterlogin-768x375.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/csdn_afterlogin-1200x586.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/KqQQlzfx-csdn_afterlogin.png 1329w" /><figcaption class="wp-element-caption">หน้าจอหลังล็อคอินของเว็บ CSDN</figcaption></figure></div>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">สรุป</h2>
-
-<p>เว็บ <strong>CSDN (Chinese Software Developer Network)</strong> เป็น Community สำหรับนักพัฒนาซอฟต์แวร์ที่ใหญ่ที่สุดแห่งหนึ่งในประเทศจีน ที่อนุญาตให้ผู้ใช้ใช้งานเว็บบอร์ด กับบล็อก ร่วมกับดูข่าวสาร IT กับการหางาน และมีคอร์สให้เรียน</p>
-
-<p>อย่างไรก็ดี เว็บไซต์นี้อนุญาตให้ผู้ใช้เพียงไม่กี่ประเทศสามารถสมัครเข้าไปใช้งานได้ ในบทความนี้เราแนะนำการสมัครเบอร์จีนผ่าน <strong>CMLink</strong> เพื่อสมัครใช้งานเว็บไซต์นี้ครับ</p>
-
-<h2 class="wp-block-heading">ส่งท้าย</h2>
-
-<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Data" /><category term="ai" /><category term="China" /><category term="China Mobile" /><category term="community" /><category term="computer" /><category term="CSDN" /><category term="data" /><category term="diary" /><category term="IT" /><category term="network" /><category term="programmer" /><category term="Software Development" /><category term="คอมมู" /><category term="จีน" /><category term="นักพัฒนาโปรแกรม" /><category term="ปัญญาประดิษฐ์" /><category term="เขียนโปรแกรม" /><category term="เอไอ" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/sZhiT3BS-26_register_CSDN_community.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/04/sZhiT3BS-26_register_CSDN_community.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Data" /><category term="Archiving" /><category term="coding" /><category term="ELT" /><category term="ETL" /><category term="Feedlyt" /><category term="news" /><category term="programming" /><category term="python" /><category term="rss" /><category term="Selenium" /><category term="Thai news" /><category term="voicetv" /><category term="web scraping" /><category term="วอยซ์ทีวี" /><category term="สนข" /><category term="สำนักข่าว" /><category term="โค้ดดิ้ง" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
