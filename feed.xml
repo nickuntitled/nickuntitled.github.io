@@ -1,5 +1,180 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" /><updated>2025-07-23T17:14:55+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Kittisak&apos;s journal in AI, coding and life.
-</subtitle><author><name>Kittisak Chotikkakamthorn</name></author><entry><title type="html">#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ</title><link href="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/" rel="alternate" type="text/html" title="#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ" /><published>2025-07-23T11:30:00+07:00</published><updated>2025-07-23T11:30:00+07:00</updated><id>https://nickuntitled.com/2025/07/23/notion-usage-for-helping-preparing-examination</id><content type="html" xml:base="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/"><![CDATA[<p>เขียนต่อจากบทความ<a href="/2025/01/24/building-a-second-brain/">การสร้าง Second Brain โดยใช้เครื่องมืออย่าง Notion</a> ที่เป็นการเก็บข้อมูลความรู้ไว้ในแหล่งเก็บข้อมูลภายนอกเพื่อให้เราดึงข้อมูลมาใช้ในเวลาที่จำเป็น</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" /><updated>2025-08-01T06:27:31+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Kittisak&apos;s journal in AI, coding and life.
+</subtitle><author><name>Kittisak Chotikkakamthorn</name></author><entry><title type="html">#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล</title><link href="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/" rel="alternate" type="text/html" title="#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล" /><published>2025-08-01T03:00:00+07:00</published><updated>2025-08-01T06:00:00+07:00</updated><id>https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc</id><content type="html" xml:base="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/"><![CDATA[<p><a href="https://guacamole.apache.org/">Apache Guacamole</a> เป็นแอพ Remote Desktop ระยะไกลที่ไม่ต้องใช้ Client ที่อนุญาตให้ผู้ใช้สามารถเข้าถึงและควบคุมคอมพิวเตอร์จากระยะไกลผ่านหน้าเว็บเบราวเซอร์ โดยผ่านโปรโตคอลมาตรฐานอย่าง SSH, VNC และ RDP [1] ที่ไม่ต้องติดตั้ง Plugin หรือแอพใด ๆ ลงบนคอมพิวเตอร์ของ Client เลย ด้วยการใช้เทคโนโลยีเว็บอย่าง HTML5 และ JavaScript</p>
+
+<p>เมื่อทราบชื่อของแอพนี้แล้ว ทำไมเราต้องใช้ล่ะ?</p>
+
+<h2 id="ทำไมต้องใช้-apache-guacamole">ทำไมต้องใช้ Apache Guacamole</h2>
+
+<p>โดยปกติเวลาที่เครื่อง Client จะเข้าถึงยังคอมพิวเตอร์ที่ต้องการจากระยะไกลนั้น เราจำเป็นต้องลงแอพ Remote Desktop ก่อนที่จะใช้งาน อย่างไรก็ดีมันติดปัญหาตรงนี้</p>
+
+<ul>
+  <li>คอมนั้นลงแอพไม่ได้ เนื่องมาจากใช้ระบบปฏิบัติการที่รันผ่านเว็บเบราวเซอร์แบบ Chrome OS หรือคอมนั้นไม่ได้รับอนุญาตให้ลงแอพเพิ่ม</li>
+  <li>ทางองค์กรนั้น ๆ ไม่ได้รับอนุญาตให้ใช้งานพอร์ตอื่นนอกจาก HTTP กับ HTTPS</li>
+  <li>เจอ Firewall</li>
+</ul>
+
+<p>จุดนี้เป็นที่มาของแอพอย่าง Apache Guacamole ที่มีหลักการอยู่ที่สามารถใช้งานรีโหมดจากระยะไกลได้ทั่วโลก โดยที่ไม่ต้องลงแอพ Client แต่ใช้งานผ่านหน้าเว็บเบราวเซอร์เท่านั้น จุดนี้อนุญาตให้ใช้งานจากอุปกรณ์อะไรก็ได้ ไม่จำกัดว่าจะต้องใช้งานผ่านคอมพิวเตอร์เท่านั้น เรายังใช้โทรศัพท์หรือแท็บเล็ตก็รีโหมดเข้ามายังคอมพิวเตอร์จากระยะไกลได้อีกด้วย</p>
+
+<p>นอกจากนี้ตัว Apache Guacamole ยังใช้งานผ่านโปรโตคอล HTTP หรือ HTTPS เท่านั้น จุดนี้ทำให้เราสามารถใช้งานได้เลยโดยที่ไม่ขัดต่อ Policy ของที่ทำงานนั้น ๆ แถมยังไม่เจอปัญหาเรื่อง Firewall อีกด้วย (ถ้าไม่ได้ไปบล็อกโปรโตคอล HTTP กับ HTTPS)</p>
+
+<p>ต่อมาเรามากล่าวถึงโครงสร้างของแอพนี้เสียก่อน</p>
+
+<h2 id="โครงสร้างของ-apache-guacamole">โครงสร้างของ Apache Guacamole</h2>
+
+<p>ตัว Apache Guacamole มีโครงสร้างแบบง่าย ๆ ที่ประกอบไปด้วย</p>
+
+<ol>
+  <li>เว็บเบราวเซอร์ที่รองรับ HTML5</li>
+  <li>Guacamole Server ทีป่ระกอบไปด้วยตัว Guacamole ที่ทำหน้าที่เป็นเว็บเซิร์ฟเวอร์ที่ใช้งานผ่าน Apache Tomcat ที่ทำหน้าที่ติดต่อกับตัวคอมพิวเตอร์ที่เราจะรีโหมดโดยผ่าน SSH, VNC, RDP และโปรโตคอลอื่นด้วยตัวกลางอย่าง guacd</li>
+  <li>คอมพิวเตอร์เป้าหมายที่เราต้องการให้รีโหมด</li>
+</ol>
+
+<p>เมื่อทราบโครงสร้างนี้แล้ว ต่อมาเราจะมาติดตั้ง Apache Guacamole</p>
+
+<h2 id="การติดตั้ง">การติดตั้ง</h2>
+
+<p>การติดตั้ง Apache Guacamole สามารถติดตั้งได้สองวิธี ได้แก่</p>
+
+<ul>
+  <li><strong>ติดตั้งลงไปในคอมพิวเตอร์นั้น ๆ เลย</strong> - วิธีนี้เราจำเป็นต้องติดตั้ง Apache Tomcat และติดตั้งเครื่องมือที่จำเป็น ร่วมกับต้องคอมไฟล์ Apache Guacamole ซึ่งยุ่งยาก</li>
+  <li><strong>ติดตั้งโดยใช้งานผ่าน Docker</strong> - วิธีนี้ทำง่ายกว่า แถมไม่จำเป็นต้องไปนั่งติดตั้งเครื่องมือและคอมไพล์ให้ยุ่งยาก แถม Apache Guacamole ยังมี Container มาให้แบบ Official มาให้อยู่แล้ว</li>
+</ul>
+
+<p>ในบทความนี้เราจะกล่าวถึงการติดตั้งโดยผ่าน Docker ส่วนอันแรกผู้อ่านสามารถอ่านได้ในหน้าเว็บของผู้ทำแอพได้ครับ</p>
+
+<h3 id="ติดตั้งผ่าน-docker">ติดตั้งผ่าน Docker</h3>
+
+<p>การติดตั้งผ่าน Docker [2] เป็นวิธีที่ทำได้ง่าย ไม่จำเป็นต้องติดตั้งและคอนไพล์ให้ยุ่งยาก โดยมี Container ที่จำเป็นทั้งหมด 3 Container ได้แก่</p>
+
+<ul>
+  <li><strong>guacamole/guacd</strong> ที่เป็น Container สำหรับ guacd ที่ทำหน้าที่เป็นตัวอย่างระหว่างตัวเว็บเซิร์ฟเวอร์กับโปรโตคอลที่แตกต่างอย่าง SSH, VNC, RDP และอื่น ๆ</li>
+  <li><strong>guacamole/guacamole</strong> เป็นตัวเว็บเซิร์ฟเวอร์ที่รันผ่าน Apache Tomcat ที่ติดต่อกับ guacd และฐานข้อมูล MySQL, PostgreSQL, Mariadb โดยอ่านการตั้งค่าจาก Environment Variables</li>
+  <li><strong>mysql หรือ mariadb หรือ postgresql</strong> เป็นฐานข้อมูลสำหรับการเก็บข้อมูลการล็อคอิน และเก็บการตั้งค่าการเชื่อมต่อกับคอมพิวเตอร์ผ่านโปรโตคอลต่าง ๆ ในบทความนี้เราจะใช้ MariaDB</li>
+</ul>
+
+<p>เมื่อทราบชื่อ Container ที่จำเป็นแล้ว ก่อนอื่นเราดาวน์โหลดตัว Container ที่กล่าวมาข้างต้นเสียก่อนโดยพิมพ์คำสั่งตามด้านล่างนี้ โดยเวอร์ชันที่ใช้ของ Apache Guacamole ในบทความนี้เราจะใช้รุ่น 1.6.0 ส่วน MariaDB เราจะใช้ lts-ubi</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull guacamole/guacamole:1.6.0
+docker pull guacamole/guacd:1.6.0
+docker pull mariadb:lts-ubi
+</code></pre></div></div>
+
+<h3 id="นำเข้าฐานข้อมูลของ-apache-guacamole">นำเข้าฐานข้อมูลของ Apache Guacamole</h3>
+
+<p>เมื่อดาวน์โหลด Container เสร็จแล้วเราจำเป็นต้องมีไฟล์ SQL ที่เก็บรายละเอียดฐานข้อมูลที่เกี่ยวข้องกับ Apache Guacamole เสียก่อน ทำได้โดย</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --rm guacamole/guacamole:1.6.0 /opt/guacamole/bin/initdb.sh --mysql &gt; initdb.sql
+</code></pre></div></div>
+
+<p>ต่อมาเริ่มต้น Container ของ MariaDB เพื่อนำเข้าไฟล์ SQL ที่สร้างไว้ในขั้นตอนก่อนหน้าสำหรับการสร้างฐานข้อมูลที่จำเป็นต่อการรัน Apache Guacamole ด้วยการสร้างไฟล์ <code class="language-plaintext highlighter-rouge">docker-compose.yml</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'
+services:
+  guacdb:
+    container_name: guacamoledb
+    image: mariadb:lts-ubi
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: '&lt; รหัสผ่าน root &gt;'
+      MYSQL_DATABASE: 'guacamole_db'
+      MYSQL_USER: 'guacamole_user'
+      MYSQL_PASSWORD: '&lt; รหัสผ่านผู้ใช้ guacamole_user &gt;'
+    volumes:
+      - './db-data:/var/lib/mysql'
+volumes:
+  db-data:
+</code></pre></div></div>
+
+<p>จากนั้นให้เริ่มต้นการทำงานของ Docker ด้วยการพิมพ์คำสั่ง <code class="language-plaintext highlighter-rouge">docker-compose up -d</code> แล้วก็นำเข้าไฟล์ SQL ลงไปใน Container นั้นด้วยการพิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker cp initdb.sql guacamoledb:/initdb.sql
+docker exec -it guacamoledb bash
+cat /initdb.sql | mysql -u root -p guacamole_db
+exit
+</code></pre></div></div>
+
+<p>เมื่อพิมพ์คำสั่งในบรรทัดที่ 3 แล้ว ตัว MariaDB จะสอบถามรหัสผ่านของ root ให้ผู้อ่านพิมพ์รหัสผ่านที่กล่าวถึงแล้วในขั้นตอนก่อนหน้า</p>
+
+<blockquote>
+  <p>ส่วนกรณีที่พิมพ์คำสั่ง mysql ในบรรทัดที่ 3 ไม่ได้เพราะว่ามันไม่มีคำสั่งนี้ ให้ผู้อ่านเปลี่ยนจาก mysql -&gt; mariadb แทนครับ</p>
+</blockquote>
+
+<p>หลังจากที่พิมพ์คำสั่ง exit แล้ว ให้ผู้อ่านพิมพ์ <code class="language-plaintext highlighter-rouge">docker-compose down</code> เพื่อปิดการทำงานของ Container เสียก่อน</p>
+
+<h3 id="รัน-apache-guacamole">รัน Apache Guacamole</h3>
+
+<p>เมื่อนำเข้าฐานข้อมูลเสร็จเรียบร้อยแล้ว ให้ผู้อ่านแก้ที่ไฟล์ <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'
+services:
+  guacdb:
+    container_name: guacamoledb
+    image: mariadb:lts-ubi
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: '&lt; รหัสผ่าน root &gt;'
+      MYSQL_DATABASE: 'guacamole_db'
+      MYSQL_USER: 'guacamole_user'
+      MYSQL_PASSWORD: '&lt; รหัสผ่านผู้ใช้ guacamole_user &gt;'
+    volumes:
+      - './db-data:/var/lib/mysql'
+  guacd:
+    container_name: guacd
+    image: guacamole/guacd:1.6.0
+    restart: unless-stopped
+  guacamole:
+    container_name: guacamole
+    image: guacamole/guacamole:1.6.0
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      GUACD_HOSTNAME: "guacd"
+      MYSQL_HOSTNAME: "guacdb"
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_USER: "guacamole_user"
+      MYSQL_PASSWORD: '&lt; รหัสผ่านผู้ใช้ guacamole_user &gt;'
+      TOTP_ENABLED: "true"
+    depends_on:
+      - guacdb
+      - guacd
+volumes:
+  db-data:
+</code></pre></div></div>
+
+<p>แก้เสร็จแล้ว ให้รัน Container ขึ้นมาด้วยคำสั่ง <code class="language-plaintext highlighter-rouge">docker-compose up -d</code></p>
+
+<h3 id="การเข้าถึง-apache-guacamole">การเข้าถึง Apache Guacamole</h3>
+
+<p>เมื่อรันเสร็จแล้วให้ผู้ใช้เข้าไปที่ Apache Guacamole ผ่านหน้าเว็บเบราวเซอร์ด้วยการพิมพ์</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://&lt; ตำแหน่ง IP ของคอมที่ติดตั้ง Apache Guacamole &gt;:8080/guacamole 
+</code></pre></div></div>
+
+<p>โดยตัว <code class="language-plaintext highlighter-rouge">/guacamole</code> อันนี้มีต่อไว้เนื่องจากตัว Apache Guacamole ไม่สามารถเข้าถึงจาก Root directory จำเป็นต้องพิมพ์ข้อความต่อด้านล่างเพิ่มเติมมาครับ</p>
+
+<p>เมื่อเข้าถึง Apache Guacamole ผ่านหน้าเว็บแล้วจะปรากฏหน้าจอตามด้านล่างนี้</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/apache_guacamole.png" alt="Apache Guacamole" /></p>
+
+<p>ให้พิมพ์ชื่อผู้ใช้และรหัสผ่านด้วย <code class="language-plaintext highlighter-rouge">guacadmin</code> เมื่อพิมพ์เสร็จแล้วจะปรากฏหน้าจอ Two Factor Authentication ให้ผู้ใช้เปิดแอพ Authenticator บนมือถือเพื่อสแกน QR code แล้วพิมพ์รหัสที่ได้ลงไปในหน้านั้นแล้วก็เข้าสู่ระบบ</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/guacamole_authentication_code.png" alt="หน้าจอ Two Factor Authentication" /></p>
+
+<blockquote>
+  <p>กรณีที่ไม่อยากเห็นหน้าจอตามด้านบนนี้ให้แก้ในไฟล์ <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> ตรง <code class="language-plaintext highlighter-rouge">TOTP_ENABLED: "true"</code> ให้เป็น <code class="language-plaintext highlighter-rouge">"false"</code> แทนครับ</p>
+</blockquote>
+
+<p>เมื่อเข้าสู่ระบบแล้วจะปรากฏหน้าจอหลักของ Apache Guacamole ตามด้านล่างนี้ แค่นี้ก็สามารถใช้งานได้แล้ว</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/guacamole_main.png" alt="หน้าจอหลักของ Apache Guacamole" /></p>
+
+<h2 id="ที่มา">ที่มา</h2>
+
+<ol>
+  <li><a href="https://guacamole.apache.org/doc/gug/introduction.html">https://guacamole.apache.org/doc/gug/introduction.html</a></li>
+  <li><a href="https://krdesigns.com/articles/how-to-install-guacamole-using-docker-step-by-step">https://krdesigns.com/articles/how-to-install-guacamole-using-docker-step-by-step</a></li>
+</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="apache" /><category term="guacamole" /><category term="remote" /><category term="desktop" /><category term="pc" /><category term="docker" /><category term="SSH" /><category term="VNC" /><category term="RDP" /><category term="รีโหมด" /><summary type="html"><![CDATA[แอพ Apache Guacamole อนุญาตให้เราเข้าถึงคอมจากระยะไกลได้ ในบทความนี้เราจะแนะนำการติดตั้งเพื่อรีโหมดคอมจากระยะไกลได้]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" /><media:content medium="image" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ</title><link href="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/" rel="alternate" type="text/html" title="#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ" /><published>2025-07-23T11:30:00+07:00</published><updated>2025-07-23T11:30:00+07:00</updated><id>https://nickuntitled.com/2025/07/23/notion-usage-for-helping-preparing-examination</id><content type="html" xml:base="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/"><![CDATA[<p>เขียนต่อจากบทความ<a href="/2025/01/24/building-a-second-brain/">การสร้าง Second Brain โดยใช้เครื่องมืออย่าง Notion</a> ที่เป็นการเก็บข้อมูลความรู้ไว้ในแหล่งเก็บข้อมูลภายนอกเพื่อให้เราดึงข้อมูลมาใช้ในเวลาที่จำเป็น</p>
 
 <p>จุดนี้เป็นจุดที่ดีสำหรับการอ่านเตรียมสอบอะไรทั้งหลายแหล่ รวมถึงเตรียมสอบราชการ</p>
 
@@ -1506,419 +1681,4 @@ This function (slow_mul) takes 7.867813110351562e-06 seconds.</code></pre>
 </div>
 </div>
 
-<p>นอกจากนี้ผู้ใช้สามารถใช้งานฟีเจอร์อื่น ๆ ในเว็บ Baidu ได้อีก อย่างไรก็ดีแอปในเครือ Baidu เสียอย่างที่เป็นภาษาจีนหมด ซึ่งสำหรับคนที่รู้ภาษาจีนอยู่แล้วคงไม่เป็นปัญหาอะไรครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="China" /><category term="computer" /><category term="diary" /><category term="Map" /><category term="register" /><category term="travel" /><category term="ท่องเที่ยว" /><category term="ประเทศจีน" /><category term="สมัครสมาชิก" /><category term="แผนที่" /><category term="ไป่ตู้" /><category term="百度地圖" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/28_how_to_use_baidu_and_how_to_register_cover.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/28_how_to_use_baidu_and_how_to_register_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#27 Web Scraping ดึง 20 ข่าวล่าสุดจากเว็บข่าวด้วย Selenium</title><link href="https://nickuntitled.com/2024/05/13/27-web-scraping-acquire-latest-20-articles-via-selenium/" rel="alternate" type="text/html" title="#27 Web Scraping ดึง 20 ข่าวล่าสุดจากเว็บข่าวด้วย Selenium" /><published>2024-05-13T13:40:19+07:00</published><updated>2024-06-08T18:54:06+07:00</updated><id>https://nickuntitled.com/2024/05/13/27-web-scraping-acquire-latest-20-articles-via-selenium</id><content type="html" xml:base="https://nickuntitled.com/2024/05/13/27-web-scraping-acquire-latest-20-articles-via-selenium/"><![CDATA[<p>ปกติการดึงข่าวล่าสุด อันนี้เราใช้ <strong>RSS (Really Simple Syndication)</strong> หรือ <strong>Feedly </strong>ได้เลย อย่างไรก็ดี ไม่ใช่ทุกเว็บไซต์ที่จะรองรับวิธีนี้ได้ อาจจะเป็นเพราะทางนั้นไม่ได้ให้ลิ้งค์สำหรับ RSS ไว้ครับ</p>
-
-<p>เมื่อเจอปัญหานี้แล้ว ในบทความนี้เราแนะนำวิธีหนึ่งที่คนใช้กัน วิธีนี้เรียกว่า <strong>Web Scraping</strong></p>
-
-<!--more-->
-
-<h2 class="wp-block-heading">Web Scraping</h2>
-
-<p>การทำ <strong>Web Scraping</strong> [1, 2] เป็นวิธีการดึงข้อมูลจากหน้าเว็บไซต์ตาม HTML Element และ CSS Selector ตามที่เราได้กำหนดไว้ โดยในแต่ละเว็บไซต์ที่เราเข้าดูผ่านการใช้งานอินเตอร์เน็ตนั้น มันจะมีข้อมูลที่เก็บไว้ข้างใน</p>
-
-<p>ข้อมูลในนั้นแหละเป็นแหล่งข้อมูลที่ดีสำหรับการนำไปใช้งานต่อ โดยตัวอย่างสำหรับการนำไปใช้งานต่อก็เป็นทางด้าน</p>
-
-<ol class="wp-block-list">
-<li>ติดตามการเปลี่ยนแปลงของข้อมูล (Data Monitoring)</li>
-
-
-
-<li>เป็นตัวช่วยสำหรับการตัดสินใจ (Decision Making)</li>
-
-
-
-<li>และวิเคราะห์การตลาด (Marketing)</li>
-</ol>
-
-<p>การทำ Web Scraping นั้น ถ้าข้อมูลมีจำนวนไม่มาก เราก็ทำแบบ Manual เพื่อดึงข้อมูลมาทีละนิดก็ได้ อย่างไรก็ดี ข้อมูลของเว็บไซต์มีจำนวนหลักพัน ไปจนถึงหลักล้าน การทำ Manual ทีละหน้าก็เสียเวลาเกินไปหน่อย ไม่ทันกิน</p>
-
-<p>ดังนั้นแล้ว เราจำเป็นต้องทำเครื่องมือสำหรับการดึงข้อมูลแบบอัตโนมัติขึ้นมาครับ</p>
-
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p>อย่างไรก็ดี การทำ <strong>Web Scraping</strong> นั้นจำเป็นต้องพิจารณาว่าหน้าไหนที่เราทำได้ เพื่อไม่ให้ไปขัดกับเรื่องทางกฏหมาย และข้อมูลส่วนบุคคล โดยสามารถดูได้จาก</p>
-
-
-
-<ul class="wp-block-list">
-<li>เว็บไซต์ที่มีข้อกำหนดในการให้บริการ (Terms and Services)</li>
-
-
-
-<li>เว็บไซต์ที่ใช้ CAPTCHA</li>
-
-
-
-<li>เว็บไซต์ที่ต้องยืนยันตัวตน</li>
-
-
-
-<li>เป้นต้น</li>
-</ul>
-
-
-
-<p>โดยข้อมูลที่เราจะดึงนั้น เราได้ดู Terms and Services แล้วว่าไม่ได้ระบุ และตัวเว็บไม่มี CAPTCHA กับการยืนยันตัวตน นอกจากนี้เราดึงข้อมูลมาใช้เองครับ</p>
-<cite>เอามาจาก: <a href="https://devhub.in.th/blog/web-scraping-python" data-type="link" data-id="https://devhub.in.th/blog/web-scraping-python" target="_blank" rel="noreferrer noopener">สอนทำ Web Scraping ด้วย Python เพื่อดึงข้อมูลจากเว็บไซต์ &#8211; Devhub</a></cite></blockquote>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">ขั้นตอนการทำ Web Scraping</h2>
-
-<p>แต่ก่อนอื่น เราจำเป็นต้องรู้ขั้นตอนการทำ Web Scraping เสียก่อน โดยเริ่มตั้งแต่</p>
-
-<ol class="wp-block-list">
-<li>เข้าเว็บไซต์ไปยังหน้าที่เราต้องการ</li>
-
-
-
-<li>เก็บข้อมูลดิบ</li>
-
-
-
-<li>ดึงข้อมูลออกมา</li>
-
-
-
-<li>จัดเก็บข้อมูลให้อยู่ในรูปแบบตามที่ต้องการ</li>
-
-
-
-<li>และเก็บไว้ในที่เหมาะสม</li>
-</ol>
-
-<p>เมื่อเราดูขั้นตอนแล้วนี่ยังกับขั้นตอนการทำ <strong>ELT (Extract Load Transform)</strong> ที่เราทำไปในวงการของ Data Engineer (ใครสนใจก็ไปเรียนในคอร์ส R2DE 3.0 ที่ DataTH โดย<a href="https://pages.datath.com/r2de3-early-bird" data-type="link" data-id="https://pages.datath.com/r2de3-early-bird" target="_blank" rel="noreferrer noopener">สมัครแบบ Early Bird</a>) โดยเหตุผลการทำ ELT แทนที่เราจะทำ ETL (Extract Transform Load) นั้น ก็เพื่อป้องกันปัญหา</p>
-
-<ul class="wp-block-list">
-<li>เครื่องมือ Web Scraping ทำงานไม่สำเร็จ (<strong>Scraper Fail</strong>) โดยเราแค่ให้เครื่องมือดึงข้อมูลเฉพาะจุดที่มีปัญหา</li>
-
-
-
-<li>แปลงข้อมูลไม่ได้ (<strong>Unable to transform on-the-fly</strong>) เนื่องจากมันไม่มีข้อมูลในบางหน้า</li>
-
-
-
-<li>ข้อมูลหาย (<strong>Data Loss</strong>) ด้วยการ Backup ข้อมูลเสียก่อน</li>
-</ul>
-
-<p>เมื่อทราบขั้นตอนแบบคร่าว ๆ แล้ว เรามีโจทย์ที่อยากจะดึงข้อมูลข่าวล่าสุดจากเว็บไซต์อย่าง Voice TV ครับ ซึ่งเว็บนี้ตัวเว็บไม่ได้ให้ลิ้งค์กดไปยัง RSS Feed ดังนั้นแล้วเราจะมาใช้วิธีนี้</p>
-
-<p>จากโจทย์นั้น เราจำเป็นต้องดึงข้อมูลจากหน้าที่<a href="https://voicetv.co.th/news" data-type="link" data-id="https://voicetv.co.th/news" target="_blank" rel="noreferrer noopener">รวบรวมข่าวทั้งหมดของเว็บไซต์</a></p>
-
-<h3 class="wp-block-heading">หน้าที่รวบรวมข่าวทั้งหมด</h3>
-
-<p>หน้านี้เป็นหน้าที่รวบรวมข่าวทั้งหมดที่มีในเว็บ ตั้งแต่ข่าวล่าสุด ไปจนถึงข่าวเก่าสุดที่มีเก็บไว้ในเว็บนี้ โดยหน้าที่กล่าวถึงแสดงตามด้านล่างนี้ครับ</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1024x540.png" alt="" class="wp-image-6970" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-300x158.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1024x540.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-768x405.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1536x810.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-2048x1079.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1200x632.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news-1980x1044.png 1980w" /><figcaption class="wp-element-caption">หน้าที่รวบรวมข่าวทั้งหมดที่มีในหน้าเว็บ (แคปเมื่อวันที่ 11/5/2024)</figcaption></figure></div>
-
-<p>เรามาวิเคราะห์โดยใช้เครื่องมืออย่าง Inspect Element ที่มีมาให้ใน Microsoft Edge กับ Google Chrome เป็นต้น</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1024x596.png" alt="" class="wp-image-6972" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-300x175.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1024x596.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-768x447.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1536x894.png 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-2048x1192.png 2048w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1200x698.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_inspect-1980x1152.png 1980w" /><figcaption class="wp-element-caption">หน้า Inspect Element (แคปเมื่อวันที่ 11/5/2024)</figcaption></figure></div>
-
-<p>เราจะพบว่า ตัวหัวข้อข่าวที่ต้องการนั้น อยู่ใน CSS Class ที่แสดงรายละเอียดเป็นแผนภาพตามด้านล่างนี้</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1024x576.jpg" alt="" class="wp-image-6975" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-300x169.jpg 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1024x576.jpg 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-768x432.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1536x864.jpg 1536w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page-1200x675.jpg 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_news_page.jpg 1920w" /></figure></div>
-
-<p>โดย</p>
-
-<ul class="wp-block-list">
-<li><strong>รายการข่าวล่าสุดทุกข่าว (Latest News)</strong> อยู่ใน CSS Class ที่มีชื่อ contents</li>
-
-
-
-<li><strong>ข่าวแต่ละข่าว</strong> อยู่ใน CSS Class ที่มีชื่อ column และ is-4</li>
-
-
-
-<li><strong>รูปพาดหัวข่าว</strong> อยู่ใน CSS Class image ที่มี HTML tag img<strong> </strong>อยู่ข้างใน</li>
-
-
-
-<li><strong>ข้อความพาดหัวข่าว กับประเภทข่าว</strong> อยู่ใน CSS Class info โดยสามารถระบุ HTML Element ได้ตามด้านล่างนี้
-<ul class="wp-block-list">
-<li>ข้อความพาดหัวข่าวอยู่ใน HTML tag a ที่อยู่ใน CSS Class title</li>
-
-
-
-<li>ประเภทข่าวอยู่ใน HTML tag a ที่อยู่ใน CSS Class topic</li>
-</ul>
-</li>
-</ul>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">วิธีทำ Web Scraping</h2>
-
-<p>การนำ Web Scraping นั้น โดยทั่วไปจะมี 2 วิธี ได้แก่</p>
-
-<ol class="wp-block-list">
-<li><strong>ใช้เครื่องมือสำเร็จรูป:</strong> วิธีนี้เราสามารถใช้โปรแกรมที่มีผู้พัฒนาได้พัฒนาไว้ มาดึงข้อมูลได้โดยไม่จำเป็นต้องเขียนโค้ด ตัวอย่างเช่น
-<ul class="wp-block-list">
-<li><a href="https://chromewebstore.google.com/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn" data-type="link" data-id="https://chromewebstore.google.com/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn" target="_blank" rel="noreferrer noopener"><strong>Web Scraper</strong></a> ที่เป็นส่วนเสริมใน Google Chrome</li>
-
-
-
-<li>กับ <strong><a href="https://www.octoparse.com/" data-type="link" data-id="https://www.octoparse.com/" target="_blank" rel="noreferrer noopener">Octoparse</a> </strong>ที่เป็นเครื่องมือสำหรับการดึงข้อมูลที่ทำได้ง่ายโดยการคลิกตำแหน่งที่ต้องการ</li>
-
-
-
-<li>เป็นต้น</li>
-</ul>
-</li>
-
-
-
-<li><strong>เขียนโค้ด: </strong>เราสามารถเขียนโค้ดเพื่อดึงข้อมูลที่ต้องการได้ โดยเทคนิคนี้เป็นวิธีที่นิยม เนื่องมาจากเราสามารถดึงข้อมูลได้ตามที่ต้องการ และกำหนดรูปแบบการดึงข้อมูลได้ โดยมีไลบรารีรองรับหลายอัน ได้แก่ <strong><a href="https://pypi.org/project/beautifulsoup4/" data-type="link" data-id="https://pypi.org/project/beautifulsoup4/" target="_blank" rel="noreferrer noopener">BeautifulSoup4</a></strong> กับ <strong><a href="https://www.selenium.dev/" data-type="link" data-id="https://www.selenium.dev/" target="_blank" rel="noreferrer noopener">Selenium</a></strong> เป็นต้น</li>
-</ol>
-
-<p>ในตัวอย่างนี้เราจะใช้การเขียนโค้ดด้วย Python และการใช้ไลบรารีอย่าง Selenium</p>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">Selenium</h2>
-
-<p><strong>Selenium </strong>[4] เป็นเครื่องมือ และไลบรารีสำหรับการควบคุม Web Browser อัตโนมัติ โดยนำไปใช้สำหรับ</p>
-
-<ul class="wp-block-list">
-<li>การทดสอบเว็บไซต์แบบอัตโนมัติ (Automated Web Testing)</li>
-
-
-
-<li>การทำเครื่องมือเป็น Bot สำหรับการทำงานแทนคน (Robot Process Automation)</li>
-
-
-
-<li>และทำเครื่องมือเก็บข้อมูลจากหน้าเว็บไซต์ (Web Scraping)</li>
-</ul>
-
-<p>ไลบรารีนี้รองรับการเขียนโปรแกรมได้หลากหลายภาษา ได้แก่ Python, Java, JavaScript, C#, Ruby และ PHP ผู้ใช้สามารถเลือกใช้ภาษาที่ถนัดได้สำหรับการใช้เครื่องมือนี้</p>
-
-<p>อย่างไรก็ดี ในบทความนี้เราจะใช้ Python เพื่อทำ Web Scraping โดยเราจะดึงรายการข่าวที่มีในเว็บไซต์ล่าสุดทั้งหมด 20 ข่าว</p>
-
-<h3 class="wp-block-heading">เขียนโค้ดดึงรายการข่าว</h3>
-
-<p>ส่วนนี้เป็นการดึงรายการข่าวในเว็บไซต์ โดยเราจะดึงข้อมูลทั้งหมด 5 ข้อมูล ได้แก่</p>
-
-<ul class="wp-block-list">
-<li>ชื่อพาดหัวข่าว</li>
-
-
-
-<li>ประเภทของข่าว</li>
-
-
-
-<li>วันที่ที่ข่าวนั้น ๆ เผยแพร่</li>
-
-
-
-<li>ลิ้งค์สำหรับภาพพาดหัวข่าว</li>
-
-
-
-<li>ลิ้งค์สำหรับการเข้าไปอ่าน</li>
-</ul>
-
-<p>ขั้นตอนแรก ก่อนอื่น เราจำเป็นต้องติดตั้งแพคเกจสำหรับการดึงข้อมูล</p>
-
-<pre class="wp-block-code"><code>pip install selenium requests</code></pre>
-
-<p>ต่อมา เราจำเป็นต้องนำเข้าไลบรารีเสียก่อน ด้วยการเขียนโค้ดตามด้านล่างนี้</p>
-
-<pre class="wp-block-code"><code>from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-from datetime import datetime</code></pre>
-
-<p>ร่วมกับการตั้งค่าจำกัดให้โหลดเพียง 20 ข่าวล่าสุด</p>
-
-<pre class="wp-block-code"><code>LIMIT_NEWS = 20</code></pre>
-
-<p>หลังจากนั้น เราจะสร้างไฟล์สำหรับการเก้บข้อมูลที่เราดึงมาได้เพื่อให้เก็บในรูปแบบ <strong>CSV </strong>(<strong>Comma Separated Value</strong> ที่เป็นฟอร์แมตที่ Excel อ่านได้)</p>
-
-<pre class="wp-block-code"><code>f = open("output.csv", "w+", encoding = 'utf-8')
-f.write("date,topic,title,link,thumbnail\n")</code></pre>
-
-<p>ถัดจากนั้น เราจะเขียนฟังก์ชันสำหรับการดึงรายการข่าวล่าสุดที่มีในเว็บไซต์โดยใช้ไลบรารี <strong>Selenium </strong>ที่จำเป็นต้องเปิด Web Browser เสียก่อน โดยในบทความนี้เราจะใช้ Google Chrome</p>
-
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p>การนำ Google Chrome มาใช้งานกับ Selenium เราจำเป็นต้องติดตั้งเครื่องมืออย่าง <strong><a href="https://chromedriver.chromium.org/home" data-type="link" data-id="https://chromedriver.chromium.org/home" target="_blank" rel="noreferrer noopener">chromedriver</a> </strong>เสียก่อน โดยเครื่องมือนี้มีไว้สำหรับการทดสอบหน้าเว็บแบบอัตโนมัติ (Automated testing) ที่รองรับการขยับหน้าจอ การกรอกข้อความ การรันโค้ดจาวาสคริป และอื่น ๆ โดยเป็นเครื่องมือที่ใช้มาตรฐานอย่าง W3C และเป็นเครื่องมือที่รองรับ Windows, Linux, macOS และ ChromeOS</p>
-</blockquote>
-
-<p>เราสามารถเขียนโค้ดได้ตามด้านล่างนี้</p>
-
-<pre class="wp-block-code"><code>driver = webdriver.Chrome()</code></pre>
-
-<p>จากนั้น เปิดหน้าเว็บที่แสดงรายการข่าวทั้งหมด</p>
-
-<pre class="wp-block-code"><code>driver.get('https://voicetv.co.th/news')</code></pre>
-
-<p>เมื่อเปิดหน้าเว็บแล้ว เราจำเป็นต้องให้ตัวโค้ดที่เราเขียนรอให้เว็บบราวเซอร์ปรากฏหน้าเพจที่เราต้องการ วิธีการทำทำได้ตามด้านล่างนี้</p>
-
-<pre class="wp-block-code"><code># Explicit Wait
-wait = WebDriverWait(driver, 30)
-
-# <strong>EC.visibility_of_all_elements_located</strong> กำหนดให้รอจนกว่า CSS Class column is-4 (ก็คือ Class สำหรับแสดงข่าวแต่ละข่าวในหน้าเพจ) ปรากฏบนหน้าจอเรียบร้อย
-# <strong>EC.element_to_be_clickable</strong> กำหนดให้รอปุ่ม More (ที่ใช้ CSS Class more) ปรากฏบนหน้าเพจ ร่วมกับผู้ใช้สามารถกดปุ่มนั้นได้
-try:
-    wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".column .is-4")))
-    wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".contents .more")))
-except Exception as e:
-    # ถ้ามี Error ให้ออกจากโปรแกรม
-    print(f"&#91;*] Error =&gt; { e }")
-    exit(1)</code></pre>
-
-<p>เมื่อเขียนโค้ดส่วนการกำหนดให้เว็บบราวเซอร์รอการโหลดหน้าเพจนั้นเรียบร้อยแล้ว เรามาเขียนโค้ดส่วนที่</p>
-
-<ul class="wp-block-list">
-<li>ดึงข้อมูลข่าวทั้งหมดที่มีในเว็บไซต์</li>
-
-
-
-<li>คลิกปุ่ม More เพื่อดูข่าวเพิ่มเติม (ตามภาพด้านล่างตัวโค้ดนี้)</li>
-
-
-
-<li>และลบรายการข่าวเก่าที่ดึงข้อมูลเรียบร้อย</li>
-</ul>
-
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p>โดยในโค้ด เราจะดึงข่าวมาบางส่วน (<strong>20 ข่าว</strong>) เพื่อป้องกันไม่ให้เซิร์ฟเวอร์ทำงานหนักจนเกินไป</p>
-</blockquote>
-
-<pre class="wp-block-code"><code># More Button
-end = 0
-news_count = 0
-
-# จำกัดการดึงข่าวทั้งหมด 20 ข่าว
-while news_count &lt; LIMIT_NEWS:
-    try:
-        # ดึงข้อมูลแต่ละข่าวในหน้าเพจ
-        news_count += pull_data(f, driver, news_count, LIMIT_NEWS)
-
-        # ค้นหา CSS Class contents ด้วย <strong>driver.find_elements</strong>
-        contents = driver.find_elements(By.CSS_SELECTOR, ".contents")
-
-        # ค้นหาปุ่ม More โดยใช้ CSS Class more ที่อยู่ข้างใน CSS Class contents
-        more_button = contents&#91;0].find_elements(By.CSS_SELECTOR, ".more")
-
-        # ลบข่าวเก่าที่โหลดมาแล้ว ด้วยการสั่งโค้ด JavaScript ผ่าน <strong>driver.execute_script</strong>
-        driver.execute_script("document.querySelectorAll('.contents')&#91;0].querySelectorAll('.is-4').forEach(element =&gt; element.remove())")
-
-        # กดปุ่ม More ด้วยการสั่งโค้ด JavaScript ผ่าน <strong>driver.execute_script</strong>
-        driver.execute_script("document.querySelectorAll('.contents')&#91;0].querySelector('.more').click()")
-
-        # กำหนดให้รอจนกว่าจะโหลดข่าวเพิ่มเสร็จเรียบร้อย ด้วย <strong>EC.visibility_of_all_elements_located</strong>
-        wait.until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".contents .is-4")))
-    except Exception as e:
-        # เมื่อเกิด Error ขึ้นเช่นหาปุ่ม More ไม่เจอ หรือ สาเหตุอื่น
-        # ตัวโค้ดจะหยุดการวนลูป
-        print(f"&#91;*] Error =&gt; { e }")
-        break</code></pre>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more.png" alt="" class="wp-image-7002" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more-300x158.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more-768x403.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_more.png 891w" /><figcaption class="wp-element-caption">ปุ่ม More สำหรับการโหลดข่าวเพิ่มเติม</figcaption></figure></div>
-
-<p>ต่อมา เรามาดูในฟังก์ชัน <strong>pull_data </strong>เป็นฟังก์ชันสำหรับการดึงข้อมูลรายการข่าวล่าสุดที่ปรากฏในหน้าเพจ หลังจากการโหลดหน้าเพจนั้น หรือหลังจากการกดปุ่ม More</p>
-
-<pre class="wp-block-code"><code>def pull_data(f, driver, previous_news_count, limit_news = 20):
-    # ค้นหาข่าวแต่ละข่าวใน CSS Class is-4 ที่อยู่ใน CSS Class contents
-    contents = driver.find_elements(By.CSS_SELECTOR, ".contents")
-    news = contents&#91;0].find_elements(By.CSS_SELECTOR, ".is-4")
-
-    # Status
-    print(f"&#91;*] Scraping")
-
-    # ดึงข่าวแต่ละข่าวที่ปรากฏบนหน้าเพจ
-    news_count = len(news)
-
-    # จำกัดข่าวที่ดึงให้ไม่เกิน 20 ข่าว
-    limit_news = news_count + previous_news_count - limit_news
-    limit_loop = news_count if limit_news &lt;= 0 else news_count - limit_news
-    for i in range(limit_loop):
-        new = news&#91;i]
-
-        # ค้นหา CSS Class image เพื่อดึงรูปภาพพาดหัวข่าว
-        img_path = new.find_element(By.CSS_SELECTOR, ".image img").get_attribute('src')
-
-        # ค้นหา CSS Class topic เพื่อดึงหมวดของข่าวนั้น ๆ
-        topic = new.find_element(By.CSS_SELECTOR, ".info .topic").text
-
-        # ค้นหา CSS Class title เพื่อดึงพาดหัวข่าว
-        title = new.find_element(By.CSS_SELECTOR, ".info .title").text
-        
-        # ค้นหาตำแหน่งลิ้งค์ที่อยู่ข้างใน CSS Class title เพื่อดึงลิ้งค์ข่าว
-        url = new.find_element(By.CSS_SELECTOR, ".info .title a").get_attribute('href')
-
-        # ค้นหา CSS Class date เพื่อดึงวันที่เผยแพร่ข่าว ร่วมกับลบตัว comma (,) ออก
-        date = new.find_element(By.CSS_SELECTOR, ".info .writer .date").text
-        date = date.replace(',', '')
-
-        # บันทึกข่าวที่ดึงมาลงในไฟล์ CSV
-        f.write(f"{ date },{ topic },{ title },{ url },{ img_path }\n")
-
-    return limit_loop</code></pre>
-
-<p>เมื่อดึงข้อมูลเสร็จแล้ว ให้ปิดการเขียนไฟล์ และปิดหน้าบราวเซอร์</p>
-
-<pre class="wp-block-code"><code># Quit Web Browser
-driver.quit()
-f.close()</code></pre>
-
-<h3 class="wp-block-heading">รันตัวโค้ด</h3>
-
-<p>เขียนโค้ดเสร็จแล้ว เราทดลองรันดู จะพบว่าตัวโค้ดจะเปิดหน้าเว็บบราวเซอร์เพื่อดึงข้อมูลรายการข่าวที่มีในหน้าเว็บ ผลลัพธ์ที่ได้จะเก็บไว้ในไฟล์ CSV ที่แสดงตามด้านล่างนี้</p>
-
-<div class="wp-block-image">
-<figure class="aligncenter size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-1024x526.png" alt="" class="wp-image-7162" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-300x154.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-1024x526.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header-768x394.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/voicetv_scrape_header.png 1042w" /><figcaption class="wp-element-caption">ตัวอย่างผลลัพธ์ของข่าวที่ดึงมาได้ (ดึงวันที่ 13/5/2024)</figcaption></figure></div>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">สรุป</h2>
-
-<p>การทำ <strong>Web Scraping</strong> เป็นวิธีการดึงข้อมูลจากหน้าเว็บไซต์ตาม HTML Element และ CSS Selector ตามที่เราได้กำหนดไว้ โดยมีวัตถุประสงค์เพื่อ </p>
-
-<ol class="wp-block-list">
-<li>ติดตามการเปลี่ยนแปลงของข้อมูล (Data Monitoring)</li>
-
-
-
-<li>เป็นตัวช่วยสำหรับการตัดสินใจ (Decision Making)</li>
-
-
-
-<li>และวิเคราะห์การตลาด (Marketing)</li>
-</ol>
-
-<p>ในบทความนี้ เราดึงพาดหัวข่าวจากทางเว็บ Voice TV (ที่มี<a href="https://thestandard.co/voice-tv-ceases-operations/" data-type="link" data-id="https://thestandard.co/voice-tv-ceases-operations/" target="_blank" rel="noreferrer noopener">ข่าวประกาศปิดตัวลง</a>) ทั้งหมด 20 ข่าวล่าสุดสำหรับการเป็นตัวอย่างของการทำ Web Scraping ครับ</p>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">ส่งท้าย</h2>
-
-<p>สำหรับผู้อ่านที่เห็นว่าบทความนี้ดี มีประโยชน์ ให้กดไลค์ หรือกดแชร์ไปยังแพลตฟอร์มโซเชียลต่าง ๆ นอกจากนี้ ผู้อ่านยังติดตามได้่ใน&nbsp;<a href="http://www.linkedin.com/in/kittisak-chotikkakamthorn-09a7b3118" target="_blank" rel="noreferrer noopener">Linkedin</a>&nbsp;หรือ&nbsp;<a href="https://twitter.com/nicknznick" target="_blank" rel="noreferrer noopener">X (หรือ Twitter)</a>&nbsp;ได้ครับ</p>
-
-<hr class="wp-block-separator has-alpha-channel-opacity" />
-
-<h2 class="wp-block-heading">แหล่งข้อมูลอ้างอิง</h2>
-
-<ol class="wp-block-list">
-<li><a href="https://digi.data.go.th/blog/what-is-web-scraping/" data-type="link" data-id="https://digi.data.go.th/blog/what-is-web-scraping/" target="_blank" rel="noreferrer noopener">Web Scraping เทคนิคดึงข้อมูลบนเว็บไซต์แบบจัดเต็ม!! &#8211; DIGI</a></li>
-
-
-
-<li><a href="https://punsiriboonyakiat.medium.com/%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B9%83%E0%B8%88%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3-web-scraping-%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%96%E0%B8%AD%E0%B8%B0-e703f668f2c7" data-type="link" data-id="https://punsiriboonyakiat.medium.com/%E0%B8%A1%E0%B8%B2%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B9%83%E0%B8%88%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%A3%E0%B8%A7%E0%B8%A1%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3-web-scraping-%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%96%E0%B8%AD%E0%B8%B0-e703f668f2c7" target="_blank" rel="noreferrer noopener">มาเข้าใจภาพรวมการทำ Web scraping กันเถอะ !! | by Punsiri Boonyakiat | Medium</a></li>
-
-
-
-<li><a href="https://codinggun.com/automated-testing/selenium/" data-type="link" data-id="https://codinggun.com/automated-testing/selenium/" target="_blank" rel="noreferrer noopener">ทำ Test Automation ด้วย Selenium &#8211; Coding Gun</a></li>
-
-
-
-<li><a href="https://www.selenium.dev/" data-type="link" data-id="https://www.selenium.dev/" target="_blank" rel="noreferrer noopener">Selenium</a></li>
-</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Data" /><category term="Archiving" /><category term="coding" /><category term="ELT" /><category term="ETL" /><category term="Feedlyt" /><category term="news" /><category term="programming" /><category term="python" /><category term="rss" /><category term="Selenium" /><category term="Thai news" /><category term="voicetv" /><category term="web scraping" /><category term="วอยซ์ทีวี" /><category term="สนข" /><category term="สำนักข่าว" /><category term="โค้ดดิ้ง" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/05/27_web_scraping_as_newsfeed_cover_20240513_155708_0000.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+<p>นอกจากนี้ผู้ใช้สามารถใช้งานฟีเจอร์อื่น ๆ ในเว็บ Baidu ได้อีก อย่างไรก็ดีแอปในเครือ Baidu เสียอย่างที่เป็นภาษาจีนหมด ซึ่งสำหรับคนที่รู้ภาษาจีนอยู่แล้วคงไม่เป็นปัญหาอะไรครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="China" /><category term="computer" /><category term="diary" /><category term="Map" /><category term="register" /><category term="travel" /><category term="ท่องเที่ยว" /><category term="ประเทศจีน" /><category term="สมัครสมาชิก" /><category term="แผนที่" /><category term="ไป่ตู้" /><category term="百度地圖" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/28_how_to_use_baidu_and_how_to_register_cover.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/28_how_to_use_baidu_and_how_to_register_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

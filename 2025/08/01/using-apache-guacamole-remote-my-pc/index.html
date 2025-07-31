@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล | Nick Untitled</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล" />
+<meta name="author" content="Kittisak Chotikkakamthorn" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="แอพ Apache Guacamole อนุญาตให้เราเข้าถึงคอมจากระยะไกลได้ ในบทความนี้เราจะแนะนำการติดตั้งเพื่อรีโหมดคอมจากระยะไกลได้" />
+<meta property="og:description" content="แอพ Apache Guacamole อนุญาตให้เราเข้าถึงคอมจากระยะไกลได้ ในบทความนี้เราจะแนะนำการติดตั้งเพื่อรีโหมดคอมจากระยะไกลได้" />
+<link rel="canonical" href="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/" />
+<meta property="og:url" content="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/" />
+<meta property="og:site_name" content="Nick Untitled" />
+<meta property="og:image" content="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-08-01T03:00:00+07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" />
+<meta property="twitter:title" content="#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kittisak Chotikkakamthorn"},"dateModified":"2025-08-01T06:00:00+07:00","datePublished":"2025-08-01T03:00:00+07:00","description":"แอพ Apache Guacamole อนุญาตให้เราเข้าถึงคอมจากระยะไกลได้ ในบทความนี้เราจะแนะนำการติดตั้งเพื่อรีโหมดคอมจากระยะไกลได้","headline":"#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล","image":"https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/"},"url":"https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="https://nickuntitled.com/feed.xml" title="Nick Untitled" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <p class = 'back-meta'>
+    <a href="/">&lt; Nick Untitled</a>
+</p><article>
+  <h1 class = 'post-title'>#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล</h1>
+
+  <p class="post-meta">
+    <time datetime="2025-08-01 03:00:00 +0700">2025-08-01</time>
+  </p>
+
+  
+  <figure class = 'featured-image'>
+      <img src = 'https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg' />
+  </figure>
+  
+
+  <p><a href="https://guacamole.apache.org/">Apache Guacamole</a> เป็นแอพ Remote Desktop ระยะไกลที่ไม่ต้องใช้ Client ที่อนุญาตให้ผู้ใช้สามารถเข้าถึงและควบคุมคอมพิวเตอร์จากระยะไกลผ่านหน้าเว็บเบราวเซอร์ โดยผ่านโปรโตคอลมาตรฐานอย่าง SSH, VNC และ RDP [1] ที่ไม่ต้องติดตั้ง Plugin หรือแอพใด ๆ ลงบนคอมพิวเตอร์ของ Client เลย ด้วยการใช้เทคโนโลยีเว็บอย่าง HTML5 และ JavaScript</p>
+
+<p>เมื่อทราบชื่อของแอพนี้แล้ว ทำไมเราต้องใช้ล่ะ?</p>
+
+<h2 id="ทำไมต้องใช้-apache-guacamole">ทำไมต้องใช้ Apache Guacamole</h2>
+
+<p>โดยปกติเวลาที่เครื่อง Client จะเข้าถึงยังคอมพิวเตอร์ที่ต้องการจากระยะไกลนั้น เราจำเป็นต้องลงแอพ Remote Desktop ก่อนที่จะใช้งาน อย่างไรก็ดีมันติดปัญหาตรงนี้</p>
+
+<ul>
+  <li>คอมนั้นลงแอพไม่ได้ เนื่องมาจากใช้ระบบปฏิบัติการที่รันผ่านเว็บเบราวเซอร์แบบ Chrome OS หรือคอมนั้นไม่ได้รับอนุญาตให้ลงแอพเพิ่ม</li>
+  <li>ทางองค์กรนั้น ๆ ไม่ได้รับอนุญาตให้ใช้งานพอร์ตอื่นนอกจาก HTTP กับ HTTPS</li>
+  <li>เจอ Firewall</li>
+</ul>
+
+<p>จุดนี้เป็นที่มาของแอพอย่าง Apache Guacamole ที่มีหลักการอยู่ที่สามารถใช้งานรีโหมดจากระยะไกลได้ทั่วโลก โดยที่ไม่ต้องลงแอพ Client แต่ใช้งานผ่านหน้าเว็บเบราวเซอร์เท่านั้น จุดนี้อนุญาตให้ใช้งานจากอุปกรณ์อะไรก็ได้ ไม่จำกัดว่าจะต้องใช้งานผ่านคอมพิวเตอร์เท่านั้น เรายังใช้โทรศัพท์หรือแท็บเล็ตก็รีโหมดเข้ามายังคอมพิวเตอร์จากระยะไกลได้อีกด้วย</p>
+
+<p>นอกจากนี้ตัว Apache Guacamole ยังใช้งานผ่านโปรโตคอล HTTP หรือ HTTPS เท่านั้น จุดนี้ทำให้เราสามารถใช้งานได้เลยโดยที่ไม่ขัดต่อ Policy ของที่ทำงานนั้น ๆ แถมยังไม่เจอปัญหาเรื่อง Firewall อีกด้วย (ถ้าไม่ได้ไปบล็อกโปรโตคอล HTTP กับ HTTPS)</p>
+
+<p>ต่อมาเรามากล่าวถึงโครงสร้างของแอพนี้เสียก่อน</p>
+
+<h2 id="โครงสร้างของ-apache-guacamole">โครงสร้างของ Apache Guacamole</h2>
+
+<p>ตัว Apache Guacamole มีโครงสร้างแบบง่าย ๆ ที่ประกอบไปด้วย</p>
+
+<ol>
+  <li>เว็บเบราวเซอร์ที่รองรับ HTML5</li>
+  <li>Guacamole Server ทีป่ระกอบไปด้วยตัว Guacamole ที่ทำหน้าที่เป็นเว็บเซิร์ฟเวอร์ที่ใช้งานผ่าน Apache Tomcat ที่ทำหน้าที่ติดต่อกับตัวคอมพิวเตอร์ที่เราจะรีโหมดโดยผ่าน SSH, VNC, RDP และโปรโตคอลอื่นด้วยตัวกลางอย่าง guacd</li>
+  <li>คอมพิวเตอร์เป้าหมายที่เราต้องการให้รีโหมด</li>
+</ol>
+
+<p>เมื่อทราบโครงสร้างนี้แล้ว ต่อมาเราจะมาติดตั้ง Apache Guacamole</p>
+
+<h2 id="การติดตั้ง">การติดตั้ง</h2>
+
+<p>การติดตั้ง Apache Guacamole สามารถติดตั้งได้สองวิธี ได้แก่</p>
+
+<ul>
+  <li><strong>ติดตั้งลงไปในคอมพิวเตอร์นั้น ๆ เลย</strong> - วิธีนี้เราจำเป็นต้องติดตั้ง Apache Tomcat และติดตั้งเครื่องมือที่จำเป็น ร่วมกับต้องคอมไฟล์ Apache Guacamole ซึ่งยุ่งยาก</li>
+  <li><strong>ติดตั้งโดยใช้งานผ่าน Docker</strong> - วิธีนี้ทำง่ายกว่า แถมไม่จำเป็นต้องไปนั่งติดตั้งเครื่องมือและคอมไพล์ให้ยุ่งยาก แถม Apache Guacamole ยังมี Container มาให้แบบ Official มาให้อยู่แล้ว</li>
+</ul>
+
+<p>ในบทความนี้เราจะกล่าวถึงการติดตั้งโดยผ่าน Docker ส่วนอันแรกผู้อ่านสามารถอ่านได้ในหน้าเว็บของผู้ทำแอพได้ครับ</p>
+
+<h3 id="ติดตั้งผ่าน-docker">ติดตั้งผ่าน Docker</h3>
+
+<p>การติดตั้งผ่าน Docker [2] เป็นวิธีที่ทำได้ง่าย ไม่จำเป็นต้องติดตั้งและคอนไพล์ให้ยุ่งยาก โดยมี Container ที่จำเป็นทั้งหมด 3 Container ได้แก่</p>
+
+<ul>
+  <li><strong>guacamole/guacd</strong> ที่เป็น Container สำหรับ guacd ที่ทำหน้าที่เป็นตัวอย่างระหว่างตัวเว็บเซิร์ฟเวอร์กับโปรโตคอลที่แตกต่างอย่าง SSH, VNC, RDP และอื่น ๆ</li>
+  <li><strong>guacamole/guacamole</strong> เป็นตัวเว็บเซิร์ฟเวอร์ที่รันผ่าน Apache Tomcat ที่ติดต่อกับ guacd และฐานข้อมูล MySQL, PostgreSQL, Mariadb โดยอ่านการตั้งค่าจาก Environment Variables</li>
+  <li><strong>mysql หรือ mariadb หรือ postgresql</strong> เป็นฐานข้อมูลสำหรับการเก็บข้อมูลการล็อคอิน และเก็บการตั้งค่าการเชื่อมต่อกับคอมพิวเตอร์ผ่านโปรโตคอลต่าง ๆ ในบทความนี้เราจะใช้ MariaDB</li>
+</ul>
+
+<p>เมื่อทราบชื่อ Container ที่จำเป็นแล้ว ก่อนอื่นเราดาวน์โหลดตัว Container ที่กล่าวมาข้างต้นเสียก่อนโดยพิมพ์คำสั่งตามด้านล่างนี้ โดยเวอร์ชันที่ใช้ของ Apache Guacamole ในบทความนี้เราจะใช้รุ่น 1.6.0 ส่วน MariaDB เราจะใช้ lts-ubi</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull guacamole/guacamole:1.6.0
+docker pull guacamole/guacd:1.6.0
+docker pull mariadb:lts-ubi
+</code></pre></div></div>
+
+<h3 id="นำเข้าฐานข้อมูลของ-apache-guacamole">นำเข้าฐานข้อมูลของ Apache Guacamole</h3>
+
+<p>เมื่อดาวน์โหลด Container เสร็จแล้วเราจำเป็นต้องมีไฟล์ SQL ที่เก็บรายละเอียดฐานข้อมูลที่เกี่ยวข้องกับ Apache Guacamole เสียก่อน ทำได้โดย</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --rm guacamole/guacamole:1.6.0 /opt/guacamole/bin/initdb.sh --mysql &gt; initdb.sql
+</code></pre></div></div>
+
+<p>ต่อมาเริ่มต้น Container ของ MariaDB เพื่อนำเข้าไฟล์ SQL ที่สร้างไว้ในขั้นตอนก่อนหน้าสำหรับการสร้างฐานข้อมูลที่จำเป็นต่อการรัน Apache Guacamole ด้วยการสร้างไฟล์ <code class="language-plaintext highlighter-rouge">docker-compose.yml</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'
+services:
+  guacdb:
+    container_name: guacamoledb
+    image: mariadb:lts-ubi
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: '&lt; รหัสผ่าน root &gt;'
+      MYSQL_DATABASE: 'guacamole_db'
+      MYSQL_USER: 'guacamole_user'
+      MYSQL_PASSWORD: '&lt; รหัสผ่านผู้ใช้ guacamole_user &gt;'
+    volumes:
+      - './db-data:/var/lib/mysql'
+volumes:
+  db-data:
+</code></pre></div></div>
+
+<p>จากนั้นให้เริ่มต้นการทำงานของ Docker ด้วยการพิมพ์คำสั่ง <code class="language-plaintext highlighter-rouge">docker-compose up -d</code> แล้วก็นำเข้าไฟล์ SQL ลงไปใน Container นั้นด้วยการพิมพ์คำสั่งตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker cp initdb.sql guacamoledb:/initdb.sql
+docker exec -it guacamoledb bash
+cat /initdb.sql | mysql -u root -p guacamole_db
+exit
+</code></pre></div></div>
+
+<p>เมื่อพิมพ์คำสั่งในบรรทัดที่ 3 แล้ว ตัว MariaDB จะสอบถามรหัสผ่านของ root ให้ผู้อ่านพิมพ์รหัสผ่านที่กล่าวถึงแล้วในขั้นตอนก่อนหน้า</p>
+
+<blockquote>
+  <p>ส่วนกรณีที่พิมพ์คำสั่ง mysql ในบรรทัดที่ 3 ไม่ได้เพราะว่ามันไม่มีคำสั่งนี้ ให้ผู้อ่านเปลี่ยนจาก mysql -&gt; mariadb แทนครับ</p>
+</blockquote>
+
+<p>หลังจากที่พิมพ์คำสั่ง exit แล้ว ให้ผู้อ่านพิมพ์ <code class="language-plaintext highlighter-rouge">docker-compose down</code> เพื่อปิดการทำงานของ Container เสียก่อน</p>
+
+<h3 id="รัน-apache-guacamole">รัน Apache Guacamole</h3>
+
+<p>เมื่อนำเข้าฐานข้อมูลเสร็จเรียบร้อยแล้ว ให้ผู้อ่านแก้ที่ไฟล์ <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> ครับ</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'
+services:
+  guacdb:
+    container_name: guacamoledb
+    image: mariadb:lts-ubi
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: '&lt; รหัสผ่าน root &gt;'
+      MYSQL_DATABASE: 'guacamole_db'
+      MYSQL_USER: 'guacamole_user'
+      MYSQL_PASSWORD: '&lt; รหัสผ่านผู้ใช้ guacamole_user &gt;'
+    volumes:
+      - './db-data:/var/lib/mysql'
+  guacd:
+    container_name: guacd
+    image: guacamole/guacd:1.6.0
+    restart: unless-stopped
+  guacamole:
+    container_name: guacamole
+    image: guacamole/guacamole:1.6.0
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      GUACD_HOSTNAME: "guacd"
+      MYSQL_HOSTNAME: "guacdb"
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_USER: "guacamole_user"
+      MYSQL_PASSWORD: '&lt; รหัสผ่านผู้ใช้ guacamole_user &gt;'
+      TOTP_ENABLED: "true"
+    depends_on:
+      - guacdb
+      - guacd
+volumes:
+  db-data:
+</code></pre></div></div>
+
+<p>แก้เสร็จแล้ว ให้รัน Container ขึ้นมาด้วยคำสั่ง <code class="language-plaintext highlighter-rouge">docker-compose up -d</code></p>
+
+<h3 id="การเข้าถึง-apache-guacamole">การเข้าถึง Apache Guacamole</h3>
+
+<p>เมื่อรันเสร็จแล้วให้ผู้ใช้เข้าไปที่ Apache Guacamole ผ่านหน้าเว็บเบราวเซอร์ด้วยการพิมพ์</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://&lt; ตำแหน่ง IP ของคอมที่ติดตั้ง Apache Guacamole &gt;:8080/guacamole 
+</code></pre></div></div>
+
+<p>โดยตัว <code class="language-plaintext highlighter-rouge">/guacamole</code> อันนี้มีต่อไว้เนื่องจากตัว Apache Guacamole ไม่สามารถเข้าถึงจาก Root directory จำเป็นต้องพิมพ์ข้อความต่อด้านล่างเพิ่มเติมมาครับ</p>
+
+<p>เมื่อเข้าถึง Apache Guacamole ผ่านหน้าเว็บแล้วจะปรากฏหน้าจอตามด้านล่างนี้</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/apache_guacamole.png" alt="Apache Guacamole" /></p>
+
+<p>ให้พิมพ์ชื่อผู้ใช้และรหัสผ่านด้วย <code class="language-plaintext highlighter-rouge">guacadmin</code> เมื่อพิมพ์เสร็จแล้วจะปรากฏหน้าจอ Two Factor Authentication ให้ผู้ใช้เปิดแอพ Authenticator บนมือถือเพื่อสแกน QR code แล้วพิมพ์รหัสที่ได้ลงไปในหน้านั้นแล้วก็เข้าสู่ระบบ</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/guacamole_authentication_code.png" alt="หน้าจอ Two Factor Authentication" /></p>
+
+<blockquote>
+  <p>กรณีที่ไม่อยากเห็นหน้าจอตามด้านบนนี้ให้แก้ในไฟล์ <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> ตรง <code class="language-plaintext highlighter-rouge">TOTP_ENABLED: "true"</code> ให้เป็น <code class="language-plaintext highlighter-rouge">"false"</code> แทนครับ</p>
+</blockquote>
+
+<p>เมื่อเข้าสู่ระบบแล้วจะปรากฏหน้าจอหลักของ Apache Guacamole ตามด้านล่างนี้ แค่นี้ก็สามารถใช้งานได้แล้ว</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/guacamole_main.png" alt="หน้าจอหลักของ Apache Guacamole" /></p>
+
+<h2 id="ที่มา">ที่มา</h2>
+
+<ol>
+  <li><a href="https://guacamole.apache.org/doc/gug/introduction.html">https://guacamole.apache.org/doc/gug/introduction.html</a></li>
+  <li><a href="https://krdesigns.com/articles/how-to-install-guacamole-using-docker-step-by-step">https://krdesigns.com/articles/how-to-install-guacamole-using-docker-step-by-step</a></li>
+</ol>
+<p class = 'license'>
+    <a href="#top">&uarr; Go to top</a>
+</p></article><div class = 'license'>
+    <hr />
+    <p >
+        &copy; 2025. Nick Untitled. / <a href = '/privacy-policy/'>Privacy Policy</a>
+    </p>
+</div>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RBEMC5RVL9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RBEMC5RVL9');
+</script></div>
+    </main>
+  </body>
+</html>
