@@ -1,10 +1,120 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" /><updated>2025-08-02T03:20:21+00:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Kittisak&apos;s journal in AI, coding and life.
-</subtitle><author><name>Kittisak Chotikkakamthorn</name></author><entry><title type="html">#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล</title><link href="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/" rel="alternate" type="text/html" title="#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล" /><published>2025-07-31T20:00:00+00:00</published><updated>2025-07-31T23:00:00+00:00</updated><id>https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc</id><content type="html" xml:base="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/"><![CDATA[<p><a href="https://guacamole.apache.org/">Apache Guacamole</a> เป็นแอพ Remote Desktop ระยะไกลที่ไม่ต้องใช้ Client ที่อนุญาตให้ผู้ใช้สามารถเข้าถึงและควบคุมคอมพิวเตอร์จากระยะไกลผ่านหน้าเว็บเบราวเซอร์ โดยผ่านโปรโตคอลมาตรฐานอย่าง SSH, VNC และ RDP [1] ที่ไม่ต้องติดตั้ง Plugin หรือแอพใด ๆ ลงบนคอมพิวเตอร์ของ Client เลย ด้วยการใช้เทคโนโลยีเว็บอย่าง HTML5 และ JavaScript</p>
-=======
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" /><updated>2025-08-01T06:27:31+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Kittisak&apos;s journal in AI, coding and life.
-</subtitle><author><name>Kittisak Chotikkakamthorn</name></author><entry><title type="html">#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล</title><link href="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/" rel="alternate" type="text/html" title="#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล" /><published>2025-08-01T03:00:00+07:00</published><updated>2025-08-01T06:00:00+07:00</updated><id>https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc</id><content type="html" xml:base="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/"><![CDATA[<p><a href="https://guacamole.apache.org/">Apache Guacamole</a> เป็นแอพ Remote Desktop ระยะไกลที่ไม่ต้องใช้ Client ที่อนุญาตให้ผู้ใช้สามารถเข้าถึงและควบคุมคอมพิวเตอร์จากระยะไกลผ่านหน้าเว็บเบราวเซอร์ โดยผ่านโปรโตคอลมาตรฐานอย่าง SSH, VNC และ RDP [1] ที่ไม่ต้องติดตั้ง Plugin หรือแอพใด ๆ ลงบนคอมพิวเตอร์ของ Client เลย ด้วยการใช้เทคโนโลยีเว็บอย่าง HTML5 และ JavaScript</p>
->>>>>>> 1881302b533f526abd5c2f21bcb2e806b86377d1
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://nickuntitled.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nickuntitled.com/" rel="alternate" type="text/html" /><updated>2025-08-09T12:55:52+07:00</updated><id>https://nickuntitled.com/feed.xml</id><title type="html">Nick Untitled</title><subtitle>A Kittisak&apos;s journal in AI, coding and life.
+</subtitle><author><name>Kittisak Chotikkakamthorn</name></author><entry><title type="html">#38 - ปรับแต่งหน้าจอ vim ให้ดูดีด้วยปลั้กอิน vim-airline</title><link href="https://nickuntitled.com/2025/08/09/make-vim-beautiful-via-vim-airline/" rel="alternate" type="text/html" title="#38 - ปรับแต่งหน้าจอ vim ให้ดูดีด้วยปลั้กอิน vim-airline" /><published>2025-08-09T07:00:00+07:00</published><updated>2025-08-09T07:00:00+07:00</updated><id>https://nickuntitled.com/2025/08/09/make-vim-beautiful-via-vim-airline</id><content type="html" xml:base="https://nickuntitled.com/2025/08/09/make-vim-beautiful-via-vim-airline/"><![CDATA[<p><strong>vim</strong> ย่อมาจาก VI Improved ที่เป็นโปรแกรมแก้ไขข้อความที่คลาสสิคที่เป็นโปรแกรมแบบ Command Line ที่ได้รับความนิยมอย่างมากสำหรับโปรแกรมเมอร์ ผู้ดูแลระบบ และอื่น ๆ อย่างไรก็ตามตัวโปรแกรมเองมันดูทื่อไปหน่อย ไม่ค่อยดึงดูดผู้ใช้งานเท่าไร ดังนั้นเรามาลงปลั้กอินตัวหนึ่งที่มีชื่อว่า vim-airline</p>
+
+<h2 id="vim-airline">vim-airline</h2>
+
+<p><a href="https://github.com/vim-airline/vim-airline"><strong>vim-airline</strong></a> เป็นปลั้กอินหนึ่งในโปรแกรม vim ที่ปรับแต่งแถบ Status bar ให้แสดงรายละเอียดมากขึ้น แถมยังมีสีสันที่สวยงาม โดยตัวปลั้กอินนี้มีข้อดี ได้แก่</p>
+
+<ul>
+  <li>เป็นปลั้กอินที่มีขนาดเล็ก โหลดได้เร็ว</li>
+  <li>รองรับการทำงานร่วมกับปลั้กอินอื่นเป็นจำนวนมาก</li>
+  <li>ทำให้หน้าจอ vim ดูดีได้โดยไม่ต้องติดตั้งฟอนต์อื่น ๆ เพิ่มเติมและรองรับธีมได้หลากหลาย โดยแสดงตัวอย่างตามภาพด้านล่างนี้</li>
+</ul>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/vim_airline_screenshot.png" alt="หน้าจอ vim ที่ลงปลั้กอิน vim-airline" /></p>
+
+<p>จากภาพหน้าจอด้านบนนี้ เราสามารถอธิบายหน้าจอของ vim-airline ได้ตามแผนภาพ โดยส่วน A,B,C,X และอื่น ๆ ได้แสดงรายละเอียดไว้แล้วตามตาราง</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/vim_airline_schematics.png" alt="โครงสร้างของ vim-airline" /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>ส่วน</td>
+      <td>รายละเอียด (ตัวอย่าง)</td>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td>แสดงโหมดการทำงานของ vim (INSERT)</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>แสดงรายละเอียดของ Environment (ข้อมูลของ Version Control System ได้แก่ branch, hunk summary (master) รวมถึงแสดงระดับ battery level กรณีที่ใช้ปลั้กอิน vim-battery)</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>ชื่อไฟล์ และแสดงรายละเอียดว่าเป็น read-only หรือไม่ (~/.vim/vimrc RO)</td>
+    </tr>
+    <tr>
+      <td>X</td>
+      <td>ชนิดไฟล์ (vim)</td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td>ข้อมูล encoding (utf-8[unix])</td>
+    </tr>
+    <tr>
+      <td>Z</td>
+      <td>แสดงตำแหน่งปัจจุบันในไฟล์นั้น</td>
+    </tr>
+    <tr>
+      <td>[…]</td>
+      <td>รายละเอียดอื่นเพิ่มเติม (warning/errors/statistics) จากปลั้กอินอื่น ๆ (e.g. YCM, syntastic, …)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>โดยข้อมูลในส่วน Z ที่แสดงรายละเอียดตำแหน่งปัจจุบันในไฟล์นั้น จะแสดงในลักษณะนี้ที่เป็น <code class="language-plaintext highlighter-rouge">10% ☰ 10/100 ln : 20</code> โดย</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">10%</code> คือ 10% จากตำแหน่งด้านบนสุดของไฟล์</li>
+  <li><code class="language-plaintext highlighter-rouge">☰ 10</code> คือบรรทัดปัจจุบันที่ใช้งานอยู่ โดยในตัวอย่างเราจะอยู่ที่บรรทัดที่ 10</li>
+  <li><code class="language-plaintext highlighter-rouge">/100 ln</code> คือจำนวนบรรทัดทั้งหมดในไฟล์ที่มีทั้งหมด 100 บรรทัด</li>
+  <li><code class="language-plaintext highlighter-rouge">: 20</code> คือตำแหน่งคอลัมภ์ปัจจุบันที่อยู่คอลัมภ์ที่ 20</li>
+</ul>
+
+<p>เมื่อทราบรายละเอียดแล้ว เรามาติดตั้ง vim-airline กันเถอะ</p>
+
+<h2 id="การติดตั้ง">การติดตั้ง</h2>
+
+<p>การติดตั้งปลั้กอิน vim-airline นั้น จำเป็นต้องทำผ่านเครื่องมือจัดการปลั้กอิน (Plugin Manager) เสียก่อน โดยในบทความนี้เราจะใช้เครื่องมือที่มีชื่อว่า vim-plug</p>
+
+<p><a href="https://github.com/junegunn/vim-plug"><strong>vim-plug</strong></a> เป็นเครื่องมือจัดการปลั้กอินที่มีความมินิมอล ทำงานได้เร็ว แถมยังมีฟิเจอร์ที่หลากหลายสำหรับใช้งานร่วมกันกับ vim และ Neovim ที่ทำให้การติดตั้ง การอัพเดท และจัดการปลั้กอินเป็นไปได้โดยง่าย โดยเราสามารถติดตั้งเครื่องมือนี้ได้โดยการพิมพ์คำสั่งตามด้านล่างนี้ใน Linux/UNIX</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+</code></pre></div></div>
+
+<p>จากนั้นกด Enter เพื่อติดตั้ง</p>
+
+<blockquote>
+  <p>ส่วนของ Windows และระบบปฏิบัติการอื่นสามารถอ่านได้ใน <a href="https://github.com/junegunn/vim-plug">Github</a></p>
+</blockquote>
+
+<p>เมื่อติดตั้ง vim-plug เสร็จแล้ว การติดตั้งปลั้กอินของ vim เพิ่มเติมทำได้ไม่ยากนัก เพียงแค่เข้าไปแก้ไขไฟล์ <code class="language-plaintext highlighter-rouge">~/.vimrc</code> โดยเพิ่มตามด้านล่างนี้</p>
+
+<ol>
+  <li>เริ่มต้นส่วนที่เป็นการติดตั้งปลั้กอินโดยพิมพ์ <code class="language-plaintext highlighter-rouge">call plug#begin()</code></li>
+  <li>ใส่ชื่อปลั้กอินที่ต้องการติดตั้งโดยพิมพ์ <code class="language-plaintext highlighter-rouge">Plug 'ชื่อปลั้กอินที่ต้องการติดตั้ง'</code></li>
+  <li>จบส่วนการติดตั้งปลั้กอินโดยพิมพ์ <code class="language-plaintext highlighter-rouge">call plug#end()</code></li>
+</ol>
+
+<p>โดยตัวอย่างแสดงตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>call plug#begin()
+Plug 'ใส่ชื่อปลั้กอินที่ต้องการติดตั้ง'
+call plug#end()
+</code></pre></div></div>
+
+<p>เมื่อพิมพ์เสร็จแล้วให้เราบันทึกไฟล์ ร่วมกับปิดแล้วเปิด vim ใหม่ จากนั้นเราสามารถพิมพ์คำสั่งใน vim ได้ตามด้านล่างนี้</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">:PlugInstall</code> เป็นการติดตั้งปลั้กอิน</li>
+  <li><code class="language-plaintext highlighter-rouge">:PlugUpdate</code> เป็นการติดตั้งหรืออัพเดทปลั้กอิน</li>
+  <li><code class="language-plaintext highlighter-rouge">:PlugDiff</code> เป็นการรีวิวความเปลี่ยนแปลงของตัวอัพเดทรุ่นล่าสุด</li>
+  <li><code class="language-plaintext highlighter-rouge">:PlugClean</code> เป็นการลบปลั้กอินที่ไม่ได้อยู่ใน <code class="language-plaintext highlighter-rouge">call plug#begin()</code> และ <code class="language-plaintext highlighter-rouge">call plug#end()</code></li>
+</ul>
+
+<p>เมื่อทราบรายละเอียดของการติดตั้งและใช้งาน vim-plug แล้ว ต่อมาเราจะมาติดตั้งปลั้กอินอย่าง vim-airline ที่ติดตั้งได้ง่าย เพียงแค่แก้ไขไฟล์ <code class="language-plaintext highlighter-rouge">~/.vimrc</code> ให้เป็นไปตามด้านล่างนี้</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>call plug#begin()
+Plug 'vim-airline/vim-airline'
+call plug#end()
+</code></pre></div></div>
+
+<p>จากนั้นบันทึกไฟล์ แล้วปิดและเปิด vim ใหม่ จากนั้นพิมพ์คำสั่ง <code class="language-plaintext highlighter-rouge">:PlugInstall</code> แค่นี้ตัว vim จะติดตั้งปลั้กอินเพิ่มลงไป จากนั้นเราก็สามารถใช้งานได้แล้ว (แต่ถ้าใครไม่เห็นความเปลี่ยนแปลง จุดนี้ทำได้ง่ายเพียงแค่เปิดแล้วเปิดใหม่) โดยตัวอย่างแสดงตามด้านล่างนี้</p>
+
+<p><img src="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/vim_airline_screenshot.png" alt="หน้าจอ vim ที่ลงปลั้กอิน vim-airline" /></p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="VIM" /><category term="Airline" /><category term="VIM Airline" /><category term="Text Editor" /><category term="Plugin" /><category term="VIMPlug" /><category term="vim-airline" /><category term="vim-plug" /><category term="Installation" /><category term="Decoration" /><summary type="html"><![CDATA[VIM เป็นโปรแกรม Text Editor ที่ได้รับความนิยมมานาน โดยในบทความนี้เราจะมาลงปลั้กอินให้หน้าจอ vim ดูดีขึ้นด้วย vim-airline]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/38_make_vim_beautiful_via_vim_airline.jpg" /><media:content medium="image" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/38_make_vim_beautiful_via_vim_airline.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล</title><link href="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/" rel="alternate" type="text/html" title="#37 - ติดตั้ง Apache Guacamole สำหรับการเข้าถึงคอมพิวเตอร์จากระยะไกล" /><published>2025-08-01T03:00:00+07:00</published><updated>2025-08-01T06:00:00+07:00</updated><id>https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc</id><content type="html" xml:base="https://nickuntitled.com/2025/08/01/using-apache-guacamole-remote-my-pc/"><![CDATA[<p><a href="https://guacamole.apache.org/">Apache Guacamole</a> เป็นแอพ Remote Desktop ระยะไกลที่ไม่ต้องใช้ Client ที่อนุญาตให้ผู้ใช้สามารถเข้าถึงและควบคุมคอมพิวเตอร์จากระยะไกลผ่านหน้าเว็บเบราวเซอร์ โดยผ่านโปรโตคอลมาตรฐานอย่าง SSH, VNC และ RDP [1] ที่ไม่ต้องติดตั้ง Plugin หรือแอพใด ๆ ลงบนคอมพิวเตอร์ของ Client เลย ด้วยการใช้เทคโนโลยีเว็บอย่าง HTML5 และ JavaScript</p>
 
 <p>เมื่อทราบชื่อของแอพนี้แล้ว ทำไมเราต้องใช้ล่ะ?</p>
 
@@ -179,11 +289,7 @@ volumes:
 <ol>
   <li><a href="https://guacamole.apache.org/doc/gug/introduction.html">https://guacamole.apache.org/doc/gug/introduction.html</a></li>
   <li><a href="https://krdesigns.com/articles/how-to-install-guacamole-using-docker-step-by-step">https://krdesigns.com/articles/how-to-install-guacamole-using-docker-step-by-step</a></li>
-<<<<<<< HEAD
-</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="apache" /><category term="guacamole" /><category term="remote" /><category term="desktop" /><category term="pc" /><category term="docker" /><category term="SSH" /><category term="VNC" /><category term="RDP" /><category term="รีโหมด" /><summary type="html"><![CDATA[แอพ Apache Guacamole อนุญาตให้เราเข้าถึงคอมจากระยะไกลได้ ในบทความนี้เราจะแนะนำการติดตั้งเพื่อรีโหมดคอมจากระยะไกลได้]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" /><media:content medium="image" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ</title><link href="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/" rel="alternate" type="text/html" title="#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ" /><published>2025-07-23T04:30:00+00:00</published><updated>2025-07-23T04:30:00+00:00</updated><id>https://nickuntitled.com/2025/07/23/notion-usage-for-helping-preparing-examination</id><content type="html" xml:base="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/"><![CDATA[<p>เขียนต่อจากบทความ<a href="/2025/01/24/building-a-second-brain/">การสร้าง Second Brain โดยใช้เครื่องมืออย่าง Notion</a> ที่เป็นการเก็บข้อมูลความรู้ไว้ในแหล่งเก็บข้อมูลภายนอกเพื่อให้เราดึงข้อมูลมาใช้ในเวลาที่จำเป็น</p>
-=======
 </ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="apache" /><category term="guacamole" /><category term="remote" /><category term="desktop" /><category term="pc" /><category term="docker" /><category term="SSH" /><category term="VNC" /><category term="RDP" /><category term="รีโหมด" /><summary type="html"><![CDATA[แอพ Apache Guacamole อนุญาตให้เราเข้าถึงคอมจากระยะไกลได้ ในบทความนี้เราจะแนะนำการติดตั้งเพื่อรีโหมดคอมจากระยะไกลได้]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" /><media:content medium="image" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/08/37_apache_guacamole_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ</title><link href="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/" rel="alternate" type="text/html" title="#36 - ใช้ Notion สำหรับการเตรียมสอบราชการ" /><published>2025-07-23T11:30:00+07:00</published><updated>2025-07-23T11:30:00+07:00</updated><id>https://nickuntitled.com/2025/07/23/notion-usage-for-helping-preparing-examination</id><content type="html" xml:base="https://nickuntitled.com/2025/07/23/notion-usage-for-preparing-examination/"><![CDATA[<p>เขียนต่อจากบทความ<a href="/2025/01/24/building-a-second-brain/">การสร้าง Second Brain โดยใช้เครื่องมืออย่าง Notion</a> ที่เป็นการเก็บข้อมูลความรู้ไว้ในแหล่งเก็บข้อมูลภายนอกเพื่อให้เราดึงข้อมูลมาใช้ในเวลาที่จำเป็น</p>
->>>>>>> 1881302b533f526abd5c2f21bcb2e806b86377d1
 
 <p>จุดนี้เป็นจุดที่ดีสำหรับการอ่านเตรียมสอบอะไรทั้งหลายแหล่ รวมถึงเตรียมสอบราชการ</p>
 
@@ -264,7 +370,7 @@ volumes:
 <ol>
   <li><a href="https://file.thaijobjob.com/prakad/tax202503/tax202503_2">https://file.thaijobjob.com/prakad/tax202503/tax202503_2</a></li>
   <li><a href="https://www.facebook.com/groups/notionthai/posts/324957728876659/">https://www.facebook.com/groups/notionthai/posts/324957728876659/</a></li>
-</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="notetaking" /><category term="Notion" /><category term="Organized" /><category term="PARA" /><category term="Progressive Summarization" /><category term="second brain" /><category term="Sharing" /><category term="summary" /><category term="Writing" /><category term="Examination" /><category term="ราชการ" /><category term="สอบภาค ข" /><category term="กรมสรรพากร" /><category term="นักทรัพยากรบุคคลปฏิบัติการ" /><summary type="html"><![CDATA[แอพ Notion เป็นแอพที่นิยมสำหรับการจดบันทึก ในบทความนี้เราจะนำแอพนี้มาช่วยสำหรับการเตรียมสอบราชการ]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/36_using_notion_for_preparing_gov_examination.jpg" /><media:content medium="image" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/36_using_notion_for_preparing_gov_examination.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์</title><link href="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/" rel="alternate" type="text/html" title="#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์" /><published>2025-02-21T23:30:00+00:00</published><updated>2025-03-16T15:06:29+00:00</updated><id>https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc</id><content type="html" xml:base="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/"><![CDATA[<p><strong>AIS Cloud PC</strong> เป็นบริการที่อนุญาตให้ผู้ใช้เข้าไปใช้งานคอมพิวเตอร์ได้อย่างสะดวกสบาย เชื่อมต่อได้ทุกที่ทุกเวลา ส่งผลให้ลดการลงทุนในอุปกรณ์คอมพิวเตอร์ เพียงแค่เรามีคอมพิวเตอร์เครื่องเก่า อุปกรณ์แท็บเล็ตอย่าง iPad หรือ Android Tablet เราก็เข้าไปใช้งานได้แล้ว</p>
+</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="notetaking" /><category term="Notion" /><category term="Organized" /><category term="PARA" /><category term="Progressive Summarization" /><category term="second brain" /><category term="Sharing" /><category term="summary" /><category term="Writing" /><category term="Examination" /><category term="ราชการ" /><category term="สอบภาค ข" /><category term="กรมสรรพากร" /><category term="นักทรัพยากรบุคคลปฏิบัติการ" /><summary type="html"><![CDATA[แอพ Notion เป็นแอพที่นิยมสำหรับการจดบันทึก ในบทความนี้เราจะนำแอพนี้มาช่วยสำหรับการเตรียมสอบราชการ]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/36_using_notion_for_preparing_gov_examination.jpg" /><media:content medium="image" url="https://nickuntitledasset.sgp1.cdn.digitaloceanspaces.com/2025/07/36_using_notion_for_preparing_gov_examination.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์</title><link href="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/" rel="alternate" type="text/html" title="#35 - แนะนำ + ทดลองใช้ AIS Cloud PC และคอมเม้นต์" /><published>2025-02-22T06:30:00+07:00</published><updated>2025-03-16T22:06:29+07:00</updated><id>https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc</id><content type="html" xml:base="https://nickuntitled.com/2025/02/22/introduction-handson-comment-aiscloudpc/"><![CDATA[<p><strong>AIS Cloud PC</strong> เป็นบริการที่อนุญาตให้ผู้ใช้เข้าไปใช้งานคอมพิวเตอร์ได้อย่างสะดวกสบาย เชื่อมต่อได้ทุกที่ทุกเวลา ส่งผลให้ลดการลงทุนในอุปกรณ์คอมพิวเตอร์ เพียงแค่เรามีคอมพิวเตอร์เครื่องเก่า อุปกรณ์แท็บเล็ตอย่าง iPad หรือ Android Tablet เราก็เข้าไปใช้งานได้แล้ว</p>
 
 <!--more-->
 
@@ -547,7 +653,7 @@ volumes:
 
 
 <li><a href="https://azure.microsoft.com/en-us/blog/what-is-desktop-as-a-service-daas-and-how-can-it-help-your-organization/">https://azure.microsoft.com/en-us/blog/what-is-desktop-as-a-service-daas-and-how-can-it-help-your-organization/</a></li>
-</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="AIS" /><category term="AIS Cloud PC" /><category term="client" /><category term="cloud" /><category term="cloud computing" /><category term="DaaS" /><category term="desktop" /><category term="ipad" /><category term="pc" /><category term="VDI" /><category term="windows" /><category term="คลาวด์" /><category term="คอมพิวเตอร์" /><category term="ไอแพด" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/02/35_introduction_handson_comment_aiscloudpc.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/02/35_introduction_handson_comment_aiscloudpc.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#34 - Building a Second Brain</title><link href="https://nickuntitled.com/2025/01/24/building-a-second-brain/" rel="alternate" type="text/html" title="#34 - Building a Second Brain" /><published>2025-01-24T09:30:00+00:00</published><updated>2025-01-24T08:17:44+00:00</updated><id>https://nickuntitled.com/2025/01/24/building-a-second-brain</id><content type="html" xml:base="https://nickuntitled.com/2025/01/24/building-a-second-brain/"><![CDATA[<p>วันก่อนได้เรียนในคอร์ส <a href="https://datarockie.com/data-science-bootcamp/" data-type="link" data-id="https://datarockie.com/data-science-bootcamp/" target="_blank" rel="noreferrer noopener">Data science Bootcamp</a> ของ Datarockie ภายในคอร์สนั้นมี Session หนึ่งที่กล่าวถึง<strong>การสร้าง Second Brain</strong> </p>
+</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="AIS" /><category term="AIS Cloud PC" /><category term="client" /><category term="cloud" /><category term="cloud computing" /><category term="DaaS" /><category term="desktop" /><category term="ipad" /><category term="pc" /><category term="VDI" /><category term="windows" /><category term="คลาวด์" /><category term="คอมพิวเตอร์" /><category term="ไอแพด" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/02/35_introduction_handson_comment_aiscloudpc.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/02/35_introduction_handson_comment_aiscloudpc.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#34 - Building a Second Brain</title><link href="https://nickuntitled.com/2025/01/24/building-a-second-brain/" rel="alternate" type="text/html" title="#34 - Building a Second Brain" /><published>2025-01-24T16:30:00+07:00</published><updated>2025-01-24T15:17:44+07:00</updated><id>https://nickuntitled.com/2025/01/24/building-a-second-brain</id><content type="html" xml:base="https://nickuntitled.com/2025/01/24/building-a-second-brain/"><![CDATA[<p>วันก่อนได้เรียนในคอร์ส <a href="https://datarockie.com/data-science-bootcamp/" data-type="link" data-id="https://datarockie.com/data-science-bootcamp/" target="_blank" rel="noreferrer noopener">Data science Bootcamp</a> ของ Datarockie ภายในคอร์สนั้นมี Session หนึ่งที่กล่าวถึง<strong>การสร้าง Second Brain</strong> </p>
 
 <p>Session นั้นเป็นเนื้อหาที่น่าสนใจ เพราะไม่ได้จำกัดแค่เอาไปใช้งานกับงานทางด้าน Data เพียงอย่างเดียว เรายังใช้กับเรื่องอื่น ๆ ในชีวิตประจำวันได้อีก</p>
 
@@ -737,7 +843,7 @@ volumes:
 
 <p>การแชร์ข้อมูลที่เราได้เรียนรู้มาแล้วนี้ เราสามารถแชร์ข้อมูลลงไปในโลกโซเชียลอย่าง Facebook, Instagram, Twitter (หรือ X) หรือเขียนลงบล็อก (แนะนำกรณีที่จริงจัง) แล้วมีคนเข้ามาอ่าน</p>
 
-<p>ยิ่งเราแชร์สิ่งที่เขียนมากไปเท่าไร เราก็จะยิ่งได้โอกาส และยิ่งสร้างรายได้ ไม่ว่าจะเป็นอาชีพไหนก็ตาม การมีแหล่งที่แชร์ความรู้ให้คนอื่นเข้ามาอ่านได้นั้นคือ Secret Sauce สิ่งนี้เราเรียกว่า <strong>The power of sharing</strong></p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Data" /><category term="Diary" /><category term="Capture" /><category term="code" /><category term="Distill" /><category term="Exptress" /><category term="method" /><category term="notetaking" /><category term="Notion" /><category term="Organized" /><category term="PARA" /><category term="Progressive Summarization" /><category term="second brain" /><category term="Sharing" /><category term="summary" /><category term="Writing" /><category term="การสรุป" /><category term="การเขียน" /><category term="การแชร์" /><category term="จดโน้ต" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/34_building_a_second_brain_cover.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/34_building_a_second_brain_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#33 - เล่าถึงการส่งซ่อมจอ Samsung Z Fold 3</title><link href="https://nickuntitled.com/2025/01/20/33_repair_samsung_z_fold_3_screen/" rel="alternate" type="text/html" title="#33 - เล่าถึงการส่งซ่อมจอ Samsung Z Fold 3" /><published>2025-01-20T08:47:17+00:00</published><updated>2025-01-20T12:01:03+00:00</updated><id>https://nickuntitled.com/2025/01/20/33_repair_samsung_z_fold_3_screen</id><content type="html" xml:base="https://nickuntitled.com/2025/01/20/33_repair_samsung_z_fold_3_screen/"><![CDATA[<p><strong>Samsung Z Fold 3</strong> เป็นหนึ่งในโทรศัพท์จอพับที่ทำโดย Samsung ที่เปิดตัวไปเมื่อช่วงเดือนสิงหาคมปี 2564 ในงาน Samsung Unpacked แล้ววางขายในไทยเมื่อนานมาแล้ว</p>
+<p>ยิ่งเราแชร์สิ่งที่เขียนมากไปเท่าไร เราก็จะยิ่งได้โอกาส และยิ่งสร้างรายได้ ไม่ว่าจะเป็นอาชีพไหนก็ตาม การมีแหล่งที่แชร์ความรู้ให้คนอื่นเข้ามาอ่านได้นั้นคือ Secret Sauce สิ่งนี้เราเรียกว่า <strong>The power of sharing</strong></p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Data" /><category term="Diary" /><category term="Capture" /><category term="code" /><category term="Distill" /><category term="Exptress" /><category term="method" /><category term="notetaking" /><category term="Notion" /><category term="Organized" /><category term="PARA" /><category term="Progressive Summarization" /><category term="second brain" /><category term="Sharing" /><category term="summary" /><category term="Writing" /><category term="การสรุป" /><category term="การเขียน" /><category term="การแชร์" /><category term="จดโน้ต" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/34_building_a_second_brain_cover.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/34_building_a_second_brain_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#33 - เล่าถึงการส่งซ่อมจอ Samsung Z Fold 3</title><link href="https://nickuntitled.com/2025/01/20/33_repair_samsung_z_fold_3_screen/" rel="alternate" type="text/html" title="#33 - เล่าถึงการส่งซ่อมจอ Samsung Z Fold 3" /><published>2025-01-20T15:47:17+07:00</published><updated>2025-01-20T19:01:03+07:00</updated><id>https://nickuntitled.com/2025/01/20/33_repair_samsung_z_fold_3_screen</id><content type="html" xml:base="https://nickuntitled.com/2025/01/20/33_repair_samsung_z_fold_3_screen/"><![CDATA[<p><strong>Samsung Z Fold 3</strong> เป็นหนึ่งในโทรศัพท์จอพับที่ทำโดย Samsung ที่เปิดตัวไปเมื่อช่วงเดือนสิงหาคมปี 2564 ในงาน Samsung Unpacked แล้ววางขายในไทยเมื่อนานมาแล้ว</p>
 
 <p>ก่อนหน้านี้เราซื้อมาประมาณสามปีก่อน ตอนนั้นใช้ดีจนกระทั่งไปเกือบสองปีก่อนที่จอมันมีปัญหาไปตามที่เคยเขียนไป<a href="https://nickuntitled.com/2023/05/27/z-fold-3-folding-screen-problem/" data-type="post" data-id="3455">ในบทความนี้</a> ตอนแรกก็จะไม่ซ่อมนะแหละ แต่คิดไปมาก็เสียดายเครื่อง เลยเอาไปซ่อมดีกว่า</p>
 
@@ -799,7 +905,7 @@ volumes:
 
 <p>เมื่อซ่อมเสร็จแล้ว ทางนั้นจะโทรศัพท์มาอีกรอบเพื่อแจ้งให้ไปรับเครื่อง เราก็ไปรับเครื่องตามปกติ โดยสภาพเครื่องที่ซ่อมเสร็จแล้วเราก็พบว่ามันก็ใช้ได้เป็นปกติเหมือนตอนที่เพิ่งซื้อมาเลยครับ</p>
 
-<p>อย่างไรก็ดีตัวหน้าจอที่ซ่อมใหม่นี้มีระยะเวลารับประกันประมาณ 3 เดือนก็ต้องสังเกตดูว่ามันยังมีปัญหาอีกหรือไม่ครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="android" /><category term="diary" /><category term="Foldable Screen" /><category term="Galaxy Z Fold" /><category term="Maintenance" /><category term="Repair" /><category term="samsung" /><category term="Service" /><category term="smartphone" /><category term="Z Fold" /><category term="จอพับ" /><category term="ซัมซุง" /><category term="หน้าจอ" /><category term="โทรศัพท์" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/5xBS7jFd-33_repair_samsung_zfold_3_screen.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/5xBS7jFd-33_repair_samsung_zfold_3_screen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#32 ทดสอบความเร็วการพิมพ์ใน Monkeytype</title><link href="https://nickuntitled.com/2025/01/03/32-test-writing-on-monkeytype/" rel="alternate" type="text/html" title="#32 ทดสอบความเร็วการพิมพ์ใน Monkeytype" /><published>2025-01-02T23:25:00+00:00</published><updated>2025-01-04T05:08:57+00:00</updated><id>https://nickuntitled.com/2025/01/03/32-test-writing-on-monkeytype</id><content type="html" xml:base="https://nickuntitled.com/2025/01/03/32-test-writing-on-monkeytype/"><![CDATA[<p>เมื่อเดือนก่อนได้สมัครคอร์ส Data Science Bootcamp ของทาง Datarockie ไป และได้เข้าห้อง Discord ไปเรียบร้อยแล้ว</p>
+<p>อย่างไรก็ดีตัวหน้าจอที่ซ่อมใหม่นี้มีระยะเวลารับประกันประมาณ 3 เดือนก็ต้องสังเกตดูว่ามันยังมีปัญหาอีกหรือไม่ครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="android" /><category term="diary" /><category term="Foldable Screen" /><category term="Galaxy Z Fold" /><category term="Maintenance" /><category term="Repair" /><category term="samsung" /><category term="Service" /><category term="smartphone" /><category term="Z Fold" /><category term="จอพับ" /><category term="ซัมซุง" /><category term="หน้าจอ" /><category term="โทรศัพท์" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/5xBS7jFd-33_repair_samsung_zfold_3_screen.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/5xBS7jFd-33_repair_samsung_zfold_3_screen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#32 ทดสอบความเร็วการพิมพ์ใน Monkeytype</title><link href="https://nickuntitled.com/2025/01/03/32-test-writing-on-monkeytype/" rel="alternate" type="text/html" title="#32 ทดสอบความเร็วการพิมพ์ใน Monkeytype" /><published>2025-01-03T06:25:00+07:00</published><updated>2025-01-04T12:08:57+07:00</updated><id>https://nickuntitled.com/2025/01/03/32-test-writing-on-monkeytype</id><content type="html" xml:base="https://nickuntitled.com/2025/01/03/32-test-writing-on-monkeytype/"><![CDATA[<p>เมื่อเดือนก่อนได้สมัครคอร์ส Data Science Bootcamp ของทาง Datarockie ไป และได้เข้าห้อง Discord ไปเรียบร้อยแล้ว</p>
 
 <p>เมื่อวานทางเจ้าของ Datarockie ได้แนะนำเว็บหนึ่งสำหรับการทดสอบการพิมพ์คีย์บอร์ดเพื่อเช็คว่าพิมพ์ได้เร็วเท่าไร โดยเว็บนั้นมีชื่อว่า <strong>Monkeytype</strong></p>
 
@@ -911,7 +1017,7 @@ volumes:
 
 <p>อย่างไรก็ตาม ทักษะการพิมพ์ไม่ได้เป็นปัจจัยเดียวที่ทำให้เราประสบความสำเร็จในสายงานนั้น ๆ เราจำเป็นต้องมีทักษะอื่นประกอบกันไปด้วยครับ</p>
 
-<p>สำหรับผู้อ่านที่สนใจอยากจะทดสอบเพื่อประเมินว่าเราพิมพ์ได้เร็ว และถูกต้องแค่ไหน ผู้อ่านสามารถทดสอบได้ในเว็บ monkeytype เลยครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Evaluation" /><category term="ipad" /><category term="Magic Keyboard" /><category term="monkeytype" /><category term="Testing" /><category term="Word" /><category term="Word Per Minute" /><category term="Wpm" /><category term="คีย์บอร์ด" /><category term="ทดสอบ" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/32_test_typing_speed_on_monkeytype.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/32_test_typing_speed_on_monkeytype.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#31 สั้น ๆ ถึง iPad Air + Magic Keyboard และการใช้แทนโน้ตบุ๊ค</title><link href="https://nickuntitled.com/2024/12/11/31-magic-keyboard-and-laptop-substitution/" rel="alternate" type="text/html" title="#31 สั้น ๆ ถึง iPad Air + Magic Keyboard และการใช้แทนโน้ตบุ๊ค" /><published>2024-12-11T00:00:00+00:00</published><updated>2025-01-02T23:22:02+00:00</updated><id>https://nickuntitled.com/2024/12/11/31-magic-keyboard-and-laptop-substitution</id><content type="html" xml:base="https://nickuntitled.com/2024/12/11/31-magic-keyboard-and-laptop-substitution/"><![CDATA[<p>ปีก่อน เราซื้อ iPad Air 5th Generation มาใช้งาน โดยตัว iPad นี้ที่เป็นรุ่นที่คนนิยมใช้กันรุ่นหนึ่ง โดยมีการออกแบบที่สวย จอโอเค แถมใช้ซีพียูอย่าง Apple M1 แบบเดียวกัน iPad Pro ในรุ่นเดียวกันตอนนั้น</p>
+<p>สำหรับผู้อ่านที่สนใจอยากจะทดสอบเพื่อประเมินว่าเราพิมพ์ได้เร็ว และถูกต้องแค่ไหน ผู้อ่านสามารถทดสอบได้ในเว็บ monkeytype เลยครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Evaluation" /><category term="ipad" /><category term="Magic Keyboard" /><category term="monkeytype" /><category term="Testing" /><category term="Word" /><category term="Word Per Minute" /><category term="Wpm" /><category term="คีย์บอร์ด" /><category term="ทดสอบ" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/32_test_typing_speed_on_monkeytype.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/32_test_typing_speed_on_monkeytype.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#31 สั้น ๆ ถึง iPad Air + Magic Keyboard และการใช้แทนโน้ตบุ๊ค</title><link href="https://nickuntitled.com/2024/12/11/31-magic-keyboard-and-laptop-substitution/" rel="alternate" type="text/html" title="#31 สั้น ๆ ถึง iPad Air + Magic Keyboard และการใช้แทนโน้ตบุ๊ค" /><published>2024-12-11T07:00:00+07:00</published><updated>2025-01-03T06:22:02+07:00</updated><id>https://nickuntitled.com/2024/12/11/31-magic-keyboard-and-laptop-substitution</id><content type="html" xml:base="https://nickuntitled.com/2024/12/11/31-magic-keyboard-and-laptop-substitution/"><![CDATA[<p>ปีก่อน เราซื้อ iPad Air 5th Generation มาใช้งาน โดยตัว iPad นี้ที่เป็นรุ่นที่คนนิยมใช้กันรุ่นหนึ่ง โดยมีการออกแบบที่สวย จอโอเค แถมใช้ซีพียูอย่าง Apple M1 แบบเดียวกัน iPad Pro ในรุ่นเดียวกันตอนนั้น</p>
 
 <!--more-->
 
@@ -1081,7 +1187,7 @@ volumes:
 
 <ol class="wp-block-list">
 <li>ChatGPT</li>
-</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="apple" /><category term="cloud" /><category term="Cloud PC" /><category term="internet" /><category term="ipad" /><category term="iPad Air" /><category term="iPad Case" /><category term="iPad OS" /><category term="laptop" /><category term="Magic Keyboard" /><category term="productivity" /><category term="programming" /><category term="Substitution" /><category term="VDI" /><category term="คลาวด์" /><category term="คีย์บอร์ด" /><category term="เคส" /><category term="โน้ตบุ๊ค" /><category term="ไอแพด" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/31_short_comment_on_magic_keyboard.jpg.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/31_short_comment_on_magic_keyboard.jpg.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator</title><link href="https://nickuntitled.com/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/" rel="alternate" type="text/html" title="#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator" /><published>2024-10-09T09:15:28+00:00</published><updated>2024-10-09T11:18:01+00:00</updated><id>https://nickuntitled.com/2024/10/09/30-summary-of-python-decorator-from-pycon-tw</id><content type="html" xml:base="https://nickuntitled.com/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/"><![CDATA[<p>ปลายเดือนที่แล้ว เราได้ไปงานประชุม PyCon Taiwan 2024 ตัวงานนั้นมีจัดทั้ง Presentation กับ Workshop โดยหนึ่งใน Workshop ที่เราเข้าร่วมนั่นก็คือ <strong>All about decorators</strong></p>
+</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="apple" /><category term="cloud" /><category term="Cloud PC" /><category term="internet" /><category term="ipad" /><category term="iPad Air" /><category term="iPad Case" /><category term="iPad OS" /><category term="laptop" /><category term="Magic Keyboard" /><category term="productivity" /><category term="programming" /><category term="Substitution" /><category term="VDI" /><category term="คลาวด์" /><category term="คีย์บอร์ด" /><category term="เคส" /><category term="โน้ตบุ๊ค" /><category term="ไอแพด" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/31_short_comment_on_magic_keyboard.jpg.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2025/01/31_short_comment_on_magic_keyboard.jpg.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator</title><link href="https://nickuntitled.com/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/" rel="alternate" type="text/html" title="#30 สรุป + เสริมจาก Workshop PyCon TW เรื่องการใช้ Decorator" /><published>2024-10-09T16:15:28+07:00</published><updated>2024-10-09T18:18:01+07:00</updated><id>https://nickuntitled.com/2024/10/09/30-summary-of-python-decorator-from-pycon-tw</id><content type="html" xml:base="https://nickuntitled.com/2024/10/09/30-summary-of-python-decorator-from-pycon-tw/"><![CDATA[<p>ปลายเดือนที่แล้ว เราได้ไปงานประชุม PyCon Taiwan 2024 ตัวงานนั้นมีจัดทั้ง Presentation กับ Workshop โดยหนึ่งใน Workshop ที่เราเข้าร่วมนั่นก็คือ <strong>All about decorators</strong></p>
 
 <!--more-->
 
@@ -1349,7 +1455,7 @@ This function (slow_mul) takes 7.867813110351562e-06 seconds.</code></pre>
 
 
 <li><a href="https://devhub.in.th/blog/args-kwargs-python">การใช้งาน *args และ **kwargs ในภาษา Python | DH (devhub.in.th)</a></li>
-</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="coding" /><category term="Decorator" /><category term="function" /><category term="Object" /><category term="programming" /><category term="PyCon" /><category term="Pycon TW" /><category term="python" /><category term="summary" /><category term="Syntax" /><category term="Tutorial" /><category term="Workshop" /><category term="เขียนโปรแกรม" /><category term="โค้ดดิ้ง" /><category term="ไพทอน" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE</title><link href="https://nickuntitled.com/2024/07/26/29-install-linux-on-ipad-via-utm-se/" rel="alternate" type="text/html" title="#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE" /><published>2024-07-26T09:00:12+00:00</published><updated>2024-07-30T11:14:40+00:00</updated><id>https://nickuntitled.com/2024/07/26/29-install-linux-on-ipad-via-utm-se</id><content type="html" xml:base="https://nickuntitled.com/2024/07/26/29-install-linux-on-ipad-via-utm-se/"><![CDATA[<p>ก่อนหน้านี้เราใช้งาน iPad ตามปกติ ส่วนกรณีที่ต้องการเขียนโค้ดเราก็เช่าคลาวด์แล้วรีโหมดเพื่อใช้งาน หรือจะไปลงเครื่องมืออย่าง code-server หรือ openvscode-server เพื่อใช้งานหน้าจอยังกับ Visual Studio Code ผ่านเว็บเบราวเซอร์ที่มันก็ใช้ได้ตามปกติครับ แต่มันมีข้อเสียคือ</p>
+</ol>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="coding" /><category term="Decorator" /><category term="function" /><category term="Object" /><category term="programming" /><category term="PyCon" /><category term="Pycon TW" /><category term="python" /><category term="summary" /><category term="Syntax" /><category term="Tutorial" /><category term="Workshop" /><category term="เขียนโปรแกรม" /><category term="โค้ดดิ้ง" /><category term="ไพทอน" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/10/30_summary_of_PyCon_TW_decorator.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE</title><link href="https://nickuntitled.com/2024/07/26/29-install-linux-on-ipad-via-utm-se/" rel="alternate" type="text/html" title="#29 - ลง Linux เพื่อใช้งานบน iPad ด้วย UTM SE" /><published>2024-07-26T16:00:12+07:00</published><updated>2024-07-30T18:14:40+07:00</updated><id>https://nickuntitled.com/2024/07/26/29-install-linux-on-ipad-via-utm-se</id><content type="html" xml:base="https://nickuntitled.com/2024/07/26/29-install-linux-on-ipad-via-utm-se/"><![CDATA[<p>ก่อนหน้านี้เราใช้งาน iPad ตามปกติ ส่วนกรณีที่ต้องการเขียนโค้ดเราก็เช่าคลาวด์แล้วรีโหมดเพื่อใช้งาน หรือจะไปลงเครื่องมืออย่าง code-server หรือ openvscode-server เพื่อใช้งานหน้าจอยังกับ Visual Studio Code ผ่านเว็บเบราวเซอร์ที่มันก็ใช้ได้ตามปกติครับ แต่มันมีข้อเสียคือ</p>
 
 <ul class="wp-block-list">
 <li>เราจำเป็นต้องใช้งานอินเตอร์เน็ต</li>
@@ -1518,176 +1624,4 @@ This function (slow_mul) takes 7.867813110351562e-06 seconds.</code></pre>
 
 
 <li>หรือจะไปใช้งาน Sidecar ที่เป็นฟีเจอร์ที่ใช้งานร่วมกับคอมแมคครับ</li>
-</ul>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="coding" /><category term="computer" /><category term="Debian" /><category term="Dynamic Code Generation" /><category term="ipad" /><category term="JIT" /><category term="linux" /><category term="programming" /><category term="QEMU" /><category term="UTM" /><category term="UTM SE" /><category term="Virtual Machine" /><category term="VM" /><category term="ไอแพด" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">#28 วิธีใช้ Baidu Maps (百度地圖) เบื้องต้นและวิธีสมัครสมาชิก</title><link href="https://nickuntitled.com/2024/06/08/how_to_use_baidu_and_how_to_register_cover/" rel="alternate" type="text/html" title="#28 วิธีใช้ Baidu Maps (百度地圖) เบื้องต้นและวิธีสมัครสมาชิก" /><published>2024-06-08T11:53:17+00:00</published><updated>2024-06-08T11:53:18+00:00</updated><id>https://nickuntitled.com/2024/06/08/how_to_use_baidu_and_how_to_register_cover</id><content type="html" xml:base="https://nickuntitled.com/2024/06/08/how_to_use_baidu_and_how_to_register_cover/"><![CDATA[<p>ช่วงที่ผ่านมาที่ประเทศจีนเปิดฟรีวีซ่าให้กับคนไทย เราก็อยากไปเที่ยวที่นั่น อย่างไรก็ดีเมื่อเราไปเที่ยวประเทศจีนแล้ว เราจะใช้แอปไหนเพื่อนำทางไปยังสถานที่เที่ยวในแต่ละที่?</p>
-
-<p>คำตอบคือแอป <strong>Baidu Maps (百度地圖)</strong></p>
-
-<!--more-->
-
-<h2 class="wp-block-heading">Baidu Maps</h2>
-
-<p><strong>Baidu Maps (百度地圖)</strong> เป็นบริการแผนที่ที่ให้บริการโดยบริษัทจีนชื่อดังอย่าง Baidu</p>
-
-<p>โปรแกรมนี้จะมีฟีเจอร์ที่ดูแผนที่ตามปกติ กับดูแผนที่ผ่านภาพถ่ายจากดาวเทียม และเราสามารถดูภาพแบบ Google Street View ได้โดยใช้ฟีเจอร์ Street View ที่มีในแอป</p>
-
-<p>นอกจากนี้โปรแกรม Baidu Maps มีฟังก์ชันวางแผนการเดินทางโดยการขับรถ การเดินทาง และการนั่งขนส่งมวลชนอย่างรถเมล์ รถไฟฟ้า รวมถึงการนั่งแท็กซี่ กับเรียกแท็กซี่ได้อีก</p>
-
-<h2 class="wp-block-heading">ทำไมต้องใช้ Baidu Maps?</h2>
-
-<p>สาเหตุที่เราใช้แอป Baidu Maps ก็เพราะว่าแอปนี้เป็นของจีน</p>
-
-<p>ข้อมูลที่มีในประเทศจีนจะแม่นยำกว่าการใช้แอป Google Maps มาก แถมยังบอกรายละเอียดของสถานที่ การเดินทางได้ชัดเจนกว่าเยอะเลย</p>
-
-<h2 class="wp-block-heading">แล้ว เราไม่สมัครสมาชิกได้ไหม?</h2>
-
-<p>ในกรณีที่เราใช้งานแอปเบื้องต้น แบบเปิดแอปมาเพื่อให้มันนำทางเราไปยังแต่ละสถานที่ตามที่เราต้องการ เราไม่จำเป็นต้องสมัครสมาชิก</p>
-
-<h2 class="wp-block-heading">การใช้งานเบื้องต้น</h2>
-
-<p>วิธีการใช้งานเบื้องต้น ทำได้ไม่ยากนัก โดยเริ่มจากดาวน์โหลดได้จาก <a href="https://apps.apple.com/us/app/%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE-%E8%B7%AF%E7%BA%BF%E8%A7%84%E5%88%92-%E5%87%BA%E8%A1%8C%E5%BF%85%E5%A4%87/id452186370" data-type="link" data-id="https://apps.apple.com/us/app/%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE-%E8%B7%AF%E7%BA%BF%E8%A7%84%E5%88%92-%E5%87%BA%E8%A1%8C%E5%BF%85%E5%A4%87/id452186370" target="_blank" rel="noreferrer noopener">App Store</a> หรือ <a href="https://play.google.com/store/apps/details?id=com.baidu.BaiduMap&amp;hl=th&amp;pli=1" data-type="link" data-id="https://play.google.com/store/apps/details?id=com.baidu.BaiduMap&amp;hl=th&amp;pli=1" target="_blank" rel="noreferrer noopener">Play Store</a> ครับ เมื่อดาวน์โหลดเรียบร้อยแล้ว เราเปิดแอป Baidu Maps ที่เราดาวน์โหลดมาครับ</p>
-
-<p>จากนั้นพิมพ์ชื่อสถานที่ที่ต้องการไปโดยพิมพ์เป็นภาษาจีน แต่ถ้าไม่ทราบชื่อภาษาจีน เราทำได้โดยหาชื่อภาษาจีนในอินเตอร์เน็ตได้เลย โดยอาจจะหาจาก Google อะไรแบบนี้</p>
-
-<p>เมื่อเจอสถานที่ที่ต้องการ (แบบภาพด้านขวา) แล้ว ให้กดที่ปุ่มลูกศรตรงข้างสถานที่ที่เราต้องการค้นหา</p>
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-4 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/X89CgKuE-baidu_first_main_page-472x1024.png" alt="" class="wp-image-7211" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/X89CgKuE-baidu_first_main_page-138x300.png 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/X89CgKuE-baidu_first_main_page-472x1024.png 472w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/X89CgKuE-baidu_first_main_page-768x1665.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/X89CgKuE-baidu_first_main_page-709x1536.png 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/X89CgKuE-baidu_first_main_page-945x2048.png 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/X89CgKuE-baidu_first_main_page.png 1179w" sizes="auto, (max-width: 472px) 100vw, 472px" /></figure>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_second_search_place-472x1024.png" alt="" class="wp-image-7208" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_second_search_place-138x300.png 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_second_search_place-472x1024.png 472w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_second_search_place-768x1665.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_second_search_place-709x1536.png 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_second_search_place-945x2048.png 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_second_search_place.png 1179w" sizes="auto, (max-width: 472px) 100vw, 472px" /></figure>
-</div>
-</div>
-
-<p>เมื่อกดปุ่ม ระบบจะปรากฏเส้นทางการเดินทางโดยใช้วิธีที่แตกต่างกันจากตำแหน่งปัจจุบันไปยังตำแหน่งที่ต้องการ โดยในระบบจะปรากฏวิธีการเดินทางได้หลายวิธี ได้แก่การเดินทางโดยรถยนต์ รถเมล์ มอเตอร์ไซต์ กับเดินเท้า และอื่น ๆ</p>
-
-<p>อย่างไรก็ดี เราสามารถเปลี่ยนชื่อสถานที่ที่เราต้องการเดินจากมาได้โดยตัวอย่างเป็นกำแพงเมืองจีนครับ</p>
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-5 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_third_find_path-472x1024.png" alt="" class="wp-image-7210" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_third_find_path-138x300.png 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_third_find_path-472x1024.png 472w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_third_find_path-768x1665.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_third_find_path-709x1536.png 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_third_find_path-945x2048.png 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_third_find_path.png 1179w" sizes="auto, (max-width: 472px) 100vw, 472px" /></figure>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_fourth_find_public_transport-472x1024.png" alt="" class="wp-image-7207" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_fourth_find_public_transport-138x300.png 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_fourth_find_public_transport-472x1024.png 472w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_fourth_find_public_transport-768x1665.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_fourth_find_public_transport-709x1536.png 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_fourth_find_public_transport-945x2048.png 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_fourth_find_public_transport.png 1179w" sizes="auto, (max-width: 472px) 100vw, 472px" /></figure>
-</div>
-</div>
-
-<p>ข้างบนนี้เป้นวิธีการใช้งานทั่ว ๆ ไปเพื่อค้นหาเส้นทางที่เราต้องการถ้าเราไม่ได้สมัครสมาชิก</p>
-
-<p>อย่างไรก็ดีฟังก์ชันบางอย่างที่เราชอบใช้ได้แก่</p>
-
-<ul class="wp-block-list">
-<li>การปักหมุดสถานที่ที่เราต้องการ</li>
-
-
-
-<li>การรีวิวสถานที่นั้น ๆ (ซึ่ง Google ก็มี)</li>
-</ul>
-
-<p>เราจำเป็นต้องสมัครสมาชิก Baidu ครับ</p>
-
-<h2 class="wp-block-heading">วิธีการสมัครสมาชิก Baidu</h2>
-
-<p>ก่อนที่เราจะสมัครสมาชิก เราจำเป็นต้องมีเบอร์โทรศัพท์จีนเสียก่อน โดยสำหรับคนที่อยู่ไทยเราทำได้โดยการซื้อซิมของ CM Link ที่เราแนะนำไปแล้วใน<a href="https://nickuntitled.com/2024/04/29/26-how-to-register-china-software-developer-network/" data-type="post" data-id="6837">บทความก่อนหน้าที่สมัครใช้กับเว็บ CSDN</a></p>
-
-<p>การสมัครสมาชิกทำได้สองวิธี ได้แก่ทำผ่านหน้าเว็บไซต์ กับผ่านโทรศัพท์</p>
-
-<h3 class="wp-block-heading">ทำผ่านเว็บไซต์ (ง่ายกว่า)</h3>
-
-<p>เข้าไปยังหน้าเว้บไซต์ของ Baidu Maps ที่ <a href="https://map.baidu.com" data-type="link" data-id="https://map.baidu.com" target="_blank" rel="noreferrer noopener">map.baidu.com</a></p>
-
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map-1024x487.png" alt="" class="wp-image-7225" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map-300x143.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map-1024x487.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map-768x365.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map-1200x571.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/ldSaEAlV-baidu_map.png 1366w" /></figure>
-
-<p>เลือกไปที่มุมบนขวาที่เป็นหน้าคน จากนั้นกดปุ่ม <strong>登录</strong> ที่แปลว่าล็อคอิน</p>
-
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/JF96joeX-baidu_map_login-1024x484.png" alt="" class="wp-image-7229" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/JF96joeX-baidu_map_login-300x142.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/JF96joeX-baidu_map_login-1024x484.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/JF96joeX-baidu_map_login-768x363.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/JF96joeX-baidu_map_login-1200x567.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/JF96joeX-baidu_map_login.png 1366w" /></figure>
-
-<p>เมื่อกดปุ่มแล้ว ระบบจะปรากฏหน้าจอล็อคอินของ Baidu Map ให้เลือกที่มุมล่างขวาที่เขียนว่า <strong>立即注册</strong> ที่แปลประมาณว่าสมัครสมาชิก ครับ</p>
-
-<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/XZSdwKHU-baidu_map_login_page.png" alt="" class="wp-image-7230" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/XZSdwKHU-baidu_map_login_page-300x162.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/XZSdwKHU-baidu_map_login_page-768x415.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/XZSdwKHU-baidu_map_login_page.png 922w" /></figure>
-
-<p>เมื่อกดปุ่มสมัครสมาชิกแล้ว ระบบจะปรากฏหน้าจอสมัครสมาชิก ให้เรากรอกข้อมูลเข้าไป โดยกรอกข้อมูล</p>
-
-<ul class="wp-block-list">
-<li><strong>用户名</strong> ที่แปลว่าชื่อผู้ใช้ (Username)</li>
-
-
-
-<li><strong>手机号</strong> ที่เป็นเบอร์โทรศัพท์ โดยเราจะใช้เบอร์โทรศัพท์จีนตามที่เราได้สมัครไว้ครับ</li>
-
-
-
-<li><strong>密码</strong> ที่แปลว่ารหัสผ่าน</li>
-
-
-
-<li><strong>验证码</strong> ที่แปลว่ารหัสยืนยัน โดยเมื่อเรากรอกสามจุดข้างบนครบแล้ว ให้กดปุ่มที่ข้างกล่องข้อความที่ให้กรอกรหัสยืนยันครับ เมื่อกดแล้วระบบจะส่งข้อความไปยังมือถือ ให้เรากรอกรหัส OTP</li>
-</ul>
-
-<p>พร้อมกับติ๊กถูกที่ด้านล่างที่เป็นการยอมรับเงื่อนไขของ Baidu จากนั้นกดปุ่ม <strong>注册</strong> ที่แปลว่าสมัครสมาชิก</p>
-
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/sFmoYWxT-baidu_map_registration-1024x482.png" alt="" class="wp-image-7231" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/sFmoYWxT-baidu_map_registration-300x141.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/sFmoYWxT-baidu_map_registration-1024x482.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/sFmoYWxT-baidu_map_registration-768x362.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/sFmoYWxT-baidu_map_registration-1200x565.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/sFmoYWxT-baidu_map_registration.png 1366w" /></figure>
-
-<p>เมื่อสมัครสมาชิกแล้ว ระบบจะเข้ามาหน้าจอตามด้านล่างนี้ครับ</p>
-
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map_loggedin_website-1024x495.png" alt="" class="wp-image-7236" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map_loggedin_website-300x145.png 300w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map_loggedin_website-1024x495.png 1024w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map_loggedin_website-768x371.png 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map_loggedin_website-1200x580.png 1200w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_map_loggedin_website.png 1366w" /></figure>
-
-<h3 class="wp-block-heading">ทำผ่านแอป</h3>
-
-<p>วิธีแรกเป็นการใช้งานผ่านโทรศัพท์มือถือ</p>
-
-<p>โดยเข้าไปที่แอปของ Baidu เลือกที่แท็บ จากนั้นเข้าสู่ระบบ <strong>我的</strong> ที่แปลว่าของฉัน แล้วกดที่ปุ่มสีน้ำเงินบนสุดที่เขียนว่า <strong>一键登录</strong> ที่แปลประมาณว่าล็อคอินได้โดยการกดปุ่มครั้งเดียว</p>
-
-<p>เมื่อกดปุ่มแล้ว ให้ใส่เบอร์โทรศัพท์ที่เป็นเบอร์จีนครับ</p>
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-6 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_login-473x1024.jpg" alt="" class="wp-image-7216" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_login-138x300.jpg 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_login-473x1024.jpg 473w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_login-768x1664.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_login-709x1536.jpg 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_login-945x2048.jpg 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_login.jpg 1080w" sizes="auto, (max-width: 473px) 100vw, 473px" /></figure>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_insert_phone_no-473x1024.jpg" alt="" class="wp-image-7217" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_insert_phone_no-138x300.jpg 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_insert_phone_no-473x1024.jpg 473w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_insert_phone_no-768x1664.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_insert_phone_no-709x1536.jpg 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_insert_phone_no-945x2048.jpg 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_insert_phone_no.jpg 1080w" sizes="auto, (max-width: 473px) 100vw, 473px" /></figure>
-</div>
-</div>
-
-<p>เมื่อใส่เบอร์จีนแล้ว ระบบจะส่ง SMS เข้ามายังโทรศัพท์ของเรา จากนั้นกรอกรหัส OTP ที่ได้ จากนั้นระบบจะเข้ามายังหน้าสมัครสมาชิกกรณีที่ยังไม่สมัครสมาชิก โดยในหน้านั้นจะให้กรอกรายละเอียดชื่อผู้ใช้ รหัส และอื่น ๆ ที่เกี่ยวข้อง ร่วมกับยอมรับเงื่อนไขของ Baidu Maps แล้วสมัครสมาชิก</p>
-
-<p>เมื่อสมัครสมาชิกแล้ว หรือล็อคอินเข้าสู่ระบบแล้ว ระบบจะปรากฏหน้าจอตามด้านขวาครับ</p>
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-7 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/cuerg61M-baidu_get_sms-473x1024.jpg" alt="" class="wp-image-7219" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/cuerg61M-baidu_get_sms-138x300.jpg 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/cuerg61M-baidu_get_sms-473x1024.jpg 473w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/cuerg61M-baidu_get_sms-768x1664.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/cuerg61M-baidu_get_sms-709x1536.jpg 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/cuerg61M-baidu_get_sms-945x2048.jpg 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/cuerg61M-baidu_get_sms.jpg 1080w" sizes="auto, (max-width: 473px) 100vw, 473px" /></figure>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_logged_in-473x1024.jpg" alt="" class="wp-image-7220" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_logged_in-138x300.jpg 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_logged_in-473x1024.jpg 473w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_logged_in-768x1664.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_logged_in-709x1536.jpg 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_logged_in-945x2048.jpg 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_logged_in.jpg 1080w" sizes="auto, (max-width: 473px) 100vw, 473px" /></figure>
-</div>
-</div>
-
-<h2 class="wp-block-heading">หลังจากสมัครสมาชิก</h2>
-
-<p>เมื่อสมัครสมาชิกแล้ว ผู้ใช้สามารถทำได้มากกว่าเดิมเมื่อเทียบกับตอนที่ไม่ได้สมัครสมาชิกแล้ว โดยใน Baidu Maps ผู้ใช้สามารถการกดปุ่มดาว (ภาพซ้าย) เพื่อเซฟตำแหน่ง/สถานที่นั้น ๆ และรีวิวสถานที่ในแต่ละที่ (ภาพขวา) ได้ครับ</p>
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_save-473x1024.jpg" alt="" class="wp-image-7240" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_save-138x300.jpg 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_save-473x1024.jpg 473w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_save-768x1664.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_save-709x1536.jpg 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_save-945x2048.jpg 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_save.jpg 1080w" sizes="auto, (max-width: 473px) 100vw, 473px" /></figure>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" src="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_review-473x1024.jpg" alt="" class="wp-image-7241" srcset="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_review-138x300.jpg 138w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_review-473x1024.jpg 473w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_review-768x1664.jpg 768w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_review-709x1536.jpg 709w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_review-945x2048.jpg 945w, https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/baidu_review.jpg 1080w" sizes="auto, (max-width: 473px) 100vw, 473px" /></figure>
-</div>
-</div>
-
-<p>นอกจากนี้ผู้ใช้สามารถใช้งานฟีเจอร์อื่น ๆ ในเว็บ Baidu ได้อีก อย่างไรก็ดีแอปในเครือ Baidu เสียอย่างที่เป็นภาษาจีนหมด ซึ่งสำหรับคนที่รู้ภาษาจีนอยู่แล้วคงไม่เป็นปัญหาอะไรครับ</p>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="Diary" /><category term="China" /><category term="computer" /><category term="diary" /><category term="Map" /><category term="register" /><category term="travel" /><category term="ท่องเที่ยว" /><category term="ประเทศจีน" /><category term="สมัครสมาชิก" /><category term="แผนที่" /><category term="ไป่ตู้" /><category term="百度地圖" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/28_how_to_use_baidu_and_how_to_register_cover.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/06/28_how_to_use_baidu_and_how_to_register_cover.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+</ul>]]></content><author><name>Kittisak Chotikkakamthorn</name></author><category term="Computer" /><category term="coding" /><category term="computer" /><category term="Debian" /><category term="Dynamic Code Generation" /><category term="ipad" /><category term="JIT" /><category term="linux" /><category term="programming" /><category term="QEMU" /><category term="UTM" /><category term="UTM SE" /><category term="Virtual Machine" /><category term="VM" /><category term="ไอแพด" /><summary type="html"><![CDATA[None]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg" /><media:content medium="image" url="https://sgp1.digitaloceanspaces.com/nickuntitledasset/2024/07/29_install_UTMSE_.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
